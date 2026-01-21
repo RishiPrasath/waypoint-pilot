@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.customs.gov.sg)",
+      "WebSearch",
+      "Bash(dir:*)",
+      "WebFetch(domain:tariff-finder.asean.org)",
+      "WebFetch(domain:asean.org)",
+      "WebFetch(domain:asean.mendel-online.com)",
+      "WebFetch(domain:www.insw.go.id)",
+      "WebFetch(domain:www.customs.gov.my)",
+      "WebFetch(domain:www.cathaycargo.com)",
+      "Bash(git add:*)"
+    ]
+  }
+}

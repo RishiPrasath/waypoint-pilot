@@ -1,0 +1,98 @@
+---
+title: Singapore Export Procedures
+source: https://www.customs.gov.sg/businesses/exporting-goods/overview
+source_type: public_regulatory
+last_updated: 2025-01-20
+jurisdiction: SG
+category: customs
+use_cases: [UC-1.1, UC-2.1]
+---
+
+# Singapore Export Procedures
+
+## Overview
+
+Goods exported from Singapore are regulated under:
+- Customs Act
+- Regulation of Imports and Exports Act
+- Strategic Goods (Control) Act
+- Relevant Competent Authority (CA) legislation
+
+**Key Point**: GST and duty are not levied on goods exported from Singapore.
+
+## Required Steps for Exporting Goods
+
+### Step 1: Register and Activate Customs Account
+
+Entities must:
+1. Register with the Accounting and Corporate Regulatory Authority (ACRA) or relevant Unique Entity Number (UEN) agency to obtain a UEN
+2. Activate a Customs Account
+
+This is required for those engaging in import/export activities or obtaining permits.
+
+### Step 2: Verify Goods Classification
+
+Check if goods are subject to control restrictions by Competent Authorities.
+
+**Resources available:**
+- Search by product description, HS code, or CA product code
+- Apply for official classification ruling (S$75 fee per product)
+
+### Step 3: Obtain Customs Export Permit
+
+**Options:**
+- Appoint a licensed declaring agent to apply on your behalf
+- Register as a declaring agent and apply independently via TradeNet
+
+**Application channels:**
+- TradeNet front-end solutions from approved providers
+- Government Front-End Application portal
+
+All applications must be submitted electronically.
+
+### Step 4: Prepare Clearance Documentation
+
+#### For Containerised Cargo
+Present approved permits with supporting documents to checkpoint officers when:
+- Specified in permit conditions, OR
+- Goods are controlled/dutiable
+
+**Required documents:**
+- Approved permit
+- Invoice
+- Packing list
+- Bill of Lading / Airway Bill
+
+#### For Conventional Cargo
+Same documentation requirements apply.
+
+**Note**: Partial clearance is prohibited for goods departing via Woodlands and Tuas checkpoints.
+
+#### Permits Required For:
+- Exporting dutiable goods from licensed warehouses
+- Exporting from bonded warehouses
+- Temporary Export Scheme goods
+- Re-exporting goods from Temporary Import Scheme
+
+### Step 5: Maintain Records
+
+**Retention requirement**: Retain relevant supporting documents for **5 years** from permit approval date.
+
+**Storage options:**
+- Physical copies
+- Digital images
+
+Documents must be produced upon Customs request.
+
+## Key Resources
+
+| Resource | Purpose |
+|----------|---------|
+| TradeNet portal | Permit applications |
+| HS/CA Product Code Search Engine | Goods verification and classification |
+| Licensed forwarding agents directory | Find declaring agent assistance |
+| Competent Authority contacts | Controlled goods requirements |
+
+---
+*Source: Singapore Customs*
+*Retrieved: 2025-01-20*
