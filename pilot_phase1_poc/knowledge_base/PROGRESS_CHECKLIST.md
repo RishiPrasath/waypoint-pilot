@@ -1,9 +1,9 @@
 # Knowledge Base Scraper Progress Checklist
 
 **Total Documents**: 29
-**Completed**: 20
+**Completed**: 29
 **Failed**: 0
-**Pending**: 9
+**Pending**: 0
 
 **Last Updated**: 2025-01-20
 
@@ -83,11 +83,11 @@
 
 | # | Document | Filename | Status | Notes |
 |---|----------|----------|--------|-------|
-| 6.1 | Incoterms 2020 Reference | `incoterms_2020_reference.md` | ⏳ Pending | |
-| 6.2 | Incoterms Comparison Chart | `incoterms_comparison_chart.md` | ⏳ Pending | |
-| 6.3 | HS Code Structure Guide | `hs_code_structure_guide.md` | ⏳ Pending | |
+| 6.1 | Incoterms 2020 Reference | `incoterms_2020_reference.md` | ✅ Success | 11 terms, GIR rules, SG customs context |
+| 6.2 | Incoterms Comparison Chart | `incoterms_comparison_chart.md` | ✅ Success | Visual comparison, decision trees, cost matrix |
+| 6.3 | HS Code Structure Guide | `hs_code_structure_guide.md` | ✅ Success | WCO structure, AHTN, classification examples |
 
-**Section Status**: ⏳ PENDING (0/3)
+**Section Status**: ✅ COMPLETE (3/3)
 **Directory**: `03_reference/incoterms/` and `03_reference/hs_codes/`
 
 ---
@@ -96,14 +96,14 @@
 
 | # | Document | Filename | Status | Notes |
 |---|----------|----------|--------|-------|
-| 7.1 | Service Terms & Conditions | `service_terms_conditions.md` | ⏳ Pending | P1 |
-| 7.2 | Sea Freight Booking Procedure | `booking_procedure.md` | ⏳ Pending | P1 |
-| 7.3 | SLA Policy | `sla_policy.md` | ⏳ Pending | P2 |
-| 7.4 | Escalation Procedure | `escalation_procedure.md` | ⏳ Pending | P2 |
-| 7.5 | COD Handling Procedure | `cod_procedure.md` | ⏳ Pending | P3 |
-| 7.6 | FTA Comparison Matrix | `fta_comparison_matrix.md` | ⏳ Pending | P3 |
+| 7.1 | Service Terms & Conditions | `service_terms_conditions.md` | ✅ Success | Comprehensive T&C with liability, payment, claims |
+| 7.2 | Sea Freight Booking Procedure | `booking_procedure.md` | ✅ Success | 10-step SOP with timelines, cut-offs |
+| 7.3 | SLA Policy | `sla_policy.md` | ✅ Success | Response times, KPIs, tier-based service |
+| 7.4 | Escalation Procedure | `escalation_procedure.md` | ✅ Success | 5-level hierarchy, priority matrix |
+| 7.5 | COD Handling Procedure | `cod_procedure.md` | ✅ Success | Collection process, risk controls |
+| 7.6 | FTA Comparison Matrix | `fta_comparison_matrix.md` | ✅ Success | 27 FTAs, tariff comparison, RoO guide |
 
-**Section Status**: ⏳ PENDING (0/6)
+**Section Status**: ✅ COMPLETE (6/6)
 **Directory**: `04_internal_synthetic/policies/`, `procedures/`, `service_guides/`
 
 ---
@@ -117,9 +117,9 @@
 | 3. Country-Specific | 5 | 5 | 0 | 0 |
 | 4. Ocean Carriers | 4 | 4 | 0 | 0 |
 | 5. Air Carriers | 2 | 2 | 0 | 0 |
-| 6. Reference Docs | 3 | 0 | 0 | 3 |
-| 7. Synthetic Docs | 6 | 0 | 0 | 6 |
-| **TOTAL** | **29** | **20** | **0** | **9** |
+| 6. Reference Docs | 3 | 3 | 0 | 0 |
+| 7. Synthetic Docs | 6 | 6 | 0 | 0 |
+| **TOTAL** | **29** | **29** | **0** | **0** |
 
 ---
 
@@ -230,3 +230,117 @@ Both air carrier documents created using **Browser + WebFetch hybrid approach**:
 - 12+ specialized products (Cathay Pharma, Fresh, Live Animal, Expert, Courier, etc.)
 - First Asian airline with CEIV Live Animals certification
 - Singapore office: SATS Airfreight Terminal 5, Core J, Level 4
+
+---
+
+## Section 6 Execution Notes (2025-01-21)
+
+### Strategy Used
+Reference documents created from **authoritative industry standards** (ICC, WCO):
+
+### Documents Created
+
+| Document | Source | Key Content |
+|----------|--------|-------------|
+| Incoterms 2020 Reference | ICC Publication 723E | All 11 terms, detailed responsibilities, GIR |
+| Incoterms Comparison Chart | ICC | Visual matrices, decision trees, cost examples |
+| HS Code Structure Guide | WCO | 6-digit structure, AHTN, classification rules |
+
+### Key Content Captured
+
+**Incoterms 2020 Reference:**
+- All 11 Incoterms with full seller/buyer responsibility breakdown
+- General Interpretive Rules explanation
+- 2020 updates (DPU rename, CIP insurance change, FCA B/L option)
+- Singapore customs GST implications by Incoterm
+
+**Incoterms Comparison Chart:**
+- Visual responsibility matrix (who pays for what)
+- Risk vs cost transfer comparison
+- Mode of transport compatibility
+- Decision trees for selecting terms
+- Price comparison examples
+
+**HS Code Structure Guide:**
+- WCO hierarchical structure (Section → Chapter → Heading → Subheading)
+- General Interpretive Rules (GIR 1-6)
+- AHTN and Singapore 8-digit codes
+- Classification examples (smartphones, laptops, textiles)
+- HS 2022 updates and changes
+
+---
+
+## Section 7 Execution Notes (2025-01-21)
+
+### Strategy Used
+Synthetic internal documents created based on **industry best practices** for freight forwarding operations:
+
+### Documents Created
+
+| Document | Type | Key Content |
+|----------|------|-------------|
+| Service Terms & Conditions | Policy | Liability limits, payment terms, claims process |
+| Sea Freight Booking Procedure | Procedure | 10-step booking process with timelines |
+| SLA Policy | Policy | Response times by tier, KPIs, breach handling |
+| Escalation Procedure | Procedure | 5-level hierarchy, priority matrix |
+| COD Handling Procedure | Procedure | Collection process, risk controls |
+| FTA Comparison Matrix | Reference | 27 FTAs, tariff comparison, RoO selection |
+
+### Key Content Captured
+
+**Service Terms & Conditions:**
+- 12 comprehensive sections covering scope, rates, liability
+- Hague-Visby/Montreal Convention limits
+- Payment terms (prepay/30 days/contract)
+- Claims procedures with time bars
+
+**Sea Freight Booking Procedure:**
+- Complete 10-step workflow from inquiry to departure
+- Cut-off times (SI, CY, documentation)
+- Documentation checklist
+- Special cargo handling (DG, reefer, OOG)
+
+**SLA Policy:**
+- Customer tier classification (Platinum/Gold/Silver/Bronze)
+- Response times by channel and priority
+- Issue resolution timeframes (P1-P4)
+- KPIs and reporting cadence
+
+**Escalation Procedure:**
+- 5-level escalation hierarchy (L0-L4)
+- Priority classification (P1-P4)
+- Auto-escalation triggers
+- De-escalation criteria
+
+**COD Handling Procedure:**
+- Eligibility and approval matrix
+- Collection process at destination
+- Non-payment exception handling
+- Shipper liability provisions
+
+**FTA Comparison Matrix:**
+- 27 Singapore FTAs mapped
+- Rules of Origin comparison
+- Tariff comparison by product category
+- RCEP vs ATIGA vs CPTPP analysis
+- Documentation checklist by FTA
+
+---
+
+## KNOWLEDGE BASE COMPLETION SUMMARY
+
+**Status**: ✅ ALL 29 DOCUMENTS COMPLETE
+
+| Category | Documents | Key Topics |
+|----------|-----------|------------|
+| Singapore Customs | 6 | Export/import, GST, CO, FTZ, HS codes |
+| ASEAN Trade | 3 | ATIGA, tariff finder, rules of origin |
+| Country-Specific | 5 | ID, MY, TH, VN, PH import requirements |
+| Ocean Carriers | 4 | PIL, Maersk, ONE, Evergreen |
+| Air Carriers | 2 | SIA Cargo, Cathay Cargo |
+| Reference Docs | 3 | Incoterms 2020, HS code structure |
+| Synthetic Docs | 6 | T&C, SOP, SLA, escalation, COD, FTA |
+
+**Total Words**: ~50,000+
+**Coverage**: Singapore-centric with SEA regional focus
+**Ready for**: RAG ingestion and vector embedding
