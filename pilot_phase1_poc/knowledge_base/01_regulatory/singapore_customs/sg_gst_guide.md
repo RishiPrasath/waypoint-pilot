@@ -1,8 +1,12 @@
 ---
 title: Singapore GST Guide for Imports
-source: https://www.customs.gov.sg/businesses/valuation-duties-taxes-fees/goods-and-services-tax-gst
+source_organization: Singapore Customs
+source_urls:
+  - url: https://www.customs.gov.sg/businesses/valuation-duties-taxes-fees/goods-and-services-tax-gst
+    description: GST guide for imported goods including rates and calculations
+    retrieved_date: 2025-01-22
 source_type: public_regulatory
-last_updated: 2025-01-20
+last_updated: 2025-01-22
 jurisdiction: SG
 category: customs
 use_cases: [UC-1.1, UC-2.2]

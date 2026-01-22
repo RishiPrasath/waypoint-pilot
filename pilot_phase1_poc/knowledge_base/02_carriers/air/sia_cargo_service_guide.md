@@ -1,8 +1,27 @@
 ---
 title: Singapore Airlines Cargo Service Guide
-source: https://www.siacargo.com
+source_organization: Singapore Airlines Cargo
+source_urls:
+  - url: https://www.siacargo.com/our-company/
+    description: Company overview and history
+    retrieved_date: 2025-01-22
+  - url: https://www.siacargo.com/products/
+    description: All cargo products including specialized solutions
+    retrieved_date: 2025-01-22
+  - url: https://www.siacargo.com/products/thrucool/
+    description: THRUCOOL pharmaceutical cold chain product
+    retrieved_date: 2025-01-22
+  - url: https://www.siacargo.com/products/thrufresh/
+    description: THRUFRESH perishables product
+    retrieved_date: 2025-01-22
+  - url: https://www.siacargo.com/network/
+    description: Global network coverage and destinations
+    retrieved_date: 2025-01-22
+  - url: https://www.siacargo.com/e-services/quicksearch_public/
+    description: Track & Trace shipment tracking
+    retrieved_date: 2025-01-22
 source_type: public_carrier
-last_updated: 2025-01-20
+last_updated: 2025-01-22
 jurisdiction: Global
 category: carrier
 use_cases: [UC-3.1, UC-3.2, UC-3.3]

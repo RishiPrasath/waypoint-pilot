@@ -1,8 +1,12 @@
 ---
 title: Singapore Certificates of Origin
-source: https://www.customs.gov.sg/businesses/rules-of-origin/origin-documentation/
+source_organization: Singapore Customs
+source_urls:
+  - url: https://www.customs.gov.sg/businesses/rules-of-origin/origin-documentation/
+    description: Certificate of Origin documentation requirements and procedures
+    retrieved_date: 2025-01-22
 source_type: public_regulatory
-last_updated: 2025-01-20
+last_updated: 2025-01-22
 jurisdiction: SG
 category: customs
 use_cases: [UC-2.2, UC-2.3]

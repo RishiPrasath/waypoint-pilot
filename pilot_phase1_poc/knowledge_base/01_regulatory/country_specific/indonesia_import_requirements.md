@@ -1,15 +1,21 @@
 ---
 title: Indonesia Import Requirements
-source: https://www.trade.gov/country-commercial-guides/indonesia-import-requirements-and-documentation
+source_organization: U.S. Department of Commerce - International Trade Administration
+source_urls:
+  - url: https://www.trade.gov/country-commercial-guides/indonesia-import-requirements-and-documentation
+    description: ITA Country Commercial Guide for Indonesia import requirements
+    retrieved_date: 2025-01-22
+  - url: https://www.insw.go.id/
+    description: Indonesia National Single Window (official)
+    retrieved_date: 2025-01-22
+  - url: https://www.beacukai.go.id/
+    description: Directorate General of Customs and Excise Indonesia (official)
+    retrieved_date: 2025-01-22
 source_type: public_regulatory
-last_updated: 2025-01-20
+last_updated: 2025-01-22
 jurisdiction: ID
 category: customs
 use_cases: [UC-2.1, UC-2.2]
-official_sources:
-  - https://www.trade.gov/country-commercial-guides/indonesia-import-requirements-and-documentation
-  - https://www.insw.go.id/
-  - https://www.beacukai.go.id/
 ---
 
 # Indonesia Import Requirements

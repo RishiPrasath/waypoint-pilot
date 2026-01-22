@@ -1,8 +1,12 @@
 ---
 title: Singapore HS Classification Guide
-source: https://www.customs.gov.sg/businesses/harmonised-system-classification-of-goods/understanding-hs-classification
+source_organization: Singapore Customs
+source_urls:
+  - url: https://www.customs.gov.sg/businesses/harmonised-system-classification-of-goods/understanding-hs-classification
+    description: Guide to understanding HS classification for Singapore trade
+    retrieved_date: 2025-01-22
 source_type: public_regulatory
-last_updated: 2025-01-20
+last_updated: 2025-01-22
 jurisdiction: SG
 category: customs
 use_cases: [UC-1.1, UC-2.2]

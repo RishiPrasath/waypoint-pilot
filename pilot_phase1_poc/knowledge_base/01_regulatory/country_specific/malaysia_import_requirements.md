@@ -1,15 +1,21 @@
 ---
 title: Malaysia Import Requirements
-source: https://www.trade.gov/country-commercial-guides/malaysia-import-requirements-and-documentation
+source_organization: U.S. Department of Commerce - International Trade Administration
+source_urls:
+  - url: https://www.trade.gov/country-commercial-guides/malaysia-import-requirements-and-documentation
+    description: ITA Country Commercial Guide for Malaysia import requirements
+    retrieved_date: 2025-01-22
+  - url: https://www.customs.gov.my/
+    description: Royal Malaysian Customs Department (official)
+    retrieved_date: 2025-01-22
+  - url: https://www.miti.gov.my/
+    description: Ministry of International Trade and Industry Malaysia (official)
+    retrieved_date: 2025-01-22
 source_type: public_regulatory
-last_updated: 2025-01-20
+last_updated: 2025-01-22
 jurisdiction: MY
 category: customs
 use_cases: [UC-2.1, UC-2.2]
-official_sources:
-  - https://www.trade.gov/country-commercial-guides/malaysia-import-requirements-and-documentation
-  - https://www.customs.gov.my/
-  - https://www.miti.gov.my/
 ---
 
 # Malaysia Import Requirements

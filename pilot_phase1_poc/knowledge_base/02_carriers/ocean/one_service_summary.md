@@ -1,8 +1,27 @@
 ---
 title: ONE (Ocean Network Express) Service Summary
-source: https://sg.one-line.com
+source_organization: Ocean Network Express Pte. Ltd.
+source_urls:
+  - url: https://sg.one-line.com/about-us
+    description: Company overview and corporate information
+    retrieved_date: 2025-01-22
+  - url: https://sg.one-line.com/office-facilities-contact-details
+    description: Singapore office address and contact information
+    retrieved_date: 2025-01-22
+  - url: https://sg.one-line.com/service-maps
+    description: Service routes and global network coverage
+    retrieved_date: 2025-01-22
+  - url: https://sg.one-line.com/digital-solutions
+    description: ONE eBL, ePayment, QUOTE, and mobile app services
+    retrieved_date: 2025-01-22
+  - url: https://sg.one-line.com/dry-containers
+    description: Container specifications and equipment types
+    retrieved_date: 2025-01-22
+  - url: https://ecomm.one-line.com/one-ecom/one-solutions
+    description: ONE eCommerce booking platform
+    retrieved_date: 2025-01-22
 source_type: public_carrier
-last_updated: 2025-01-20
+last_updated: 2025-01-22
 jurisdiction: Global
 category: carrier
 use_cases: [UC-3.1, UC-3.2, UC-3.3]

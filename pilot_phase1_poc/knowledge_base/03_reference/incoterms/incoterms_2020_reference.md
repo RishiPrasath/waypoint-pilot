@@ -1,8 +1,18 @@
 ---
 title: Incoterms 2020 Complete Reference Guide
-source: International Chamber of Commerce (ICC)
+source_organization: International Chamber of Commerce (ICC)
+source_urls:
+  - url: https://iccwbo.org/business-solutions/incoterms-rules/
+    description: ICC Incoterms rules overview and resources
+    retrieved_date: 2025-01-22
+  - url: https://iccwbo.org/ressources-for-business-2/incoterms-rules/incoterms-2020/
+    description: Incoterms 2020 specific information
+    retrieved_date: 2025-01-22
+  - url: https://iccwbo.org/ressources-for-business-2/incoterms-rules/incoterms-rules-history/
+    description: History and evolution of Incoterms rules
+    retrieved_date: 2025-01-22
 source_type: public_regulatory
-last_updated: 2025-01-20
+last_updated: 2025-01-22
 jurisdiction: Global
 category: reference
 use_cases: [UC-1.1, UC-1.2, UC-2.1, UC-2.2]

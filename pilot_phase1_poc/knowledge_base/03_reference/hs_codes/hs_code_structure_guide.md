@@ -1,8 +1,18 @@
 ---
 title: HS Code Structure Guide
-source: World Customs Organization (WCO)
+source_organization: World Customs Organization (WCO)
+source_urls:
+  - url: https://www.wcoomd.org/en/topics/nomenclature/overview.aspx
+    description: WCO Nomenclature and Classification of Goods overview
+    retrieved_date: 2025-01-22
+  - url: https://www.wcoomd.org/en/topics/nomenclature/overview/what-is-the-harmonized-system.aspx
+    description: What is the Harmonized System (HS)?
+    retrieved_date: 2025-01-22
+  - url: https://www.wcoomd.org/en/topics/nomenclature/overview/hs-multi-purposes-tool.aspx
+    description: The HS as a multi-purpose tool for trade
+    retrieved_date: 2025-01-22
 source_type: public_regulatory
-last_updated: 2025-01-20
+last_updated: 2025-01-22
 jurisdiction: Global
 category: reference
 use_cases: [UC-1.3, UC-2.1, UC-2.2, UC-2.3]

@@ -1,14 +1,18 @@
 ---
 title: Thailand Import Requirements
-source: https://www.trade.gov/country-commercial-guides/thailand-import-requirements-and-documentation
+source_organization: U.S. Department of Commerce - International Trade Administration
+source_urls:
+  - url: https://www.trade.gov/country-commercial-guides/thailand-import-requirements-and-documentation
+    description: ITA Country Commercial Guide for Thailand import requirements
+    retrieved_date: 2025-01-22
+  - url: https://www.customs.go.th/
+    description: Thai Customs Department (official)
+    retrieved_date: 2025-01-22
 source_type: public_regulatory
-last_updated: 2025-01-20
+last_updated: 2025-01-22
 jurisdiction: TH
 category: customs
 use_cases: [UC-2.1, UC-2.2]
-official_sources:
-  - https://www.trade.gov/country-commercial-guides/thailand-import-requirements-and-documentation
-  - https://www.customs.go.th/
 ---
 
 # Thailand Import Requirements

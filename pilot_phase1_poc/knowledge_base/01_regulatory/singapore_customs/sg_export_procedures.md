@@ -1,8 +1,12 @@
 ---
 title: Singapore Export Procedures
-source: https://www.customs.gov.sg/businesses/exporting-goods/overview
+source_organization: Singapore Customs
+source_urls:
+  - url: https://www.customs.gov.sg/businesses/exporting-goods/overview
+    description: Overview of Singapore export procedures and regulatory requirements
+    retrieved_date: 2025-01-22
 source_type: public_regulatory
-last_updated: 2025-01-20
+last_updated: 2025-01-22
 jurisdiction: SG
 category: customs
 use_cases: [UC-1.1, UC-2.1]

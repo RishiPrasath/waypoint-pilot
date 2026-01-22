@@ -1,8 +1,24 @@
 ---
 title: PIL (Pacific International Lines) Service Summary
-source: https://www.pilship.com
+source_organization: Pacific International Lines (Pte) Ltd
+source_urls:
+  - url: https://www.pilship.com/about-pil/
+    description: Company overview, history, and corporate information
+    retrieved_date: 2025-01-22
+  - url: https://www.pilship.com/shipping-solutions/overview/
+    description: Ocean freight services and cargo types
+    retrieved_date: 2025-01-22
+  - url: https://www.pilship.com/digital-solutions/
+    description: Digital tools including PocketPIL, Track & Trace, eVGM
+    retrieved_date: 2025-01-22
+  - url: https://www.pilship.com/tariffs-charges/
+    description: Tariff information and detention/demurrage charges
+    retrieved_date: 2025-01-22
+  - url: https://www.pilship.com/contact-us/
+    description: Singapore headquarters and global office contacts
+    retrieved_date: 2025-01-22
 source_type: public_carrier
-last_updated: 2025-01-20
+last_updated: 2025-01-22
 jurisdiction: Global
 category: carrier
 use_cases: [UC-3.1, UC-3.2, UC-3.3]

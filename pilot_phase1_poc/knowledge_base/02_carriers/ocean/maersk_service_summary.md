@@ -1,8 +1,24 @@
 ---
 title: Maersk Service Summary
-source: https://www.maersk.com
+source_organization: A.P. Moller - Maersk
+source_urls:
+  - url: https://www.maersk.com/about
+    description: Company overview and corporate information
+    retrieved_date: 2025-01-22
+  - url: https://www.maersk.com/local-information/asia-pacific/singapore
+    description: Singapore shipping guide, local offices, import/export info
+    retrieved_date: 2025-01-22
+  - url: https://www.maersk.com/schedules/
+    description: Vessel schedules and route finder
+    retrieved_date: 2025-01-22
+  - url: https://www.maersk.com/logistics-solutions
+    description: Ocean freight, inland, warehousing and customs services
+    retrieved_date: 2025-01-22
+  - url: https://www.maersk.com/contact
+    description: Contact information and support
+    retrieved_date: 2025-01-22
 source_type: public_carrier
-last_updated: 2025-01-20
+last_updated: 2025-01-22
 jurisdiction: Global
 category: carrier
 use_cases: [UC-3.1, UC-3.2, UC-3.3]

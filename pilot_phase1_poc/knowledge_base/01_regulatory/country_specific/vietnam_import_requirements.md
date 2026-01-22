@@ -1,14 +1,18 @@
 ---
 title: Vietnam Import Requirements
-source: https://www.trade.gov/country-commercial-guides/vietnam-import-requirements-and-documentation
+source_organization: U.S. Department of Commerce - International Trade Administration
+source_urls:
+  - url: https://www.trade.gov/country-commercial-guides/vietnam-import-requirements-and-documentation
+    description: ITA Country Commercial Guide for Vietnam import requirements
+    retrieved_date: 2025-01-22
+  - url: https://www.customs.gov.vn/
+    description: General Department of Vietnam Customs (official)
+    retrieved_date: 2025-01-22
 source_type: public_regulatory
-last_updated: 2025-01-20
+last_updated: 2025-01-22
 jurisdiction: VN
 category: customs
 use_cases: [UC-2.1, UC-2.2]
-official_sources:
-  - https://www.trade.gov/country-commercial-guides/vietnam-import-requirements-and-documentation
-  - https://www.customs.gov.vn/
 ---
 
 # Vietnam Import Requirements

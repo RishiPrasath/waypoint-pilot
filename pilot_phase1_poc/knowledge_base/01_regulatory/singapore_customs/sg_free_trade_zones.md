@@ -1,8 +1,12 @@
 ---
 title: Singapore Free Trade Zones
-source: https://www.customs.gov.sg/businesses/importing-goods/import-procedures/depositing-goods-in-ftz/
+source_organization: Singapore Customs
+source_urls:
+  - url: https://www.customs.gov.sg/businesses/importing-goods/import-procedures/depositing-goods-in-ftz/
+    description: Free Trade Zone procedures for depositing goods
+    retrieved_date: 2025-01-22
 source_type: public_regulatory
-last_updated: 2025-01-20
+last_updated: 2025-01-22
 jurisdiction: SG
 category: customs
 use_cases: [UC-1.1, UC-2.1]

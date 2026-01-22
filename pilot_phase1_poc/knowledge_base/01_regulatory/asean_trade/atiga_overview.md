@@ -1,8 +1,12 @@
 ---
 title: ASEAN Trade in Goods Agreement (ATIGA) Overview
-source: https://asean.org/our-communities/economic-community/trade-in-goods/
+source_organization: ASEAN Secretariat
+source_urls:
+  - url: https://asean.org/our-communities/economic-community/trade-in-goods/
+    description: ASEAN Economic Community trade in goods and ATIGA information
+    retrieved_date: 2025-01-22
 source_type: public_regulatory
-last_updated: 2025-01-20
+last_updated: 2025-01-22
 jurisdiction: ASEAN
 category: customs
 use_cases: [UC-2.2, UC-2.3]

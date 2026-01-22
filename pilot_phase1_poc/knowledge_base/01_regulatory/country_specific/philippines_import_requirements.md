@@ -1,15 +1,21 @@
 ---
 title: Philippines Import Requirements
-source: https://www.trade.gov/country-commercial-guides/philippines-import-requirements-and-documentation
+source_organization: U.S. Department of Commerce - International Trade Administration
+source_urls:
+  - url: https://www.trade.gov/country-commercial-guides/philippines-import-requirements-and-documentation
+    description: ITA Country Commercial Guide for Philippines import requirements
+    retrieved_date: 2025-01-22
+  - url: https://customs.gov.ph/
+    description: Bureau of Customs Philippines (official)
+    retrieved_date: 2025-01-22
+  - url: https://www.dti.gov.ph/
+    description: Department of Trade and Industry Philippines (official)
+    retrieved_date: 2025-01-22
 source_type: public_regulatory
-last_updated: 2025-01-20
+last_updated: 2025-01-22
 jurisdiction: PH
 category: customs
 use_cases: [UC-2.1, UC-2.2]
-official_sources:
-  - https://www.trade.gov/country-commercial-guides/philippines-import-requirements-and-documentation
-  - https://customs.gov.ph/
-  - https://www.dti.gov.ph/
 ---
 
 # Philippines Import Requirements
