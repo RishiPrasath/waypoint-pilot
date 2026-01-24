@@ -10,7 +10,21 @@
       "WebFetch(domain:www.insw.go.id)",
       "WebFetch(domain:www.customs.gov.my)",
       "WebFetch(domain:www.cathaycargo.com)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nAdd Phase 1 POC knowledge base with 20 curated documents\n\nKnowledge base documents created:\n- Section 1: Singapore Customs \\(6 docs\\) - export/import procedures, GST, CO, FTZ, HS classification\n- Section 2: ASEAN Trade \\(3 docs\\) - tariff finder, ATIGA, rules of origin\n- Section 3: Country-Specific \\(5 docs\\) - ID, MY, TH, VN, PH import requirements\n- Section 4: Ocean Carriers \\(4 docs\\) - PIL, Maersk, ONE, Evergreen service summaries\n- Section 5: Air Carriers \\(2 docs\\) - SIA Cargo, Cathay Cargo service guides\n\nAlso includes:\n- POC planning documentation \\(scope, use cases, architecture, roadmap\\)\n- CLAUDE.md project instructions\n- Progress tracking checklist \\(20/29 complete\\)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nComplete knowledge base with reference docs and synthetic internal documents\n\nSection 6 - Reference Documents \\(3 docs\\):\n- Incoterms 2020 Reference: All 11 terms, GIR rules, Singapore context\n- Incoterms Comparison Chart: Visual matrices, decision trees, cost examples\n- HS Code Structure Guide: WCO structure, AHTN, classification examples\n\nSection 7 - Synthetic Internal Documents \\(6 docs\\):\n- Service Terms & Conditions: Liability, payment, claims procedures\n- Sea Freight Booking Procedure: 10-step SOP with timelines\n- SLA Policy: Response times, KPIs, customer tiers\n- Escalation Procedure: 5-level hierarchy, P1-P4 priority matrix\n- COD Handling Procedure: Collection process, risk controls\n- FTA Comparison Matrix: 27 FTAs, tariff comparison, RoO guide\n\nKnowledge base now 100% complete \\(29/29 documents\\)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(cd \"C:\\\\Users\\\\prasa\\\\Documents\\\\Github\\\\waypoint-pilot\\\\pilot_phase1_poc\\\\knowledge_base\"\" && powershell -Command \"Get-ChildItem -Recurse)",
+      "Bash(Select-Object FullName, PSIsContainer)",
+      "Bash(Format-Table -AutoSize \")",
+      "WebFetch(domain:www.pilship.com)",
+      "WebFetch(domain:www.maersk.com)",
+      "WebFetch(domain:sg.one-line.com)",
+      "WebFetch(domain:www.one-line.com)",
+      "WebFetch(domain:www.evergreen-marine.com.sg)",
+      "WebFetch(domain:www.siacargo.com)",
+      "Bash(tree:*)",
+      "Bash(git commit:*)"
     ]
   }
 }
