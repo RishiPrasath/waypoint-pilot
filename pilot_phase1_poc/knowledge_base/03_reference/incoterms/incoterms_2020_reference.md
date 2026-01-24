@@ -5,14 +5,22 @@ source_urls:
   - url: https://iccwbo.org/business-solutions/incoterms-rules/
     description: ICC Incoterms rules overview and resources
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://iccwbo.org/ressources-for-business-2/incoterms-rules/incoterms-2020/
     description: Incoterms 2020 specific information
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://iccwbo.org/ressources-for-business-2/incoterms-rules/incoterms-rules-history/
     description: History and evolution of Incoterms rules
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
 source_type: public_regulatory
 last_updated: 2025-01-22
+last_verified: 2025-01-24
+verification_method: browser
 jurisdiction: Global
 category: reference
 use_cases: [UC-1.1, UC-1.2, UC-2.1, UC-2.2]

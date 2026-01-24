@@ -3,10 +3,19 @@ title: Singapore Free Trade Zones
 source_organization: Singapore Customs
 source_urls:
   - url: https://www.customs.gov.sg/businesses/importing-goods/import-procedures/depositing-goods-in-ftz/
-    description: Free Trade Zone procedures for depositing goods
+    description: FTZ procedures - 30-day limit for dutiable goods, duty/GST suspension
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
+  - url: https://www.customs.gov.sg/businesses/customs-schemes-licences-and-framework/ftz-operator-licence/
+    description: FTZ Operator Licence - fees S$2,000/S$600, 5-year validity
+    retrieved_date: 2025-01-24
+    verified_date: 2025-01-24
+    verification_status: verified
 source_type: public_regulatory
 last_updated: 2025-01-22
+last_verified: 2025-01-24
+verification_method: browser
 jurisdiction: SG
 category: customs
 use_cases: [UC-1.1, UC-2.1]

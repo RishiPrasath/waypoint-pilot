@@ -5,20 +5,32 @@ source_urls:
   - url: https://www.maersk.com/about
     description: Company overview and corporate information
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://www.maersk.com/local-information/asia-pacific/singapore
     description: Singapore shipping guide, local offices, import/export info
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://www.maersk.com/schedules/
     description: Vessel schedules and route finder
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://www.maersk.com/logistics-solutions
     description: Ocean freight, inland, warehousing and customs services
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://www.maersk.com/contact
     description: Contact information and support
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
 source_type: public_carrier
 last_updated: 2025-01-22
+last_verified: 2025-01-24
+verification_method: browser
 jurisdiction: Global
 category: carrier
 use_cases: [UC-3.1, UC-3.2, UC-3.3]

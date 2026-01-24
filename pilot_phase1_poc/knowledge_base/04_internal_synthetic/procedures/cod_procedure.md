@@ -3,6 +3,9 @@ title: Collect on Delivery (COD) Handling Procedure
 source: Internal
 source_type: synthetic_internal
 last_updated: 2025-01-21
+last_validated: 2025-01-24
+validation_method: internal_consistency_check
+validation_notes: Approval matrix follows proper delegation hierarchy; segregation of duties defined
 jurisdiction: SG
 category: procedure
 use_cases: [UC-1.2, UC-4.2]

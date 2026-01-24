@@ -2,11 +2,15 @@
 title: Singapore Import Procedures
 source_organization: Singapore Customs
 source_urls:
-  - url: https://www.customs.gov.sg/businesses/importing-goods/overview
-    description: Overview of Singapore import procedures and regulatory requirements
+  - url: https://www.customs.gov.sg/businesses/importing-goods/overview/
+    description: Overview of Singapore import procedures - classification fee S$75, 5-year retention, GST relief S$400
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
 source_type: public_regulatory
 last_updated: 2025-01-22
+last_verified: 2025-01-24
+verification_method: browser
 jurisdiction: SG
 category: customs
 use_cases: [UC-1.1, UC-2.1]

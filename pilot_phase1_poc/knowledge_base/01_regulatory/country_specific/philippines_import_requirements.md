@@ -5,14 +5,23 @@ source_urls:
   - url: https://www.trade.gov/country-commercial-guides/philippines-import-requirements-and-documentation
     description: ITA Country Commercial Guide for Philippines import requirements
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://customs.gov.ph/
     description: Bureau of Customs Philippines (official)
     retrieved_date: 2025-01-22
   - url: https://www.dti.gov.ph/
     description: Department of Trade and Industry Philippines (official)
     retrieved_date: 2025-01-22
+  - url: https://www.janio.asia/resources/articles/philippines-de-minimis-rate
+    description: VAT 12% and de minimis PHP 10,000 verified (per CAO 02-2025)
+    retrieved_date: 2025-01-24
+    verified_date: 2025-01-24
+    verification_status: verified
 source_type: public_regulatory
 last_updated: 2025-01-22
+last_verified: 2025-01-24
+verification_method: browser
 jurisdiction: PH
 category: customs
 use_cases: [UC-2.1, UC-2.2]

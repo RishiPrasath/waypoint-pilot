@@ -3,6 +3,9 @@ title: Singapore FTA Comparison Matrix
 source: Internal
 source_type: synthetic_internal
 last_updated: 2025-01-21
+last_validated: 2025-01-24
+validation_method: internal_consistency_check
+validation_notes: FTA data cross-referenced against verified regulatory documents; ATIGA details match atiga_overview.md
 jurisdiction: SG
 category: reference
 use_cases: [UC-2.1, UC-2.2, UC-2.3]

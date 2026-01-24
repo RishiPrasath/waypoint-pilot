@@ -3,16 +3,25 @@ title: Indonesia Import Requirements
 source_organization: U.S. Department of Commerce - International Trade Administration
 source_urls:
   - url: https://www.trade.gov/country-commercial-guides/indonesia-import-requirements-and-documentation
-    description: ITA Country Commercial Guide for Indonesia import requirements
+    description: ITA Country Commercial Guide - documentation requirements, INSW, API requirement (published 2025-11-17)
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://www.insw.go.id/
     description: Indonesia National Single Window (official)
     retrieved_date: 2025-01-22
   - url: https://www.beacukai.go.id/
     description: Directorate General of Customs and Excise Indonesia (official)
     retrieved_date: 2025-01-22
+  - url: https://www.pajak.go.id/en/artikel/indonesias-2025-vat-rate-increase-strengthening-fiscal-foundations-national-development
+    description: Official - VAT 12% (effective Jan 2025), de minimis USD 3 verified
+    retrieved_date: 2025-01-24
+    verified_date: 2025-01-24
+    verification_status: verified
 source_type: public_regulatory
 last_updated: 2025-01-22
+last_verified: 2025-01-24
+verification_method: browser
 jurisdiction: ID
 category: customs
 use_cases: [UC-2.1, UC-2.2]
@@ -127,7 +136,9 @@ Indonesia uses **CIF (Cost, Insurance, Freight)** for customs valuation.
 
 ### Taxes Applicable
 - **Import Duty**: Based on HS code classification
-- **VAT**: 11% (standard rate)
+- **VAT (PPN)**: 12% (effective January 1, 2025 per Law No. 7/2021 and PMK 131/2024)
+  - *Note*: For non-luxury goods, the effective rate remains 11% through a DPP calculation formula (12% × 11/12)
+  - Luxury goods (subject to PPnBM) pay full 12% VAT
 - **Luxury Goods Tax (PPnBM)**: 10% - 200% (for luxury items)
 - **Income Tax (PPh 22)**: 2.5% - 10% (prepayment)
 

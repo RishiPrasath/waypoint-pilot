@@ -3,6 +3,9 @@ title: Escalation Procedure
 source: Internal
 source_type: synthetic_internal
 last_updated: 2025-01-21
+last_validated: 2025-01-24
+validation_method: internal_consistency_check
+validation_notes: Escalation hierarchy logical; response times consistent with POL-002 SLA Policy
 jurisdiction: SG
 category: procedure
 use_cases: [UC-4.1, UC-4.2, UC-4.3]

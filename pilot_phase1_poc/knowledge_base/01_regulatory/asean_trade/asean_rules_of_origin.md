@@ -3,10 +3,18 @@ title: ASEAN Rules of Origin Summary
 source_organization: ASEAN Secretariat
 source_urls:
   - url: https://asean.org/our-communities/economic-community/trade-in-goods/
-    description: ASEAN Economic Community trade in goods and rules of origin
+    description: ASEAN Economic Community trade in goods and ATIGA information
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
+  - url: https://asean.org/our-communities/economic-community/rules-of-origin/
+    description: ASEAN Rules of Origin dedicated page - SC-AROO, AWSC, Form D, OCP
+    retrieved_date: 2025-01-24
+    verification_status: verified
 source_type: public_regulatory
 last_updated: 2025-01-22
+last_verified: 2025-01-24
+verification_method: browser
 jurisdiction: ASEAN
 category: customs
 use_cases: [UC-2.2, UC-2.3]

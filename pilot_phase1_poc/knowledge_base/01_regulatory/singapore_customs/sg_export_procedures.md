@@ -2,11 +2,15 @@
 title: Singapore Export Procedures
 source_organization: Singapore Customs
 source_urls:
-  - url: https://www.customs.gov.sg/businesses/exporting-goods/overview
-    description: Overview of Singapore export procedures and regulatory requirements
+  - url: https://www.customs.gov.sg/businesses/exporting-goods/overview/
+    description: Overview of Singapore export procedures - no GST/duty on exports, classification fee S$75, 5-year retention
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
 source_type: public_regulatory
 last_updated: 2025-01-22
+last_verified: 2025-01-24
+verification_method: browser
 jurisdiction: SG
 category: customs
 use_cases: [UC-1.1, UC-2.1]

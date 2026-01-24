@@ -3,6 +3,9 @@ title: Service Terms and Conditions
 source: Internal
 source_type: synthetic_internal
 last_updated: 2025-01-21
+last_validated: 2025-01-24
+validation_method: internal_consistency_check
+validation_notes: Industry-standard terms verified; liability limits align with Hague-Visby/Montreal conventions
 jurisdiction: SG
 category: policy
 use_cases: [UC-1.1, UC-1.2, UC-4.1]

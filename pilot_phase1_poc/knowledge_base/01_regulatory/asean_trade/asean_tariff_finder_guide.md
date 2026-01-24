@@ -3,13 +3,31 @@ title: ASEAN Tariff Finder Guide
 source_organization: ASEAN Secretariat
 source_urls:
   - url: https://asean.org/our-communities/economic-community/trade-in-goods/
-    description: ASEAN Economic Community trade in goods overview
+    description: ASEAN Trade in Goods - 98.86% tariff-free, AWSC 20 Sept 2020
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://tariff-finder.asean.org
     description: ASEAN Tariff Finder tool for preferential rates lookup
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
+  - url: https://atr.asean.org
+    description: ASEAN Trade Repository
+    retrieved_date: 2025-01-24
+    verification_status: verified
+  - url: https://asw.asean.org
+    description: ASEAN Single Window
+    retrieved_date: 2025-01-24
+    verification_status: verified
+  - url: https://acts.asean.org
+    description: ASEAN Customs Transit System
+    retrieved_date: 2025-01-24
+    verification_status: verified
 source_type: public_regulatory
 last_updated: 2025-01-22
+last_verified: 2025-01-24
+verification_method: browser
 jurisdiction: ASEAN
 category: customs
 use_cases: [UC-2.2, UC-2.3]

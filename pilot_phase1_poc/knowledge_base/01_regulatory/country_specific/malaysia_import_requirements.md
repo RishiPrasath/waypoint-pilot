@@ -5,14 +5,23 @@ source_urls:
   - url: https://www.trade.gov/country-commercial-guides/malaysia-import-requirements-and-documentation
     description: ITA Country Commercial Guide for Malaysia import requirements
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://www.customs.gov.my/
     description: Royal Malaysian Customs Department (official)
     retrieved_date: 2025-01-22
   - url: https://www.miti.gov.my/
     description: Ministry of International Trade and Industry Malaysia (official)
     retrieved_date: 2025-01-22
+  - url: https://mylvg.customs.gov.my/uploads/Guide%20Sales%20Tax%20on%20LVG%20Guide%20as%20of%201%C2%A0August%C2%A02024.pdf
+    description: LVG Guide - de minimis MYR 500, LVG tax 10% verified
+    retrieved_date: 2025-01-24
+    verified_date: 2025-01-24
+    verification_status: verified
 source_type: public_regulatory
 last_updated: 2025-01-22
+last_verified: 2025-01-24
+verification_method: browser
 jurisdiction: MY
 category: customs
 use_cases: [UC-2.1, UC-2.2]

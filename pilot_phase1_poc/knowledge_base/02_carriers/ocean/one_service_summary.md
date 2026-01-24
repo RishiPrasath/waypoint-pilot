@@ -5,23 +5,37 @@ source_urls:
   - url: https://sg.one-line.com/about-us
     description: Company overview and corporate information
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://sg.one-line.com/office-facilities-contact-details
     description: Singapore office address and contact information
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://sg.one-line.com/service-maps
     description: Service routes and global network coverage
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://sg.one-line.com/digital-solutions
     description: ONE eBL, ePayment, QUOTE, and mobile app services
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://sg.one-line.com/dry-containers
     description: Container specifications and equipment types
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://ecomm.one-line.com/one-ecom/one-solutions
     description: ONE eCommerce booking platform
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
 source_type: public_carrier
 last_updated: 2025-01-22
+last_verified: 2025-01-24
+verification_method: browser
 jurisdiction: Global
 category: carrier
 use_cases: [UC-3.1, UC-3.2, UC-3.3]

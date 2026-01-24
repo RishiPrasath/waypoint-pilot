@@ -3,10 +3,18 @@ title: Singapore HS Classification Guide
 source_organization: Singapore Customs
 source_urls:
   - url: https://www.customs.gov.sg/businesses/harmonised-system-classification-of-goods/understanding-hs-classification
-    description: Guide to understanding HS classification for Singapore trade
+    description: HS classification guide - S$75 ruling fee
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: partial
+  - url: https://www.customs.gov.sg/businesses/importing-goods/overview/
+    description: Import overview confirming classification ruling fee S$75
+    retrieved_date: 2025-01-24
+    verification_status: verified
 source_type: public_regulatory
 last_updated: 2025-01-22
+last_verified: 2025-01-24
+verification_method: browser
 jurisdiction: SG
 category: customs
 use_cases: [UC-1.1, UC-2.2]

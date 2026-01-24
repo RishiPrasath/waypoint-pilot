@@ -2,11 +2,19 @@
 title: Singapore GST Guide for Imports
 source_organization: Singapore Customs
 source_urls:
-  - url: https://www.customs.gov.sg/businesses/valuation-duties-taxes-fees/goods-and-services-tax-gst
+  - url: https://www.customs.gov.sg/businesses/valuation-duties-taxes-fees/goods-and-services-tax-gst/
     description: GST guide for imported goods including rates and calculations
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
+  - url: https://www.iras.gov.sg/taxes/goods-services-tax-(gst)/basics-of-gst/current-gst-rates
+    description: Current GST rate (9%) and historical rates from IRAS
+    retrieved_date: 2025-01-24
+    verification_status: verified
 source_type: public_regulatory
 last_updated: 2025-01-22
+last_verified: 2025-01-24
+verification_method: browser
 jurisdiction: SG
 category: customs
 use_cases: [UC-1.1, UC-2.2]

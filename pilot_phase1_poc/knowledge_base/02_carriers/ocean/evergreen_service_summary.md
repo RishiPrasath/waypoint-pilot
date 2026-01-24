@@ -5,23 +5,37 @@ source_urls:
   - url: https://www.evergreen-marine.com.sg/tbi1/jsp/TBI1_CorporateProfile.jsp
     description: Corporate profile and company overview
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://www.evergreen-marine.com.sg/tcc1/jsp/TCC1_Contact.jsp?en=n
     description: Singapore office contact information
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://ss.shipmentlink.com/tvs2/jsp/TVS2_LongTermMenu.jsp?type=L
     description: Sailing schedules search by area and point-to-point
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://www.evergreen-marine.com.sg/tei1/jsp/TEI1_Containers.jsp
     description: Container specifications and equipment types
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://ct.shipmentlink.com/servlet/TDB1_CargoTracking.do
     description: Cargo tracking and shipment information
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://www.evergreen-marine.com.sg/tdi1/jsp/TDI1_BlIntroc.jsp
     description: Bill of Lading process and e-Booking
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
 source_type: public_carrier
 last_updated: 2025-01-22
+last_verified: 2025-01-24
+verification_method: browser
 jurisdiction: Global
 category: carrier
 use_cases: [UC-3.1, UC-3.2, UC-3.3]

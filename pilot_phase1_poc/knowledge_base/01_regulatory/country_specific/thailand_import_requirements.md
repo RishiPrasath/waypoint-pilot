@@ -5,11 +5,25 @@ source_urls:
   - url: https://www.trade.gov/country-commercial-guides/thailand-import-requirements-and-documentation
     description: ITA Country Commercial Guide for Thailand import requirements
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://www.customs.go.th/
     description: Thai Customs Department (official)
     retrieved_date: 2025-01-22
+  - url: https://www.nationthailand.com/business/economy/40059880
+    description: VAT 7% and de minimis THB 1,500 ending Jan 2026 verified
+    retrieved_date: 2025-01-24
+    verified_date: 2025-01-24
+    verification_status: verified
+  - url: https://www.vatupdate.com/2025/10/06/7-vat-rate-in-thailand-extended-until-2026/
+    description: 7% VAT extended until September 30, 2026 (Royal Decree No. 799)
+    retrieved_date: 2025-01-24
+    verified_date: 2025-01-24
+    verification_status: verified
 source_type: public_regulatory
 last_updated: 2025-01-22
+last_verified: 2025-01-24
+verification_method: browser
 jurisdiction: TH
 category: customs
 use_cases: [UC-2.1, UC-2.2]

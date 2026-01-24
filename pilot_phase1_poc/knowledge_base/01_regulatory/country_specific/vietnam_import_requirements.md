@@ -5,11 +5,25 @@ source_urls:
   - url: https://www.trade.gov/country-commercial-guides/vietnam-import-requirements-and-documentation
     description: ITA Country Commercial Guide for Vietnam import requirements
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://www.customs.gov.vn/
     description: General Department of Vietnam Customs (official)
     retrieved_date: 2025-01-22
+  - url: https://www.vietnam-briefing.com/news/vietnam-vat-rates-and-applicability-in-2025-a-brief-guide.html/
+    description: VAT rates 10%/5% verified (also 8% temporary rate until Dec 2026)
+    retrieved_date: 2025-01-24
+    verified_date: 2025-01-24
+    verification_status: verified
+  - url: https://www.vietnamtradeportal.gov.vn/index.php?r=searchProcedure/view1&id=3
+    description: Customs declaration 30 days after arrival (corrected from 15)
+    retrieved_date: 2025-01-24
+    verified_date: 2025-01-24
+    verification_status: corrected
 source_type: public_regulatory
 last_updated: 2025-01-22
+last_verified: 2025-01-24
+verification_method: browser
 jurisdiction: VN
 category: customs
 use_cases: [UC-2.1, UC-2.2]
@@ -128,9 +142,11 @@ Goods must have labels with:
 
 | Requirement | Timeline |
 |-------------|----------|
-| Customs declaration | Within **15 days** of vessel arrival |
+| Customs declaration | Within **30 days** of vessel arrival |
 | Payment of duties | Before goods release |
 | Document retention | **5 years** after clearance |
+
+*Note: Declarations can be submitted before arrival or within 30 days from arrival date via VNACCS system.*
 
 ## Import Duties and Taxes
 

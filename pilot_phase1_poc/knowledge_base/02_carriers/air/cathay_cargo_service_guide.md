@@ -5,23 +5,37 @@ source_urls:
   - url: https://www.cathaycargo.com/en-us/about-us.html
     description: Company overview and corporate information
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://www.cathaycargo.com/en-us/solutions/cathay-pharma.html
     description: Cathay Pharma temperature-controlled pharmaceutical solutions
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://www.cathaycargo.com/en-us/solutions/cathay-fresh.html
     description: Cathay Fresh perishables handling (CEIV Fresh certified)
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://www.cathaycargo.com/en-us/solutions/cathay-live-animal.html
     description: Live animal transport (CEIV Live Animals certified)
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://www.cathaycargo.com/en-us/about-us/digital-innovations.html
     description: Digital tools including Click & Ship and APIs
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://www.cathaycargo.com/en-us/station-capabilities.html
     description: Station capabilities lookup by location
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
 source_type: public_carrier
 last_updated: 2025-01-22
+last_verified: 2025-01-24
+verification_method: browser
 jurisdiction: Global
 category: carrier
 use_cases: [UC-3.1, UC-3.2, UC-3.3]

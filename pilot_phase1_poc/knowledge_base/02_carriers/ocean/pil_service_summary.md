@@ -5,20 +5,32 @@ source_urls:
   - url: https://www.pilship.com/about-pil/
     description: Company overview, history, and corporate information
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://www.pilship.com/shipping-solutions/overview/
     description: Ocean freight services and cargo types
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://www.pilship.com/digital-solutions/
     description: Digital tools including PocketPIL, Track & Trace, eVGM
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://www.pilship.com/tariffs-charges/
     description: Tariff information and detention/demurrage charges
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://www.pilship.com/contact-us/
     description: Singapore headquarters and global office contacts
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
 source_type: public_carrier
 last_updated: 2025-01-22
+last_verified: 2025-01-24
+verification_method: browser
 jurisdiction: Global
 category: carrier
 use_cases: [UC-3.1, UC-3.2, UC-3.3]

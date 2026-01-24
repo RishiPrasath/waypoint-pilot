@@ -5,14 +5,22 @@ source_urls:
   - url: https://www.wcoomd.org/en/topics/nomenclature/overview.aspx
     description: WCO Nomenclature and Classification of Goods overview
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://www.wcoomd.org/en/topics/nomenclature/overview/what-is-the-harmonized-system.aspx
     description: What is the Harmonized System (HS)?
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
   - url: https://www.wcoomd.org/en/topics/nomenclature/overview/hs-multi-purposes-tool.aspx
     description: The HS as a multi-purpose tool for trade
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
 source_type: public_regulatory
 last_updated: 2025-01-22
+last_verified: 2025-01-24
+verification_method: browser
 jurisdiction: Global
 category: reference
 use_cases: [UC-1.3, UC-2.1, UC-2.2, UC-2.3]

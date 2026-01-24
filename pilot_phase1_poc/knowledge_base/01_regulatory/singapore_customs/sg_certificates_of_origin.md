@@ -3,10 +3,19 @@ title: Singapore Certificates of Origin
 source_organization: Singapore Customs
 source_urls:
   - url: https://www.customs.gov.sg/businesses/rules-of-origin/origin-documentation/
-    description: Certificate of Origin documentation requirements and procedures
+    description: Certificate of Origin documentation - 5 authorized orgs, 5-year retention, S$5000 penalty
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
+  - url: https://www.enterprisesg.gov.sg/grow-your-business/go-global/international-agreements/free-trade-agreements/find-an-fta/csfta
+    description: EODES dates verified - established 1 Nov 2019, full electronic 1 May 2020
+    retrieved_date: 2025-01-24
+    verified_date: 2025-01-24
+    verification_status: verified
 source_type: public_regulatory
 last_updated: 2025-01-22
+last_verified: 2025-01-24
+verification_method: browser
 jurisdiction: SG
 category: customs
 use_cases: [UC-2.2, UC-2.3]

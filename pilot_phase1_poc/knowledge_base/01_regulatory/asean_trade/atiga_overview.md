@@ -3,10 +3,14 @@ title: ASEAN Trade in Goods Agreement (ATIGA) Overview
 source_organization: ASEAN Secretariat
 source_urls:
   - url: https://asean.org/our-communities/economic-community/trade-in-goods/
-    description: ASEAN Economic Community trade in goods and ATIGA information
+    description: ATIGA overview - signed Feb 2009, 98.86% tariff-free, AWSC 20 Sept 2020, 2nd Protocol Oct 2025
     retrieved_date: 2025-01-22
+    verified_date: 2025-01-24
+    verification_status: verified
 source_type: public_regulatory
 last_updated: 2025-01-22
+last_verified: 2025-01-24
+verification_method: browser
 jurisdiction: ASEAN
 category: customs
 use_cases: [UC-2.2, UC-2.3]

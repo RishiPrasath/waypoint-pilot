@@ -3,6 +3,9 @@ title: Service Level Agreement (SLA) Policy
 source: Internal
 source_type: synthetic_internal
 last_updated: 2025-01-21
+last_validated: 2025-01-24
+validation_method: internal_consistency_check
+validation_notes: Response times align with freight forwarding industry benchmarks; escalation triggers consistent with SOP-002
 jurisdiction: SG
 category: policy
 use_cases: [UC-4.1, UC-4.2, UC-4.3]
