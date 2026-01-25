@@ -31,29 +31,26 @@ waypoint-pilot/
 | Component | Technology | Purpose |
 |-----------|------------|---------|
 | Vector DB | ChromaDB | Vector storage and retrieval |
-| Embeddings | Google Gemini API (768-d) | Embedding generation |
-| Document Processing | Python 3.11 | Ingestion pipeline |
+| Embeddings | ChromaDB default (all-MiniLM-L6-v2 via ONNX, 384-d) | Embedding generation |
+| Document Processing | Python 3.11+ | Ingestion pipeline |
 | Backend | Node.js + Express (planned) | API server |
 | LLM | Groq API (Llama 3.1 8B) | Response generation |
-| Container | Docker | Reproducible execution |
 
 ## Ingestion Pipeline Commands
 
 ```bash
 cd pilot_phase1_poc/02_ingestion_pipeline
 
-# Docker (primary method)
-docker-compose build
-docker-compose run --rm ingestion           # Full ingestion
-docker-compose run --rm ingestion --dry-run # Test without storing
-docker-compose run --rm ingestion --verbose # Show chunk details
-docker-compose --profile verify run --rm verify  # Run verification
-
-# Local fallback
-python -m venv venv && venv\Scripts\activate
+# Setup (one-time)
+py -3.11 -m venv venv
+venv\Scripts\activate
 pip install -r requirements.txt
-python scripts/ingest.py
-python scripts/verify_ingestion.py
+
+# Run ingestion
+python scripts/ingest.py           # Full ingestion
+python scripts/ingest.py --dry-run # Test without storing
+python scripts/ingest.py --verbose # Show chunk details
+python scripts/verify_ingestion.py # Run verification
 ```
 
 ## Key Architecture Decisions
@@ -62,7 +59,7 @@ python scripts/verify_ingestion.py
 2. **Local-first**: ChromaDB and embeddings run locally; LLM via Groq API
 3. **Knowledge base only**: Phase 1 has no live system integration (TMS/WMS, tracking, rates)
 4. **Singapore-centric**: Regulatory scope limited to Singapore with SEA secondary coverage
-5. **Docker-first**: Containerized execution for reproducibility
+5. **Minimal dependencies**: ChromaDB default embeddings via ONNX (no PyTorch/CUDA)
 
 ## RAG Pipeline Flow
 
@@ -93,12 +90,12 @@ use_cases: [UC-1.1, UC-2.3, etc.]
 ## Ingestion Pipeline Configuration
 
 ```python
-EMBEDDING_MODEL = "gemini-embedding-001"  # Google Gemini API
-EMBEDDING_DIMENSIONS = 768
+EMBEDDING_MODEL = "default"  # ChromaDB built-in (all-MiniLM-L6-v2 via ONNX)
+EMBEDDING_DIMENSIONS = 384
 CHUNK_SIZE = 600        # chars (~150 tokens)
 CHUNK_OVERLAP = 90      # 15% overlap
 COLLECTION_NAME = "waypoint_kb"
-# Requires GOOGLE_API_KEY environment variable
+# No API key required - runs fully offline
 ```
 
 Target: ~350-400 chunks from 29 documents with 12 metadata fields each.
@@ -155,11 +152,11 @@ After each task:
 2. Update status: ⬜ → ✅
 3. Update Progress Tracker totals
 
-### Rule 5: Docker First
-Use Docker commands as primary execution:
+### Rule 5: Local venv Execution
+Use local venv for execution:
 ```bash
 cd pilot_phase1_poc/02_ingestion_pipeline
-docker-compose run --rm ingestion
+python scripts/ingest.py
 ```
 
 ### Rule 6: Validate Before Marking Complete

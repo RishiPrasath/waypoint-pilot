@@ -13,7 +13,7 @@
 Docker configuration has been created for the Waypoint ingestion pipeline. This task validates that the Docker image builds correctly, meets size requirements, and can run the pipeline.
 
 ### Current State
-- `Dockerfile` created with multi-stage build
+- `Dockerfile` created with model pre-caching
 - `docker-compose.yml` configured with services and volumes
 - `.dockerignore` excludes unnecessary files
 - No build attempted yet
@@ -29,14 +29,14 @@ Docker configuration has been created for the Waypoint ingestion pipeline. This 
 ## Task
 
 ### Objective
-Build the Docker image and verify it meets all requirements: successful build, size under 1.5GB, and ability to import required Python packages.
+Build the Docker image and verify it meets all requirements: successful build, appropriate size, and ability to import required Python packages and generate embeddings.
 
 ### Requirements
 1. Run `docker-compose build` successfully
-2. Verify image size is under 800MB
+2. Verify image size is ~800MB-1.2GB
 3. Verify container can import chromadb
-4. Verify container can import google-genai
-5. Verify Gemini API returns 768-dimension embeddings
+4. Verify container can import sentence-transformers
+5. Verify local model returns 384-dimension embeddings
 
 ### Specifications
 
@@ -46,34 +46,34 @@ cd pilot_phase1_poc/02_ingestion_pipeline
 docker-compose build
 ```
 
-**Size Requirement**: < 800MB
+**Size Requirement**: ~800MB-1.2GB (model pre-cached in image)
 
 **Import Tests**:
 ```bash
 docker-compose run --rm --entrypoint python ingestion -c "import chromadb; print('chromadb OK')"
-docker-compose run --rm --entrypoint python ingestion -c "from google import genai; print('google-genai OK')"
+docker-compose run --rm --entrypoint python ingestion -c "from sentence_transformers import SentenceTransformer; print('sentence-transformers OK')"
 ```
 
-**Gemini API Test**:
+**Local Embeddings Test**:
 ```bash
 docker-compose run --rm --entrypoint python ingestion -c "
-from google import genai
-client = genai.Client()
-r = client.models.embed_content(model='gemini-embedding-001', contents='test')
-print(f'Gemini OK - {len(r.embeddings[0].values)} dimensions')
+from sentence_transformers import SentenceTransformer
+model = SentenceTransformer('all-MiniLM-L6-v2')
+embeddings = model.encode(['test'])
+print(f'OK - {embeddings.shape[1]} dimensions')
 "
 ```
 
 ### Constraints
 - Build must complete without errors
-- Gemini API must be reachable with valid GOOGLE_API_KEY
+- No API key required (local embeddings)
 
 ### Acceptance Criteria
 - [ ] `docker-compose build` succeeds
-- [ ] Image size < 800MB
+- [ ] Image size ~800MB-1.2GB
 - [ ] Container can import chromadb
-- [ ] Container can import google-genai
-- [ ] Gemini API returns 768-dimension embeddings
+- [ ] Container can import sentence-transformers
+- [ ] Local model returns 384-dimension embeddings
 
 ---
 
@@ -84,7 +84,7 @@ print(f'Gemini OK - {len(r.embeddings[0].values)} dimensions')
 docker-compose build
 docker images | grep waypoint
 docker-compose run --rm --entrypoint python ingestion -c "import chromadb; print('OK')"
-docker-compose run --rm --entrypoint python ingestion -c "from google import genai; print('OK')"
+docker-compose run --rm --entrypoint python ingestion -c "from sentence_transformers import SentenceTransformer; print('OK')"
 ```
 
 ### Expected Output

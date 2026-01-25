@@ -10,7 +10,7 @@
 ## Context
 
 ### Project Background
-Waypoint ingestion pipeline needs environment-specific configuration for paths, model selection, and runtime settings. Configuration should work both in Docker containers and local development.
+Waypoint ingestion pipeline needs environment-specific configuration for paths, model selection, and runtime settings. Configuration is used for local venv development.
 
 ### Current State
 - `scripts/` directory exists with `__init__.py`
@@ -36,16 +36,14 @@ Create `.env.example` (template for version control) and `.env` (actual config, 
 1. Create `.env.example` with documented variables and default values
 2. Create `.env` as a copy of `.env.example` (for immediate use)
 3. Add `.env` to `.gitignore` to prevent committing secrets
-4. Support both Docker and local execution paths
 
 ### Specifications
 
 **Required Environment Variables**:
 | Variable | Default Value | Description |
 |----------|---------------|-------------|
-| GOOGLE_API_KEY | `your-api-key-here` | Google Gemini API key (required) |
-| EMBEDDING_MODEL | `gemini-embedding-001` | Gemini embedding model |
-| EMBEDDING_DIMENSIONS | `768` | Embedding vector dimensions |
+| EMBEDDING_MODEL | `default` | ChromaDB default embeddings (ONNX) |
+| EMBEDDING_DIMENSIONS | `384` | Embedding vector dimensions |
 | CHROMA_PERSIST_PATH | `./chroma_db` | ChromaDB storage directory |
 | COLLECTION_NAME | `waypoint_kb` | ChromaDB collection name |
 | KNOWLEDGE_BASE_PATH | `../01_knowledge_base` | Path to source documents |
@@ -53,7 +51,6 @@ Create `.env.example` (template for version control) and `.env` (actual config, 
 
 **Path Handling**:
 - Paths should be relative to the `02_ingestion_pipeline/` directory
-- Docker will override paths via docker-compose.yml environment section
 - Local development uses these defaults directly
 
 **File Locations**:
@@ -70,11 +67,10 @@ Create `.env.example` (template for version control) and `.env` (actual config, 
 - Keep values simple - no quotes needed for simple strings in dotenv
 
 ### Acceptance Criteria
-- [ ] `.env.example` created with all 7 variables
+- [ ] `.env.example` created with all 6 variables
 - [ ] `.env` created (copy of example)
-- [ ] GOOGLE_API_KEY defined
-- [ ] EMBEDDING_MODEL defined (`gemini-embedding-001`)
-- [ ] EMBEDDING_DIMENSIONS defined (`768`)
+- [ ] EMBEDDING_MODEL defined (`default` - ChromaDB built-in)
+- [ ] EMBEDDING_DIMENSIONS defined (`384`)
 - [ ] CHROMA_PERSIST_PATH defined
 - [ ] COLLECTION_NAME defined
 - [ ] KNOWLEDGE_BASE_PATH defined

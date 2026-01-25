@@ -10,12 +10,12 @@
 ## Context
 
 ### Project Background
-While Docker is the primary execution method for the Waypoint ingestion pipeline, a local virtual environment provides a fallback for development, debugging, and testing without Docker overhead. This is especially useful for rapid iteration during script development.
+The local virtual environment is the primary execution method for the Waypoint ingestion pipeline. This provides fast iteration during development, debugging, and testing with minimal dependencies (no PyTorch or CUDA required).
 
 ### Current State
-- Docker setup complete (Tasks 1.1-1.5)
-- `requirements.txt` updated for Google Gemini API embeddings
-- `.env` configured with GOOGLE_API_KEY
+- Environment setup complete (Tasks 1.1-1.3)
+- `requirements.txt` configured with ChromaDB (uses built-in default embeddings)
+- `.env` configured (no API key needed)
 - No local virtual environment exists yet
 
 ### Reference Documents
@@ -33,14 +33,14 @@ While Docker is the primary execution method for the Waypoint ingestion pipeline
 ## Task
 
 ### Objective
-Create and configure a local Python virtual environment that can run the ingestion pipeline without Docker, using the same dependencies and configuration as the containerized version.
+Create and configure a local Python virtual environment that can run the ingestion pipeline using ChromaDB's built-in default embeddings (lightweight ONNX runtime).
 
 ### Requirements
 1. Create a Python 3.11+ virtual environment in `venv/` directory
 2. Install all dependencies from `requirements.txt`
 3. Verify all required packages import correctly
 4. Verify environment variables load from `.env`
-5. Test Gemini API connectivity
+5. Test local embedding generation
 
 ### Specifications
 
@@ -66,7 +66,7 @@ pip install -r requirements.txt
 | Package | Import Statement |
 |---------|------------------|
 | chromadb | `import chromadb` |
-| google-genai | `from google import genai` |
+| chromadb (embeddings) | `from chromadb.utils import embedding_functions` |
 | frontmatter | `import frontmatter` |
 | langchain | `from langchain_text_splitters import RecursiveCharacterTextSplitter` |
 | dotenv | `from dotenv import load_dotenv` |
@@ -80,24 +80,20 @@ import os
 load_dotenv()
 
 # Required variables
-assert os.getenv('GOOGLE_API_KEY'), "GOOGLE_API_KEY not set"
-assert os.getenv('EMBEDDING_MODEL') == 'gemini-embedding-001', "EMBEDDING_MODEL mismatch"
-assert os.getenv('EMBEDDING_DIMENSIONS') == '768', "EMBEDDING_DIMENSIONS mismatch"
+assert os.getenv('EMBEDDING_MODEL') == 'default', "EMBEDDING_MODEL mismatch"
+assert os.getenv('EMBEDDING_DIMENSIONS') == '384', "EMBEDDING_DIMENSIONS mismatch"
 assert os.getenv('COLLECTION_NAME') == 'waypoint_kb', "COLLECTION_NAME mismatch"
 print("All environment variables OK")
 ```
 
-**Gemini API Test**:
+**ChromaDB Default Embeddings Test**:
 ```python
-from google import genai
+from chromadb.utils import embedding_functions
 
-client = genai.Client()
-result = client.models.embed_content(
-    model='gemini-embedding-001',
-    contents='test embedding'
-)
-assert len(result.embeddings[0].values) == 768, "Unexpected embedding dimensions"
-print(f"Gemini API OK - {len(result.embeddings[0].values)} dimensions")
+ef = embedding_functions.DefaultEmbeddingFunction()
+result = ef(['test embedding'])
+assert len(result[0]) == 384, "Unexpected embedding dimensions"
+print(f"ChromaDB default OK - {len(result[0])} dimensions")
 ```
 
 ### Constraints
@@ -105,18 +101,18 @@ print(f"Gemini API OK - {len(result.embeddings[0].values)} dimensions")
 - Must use Python 3.11 or higher
 - Must work on Windows (primary development platform)
 - Must not modify any existing files
-- GOOGLE_API_KEY must be set in `.env` for API tests to pass
+- No API key required (local embeddings)
 
 ### Acceptance Criteria
 - [ ] `venv/` directory created
 - [ ] All packages from `requirements.txt` installed
 - [ ] `import chromadb` works
-- [ ] `from google import genai` works
+- [ ] `from chromadb.utils import embedding_functions` works
 - [ ] `import frontmatter` works
 - [ ] `from langchain_text_splitters import RecursiveCharacterTextSplitter` works
 - [ ] `from dotenv import load_dotenv` works
 - [ ] Environment variables load correctly from `.env`
-- [ ] Gemini API test returns 768-dimension embedding
+- [ ] ChromaDB default embeddings return 384-dimension vectors
 
 ---
 
@@ -142,7 +138,7 @@ No new files required. Virtual environment is for local development only.
 cd C:\Users\prasa\Documents\Github\waypoint-pilot\pilot_phase1_poc\02_ingestion_pipeline
 
 # Create and activate venv
-python -m venv venv
+py -3.11 -m venv venv
 .\venv\Scripts\Activate.ps1
 
 # Install dependencies
@@ -150,7 +146,7 @@ pip install -r requirements.txt
 
 # Test imports
 python -c "import chromadb; print('chromadb OK')"
-python -c "from google import genai; print('google-genai OK')"
+python -c "from chromadb.utils import embedding_functions; print('embedding_functions OK')"
 python -c "import frontmatter; print('frontmatter OK')"
 python -c "from langchain_text_splitters import RecursiveCharacterTextSplitter; print('langchain OK')"
 python -c "from dotenv import load_dotenv; print('dotenv OK')"
@@ -158,29 +154,29 @@ python -c "from dotenv import load_dotenv; print('dotenv OK')"
 # Test environment variables
 python -c "from dotenv import load_dotenv; import os; load_dotenv(); print(f'EMBEDDING_MODEL: {os.getenv(\"EMBEDDING_MODEL\")}')"
 
-# Test Gemini API (requires valid GOOGLE_API_KEY)
-python -c "from google import genai; c = genai.Client(); r = c.models.embed_content(model='gemini-embedding-001', contents='test'); print(f'Gemini OK - {len(r.embeddings[0].values)} dimensions')"
+# Test ChromaDB default embeddings
+python -c "from chromadb.utils import embedding_functions; ef = embedding_functions.DefaultEmbeddingFunction(); result = ef(['test']); print(f'OK - {len(result[0])} dimensions')"
 ```
 
 ### Expected Output
 ```
 chromadb OK
-google-genai OK
+embedding_functions OK
 frontmatter OK
 langchain OK
 dotenv OK
-EMBEDDING_MODEL: gemini-embedding-001
-Gemini OK - 768 dimensions
+EMBEDDING_MODEL: default
+OK - 384 dimensions
 ```
 
 ---
 
 ## Notes
 
-This task is marked as **optional** because Docker is the primary execution method. However, a local virtual environment is useful for:
-- Faster iteration during development
-- Debugging without container overhead
+The local virtual environment is the primary execution method. It is useful for:
+- Fast iteration during development
 - IDE integration (autocomplete, linting)
 - Running individual tests
+- Minimal dependencies (no PyTorch, no CUDA)
 
-The virtual environment should produce identical results to the Docker container since both use the same `requirements.txt` and `.env` configuration.
+ChromaDB's built-in default embedding function uses the same model (all-MiniLM-L6-v2) but via lightweight ONNX runtime instead of PyTorch.

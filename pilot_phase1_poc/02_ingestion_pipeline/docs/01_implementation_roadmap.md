@@ -10,7 +10,7 @@
 
 | Group | Tasks | Status |
 |-------|-------|--------|
-| 1. Environment Setup | 6/6 | ✅ Complete |
+| 1. Environment Setup | 4/4 | ✅ Complete |
 | 2. Configuration Module | 0/1 | ⬜ Not Started |
 | 3. Document Processor | 0/2 | ⬜ Not Started |
 | 4. Chunking Engine | 0/2 | ⬜ Not Started |
@@ -18,7 +18,7 @@
 | 6. Verification Script | 0/2 | ⬜ Not Started |
 | 7. Documentation | 0/1 | ⬜ Not Started |
 | 8. CI/CD (Optional) | 0/1 | ⬜ Not Started |
-| **TOTAL** | **6/17** | **35%** |
+| **TOTAL** | **4/15** | **27%** |
 
 **Status Legend**: ⬜ Not Started | 🟡 In Progress | ✅ Complete | ❌ Blocked
 
@@ -49,8 +49,7 @@
 
 ### Task 1.2: Create requirements.txt
 - [x] File created at `requirements.txt`
-- [x] chromadb==0.5.23 *(updated from 0.4.22 for numpy 2.0 compatibility)*
-- [x] google-genai>=1.0.0 *(Gemini API for embeddings)*
+- [x] chromadb==0.5.23 *(uses built-in default embeddings)*
 - [x] python-frontmatter==1.1.0
 - [x] langchain-text-splitters==0.0.1
 - [x] pyyaml==6.0.1
@@ -65,9 +64,8 @@
 ### Task 1.3: Create Environment Files
 - [x] `.env.example` created
 - [x] `.env` created (copy of example)
-- [x] GOOGLE_API_KEY defined *(required for Gemini API)*
-- [x] EMBEDDING_MODEL defined (`gemini-embedding-001`)
-- [x] EMBEDDING_DIMENSIONS defined (`768`)
+- [x] EMBEDDING_MODEL defined (`default` - ChromaDB built-in)
+- [x] EMBEDDING_DIMENSIONS defined (`384`)
 - [x] CHROMA_PERSIST_PATH defined
 - [x] COLLECTION_NAME defined
 - [x] KNOWLEDGE_BASE_PATH defined
@@ -77,46 +75,12 @@
 
 ---
 
-### Task 1.4: Create Docker Configuration
-- [x] `Dockerfile` created
-- [x] Single-stage build *(no model caching needed with Gemini API)*
-- [x] `docker-compose.yml` created
-- [x] GOOGLE_API_KEY passthrough configured
-- [x] Volume mounts configured (knowledge_base, chroma_db, logs)
-- [x] Environment variables configured
-- [x] Verify profile configured
-- [x] `.dockerignore` created
-
-**Status**: ✅ | **Report**: `prompts/01_1.4_docker_config/REPORT.md`
-
----
-
-### Task 1.5: Verify Docker Setup
-- [x] `docker-compose build` succeeds
-- [x] Image size < 800MB *(target: ~500MB with Gemini API)*
-- [x] Container can import chromadb
-- [x] Container can import google-genai
-- [x] Gemini API returns 768-dimension embeddings
-
-**Validation Commands**:
-```bash
-docker-compose build
-docker images | grep waypoint
-docker-compose run --rm --entrypoint python ingestion -c "import chromadb; print('OK')"
-docker-compose run --rm --entrypoint python ingestion -c "from google import genai; print('OK')"
-```
-
-**Status**: ✅ | **Report**: `prompts/01_1.5_docker_verify/REPORT.md`
-
----
-
-### Task 1.6: (Optional) Local Virtual Environment
-- [x] venv created (Python 3.11.0)
+### Task 1.4: Local Virtual Environment Setup
+- [x] venv created (Python 3.11+)
 - [x] All packages installed
 - [x] `import chromadb` works
-- [x] `from google import genai` works
+- [x] ChromaDB default embeddings work (384-d)
 - [x] Environment variables load from `.env`
-- [x] Gemini API returns 768-d embeddings (with config)
 
 **Validation Commands**:
 ```bash
@@ -124,7 +88,7 @@ py -3.11 -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
 python -c "import chromadb; print('OK')"
-python -c "from google import genai; print('OK')"
+python -c "from chromadb.utils import embedding_functions; ef = embedding_functions.DefaultEmbeddingFunction(); result = ef(['test']); print(f'OK - {len(result[0])} dimensions')"
 ```
 
 **Note**: Use `py -3.11` on Windows since chromadb doesn't support Python 3.14 yet.
@@ -142,8 +106,8 @@ python -c "from google import genai; print('OK')"
 - [ ] CHROMA_PERSIST_PATH (Path object)
 - [ ] KNOWLEDGE_BASE_PATH (Path object)
 - [ ] LOG_DIR (Path object)
-- [ ] EMBEDDING_MODEL = "gemini-embedding-001"
-- [ ] EMBEDDING_DIMENSIONS = 768
+- [ ] EMBEDDING_MODEL = "all-MiniLM-L6-v2"
+- [ ] EMBEDDING_DIMENSIONS = 384
 - [ ] CHUNK_SIZE = 600
 - [ ] CHUNK_OVERLAP = 90
 - [ ] SEPARATORS list defined
@@ -154,10 +118,6 @@ python -c "from google import genai; print('OK')"
 
 **Validation Commands**:
 ```bash
-# Docker
-docker-compose run --rm ingestion python -c "from scripts.config import *; print(KNOWLEDGE_BASE_PATH)"
-
-# Local
 python -c "from scripts.config import *; print(KNOWLEDGE_BASE_PATH)"
 ```
 
@@ -202,12 +162,7 @@ python -c "from scripts.config import *; print(KNOWLEDGE_BASE_PATH)"
 
 **Validation Commands**:
 ```bash
-docker-compose run --rm ingestion python -c "
-from scripts.process_docs import discover_documents, parse_document
-from scripts.config import KNOWLEDGE_BASE_PATH
-docs = discover_documents(KNOWLEDGE_BASE_PATH)
-print(f'Found {len(docs)} documents')
-"
+python -c "from scripts.process_docs import discover_documents, parse_document; from scripts.config import KNOWLEDGE_BASE_PATH; docs = discover_documents(KNOWLEDGE_BASE_PATH); print(f'Found {len(docs)} documents')"
 ```
 
 **Status**: ⬜ | **Report**: `prompts/03_document_processor/03_3.2_test_processor_REPORT.md`
@@ -242,14 +197,7 @@ print(f'Found {len(docs)} documents')
 
 **Validation Commands**:
 ```bash
-docker-compose run --rm ingestion python -c "
-from scripts.process_docs import discover_documents, parse_document
-from scripts.chunker import chunk_document
-from scripts.config import KNOWLEDGE_BASE_PATH
-docs = discover_documents(KNOWLEDGE_BASE_PATH)
-total = sum(len(chunk_document(parse_document(d))) for d in docs)
-print(f'Total chunks: {total}')
-"
+python -c "from scripts.process_docs import discover_documents, parse_document; from scripts.chunker import chunk_document; from scripts.config import KNOWLEDGE_BASE_PATH; docs = discover_documents(KNOWLEDGE_BASE_PATH); total = sum(len(chunk_document(parse_document(d))) for d in docs); print(f'Total chunks: {total}')"
 ```
 
 **Status**: ⬜ | **Report**: `prompts/04_chunking_engine/04_4.2_test_chunker_REPORT.md`
@@ -294,16 +242,16 @@ print(f'Total chunks: {total}')
 **Validation Commands**:
 ```bash
 # Full run
-docker-compose run --rm ingestion
+python scripts/ingest.py
 
 # Dry run
-docker-compose run --rm ingestion --dry-run
+python scripts/ingest.py --dry-run
 
 # Verbose
-docker-compose run --rm ingestion --verbose
+python scripts/ingest.py --verbose
 
 # Single category
-docker-compose run --rm ingestion --category 01_regulatory
+python scripts/ingest.py --category 01_regulatory
 ```
 
 **Status**: ⬜ | **Report**: `prompts/05_main_ingestion_script/05_5.2_run_ingestion_REPORT.md`
@@ -336,7 +284,7 @@ docker-compose run --rm ingestion --category 01_regulatory
 
 **Validation Commands**:
 ```bash
-docker-compose --profile verify run --rm verify
+python scripts/verify_ingestion.py
 ```
 
 **Status**: ⬜ | **Report**: `prompts/06_verification_script/06_6.2_run_verification_REPORT.md`
@@ -387,12 +335,12 @@ docker-compose --profile verify run --rm verify
 - [ ] All 12 metadata fields populated
 - [ ] Source URLs preserved
 
-### Docker
-- [ ] Image builds without errors
-- [ ] Container runs ingestion successfully
-- [ ] ChromaDB persists after container stops
-- [ ] Verification runs in container
-- [ ] Volume mounts work correctly
+### Local Environment
+- [ ] venv created successfully
+- [ ] All imports work
+- [ ] ChromaDB default generates 384-d embeddings
+- [ ] Ingestion runs successfully
+- [ ] Verification runs successfully
 
 ### Quality Gates
 - [ ] Tier 1 tests: 8/8 pass
@@ -401,7 +349,7 @@ docker-compose --profile verify run --rm verify
 - [ ] Documentation complete
 
 ### Single Command Test
-- [ ] `docker-compose up --build` runs full pipeline
+- [ ] `python scripts/ingest.py` runs full pipeline
 
 ---
 
@@ -410,18 +358,17 @@ docker-compose --profile verify run --rm verify
 ### Commands
 | Action | Command |
 |--------|---------|
-| Build | `docker-compose build` |
-| Run ingestion | `docker-compose run --rm ingestion` |
-| Run verbose | `docker-compose run --rm ingestion --verbose` |
-| Dry run | `docker-compose run --rm ingestion --dry-run` |
-| Verify | `docker-compose --profile verify run --rm verify` |
-| Stop | `docker-compose down` |
+| Setup venv | `py -3.11 -m venv venv && venv\Scripts\activate && pip install -r requirements.txt` |
+| Run ingestion | `python scripts/ingest.py` |
+| Run verbose | `python scripts/ingest.py --verbose` |
+| Dry run | `python scripts/ingest.py --dry-run` |
+| Verify | `python scripts/verify_ingestion.py` |
 
 ### Key Decisions
 | Setting | Value |
 |---------|-------|
-| Embedding model | `gemini-embedding-001` (768-d) |
+| Embedding model | ChromaDB default (all-MiniLM-L6-v2 via ONNX, 384-d) |
 | Chunk size | 600 chars |
 | Chunk overlap | 90 chars (15%) |
 | Metadata fields | 12 |
-| Base image | `python:3.11-slim` |
+| Python version | 3.11+ |

@@ -45,11 +45,13 @@ Create Docker configuration files (`Dockerfile`, `docker-compose.yml`, `.dockeri
 
 **Dockerfile Requirements**:
 - Base image: `python:3.11-slim`
-- Single-stage build (no model caching needed with Gemini API)
+- Single-stage build with model pre-caching
+- Install build-essential for sentence-transformers
 - Install dependencies from `requirements.txt`
+- Pre-cache `all-MiniLM-L6-v2` model during build
 - Working directory: `/app`
 - Entrypoint: `python scripts/ingest.py`
-- Target image size: < 800MB
+- Target image size: ~800MB-1.2GB
 
 **docker-compose.yml Requirements**:
 - Service: `ingestion` (main pipeline)
@@ -73,9 +75,8 @@ Host                              Container
 **Container Environment Overrides**:
 | Variable | Container Value |
 |----------|-----------------|
-| GOOGLE_API_KEY | `${GOOGLE_API_KEY}` (from host .env) |
-| EMBEDDING_MODEL | `gemini-embedding-001` |
-| EMBEDDING_DIMENSIONS | `768` |
+| EMBEDDING_MODEL | `all-MiniLM-L6-v2` |
+| EMBEDDING_DIMENSIONS | `384` |
 | KNOWLEDGE_BASE_PATH | `/app/knowledge_base` |
 | CHROMA_PERSIST_PATH | `/app/chroma_db` |
 | LOG_DIR | `/app/logs` |
@@ -93,13 +94,12 @@ Host                              Container
 - Image must work on both Windows (Docker Desktop) and Linux
 - Do not hardcode absolute paths in Dockerfile
 - Use named volumes or bind mounts consistently
-- GOOGLE_API_KEY must be passed from host environment
+- No API key required (local embeddings)
 
 ### Acceptance Criteria
 - [ ] `Dockerfile` created
-- [ ] Single-stage build (no model caching needed)
+- [ ] Single-stage build with model pre-caching
 - [ ] `docker-compose.yml` created
-- [ ] GOOGLE_API_KEY passthrough configured
 - [ ] Volume mounts configured (knowledge_base, chroma_db, logs)
 - [ ] Environment variables configured
 - [ ] Verify profile configured
@@ -119,11 +119,14 @@ Host                              Container
 
 ### Dockerfile Template
 ```dockerfile
-# Single-stage build - Gemini API (no local model caching)
+# Single-stage build with local sentence-transformers model
 FROM python:3.11-slim
 WORKDIR /app
+RUN apt-get update && apt-get install -y --no-install-recommends build-essential && rm -rf /var/lib/apt/lists/*
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+# Pre-cache embedding model during build
+RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
 COPY scripts/ ./scripts/
 # ... set environment and entrypoint
 ```
@@ -153,18 +156,18 @@ services:
 cd pilot_phase1_poc/02_ingestion_pipeline
 docker-compose build
 
-# Check image size (should be < 800MB)
+# Check image size (should be ~800MB-1.2GB)
 docker images | grep waypoint
 
 # Test container can import dependencies
 docker-compose run --rm --entrypoint python ingestion -c "import chromadb; print('chromadb OK')"
-docker-compose run --rm --entrypoint python ingestion -c "from google import genai; print('google-genai OK')"
+docker-compose run --rm --entrypoint python ingestion -c "from sentence_transformers import SentenceTransformer; print('sentence-transformers OK')"
 
-# Verify Gemini API works
+# Verify local embeddings work
 docker-compose run --rm --entrypoint python ingestion -c "
-from google import genai
-client = genai.Client()
-r = client.models.embed_content(model='gemini-embedding-001', contents='test')
-print(f'Gemini OK - {len(r.embeddings[0].values)} dimensions')
+from sentence_transformers import SentenceTransformer
+model = SentenceTransformer('all-MiniLM-L6-v2')
+embeddings = model.encode(['test'])
+print(f'OK - {embeddings.shape[1]} dimensions')
 "
 ```

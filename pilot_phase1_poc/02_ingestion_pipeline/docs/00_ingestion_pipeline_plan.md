@@ -9,11 +9,11 @@
 
 ## Executive Summary
 
-This plan details the implementation of the document ingestion pipeline for Waypoint, transforming 29 curated knowledge base documents into a searchable vector store. The pipeline will parse YAML frontmatter, chunk documents uniformly, generate embeddings using BGE-small, and store them in ChromaDB with rich metadata for accurate citation retrieval.
+This plan details the implementation of the document ingestion pipeline for Waypoint, transforming 29 curated knowledge base documents into a searchable vector store. The pipeline will parse YAML frontmatter, chunk documents uniformly, generate embeddings using ChromaDB's built-in default embeddings (all-MiniLM-L6-v2 via ONNX), and store them in ChromaDB with rich metadata for accurate citation retrieval.
 
 **Key Deliverables**:
 - Fully functional Python ingestion pipeline
-- Docker containerization for reproducible execution
+- Local venv execution (no Docker required)
 - ~350-400 chunks indexed in ChromaDB
 - Metadata-rich storage enabling 80% citation accuracy target
 - Verification scripts confirming data integrity
@@ -36,14 +36,14 @@ This plan details the implementation of the document ingestion pipeline for Wayp
 
 ## Key Technical Decisions
 
-### Embedding Model: Google Gemini `gemini-embedding-001`
+### Embedding Model: ChromaDB Default (ONNX)
 
 | Attribute | Value |
 |-----------|-------|
-| Dimensions | 768 |
-| Provider | Google Gemini API |
-| Requirement | GOOGLE_API_KEY env var |
-| Docker Image Size | ~500MB (vs ~12.8GB with local BGE) |
+| Dimensions | 384 |
+| Provider | ChromaDB built-in (ONNX runtime) |
+| Model | all-MiniLM-L6-v2 |
+| Requirement | None (offline capable, no API key) |
 
 ### Chunking Strategy: Uniform 600 chars
 
@@ -91,9 +91,9 @@ CHUNKING_CONFIG = {
 | Decision | Choice |
 |----------|--------|
 | Folder structure | `pilot_phase1_poc/02_ingestion_pipeline/` |
-| Python environment | Docker container (primary) / venv (fallback) |
-| Python version | 3.11 (Docker base image) |
-| Embedding model | `gemini-embedding-001` (Google Gemini API) |
+| Python environment | Local venv (Python 3.11+) |
+| Python version | 3.11+ |
+| Embedding model | ChromaDB default (all-MiniLM-L6-v2 via ONNX) |
 | Chunk size | 600 chars uniform |
 | Chunk overlap | 90 chars (15%) |
 | Metadata fields | All extended fields (12 total) |
@@ -107,7 +107,6 @@ CHUNKING_CONFIG = {
 | CLI arguments | `--verbose`, `--dry-run`, `--category <n>` |
 | Verification tests | 30 queries across 3 tiers |
 | Implementation | Incremental (build one script, verify, then next) |
-| Containerization | Docker with docker-compose |
 
 ---
 
@@ -123,58 +122,6 @@ CHUNKING_CONFIG = {
 | 6 | `requirements.txt` | Python dependencies |
 | 7 | `.env.example` | Environment template |
 | 8 | `README.md` | Pipeline documentation |
-| 9 | `Dockerfile` | Container build instructions |
-| 10 | `docker-compose.yml` | Multi-container orchestration |
-| 11 | `.dockerignore` | Build context exclusions |
-
----
-
-## Docker Architecture
-
-### Container Design Philosophy
-
-The ingestion pipeline is containerized to ensure:
-- **Reproducibility**: Identical execution across development, CI/CD, and production
-- **Isolation**: No conflicts with host system Python or dependencies
-- **Portability**: Run on any system with Docker installed
-- **Simplicity**: Single command to run entire pipeline
-
-### Container Structure
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    waypoint-ingestion                        │
-│                    (Python 3.11-slim)                        │
-├─────────────────────────────────────────────────────────────┤
-│  Volumes:                                                    │
-│  ├── /app/knowledge_base (RO) ← ../01_knowledge_base        │
-│  ├── /app/chroma_db (RW)      → ./chroma_db                 │
-│  └── /app/logs (RW)           → ./logs                      │
-├─────────────────────────────────────────────────────────────┤
-│  API:                                                        │
-│  └── Google Gemini Embedding API (requires GOOGLE_API_KEY)  │
-├─────────────────────────────────────────────────────────────┤
-│  Entrypoint: python scripts/ingest.py                       │
-└─────────────────────────────────────────────────────────────┘
-```
-
-### Image Optimization Strategy
-
-| Optimization | Benefit |
-|--------------|---------|
-| `python:3.11-slim` base | Smaller image (~150MB vs ~900MB full) |
-| Single-stage build | Simple, no model caching needed |
-| Gemini API | Embeddings via API, no local model download |
-| `.dockerignore` | Smaller build context, faster builds |
-| Layer ordering | Maximize cache hits (deps before code) |
-
-### Volume Mounts
-
-| Mount | Container Path | Mode | Purpose |
-|-------|---------------|------|---------|
-| Knowledge Base | `/app/knowledge_base` | Read-only | Source documents |
-| ChromaDB | `/app/chroma_db` | Read-write | Persistent vector store |
-| Logs | `/app/logs` | Read-write | Execution logs |
 
 ---
 
@@ -232,9 +179,8 @@ The ingestion pipeline is containerized to ensure:
 - [ ] Tier 1 tests: 8/8 pass
 - [ ] Tier 2 tests: 10+/12 pass
 - [ ] Source URLs preserved in chunk metadata
-- [ ] Docker build completes without errors
-- [ ] Docker run executes full pipeline successfully
-- [ ] ChromaDB persists after container stops
+- [ ] Python venv runs full pipeline successfully
+- [ ] ChromaDB default generates 384-d embeddings
 
 ---
 
