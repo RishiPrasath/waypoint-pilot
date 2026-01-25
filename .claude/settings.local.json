@@ -24,7 +24,23 @@
       "WebFetch(domain:www.evergreen-marine.com.sg)",
       "WebFetch(domain:www.siacargo.com)",
       "Bash(tree:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "mcp__MiniMax__web_search",
+      "WebFetch(domain:www.wcoomd.org)",
+      "WebFetch(domain:www.digitalizetrade.org)",
+      "WebFetch(domain:www.trade.gov)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\prasa\\\\Documents\\\\Github\\\\waypoint-pilot\" -Recurse -Directory)",
+      "Bash(Select-Object FullName)",
+      "Bash(python:*)",
+      "Bash(pip install:*)",
+      "Bash(docker-compose build:*)",
+      "Bash(docker:*)",
+      "Bash(docker-compose:*)",
+      "Bash(where:*)",
+      "Bash(powershell -Command \"docker version\")",
+      "Bash(powershell:*)",
+      "Bash(./venv/Scripts/pip.exe install:*)",
+      "Bash(./venv/Scripts/python.exe:*)"
     ]
   }
 }

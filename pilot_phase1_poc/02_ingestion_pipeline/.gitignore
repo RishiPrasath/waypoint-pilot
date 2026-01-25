@@ -1,0 +1,23 @@
+# Environment variables (contains local config)
+.env
+
+# ChromaDB persistent storage
+chroma_db/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+
+# Logs
+logs/*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

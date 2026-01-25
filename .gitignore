@@ -1,0 +1,43 @@
+# Environment variables (contains API keys and local config)
+.env
+.env.local
+.env.*.local
+
+# ChromaDB persistent storage
+chroma_db/
+**/chroma_db/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+env/
+.venv/
+
+# Logs
+logs/*.log
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node (for future backend)
+node_modules/
+dist/
+build/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
