@@ -14,7 +14,13 @@ When the user requests a task from the implementation roadmap:
 
 2. **Create prompt file** inside the task folder: `prompt.md`
 
-3. **After completion**, create report file in same folder: `REPORT.md`
+3. **Follow TDD (Test-Driven Development)**:
+   - Write tests FIRST in `tests/test_<module>.py`
+   - Run tests to confirm they fail (Red)
+   - Implement code to make tests pass (Green)
+   - Refactor if needed while keeping tests green
+
+4. **After completion**, create report file in same folder: `REPORT.md`
 
 **Folder structure created on-demand**:
 ```
@@ -80,6 +86,11 @@ prompts/
 - [ ] [Criterion 2]
 - [ ] [Criterion 3]
 
+### TDD Requirements
+- [ ] Test file created at `tests/test_<module>.py`
+- [ ] Tests written BEFORE implementation
+- [ ] All tests pass
+
 ---
 
 ## Format
@@ -93,8 +104,33 @@ prompts/
 ### Documentation
 [Inline comments, docstrings requirements]
 
+### Tests (TDD)
+```
+tests/
+└── test_<module>.py    # Test file for this module
+```
+
+**Test Structure**:
+```python
+import pytest
+from scripts.<module> import <functions>
+
+class Test<FunctionName>:
+    def test_<scenario>_<expected>(self):
+        # Arrange
+        # Act
+        # Assert
+```
+
 ### Validation
 [Commands to verify the output is correct]
+
+```bash
+# Run tests first (TDD)
+python -m pytest tests/test_<module>.py -v
+
+# Then run validation commands
+```
 ```
 
 ---

@@ -8,3 +8,7 @@ python-frontmatter==1.1.0
 pyyaml==6.0.1
 requests>=2.31.0
 tqdm==4.66.1
+
+# Testing (TDD)
+pytest>=8.0.0
+pytest-cov>=4.1.0
