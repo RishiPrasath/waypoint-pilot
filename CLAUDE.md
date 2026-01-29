@@ -14,11 +14,14 @@ Waypoint is a RAG-based customer service co-pilot for freight forwarding compani
 waypoint-pilot/
 ├── pilot_phase1_poc/
 │   ├── 00_docs/                    # Planning documents (numbered 00-06)
-│   ├── 01_knowledge_base/          # 29 curated markdown documents
-│   │   ├── 01_regulatory/          # Singapore Customs, ASEAN trade (14 docs)
-│   │   ├── 02_carriers/            # Ocean & Air carriers (6 docs)
-│   │   ├── 03_reference/           # Incoterms, HS codes (3 docs)
-│   │   └── 04_internal_synthetic/  # Policies, procedures (6 docs)
+│   ├── 01_knowledge_base/          # Knowledge base root
+│   │   ├── kb/                     # Content documents only (29 docs)
+│   │   │   ├── 01_regulatory/      # Singapore Customs, ASEAN trade (14 docs)
+│   │   │   ├── 02_carriers/        # Ocean & Air carriers (6 docs)
+│   │   │   ├── 03_reference/       # Incoterms, HS codes (3 docs)
+│   │   │   └── 04_internal_synthetic/  # Policies, procedures (6 docs)
+│   │   ├── PROGRESS_CHECKLIST.md   # Meta file (outside kb/)
+│   │   └── SCRAPER_EXECUTION_PLAN.md  # Meta file (outside kb/)
 │   └── 02_ingestion_pipeline/      # Document ingestion component
 │       ├── docs/                   # Pipeline plan and roadmap
 │       ├── prompts/                # PCTF task prompts
@@ -165,3 +168,25 @@ Run validation commands from roadmap before marking any task complete.
 ### Rule 7: Reference Component CLAUDE.md
 For detailed tech stack, config, and task specifics, see:
 `pilot_phase1_poc/02_ingestion_pipeline/CLAUDE.md`
+
+### Rule 8: Test-Driven Development (TDD)
+Follow TDD methodology for all code tasks:
+
+1. **Write Tests First**: Before implementing any function/module, write failing tests that define expected behavior
+2. **Red-Green-Refactor Cycle**:
+   - **Red**: Write a failing test
+   - **Green**: Write minimal code to make the test pass
+   - **Refactor**: Clean up code while keeping tests green
+3. **Test File Convention**:
+   - Tests go in `tests/` directory
+   - Test files mirror source: `scripts/chunker.py` → `tests/test_chunker.py`
+4. **Run Tests Before Completion**: All tests must pass before marking a task complete
+5. **Test Coverage**: Each public function should have at least one test case
+
+```bash
+# Run all tests
+python -m pytest tests/ -v
+
+# Run specific test file
+python -m pytest tests/test_process_docs.py -v
+```

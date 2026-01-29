@@ -40,7 +40,30 @@
       "Bash(powershell -Command \"docker version\")",
       "Bash(powershell:*)",
       "Bash(./venv/Scripts/pip.exe install:*)",
-      "Bash(./venv/Scripts/python.exe:*)"
+      "Bash(./venv/Scripts/python.exe:*)",
+      "Bash(\"/c/Program Files/Docker/Docker/resources/bin/docker\" --version)",
+      "Bash(echo:*)",
+      "Bash(tee:*)",
+      "Bash(powershell.exe -Command \"docker run --rm python:3.11-slim python -c ''print\\(123\\)''\")",
+      "Bash(powershell.exe -Command \"cd ''C:\\\\Users\\\\prasa\\\\Documents\\\\Github\\\\waypoint-pilot\\\\pilot_phase1_poc\\\\02_ingestion_pipeline''; docker-compose build\")",
+      "Bash(powershell.exe -Command \"cd ''C:\\\\Users\\\\prasa\\\\Documents\\\\Github\\\\waypoint-pilot\\\\pilot_phase1_poc\\\\02_ingestion_pipeline''; docker-compose build --no-cache\")",
+      "Bash(powershell.exe -Command \"docker images waypoint-ingestion\")",
+      "Bash(powershell.exe -Command \"cd ''C:\\\\Users\\\\prasa\\\\Documents\\\\Github\\\\waypoint-pilot\\\\pilot_phase1_poc\\\\02_ingestion_pipeline''; docker-compose run --rm --entrypoint python ingestion -c ''import chromadb; print\\(\"\"chromadb OK\"\"\\)''\")",
+      "Bash(powershell.exe -Command \"cd ''C:\\\\Users\\\\prasa\\\\Documents\\\\Github\\\\waypoint-pilot\\\\pilot_phase1_poc\\\\02_ingestion_pipeline''; docker-compose run --rm --entrypoint python ingestion -c ''import chromadb; print\\(chromadb.__version__\\)''\")",
+      "Bash(powershell.exe -Command \"cd ''C:\\\\Users\\\\prasa\\\\Documents\\\\Github\\\\waypoint-pilot\\\\pilot_phase1_poc\\\\02_ingestion_pipeline''; docker-compose run --rm --entrypoint python ingestion -c ''from sentence_transformers import SentenceTransformer; print\\(SentenceTransformer\\)''\")",
+      "Bash(powershell.exe -Command \"cd ''C:\\\\Users\\\\prasa\\\\Documents\\\\Github\\\\waypoint-pilot\\\\pilot_phase1_poc\\\\02_ingestion_pipeline''; docker-compose run --rm --entrypoint python ingestion -c ''from sentence_transformers import SentenceTransformer; model = SentenceTransformer\\(\"\"all-MiniLM-L6-v2\"\"\\); embeddings = model.encode\\([\"\"test\"\"]\\); print\\(f\"\"OK - {embeddings.shape[1]} dimensions\"\"\\)''\")",
+      "Bash(powershell.exe -Command \"cd ''C:\\\\Users\\\\prasa\\\\Documents\\\\Github\\\\waypoint-pilot\\\\pilot_phase1_poc\\\\02_ingestion_pipeline''; @''\nfrom sentence_transformers import SentenceTransformer\nmodel = SentenceTransformer\\(\"\"all-MiniLM-L6-v2\"\"\\)\nembeddings = model.encode\\([\"\"test\"\"]\\)\nprint\\(f\"\"OK - {embeddings.shape[1]} dimensions\"\"\\)\n''@ | Set-Content -Path test_embed.py; docker-compose run --rm --entrypoint python ingestion test_embed.py\")",
+      "Bash(powershell.exe -Command \"cd ''C:\\\\Users\\\\prasa\\\\Documents\\\\Github\\\\waypoint-pilot\\\\pilot_phase1_poc\\\\02_ingestion_pipeline''; echo ''from sentence_transformers import SentenceTransformer; m = SentenceTransformer\\(chr\\(34\\)+chr\\(97\\)+chr\\(108\\)+chr\\(108\\)+chr\\(45\\)+chr\\(77\\)+chr\\(105\\)+chr\\(110\\)+chr\\(105\\)+chr\\(76\\)+chr\\(77\\)+chr\\(45\\)+chr\\(76\\)+chr\\(54\\)+chr\\(45\\)+chr\\(118\\)+chr\\(50\\)+chr\\(34\\)\\); e = m.encode\\([chr\\(116\\)+chr\\(101\\)+chr\\(115\\)+chr\\(116\\)]\\); print\\(e.shape[1]\\)'' | docker-compose run --rm -T --entrypoint python ingestion -\")",
+      "Bash(powershell.exe -Command \"docker run --rm waypoint-ingestion:latest python -c ''from sentence_transformers import SentenceTransformer; m = SentenceTransformer\\(chr\\(97\\)+chr\\(108\\)+chr\\(108\\)+chr\\(45\\)+chr\\(77\\)+chr\\(105\\)+chr\\(110\\)+chr\\(105\\)+chr\\(76\\)+chr\\(77\\)+chr\\(45\\)+chr\\(76\\)+chr\\(54\\)+chr\\(45\\)+chr\\(118\\)+chr\\(50\\)\\); e = m.encode\\([chr\\(116\\)+chr\\(101\\)+chr\\(115\\)+chr\\(116\\)]\\); print\\(e.shape[1]\\)''\")",
+      "Bash(powershell.exe -Command \"docker run --rm --entrypoint python waypoint-ingestion:latest -c ''from sentence_transformers import SentenceTransformer; m = SentenceTransformer\\(chr\\(97\\)+chr\\(108\\)+chr\\(108\\)+chr\\(45\\)+chr\\(77\\)+chr\\(105\\)+chr\\(110\\)+chr\\(105\\)+chr\\(76\\)+chr\\(77\\)+chr\\(45\\)+chr\\(76\\)+chr\\(54\\)+chr\\(45\\)+chr\\(118\\)+chr\\(50\\)\\); e = m.encode\\([chr\\(116\\)+chr\\(101\\)+chr\\(115\\)+chr\\(116\\)]\\); print\\(e.shape[1]\\)''\")",
+      "Bash(powershell.exe -Command \"cd ''C:\\\\Users\\\\prasa\\\\Documents\\\\Github\\\\waypoint-pilot\\\\pilot_phase1_poc\\\\02_ingestion_pipeline''; if \\(Test-Path build_output.txt\\) { Remove-Item build_output.txt }; if \\(Test-Path images_output.txt\\) { Remove-Item images_output.txt }; if \\(Test-Path test_output.txt\\) { Remove-Item test_output.txt }; if \\(Test-Path test_embed.py\\) { Remove-Item test_embed.py }; if \\(Test-Path build_log.txt\\) { Remove-Item build_log.txt }\")",
+      "Bash(/c/Users/prasa/Documents/Github/waypoint-pilot/pilot_phase1_poc/02_ingestion_pipeline/venv/Scripts/python.exe -c \"import sys; sys.path.insert\\(0, ''C:/Users/prasa/Documents/Github/waypoint-pilot/pilot_phase1_poc/02_ingestion_pipeline''\\); from scripts.config import KNOWLEDGE_BASE_PATH; print\\(f''Works from different CWD: {KNOWLEDGE_BASE_PATH.exists\\(\\)}''\\)\")",
+      "Bash(venvScriptspython.exe -c \"from scripts.process_docs import discover_documents; from scripts.config import KNOWLEDGE_BASE_PATH; docs = discover_documents\\(KNOWLEDGE_BASE_PATH\\); print\\(f''Found {len\\(docs\\)} documents''\\)\")",
+      "Bash(venv/Scripts/python.exe:*)",
+      "Bash(venv/Scripts/pip.exe install:*)",
+      "Bash(venvScriptspython -m pytest tests/test_verify_ingestion.py -v --tb=short)",
+      "Bash(venv/Scripts/python -m pytest tests/test_verify_ingestion.py -v --tb=short)",
+      "Bash(venv/Scripts/python -m scripts.verify_ingestion:*)"
     ]
   }
 }
