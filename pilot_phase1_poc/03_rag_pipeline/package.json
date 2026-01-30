@@ -1,0 +1,23 @@
+{
+  "name": "waypoint-rag-pipeline",
+  "version": "1.0.0",
+  "description": "RAG pipeline API for Waypoint customer service co-pilot",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "chromadb": "^1.8.1",
+    "openai": "^4.28.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.4"
+  }
+}
