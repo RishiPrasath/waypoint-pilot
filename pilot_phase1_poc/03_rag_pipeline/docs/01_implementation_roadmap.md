@@ -15,11 +15,11 @@
 | 3. Node.js Setup | Project structure | 1/1 | ✅ Complete |
 | 4. Retrieval Service | ChromaDB integration | 1/1 | ✅ Complete |
 | 5. Generation Service | LLM, prompt, citations | 3/3 | ✅ Complete |
-| 6. Pipeline & API | Orchestrator, Express API, E2E test | 2/3 | 🟡 In Progress |
+| 6. Pipeline & API | Orchestrator, Express API, E2E test | 3/3 | ✅ Complete |
 | 7. UI Implementation | React + Tailwind, polish | 0/2 | ⬜ Not Started |
 | 8. Integration Testing | E2E suite, bug fixes | 0/2 | ⬜ Not Started |
 | 9. Documentation | README, checkpoint report | 0/2 | ⬜ Not Started |
-| **TOTAL** | | **11/18** | **61%** |
+| **TOTAL** | | **12/18** | **67%** |
 
 **Status Legend**: ⬜ Not Started | 🟡 In Progress | ✅ Complete | ❌ Blocked
 
@@ -353,13 +353,13 @@ curl http://localhost:3000/api/health
 ---
 
 ### Task 6.3: End-to-End API Test
-- [ ] Run 10 queries via API
-- [ ] Verify response structure
-- [ ] Verify citations present
-- [ ] Verify latency <5s
-- [ ] Document any issues
+- [x] Run 10 queries via API
+- [x] Verify response structure
+- [x] Verify citations present
+- [x] Verify latency <5s (80% passed)
+- [x] Document any issues
 
-**Status**: ⬜ | **Report**: `prompts/06_6.3_e2e_api_test/REPORT.md`
+**Status**: ✅ | **Report**: `prompts/06_6.3_e2e_api_test/REPORT.md`
 
 ---
 
