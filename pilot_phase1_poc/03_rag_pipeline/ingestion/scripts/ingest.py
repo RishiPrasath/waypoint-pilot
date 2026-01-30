@@ -145,6 +145,7 @@ def ingest_document(
                 "subsection_header": chunk["subsection_header"],
                 "chunk_index": chunk["chunk_index"],
                 "file_path": chunk["file_path"],
+                "source_urls": ",".join(chunk.get("source_urls", [])),
             }
             for chunk in chunks
         ]

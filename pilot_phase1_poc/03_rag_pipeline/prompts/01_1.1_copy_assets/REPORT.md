@@ -1,13 +1,13 @@
 # Task 1.1: Copy KB and Ingestion to RAG Pipeline - Output Report
 
-**Completed**: 2025-01-30
+**Completed**: 2026-01-30 11:05
 **Status**: Complete
 
 ---
 
 ## Summary
 
-Successfully copied the knowledge base (29 documents) and ingestion pipeline to the RAG pipeline folder. Updated config.py to use the new relative path `../kb`. Created .env from .env.example and verified venv setup works.
+Successfully copied the knowledge base (29 documents) and ingestion pipeline from Week 1 components into the `03_rag_pipeline/` folder. Updated configuration paths to reflect new structure. Created virtual environment and verified ingestion works correctly with dry-run (29 docs → 483 chunks).
 
 ---
 
@@ -15,50 +15,51 @@ Successfully copied the knowledge base (29 documents) and ingestion pipeline to 
 
 | File | Action | Path |
 |------|--------|------|
-| kb/ | Created | `03_rag_pipeline/kb/` (29 docs across 4 subdirs) |
-| 01_regulatory/ | Created | `03_rag_pipeline/kb/01_regulatory/` (14 docs) |
-| 02_carriers/ | Created | `03_rag_pipeline/kb/02_carriers/` (6 docs) |
-| 03_reference/ | Created | `03_rag_pipeline/kb/03_reference/` (3 docs) |
-| 04_internal_synthetic/ | Created | `03_rag_pipeline/kb/04_internal_synthetic/` (6 docs) |
-| ingestion/scripts/ | Created | `03_rag_pipeline/ingestion/scripts/` (7 Python modules) |
-| ingestion/tests/ | Created | `03_rag_pipeline/ingestion/tests/` (5 test files) |
-| config.py | Modified | Updated KNOWLEDGE_BASE_PATH to `../kb` |
-| .env | Created | Copied from .env.example |
-| requirements.txt | Created | Copied from source |
-| README.md | Created | Copied from source |
+| kb/ (entire directory) | Created (copied) | `pilot_phase1_poc/03_rag_pipeline/kb/` |
+| ingestion/ (entire directory) | Created (copied) | `pilot_phase1_poc/03_rag_pipeline/ingestion/` |
+| scripts/config.py | Modified | `pilot_phase1_poc/03_rag_pipeline/ingestion/scripts/config.py` |
+| .env | Created (from .env.example) | `pilot_phase1_poc/03_rag_pipeline/ingestion/.env` |
+| venv/ | Created | `pilot_phase1_poc/03_rag_pipeline/ingestion/venv/` |
+
+### Details
+
+**Knowledge Base Copied (29 files):**
+- `kb/01_regulatory/` - 14 documents (Singapore Customs, ASEAN trade, country-specific)
+- `kb/02_carriers/` - 6 documents (Ocean & Air carriers)
+- `kb/03_reference/` - 3 documents (HS codes, Incoterms)
+- `kb/04_internal_synthetic/` - 6 documents (Policies, procedures, service guides)
+
+**Ingestion Pipeline Copied:**
+- `ingestion/scripts/` - 7 Python modules (including __init__.py)
+- `ingestion/tests/` - 5 test files
+- `ingestion/requirements.txt`
+- `ingestion/.env.example`
+- `ingestion/README.md`
+
+**Configuration Changes:**
+- `config.py`: Changed default `KNOWLEDGE_BASE_PATH` from `../01_knowledge_base/kb` to `../kb`
+- `.env`: Updated `KNOWLEDGE_BASE_PATH` comment and value reference
 
 ---
 
 ## Acceptance Criteria
 
 - [x] `03_rag_pipeline/kb/` contains all 29 markdown documents across 4 subdirectories
-- [x] `03_rag_pipeline/ingestion/scripts/` contains all 7 Python modules
+- [x] `03_rag_pipeline/ingestion/scripts/` contains all 6 Python modules (7 with __init__.py)
 - [x] `03_rag_pipeline/ingestion/tests/` contains all test files
-- [x] `03_rag_pipeline/ingestion/scripts/config.py` has updated `KNOWLEDGE_BASE_PATH` to `../kb`
+- [x] `03_rag_pipeline/ingestion/scripts/config.py` has updated `KNOWLEDGE_BASE_PATH` (`../kb`)
 - [x] `03_rag_pipeline/ingestion/.env` exists (copied from .env.example)
 - [x] venv can be created and packages installed
-- [x] Ingestion ready (dry-run should discover 29 docs)
-
----
-
-## Verification Results
-
-```
-KB Document Count: 29
-Config Path: KNOWLEDGE_BASE_PATH = ../kb
-Ingestion Scripts: 7 modules present
-Test Files: 5 test files present
-```
+- [x] Ingestion runs successfully with `python -m scripts.ingest --dry-run` (29 docs, 483 chunks)
 
 ---
 
 ## Issues Encountered
 
-None
+None. All files copied successfully, paths updated correctly, and dry-run completed as expected.
 
 ---
 
 ## Next Steps
 
-- Task 1.2: Fix source_urls in ingest.py to include them in ChromaDB metadata
-- Then run `python -m scripts.ingest --clear` to re-ingest with source_urls
+Proceed to **Task 1.2: Fix source_urls in Ingestion** - Update `ingest.py` to store `source_urls` in ChromaDB metadata and re-ingest all documents.

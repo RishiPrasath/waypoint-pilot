@@ -10,7 +10,7 @@
 
 | Group | Name | Tasks | Status |
 |-------|------|-------|--------|
-| 1. Project Setup | Copy assets, fix source_urls | 1/2 | 🟡 In Progress |
+| 1. Project Setup | Copy assets, fix source_urls | 2/2 | ✅ Complete |
 | 2. Retrieval Quality Testing | Quality test script, decision gate | 0/2 | ⬜ Not Started |
 | 3. Node.js Setup | Project structure | 0/1 | ⬜ Not Started |
 | 4. Retrieval Service | ChromaDB integration | 0/1 | ⬜ Not Started |
@@ -19,7 +19,7 @@
 | 7. UI Implementation | React + Tailwind, polish | 0/2 | ⬜ Not Started |
 | 8. Integration Testing | E2E suite, bug fixes | 0/2 | ⬜ Not Started |
 | 9. Documentation | README, checkpoint report | 0/2 | ⬜ Not Started |
-| **TOTAL** | | **1/18** | **6%** |
+| **TOTAL** | | **2/18** | **11%** |
 
 **Status Legend**: ⬜ Not Started | 🟡 In Progress | ✅ Complete | ❌ Blocked
 
@@ -54,10 +54,10 @@
 ---
 
 ### Task 1.2: Fix source_urls in Ingestion
-- [ ] `ingest.py` updated to store `source_urls` in ChromaDB metadata
-- [ ] Re-ingestion complete with `--clear` flag
-- [ ] `view_chroma` or query confirms `source_urls` in metadata
-- [ ] All 483 chunks have source_urls field
+- [x] `ingest.py` updated to store `source_urls` in ChromaDB metadata
+- [x] Re-ingestion complete with `--clear` flag
+- [x] `view_chroma` or query confirms `source_urls` in metadata
+- [x] All 483 chunks have source_urls field
 
 **Fix Required** in `ingestion/scripts/ingest.py`:
 ```python
@@ -77,7 +77,7 @@ python -m scripts.ingest --clear
 python -c "import chromadb; c = chromadb.PersistentClient('./chroma_db'); col = c.get_collection('waypoint_kb'); print(col.get(limit=1)['metadatas'][0].keys())"
 ```
 
-**Status**: ⬜ | **Report**: `prompts/01_1.2_source_url_fix/REPORT.md`
+**Status**: ✅ | **Report**: `prompts/01_1.2_source_url_fix/REPORT.md`
 
 ---
 
