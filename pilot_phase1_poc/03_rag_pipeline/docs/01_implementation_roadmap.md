@@ -11,7 +11,7 @@
 | Group | Name | Tasks | Status |
 |-------|------|-------|--------|
 | 1. Project Setup | Copy assets, fix source_urls | 2/2 | ✅ Complete |
-| 2. Retrieval Quality Testing | Quality test script, decision gate | 0/2 | ⬜ Not Started |
+| 2. Retrieval Quality Testing | Quality test script, decision gate | 1/2 | 🟡 In Progress |
 | 3. Node.js Setup | Project structure | 0/1 | ⬜ Not Started |
 | 4. Retrieval Service | ChromaDB integration | 0/1 | ⬜ Not Started |
 | 5. Generation Service | LLM, prompt, citations | 0/3 | ⬜ Not Started |
@@ -19,7 +19,7 @@
 | 7. UI Implementation | React + Tailwind, polish | 0/2 | ⬜ Not Started |
 | 8. Integration Testing | E2E suite, bug fixes | 0/2 | ⬜ Not Started |
 | 9. Documentation | README, checkpoint report | 0/2 | ⬜ Not Started |
-| **TOTAL** | | **2/18** | **11%** |
+| **TOTAL** | | **3/18** | **17%** |
 
 **Status Legend**: ⬜ Not Started | 🟡 In Progress | ✅ Complete | ❌ Blocked
 
@@ -85,11 +85,11 @@ python -c "import chromadb; c = chromadb.PersistentClient('./chroma_db'); col = 
 **Duration**: 5-6 hours (Day 8 Afternoon) | **Prompt Folder**: `prompts/02_2.x_*/`
 
 ### Task 2.1: Create Retrieval Quality Test Script
-- [ ] File created at `scripts/retrieval_quality_test.py`
-- [ ] Implements all 50 test queries from `00_docs/02_use_cases.md`
-- [ ] Captures top-5 chunks with similarity scores per query
-- [ ] Generates JSON output in `data/retrieval_test_results.json`
-- [ ] Generates markdown report in `reports/retrieval_quality_REPORT.md`
+- [x] File created at `scripts/retrieval_quality_test.py`
+- [x] Implements all 50 test queries from `00_docs/02_use_cases.md`
+- [x] Captures top-5 chunks with similarity scores per query
+- [x] Generates JSON output in `data/retrieval_test_results.json`
+- [x] Generates markdown report in `reports/retrieval_quality_REPORT.md`
 
 **Query Categories** (10 each):
 1. Booking & Documentation
@@ -109,7 +109,7 @@ python -c "import chromadb; c = chromadb.PersistentClient('./chroma_db'); col = 
     └── retrieval_test_results.json
 ```
 
-**Status**: ⬜ | **Report**: `prompts/02_2.1_retrieval_quality_test/REPORT.md`
+**Status**: ✅ | **Report**: `prompts/02_2.1_retrieval_quality_test/REPORT.md`
 
 ---
 

@@ -1,0 +1,4561 @@
+{
+  "timestamp": "2026-01-30T11:43:38.187984",
+  "config": {
+    "top_k": 5,
+    "threshold": 0.15,
+    "chroma_path": "C:\\Users\\prasa\\Documents\\Github\\waypoint-pilot\\pilot_phase1_poc\\03_rag_pipeline\\ingestion\\chroma_db",
+    "collection_name": "waypoint_kb"
+  },
+  "summary": {
+    "total_queries": 50,
+    "total_hits": 38,
+    "overall_hit_rate": 76.0
+  },
+  "category_stats": {
+    "booking_documentation": {
+      "queries": 10,
+      "hits": 6,
+      "hit_rate": 60.0,
+      "results": [
+        {
+          "query_num": 1,
+          "category": "booking_documentation",
+          "query": "What documents are needed for sea freight Singapore to Indonesia?",
+          "top_result_doc_id": "01_regulatory_indonesia_import_requirements",
+          "top_result_title": "Indonesia Import Requirements",
+          "top_score": 0.3892,
+          "hit": true,
+          "expected_sources": [
+            "sg_export",
+            "indonesia_import"
+          ],
+          "matched_source": "indonesia_import",
+          "top_5_chunks": [
+            {
+              "doc_id": "01_regulatory_indonesia_import_requirements",
+              "title": "Indonesia Import Requirements",
+              "section": "Key Regulatory Bodies",
+              "similarity": 0.3892
+            },
+            {
+              "doc_id": "02_carriers_pil_service_summary",
+              "title": "PIL (Pacific International Lines) Service Summary",
+              "section": "Singapore Office (Headquarters)",
+              "similarity": 0.3069
+            },
+            {
+              "doc_id": "03_reference_incoterms_2020_reference",
+              "title": "Incoterms 2020 Complete Reference Guide",
+              "section": "Key Changes in Incoterms 2020",
+              "similarity": 0.2862
+            },
+            {
+              "doc_id": "02_carriers_maersk_service_summary",
+              "title": "Maersk Service Summary",
+              "section": "Routes from Singapore",
+              "similarity": 0.2783
+            },
+            {
+              "doc_id": "01_regulatory_malaysia_import_requirements",
+              "title": "Malaysia Import Requirements",
+              "section": "Key Regulatory Bodies",
+              "similarity": 0.2773
+            }
+          ]
+        },
+        {
+          "query_num": 2,
+          "category": "booking_documentation",
+          "query": "How far in advance should I book an LCL shipment?",
+          "top_result_doc_id": "04_internal_synthetic_service_terms_conditions",
+          "top_result_title": "Service Terms and Conditions",
+          "top_score": 0.0572,
+          "hit": false,
+          "expected_sources": [
+            "booking"
+          ],
+          "matched_source": null,
+          "top_5_chunks": [
+            {
+              "doc_id": "04_internal_synthetic_service_terms_conditions",
+              "title": "Service Terms and Conditions",
+              "section": "4. Booking and Cancellation",
+              "similarity": 0.0572
+            },
+            {
+              "doc_id": "04_internal_synthetic_sla_policy",
+              "title": "Service Level Agreement (SLA) Policy",
+              "section": "4. Response Time Standards",
+              "similarity": 0.0321
+            },
+            {
+              "doc_id": "04_internal_synthetic_sla_policy",
+              "title": "Service Level Agreement (SLA) Policy",
+              "section": "6. Issue Resolution SLAs",
+              "similarity": -0.0064
+            },
+            {
+              "doc_id": "04_internal_synthetic_cod_procedure",
+              "title": "Collect on Delivery (COD) Handling Procedure",
+              "section": "7. Collection Process",
+              "similarity": -0.0925
+            },
+            {
+              "doc_id": "04_internal_synthetic_sla_policy",
+              "title": "Service Level Agreement (SLA) Policy",
+              "section": "5. Operational SLAs",
+              "similarity": -0.0979
+            }
+          ]
+        },
+        {
+          "query_num": 3,
+          "category": "booking_documentation",
+          "query": "What's the difference between FCL and LCL?",
+          "top_result_doc_id": "02_carriers_evergreen_service_summary",
+          "top_result_title": "Evergreen Service Summary",
+          "top_score": -0.1958,
+          "hit": true,
+          "expected_sources": [
+            "incoterms"
+          ],
+          "matched_source": "incoterms",
+          "top_5_chunks": [
+            {
+              "doc_id": "02_carriers_evergreen_service_summary",
+              "title": "Evergreen Service Summary",
+              "section": "About Evergreen",
+              "similarity": -0.1958
+            },
+            {
+              "doc_id": "04_internal_synthetic_booking_procedure",
+              "title": "Sea Freight Booking Procedure",
+              "section": "5. Detailed Procedure",
+              "similarity": -0.2202
+            },
+            {
+              "doc_id": "03_reference_incoterms_2020_reference",
+              "title": "Incoterms 2020 Complete Reference Guide",
+              "section": "Detailed Incoterms 2020 Definitions",
+              "similarity": -0.2572
+            },
+            {
+              "doc_id": "02_carriers_pil_service_summary",
+              "title": "PIL (Pacific International Lines) Service Summary",
+              "section": "Company Overview",
+              "similarity": -0.303
+            },
+            {
+              "doc_id": "04_internal_synthetic_sla_policy",
+              "title": "Service Level Agreement (SLA) Policy",
+              "section": "4. Response Time Standards",
+              "similarity": -0.303
+            }
+          ]
+        },
+        {
+          "query_num": 4,
+          "category": "booking_documentation",
+          "query": "When is the SI cutoff for this week's Maersk sailing?",
+          "top_result_doc_id": "02_carriers_maersk_service_summary",
+          "top_result_title": "Maersk Service Summary",
+          "top_score": 0.0237,
+          "hit": true,
+          "expected_sources": [
+            "maersk"
+          ],
+          "matched_source": "maersk",
+          "top_5_chunks": [
+            {
+              "doc_id": "02_carriers_maersk_service_summary",
+              "title": "Maersk Service Summary",
+              "section": "Key Strengths for Singapore Shippers",
+              "similarity": 0.0237
+            },
+            {
+              "doc_id": "02_carriers_maersk_service_summary",
+              "title": "Maersk Service Summary",
+              "section": "Documentation Requirements",
+              "similarity": -0.058
+            },
+            {
+              "doc_id": "02_carriers_maersk_service_summary",
+              "title": "Maersk Service Summary",
+              "section": "",
+              "similarity": -0.0715
+            },
+            {
+              "doc_id": "04_internal_synthetic_booking_procedure",
+              "title": "Sea Freight Booking Procedure",
+              "section": "5. Detailed Procedure",
+              "similarity": -0.167
+            },
+            {
+              "doc_id": "02_carriers_maersk_service_summary",
+              "title": "Maersk Service Summary",
+              "section": "Company Overview",
+              "similarity": -0.1921
+            }
+          ]
+        },
+        {
+          "query_num": 5,
+          "category": "booking_documentation",
+          "query": "Do I need a commercial invoice for samples with no value?",
+          "top_result_doc_id": "02_carriers_pil_service_summary",
+          "top_result_title": "PIL (Pacific International Lines) Service Summary",
+          "top_score": -0.253,
+          "hit": false,
+          "expected_sources": [
+            "sg_export",
+            "indonesia_import"
+          ],
+          "matched_source": null,
+          "top_5_chunks": [
+            {
+              "doc_id": "02_carriers_pil_service_summary",
+              "title": "PIL (Pacific International Lines) Service Summary",
+              "section": "Digital Solutions",
+              "similarity": -0.253
+            },
+            {
+              "doc_id": "01_regulatory_philippines_import_requirements",
+              "title": "Philippines Import Requirements",
+              "section": "Import Classifications",
+              "similarity": -0.2602
+            },
+            {
+              "doc_id": "01_regulatory_thailand_import_requirements",
+              "title": "Thailand Import Requirements",
+              "section": "Import Licenses",
+              "similarity": -0.3189
+            },
+            {
+              "doc_id": "01_regulatory_philippines_import_requirements",
+              "title": "Philippines Import Requirements",
+              "section": "Regulated Commodities",
+              "similarity": -0.3317
+            },
+            {
+              "doc_id": "01_regulatory_vietnam_import_requirements",
+              "title": "Vietnam Import Requirements",
+              "section": "Special Import Requirements",
+              "similarity": -0.3358
+            }
+          ]
+        },
+        {
+          "query_num": 6,
+          "category": "booking_documentation",
+          "query": "What's a Bill of Lading and who issues it?",
+          "top_result_doc_id": "01_regulatory_philippines_import_requirements",
+          "top_result_title": "Philippines Import Requirements",
+          "top_score": -0.0703,
+          "hit": false,
+          "expected_sources": [
+            "booking"
+          ],
+          "matched_source": null,
+          "top_5_chunks": [
+            {
+              "doc_id": "01_regulatory_philippines_import_requirements",
+              "title": "Philippines Import Requirements",
+              "section": "Import Classifications",
+              "similarity": -0.0703
+            },
+            {
+              "doc_id": "04_internal_synthetic_cod_procedure",
+              "title": "Collect on Delivery (COD) Handling Procedure",
+              "section": "5. COD Booking Process",
+              "similarity": -0.0789
+            },
+            {
+              "doc_id": "02_carriers_one_service_summary",
+              "title": "ONE (Ocean Network Express) Service Summary",
+              "section": "Booking Process",
+              "similarity": -0.1022
+            },
+            {
+              "doc_id": "02_carriers_pil_service_summary",
+              "title": "PIL (Pacific International Lines) Service Summary",
+              "section": "Digital Solutions",
+              "similarity": -0.1069
+            },
+            {
+              "doc_id": "04_internal_synthetic_booking_procedure",
+              "title": "Sea Freight Booking Procedure",
+              "section": "5. Detailed Procedure",
+              "similarity": -0.1201
+            }
+          ]
+        },
+        {
+          "query_num": 7,
+          "category": "booking_documentation",
+          "query": "Can we ship without a packing list?",
+          "top_result_doc_id": "03_reference_incoterms_comparison_chart",
+          "top_result_title": "Incoterms 2020 Comparison Chart",
+          "top_score": -0.024,
+          "hit": false,
+          "expected_sources": [
+            "sg_export",
+            "indonesia_import"
+          ],
+          "matched_source": null,
+          "top_5_chunks": [
+            {
+              "doc_id": "03_reference_incoterms_comparison_chart",
+              "title": "Incoterms 2020 Comparison Chart",
+              "section": "Decision Tree: Choosing the Right Incoterm",
+              "similarity": -0.024
+            },
+            {
+              "doc_id": "01_regulatory_sg_import_procedures",
+              "title": "Singapore Import Procedures",
+              "section": "Seven-Step Import Process",
+              "similarity": -0.0774
+            },
+            {
+              "doc_id": "01_regulatory_philippines_import_requirements",
+              "title": "Philippines Import Requirements",
+              "section": "Importer Registration",
+              "similarity": -0.0861
+            },
+            {
+              "doc_id": "04_internal_synthetic_service_terms_conditions",
+              "title": "Service Terms and Conditions",
+              "section": "4. Booking and Cancellation",
+              "similarity": -0.1108
+            },
+            {
+              "doc_id": "02_carriers_maersk_service_summary",
+              "title": "Maersk Service Summary",
+              "section": "About Maersk",
+              "similarity": -0.1252
+            }
+          ]
+        },
+        {
+          "query_num": 8,
+          "category": "booking_documentation",
+          "query": "What does FOB Singapore mean?",
+          "top_result_doc_id": "03_reference_incoterms_comparison_chart",
+          "top_result_title": "Incoterms 2020 Comparison Chart",
+          "top_score": 0.1501,
+          "hit": true,
+          "expected_sources": [
+            "incoterms"
+          ],
+          "matched_source": "incoterms",
+          "top_5_chunks": [
+            {
+              "doc_id": "03_reference_incoterms_comparison_chart",
+              "title": "Incoterms 2020 Comparison Chart",
+              "section": "Common Combinations by Trade Route",
+              "similarity": 0.1501
+            },
+            {
+              "doc_id": "03_reference_incoterms_comparison_chart",
+              "title": "Incoterms 2020 Comparison Chart",
+              "section": "Red Flags & Warnings",
+              "similarity": 0.1432
+            },
+            {
+              "doc_id": "03_reference_incoterms_2020_reference",
+              "title": "Incoterms 2020 Complete Reference Guide",
+              "section": "Incoterms Selection Guide for Singapore Shippers",
+              "similarity": 0.0468
+            },
+            {
+              "doc_id": "03_reference_incoterms_2020_reference",
+              "title": "Incoterms 2020 Complete Reference Guide",
+              "section": "Incoterms Selection Guide for Singapore Shippers",
+              "similarity": 0.0033
+            },
+            {
+              "doc_id": "03_reference_hs_code_structure_guide",
+              "title": "HS Code Structure Guide",
+              "section": "Quick Reference Tables",
+              "similarity": -0.0047
+            }
+          ]
+        },
+        {
+          "query_num": 9,
+          "category": "booking_documentation",
+          "query": "How do I amend a booking after confirmation?",
+          "top_result_doc_id": "04_internal_synthetic_service_terms_conditions",
+          "top_result_title": "Service Terms and Conditions",
+          "top_score": 0.3177,
+          "hit": true,
+          "expected_sources": [
+            "booking"
+          ],
+          "matched_source": "booking",
+          "top_5_chunks": [
+            {
+              "doc_id": "04_internal_synthetic_service_terms_conditions",
+              "title": "Service Terms and Conditions",
+              "section": "3. Quotations and Rates",
+              "similarity": 0.3177
+            },
+            {
+              "doc_id": "04_internal_synthetic_booking_procedure",
+              "title": "Sea Freight Booking Procedure",
+              "section": "5. Detailed Procedure",
+              "similarity": 0.2141
+            },
+            {
+              "doc_id": "04_internal_synthetic_booking_procedure",
+              "title": "Sea Freight Booking Procedure",
+              "section": "5. Detailed Procedure",
+              "similarity": 0.0853
+            },
+            {
+              "doc_id": "04_internal_synthetic_booking_procedure",
+              "title": "Sea Freight Booking Procedure",
+              "section": "3. Responsibilities",
+              "similarity": 0.0852
+            },
+            {
+              "doc_id": "04_internal_synthetic_booking_procedure",
+              "title": "Sea Freight Booking Procedure",
+              "section": "5. Detailed Procedure",
+              "similarity": 0.0717
+            }
+          ]
+        },
+        {
+          "query_num": 10,
+          "category": "booking_documentation",
+          "query": "What's the free time at destination port?",
+          "top_result_doc_id": "03_reference_incoterms_2020_reference",
+          "top_result_title": "Incoterms 2020 Complete Reference Guide",
+          "top_score": -0.1433,
+          "hit": true,
+          "expected_sources": [
+            "carrier",
+            "service"
+          ],
+          "matched_source": "carrier",
+          "top_5_chunks": [
+            {
+              "doc_id": "03_reference_incoterms_2020_reference",
+              "title": "Incoterms 2020 Complete Reference Guide",
+              "section": "Detailed Incoterms 2020 Definitions",
+              "similarity": -0.1433
+            },
+            {
+              "doc_id": "04_internal_synthetic_sla_policy",
+              "title": "Service Level Agreement (SLA) Policy",
+              "section": "6. Issue Resolution SLAs",
+              "similarity": -0.1883
+            },
+            {
+              "doc_id": "02_carriers_pil_service_summary",
+              "title": "PIL (Pacific International Lines) Service Summary",
+              "section": "Digital Solutions",
+              "similarity": -0.2368
+            },
+            {
+              "doc_id": "03_reference_incoterms_comparison_chart",
+              "title": "Incoterms 2020 Comparison Chart",
+              "section": "Quick Visual Comparison",
+              "similarity": -0.245
+            },
+            {
+              "doc_id": "04_internal_synthetic_booking_procedure",
+              "title": "Sea Freight Booking Procedure",
+              "section": "5. Detailed Procedure",
+              "similarity": -0.265
+            }
+          ]
+        }
+      ]
+    },
+    "customs_regulatory": {
+      "queries": 10,
+      "hits": 8,
+      "hit_rate": 80.0,
+      "results": [
+        {
+          "query_num": 11,
+          "category": "customs_regulatory",
+          "query": "What's the GST rate for imports into Singapore?",
+          "top_result_doc_id": "01_regulatory_sg_gst_guide",
+          "top_result_title": "Singapore GST Guide for Imports",
+          "top_score": 0.6191,
+          "hit": true,
+          "expected_sources": [
+            "sg_gst"
+          ],
+          "matched_source": "sg_gst",
+          "top_5_chunks": [
+            {
+              "doc_id": "01_regulatory_sg_gst_guide",
+              "title": "Singapore GST Guide for Imports",
+              "section": "",
+              "similarity": 0.6191
+            },
+            {
+              "doc_id": "01_regulatory_sg_certificates_of_origin",
+              "title": "Singapore Certificates of Origin",
+              "section": "Compliance Requirements",
+              "similarity": 0.5211
+            },
+            {
+              "doc_id": "01_regulatory_sg_import_procedures",
+              "title": "Singapore Import Procedures",
+              "section": "",
+              "similarity": 0.4377
+            },
+            {
+              "doc_id": "01_regulatory_sg_gst_guide",
+              "title": "Singapore GST Guide for Imports",
+              "section": "Payment Methods",
+              "similarity": 0.4061
+            },
+            {
+              "doc_id": "03_reference_incoterms_2020_reference",
+              "title": "Incoterms 2020 Complete Reference Guide",
+              "section": "Common Mistakes to Avoid",
+              "similarity": 0.402
+            }
+          ]
+        },
+        {
+          "query_num": 12,
+          "category": "customs_regulatory",
+          "query": "How do I find the HS code for electronics?",
+          "top_result_doc_id": "03_reference_hs_code_structure_guide",
+          "top_result_title": "HS Code Structure Guide",
+          "top_score": 0.2718,
+          "hit": true,
+          "expected_sources": [
+            "hs_classification",
+            "hs_code"
+          ],
+          "matched_source": "hs_code",
+          "top_5_chunks": [
+            {
+              "doc_id": "03_reference_hs_code_structure_guide",
+              "title": "HS Code Structure Guide",
+              "section": "Overview",
+              "similarity": 0.2718
+            },
+            {
+              "doc_id": "03_reference_hs_code_structure_guide",
+              "title": "HS Code Structure Guide",
+              "section": "",
+              "similarity": 0.1887
+            },
+            {
+              "doc_id": "03_reference_hs_code_structure_guide",
+              "title": "HS Code Structure Guide",
+              "section": "Common Classification Challenges",
+              "similarity": 0.087
+            },
+            {
+              "doc_id": "03_reference_hs_code_structure_guide",
+              "title": "HS Code Structure Guide",
+              "section": "HS Code Structure",
+              "similarity": 0.0664
+            },
+            {
+              "doc_id": "01_regulatory_sg_hs_classification",
+              "title": "Singapore HS Classification Guide",
+              "section": "Structure of HS Codes",
+              "similarity": -0.001
+            }
+          ]
+        },
+        {
+          "query_num": 13,
+          "category": "customs_regulatory",
+          "query": "Is Certificate of Origin required for Thailand?",
+          "top_result_doc_id": "01_regulatory_thailand_import_requirements",
+          "top_result_title": "Thailand Import Requirements",
+          "top_score": 0.1804,
+          "hit": true,
+          "expected_sources": [
+            "sg_certificates",
+            "atiga"
+          ],
+          "matched_source": "sg_certificates",
+          "top_5_chunks": [
+            {
+              "doc_id": "01_regulatory_thailand_import_requirements",
+              "title": "Thailand Import Requirements",
+              "section": "",
+              "similarity": 0.1804
+            },
+            {
+              "doc_id": "01_regulatory_sg_certificates_of_origin",
+              "title": "Singapore Certificates of Origin",
+              "section": "",
+              "similarity": 0.1632
+            },
+            {
+              "doc_id": "01_regulatory_sg_certificates_of_origin",
+              "title": "Singapore Certificates of Origin",
+              "section": "Overview",
+              "similarity": 0.1134
+            },
+            {
+              "doc_id": "01_regulatory_thailand_import_requirements",
+              "title": "Thailand Import Requirements",
+              "section": "Official Resources",
+              "similarity": 0.1085
+            },
+            {
+              "doc_id": "01_regulatory_asean_rules_of_origin",
+              "title": "ASEAN Rules of Origin Summary",
+              "section": "Certificate of Origin Form D",
+              "similarity": 0.0782
+            }
+          ]
+        },
+        {
+          "query_num": 14,
+          "category": "customs_regulatory",
+          "query": "What permits are needed to import cosmetics to Indonesia?",
+          "top_result_doc_id": "01_regulatory_indonesia_import_requirements",
+          "top_result_title": "Indonesia Import Requirements",
+          "top_score": 0.3215,
+          "hit": true,
+          "expected_sources": [
+            "indonesia_import"
+          ],
+          "matched_source": "indonesia_import",
+          "top_5_chunks": [
+            {
+              "doc_id": "01_regulatory_indonesia_import_requirements",
+              "title": "Indonesia Import Requirements",
+              "section": "",
+              "similarity": 0.3215
+            },
+            {
+              "doc_id": "01_regulatory_indonesia_import_requirements",
+              "title": "Indonesia Import Requirements",
+              "section": "Overview",
+              "similarity": 0.3121
+            },
+            {
+              "doc_id": "01_regulatory_indonesia_import_requirements",
+              "title": "Indonesia Import Requirements",
+              "section": "Key Regulatory Bodies",
+              "similarity": 0.2912
+            },
+            {
+              "doc_id": "01_regulatory_malaysia_import_requirements",
+              "title": "Malaysia Import Requirements",
+              "section": "Key Regulatory Bodies",
+              "similarity": 0.1961
+            },
+            {
+              "doc_id": "01_regulatory_malaysia_import_requirements",
+              "title": "Malaysia Import Requirements",
+              "section": "Import Licensing",
+              "similarity": 0.1924
+            }
+          ]
+        },
+        {
+          "query_num": 15,
+          "category": "customs_regulatory",
+          "query": "What's the ATIGA preferential duty rate?",
+          "top_result_doc_id": "03_reference_hs_code_structure_guide",
+          "top_result_title": "HS Code Structure Guide",
+          "top_score": 0.0292,
+          "hit": false,
+          "expected_sources": [
+            "atiga"
+          ],
+          "matched_source": null,
+          "top_5_chunks": [
+            {
+              "doc_id": "03_reference_hs_code_structure_guide",
+              "title": "HS Code Structure Guide",
+              "section": "Singapore-Specific Considerations",
+              "similarity": 0.0292
+            },
+            {
+              "doc_id": "04_internal_synthetic_cod_procedure",
+              "title": "Collect on Delivery (COD) Handling Procedure",
+              "section": "10. Shipper Liability",
+              "similarity": -0.0583
+            },
+            {
+              "doc_id": "04_internal_synthetic_service_terms_conditions",
+              "title": "Service Terms and Conditions",
+              "section": "3. Quotations and Rates",
+              "similarity": -0.0663
+            },
+            {
+              "doc_id": "04_internal_synthetic_cod_procedure",
+              "title": "Collect on Delivery (COD) Handling Procedure",
+              "section": "1. Purpose",
+              "similarity": -0.1937
+            },
+            {
+              "doc_id": "04_internal_synthetic_fta_comparison_matrix",
+              "title": "Singapore FTA Comparison Matrix",
+              "section": "11. FTA Utilization Decision Flowchart",
+              "similarity": -0.1996
+            }
+          ]
+        },
+        {
+          "query_num": 16,
+          "category": "customs_regulatory",
+          "query": "How does the Free Trade Zone work for re-exports?",
+          "top_result_doc_id": "01_regulatory_sg_free_trade_zones",
+          "top_result_title": "Singapore Free Trade Zones",
+          "top_score": 0.1653,
+          "hit": true,
+          "expected_sources": [
+            "sg_free_trade"
+          ],
+          "matched_source": "sg_free_trade",
+          "top_5_chunks": [
+            {
+              "doc_id": "01_regulatory_sg_free_trade_zones",
+              "title": "Singapore Free Trade Zones",
+              "section": "",
+              "similarity": 0.1653
+            },
+            {
+              "doc_id": "04_internal_synthetic_sla_policy",
+              "title": "Service Level Agreement (SLA) Policy",
+              "section": "5. Operational SLAs",
+              "similarity": 0.0734
+            },
+            {
+              "doc_id": "01_regulatory_malaysia_import_requirements",
+              "title": "Malaysia Import Requirements",
+              "section": "Digital Systems",
+              "similarity": 0.07
+            },
+            {
+              "doc_id": "01_regulatory_thailand_import_requirements",
+              "title": "Thailand Import Requirements",
+              "section": "Import Duties and Taxes",
+              "similarity": -0.0548
+            },
+            {
+              "doc_id": "01_regulatory_sg_export_procedures",
+              "title": "Singapore Export Procedures",
+              "section": "Required Steps for Exporting Goods",
+              "similarity": -0.0642
+            }
+          ]
+        },
+        {
+          "query_num": 17,
+          "category": "customs_regulatory",
+          "query": "What's the de minimis threshold for Malaysia?",
+          "top_result_doc_id": "01_regulatory_malaysia_import_requirements",
+          "top_result_title": "Malaysia Import Requirements",
+          "top_score": 0.0874,
+          "hit": true,
+          "expected_sources": [
+            "malaysia_import"
+          ],
+          "matched_source": "malaysia_import",
+          "top_5_chunks": [
+            {
+              "doc_id": "01_regulatory_malaysia_import_requirements",
+              "title": "Malaysia Import Requirements",
+              "section": "Import Duties and Taxes",
+              "similarity": 0.0874
+            },
+            {
+              "doc_id": "01_regulatory_malaysia_import_requirements",
+              "title": "Malaysia Import Requirements",
+              "section": "",
+              "similarity": -0.0378
+            },
+            {
+              "doc_id": "01_regulatory_malaysia_import_requirements",
+              "title": "Malaysia Import Requirements",
+              "section": "Import Licensing",
+              "similarity": -0.0619
+            },
+            {
+              "doc_id": "04_internal_synthetic_fta_comparison_matrix",
+              "title": "Singapore FTA Comparison Matrix",
+              "section": "6. Tariff Comparison by Product Category",
+              "similarity": -0.0997
+            },
+            {
+              "doc_id": "01_regulatory_thailand_import_requirements",
+              "title": "Thailand Import Requirements",
+              "section": "Import Controls",
+              "similarity": -0.1003
+            }
+          ]
+        },
+        {
+          "query_num": 18,
+          "category": "customs_regulatory",
+          "query": "Do I need halal certification for food to Indonesia?",
+          "top_result_doc_id": "01_regulatory_indonesia_import_requirements",
+          "top_result_title": "Indonesia Import Requirements",
+          "top_score": 0.3096,
+          "hit": true,
+          "expected_sources": [
+            "indonesia_import"
+          ],
+          "matched_source": "indonesia_import",
+          "top_5_chunks": [
+            {
+              "doc_id": "01_regulatory_indonesia_import_requirements",
+              "title": "Indonesia Import Requirements",
+              "section": "LARTAS (Prohibited & Restricted Goods)",
+              "similarity": 0.3096
+            },
+            {
+              "doc_id": "01_regulatory_malaysia_import_requirements",
+              "title": "Malaysia Import Requirements",
+              "section": "SIRIM Certification",
+              "similarity": 0.1281
+            },
+            {
+              "doc_id": "01_regulatory_indonesia_import_requirements",
+              "title": "Indonesia Import Requirements",
+              "section": "Overview",
+              "similarity": 0.0641
+            },
+            {
+              "doc_id": "01_regulatory_indonesia_import_requirements",
+              "title": "Indonesia Import Requirements",
+              "section": "Key Regulatory Bodies",
+              "similarity": -0.0213
+            },
+            {
+              "doc_id": "01_regulatory_indonesia_import_requirements",
+              "title": "Indonesia Import Requirements",
+              "section": "Official Resources",
+              "similarity": -0.0602
+            }
+          ]
+        },
+        {
+          "query_num": 19,
+          "category": "customs_regulatory",
+          "query": "How do I apply for a Customs ruling on HS code?",
+          "top_result_doc_id": "03_reference_hs_code_structure_guide",
+          "top_result_title": "HS Code Structure Guide",
+          "top_score": 0.3398,
+          "hit": false,
+          "expected_sources": [
+            "sg_hs_classification"
+          ],
+          "matched_source": null,
+          "top_5_chunks": [
+            {
+              "doc_id": "03_reference_hs_code_structure_guide",
+              "title": "HS Code Structure Guide",
+              "section": "Overview",
+              "similarity": 0.3398
+            },
+            {
+              "doc_id": "03_reference_hs_code_structure_guide",
+              "title": "HS Code Structure Guide",
+              "section": "Singapore-Specific Considerations",
+              "similarity": 0.1441
+            },
+            {
+              "doc_id": "01_regulatory_thailand_import_requirements",
+              "title": "Thailand Import Requirements",
+              "section": "Free Zones",
+              "similarity": 0.1002
+            },
+            {
+              "doc_id": "01_regulatory_indonesia_import_requirements",
+              "title": "Indonesia Import Requirements",
+              "section": "Import Duties and Taxes",
+              "similarity": 0.0713
+            },
+            {
+              "doc_id": "03_reference_hs_code_structure_guide",
+              "title": "HS Code Structure Guide",
+              "section": "Singapore-Specific Considerations",
+              "similarity": 0.0453
+            }
+          ]
+        },
+        {
+          "query_num": 20,
+          "category": "customs_regulatory",
+          "query": "What's the difference between Form D and Form AK?",
+          "top_result_doc_id": "01_regulatory_asean_rules_of_origin",
+          "top_result_title": "ASEAN Rules of Origin Summary",
+          "top_score": -0.0802,
+          "hit": true,
+          "expected_sources": [
+            "asean_rules",
+            "atiga"
+          ],
+          "matched_source": "asean_rules",
+          "top_5_chunks": [
+            {
+              "doc_id": "01_regulatory_asean_rules_of_origin",
+              "title": "ASEAN Rules of Origin Summary",
+              "section": "Minimal Operations (Non-Qualifying)",
+              "similarity": -0.0802
+            },
+            {
+              "doc_id": "04_internal_synthetic_fta_comparison_matrix",
+              "title": "Singapore FTA Comparison Matrix",
+              "section": "4. Rules of Origin Comparison",
+              "similarity": -0.4253
+            },
+            {
+              "doc_id": "04_internal_synthetic_fta_comparison_matrix",
+              "title": "Singapore FTA Comparison Matrix",
+              "section": "7. RCEP vs ATIGA vs CPTPP",
+              "similarity": -0.4274
+            },
+            {
+              "doc_id": "01_regulatory_asean_rules_of_origin",
+              "title": "ASEAN Rules of Origin Summary",
+              "section": "Certificate of Origin Form D",
+              "similarity": -0.4373
+            },
+            {
+              "doc_id": "03_reference_incoterms_comparison_chart",
+              "title": "Incoterms 2020 Comparison Chart",
+              "section": "Risk Transfer Summary",
+              "similarity": -0.4597
+            }
+          ]
+        }
+      ]
+    },
+    "carrier_information": {
+      "queries": 10,
+      "hits": 10,
+      "hit_rate": 100.0,
+      "results": [
+        {
+          "query_num": 21,
+          "category": "carrier_information",
+          "query": "Which carriers sail direct to Ho Chi Minh?",
+          "top_result_doc_id": "02_carriers_maersk_service_summary",
+          "top_result_title": "Maersk Service Summary",
+          "top_score": -0.0858,
+          "hit": true,
+          "expected_sources": [
+            "pil",
+            "maersk",
+            "one",
+            "evergreen"
+          ],
+          "matched_source": "maersk",
+          "top_5_chunks": [
+            {
+              "doc_id": "02_carriers_maersk_service_summary",
+              "title": "Maersk Service Summary",
+              "section": "Routes from Singapore",
+              "similarity": -0.0858
+            },
+            {
+              "doc_id": "01_regulatory_vietnam_import_requirements",
+              "title": "Vietnam Import Requirements",
+              "section": "Official Resources",
+              "similarity": -0.1153
+            },
+            {
+              "doc_id": "02_carriers_pil_service_summary",
+              "title": "PIL (Pacific International Lines) Service Summary",
+              "section": "Service Coverage",
+              "similarity": -0.1715
+            },
+            {
+              "doc_id": "01_regulatory_vietnam_import_requirements",
+              "title": "Vietnam Import Requirements",
+              "section": "Declaration Timeline",
+              "similarity": -0.2018
+            },
+            {
+              "doc_id": "02_carriers_pil_service_summary",
+              "title": "PIL (Pacific International Lines) Service Summary",
+              "section": "Singapore Office (Headquarters)",
+              "similarity": -0.2077
+            }
+          ]
+        },
+        {
+          "query_num": 22,
+          "category": "carrier_information",
+          "query": "What's the transit time to Port Klang?",
+          "top_result_doc_id": "04_internal_synthetic_sla_policy",
+          "top_result_title": "Service Level Agreement (SLA) Policy",
+          "top_score": -0.1683,
+          "hit": true,
+          "expected_sources": [
+            "pil",
+            "maersk",
+            "one",
+            "evergreen"
+          ],
+          "matched_source": "maersk",
+          "top_5_chunks": [
+            {
+              "doc_id": "04_internal_synthetic_sla_policy",
+              "title": "Service Level Agreement (SLA) Policy",
+              "section": "6. Issue Resolution SLAs",
+              "similarity": -0.1683
+            },
+            {
+              "doc_id": "02_carriers_maersk_service_summary",
+              "title": "Maersk Service Summary",
+              "section": "Routes from Singapore",
+              "similarity": -0.1778
+            },
+            {
+              "doc_id": "02_carriers_maersk_service_summary",
+              "title": "Maersk Service Summary",
+              "section": "Routes from Singapore",
+              "similarity": -0.2153
+            },
+            {
+              "doc_id": "04_internal_synthetic_booking_procedure",
+              "title": "Sea Freight Booking Procedure",
+              "section": "5. Detailed Procedure",
+              "similarity": -0.2337
+            },
+            {
+              "doc_id": "04_internal_synthetic_sla_policy",
+              "title": "Service Level Agreement (SLA) Policy",
+              "section": "5. Operational SLAs",
+              "similarity": -0.2657
+            }
+          ]
+        },
+        {
+          "query_num": 23,
+          "category": "carrier_information",
+          "query": "Does PIL offer reefer containers?",
+          "top_result_doc_id": "02_carriers_pil_service_summary",
+          "top_result_title": "PIL (Pacific International Lines) Service Summary",
+          "top_score": 0.1798,
+          "hit": true,
+          "expected_sources": [
+            "pil"
+          ],
+          "matched_source": "pil",
+          "top_5_chunks": [
+            {
+              "doc_id": "02_carriers_pil_service_summary",
+              "title": "PIL (Pacific International Lines) Service Summary",
+              "section": "Documentation Requirements",
+              "similarity": 0.1798
+            },
+            {
+              "doc_id": "02_carriers_evergreen_service_summary",
+              "title": "Evergreen Service Summary",
+              "section": "About Evergreen",
+              "similarity": 0.1114
+            },
+            {
+              "doc_id": "02_carriers_evergreen_service_summary",
+              "title": "Evergreen Service Summary",
+              "section": "Container Types",
+              "similarity": 0.024
+            },
+            {
+              "doc_id": "02_carriers_one_service_summary",
+              "title": "ONE (Ocean Network Express) Service Summary",
+              "section": "About ONE",
+              "similarity": -0.0032
+            },
+            {
+              "doc_id": "02_carriers_one_service_summary",
+              "title": "ONE (Ocean Network Express) Service Summary",
+              "section": "Services Offered",
+              "similarity": -0.0367
+            }
+          ]
+        },
+        {
+          "query_num": 24,
+          "category": "carrier_information",
+          "query": "How do I submit VGM to Maersk?",
+          "top_result_doc_id": "02_carriers_maersk_service_summary",
+          "top_result_title": "Maersk Service Summary",
+          "top_score": 0.2857,
+          "hit": true,
+          "expected_sources": [
+            "maersk"
+          ],
+          "matched_source": "maersk",
+          "top_5_chunks": [
+            {
+              "doc_id": "02_carriers_maersk_service_summary",
+              "title": "Maersk Service Summary",
+              "section": "Key Strengths for Singapore Shippers",
+              "similarity": 0.2857
+            },
+            {
+              "doc_id": "02_carriers_maersk_service_summary",
+              "title": "Maersk Service Summary",
+              "section": "Routes from Singapore",
+              "similarity": 0.1065
+            },
+            {
+              "doc_id": "02_carriers_pil_service_summary",
+              "title": "PIL (Pacific International Lines) Service Summary",
+              "section": "Digital Solutions",
+              "similarity": -0.0142
+            },
+            {
+              "doc_id": "02_carriers_maersk_service_summary",
+              "title": "Maersk Service Summary",
+              "section": "",
+              "similarity": -0.046
+            },
+            {
+              "doc_id": "02_carriers_maersk_service_summary",
+              "title": "Maersk Service Summary",
+              "section": "Documentation Requirements",
+              "similarity": -0.1207
+            }
+          ]
+        },
+        {
+          "query_num": 25,
+          "category": "carrier_information",
+          "query": "Can I get an electronic Bill of Lading?",
+          "top_result_doc_id": "02_carriers_pil_service_summary",
+          "top_result_title": "PIL (Pacific International Lines) Service Summary",
+          "top_score": -0.0268,
+          "hit": true,
+          "expected_sources": [
+            "carrier",
+            "maersk",
+            "evergreen"
+          ],
+          "matched_source": "carrier",
+          "top_5_chunks": [
+            {
+              "doc_id": "02_carriers_pil_service_summary",
+              "title": "PIL (Pacific International Lines) Service Summary",
+              "section": "Digital Solutions",
+              "similarity": -0.0268
+            },
+            {
+              "doc_id": "02_carriers_one_service_summary",
+              "title": "ONE (Ocean Network Express) Service Summary",
+              "section": "Key Strengths for Singapore Shippers",
+              "similarity": -0.0956
+            },
+            {
+              "doc_id": "01_regulatory_philippines_import_requirements",
+              "title": "Philippines Import Requirements",
+              "section": "Import Classifications",
+              "similarity": -0.1171
+            },
+            {
+              "doc_id": "02_carriers_one_service_summary",
+              "title": "ONE (Ocean Network Express) Service Summary",
+              "section": "Booking Process",
+              "similarity": -0.18
+            },
+            {
+              "doc_id": "04_internal_synthetic_cod_procedure",
+              "title": "Collect on Delivery (COD) Handling Procedure",
+              "section": "5. COD Booking Process",
+              "similarity": -0.212
+            }
+          ]
+        },
+        {
+          "query_num": 26,
+          "category": "carrier_information",
+          "query": "What's the weight limit for a 40ft container?",
+          "top_result_doc_id": "02_carriers_one_service_summary",
+          "top_result_title": "ONE (Ocean Network Express) Service Summary",
+          "top_score": -0.0126,
+          "hit": true,
+          "expected_sources": [
+            "carrier"
+          ],
+          "matched_source": "carrier",
+          "top_5_chunks": [
+            {
+              "doc_id": "02_carriers_one_service_summary",
+              "title": "ONE (Ocean Network Express) Service Summary",
+              "section": "Services Offered",
+              "similarity": -0.0126
+            },
+            {
+              "doc_id": "02_carriers_evergreen_service_summary",
+              "title": "Evergreen Service Summary",
+              "section": "Container Types",
+              "similarity": -0.0766
+            },
+            {
+              "doc_id": "02_carriers_evergreen_service_summary",
+              "title": "Evergreen Service Summary",
+              "section": "Services Offered",
+              "similarity": -0.1584
+            },
+            {
+              "doc_id": "02_carriers_maersk_service_summary",
+              "title": "Maersk Service Summary",
+              "section": "Digital Solutions",
+              "similarity": -0.2121
+            },
+            {
+              "doc_id": "04_internal_synthetic_service_terms_conditions",
+              "title": "Service Terms and Conditions",
+              "section": "4. Booking and Cancellation",
+              "similarity": -0.3235
+            }
+          ]
+        },
+        {
+          "query_num": 27,
+          "category": "carrier_information",
+          "query": "Does ONE service Surabaya?",
+          "top_result_doc_id": "04_internal_synthetic_sla_policy",
+          "top_result_title": "Service Level Agreement (SLA) Policy",
+          "top_score": -0.2678,
+          "hit": true,
+          "expected_sources": [
+            "one"
+          ],
+          "matched_source": "one",
+          "top_5_chunks": [
+            {
+              "doc_id": "04_internal_synthetic_sla_policy",
+              "title": "Service Level Agreement (SLA) Policy",
+              "section": "10. SLA Breach Consequences",
+              "similarity": -0.2678
+            },
+            {
+              "doc_id": "02_carriers_one_service_summary",
+              "title": "ONE (Ocean Network Express) Service Summary",
+              "section": "Documentation Requirements",
+              "similarity": -0.2785
+            },
+            {
+              "doc_id": "02_carriers_cathay_cargo_service_guide",
+              "title": "Cathay Cargo Service Guide",
+              "section": "Specialized Products & Solutions",
+              "similarity": -0.3167
+            },
+            {
+              "doc_id": "04_internal_synthetic_sla_policy",
+              "title": "Service Level Agreement (SLA) Policy",
+              "section": "",
+              "similarity": -0.333
+            },
+            {
+              "doc_id": "02_carriers_one_service_summary",
+              "title": "ONE (Ocean Network Express) Service Summary",
+              "section": "About ONE",
+              "similarity": -0.3503
+            }
+          ]
+        },
+        {
+          "query_num": 28,
+          "category": "carrier_information",
+          "query": "How do I track my shipment with Evergreen?",
+          "top_result_doc_id": "02_carriers_evergreen_service_summary",
+          "top_result_title": "Evergreen Service Summary",
+          "top_score": 0.0525,
+          "hit": true,
+          "expected_sources": [
+            "evergreen"
+          ],
+          "matched_source": "evergreen",
+          "top_5_chunks": [
+            {
+              "doc_id": "02_carriers_evergreen_service_summary",
+              "title": "Evergreen Service Summary",
+              "section": "Recent Developments",
+              "similarity": 0.0525
+            },
+            {
+              "doc_id": "02_carriers_evergreen_service_summary",
+              "title": "Evergreen Service Summary",
+              "section": "Company Overview",
+              "similarity": 0.0371
+            },
+            {
+              "doc_id": "02_carriers_evergreen_service_summary",
+              "title": "Evergreen Service Summary",
+              "section": "",
+              "similarity": -0.0141
+            },
+            {
+              "doc_id": "02_carriers_evergreen_service_summary",
+              "title": "Evergreen Service Summary",
+              "section": "About Evergreen",
+              "similarity": -0.067
+            },
+            {
+              "doc_id": "02_carriers_evergreen_service_summary",
+              "title": "Evergreen Service Summary",
+              "section": "Digital Solutions",
+              "similarity": -0.2263
+            }
+          ]
+        },
+        {
+          "query_num": 29,
+          "category": "carrier_information",
+          "query": "What's the difference between Maersk and ONE service?",
+          "top_result_doc_id": "02_carriers_maersk_service_summary",
+          "top_result_title": "Maersk Service Summary",
+          "top_score": 0.201,
+          "hit": true,
+          "expected_sources": [
+            "maersk",
+            "one"
+          ],
+          "matched_source": "maersk",
+          "top_5_chunks": [
+            {
+              "doc_id": "02_carriers_maersk_service_summary",
+              "title": "Maersk Service Summary",
+              "section": "Documentation Requirements",
+              "similarity": 0.201
+            },
+            {
+              "doc_id": "02_carriers_maersk_service_summary",
+              "title": "Maersk Service Summary",
+              "section": "",
+              "similarity": 0.097
+            },
+            {
+              "doc_id": "02_carriers_maersk_service_summary",
+              "title": "Maersk Service Summary",
+              "section": "Digital Solutions",
+              "similarity": 0.0371
+            },
+            {
+              "doc_id": "02_carriers_maersk_service_summary",
+              "title": "Maersk Service Summary",
+              "section": "Company Overview",
+              "similarity": -0.0502
+            },
+            {
+              "doc_id": "02_carriers_maersk_service_summary",
+              "title": "Maersk Service Summary",
+              "section": "Key Strengths for Singapore Shippers",
+              "similarity": -0.094
+            }
+          ]
+        },
+        {
+          "query_num": 30,
+          "category": "carrier_information",
+          "query": "Who do I contact for a booking amendment?",
+          "top_result_doc_id": "04_internal_synthetic_booking_procedure",
+          "top_result_title": "Sea Freight Booking Procedure",
+          "top_score": -0.0941,
+          "hit": true,
+          "expected_sources": [
+            "booking",
+            "escalation"
+          ],
+          "matched_source": "booking",
+          "top_5_chunks": [
+            {
+              "doc_id": "04_internal_synthetic_booking_procedure",
+              "title": "Sea Freight Booking Procedure",
+              "section": "5. Detailed Procedure",
+              "similarity": -0.0941
+            },
+            {
+              "doc_id": "04_internal_synthetic_service_terms_conditions",
+              "title": "Service Terms and Conditions",
+              "section": "3. Quotations and Rates",
+              "similarity": -0.1541
+            },
+            {
+              "doc_id": "04_internal_synthetic_booking_procedure",
+              "title": "Sea Freight Booking Procedure",
+              "section": "5. Detailed Procedure",
+              "similarity": -0.188
+            },
+            {
+              "doc_id": "02_carriers_one_service_summary",
+              "title": "ONE (Ocean Network Express) Service Summary",
+              "section": "Key Strengths for Singapore Shippers",
+              "similarity": -0.2198
+            },
+            {
+              "doc_id": "04_internal_synthetic_booking_procedure",
+              "title": "Sea Freight Booking Procedure",
+              "section": "5. Detailed Procedure",
+              "similarity": -0.2235
+            }
+          ]
+        }
+      ]
+    },
+    "sla_service": {
+      "queries": 10,
+      "hits": 5,
+      "hit_rate": 50.0,
+      "results": [
+        {
+          "query_num": 31,
+          "category": "sla_service",
+          "query": "What's our standard delivery SLA for Singapore?",
+          "top_result_doc_id": "02_carriers_sia_cargo_service_guide",
+          "top_result_title": "Singapore Airlines Cargo Service Guide",
+          "top_score": 0.1847,
+          "hit": false,
+          "expected_sources": [
+            "sla_policy"
+          ],
+          "matched_source": null,
+          "top_5_chunks": [
+            {
+              "doc_id": "02_carriers_sia_cargo_service_guide",
+              "title": "Singapore Airlines Cargo Service Guide",
+              "section": "Special Cargo Handling",
+              "similarity": 0.1847
+            },
+            {
+              "doc_id": "01_regulatory_sg_certificates_of_origin",
+              "title": "Singapore Certificates of Origin",
+              "section": "Compliance Requirements",
+              "similarity": 0.1784
+            },
+            {
+              "doc_id": "03_reference_incoterms_2020_reference",
+              "title": "Incoterms 2020 Complete Reference Guide",
+              "section": "Key Changes in Incoterms 2020",
+              "similarity": 0.1765
+            },
+            {
+              "doc_id": "03_reference_hs_code_structure_guide",
+              "title": "HS Code Structure Guide",
+              "section": "Quick Reference Tables",
+              "similarity": 0.1576
+            },
+            {
+              "doc_id": "03_reference_incoterms_2020_reference",
+              "title": "Incoterms 2020 Complete Reference Guide",
+              "section": "Common Mistakes to Avoid",
+              "similarity": 0.1514
+            }
+          ]
+        },
+        {
+          "query_num": 32,
+          "category": "sla_service",
+          "query": "Is customs clearance included in door-to-door?",
+          "top_result_doc_id": "01_regulatory_sg_export_procedures",
+          "top_result_title": "Singapore Export Procedures",
+          "top_score": -0.0377,
+          "hit": false,
+          "expected_sources": [
+            "service_terms",
+            "sla_policy"
+          ],
+          "matched_source": null,
+          "top_5_chunks": [
+            {
+              "doc_id": "01_regulatory_sg_export_procedures",
+              "title": "Singapore Export Procedures",
+              "section": "Required Steps for Exporting Goods",
+              "similarity": -0.0377
+            },
+            {
+              "doc_id": "03_reference_incoterms_2020_reference",
+              "title": "Incoterms 2020 Complete Reference Guide",
+              "section": "Detailed Incoterms 2020 Definitions",
+              "similarity": -0.114
+            },
+            {
+              "doc_id": "03_reference_incoterms_2020_reference",
+              "title": "Incoterms 2020 Complete Reference Guide",
+              "section": "Detailed Incoterms 2020 Definitions",
+              "similarity": -0.1153
+            },
+            {
+              "doc_id": "03_reference_incoterms_2020_reference",
+              "title": "Incoterms 2020 Complete Reference Guide",
+              "section": "Detailed Incoterms 2020 Definitions",
+              "similarity": -0.197
+            },
+            {
+              "doc_id": "01_regulatory_sg_import_procedures",
+              "title": "Singapore Import Procedures",
+              "section": "Key Documentation Requirements",
+              "similarity": -0.2223
+            }
+          ]
+        },
+        {
+          "query_num": 33,
+          "category": "sla_service",
+          "query": "Do you provide cargo insurance?",
+          "top_result_doc_id": "04_internal_synthetic_service_terms_conditions",
+          "top_result_title": "Service Terms and Conditions",
+          "top_score": 0.3624,
+          "hit": true,
+          "expected_sources": [
+            "service_terms"
+          ],
+          "matched_source": "service_terms",
+          "top_5_chunks": [
+            {
+              "doc_id": "04_internal_synthetic_service_terms_conditions",
+              "title": "Service Terms and Conditions",
+              "section": "6. Liability and Insurance",
+              "similarity": 0.3624
+            },
+            {
+              "doc_id": "04_internal_synthetic_service_terms_conditions",
+              "title": "Service Terms and Conditions",
+              "section": "5. Cargo Requirements",
+              "similarity": -0.0088
+            },
+            {
+              "doc_id": "03_reference_incoterms_2020_reference",
+              "title": "Incoterms 2020 Complete Reference Guide",
+              "section": "Detailed Incoterms 2020 Definitions",
+              "similarity": -0.0207
+            },
+            {
+              "doc_id": "02_carriers_cathay_cargo_service_guide",
+              "title": "Cathay Cargo Service Guide",
+              "section": "Digital Tools & Services",
+              "similarity": -0.0253
+            },
+            {
+              "doc_id": "03_reference_incoterms_2020_reference",
+              "title": "Incoterms 2020 Complete Reference Guide",
+              "section": "Detailed Incoterms 2020 Definitions",
+              "similarity": -0.0587
+            }
+          ]
+        },
+        {
+          "query_num": 34,
+          "category": "sla_service",
+          "query": "What happens if shipment is delayed?",
+          "top_result_doc_id": "04_internal_synthetic_sla_policy",
+          "top_result_title": "Service Level Agreement (SLA) Policy",
+          "top_score": -0.0569,
+          "hit": true,
+          "expected_sources": [
+            "sla_policy",
+            "escalation"
+          ],
+          "matched_source": "sla_policy",
+          "top_5_chunks": [
+            {
+              "doc_id": "04_internal_synthetic_sla_policy",
+              "title": "Service Level Agreement (SLA) Policy",
+              "section": "6. Issue Resolution SLAs",
+              "similarity": -0.0569
+            },
+            {
+              "doc_id": "04_internal_synthetic_cod_procedure",
+              "title": "Collect on Delivery (COD) Handling Procedure",
+              "section": "7. Collection Process",
+              "similarity": -0.0987
+            },
+            {
+              "doc_id": "04_internal_synthetic_sla_policy",
+              "title": "Service Level Agreement (SLA) Policy",
+              "section": "7. Communication Standards",
+              "similarity": -0.0995
+            },
+            {
+              "doc_id": "03_reference_incoterms_2020_reference",
+              "title": "Incoterms 2020 Complete Reference Guide",
+              "section": "Detailed Incoterms 2020 Definitions",
+              "similarity": -0.1493
+            },
+            {
+              "doc_id": "04_internal_synthetic_booking_procedure",
+              "title": "Sea Freight Booking Procedure",
+              "section": "5. Detailed Procedure",
+              "similarity": -0.1938
+            }
+          ]
+        },
+        {
+          "query_num": 35,
+          "category": "sla_service",
+          "query": "Are duties and taxes included in the quote?",
+          "top_result_doc_id": "04_internal_synthetic_service_terms_conditions",
+          "top_result_title": "Service Terms and Conditions",
+          "top_score": -0.1137,
+          "hit": true,
+          "expected_sources": [
+            "service_terms"
+          ],
+          "matched_source": "service_terms",
+          "top_5_chunks": [
+            {
+              "doc_id": "04_internal_synthetic_service_terms_conditions",
+              "title": "Service Terms and Conditions",
+              "section": "3. Quotations and Rates",
+              "similarity": -0.1137
+            },
+            {
+              "doc_id": "04_internal_synthetic_cod_procedure",
+              "title": "Collect on Delivery (COD) Handling Procedure",
+              "section": "1. Purpose",
+              "similarity": -0.1342
+            },
+            {
+              "doc_id": "01_regulatory_thailand_import_requirements",
+              "title": "Thailand Import Requirements",
+              "section": "Import Controls",
+              "similarity": -0.1998
+            },
+            {
+              "doc_id": "01_regulatory_malaysia_import_requirements",
+              "title": "Malaysia Import Requirements",
+              "section": "Required Import Documentation",
+              "similarity": -0.2092
+            },
+            {
+              "doc_id": "04_internal_synthetic_service_terms_conditions",
+              "title": "Service Terms and Conditions",
+              "section": "2. Scope of Services",
+              "similarity": -0.2175
+            }
+          ]
+        },
+        {
+          "query_num": 36,
+          "category": "sla_service",
+          "query": "What's the process for refused deliveries?",
+          "top_result_doc_id": "03_reference_incoterms_2020_reference",
+          "top_result_title": "Incoterms 2020 Complete Reference Guide",
+          "top_score": -0.0878,
+          "hit": false,
+          "expected_sources": [
+            "cod_procedure",
+            "service_terms"
+          ],
+          "matched_source": null,
+          "top_5_chunks": [
+            {
+              "doc_id": "03_reference_incoterms_2020_reference",
+              "title": "Incoterms 2020 Complete Reference Guide",
+              "section": "Detailed Incoterms 2020 Definitions",
+              "similarity": -0.0878
+            },
+            {
+              "doc_id": "03_reference_incoterms_2020_reference",
+              "title": "Incoterms 2020 Complete Reference Guide",
+              "section": "Detailed Incoterms 2020 Definitions",
+              "similarity": -0.1103
+            },
+            {
+              "doc_id": "03_reference_incoterms_2020_reference",
+              "title": "Incoterms 2020 Complete Reference Guide",
+              "section": "Detailed Incoterms 2020 Definitions",
+              "similarity": -0.1304
+            },
+            {
+              "doc_id": "03_reference_incoterms_2020_reference",
+              "title": "Incoterms 2020 Complete Reference Guide",
+              "section": "Detailed Incoterms 2020 Definitions",
+              "similarity": -0.169
+            },
+            {
+              "doc_id": "04_internal_synthetic_booking_procedure",
+              "title": "Sea Freight Booking Procedure",
+              "section": "5. Detailed Procedure",
+              "similarity": -0.1851
+            }
+          ]
+        },
+        {
+          "query_num": 37,
+          "category": "sla_service",
+          "query": "Do you handle import permit applications?",
+          "top_result_doc_id": "01_regulatory_sg_export_procedures",
+          "top_result_title": "Singapore Export Procedures",
+          "top_score": 0.2029,
+          "hit": false,
+          "expected_sources": [
+            "service_terms",
+            "booking"
+          ],
+          "matched_source": null,
+          "top_5_chunks": [
+            {
+              "doc_id": "01_regulatory_sg_export_procedures",
+              "title": "Singapore Export Procedures",
+              "section": "Required Steps for Exporting Goods",
+              "similarity": 0.2029
+            },
+            {
+              "doc_id": "01_regulatory_philippines_import_requirements",
+              "title": "Philippines Import Requirements",
+              "section": "Agricultural Products",
+              "similarity": 0.1654
+            },
+            {
+              "doc_id": "01_regulatory_thailand_import_requirements",
+              "title": "Thailand Import Requirements",
+              "section": "Key Regulatory Bodies",
+              "similarity": 0.0867
+            },
+            {
+              "doc_id": "01_regulatory_thailand_import_requirements",
+              "title": "Thailand Import Requirements",
+              "section": "Import Licenses",
+              "similarity": 0.0763
+            },
+            {
+              "doc_id": "01_regulatory_sg_import_procedures",
+              "title": "Singapore Import Procedures",
+              "section": "Duty and GST Payment Status",
+              "similarity": 0.0419
+            }
+          ]
+        },
+        {
+          "query_num": 38,
+          "category": "sla_service",
+          "query": "How do I upgrade to express service?",
+          "top_result_doc_id": "02_carriers_cathay_cargo_service_guide",
+          "top_result_title": "Cathay Cargo Service Guide",
+          "top_score": -0.3215,
+          "hit": false,
+          "expected_sources": [
+            "service_terms",
+            "booking"
+          ],
+          "matched_source": null,
+          "top_5_chunks": [
+            {
+              "doc_id": "02_carriers_cathay_cargo_service_guide",
+              "title": "Cathay Cargo Service Guide",
+              "section": "Specialized Products & Solutions",
+              "similarity": -0.3215
+            },
+            {
+              "doc_id": "02_carriers_one_service_summary",
+              "title": "ONE (Ocean Network Express) Service Summary",
+              "section": "About ONE",
+              "similarity": -0.3293
+            },
+            {
+              "doc_id": "02_carriers_cathay_cargo_service_guide",
+              "title": "Cathay Cargo Service Guide",
+              "section": "Specialized Products & Solutions",
+              "similarity": -0.3733
+            },
+            {
+              "doc_id": "02_carriers_one_service_summary",
+              "title": "ONE (Ocean Network Express) Service Summary",
+              "section": "",
+              "similarity": -0.3781
+            },
+            {
+              "doc_id": "02_carriers_one_service_summary",
+              "title": "ONE (Ocean Network Express) Service Summary",
+              "section": "Documentation Requirements",
+              "similarity": -0.384
+            }
+          ]
+        },
+        {
+          "query_num": 39,
+          "category": "sla_service",
+          "query": "What's covered under standard liability?",
+          "top_result_doc_id": "04_internal_synthetic_service_terms_conditions",
+          "top_result_title": "Service Terms and Conditions",
+          "top_score": 0.2745,
+          "hit": true,
+          "expected_sources": [
+            "service_terms",
+            "sla_policy"
+          ],
+          "matched_source": "service_terms",
+          "top_5_chunks": [
+            {
+              "doc_id": "04_internal_synthetic_service_terms_conditions",
+              "title": "Service Terms and Conditions",
+              "section": "6. Liability and Insurance",
+              "similarity": 0.2745
+            },
+            {
+              "doc_id": "04_internal_synthetic_service_terms_conditions",
+              "title": "Service Terms and Conditions",
+              "section": "5. Cargo Requirements",
+              "similarity": 0.115
+            },
+            {
+              "doc_id": "03_reference_incoterms_2020_reference",
+              "title": "Incoterms 2020 Complete Reference Guide",
+              "section": "Detailed Incoterms 2020 Definitions",
+              "similarity": -0.0466
+            },
+            {
+              "doc_id": "04_internal_synthetic_cod_procedure",
+              "title": "Collect on Delivery (COD) Handling Procedure",
+              "section": "9. Exception Handling",
+              "similarity": -0.1132
+            },
+            {
+              "doc_id": "03_reference_incoterms_2020_reference",
+              "title": "Incoterms 2020 Complete Reference Guide",
+              "section": "Detailed Incoterms 2020 Definitions",
+              "similarity": -0.1241
+            }
+          ]
+        },
+        {
+          "query_num": 40,
+          "category": "sla_service",
+          "query": "Can I get proof of delivery?",
+          "top_result_doc_id": "04_internal_synthetic_service_terms_conditions",
+          "top_result_title": "Service Terms and Conditions",
+          "top_score": -0.2273,
+          "hit": true,
+          "expected_sources": [
+            "cod_procedure",
+            "service_terms"
+          ],
+          "matched_source": "service_terms",
+          "top_5_chunks": [
+            {
+              "doc_id": "04_internal_synthetic_service_terms_conditions",
+              "title": "Service Terms and Conditions",
+              "section": "4. Booking and Cancellation",
+              "similarity": -0.2273
+            },
+            {
+              "doc_id": "04_internal_synthetic_booking_procedure",
+              "title": "Sea Freight Booking Procedure",
+              "section": "5. Detailed Procedure",
+              "similarity": -0.2413
+            },
+            {
+              "doc_id": "04_internal_synthetic_cod_procedure",
+              "title": "Collect on Delivery (COD) Handling Procedure",
+              "section": "",
+              "similarity": -0.2677
+            },
+            {
+              "doc_id": "04_internal_synthetic_booking_procedure",
+              "title": "Sea Freight Booking Procedure",
+              "section": "5. Detailed Procedure",
+              "similarity": -0.3125
+            },
+            {
+              "doc_id": "01_regulatory_vietnam_import_requirements",
+              "title": "Vietnam Import Requirements",
+              "section": "Labeling Requirements",
+              "similarity": -0.3142
+            }
+          ]
+        }
+      ]
+    },
+    "edge_cases_out_of_scope": {
+      "queries": 10,
+      "hits": 9,
+      "hit_rate": 90.0,
+      "results": [
+        {
+          "query_num": 41,
+          "category": "edge_cases_out_of_scope",
+          "query": "What's the current freight rate to Jakarta?",
+          "top_result_doc_id": "04_internal_synthetic_fta_comparison_matrix",
+          "top_result_title": "Singapore FTA Comparison Matrix",
+          "top_score": -0.0015,
+          "hit": true,
+          "expected_sources": [],
+          "matched_source": null,
+          "top_5_chunks": [
+            {
+              "doc_id": "04_internal_synthetic_fta_comparison_matrix",
+              "title": "Singapore FTA Comparison Matrix",
+              "section": "6. Tariff Comparison by Product Category",
+              "similarity": -0.0015
+            },
+            {
+              "doc_id": "03_reference_incoterms_comparison_chart",
+              "title": "Incoterms 2020 Comparison Chart",
+              "section": "Price Comparison Example",
+              "similarity": -0.023
+            },
+            {
+              "doc_id": "04_internal_synthetic_fta_comparison_matrix",
+              "title": "Singapore FTA Comparison Matrix",
+              "section": "5. Certificate of Origin Requirements",
+              "similarity": -0.0259
+            },
+            {
+              "doc_id": "04_internal_synthetic_fta_comparison_matrix",
+              "title": "Singapore FTA Comparison Matrix",
+              "section": "6. Tariff Comparison by Product Category",
+              "similarity": -0.0325
+            },
+            {
+              "doc_id": "03_reference_incoterms_comparison_chart",
+              "title": "Incoterms 2020 Comparison Chart",
+              "section": "Common Combinations by Trade Route",
+              "similarity": -0.0513
+            }
+          ]
+        },
+        {
+          "query_num": 42,
+          "category": "edge_cases_out_of_scope",
+          "query": "Where is my shipment right now?",
+          "top_result_doc_id": "03_reference_incoterms_2020_reference",
+          "top_result_title": "Incoterms 2020 Complete Reference Guide",
+          "top_score": -0.2888,
+          "hit": true,
+          "expected_sources": [],
+          "matched_source": null,
+          "top_5_chunks": [
+            {
+              "doc_id": "03_reference_incoterms_2020_reference",
+              "title": "Incoterms 2020 Complete Reference Guide",
+              "section": "Detailed Incoterms 2020 Definitions",
+              "similarity": -0.2888
+            },
+            {
+              "doc_id": "04_internal_synthetic_booking_procedure",
+              "title": "Sea Freight Booking Procedure",
+              "section": "5. Detailed Procedure",
+              "similarity": -0.2995
+            },
+            {
+              "doc_id": "04_internal_synthetic_sla_policy",
+              "title": "Service Level Agreement (SLA) Policy",
+              "section": "7. Communication Standards",
+              "similarity": -0.3114
+            },
+            {
+              "doc_id": "03_reference_incoterms_2020_reference",
+              "title": "Incoterms 2020 Complete Reference Guide",
+              "section": "Detailed Incoterms 2020 Definitions",
+              "similarity": -0.3281
+            },
+            {
+              "doc_id": "03_reference_incoterms_2020_reference",
+              "title": "Incoterms 2020 Complete Reference Guide",
+              "section": "Detailed Incoterms 2020 Definitions",
+              "similarity": -0.3323
+            }
+          ]
+        },
+        {
+          "query_num": 43,
+          "category": "edge_cases_out_of_scope",
+          "query": "Can you book a shipment for me?",
+          "top_result_doc_id": "04_internal_synthetic_booking_procedure",
+          "top_result_title": "Sea Freight Booking Procedure",
+          "top_score": -0.1222,
+          "hit": true,
+          "expected_sources": [],
+          "matched_source": null,
+          "top_5_chunks": [
+            {
+              "doc_id": "04_internal_synthetic_booking_procedure",
+              "title": "Sea Freight Booking Procedure",
+              "section": "5. Detailed Procedure",
+              "similarity": -0.1222
+            },
+            {
+              "doc_id": "04_internal_synthetic_booking_procedure",
+              "title": "Sea Freight Booking Procedure",
+              "section": "5. Detailed Procedure",
+              "similarity": -0.1562
+            },
+            {
+              "doc_id": "04_internal_synthetic_booking_procedure",
+              "title": "Sea Freight Booking Procedure",
+              "section": "5. Detailed Procedure",
+              "similarity": -0.167
+            },
+            {
+              "doc_id": "03_reference_incoterms_comparison_chart",
+              "title": "Incoterms 2020 Comparison Chart",
+              "section": "Decision Tree: Choosing the Right Incoterm",
+              "similarity": -0.1719
+            },
+            {
+              "doc_id": "04_internal_synthetic_sla_policy",
+              "title": "Service Level Agreement (SLA) Policy",
+              "section": "4. Response Time Standards",
+              "similarity": -0.1907
+            }
+          ]
+        },
+        {
+          "query_num": 44,
+          "category": "edge_cases_out_of_scope",
+          "query": "I want to file a claim for damaged cargo",
+          "top_result_doc_id": "04_internal_synthetic_service_terms_conditions",
+          "top_result_title": "Service Terms and Conditions",
+          "top_score": 0.2635,
+          "hit": false,
+          "expected_sources": [],
+          "matched_source": null,
+          "top_5_chunks": [
+            {
+              "doc_id": "04_internal_synthetic_service_terms_conditions",
+              "title": "Service Terms and Conditions",
+              "section": "7. Payment Terms",
+              "similarity": 0.2635
+            },
+            {
+              "doc_id": "04_internal_synthetic_service_terms_conditions",
+              "title": "Service Terms and Conditions",
+              "section": "8. Claims",
+              "similarity": -0.0104
+            },
+            {
+              "doc_id": "02_carriers_cathay_cargo_service_guide",
+              "title": "Cathay Cargo Service Guide",
+              "section": "Digital Tools & Services",
+              "similarity": -0.0175
+            },
+            {
+              "doc_id": "04_internal_synthetic_cod_procedure",
+              "title": "Collect on Delivery (COD) Handling Procedure",
+              "section": "9. Exception Handling",
+              "similarity": -0.0354
+            },
+            {
+              "doc_id": "04_internal_synthetic_cod_procedure",
+              "title": "Collect on Delivery (COD) Handling Procedure",
+              "section": "9. Exception Handling",
+              "similarity": -0.0421
+            }
+          ]
+        },
+        {
+          "query_num": 45,
+          "category": "edge_cases_out_of_scope",
+          "query": "Can you ship hazmat by air?",
+          "top_result_doc_id": "03_reference_incoterms_comparison_chart",
+          "top_result_title": "Incoterms 2020 Comparison Chart",
+          "top_score": -0.112,
+          "hit": true,
+          "expected_sources": [],
+          "matched_source": null,
+          "top_5_chunks": [
+            {
+              "doc_id": "03_reference_incoterms_comparison_chart",
+              "title": "Incoterms 2020 Comparison Chart",
+              "section": "Decision Tree: Choosing the Right Incoterm",
+              "similarity": -0.112
+            },
+            {
+              "doc_id": "03_reference_incoterms_2020_reference",
+              "title": "Incoterms 2020 Complete Reference Guide",
+              "section": "Detailed Incoterms 2020 Definitions",
+              "similarity": -0.1287
+            },
+            {
+              "doc_id": "04_internal_synthetic_cod_procedure",
+              "title": "Collect on Delivery (COD) Handling Procedure",
+              "section": "7. Collection Process",
+              "similarity": -0.1562
+            },
+            {
+              "doc_id": "03_reference_incoterms_2020_reference",
+              "title": "Incoterms 2020 Complete Reference Guide",
+              "section": "Detailed Incoterms 2020 Definitions",
+              "similarity": -0.167
+            },
+            {
+              "doc_id": "01_regulatory_sg_free_trade_zones",
+              "title": "Singapore Free Trade Zones",
+              "section": "Permitted Activities in FTZ",
+              "similarity": -0.1858
+            }
+          ]
+        },
+        {
+          "query_num": 46,
+          "category": "edge_cases_out_of_scope",
+          "query": "What's the weather forecast for shipping?",
+          "top_result_doc_id": "03_reference_incoterms_2020_reference",
+          "top_result_title": "Incoterms 2020 Complete Reference Guide",
+          "top_score": -0.2019,
+          "hit": true,
+          "expected_sources": [],
+          "matched_source": null,
+          "top_5_chunks": [
+            {
+              "doc_id": "03_reference_incoterms_2020_reference",
+              "title": "Incoterms 2020 Complete Reference Guide",
+              "section": "Detailed Incoterms 2020 Definitions",
+              "similarity": -0.2019
+            },
+            {
+              "doc_id": "02_carriers_evergreen_service_summary",
+              "title": "Evergreen Service Summary",
+              "section": "Recent Developments",
+              "similarity": -0.24
+            },
+            {
+              "doc_id": "03_reference_incoterms_comparison_chart",
+              "title": "Incoterms 2020 Comparison Chart",
+              "section": "Responsibility Matrix",
+              "similarity": -0.2651
+            },
+            {
+              "doc_id": "04_internal_synthetic_booking_procedure",
+              "title": "Sea Freight Booking Procedure",
+              "section": "5. Detailed Procedure",
+              "similarity": -0.2884
+            },
+            {
+              "doc_id": "04_internal_synthetic_sla_policy",
+              "title": "Service Level Agreement (SLA) Policy",
+              "section": "7. Communication Standards",
+              "similarity": -0.2918
+            }
+          ]
+        },
+        {
+          "query_num": 47,
+          "category": "edge_cases_out_of_scope",
+          "query": "Can you recommend a supplier in China?",
+          "top_result_doc_id": "03_reference_incoterms_2020_reference",
+          "top_result_title": "Incoterms 2020 Complete Reference Guide",
+          "top_score": -0.0973,
+          "hit": true,
+          "expected_sources": [],
+          "matched_source": null,
+          "top_5_chunks": [
+            {
+              "doc_id": "03_reference_incoterms_2020_reference",
+              "title": "Incoterms 2020 Complete Reference Guide",
+              "section": "Detailed Incoterms 2020 Definitions",
+              "similarity": -0.0973
+            },
+            {
+              "doc_id": "04_internal_synthetic_fta_comparison_matrix",
+              "title": "Singapore FTA Comparison Matrix",
+              "section": "5. Certificate of Origin Requirements",
+              "similarity": -0.1849
+            },
+            {
+              "doc_id": "02_carriers_cathay_cargo_service_guide",
+              "title": "Cathay Cargo Service Guide",
+              "section": "Key Strengths for Singapore Shippers",
+              "similarity": -0.2138
+            },
+            {
+              "doc_id": "02_carriers_pil_service_summary",
+              "title": "PIL (Pacific International Lines) Service Summary",
+              "section": "Container Types Available",
+              "similarity": -0.2378
+            },
+            {
+              "doc_id": "04_internal_synthetic_fta_comparison_matrix",
+              "title": "Singapore FTA Comparison Matrix",
+              "section": "3. FTA Selection Matrix",
+              "similarity": -0.2481
+            }
+          ]
+        },
+        {
+          "query_num": 48,
+          "category": "edge_cases_out_of_scope",
+          "query": "What's your company's financial status?",
+          "top_result_doc_id": "04_internal_synthetic_sla_policy",
+          "top_result_title": "Service Level Agreement (SLA) Policy",
+          "top_score": -0.1524,
+          "hit": true,
+          "expected_sources": [],
+          "matched_source": null,
+          "top_5_chunks": [
+            {
+              "doc_id": "04_internal_synthetic_sla_policy",
+              "title": "Service Level Agreement (SLA) Policy",
+              "section": "8. Claims Handling SLA",
+              "similarity": -0.1524
+            },
+            {
+              "doc_id": "04_internal_synthetic_cod_procedure",
+              "title": "Collect on Delivery (COD) Handling Procedure",
+              "section": "3. COD Types",
+              "similarity": -0.2151
+            },
+            {
+              "doc_id": "04_internal_synthetic_service_terms_conditions",
+              "title": "Service Terms and Conditions",
+              "section": "11. General Provisions",
+              "similarity": -0.2305
+            },
+            {
+              "doc_id": "04_internal_synthetic_fta_comparison_matrix",
+              "title": "Singapore FTA Comparison Matrix",
+              "section": "8. Documentation Checklist by FTA",
+              "similarity": -0.3254
+            },
+            {
+              "doc_id": "04_internal_synthetic_escalation_procedure",
+              "title": "Escalation Procedure",
+              "section": "11. Post-Escalation Review",
+              "similarity": -0.3333
+            }
+          ]
+        },
+        {
+          "query_num": 49,
+          "category": "edge_cases_out_of_scope",
+          "query": "How do I become a freight forwarder?",
+          "top_result_doc_id": "04_internal_synthetic_service_terms_conditions",
+          "top_result_title": "Service Terms and Conditions",
+          "top_score": 0.1304,
+          "hit": true,
+          "expected_sources": [],
+          "matched_source": null,
+          "top_5_chunks": [
+            {
+              "doc_id": "04_internal_synthetic_service_terms_conditions",
+              "title": "Service Terms and Conditions",
+              "section": "1. Definitions",
+              "similarity": 0.1304
+            },
+            {
+              "doc_id": "03_reference_incoterms_comparison_chart",
+              "title": "Incoterms 2020 Comparison Chart",
+              "section": "Responsibility Matrix",
+              "similarity": -0.0826
+            },
+            {
+              "doc_id": "03_reference_incoterms_2020_reference",
+              "title": "Incoterms 2020 Complete Reference Guide",
+              "section": "Detailed Incoterms 2020 Definitions",
+              "similarity": -0.1206
+            },
+            {
+              "doc_id": "03_reference_incoterms_comparison_chart",
+              "title": "Incoterms 2020 Comparison Chart",
+              "section": "Price Comparison Example",
+              "similarity": -0.1237
+            },
+            {
+              "doc_id": "03_reference_incoterms_comparison_chart",
+              "title": "Incoterms 2020 Comparison Chart",
+              "section": "Responsibility Matrix",
+              "similarity": -0.1341
+            }
+          ]
+        },
+        {
+          "query_num": 50,
+          "category": "edge_cases_out_of_scope",
+          "query": "What are your competitor's rates?",
+          "top_result_doc_id": "04_internal_synthetic_service_terms_conditions",
+          "top_result_title": "Service Terms and Conditions",
+          "top_score": -0.1449,
+          "hit": true,
+          "expected_sources": [],
+          "matched_source": null,
+          "top_5_chunks": [
+            {
+              "doc_id": "04_internal_synthetic_service_terms_conditions",
+              "title": "Service Terms and Conditions",
+              "section": "2. Scope of Services",
+              "similarity": -0.1449
+            },
+            {
+              "doc_id": "04_internal_synthetic_cod_procedure",
+              "title": "Collect on Delivery (COD) Handling Procedure",
+              "section": "10. Shipper Liability",
+              "similarity": -0.1514
+            },
+            {
+              "doc_id": "01_regulatory_sg_hs_classification",
+              "title": "Singapore HS Classification Guide",
+              "section": "General Interpretative Rules (GIR)",
+              "similarity": -0.2342
+            },
+            {
+              "doc_id": "04_internal_synthetic_fta_comparison_matrix",
+              "title": "Singapore FTA Comparison Matrix",
+              "section": "3. FTA Selection Matrix",
+              "similarity": -0.2662
+            },
+            {
+              "doc_id": "01_regulatory_sg_gst_guide",
+              "title": "Singapore GST Guide for Imports",
+              "section": "GST Calculation Methods",
+              "similarity": -0.291
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "all_results": [
+    {
+      "query_num": 1,
+      "category": "booking_documentation",
+      "query": "What documents are needed for sea freight Singapore to Indonesia?",
+      "top_result_doc_id": "01_regulatory_indonesia_import_requirements",
+      "top_result_title": "Indonesia Import Requirements",
+      "top_score": 0.3892,
+      "hit": true,
+      "expected_sources": [
+        "sg_export",
+        "indonesia_import"
+      ],
+      "matched_source": "indonesia_import",
+      "top_5_chunks": [
+        {
+          "doc_id": "01_regulatory_indonesia_import_requirements",
+          "title": "Indonesia Import Requirements",
+          "section": "Key Regulatory Bodies",
+          "similarity": 0.3892
+        },
+        {
+          "doc_id": "02_carriers_pil_service_summary",
+          "title": "PIL (Pacific International Lines) Service Summary",
+          "section": "Singapore Office (Headquarters)",
+          "similarity": 0.3069
+        },
+        {
+          "doc_id": "03_reference_incoterms_2020_reference",
+          "title": "Incoterms 2020 Complete Reference Guide",
+          "section": "Key Changes in Incoterms 2020",
+          "similarity": 0.2862
+        },
+        {
+          "doc_id": "02_carriers_maersk_service_summary",
+          "title": "Maersk Service Summary",
+          "section": "Routes from Singapore",
+          "similarity": 0.2783
+        },
+        {
+          "doc_id": "01_regulatory_malaysia_import_requirements",
+          "title": "Malaysia Import Requirements",
+          "section": "Key Regulatory Bodies",
+          "similarity": 0.2773
+        }
+      ]
+    },
+    {
+      "query_num": 2,
+      "category": "booking_documentation",
+      "query": "How far in advance should I book an LCL shipment?",
+      "top_result_doc_id": "04_internal_synthetic_service_terms_conditions",
+      "top_result_title": "Service Terms and Conditions",
+      "top_score": 0.0572,
+      "hit": false,
+      "expected_sources": [
+        "booking"
+      ],
+      "matched_source": null,
+      "top_5_chunks": [
+        {
+          "doc_id": "04_internal_synthetic_service_terms_conditions",
+          "title": "Service Terms and Conditions",
+          "section": "4. Booking and Cancellation",
+          "similarity": 0.0572
+        },
+        {
+          "doc_id": "04_internal_synthetic_sla_policy",
+          "title": "Service Level Agreement (SLA) Policy",
+          "section": "4. Response Time Standards",
+          "similarity": 0.0321
+        },
+        {
+          "doc_id": "04_internal_synthetic_sla_policy",
+          "title": "Service Level Agreement (SLA) Policy",
+          "section": "6. Issue Resolution SLAs",
+          "similarity": -0.0064
+        },
+        {
+          "doc_id": "04_internal_synthetic_cod_procedure",
+          "title": "Collect on Delivery (COD) Handling Procedure",
+          "section": "7. Collection Process",
+          "similarity": -0.0925
+        },
+        {
+          "doc_id": "04_internal_synthetic_sla_policy",
+          "title": "Service Level Agreement (SLA) Policy",
+          "section": "5. Operational SLAs",
+          "similarity": -0.0979
+        }
+      ]
+    },
+    {
+      "query_num": 3,
+      "category": "booking_documentation",
+      "query": "What's the difference between FCL and LCL?",
+      "top_result_doc_id": "02_carriers_evergreen_service_summary",
+      "top_result_title": "Evergreen Service Summary",
+      "top_score": -0.1958,
+      "hit": true,
+      "expected_sources": [
+        "incoterms"
+      ],
+      "matched_source": "incoterms",
+      "top_5_chunks": [
+        {
+          "doc_id": "02_carriers_evergreen_service_summary",
+          "title": "Evergreen Service Summary",
+          "section": "About Evergreen",
+          "similarity": -0.1958
+        },
+        {
+          "doc_id": "04_internal_synthetic_booking_procedure",
+          "title": "Sea Freight Booking Procedure",
+          "section": "5. Detailed Procedure",
+          "similarity": -0.2202
+        },
+        {
+          "doc_id": "03_reference_incoterms_2020_reference",
+          "title": "Incoterms 2020 Complete Reference Guide",
+          "section": "Detailed Incoterms 2020 Definitions",
+          "similarity": -0.2572
+        },
+        {
+          "doc_id": "02_carriers_pil_service_summary",
+          "title": "PIL (Pacific International Lines) Service Summary",
+          "section": "Company Overview",
+          "similarity": -0.303
+        },
+        {
+          "doc_id": "04_internal_synthetic_sla_policy",
+          "title": "Service Level Agreement (SLA) Policy",
+          "section": "4. Response Time Standards",
+          "similarity": -0.303
+        }
+      ]
+    },
+    {
+      "query_num": 4,
+      "category": "booking_documentation",
+      "query": "When is the SI cutoff for this week's Maersk sailing?",
+      "top_result_doc_id": "02_carriers_maersk_service_summary",
+      "top_result_title": "Maersk Service Summary",
+      "top_score": 0.0237,
+      "hit": true,
+      "expected_sources": [
+        "maersk"
+      ],
+      "matched_source": "maersk",
+      "top_5_chunks": [
+        {
+          "doc_id": "02_carriers_maersk_service_summary",
+          "title": "Maersk Service Summary",
+          "section": "Key Strengths for Singapore Shippers",
+          "similarity": 0.0237
+        },
+        {
+          "doc_id": "02_carriers_maersk_service_summary",
+          "title": "Maersk Service Summary",
+          "section": "Documentation Requirements",
+          "similarity": -0.058
+        },
+        {
+          "doc_id": "02_carriers_maersk_service_summary",
+          "title": "Maersk Service Summary",
+          "section": "",
+          "similarity": -0.0715
+        },
+        {
+          "doc_id": "04_internal_synthetic_booking_procedure",
+          "title": "Sea Freight Booking Procedure",
+          "section": "5. Detailed Procedure",
+          "similarity": -0.167
+        },
+        {
+          "doc_id": "02_carriers_maersk_service_summary",
+          "title": "Maersk Service Summary",
+          "section": "Company Overview",
+          "similarity": -0.1921
+        }
+      ]
+    },
+    {
+      "query_num": 5,
+      "category": "booking_documentation",
+      "query": "Do I need a commercial invoice for samples with no value?",
+      "top_result_doc_id": "02_carriers_pil_service_summary",
+      "top_result_title": "PIL (Pacific International Lines) Service Summary",
+      "top_score": -0.253,
+      "hit": false,
+      "expected_sources": [
+        "sg_export",
+        "indonesia_import"
+      ],
+      "matched_source": null,
+      "top_5_chunks": [
+        {
+          "doc_id": "02_carriers_pil_service_summary",
+          "title": "PIL (Pacific International Lines) Service Summary",
+          "section": "Digital Solutions",
+          "similarity": -0.253
+        },
+        {
+          "doc_id": "01_regulatory_philippines_import_requirements",
+          "title": "Philippines Import Requirements",
+          "section": "Import Classifications",
+          "similarity": -0.2602
+        },
+        {
+          "doc_id": "01_regulatory_thailand_import_requirements",
+          "title": "Thailand Import Requirements",
+          "section": "Import Licenses",
+          "similarity": -0.3189
+        },
+        {
+          "doc_id": "01_regulatory_philippines_import_requirements",
+          "title": "Philippines Import Requirements",
+          "section": "Regulated Commodities",
+          "similarity": -0.3317
+        },
+        {
+          "doc_id": "01_regulatory_vietnam_import_requirements",
+          "title": "Vietnam Import Requirements",
+          "section": "Special Import Requirements",
+          "similarity": -0.3358
+        }
+      ]
+    },
+    {
+      "query_num": 6,
+      "category": "booking_documentation",
+      "query": "What's a Bill of Lading and who issues it?",
+      "top_result_doc_id": "01_regulatory_philippines_import_requirements",
+      "top_result_title": "Philippines Import Requirements",
+      "top_score": -0.0703,
+      "hit": false,
+      "expected_sources": [
+        "booking"
+      ],
+      "matched_source": null,
+      "top_5_chunks": [
+        {
+          "doc_id": "01_regulatory_philippines_import_requirements",
+          "title": "Philippines Import Requirements",
+          "section": "Import Classifications",
+          "similarity": -0.0703
+        },
+        {
+          "doc_id": "04_internal_synthetic_cod_procedure",
+          "title": "Collect on Delivery (COD) Handling Procedure",
+          "section": "5. COD Booking Process",
+          "similarity": -0.0789
+        },
+        {
+          "doc_id": "02_carriers_one_service_summary",
+          "title": "ONE (Ocean Network Express) Service Summary",
+          "section": "Booking Process",
+          "similarity": -0.1022
+        },
+        {
+          "doc_id": "02_carriers_pil_service_summary",
+          "title": "PIL (Pacific International Lines) Service Summary",
+          "section": "Digital Solutions",
+          "similarity": -0.1069
+        },
+        {
+          "doc_id": "04_internal_synthetic_booking_procedure",
+          "title": "Sea Freight Booking Procedure",
+          "section": "5. Detailed Procedure",
+          "similarity": -0.1201
+        }
+      ]
+    },
+    {
+      "query_num": 7,
+      "category": "booking_documentation",
+      "query": "Can we ship without a packing list?",
+      "top_result_doc_id": "03_reference_incoterms_comparison_chart",
+      "top_result_title": "Incoterms 2020 Comparison Chart",
+      "top_score": -0.024,
+      "hit": false,
+      "expected_sources": [
+        "sg_export",
+        "indonesia_import"
+      ],
+      "matched_source": null,
+      "top_5_chunks": [
+        {
+          "doc_id": "03_reference_incoterms_comparison_chart",
+          "title": "Incoterms 2020 Comparison Chart",
+          "section": "Decision Tree: Choosing the Right Incoterm",
+          "similarity": -0.024
+        },
+        {
+          "doc_id": "01_regulatory_sg_import_procedures",
+          "title": "Singapore Import Procedures",
+          "section": "Seven-Step Import Process",
+          "similarity": -0.0774
+        },
+        {
+          "doc_id": "01_regulatory_philippines_import_requirements",
+          "title": "Philippines Import Requirements",
+          "section": "Importer Registration",
+          "similarity": -0.0861
+        },
+        {
+          "doc_id": "04_internal_synthetic_service_terms_conditions",
+          "title": "Service Terms and Conditions",
+          "section": "4. Booking and Cancellation",
+          "similarity": -0.1108
+        },
+        {
+          "doc_id": "02_carriers_maersk_service_summary",
+          "title": "Maersk Service Summary",
+          "section": "About Maersk",
+          "similarity": -0.1252
+        }
+      ]
+    },
+    {
+      "query_num": 8,
+      "category": "booking_documentation",
+      "query": "What does FOB Singapore mean?",
+      "top_result_doc_id": "03_reference_incoterms_comparison_chart",
+      "top_result_title": "Incoterms 2020 Comparison Chart",
+      "top_score": 0.1501,
+      "hit": true,
+      "expected_sources": [
+        "incoterms"
+      ],
+      "matched_source": "incoterms",
+      "top_5_chunks": [
+        {
+          "doc_id": "03_reference_incoterms_comparison_chart",
+          "title": "Incoterms 2020 Comparison Chart",
+          "section": "Common Combinations by Trade Route",
+          "similarity": 0.1501
+        },
+        {
+          "doc_id": "03_reference_incoterms_comparison_chart",
+          "title": "Incoterms 2020 Comparison Chart",
+          "section": "Red Flags & Warnings",
+          "similarity": 0.1432
+        },
+        {
+          "doc_id": "03_reference_incoterms_2020_reference",
+          "title": "Incoterms 2020 Complete Reference Guide",
+          "section": "Incoterms Selection Guide for Singapore Shippers",
+          "similarity": 0.0468
+        },
+        {
+          "doc_id": "03_reference_incoterms_2020_reference",
+          "title": "Incoterms 2020 Complete Reference Guide",
+          "section": "Incoterms Selection Guide for Singapore Shippers",
+          "similarity": 0.0033
+        },
+        {
+          "doc_id": "03_reference_hs_code_structure_guide",
+          "title": "HS Code Structure Guide",
+          "section": "Quick Reference Tables",
+          "similarity": -0.0047
+        }
+      ]
+    },
+    {
+      "query_num": 9,
+      "category": "booking_documentation",
+      "query": "How do I amend a booking after confirmation?",
+      "top_result_doc_id": "04_internal_synthetic_service_terms_conditions",
+      "top_result_title": "Service Terms and Conditions",
+      "top_score": 0.3177,
+      "hit": true,
+      "expected_sources": [
+        "booking"
+      ],
+      "matched_source": "booking",
+      "top_5_chunks": [
+        {
+          "doc_id": "04_internal_synthetic_service_terms_conditions",
+          "title": "Service Terms and Conditions",
+          "section": "3. Quotations and Rates",
+          "similarity": 0.3177
+        },
+        {
+          "doc_id": "04_internal_synthetic_booking_procedure",
+          "title": "Sea Freight Booking Procedure",
+          "section": "5. Detailed Procedure",
+          "similarity": 0.2141
+        },
+        {
+          "doc_id": "04_internal_synthetic_booking_procedure",
+          "title": "Sea Freight Booking Procedure",
+          "section": "5. Detailed Procedure",
+          "similarity": 0.0853
+        },
+        {
+          "doc_id": "04_internal_synthetic_booking_procedure",
+          "title": "Sea Freight Booking Procedure",
+          "section": "3. Responsibilities",
+          "similarity": 0.0852
+        },
+        {
+          "doc_id": "04_internal_synthetic_booking_procedure",
+          "title": "Sea Freight Booking Procedure",
+          "section": "5. Detailed Procedure",
+          "similarity": 0.0717
+        }
+      ]
+    },
+    {
+      "query_num": 10,
+      "category": "booking_documentation",
+      "query": "What's the free time at destination port?",
+      "top_result_doc_id": "03_reference_incoterms_2020_reference",
+      "top_result_title": "Incoterms 2020 Complete Reference Guide",
+      "top_score": -0.1433,
+      "hit": true,
+      "expected_sources": [
+        "carrier",
+        "service"
+      ],
+      "matched_source": "carrier",
+      "top_5_chunks": [
+        {
+          "doc_id": "03_reference_incoterms_2020_reference",
+          "title": "Incoterms 2020 Complete Reference Guide",
+          "section": "Detailed Incoterms 2020 Definitions",
+          "similarity": -0.1433
+        },
+        {
+          "doc_id": "04_internal_synthetic_sla_policy",
+          "title": "Service Level Agreement (SLA) Policy",
+          "section": "6. Issue Resolution SLAs",
+          "similarity": -0.1883
+        },
+        {
+          "doc_id": "02_carriers_pil_service_summary",
+          "title": "PIL (Pacific International Lines) Service Summary",
+          "section": "Digital Solutions",
+          "similarity": -0.2368
+        },
+        {
+          "doc_id": "03_reference_incoterms_comparison_chart",
+          "title": "Incoterms 2020 Comparison Chart",
+          "section": "Quick Visual Comparison",
+          "similarity": -0.245
+        },
+        {
+          "doc_id": "04_internal_synthetic_booking_procedure",
+          "title": "Sea Freight Booking Procedure",
+          "section": "5. Detailed Procedure",
+          "similarity": -0.265
+        }
+      ]
+    },
+    {
+      "query_num": 11,
+      "category": "customs_regulatory",
+      "query": "What's the GST rate for imports into Singapore?",
+      "top_result_doc_id": "01_regulatory_sg_gst_guide",
+      "top_result_title": "Singapore GST Guide for Imports",
+      "top_score": 0.6191,
+      "hit": true,
+      "expected_sources": [
+        "sg_gst"
+      ],
+      "matched_source": "sg_gst",
+      "top_5_chunks": [
+        {
+          "doc_id": "01_regulatory_sg_gst_guide",
+          "title": "Singapore GST Guide for Imports",
+          "section": "",
+          "similarity": 0.6191
+        },
+        {
+          "doc_id": "01_regulatory_sg_certificates_of_origin",
+          "title": "Singapore Certificates of Origin",
+          "section": "Compliance Requirements",
+          "similarity": 0.5211
+        },
+        {
+          "doc_id": "01_regulatory_sg_import_procedures",
+          "title": "Singapore Import Procedures",
+          "section": "",
+          "similarity": 0.4377
+        },
+        {
+          "doc_id": "01_regulatory_sg_gst_guide",
+          "title": "Singapore GST Guide for Imports",
+          "section": "Payment Methods",
+          "similarity": 0.4061
+        },
+        {
+          "doc_id": "03_reference_incoterms_2020_reference",
+          "title": "Incoterms 2020 Complete Reference Guide",
+          "section": "Common Mistakes to Avoid",
+          "similarity": 0.402
+        }
+      ]
+    },
+    {
+      "query_num": 12,
+      "category": "customs_regulatory",
+      "query": "How do I find the HS code for electronics?",
+      "top_result_doc_id": "03_reference_hs_code_structure_guide",
+      "top_result_title": "HS Code Structure Guide",
+      "top_score": 0.2718,
+      "hit": true,
+      "expected_sources": [
+        "hs_classification",
+        "hs_code"
+      ],
+      "matched_source": "hs_code",
+      "top_5_chunks": [
+        {
+          "doc_id": "03_reference_hs_code_structure_guide",
+          "title": "HS Code Structure Guide",
+          "section": "Overview",
+          "similarity": 0.2718
+        },
+        {
+          "doc_id": "03_reference_hs_code_structure_guide",
+          "title": "HS Code Structure Guide",
+          "section": "",
+          "similarity": 0.1887
+        },
+        {
+          "doc_id": "03_reference_hs_code_structure_guide",
+          "title": "HS Code Structure Guide",
+          "section": "Common Classification Challenges",
+          "similarity": 0.087
+        },
+        {
+          "doc_id": "03_reference_hs_code_structure_guide",
+          "title": "HS Code Structure Guide",
+          "section": "HS Code Structure",
+          "similarity": 0.0664
+        },
+        {
+          "doc_id": "01_regulatory_sg_hs_classification",
+          "title": "Singapore HS Classification Guide",
+          "section": "Structure of HS Codes",
+          "similarity": -0.001
+        }
+      ]
+    },
+    {
+      "query_num": 13,
+      "category": "customs_regulatory",
+      "query": "Is Certificate of Origin required for Thailand?",
+      "top_result_doc_id": "01_regulatory_thailand_import_requirements",
+      "top_result_title": "Thailand Import Requirements",
+      "top_score": 0.1804,
+      "hit": true,
+      "expected_sources": [
+        "sg_certificates",
+        "atiga"
+      ],
+      "matched_source": "sg_certificates",
+      "top_5_chunks": [
+        {
+          "doc_id": "01_regulatory_thailand_import_requirements",
+          "title": "Thailand Import Requirements",
+          "section": "",
+          "similarity": 0.1804
+        },
+        {
+          "doc_id": "01_regulatory_sg_certificates_of_origin",
+          "title": "Singapore Certificates of Origin",
+          "section": "",
+          "similarity": 0.1632
+        },
+        {
+          "doc_id": "01_regulatory_sg_certificates_of_origin",
+          "title": "Singapore Certificates of Origin",
+          "section": "Overview",
+          "similarity": 0.1134
+        },
+        {
+          "doc_id": "01_regulatory_thailand_import_requirements",
+          "title": "Thailand Import Requirements",
+          "section": "Official Resources",
+          "similarity": 0.1085
+        },
+        {
+          "doc_id": "01_regulatory_asean_rules_of_origin",
+          "title": "ASEAN Rules of Origin Summary",
+          "section": "Certificate of Origin Form D",
+          "similarity": 0.0782
+        }
+      ]
+    },
+    {
+      "query_num": 14,
+      "category": "customs_regulatory",
+      "query": "What permits are needed to import cosmetics to Indonesia?",
+      "top_result_doc_id": "01_regulatory_indonesia_import_requirements",
+      "top_result_title": "Indonesia Import Requirements",
+      "top_score": 0.3215,
+      "hit": true,
+      "expected_sources": [
+        "indonesia_import"
+      ],
+      "matched_source": "indonesia_import",
+      "top_5_chunks": [
+        {
+          "doc_id": "01_regulatory_indonesia_import_requirements",
+          "title": "Indonesia Import Requirements",
+          "section": "",
+          "similarity": 0.3215
+        },
+        {
+          "doc_id": "01_regulatory_indonesia_import_requirements",
+          "title": "Indonesia Import Requirements",
+          "section": "Overview",
+          "similarity": 0.3121
+        },
+        {
+          "doc_id": "01_regulatory_indonesia_import_requirements",
+          "title": "Indonesia Import Requirements",
+          "section": "Key Regulatory Bodies",
+          "similarity": 0.2912
+        },
+        {
+          "doc_id": "01_regulatory_malaysia_import_requirements",
+          "title": "Malaysia Import Requirements",
+          "section": "Key Regulatory Bodies",
+          "similarity": 0.1961
+        },
+        {
+          "doc_id": "01_regulatory_malaysia_import_requirements",
+          "title": "Malaysia Import Requirements",
+          "section": "Import Licensing",
+          "similarity": 0.1924
+        }
+      ]
+    },
+    {
+      "query_num": 15,
+      "category": "customs_regulatory",
+      "query": "What's the ATIGA preferential duty rate?",
+      "top_result_doc_id": "03_reference_hs_code_structure_guide",
+      "top_result_title": "HS Code Structure Guide",
+      "top_score": 0.0292,
+      "hit": false,
+      "expected_sources": [
+        "atiga"
+      ],
+      "matched_source": null,
+      "top_5_chunks": [
+        {
+          "doc_id": "03_reference_hs_code_structure_guide",
+          "title": "HS Code Structure Guide",
+          "section": "Singapore-Specific Considerations",
+          "similarity": 0.0292
+        },
+        {
+          "doc_id": "04_internal_synthetic_cod_procedure",
+          "title": "Collect on Delivery (COD) Handling Procedure",
+          "section": "10. Shipper Liability",
+          "similarity": -0.0583
+        },
+        {
+          "doc_id": "04_internal_synthetic_service_terms_conditions",
+          "title": "Service Terms and Conditions",
+          "section": "3. Quotations and Rates",
+          "similarity": -0.0663
+        },
+        {
+          "doc_id": "04_internal_synthetic_cod_procedure",
+          "title": "Collect on Delivery (COD) Handling Procedure",
+          "section": "1. Purpose",
+          "similarity": -0.1937
+        },
+        {
+          "doc_id": "04_internal_synthetic_fta_comparison_matrix",
+          "title": "Singapore FTA Comparison Matrix",
+          "section": "11. FTA Utilization Decision Flowchart",
+          "similarity": -0.1996
+        }
+      ]
+    },
+    {
+      "query_num": 16,
+      "category": "customs_regulatory",
+      "query": "How does the Free Trade Zone work for re-exports?",
+      "top_result_doc_id": "01_regulatory_sg_free_trade_zones",
+      "top_result_title": "Singapore Free Trade Zones",
+      "top_score": 0.1653,
+      "hit": true,
+      "expected_sources": [
+        "sg_free_trade"
+      ],
+      "matched_source": "sg_free_trade",
+      "top_5_chunks": [
+        {
+          "doc_id": "01_regulatory_sg_free_trade_zones",
+          "title": "Singapore Free Trade Zones",
+          "section": "",
+          "similarity": 0.1653
+        },
+        {
+          "doc_id": "04_internal_synthetic_sla_policy",
+          "title": "Service Level Agreement (SLA) Policy",
+          "section": "5. Operational SLAs",
+          "similarity": 0.0734
+        },
+        {
+          "doc_id": "01_regulatory_malaysia_import_requirements",
+          "title": "Malaysia Import Requirements",
+          "section": "Digital Systems",
+          "similarity": 0.07
+        },
+        {
+          "doc_id": "01_regulatory_thailand_import_requirements",
+          "title": "Thailand Import Requirements",
+          "section": "Import Duties and Taxes",
+          "similarity": -0.0548
+        },
+        {
+          "doc_id": "01_regulatory_sg_export_procedures",
+          "title": "Singapore Export Procedures",
+          "section": "Required Steps for Exporting Goods",
+          "similarity": -0.0642
+        }
+      ]
+    },
+    {
+      "query_num": 17,
+      "category": "customs_regulatory",
+      "query": "What's the de minimis threshold for Malaysia?",
+      "top_result_doc_id": "01_regulatory_malaysia_import_requirements",
+      "top_result_title": "Malaysia Import Requirements",
+      "top_score": 0.0874,
+      "hit": true,
+      "expected_sources": [
+        "malaysia_import"
+      ],
+      "matched_source": "malaysia_import",
+      "top_5_chunks": [
+        {
+          "doc_id": "01_regulatory_malaysia_import_requirements",
+          "title": "Malaysia Import Requirements",
+          "section": "Import Duties and Taxes",
+          "similarity": 0.0874
+        },
+        {
+          "doc_id": "01_regulatory_malaysia_import_requirements",
+          "title": "Malaysia Import Requirements",
+          "section": "",
+          "similarity": -0.0378
+        },
+        {
+          "doc_id": "01_regulatory_malaysia_import_requirements",
+          "title": "Malaysia Import Requirements",
+          "section": "Import Licensing",
+          "similarity": -0.0619
+        },
+        {
+          "doc_id": "04_internal_synthetic_fta_comparison_matrix",
+          "title": "Singapore FTA Comparison Matrix",
+          "section": "6. Tariff Comparison by Product Category",
+          "similarity": -0.0997
+        },
+        {
+          "doc_id": "01_regulatory_thailand_import_requirements",
+          "title": "Thailand Import Requirements",
+          "section": "Import Controls",
+          "similarity": -0.1003
+        }
+      ]
+    },
+    {
+      "query_num": 18,
+      "category": "customs_regulatory",
+      "query": "Do I need halal certification for food to Indonesia?",
+      "top_result_doc_id": "01_regulatory_indonesia_import_requirements",
+      "top_result_title": "Indonesia Import Requirements",
+      "top_score": 0.3096,
+      "hit": true,
+      "expected_sources": [
+        "indonesia_import"
+      ],
+      "matched_source": "indonesia_import",
+      "top_5_chunks": [
+        {
+          "doc_id": "01_regulatory_indonesia_import_requirements",
+          "title": "Indonesia Import Requirements",
+          "section": "LARTAS (Prohibited & Restricted Goods)",
+          "similarity": 0.3096
+        },
+        {
+          "doc_id": "01_regulatory_malaysia_import_requirements",
+          "title": "Malaysia Import Requirements",
+          "section": "SIRIM Certification",
+          "similarity": 0.1281
+        },
+        {
+          "doc_id": "01_regulatory_indonesia_import_requirements",
+          "title": "Indonesia Import Requirements",
+          "section": "Overview",
+          "similarity": 0.0641
+        },
+        {
+          "doc_id": "01_regulatory_indonesia_import_requirements",
+          "title": "Indonesia Import Requirements",
+          "section": "Key Regulatory Bodies",
+          "similarity": -0.0213
+        },
+        {
+          "doc_id": "01_regulatory_indonesia_import_requirements",
+          "title": "Indonesia Import Requirements",
+          "section": "Official Resources",
+          "similarity": -0.0602
+        }
+      ]
+    },
+    {
+      "query_num": 19,
+      "category": "customs_regulatory",
+      "query": "How do I apply for a Customs ruling on HS code?",
+      "top_result_doc_id": "03_reference_hs_code_structure_guide",
+      "top_result_title": "HS Code Structure Guide",
+      "top_score": 0.3398,
+      "hit": false,
+      "expected_sources": [
+        "sg_hs_classification"
+      ],
+      "matched_source": null,
+      "top_5_chunks": [
+        {
+          "doc_id": "03_reference_hs_code_structure_guide",
+          "title": "HS Code Structure Guide",
+          "section": "Overview",
+          "similarity": 0.3398
+        },
+        {
+          "doc_id": "03_reference_hs_code_structure_guide",
+          "title": "HS Code Structure Guide",
+          "section": "Singapore-Specific Considerations",
+          "similarity": 0.1441
+        },
+        {
+          "doc_id": "01_regulatory_thailand_import_requirements",
+          "title": "Thailand Import Requirements",
+          "section": "Free Zones",
+          "similarity": 0.1002
+        },
+        {
+          "doc_id": "01_regulatory_indonesia_import_requirements",
+          "title": "Indonesia Import Requirements",
+          "section": "Import Duties and Taxes",
+          "similarity": 0.0713
+        },
+        {
+          "doc_id": "03_reference_hs_code_structure_guide",
+          "title": "HS Code Structure Guide",
+          "section": "Singapore-Specific Considerations",
+          "similarity": 0.0453
+        }
+      ]
+    },
+    {
+      "query_num": 20,
+      "category": "customs_regulatory",
+      "query": "What's the difference between Form D and Form AK?",
+      "top_result_doc_id": "01_regulatory_asean_rules_of_origin",
+      "top_result_title": "ASEAN Rules of Origin Summary",
+      "top_score": -0.0802,
+      "hit": true,
+      "expected_sources": [
+        "asean_rules",
+        "atiga"
+      ],
+      "matched_source": "asean_rules",
+      "top_5_chunks": [
+        {
+          "doc_id": "01_regulatory_asean_rules_of_origin",
+          "title": "ASEAN Rules of Origin Summary",
+          "section": "Minimal Operations (Non-Qualifying)",
+          "similarity": -0.0802
+        },
+        {
+          "doc_id": "04_internal_synthetic_fta_comparison_matrix",
+          "title": "Singapore FTA Comparison Matrix",
+          "section": "4. Rules of Origin Comparison",
+          "similarity": -0.4253
+        },
+        {
+          "doc_id": "04_internal_synthetic_fta_comparison_matrix",
+          "title": "Singapore FTA Comparison Matrix",
+          "section": "7. RCEP vs ATIGA vs CPTPP",
+          "similarity": -0.4274
+        },
+        {
+          "doc_id": "01_regulatory_asean_rules_of_origin",
+          "title": "ASEAN Rules of Origin Summary",
+          "section": "Certificate of Origin Form D",
+          "similarity": -0.4373
+        },
+        {
+          "doc_id": "03_reference_incoterms_comparison_chart",
+          "title": "Incoterms 2020 Comparison Chart",
+          "section": "Risk Transfer Summary",
+          "similarity": -0.4597
+        }
+      ]
+    },
+    {
+      "query_num": 21,
+      "category": "carrier_information",
+      "query": "Which carriers sail direct to Ho Chi Minh?",
+      "top_result_doc_id": "02_carriers_maersk_service_summary",
+      "top_result_title": "Maersk Service Summary",
+      "top_score": -0.0858,
+      "hit": true,
+      "expected_sources": [
+        "pil",
+        "maersk",
+        "one",
+        "evergreen"
+      ],
+      "matched_source": "maersk",
+      "top_5_chunks": [
+        {
+          "doc_id": "02_carriers_maersk_service_summary",
+          "title": "Maersk Service Summary",
+          "section": "Routes from Singapore",
+          "similarity": -0.0858
+        },
+        {
+          "doc_id": "01_regulatory_vietnam_import_requirements",
+          "title": "Vietnam Import Requirements",
+          "section": "Official Resources",
+          "similarity": -0.1153
+        },
+        {
+          "doc_id": "02_carriers_pil_service_summary",
+          "title": "PIL (Pacific International Lines) Service Summary",
+          "section": "Service Coverage",
+          "similarity": -0.1715
+        },
+        {
+          "doc_id": "01_regulatory_vietnam_import_requirements",
+          "title": "Vietnam Import Requirements",
+          "section": "Declaration Timeline",
+          "similarity": -0.2018
+        },
+        {
+          "doc_id": "02_carriers_pil_service_summary",
+          "title": "PIL (Pacific International Lines) Service Summary",
+          "section": "Singapore Office (Headquarters)",
+          "similarity": -0.2077
+        }
+      ]
+    },
+    {
+      "query_num": 22,
+      "category": "carrier_information",
+      "query": "What's the transit time to Port Klang?",
+      "top_result_doc_id": "04_internal_synthetic_sla_policy",
+      "top_result_title": "Service Level Agreement (SLA) Policy",
+      "top_score": -0.1683,
+      "hit": true,
+      "expected_sources": [
+        "pil",
+        "maersk",
+        "one",
+        "evergreen"
+      ],
+      "matched_source": "maersk",
+      "top_5_chunks": [
+        {
+          "doc_id": "04_internal_synthetic_sla_policy",
+          "title": "Service Level Agreement (SLA) Policy",
+          "section": "6. Issue Resolution SLAs",
+          "similarity": -0.1683
+        },
+        {
+          "doc_id": "02_carriers_maersk_service_summary",
+          "title": "Maersk Service Summary",
+          "section": "Routes from Singapore",
+          "similarity": -0.1778
+        },
+        {
+          "doc_id": "02_carriers_maersk_service_summary",
+          "title": "Maersk Service Summary",
+          "section": "Routes from Singapore",
+          "similarity": -0.2153
+        },
+        {
+          "doc_id": "04_internal_synthetic_booking_procedure",
+          "title": "Sea Freight Booking Procedure",
+          "section": "5. Detailed Procedure",
+          "similarity": -0.2337
+        },
+        {
+          "doc_id": "04_internal_synthetic_sla_policy",
+          "title": "Service Level Agreement (SLA) Policy",
+          "section": "5. Operational SLAs",
+          "similarity": -0.2657
+        }
+      ]
+    },
+    {
+      "query_num": 23,
+      "category": "carrier_information",
+      "query": "Does PIL offer reefer containers?",
+      "top_result_doc_id": "02_carriers_pil_service_summary",
+      "top_result_title": "PIL (Pacific International Lines) Service Summary",
+      "top_score": 0.1798,
+      "hit": true,
+      "expected_sources": [
+        "pil"
+      ],
+      "matched_source": "pil",
+      "top_5_chunks": [
+        {
+          "doc_id": "02_carriers_pil_service_summary",
+          "title": "PIL (Pacific International Lines) Service Summary",
+          "section": "Documentation Requirements",
+          "similarity": 0.1798
+        },
+        {
+          "doc_id": "02_carriers_evergreen_service_summary",
+          "title": "Evergreen Service Summary",
+          "section": "About Evergreen",
+          "similarity": 0.1114
+        },
+        {
+          "doc_id": "02_carriers_evergreen_service_summary",
+          "title": "Evergreen Service Summary",
+          "section": "Container Types",
+          "similarity": 0.024
+        },
+        {
+          "doc_id": "02_carriers_one_service_summary",
+          "title": "ONE (Ocean Network Express) Service Summary",
+          "section": "About ONE",
+          "similarity": -0.0032
+        },
+        {
+          "doc_id": "02_carriers_one_service_summary",
+          "title": "ONE (Ocean Network Express) Service Summary",
+          "section": "Services Offered",
+          "similarity": -0.0367
+        }
+      ]
+    },
+    {
+      "query_num": 24,
+      "category": "carrier_information",
+      "query": "How do I submit VGM to Maersk?",
+      "top_result_doc_id": "02_carriers_maersk_service_summary",
+      "top_result_title": "Maersk Service Summary",
+      "top_score": 0.2857,
+      "hit": true,
+      "expected_sources": [
+        "maersk"
+      ],
+      "matched_source": "maersk",
+      "top_5_chunks": [
+        {
+          "doc_id": "02_carriers_maersk_service_summary",
+          "title": "Maersk Service Summary",
+          "section": "Key Strengths for Singapore Shippers",
+          "similarity": 0.2857
+        },
+        {
+          "doc_id": "02_carriers_maersk_service_summary",
+          "title": "Maersk Service Summary",
+          "section": "Routes from Singapore",
+          "similarity": 0.1065
+        },
+        {
+          "doc_id": "02_carriers_pil_service_summary",
+          "title": "PIL (Pacific International Lines) Service Summary",
+          "section": "Digital Solutions",
+          "similarity": -0.0142
+        },
+        {
+          "doc_id": "02_carriers_maersk_service_summary",
+          "title": "Maersk Service Summary",
+          "section": "",
+          "similarity": -0.046
+        },
+        {
+          "doc_id": "02_carriers_maersk_service_summary",
+          "title": "Maersk Service Summary",
+          "section": "Documentation Requirements",
+          "similarity": -0.1207
+        }
+      ]
+    },
+    {
+      "query_num": 25,
+      "category": "carrier_information",
+      "query": "Can I get an electronic Bill of Lading?",
+      "top_result_doc_id": "02_carriers_pil_service_summary",
+      "top_result_title": "PIL (Pacific International Lines) Service Summary",
+      "top_score": -0.0268,
+      "hit": true,
+      "expected_sources": [
+        "carrier",
+        "maersk",
+        "evergreen"
+      ],
+      "matched_source": "carrier",
+      "top_5_chunks": [
+        {
+          "doc_id": "02_carriers_pil_service_summary",
+          "title": "PIL (Pacific International Lines) Service Summary",
+          "section": "Digital Solutions",
+          "similarity": -0.0268
+        },
+        {
+          "doc_id": "02_carriers_one_service_summary",
+          "title": "ONE (Ocean Network Express) Service Summary",
+          "section": "Key Strengths for Singapore Shippers",
+          "similarity": -0.0956
+        },
+        {
+          "doc_id": "01_regulatory_philippines_import_requirements",
+          "title": "Philippines Import Requirements",
+          "section": "Import Classifications",
+          "similarity": -0.1171
+        },
+        {
+          "doc_id": "02_carriers_one_service_summary",
+          "title": "ONE (Ocean Network Express) Service Summary",
+          "section": "Booking Process",
+          "similarity": -0.18
+        },
+        {
+          "doc_id": "04_internal_synthetic_cod_procedure",
+          "title": "Collect on Delivery (COD) Handling Procedure",
+          "section": "5. COD Booking Process",
+          "similarity": -0.212
+        }
+      ]
+    },
+    {
+      "query_num": 26,
+      "category": "carrier_information",
+      "query": "What's the weight limit for a 40ft container?",
+      "top_result_doc_id": "02_carriers_one_service_summary",
+      "top_result_title": "ONE (Ocean Network Express) Service Summary",
+      "top_score": -0.0126,
+      "hit": true,
+      "expected_sources": [
+        "carrier"
+      ],
+      "matched_source": "carrier",
+      "top_5_chunks": [
+        {
+          "doc_id": "02_carriers_one_service_summary",
+          "title": "ONE (Ocean Network Express) Service Summary",
+          "section": "Services Offered",
+          "similarity": -0.0126
+        },
+        {
+          "doc_id": "02_carriers_evergreen_service_summary",
+          "title": "Evergreen Service Summary",
+          "section": "Container Types",
+          "similarity": -0.0766
+        },
+        {
+          "doc_id": "02_carriers_evergreen_service_summary",
+          "title": "Evergreen Service Summary",
+          "section": "Services Offered",
+          "similarity": -0.1584
+        },
+        {
+          "doc_id": "02_carriers_maersk_service_summary",
+          "title": "Maersk Service Summary",
+          "section": "Digital Solutions",
+          "similarity": -0.2121
+        },
+        {
+          "doc_id": "04_internal_synthetic_service_terms_conditions",
+          "title": "Service Terms and Conditions",
+          "section": "4. Booking and Cancellation",
+          "similarity": -0.3235
+        }
+      ]
+    },
+    {
+      "query_num": 27,
+      "category": "carrier_information",
+      "query": "Does ONE service Surabaya?",
+      "top_result_doc_id": "04_internal_synthetic_sla_policy",
+      "top_result_title": "Service Level Agreement (SLA) Policy",
+      "top_score": -0.2678,
+      "hit": true,
+      "expected_sources": [
+        "one"
+      ],
+      "matched_source": "one",
+      "top_5_chunks": [
+        {
+          "doc_id": "04_internal_synthetic_sla_policy",
+          "title": "Service Level Agreement (SLA) Policy",
+          "section": "10. SLA Breach Consequences",
+          "similarity": -0.2678
+        },
+        {
+          "doc_id": "02_carriers_one_service_summary",
+          "title": "ONE (Ocean Network Express) Service Summary",
+          "section": "Documentation Requirements",
+          "similarity": -0.2785
+        },
+        {
+          "doc_id": "02_carriers_cathay_cargo_service_guide",
+          "title": "Cathay Cargo Service Guide",
+          "section": "Specialized Products & Solutions",
+          "similarity": -0.3167
+        },
+        {
+          "doc_id": "04_internal_synthetic_sla_policy",
+          "title": "Service Level Agreement (SLA) Policy",
+          "section": "",
+          "similarity": -0.333
+        },
+        {
+          "doc_id": "02_carriers_one_service_summary",
+          "title": "ONE (Ocean Network Express) Service Summary",
+          "section": "About ONE",
+          "similarity": -0.3503
+        }
+      ]
+    },
+    {
+      "query_num": 28,
+      "category": "carrier_information",
+      "query": "How do I track my shipment with Evergreen?",
+      "top_result_doc_id": "02_carriers_evergreen_service_summary",
+      "top_result_title": "Evergreen Service Summary",
+      "top_score": 0.0525,
+      "hit": true,
+      "expected_sources": [
+        "evergreen"
+      ],
+      "matched_source": "evergreen",
+      "top_5_chunks": [
+        {
+          "doc_id": "02_carriers_evergreen_service_summary",
+          "title": "Evergreen Service Summary",
+          "section": "Recent Developments",
+          "similarity": 0.0525
+        },
+        {
+          "doc_id": "02_carriers_evergreen_service_summary",
+          "title": "Evergreen Service Summary",
+          "section": "Company Overview",
+          "similarity": 0.0371
+        },
+        {
+          "doc_id": "02_carriers_evergreen_service_summary",
+          "title": "Evergreen Service Summary",
+          "section": "",
+          "similarity": -0.0141
+        },
+        {
+          "doc_id": "02_carriers_evergreen_service_summary",
+          "title": "Evergreen Service Summary",
+          "section": "About Evergreen",
+          "similarity": -0.067
+        },
+        {
+          "doc_id": "02_carriers_evergreen_service_summary",
+          "title": "Evergreen Service Summary",
+          "section": "Digital Solutions",
+          "similarity": -0.2263
+        }
+      ]
+    },
+    {
+      "query_num": 29,
+      "category": "carrier_information",
+      "query": "What's the difference between Maersk and ONE service?",
+      "top_result_doc_id": "02_carriers_maersk_service_summary",
+      "top_result_title": "Maersk Service Summary",
+      "top_score": 0.201,
+      "hit": true,
+      "expected_sources": [
+        "maersk",
+        "one"
+      ],
+      "matched_source": "maersk",
+      "top_5_chunks": [
+        {
+          "doc_id": "02_carriers_maersk_service_summary",
+          "title": "Maersk Service Summary",
+          "section": "Documentation Requirements",
+          "similarity": 0.201
+        },
+        {
+          "doc_id": "02_carriers_maersk_service_summary",
+          "title": "Maersk Service Summary",
+          "section": "",
+          "similarity": 0.097
+        },
+        {
+          "doc_id": "02_carriers_maersk_service_summary",
+          "title": "Maersk Service Summary",
+          "section": "Digital Solutions",
+          "similarity": 0.0371
+        },
+        {
+          "doc_id": "02_carriers_maersk_service_summary",
+          "title": "Maersk Service Summary",
+          "section": "Company Overview",
+          "similarity": -0.0502
+        },
+        {
+          "doc_id": "02_carriers_maersk_service_summary",
+          "title": "Maersk Service Summary",
+          "section": "Key Strengths for Singapore Shippers",
+          "similarity": -0.094
+        }
+      ]
+    },
+    {
+      "query_num": 30,
+      "category": "carrier_information",
+      "query": "Who do I contact for a booking amendment?",
+      "top_result_doc_id": "04_internal_synthetic_booking_procedure",
+      "top_result_title": "Sea Freight Booking Procedure",
+      "top_score": -0.0941,
+      "hit": true,
+      "expected_sources": [
+        "booking",
+        "escalation"
+      ],
+      "matched_source": "booking",
+      "top_5_chunks": [
+        {
+          "doc_id": "04_internal_synthetic_booking_procedure",
+          "title": "Sea Freight Booking Procedure",
+          "section": "5. Detailed Procedure",
+          "similarity": -0.0941
+        },
+        {
+          "doc_id": "04_internal_synthetic_service_terms_conditions",
+          "title": "Service Terms and Conditions",
+          "section": "3. Quotations and Rates",
+          "similarity": -0.1541
+        },
+        {
+          "doc_id": "04_internal_synthetic_booking_procedure",
+          "title": "Sea Freight Booking Procedure",
+          "section": "5. Detailed Procedure",
+          "similarity": -0.188
+        },
+        {
+          "doc_id": "02_carriers_one_service_summary",
+          "title": "ONE (Ocean Network Express) Service Summary",
+          "section": "Key Strengths for Singapore Shippers",
+          "similarity": -0.2198
+        },
+        {
+          "doc_id": "04_internal_synthetic_booking_procedure",
+          "title": "Sea Freight Booking Procedure",
+          "section": "5. Detailed Procedure",
+          "similarity": -0.2235
+        }
+      ]
+    },
+    {
+      "query_num": 31,
+      "category": "sla_service",
+      "query": "What's our standard delivery SLA for Singapore?",
+      "top_result_doc_id": "02_carriers_sia_cargo_service_guide",
+      "top_result_title": "Singapore Airlines Cargo Service Guide",
+      "top_score": 0.1847,
+      "hit": false,
+      "expected_sources": [
+        "sla_policy"
+      ],
+      "matched_source": null,
+      "top_5_chunks": [
+        {
+          "doc_id": "02_carriers_sia_cargo_service_guide",
+          "title": "Singapore Airlines Cargo Service Guide",
+          "section": "Special Cargo Handling",
+          "similarity": 0.1847
+        },
+        {
+          "doc_id": "01_regulatory_sg_certificates_of_origin",
+          "title": "Singapore Certificates of Origin",
+          "section": "Compliance Requirements",
+          "similarity": 0.1784
+        },
+        {
+          "doc_id": "03_reference_incoterms_2020_reference",
+          "title": "Incoterms 2020 Complete Reference Guide",
+          "section": "Key Changes in Incoterms 2020",
+          "similarity": 0.1765
+        },
+        {
+          "doc_id": "03_reference_hs_code_structure_guide",
+          "title": "HS Code Structure Guide",
+          "section": "Quick Reference Tables",
+          "similarity": 0.1576
+        },
+        {
+          "doc_id": "03_reference_incoterms_2020_reference",
+          "title": "Incoterms 2020 Complete Reference Guide",
+          "section": "Common Mistakes to Avoid",
+          "similarity": 0.1514
+        }
+      ]
+    },
+    {
+      "query_num": 32,
+      "category": "sla_service",
+      "query": "Is customs clearance included in door-to-door?",
+      "top_result_doc_id": "01_regulatory_sg_export_procedures",
+      "top_result_title": "Singapore Export Procedures",
+      "top_score": -0.0377,
+      "hit": false,
+      "expected_sources": [
+        "service_terms",
+        "sla_policy"
+      ],
+      "matched_source": null,
+      "top_5_chunks": [
+        {
+          "doc_id": "01_regulatory_sg_export_procedures",
+          "title": "Singapore Export Procedures",
+          "section": "Required Steps for Exporting Goods",
+          "similarity": -0.0377
+        },
+        {
+          "doc_id": "03_reference_incoterms_2020_reference",
+          "title": "Incoterms 2020 Complete Reference Guide",
+          "section": "Detailed Incoterms 2020 Definitions",
+          "similarity": -0.114
+        },
+        {
+          "doc_id": "03_reference_incoterms_2020_reference",
+          "title": "Incoterms 2020 Complete Reference Guide",
+          "section": "Detailed Incoterms 2020 Definitions",
+          "similarity": -0.1153
+        },
+        {
+          "doc_id": "03_reference_incoterms_2020_reference",
+          "title": "Incoterms 2020 Complete Reference Guide",
+          "section": "Detailed Incoterms 2020 Definitions",
+          "similarity": -0.197
+        },
+        {
+          "doc_id": "01_regulatory_sg_import_procedures",
+          "title": "Singapore Import Procedures",
+          "section": "Key Documentation Requirements",
+          "similarity": -0.2223
+        }
+      ]
+    },
+    {
+      "query_num": 33,
+      "category": "sla_service",
+      "query": "Do you provide cargo insurance?",
+      "top_result_doc_id": "04_internal_synthetic_service_terms_conditions",
+      "top_result_title": "Service Terms and Conditions",
+      "top_score": 0.3624,
+      "hit": true,
+      "expected_sources": [
+        "service_terms"
+      ],
+      "matched_source": "service_terms",
+      "top_5_chunks": [
+        {
+          "doc_id": "04_internal_synthetic_service_terms_conditions",
+          "title": "Service Terms and Conditions",
+          "section": "6. Liability and Insurance",
+          "similarity": 0.3624
+        },
+        {
+          "doc_id": "04_internal_synthetic_service_terms_conditions",
+          "title": "Service Terms and Conditions",
+          "section": "5. Cargo Requirements",
+          "similarity": -0.0088
+        },
+        {
+          "doc_id": "03_reference_incoterms_2020_reference",
+          "title": "Incoterms 2020 Complete Reference Guide",
+          "section": "Detailed Incoterms 2020 Definitions",
+          "similarity": -0.0207
+        },
+        {
+          "doc_id": "02_carriers_cathay_cargo_service_guide",
+          "title": "Cathay Cargo Service Guide",
+          "section": "Digital Tools & Services",
+          "similarity": -0.0253
+        },
+        {
+          "doc_id": "03_reference_incoterms_2020_reference",
+          "title": "Incoterms 2020 Complete Reference Guide",
+          "section": "Detailed Incoterms 2020 Definitions",
+          "similarity": -0.0587
+        }
+      ]
+    },
+    {
+      "query_num": 34,
+      "category": "sla_service",
+      "query": "What happens if shipment is delayed?",
+      "top_result_doc_id": "04_internal_synthetic_sla_policy",
+      "top_result_title": "Service Level Agreement (SLA) Policy",
+      "top_score": -0.0569,
+      "hit": true,
+      "expected_sources": [
+        "sla_policy",
+        "escalation"
+      ],
+      "matched_source": "sla_policy",
+      "top_5_chunks": [
+        {
+          "doc_id": "04_internal_synthetic_sla_policy",
+          "title": "Service Level Agreement (SLA) Policy",
+          "section": "6. Issue Resolution SLAs",
+          "similarity": -0.0569
+        },
+        {
+          "doc_id": "04_internal_synthetic_cod_procedure",
+          "title": "Collect on Delivery (COD) Handling Procedure",
+          "section": "7. Collection Process",
+          "similarity": -0.0987
+        },
+        {
+          "doc_id": "04_internal_synthetic_sla_policy",
+          "title": "Service Level Agreement (SLA) Policy",
+          "section": "7. Communication Standards",
+          "similarity": -0.0995
+        },
+        {
+          "doc_id": "03_reference_incoterms_2020_reference",
+          "title": "Incoterms 2020 Complete Reference Guide",
+          "section": "Detailed Incoterms 2020 Definitions",
+          "similarity": -0.1493
+        },
+        {
+          "doc_id": "04_internal_synthetic_booking_procedure",
+          "title": "Sea Freight Booking Procedure",
+          "section": "5. Detailed Procedure",
+          "similarity": -0.1938
+        }
+      ]
+    },
+    {
+      "query_num": 35,
+      "category": "sla_service",
+      "query": "Are duties and taxes included in the quote?",
+      "top_result_doc_id": "04_internal_synthetic_service_terms_conditions",
+      "top_result_title": "Service Terms and Conditions",
+      "top_score": -0.1137,
+      "hit": true,
+      "expected_sources": [
+        "service_terms"
+      ],
+      "matched_source": "service_terms",
+      "top_5_chunks": [
+        {
+          "doc_id": "04_internal_synthetic_service_terms_conditions",
+          "title": "Service Terms and Conditions",
+          "section": "3. Quotations and Rates",
+          "similarity": -0.1137
+        },
+        {
+          "doc_id": "04_internal_synthetic_cod_procedure",
+          "title": "Collect on Delivery (COD) Handling Procedure",
+          "section": "1. Purpose",
+          "similarity": -0.1342
+        },
+        {
+          "doc_id": "01_regulatory_thailand_import_requirements",
+          "title": "Thailand Import Requirements",
+          "section": "Import Controls",
+          "similarity": -0.1998
+        },
+        {
+          "doc_id": "01_regulatory_malaysia_import_requirements",
+          "title": "Malaysia Import Requirements",
+          "section": "Required Import Documentation",
+          "similarity": -0.2092
+        },
+        {
+          "doc_id": "04_internal_synthetic_service_terms_conditions",
+          "title": "Service Terms and Conditions",
+          "section": "2. Scope of Services",
+          "similarity": -0.2175
+        }
+      ]
+    },
+    {
+      "query_num": 36,
+      "category": "sla_service",
+      "query": "What's the process for refused deliveries?",
+      "top_result_doc_id": "03_reference_incoterms_2020_reference",
+      "top_result_title": "Incoterms 2020 Complete Reference Guide",
+      "top_score": -0.0878,
+      "hit": false,
+      "expected_sources": [
+        "cod_procedure",
+        "service_terms"
+      ],
+      "matched_source": null,
+      "top_5_chunks": [
+        {
+          "doc_id": "03_reference_incoterms_2020_reference",
+          "title": "Incoterms 2020 Complete Reference Guide",
+          "section": "Detailed Incoterms 2020 Definitions",
+          "similarity": -0.0878
+        },
+        {
+          "doc_id": "03_reference_incoterms_2020_reference",
+          "title": "Incoterms 2020 Complete Reference Guide",
+          "section": "Detailed Incoterms 2020 Definitions",
+          "similarity": -0.1103
+        },
+        {
+          "doc_id": "03_reference_incoterms_2020_reference",
+          "title": "Incoterms 2020 Complete Reference Guide",
+          "section": "Detailed Incoterms 2020 Definitions",
+          "similarity": -0.1304
+        },
+        {
+          "doc_id": "03_reference_incoterms_2020_reference",
+          "title": "Incoterms 2020 Complete Reference Guide",
+          "section": "Detailed Incoterms 2020 Definitions",
+          "similarity": -0.169
+        },
+        {
+          "doc_id": "04_internal_synthetic_booking_procedure",
+          "title": "Sea Freight Booking Procedure",
+          "section": "5. Detailed Procedure",
+          "similarity": -0.1851
+        }
+      ]
+    },
+    {
+      "query_num": 37,
+      "category": "sla_service",
+      "query": "Do you handle import permit applications?",
+      "top_result_doc_id": "01_regulatory_sg_export_procedures",
+      "top_result_title": "Singapore Export Procedures",
+      "top_score": 0.2029,
+      "hit": false,
+      "expected_sources": [
+        "service_terms",
+        "booking"
+      ],
+      "matched_source": null,
+      "top_5_chunks": [
+        {
+          "doc_id": "01_regulatory_sg_export_procedures",
+          "title": "Singapore Export Procedures",
+          "section": "Required Steps for Exporting Goods",
+          "similarity": 0.2029
+        },
+        {
+          "doc_id": "01_regulatory_philippines_import_requirements",
+          "title": "Philippines Import Requirements",
+          "section": "Agricultural Products",
+          "similarity": 0.1654
+        },
+        {
+          "doc_id": "01_regulatory_thailand_import_requirements",
+          "title": "Thailand Import Requirements",
+          "section": "Key Regulatory Bodies",
+          "similarity": 0.0867
+        },
+        {
+          "doc_id": "01_regulatory_thailand_import_requirements",
+          "title": "Thailand Import Requirements",
+          "section": "Import Licenses",
+          "similarity": 0.0763
+        },
+        {
+          "doc_id": "01_regulatory_sg_import_procedures",
+          "title": "Singapore Import Procedures",
+          "section": "Duty and GST Payment Status",
+          "similarity": 0.0419
+        }
+      ]
+    },
+    {
+      "query_num": 38,
+      "category": "sla_service",
+      "query": "How do I upgrade to express service?",
+      "top_result_doc_id": "02_carriers_cathay_cargo_service_guide",
+      "top_result_title": "Cathay Cargo Service Guide",
+      "top_score": -0.3215,
+      "hit": false,
+      "expected_sources": [
+        "service_terms",
+        "booking"
+      ],
+      "matched_source": null,
+      "top_5_chunks": [
+        {
+          "doc_id": "02_carriers_cathay_cargo_service_guide",
+          "title": "Cathay Cargo Service Guide",
+          "section": "Specialized Products & Solutions",
+          "similarity": -0.3215
+        },
+        {
+          "doc_id": "02_carriers_one_service_summary",
+          "title": "ONE (Ocean Network Express) Service Summary",
+          "section": "About ONE",
+          "similarity": -0.3293
+        },
+        {
+          "doc_id": "02_carriers_cathay_cargo_service_guide",
+          "title": "Cathay Cargo Service Guide",
+          "section": "Specialized Products & Solutions",
+          "similarity": -0.3733
+        },
+        {
+          "doc_id": "02_carriers_one_service_summary",
+          "title": "ONE (Ocean Network Express) Service Summary",
+          "section": "",
+          "similarity": -0.3781
+        },
+        {
+          "doc_id": "02_carriers_one_service_summary",
+          "title": "ONE (Ocean Network Express) Service Summary",
+          "section": "Documentation Requirements",
+          "similarity": -0.384
+        }
+      ]
+    },
+    {
+      "query_num": 39,
+      "category": "sla_service",
+      "query": "What's covered under standard liability?",
+      "top_result_doc_id": "04_internal_synthetic_service_terms_conditions",
+      "top_result_title": "Service Terms and Conditions",
+      "top_score": 0.2745,
+      "hit": true,
+      "expected_sources": [
+        "service_terms",
+        "sla_policy"
+      ],
+      "matched_source": "service_terms",
+      "top_5_chunks": [
+        {
+          "doc_id": "04_internal_synthetic_service_terms_conditions",
+          "title": "Service Terms and Conditions",
+          "section": "6. Liability and Insurance",
+          "similarity": 0.2745
+        },
+        {
+          "doc_id": "04_internal_synthetic_service_terms_conditions",
+          "title": "Service Terms and Conditions",
+          "section": "5. Cargo Requirements",
+          "similarity": 0.115
+        },
+        {
+          "doc_id": "03_reference_incoterms_2020_reference",
+          "title": "Incoterms 2020 Complete Reference Guide",
+          "section": "Detailed Incoterms 2020 Definitions",
+          "similarity": -0.0466
+        },
+        {
+          "doc_id": "04_internal_synthetic_cod_procedure",
+          "title": "Collect on Delivery (COD) Handling Procedure",
+          "section": "9. Exception Handling",
+          "similarity": -0.1132
+        },
+        {
+          "doc_id": "03_reference_incoterms_2020_reference",
+          "title": "Incoterms 2020 Complete Reference Guide",
+          "section": "Detailed Incoterms 2020 Definitions",
+          "similarity": -0.1241
+        }
+      ]
+    },
+    {
+      "query_num": 40,
+      "category": "sla_service",
+      "query": "Can I get proof of delivery?",
+      "top_result_doc_id": "04_internal_synthetic_service_terms_conditions",
+      "top_result_title": "Service Terms and Conditions",
+      "top_score": -0.2273,
+      "hit": true,
+      "expected_sources": [
+        "cod_procedure",
+        "service_terms"
+      ],
+      "matched_source": "service_terms",
+      "top_5_chunks": [
+        {
+          "doc_id": "04_internal_synthetic_service_terms_conditions",
+          "title": "Service Terms and Conditions",
+          "section": "4. Booking and Cancellation",
+          "similarity": -0.2273
+        },
+        {
+          "doc_id": "04_internal_synthetic_booking_procedure",
+          "title": "Sea Freight Booking Procedure",
+          "section": "5. Detailed Procedure",
+          "similarity": -0.2413
+        },
+        {
+          "doc_id": "04_internal_synthetic_cod_procedure",
+          "title": "Collect on Delivery (COD) Handling Procedure",
+          "section": "",
+          "similarity": -0.2677
+        },
+        {
+          "doc_id": "04_internal_synthetic_booking_procedure",
+          "title": "Sea Freight Booking Procedure",
+          "section": "5. Detailed Procedure",
+          "similarity": -0.3125
+        },
+        {
+          "doc_id": "01_regulatory_vietnam_import_requirements",
+          "title": "Vietnam Import Requirements",
+          "section": "Labeling Requirements",
+          "similarity": -0.3142
+        }
+      ]
+    },
+    {
+      "query_num": 41,
+      "category": "edge_cases_out_of_scope",
+      "query": "What's the current freight rate to Jakarta?",
+      "top_result_doc_id": "04_internal_synthetic_fta_comparison_matrix",
+      "top_result_title": "Singapore FTA Comparison Matrix",
+      "top_score": -0.0015,
+      "hit": true,
+      "expected_sources": [],
+      "matched_source": null,
+      "top_5_chunks": [
+        {
+          "doc_id": "04_internal_synthetic_fta_comparison_matrix",
+          "title": "Singapore FTA Comparison Matrix",
+          "section": "6. Tariff Comparison by Product Category",
+          "similarity": -0.0015
+        },
+        {
+          "doc_id": "03_reference_incoterms_comparison_chart",
+          "title": "Incoterms 2020 Comparison Chart",
+          "section": "Price Comparison Example",
+          "similarity": -0.023
+        },
+        {
+          "doc_id": "04_internal_synthetic_fta_comparison_matrix",
+          "title": "Singapore FTA Comparison Matrix",
+          "section": "5. Certificate of Origin Requirements",
+          "similarity": -0.0259
+        },
+        {
+          "doc_id": "04_internal_synthetic_fta_comparison_matrix",
+          "title": "Singapore FTA Comparison Matrix",
+          "section": "6. Tariff Comparison by Product Category",
+          "similarity": -0.0325
+        },
+        {
+          "doc_id": "03_reference_incoterms_comparison_chart",
+          "title": "Incoterms 2020 Comparison Chart",
+          "section": "Common Combinations by Trade Route",
+          "similarity": -0.0513
+        }
+      ]
+    },
+    {
+      "query_num": 42,
+      "category": "edge_cases_out_of_scope",
+      "query": "Where is my shipment right now?",
+      "top_result_doc_id": "03_reference_incoterms_2020_reference",
+      "top_result_title": "Incoterms 2020 Complete Reference Guide",
+      "top_score": -0.2888,
+      "hit": true,
+      "expected_sources": [],
+      "matched_source": null,
+      "top_5_chunks": [
+        {
+          "doc_id": "03_reference_incoterms_2020_reference",
+          "title": "Incoterms 2020 Complete Reference Guide",
+          "section": "Detailed Incoterms 2020 Definitions",
+          "similarity": -0.2888
+        },
+        {
+          "doc_id": "04_internal_synthetic_booking_procedure",
+          "title": "Sea Freight Booking Procedure",
+          "section": "5. Detailed Procedure",
+          "similarity": -0.2995
+        },
+        {
+          "doc_id": "04_internal_synthetic_sla_policy",
+          "title": "Service Level Agreement (SLA) Policy",
+          "section": "7. Communication Standards",
+          "similarity": -0.3114
+        },
+        {
+          "doc_id": "03_reference_incoterms_2020_reference",
+          "title": "Incoterms 2020 Complete Reference Guide",
+          "section": "Detailed Incoterms 2020 Definitions",
+          "similarity": -0.3281
+        },
+        {
+          "doc_id": "03_reference_incoterms_2020_reference",
+          "title": "Incoterms 2020 Complete Reference Guide",
+          "section": "Detailed Incoterms 2020 Definitions",
+          "similarity": -0.3323
+        }
+      ]
+    },
+    {
+      "query_num": 43,
+      "category": "edge_cases_out_of_scope",
+      "query": "Can you book a shipment for me?",
+      "top_result_doc_id": "04_internal_synthetic_booking_procedure",
+      "top_result_title": "Sea Freight Booking Procedure",
+      "top_score": -0.1222,
+      "hit": true,
+      "expected_sources": [],
+      "matched_source": null,
+      "top_5_chunks": [
+        {
+          "doc_id": "04_internal_synthetic_booking_procedure",
+          "title": "Sea Freight Booking Procedure",
+          "section": "5. Detailed Procedure",
+          "similarity": -0.1222
+        },
+        {
+          "doc_id": "04_internal_synthetic_booking_procedure",
+          "title": "Sea Freight Booking Procedure",
+          "section": "5. Detailed Procedure",
+          "similarity": -0.1562
+        },
+        {
+          "doc_id": "04_internal_synthetic_booking_procedure",
+          "title": "Sea Freight Booking Procedure",
+          "section": "5. Detailed Procedure",
+          "similarity": -0.167
+        },
+        {
+          "doc_id": "03_reference_incoterms_comparison_chart",
+          "title": "Incoterms 2020 Comparison Chart",
+          "section": "Decision Tree: Choosing the Right Incoterm",
+          "similarity": -0.1719
+        },
+        {
+          "doc_id": "04_internal_synthetic_sla_policy",
+          "title": "Service Level Agreement (SLA) Policy",
+          "section": "4. Response Time Standards",
+          "similarity": -0.1907
+        }
+      ]
+    },
+    {
+      "query_num": 44,
+      "category": "edge_cases_out_of_scope",
+      "query": "I want to file a claim for damaged cargo",
+      "top_result_doc_id": "04_internal_synthetic_service_terms_conditions",
+      "top_result_title": "Service Terms and Conditions",
+      "top_score": 0.2635,
+      "hit": false,
+      "expected_sources": [],
+      "matched_source": null,
+      "top_5_chunks": [
+        {
+          "doc_id": "04_internal_synthetic_service_terms_conditions",
+          "title": "Service Terms and Conditions",
+          "section": "7. Payment Terms",
+          "similarity": 0.2635
+        },
+        {
+          "doc_id": "04_internal_synthetic_service_terms_conditions",
+          "title": "Service Terms and Conditions",
+          "section": "8. Claims",
+          "similarity": -0.0104
+        },
+        {
+          "doc_id": "02_carriers_cathay_cargo_service_guide",
+          "title": "Cathay Cargo Service Guide",
+          "section": "Digital Tools & Services",
+          "similarity": -0.0175
+        },
+        {
+          "doc_id": "04_internal_synthetic_cod_procedure",
+          "title": "Collect on Delivery (COD) Handling Procedure",
+          "section": "9. Exception Handling",
+          "similarity": -0.0354
+        },
+        {
+          "doc_id": "04_internal_synthetic_cod_procedure",
+          "title": "Collect on Delivery (COD) Handling Procedure",
+          "section": "9. Exception Handling",
+          "similarity": -0.0421
+        }
+      ]
+    },
+    {
+      "query_num": 45,
+      "category": "edge_cases_out_of_scope",
+      "query": "Can you ship hazmat by air?",
+      "top_result_doc_id": "03_reference_incoterms_comparison_chart",
+      "top_result_title": "Incoterms 2020 Comparison Chart",
+      "top_score": -0.112,
+      "hit": true,
+      "expected_sources": [],
+      "matched_source": null,
+      "top_5_chunks": [
+        {
+          "doc_id": "03_reference_incoterms_comparison_chart",
+          "title": "Incoterms 2020 Comparison Chart",
+          "section": "Decision Tree: Choosing the Right Incoterm",
+          "similarity": -0.112
+        },
+        {
+          "doc_id": "03_reference_incoterms_2020_reference",
+          "title": "Incoterms 2020 Complete Reference Guide",
+          "section": "Detailed Incoterms 2020 Definitions",
+          "similarity": -0.1287
+        },
+        {
+          "doc_id": "04_internal_synthetic_cod_procedure",
+          "title": "Collect on Delivery (COD) Handling Procedure",
+          "section": "7. Collection Process",
+          "similarity": -0.1562
+        },
+        {
+          "doc_id": "03_reference_incoterms_2020_reference",
+          "title": "Incoterms 2020 Complete Reference Guide",
+          "section": "Detailed Incoterms 2020 Definitions",
+          "similarity": -0.167
+        },
+        {
+          "doc_id": "01_regulatory_sg_free_trade_zones",
+          "title": "Singapore Free Trade Zones",
+          "section": "Permitted Activities in FTZ",
+          "similarity": -0.1858
+        }
+      ]
+    },
+    {
+      "query_num": 46,
+      "category": "edge_cases_out_of_scope",
+      "query": "What's the weather forecast for shipping?",
+      "top_result_doc_id": "03_reference_incoterms_2020_reference",
+      "top_result_title": "Incoterms 2020 Complete Reference Guide",
+      "top_score": -0.2019,
+      "hit": true,
+      "expected_sources": [],
+      "matched_source": null,
+      "top_5_chunks": [
+        {
+          "doc_id": "03_reference_incoterms_2020_reference",
+          "title": "Incoterms 2020 Complete Reference Guide",
+          "section": "Detailed Incoterms 2020 Definitions",
+          "similarity": -0.2019
+        },
+        {
+          "doc_id": "02_carriers_evergreen_service_summary",
+          "title": "Evergreen Service Summary",
+          "section": "Recent Developments",
+          "similarity": -0.24
+        },
+        {
+          "doc_id": "03_reference_incoterms_comparison_chart",
+          "title": "Incoterms 2020 Comparison Chart",
+          "section": "Responsibility Matrix",
+          "similarity": -0.2651
+        },
+        {
+          "doc_id": "04_internal_synthetic_booking_procedure",
+          "title": "Sea Freight Booking Procedure",
+          "section": "5. Detailed Procedure",
+          "similarity": -0.2884
+        },
+        {
+          "doc_id": "04_internal_synthetic_sla_policy",
+          "title": "Service Level Agreement (SLA) Policy",
+          "section": "7. Communication Standards",
+          "similarity": -0.2918
+        }
+      ]
+    },
+    {
+      "query_num": 47,
+      "category": "edge_cases_out_of_scope",
+      "query": "Can you recommend a supplier in China?",
+      "top_result_doc_id": "03_reference_incoterms_2020_reference",
+      "top_result_title": "Incoterms 2020 Complete Reference Guide",
+      "top_score": -0.0973,
+      "hit": true,
+      "expected_sources": [],
+      "matched_source": null,
+      "top_5_chunks": [
+        {
+          "doc_id": "03_reference_incoterms_2020_reference",
+          "title": "Incoterms 2020 Complete Reference Guide",
+          "section": "Detailed Incoterms 2020 Definitions",
+          "similarity": -0.0973
+        },
+        {
+          "doc_id": "04_internal_synthetic_fta_comparison_matrix",
+          "title": "Singapore FTA Comparison Matrix",
+          "section": "5. Certificate of Origin Requirements",
+          "similarity": -0.1849
+        },
+        {
+          "doc_id": "02_carriers_cathay_cargo_service_guide",
+          "title": "Cathay Cargo Service Guide",
+          "section": "Key Strengths for Singapore Shippers",
+          "similarity": -0.2138
+        },
+        {
+          "doc_id": "02_carriers_pil_service_summary",
+          "title": "PIL (Pacific International Lines) Service Summary",
+          "section": "Container Types Available",
+          "similarity": -0.2378
+        },
+        {
+          "doc_id": "04_internal_synthetic_fta_comparison_matrix",
+          "title": "Singapore FTA Comparison Matrix",
+          "section": "3. FTA Selection Matrix",
+          "similarity": -0.2481
+        }
+      ]
+    },
+    {
+      "query_num": 48,
+      "category": "edge_cases_out_of_scope",
+      "query": "What's your company's financial status?",
+      "top_result_doc_id": "04_internal_synthetic_sla_policy",
+      "top_result_title": "Service Level Agreement (SLA) Policy",
+      "top_score": -0.1524,
+      "hit": true,
+      "expected_sources": [],
+      "matched_source": null,
+      "top_5_chunks": [
+        {
+          "doc_id": "04_internal_synthetic_sla_policy",
+          "title": "Service Level Agreement (SLA) Policy",
+          "section": "8. Claims Handling SLA",
+          "similarity": -0.1524
+        },
+        {
+          "doc_id": "04_internal_synthetic_cod_procedure",
+          "title": "Collect on Delivery (COD) Handling Procedure",
+          "section": "3. COD Types",
+          "similarity": -0.2151
+        },
+        {
+          "doc_id": "04_internal_synthetic_service_terms_conditions",
+          "title": "Service Terms and Conditions",
+          "section": "11. General Provisions",
+          "similarity": -0.2305
+        },
+        {
+          "doc_id": "04_internal_synthetic_fta_comparison_matrix",
+          "title": "Singapore FTA Comparison Matrix",
+          "section": "8. Documentation Checklist by FTA",
+          "similarity": -0.3254
+        },
+        {
+          "doc_id": "04_internal_synthetic_escalation_procedure",
+          "title": "Escalation Procedure",
+          "section": "11. Post-Escalation Review",
+          "similarity": -0.3333
+        }
+      ]
+    },
+    {
+      "query_num": 49,
+      "category": "edge_cases_out_of_scope",
+      "query": "How do I become a freight forwarder?",
+      "top_result_doc_id": "04_internal_synthetic_service_terms_conditions",
+      "top_result_title": "Service Terms and Conditions",
+      "top_score": 0.1304,
+      "hit": true,
+      "expected_sources": [],
+      "matched_source": null,
+      "top_5_chunks": [
+        {
+          "doc_id": "04_internal_synthetic_service_terms_conditions",
+          "title": "Service Terms and Conditions",
+          "section": "1. Definitions",
+          "similarity": 0.1304
+        },
+        {
+          "doc_id": "03_reference_incoterms_comparison_chart",
+          "title": "Incoterms 2020 Comparison Chart",
+          "section": "Responsibility Matrix",
+          "similarity": -0.0826
+        },
+        {
+          "doc_id": "03_reference_incoterms_2020_reference",
+          "title": "Incoterms 2020 Complete Reference Guide",
+          "section": "Detailed Incoterms 2020 Definitions",
+          "similarity": -0.1206
+        },
+        {
+          "doc_id": "03_reference_incoterms_comparison_chart",
+          "title": "Incoterms 2020 Comparison Chart",
+          "section": "Price Comparison Example",
+          "similarity": -0.1237
+        },
+        {
+          "doc_id": "03_reference_incoterms_comparison_chart",
+          "title": "Incoterms 2020 Comparison Chart",
+          "section": "Responsibility Matrix",
+          "similarity": -0.1341
+        }
+      ]
+    },
+    {
+      "query_num": 50,
+      "category": "edge_cases_out_of_scope",
+      "query": "What are your competitor's rates?",
+      "top_result_doc_id": "04_internal_synthetic_service_terms_conditions",
+      "top_result_title": "Service Terms and Conditions",
+      "top_score": -0.1449,
+      "hit": true,
+      "expected_sources": [],
+      "matched_source": null,
+      "top_5_chunks": [
+        {
+          "doc_id": "04_internal_synthetic_service_terms_conditions",
+          "title": "Service Terms and Conditions",
+          "section": "2. Scope of Services",
+          "similarity": -0.1449
+        },
+        {
+          "doc_id": "04_internal_synthetic_cod_procedure",
+          "title": "Collect on Delivery (COD) Handling Procedure",
+          "section": "10. Shipper Liability",
+          "similarity": -0.1514
+        },
+        {
+          "doc_id": "01_regulatory_sg_hs_classification",
+          "title": "Singapore HS Classification Guide",
+          "section": "General Interpretative Rules (GIR)",
+          "similarity": -0.2342
+        },
+        {
+          "doc_id": "04_internal_synthetic_fta_comparison_matrix",
+          "title": "Singapore FTA Comparison Matrix",
+          "section": "3. FTA Selection Matrix",
+          "similarity": -0.2662
+        },
+        {
+          "doc_id": "01_regulatory_sg_gst_guide",
+          "title": "Singapore GST Guide for Imports",
+          "section": "GST Calculation Methods",
+          "similarity": -0.291
+        }
+      ]
+    }
+  ]
+}
