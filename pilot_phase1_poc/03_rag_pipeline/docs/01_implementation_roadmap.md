@@ -15,11 +15,11 @@
 | 3. Node.js Setup | Project structure | 1/1 | ✅ Complete |
 | 4. Retrieval Service | ChromaDB integration | 1/1 | ✅ Complete |
 | 5. Generation Service | LLM, prompt, citations | 3/3 | ✅ Complete |
-| 6. Pipeline & API | Orchestrator, Express API, E2E test | 0/3 | ⬜ Not Started |
+| 6. Pipeline & API | Orchestrator, Express API, E2E test | 1/3 | 🟡 In Progress |
 | 7. UI Implementation | React + Tailwind, polish | 0/2 | ⬜ Not Started |
 | 8. Integration Testing | E2E suite, bug fixes | 0/2 | ⬜ Not Started |
 | 9. Documentation | README, checkpoint report | 0/2 | ⬜ Not Started |
-| **TOTAL** | | **9/18** | **50%** |
+| **TOTAL** | | **10/18** | **56%** |
 
 **Status Legend**: ⬜ Not Started | 🟡 In Progress | ✅ Complete | ❌ Blocked
 
@@ -305,7 +305,7 @@ LLM_MAX_TOKENS=500
 4. Generate response with citations
 5. Return structured result
 
-**Status**: ⬜ | **Report**: `prompts/06_6.1_pipeline_orchestrator/REPORT.md`
+**Status**: ✅ | **Report**: `prompts/06_6.1_pipeline_orchestrator/REPORT.md`
 
 ---
 
