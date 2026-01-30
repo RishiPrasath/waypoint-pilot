@@ -14,12 +14,12 @@
 | 2. Retrieval Quality Testing | Quality test script, decision gate | 2/2 | ✅ Complete |
 | 3. Node.js Setup | Project structure | 1/1 | ✅ Complete |
 | 4. Retrieval Service | ChromaDB integration | 1/1 | ✅ Complete |
-| 5. Generation Service | LLM, prompt, citations | 2/3 | 🟡 In Progress |
+| 5. Generation Service | LLM, prompt, citations | 3/3 | ✅ Complete |
 | 6. Pipeline & API | Orchestrator, Express API, E2E test | 0/3 | ⬜ Not Started |
 | 7. UI Implementation | React + Tailwind, polish | 0/2 | ⬜ Not Started |
 | 8. Integration Testing | E2E suite, bug fixes | 0/2 | ⬜ Not Started |
 | 9. Documentation | README, checkpoint report | 0/2 | ⬜ Not Started |
-| **TOTAL** | | **8/18** | **44%** |
+| **TOTAL** | | **9/18** | **50%** |
 
 **Status Legend**: ⬜ Not Started | 🟡 In Progress | ✅ Complete | ❌ Blocked
 
@@ -255,7 +255,7 @@ LLM_MAX_TOKENS=500
 - [x] Professional, formal tone for customer service
 - [x] Citation requirement for factual claims
 - [x] Out-of-scope handling instructions
-- [ ] Response format specification
+- [x] Response format specification (Structure Your Response section)
 
 **Key Requirements**:
 - MUST cite sources for every factual claim
@@ -269,11 +269,11 @@ LLM_MAX_TOKENS=500
 ---
 
 ### Task 5.3: Create Citation Extractor
-- [ ] File created at `src/services/citations.js`
-- [ ] `extractCitations(response, chunks)` function
-- [ ] Links citations to source documents
-- [ ] Formats with document title, section, URL
-- [ ] Unit tests at `tests/citations.test.js`
+- [x] File created at `src/services/citations.js`
+- [x] `extractCitations(response, chunks)` function
+- [x] Links citations to source documents
+- [x] Formats with document title, section, URL
+- [x] Unit tests at `tests/citations.test.js`
 
 **Citation Format**:
 ```
@@ -285,7 +285,7 @@ LLM_MAX_TOKENS=500
 [Company SLA Policy > Response Times] (Internal Document)
 ```
 
-**Status**: ⬜ | **Report**: `prompts/05_5.3_citation_extractor/REPORT.md`
+**Status**: ✅ | **Report**: `prompts/05_5.3_citation_extractor/REPORT.md`
 
 ---
 
