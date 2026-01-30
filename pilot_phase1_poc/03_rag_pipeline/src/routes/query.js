@@ -4,7 +4,8 @@
  */
 
 import { Router } from 'express';
-import { processQuery } from '../services/index.js';
+import { processQuery } from '../services/pipeline.js';
+import { logger } from '../utils/logger.js';
 
 const router = Router();
 
@@ -12,29 +13,51 @@ const router = Router();
  * POST /api/query
  * Process a customer service query through the RAG pipeline.
  *
- * @param {Object} req.body - Request body
- * @param {string} req.body.query - The customer query text
- * @returns {Object} Response with answer, sources, and metadata
+ * @body {string} query - The customer query text
+ * @returns {Object} Response with answer, citations, confidence, metadata
  */
-router.post('/', async (req, res) => {
+router.post('/', async (req, res, next) => {
+  const startTime = Date.now();
+
   try {
     const { query } = req.body;
 
+    // Validate request
     if (!query || typeof query !== 'string') {
       return res.status(400).json({
-        error: 'Invalid request',
+        error: 'Bad Request',
         message: 'Query parameter is required and must be a string',
       });
     }
 
+    if (query.trim().length === 0) {
+      return res.status(400).json({
+        error: 'Bad Request',
+        message: 'Query cannot be empty',
+      });
+    }
+
+    if (query.length > 1000) {
+      return res.status(400).json({
+        error: 'Bad Request',
+        message: 'Query exceeds maximum length of 1000 characters',
+      });
+    }
+
+    // Process query through pipeline
     const result = await processQuery(query);
-    res.json(result);
-  } catch (error) {
-    console.error('Query processing error:', error);
-    res.status(500).json({
-      error: 'Internal server error',
-      message: error.message,
+
+    // Log successful request
+    logger.info('Query processed via API', {
+      queryLength: query.length,
+      confidence: result.confidence.level,
+      latencyMs: Date.now() - startTime,
     });
+
+    res.json(result);
+
+  } catch (error) {
+    next(error);
   }
 });
 

@@ -15,11 +15,11 @@
 | 3. Node.js Setup | Project structure | 1/1 | ✅ Complete |
 | 4. Retrieval Service | ChromaDB integration | 1/1 | ✅ Complete |
 | 5. Generation Service | LLM, prompt, citations | 3/3 | ✅ Complete |
-| 6. Pipeline & API | Orchestrator, Express API, E2E test | 1/3 | 🟡 In Progress |
+| 6. Pipeline & API | Orchestrator, Express API, E2E test | 2/3 | 🟡 In Progress |
 | 7. UI Implementation | React + Tailwind, polish | 0/2 | ⬜ Not Started |
 | 8. Integration Testing | E2E suite, bug fixes | 0/2 | ⬜ Not Started |
 | 9. Documentation | README, checkpoint report | 0/2 | ⬜ Not Started |
-| **TOTAL** | | **10/18** | **56%** |
+| **TOTAL** | | **11/18** | **61%** |
 
 **Status Legend**: ⬜ Not Started | 🟡 In Progress | ✅ Complete | ❌ Blocked
 
@@ -293,10 +293,10 @@ LLM_MAX_TOKENS=500
 **Duration**: 6-8 hours (Day 11) | **Prompt Folder**: `prompts/06_6.x_*/`
 
 ### Task 6.1: Create Pipeline Orchestrator
-- [ ] File created at `src/services/pipeline.js`
-- [ ] `processQuery(query)` function orchestrating full RAG flow
-- [ ] Metrics collection (latency, chunk counts)
-- [ ] Unit tests at `tests/pipeline.test.js`
+- [x] File created at `src/services/pipeline.js`
+- [x] `processQuery(query)` function orchestrating full RAG flow
+- [x] Metrics collection (latency, chunk counts)
+- [x] Unit tests at `tests/pipeline.test.js`
 
 **Pipeline Flow**:
 1. Retrieve relevant chunks
@@ -310,13 +310,13 @@ LLM_MAX_TOKENS=500
 ---
 
 ### Task 6.2: Create Express API
-- [ ] File created at `src/index.js`
-- [ ] `POST /api/query` endpoint
-- [ ] `GET /api/health` endpoint
+- [x] File created at `src/index.js`
+- [x] `POST /api/query` endpoint
+- [x] `GET /api/health` endpoint
 - [ ] `GET /api/stats` endpoint (optional)
-- [ ] CORS enabled for browser access
-- [ ] Error handling middleware
-- [ ] Integration tests at `tests/api.test.js`
+- [x] CORS enabled for browser access
+- [x] Error handling middleware
+- [x] Integration tests at `tests/api.test.js`
 
 **API Response Format**:
 ```json
@@ -348,7 +348,7 @@ curl -X POST http://localhost:3000/api/query -H "Content-Type: application/json"
 curl http://localhost:3000/api/health
 ```
 
-**Status**: ⬜ | **Report**: `prompts/06_6.2_express_api/REPORT.md`
+**Status**: ✅ | **Report**: `prompts/06_6.2_express_api/REPORT.md`
 
 ---
 

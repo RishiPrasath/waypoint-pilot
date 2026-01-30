@@ -9,4 +9,5 @@ export default {
   setupFilesAfterEnv: ['./tests/setup.js'],
   verbose: true,
   testTimeout: 10000,
+  forceExit: true,
 };
