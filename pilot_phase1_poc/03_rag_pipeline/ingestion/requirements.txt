@@ -1,0 +1,14 @@
+# Waypoint Ingestion Pipeline Dependencies
+# Using ChromaDB's built-in default embeddings (all-MiniLM-L6-v2 via ONNX)
+
+chromadb==0.5.23
+langchain-text-splitters==0.0.1
+python-dotenv==1.0.0
+python-frontmatter==1.1.0
+pyyaml==6.0.1
+requests>=2.31.0
+tqdm==4.66.1
+
+# Testing (TDD)
+pytest>=8.0.0
+pytest-cov>=4.1.0

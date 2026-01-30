@@ -255,12 +255,15 @@ Before starting any task from the roadmap:
 2. **Verify Status**: Check task status (⬜ Not Started | 🟡 In Progress | ✅ Complete | ❌ Blocked)
 3. **Check Dependencies**: Confirm all dependencies are complete
 4. **Create Task Folder**: `prompts/[GROUP]_[TASK]_[description]/`
-5. **Use PCTF Format** for prompts:
+5. **Use PCTF Format** for prompts (see templates):
+   - Ingestion: `02_ingestion_pipeline/prompts/00_PCTF_TEMPLATE.md`
+   - RAG Pipeline: `03_rag_pipeline/prompts/00_PCTF_TEMPLATE.md`
    - **P**ersona: Role and expertise
    - **C**ontext: Background, current state, references, dependencies
    - **T**ask: Objective, requirements, specs, constraints, acceptance criteria
    - **F**ormat: Output structure, code style, docs, validation commands
 6. **Update Roadmap**: Mark checkboxes `[x]` and update status after completion
+7. **Create REPORT.md**: Document completion with files created, acceptance criteria, issues
 
 ### Configuration
 

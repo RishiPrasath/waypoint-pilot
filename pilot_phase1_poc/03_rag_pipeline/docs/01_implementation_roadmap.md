@@ -10,7 +10,7 @@
 
 | Group | Name | Tasks | Status |
 |-------|------|-------|--------|
-| 1. Project Setup | Copy assets, fix source_urls | 0/2 | ⬜ Not Started |
+| 1. Project Setup | Copy assets, fix source_urls | 1/2 | 🟡 In Progress |
 | 2. Retrieval Quality Testing | Quality test script, decision gate | 0/2 | ⬜ Not Started |
 | 3. Node.js Setup | Project structure | 0/1 | ⬜ Not Started |
 | 4. Retrieval Service | ChromaDB integration | 0/1 | ⬜ Not Started |
@@ -19,7 +19,7 @@
 | 7. UI Implementation | React + Tailwind, polish | 0/2 | ⬜ Not Started |
 | 8. Integration Testing | E2E suite, bug fixes | 0/2 | ⬜ Not Started |
 | 9. Documentation | README, checkpoint report | 0/2 | ⬜ Not Started |
-| **TOTAL** | | **0/18** | **0%** |
+| **TOTAL** | | **1/18** | **6%** |
 
 **Status Legend**: ⬜ Not Started | 🟡 In Progress | ✅ Complete | ❌ Blocked
 
@@ -29,10 +29,10 @@
 **Duration**: 2-3 hours (Day 8 Morning) | **Prompt Folder**: `prompts/01_1.x_*/`
 
 ### Task 1.1: Copy KB and Ingestion to RAG Pipeline
-- [ ] Knowledge base copied to `03_rag_pipeline/kb/`
-- [ ] Ingestion pipeline copied to `03_rag_pipeline/ingestion/`
-- [ ] Paths verified and working
-- [ ] venv can be created in new location
+- [x] Knowledge base copied to `03_rag_pipeline/kb/`
+- [x] Ingestion pipeline copied to `03_rag_pipeline/ingestion/`
+- [x] Paths verified and working
+- [x] venv can be created in new location
 
 **Target Structure**:
 ```
@@ -49,7 +49,7 @@
     └── ...
 ```
 
-**Status**: ⬜ | **Report**: `prompts/01_1.1_copy_assets/REPORT.md`
+**Status**: ✅ | **Report**: `prompts/01_1.1_copy_assets/REPORT.md`
 
 ---
 
