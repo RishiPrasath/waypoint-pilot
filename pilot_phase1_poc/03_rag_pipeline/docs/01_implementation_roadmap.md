@@ -14,12 +14,12 @@
 | 2. Retrieval Quality Testing | Quality test script, decision gate | 2/2 | ✅ Complete |
 | 3. Node.js Setup | Project structure | 1/1 | ✅ Complete |
 | 4. Retrieval Service | ChromaDB integration | 1/1 | ✅ Complete |
-| 5. Generation Service | LLM, prompt, citations | 1/3 | 🟡 In Progress |
+| 5. Generation Service | LLM, prompt, citations | 2/3 | 🟡 In Progress |
 | 6. Pipeline & API | Orchestrator, Express API, E2E test | 0/3 | ⬜ Not Started |
 | 7. UI Implementation | React + Tailwind, polish | 0/2 | ⬜ Not Started |
 | 8. Integration Testing | E2E suite, bug fixes | 0/2 | ⬜ Not Started |
 | 9. Documentation | README, checkpoint report | 0/2 | ⬜ Not Started |
-| **TOTAL** | | **7/18** | **39%** |
+| **TOTAL** | | **8/18** | **44%** |
 
 **Status Legend**: ⬜ Not Started | 🟡 In Progress | ✅ Complete | ❌ Blocked
 
@@ -251,10 +251,10 @@ LLM_MAX_TOKENS=500
 ---
 
 ### Task 5.2: Create System Prompt
-- [ ] File created at `src/prompts/system.txt`
-- [ ] Professional, formal tone for customer service
-- [ ] Citation requirement for factual claims
-- [ ] Out-of-scope handling instructions
+- [x] File created at `src/prompts/system.txt`
+- [x] Professional, formal tone for customer service
+- [x] Citation requirement for factual claims
+- [x] Out-of-scope handling instructions
 - [ ] Response format specification
 
 **Key Requirements**:
@@ -264,7 +264,7 @@ LLM_MAX_TOKENS=500
 - Format: Clear structure, bullet points for lists
 - No casual language, filler words, or excessive hedging
 
-**Status**: ⬜ | **Report**: `prompts/05_5.2_system_prompt/REPORT.md`
+**Status**: ✅ | **Report**: `prompts/05_5.2_system_prompt/REPORT.md`
 
 ---
 

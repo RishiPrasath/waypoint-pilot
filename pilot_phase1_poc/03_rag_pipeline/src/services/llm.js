@@ -4,11 +4,41 @@
  */
 
 import OpenAI from 'openai';
+import { readFileSync } from 'fs';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
 import { config } from '../config.js';
 import { logger } from '../utils/logger.js';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 // Singleton client instance
 let openaiClient = null;
+
+// System prompt template cache
+let systemPromptTemplate = null;
+const SYSTEM_PROMPT_PATH = join(__dirname, '..', 'prompts', 'system.txt');
+
+/**
+ * Load system prompt template from file.
+ * Caches the template for reuse.
+ *
+ * @returns {string} System prompt template
+ */
+export function loadSystemPrompt() {
+  if (!systemPromptTemplate) {
+    systemPromptTemplate = readFileSync(SYSTEM_PROMPT_PATH, 'utf-8');
+  }
+  return systemPromptTemplate;
+}
+
+/**
+ * Reset system prompt cache (for testing).
+ */
+export function resetSystemPrompt() {
+  systemPromptTemplate = null;
+}
 
 /**
  * Initialize OpenAI-compatible client for Groq.
@@ -124,30 +154,8 @@ export async function generateResponse(query, context, options = {}) {
  * @returns {string} Complete system prompt
  */
 export function buildSystemPrompt(context) {
-  return `You are a helpful customer service assistant for a freight forwarding company in Singapore.
-
-Your role is to answer questions about:
-- Shipment booking procedures and documentation requirements
-- Customs regulations (Singapore and Southeast Asia)
-- Carrier information and services
-- Service terms, SLAs, and policies
-
-IMPORTANT GUIDELINES:
-1. Only answer questions based on the provided context
-2. Always cite your sources when providing information
-3. If the information is not in the context, say "I don't have information about that in my knowledge base"
-4. Be concise and professional
-5. Do not make up information or provide speculative answers
-
-OUT OF SCOPE (politely decline these):
-- Real-time shipment tracking
-- Live freight rates and quotes
-- Booking modifications or reservations
-- Account-specific information
-- Weather or market predictions
-
-Context from knowledge base:
-${context}`;
+  const template = loadSystemPrompt();
+  return template.replace('{context}', context);
 }
 
 /**

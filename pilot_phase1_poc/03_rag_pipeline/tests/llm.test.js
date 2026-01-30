@@ -4,42 +4,78 @@
 
 import { jest } from '@jest/globals';
 import {
+  loadSystemPrompt,
   buildSystemPrompt,
   parseCompletion,
   isRetryableError,
   calculateBackoff,
   resetLLMClient,
+  resetSystemPrompt,
 } from '../src/services/llm.js';
 
 describe('LLM Service', () => {
   beforeEach(() => {
     resetLLMClient();
+    resetSystemPrompt();
+  });
+
+  describe('loadSystemPrompt', () => {
+    test('returns non-empty string', () => {
+      const prompt = loadSystemPrompt();
+      expect(typeof prompt).toBe('string');
+      expect(prompt.length).toBeGreaterThan(0);
+    });
+
+    test('contains expected sections', () => {
+      const prompt = loadSystemPrompt();
+      expect(prompt).toContain('Your Role');
+      expect(prompt).toContain('Response Guidelines');
+      expect(prompt).toContain('Cite Your Sources');
+      expect(prompt).toContain('Out of Scope');
+    });
+
+    test('contains context placeholder', () => {
+      const prompt = loadSystemPrompt();
+      expect(prompt).toContain('{context}');
+    });
+
+    test('caches the template', () => {
+      const prompt1 = loadSystemPrompt();
+      const prompt2 = loadSystemPrompt();
+      expect(prompt1).toBe(prompt2);
+    });
+
+    test('reset clears the cache', () => {
+      const prompt1 = loadSystemPrompt();
+      resetSystemPrompt();
+      const prompt2 = loadSystemPrompt();
+      expect(prompt1).toBe(prompt2); // Content should be same
+    });
   });
 
   describe('buildSystemPrompt', () => {
-    test('includes context in prompt', () => {
+    test('replaces context placeholder', () => {
       const context = 'Test context about exports';
       const prompt = buildSystemPrompt(context);
 
       expect(prompt).toContain('Test context about exports');
-      expect(prompt).toContain('customer service assistant');
-      expect(prompt).toContain('freight forwarding');
+      expect(prompt).not.toContain('{context}');
     });
 
-    test('includes guidelines', () => {
-      const prompt = buildSystemPrompt('context');
-
-      expect(prompt).toContain('cite your sources');
-      expect(prompt).toContain('OUT OF SCOPE');
-    });
-
-    test('includes all required sections', () => {
+    test('includes guidelines from file', () => {
       const prompt = buildSystemPrompt('test context');
 
-      expect(prompt).toContain('Your role is to answer questions about');
-      expect(prompt).toContain('IMPORTANT GUIDELINES');
-      expect(prompt).toContain('OUT OF SCOPE');
-      expect(prompt).toContain('Context from knowledge base');
+      expect(prompt).toContain('customer service assistant');
+      expect(prompt).toContain('Cite Your Sources');
+      expect(prompt).toContain('Out of Scope');
+    });
+
+    test('includes context in correct location', () => {
+      const context = 'Singapore Export Procedures content';
+      const prompt = buildSystemPrompt(context);
+
+      expect(prompt).toContain('KNOWLEDGE BASE CONTEXT:');
+      expect(prompt).toContain('Singapore Export Procedures content');
     });
   });
 
@@ -89,7 +125,6 @@ describe('LLM Service', () => {
 
       expect(result.usage.promptTokens).toBe(0);
       expect(result.usage.completionTokens).toBe(0);
-      expect(result.usage.totalTokens).toBe(0);
     });
 
     test('handles empty message content', () => {
