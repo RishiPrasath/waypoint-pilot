@@ -14,12 +14,12 @@
 | 2. Retrieval Quality Testing | Quality test script, decision gate | 2/2 | ✅ Complete |
 | 3. Node.js Setup | Project structure | 1/1 | ✅ Complete |
 | 4. Retrieval Service | ChromaDB integration | 1/1 | ✅ Complete |
-| 5. Generation Service | LLM, prompt, citations | 0/3 | ⬜ Not Started |
+| 5. Generation Service | LLM, prompt, citations | 1/3 | 🟡 In Progress |
 | 6. Pipeline & API | Orchestrator, Express API, E2E test | 0/3 | ⬜ Not Started |
 | 7. UI Implementation | React + Tailwind, polish | 0/2 | ⬜ Not Started |
 | 8. Integration Testing | E2E suite, bug fixes | 0/2 | ⬜ Not Started |
 | 9. Documentation | README, checkpoint report | 0/2 | ⬜ Not Started |
-| **TOTAL** | | **6/18** | **33%** |
+| **TOTAL** | | **7/18** | **39%** |
 
 **Status Legend**: ⬜ Not Started | 🟡 In Progress | ✅ Complete | ❌ Blocked
 
@@ -230,11 +230,11 @@ node scripts/test_retrieval.js
 **Duration**: 6-8 hours (Day 10) | **Prompt Folder**: `prompts/05_5.x_*/`
 
 ### Task 5.1: Create LLM Service
-- [ ] File created at `src/services/llm.js`
-- [ ] `generateResponse(query, context)` function
-- [ ] Groq API integration via OpenAI SDK
-- [ ] Error handling and retry logic
-- [ ] Unit tests at `tests/llm.test.js`
+- [x] File created at `src/services/llm.js`
+- [x] `generateResponse(query, context)` function
+- [x] Groq API integration via OpenAI SDK
+- [x] Error handling and retry logic
+- [x] Unit tests at `tests/llm.test.js`
 
 **Configuration** (from `.env`):
 ```bash
@@ -246,7 +246,7 @@ LLM_TEMPERATURE=0.3
 LLM_MAX_TOKENS=500
 ```
 
-**Status**: ⬜ | **Report**: `prompts/05_5.1_llm_service/REPORT.md`
+**Status**: ✅ | **Report**: `prompts/05_5.1_llm_service/REPORT.md`
 
 ---
 
