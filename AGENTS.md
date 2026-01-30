@@ -41,30 +41,44 @@ waypoint-pilot/
 │   │   ├── PROGRESS_CHECKLIST.md   # Meta file (outside kb/)
 │   │   └── SCRAPER_EXECUTION_PLAN.md  # Meta file (outside kb/)
 │   │
-│   └── 02_ingestion_pipeline/      # Document ingestion component
-│       ├── scripts/                # Python modules
-│       │   ├── __init__.py
-│       │   ├── config.py           # Configuration module
-│       │   ├── process_docs.py     # Document discovery and parsing
-│       │   ├── chunker.py          # Text chunking with metadata
-│       │   ├── ingest.py           # Main ingestion orchestrator
-│       │   └── verify_ingestion.py # Quality verification
-│       ├── tests/                  # pytest test files
-│       │   ├── __init__.py
-│       │   ├── test_process_docs.py
-│       │   ├── test_chunker.py
-│       │   ├── test_ingest.py
-│       │   └── test_verify_ingestion.py
+│   ├── 02_ingestion_pipeline/      # Document ingestion component (Week 1 - Complete)
+│   │   ├── scripts/                # Python modules
+│   │   │   ├── __init__.py
+│   │   │   ├── config.py           # Configuration module
+│   │   │   ├── process_docs.py     # Document discovery and parsing
+│   │   │   ├── chunker.py          # Text chunking with metadata
+│   │   │   ├── ingest.py           # Main ingestion orchestrator
+│   │   │   └── verify_ingestion.py # Quality verification
+│   │   ├── tests/                  # pytest test files
+│   │   ├── docs/                   # Pipeline planning documents
+│   │   │   ├── 00_ingestion_pipeline_plan.md
+│   │   │   └── 01_implementation_roadmap.md  <-- CHECK THIS FIRST
+│   │   ├── prompts/                # PCTF task prompts
+│   │   ├── chroma_db/              # Vector database (auto-created)
+│   │   ├── logs/                   # Log files (auto-created)
+│   │   ├── .env                    # Environment config (gitignored)
+│   │   ├── .env.example            # Environment template
+│   │   ├── requirements.txt        # Python dependencies
+│   │   └── README.md               # Detailed documentation
+│   │
+│   └── 03_rag_pipeline/            # RAG Pipeline component (Week 2)
 │       ├── docs/                   # Pipeline planning documents
-│       │   ├── 00_ingestion_pipeline_plan.md
+│       │   ├── 00_week2_rag_pipeline_plan.md
 │       │   └── 01_implementation_roadmap.md  <-- CHECK THIS FIRST
 │       ├── prompts/                # PCTF task prompts
-│       ├── chroma_db/              # Vector database (auto-created)
-│       ├── logs/                   # Log files (auto-created)
+│       ├── src/                    # Node.js backend (created during tasks)
+│       │   ├── index.js            # Express app entry point
+│       │   ├── config.js           # Environment config loader
+│       │   ├── routes/             # API route handlers
+│       │   ├── services/           # Business logic (pipeline, retrieval, llm)
+│       │   ├── prompts/            # System prompt templates
+│       │   └── utils/              # Utilities (logger, etc.)
+│       ├── client/                 # React UI (created during tasks)
+│       ├── scripts/                # Python evaluation scripts
+│       ├── tests/                  # Jest unit tests
+│       ├── logs/                   # Log files
 │       ├── .env                    # Environment config (gitignored)
-│       ├── .env.example            # Environment template
-│       ├── requirements.txt        # Python dependencies
-│       └── README.md               # Detailed documentation
+│       └── .env.example            # Environment template
 │
 ├── .github/workflows/ingestion.yml # CI/CD pipeline
 ├── CLAUDE.md                       # Root project guide
@@ -77,17 +91,21 @@ waypoint-pilot/
 
 | Component | Technology | Version | Purpose |
 |-----------|------------|---------|---------|
-| Language | Python | 3.11+ | Document processing (ChromaDB doesn't support 3.14) |
+| Language | Python | 3.11+ | Document processing, ingestion (ChromaDB doesn't support 3.14) |
 | Vector DB | ChromaDB | 0.5.23 | Vector storage and retrieval |
 | Embeddings | all-MiniLM-L6-v2 | via ONNX | 384-dimensional embeddings (ChromaDB default) |
 | Text Splitting | langchain-text-splitters | 0.0.1 | Semantic chunking |
 | Frontmatter | python-frontmatter | 1.1.0 | YAML frontmatter parsing |
-| Testing | pytest | 8.0+ | Unit testing framework |
+| Backend | Node.js + Express | 18+ | API server |
+| Frontend | React + Tailwind | 18+ | Minimal UI |
+| LLM | Groq API (Llama 3.1 8B) | - | Response generation |
+| Testing (Python) | pytest | 8.0+ | Python unit tests |
+| Testing (Node.js) | Jest | 29+ | Node.js unit tests |
 | CI/CD | GitHub Actions | - | Automated testing and ingestion |
 
 **Key Architecture Decisions:**
-1. **Hybrid Python/Node**: Document processing uses Python (better libraries), API uses Node.js (planned)
-2. **Local-first**: ChromaDB and embeddings run locally; LLM via Groq API (not yet implemented)
+1. **Hybrid Python/Node**: Document processing uses Python (better libraries), API uses Node.js
+2. **Local-first**: ChromaDB and embeddings run locally; LLM via Groq API
 3. **Knowledge base only**: Phase 1 has no live system integration
 4. **Singapore-centric**: Regulatory scope limited to Singapore with SEA secondary coverage
 5. **Minimal dependencies**: ChromaDB default embeddings via ONNX (no PyTorch/CUDA required)
@@ -333,10 +351,64 @@ Knowledge Base (29 docs)
 
 ---
 
+## RAG Pipeline Coordination Rules (Week 2)
+
+### Rule 1: Check Roadmap Before Any Task
+- Read `pilot_phase1_poc/03_rag_pipeline/docs/01_implementation_roadmap.md` first
+- Verify task status: ⬜ Not Started | 🟡 In Progress | ✅ Complete | ❌ Blocked
+- Confirm all dependency tasks are complete before starting
+
+### Rule 2: Create Task Folder On-Demand
+When user requests a task from the roadmap:
+1. Create folder: `pilot_phase1_poc/03_rag_pipeline/prompts/[GROUP]_[TASK]_[description]/`
+2. Create `prompt.md` inside using PCTF format
+3. Then execute the task
+4. Create `REPORT.md` after completion
+
+### Rule 3: Use MCP Tools for Documentation
+Before implementing library integrations:
+1. Use `docfork:docfork_search_docs` to search library docs
+2. Use `docfork:docfork_read_url` to read full documentation
+3. Alternative: Use context7 MCP for library docs
+
+### Rule 4: Follow TDD
+- Python: `tests/test_<module>.py` with pytest
+- Node.js: `tests/<module>.test.js` with Jest
+- Red → Green → Refactor cycle
+
+### Rule 5: Update Roadmap After Completion
+After each task:
+1. Mark checkboxes `[x]` in `01_implementation_roadmap.md`
+2. Update status: ⬜ → ✅
+3. Update Progress Tracker totals
+
+### RAG Pipeline Commands
+
+```bash
+cd pilot_phase1_poc/03_rag_pipeline
+
+# Ingestion (Python)
+cd ingestion && python -m scripts.ingest --clear
+
+# Node.js backend
+npm install
+npm start
+npm test
+
+# React UI
+cd client && npm install && npm run dev
+
+# E2E tests
+python -m scripts.e2e_test
+```
+
+---
+
 ## Useful Resources
 
 - Root `CLAUDE.md`: Project overview and high-level architecture
-- `02_ingestion_pipeline/docs/01_implementation_roadmap.md`: Task checklist and status
+- `02_ingestion_pipeline/docs/01_implementation_roadmap.md`: Ingestion task checklist (Week 1)
+- `03_rag_pipeline/docs/01_implementation_roadmap.md`: RAG pipeline task checklist (Week 2)
 - `02_ingestion_pipeline/README.md`: Detailed pipeline documentation
 - `00_docs/04_technical_architecture.md`: Stack and API specification
 - `00_docs/02_use_cases.md`: 50 test queries and expected behaviors

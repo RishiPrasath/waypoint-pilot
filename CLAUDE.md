@@ -22,22 +22,33 @@ waypoint-pilot/
 │   │   │   └── 04_internal_synthetic/  # Policies, procedures (6 docs)
 │   │   ├── PROGRESS_CHECKLIST.md   # Meta file (outside kb/)
 │   │   └── SCRAPER_EXECUTION_PLAN.md  # Meta file (outside kb/)
-│   └── 02_ingestion_pipeline/      # Document ingestion component
-│       ├── docs/                   # Pipeline plan and roadmap
+│   ├── 02_ingestion_pipeline/      # Document ingestion component (Week 1 - Complete)
+│   │   ├── docs/                   # Pipeline plan and roadmap
+│   │   ├── prompts/                # PCTF task prompts
+│   │   └── CLAUDE.md               # Component-specific instructions
+│   └── 03_rag_pipeline/            # RAG Pipeline component (Week 2)
+│       ├── docs/                   # Pipeline planning documents
+│       │   ├── 00_week2_rag_pipeline_plan.md
+│       │   └── 01_implementation_roadmap.md  <-- CHECK THIS FIRST
 │       ├── prompts/                # PCTF task prompts
-│       └── CLAUDE.md               # Component-specific instructions
+│       ├── src/                    # Node.js backend (created during tasks)
+│       ├── client/                 # React UI (created during tasks)
+│       ├── scripts/                # Python scripts
+│       ├── tests/                  # Test files
+│       └── logs/                   # Log files
 └── CLAUDE.md                       # This file
 ```
 
 ## Tech Stack
 
-| Component | Technology | Purpose |
-|-----------|------------|---------|
-| Vector DB | ChromaDB | Vector storage and retrieval |
-| Embeddings | ChromaDB default (all-MiniLM-L6-v2 via ONNX, 384-d) | Embedding generation |
-| Document Processing | Python 3.11+ | Ingestion pipeline |
-| Backend | Node.js + Express (planned) | API server |
-| LLM | Groq API (Llama 3.1 8B) | Response generation |
+| Component | Technology | Version | Purpose |
+|-----------|------------|---------|---------|
+| Vector DB | ChromaDB | 0.5.23 | Vector storage and retrieval |
+| Embeddings | all-MiniLM-L6-v2 | via ONNX | 384-d embeddings (ChromaDB default) |
+| Document Processing | Python | 3.11+ | Ingestion pipeline |
+| Backend | Node.js + Express | 18+ | API server |
+| Frontend | React + Tailwind | 18+ | Minimal UI |
+| LLM | Groq API (Llama 3.1 8B) | - | Response generation |
 
 ## Ingestion Pipeline Commands
 
@@ -128,7 +139,7 @@ Located in `pilot_phase1_poc/00_docs/`:
 - `05_execution_roadmap.md` - 30-day implementation plan
 - `06_evaluation_framework.md` - Metrics and go/no-go criteria
 
-## Ingestion Pipeline Coordination Rules
+## Ingestion Pipeline Coordination Rules (Week 1 - Complete)
 
 ### Rule 1: Check Roadmap Before Any Task
 - Read `pilot_phase1_poc/02_ingestion_pipeline/docs/01_implementation_roadmap.md` first
@@ -189,4 +200,51 @@ python -m pytest tests/ -v
 
 # Run specific test file
 python -m pytest tests/test_process_docs.py -v
+```
+
+## RAG Pipeline Coordination Rules (Week 2)
+
+### Rule 1: Check Roadmap Before Any Task
+- Read `pilot_phase1_poc/03_rag_pipeline/docs/01_implementation_roadmap.md` first
+- Verify task status: ⬜ Not Started | 🟡 In Progress | ✅ Complete | ❌ Blocked
+- Confirm all dependency tasks are complete before starting
+
+### Rule 2: Create Task Folder On-Demand
+When user requests a task from the roadmap:
+1. Create folder: `pilot_phase1_poc/03_rag_pipeline/prompts/[GROUP]_[TASK]_[description]/`
+2. Create `prompt.md` inside using PCTF format
+3. Then execute the task
+4. Create `REPORT.md` after completion
+
+### Rule 3: Use MCP Tools for Documentation
+Before implementing library integrations:
+1. Use `docfork:docfork_search_docs` to search library docs
+2. Use `docfork:docfork_read_url` to read full documentation
+3. Alternative: Use context7 MCP for library docs
+
+### Rule 4: Follow TDD
+- Python: `tests/test_<module>.py` with pytest
+- Node.js: `tests/<module>.test.js` with Jest
+- Red → Green → Refactor cycle
+
+### Rule 5: Update Roadmap After Completion
+After each task:
+1. Mark checkboxes `[x]` in `01_implementation_roadmap.md`
+2. Update status: ⬜ → ✅
+3. Update Progress Tracker totals
+
+### RAG Pipeline Commands
+```bash
+cd pilot_phase1_poc/03_rag_pipeline
+
+# Ingestion (Python)
+cd ingestion && python -m scripts.ingest --clear
+
+# Node.js backend
+npm install
+npm start
+npm test
+
+# React UI
+cd client && npm install && npm run dev
 ```
