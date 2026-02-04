@@ -6,21 +6,35 @@
 import { logger } from '../utils/logger.js';
 
 /**
- * Citation pattern for extracting references from text.
- * Matches: [Title], [Title > Section], According to [Title]...
+ * Citation patterns for extracting references from text.
+ * Primary: [Title], [Title > Section]
+ * Alternative: "Source: Title", "Reference: Title" (without brackets)
  */
 const CITATION_PATTERN = /\[([^\]]+)\]/g;
+// Alternative patterns - only match when NOT followed by brackets
+// These catch cases where LLM doesn't use bracket format
+const ALT_PATTERNS = [
+  /(?:Source|Reference):\s*["']?([^"'\n\[\],]{5,})["']?/gi,
+];
+
+/**
+ * Similarity threshold for fuzzy matching (lowered from 0.7 for better recall)
+ */
+const SIMILARITY_THRESHOLD = 0.5;
 
 /**
  * Extract citations from LLM response text.
+ * Supports both [Title > Section] format and alternative patterns.
  *
  * @param {string} text - LLM response text
  * @returns {Array<Object>} Extracted citations with text and position
  */
 export function extractCitations(text) {
   const citations = [];
+  const seenTitles = new Set();
   let match;
 
+  // Primary pattern: [Title] or [Title > Section]
   while ((match = CITATION_PATTERN.exec(text)) !== null) {
     const fullMatch = match[0];
     const content = match[1];
@@ -30,16 +44,41 @@ export function extractCitations(text) {
     const title = parts[0];
     const section = parts[1] || null;
 
-    citations.push({
-      raw: fullMatch,
-      title,
-      section,
-      position: match.index,
-    });
+    // Skip if we've already seen this title
+    if (!seenTitles.has(title.toLowerCase())) {
+      seenTitles.add(title.toLowerCase());
+      citations.push({
+        raw: fullMatch,
+        title,
+        section,
+        position: match.index,
+      });
+    }
   }
 
   // Reset regex state
   CITATION_PATTERN.lastIndex = 0;
+
+  // Alternative patterns: "Source: Title", "According to Title", etc.
+  for (const pattern of ALT_PATTERNS) {
+    while ((match = pattern.exec(text)) !== null) {
+      const title = match[1].trim();
+
+      // Skip short matches or if already found
+      if (title.length < 5 || seenTitles.has(title.toLowerCase())) {
+        continue;
+      }
+
+      seenTitles.add(title.toLowerCase());
+      citations.push({
+        raw: match[0],
+        title,
+        section: null,
+        position: match.index,
+      });
+    }
+    pattern.lastIndex = 0;
+  }
 
   return citations;
 }
@@ -61,14 +100,14 @@ export function matchCitationToChunk(citation, chunks) {
 
   if (match) return match;
 
-  // Try partial/fuzzy match
+  // Try partial/fuzzy match with lowered threshold for better recall
   match = chunks.find(chunk => {
     const chunkTitle = chunk.metadata?.title?.toLowerCase() || '';
     const citationTitle = citation.title.toLowerCase();
 
     return chunkTitle.includes(citationTitle) ||
            citationTitle.includes(chunkTitle) ||
-           similarity(chunkTitle, citationTitle) > 0.7;
+           similarity(chunkTitle, citationTitle) > SIMILARITY_THRESHOLD;
   });
 
   return match || null;

@@ -136,6 +136,7 @@ function buildNoResultsResponse(query, metrics, startTime) {
 
 /**
  * Calculate confidence level based on retrieval and citation results.
+ * Updated thresholds for better calibration based on E2E test findings.
  *
  * @param {Array} chunks - Retrieved chunks
  * @param {Object} citationResult - Citation processing result
@@ -145,16 +146,19 @@ export function calculateConfidence(chunks, citationResult) {
   const avgScore = chunks.reduce((sum, c) => sum + c.score, 0) / chunks.length;
   const matchedCitations = citationResult.stats.matched;
 
-  // High confidence: 3+ chunks with good scores and citations match
-  if (chunks.length >= 3 && avgScore >= 0.7 && matchedCitations >= 2) {
+  // High confidence: 3+ chunks with good scores (citations optional)
+  // Lowered avgScore threshold from 0.7 to 0.6 for better calibration
+  if (chunks.length >= 3 && avgScore >= 0.6) {
+    const citationInfo = matchedCitations > 0 ? ` with ${matchedCitations} citations` : '';
     return {
       level: 'High',
-      reason: `${chunks.length} relevant sources with ${matchedCitations} citations`,
+      reason: `${chunks.length} relevant sources${citationInfo}`,
     };
   }
 
-  // Medium confidence: Some chunks found with decent scores
-  if (chunks.length >= 2 && avgScore >= 0.5) {
+  // Medium confidence: 2+ chunks with decent scores
+  // Lowered avgScore threshold from 0.5 to 0.4 for better calibration
+  if (chunks.length >= 2 && avgScore >= 0.4) {
     return {
       level: 'Medium',
       reason: `${chunks.length} sources found, average relevance ${(avgScore * 100).toFixed(0)}%`,
