@@ -10,11 +10,11 @@
 
 | Phase | Tasks | Completed | Status |
 |-------|-------|-----------|--------|
-| Phase 1: Audit | 3 | 1 | 🔄 In Progress |
+| Phase 1: Audit | 3 | 3 | ✅ Complete |
 | Phase 2: Infrastructure | 2 | 0 | ⬜ Pending |
 | Phase 3: KB Rebuild | 2 | 0 | ⬜ Pending |
 | Phase 4: Refinement | 3 | 0 | ⬜ Pending |
-| **Total** | **10** | **1** | **10%** |
+| **Total** | **10** | **3** | **30%** |
 
 ---
 
@@ -46,24 +46,30 @@
 ---
 
 ### Task 2: Scope Reclassification of All 50 Test Queries
-- **Status**: ⬜ Pending
+- **Status**: ✅ Complete
 - **Dependencies**: None (can run parallel with Task 1)
 - **Blocks**: Task 3
-- **Estimated Time**: 45 min - 1 hour
+- **Completed**: 2026-02-05
 
 **Objective**: Map all 50 queries to use cases and priority levels, apply pre-confirmed reclassifications.
 
 **Pre-confirmed reclassifications**:
 - Query #36 → out-of-scope
 - Query #38 → out-of-scope
-- Query #44 → out-of-scope
+- Query #44 → out-of-scope (already in Edge Cases)
 
 **Checklist**:
-- [ ] Map each query to a use case (UC-X.X)
-- [ ] Assign priority level (P1/P2/P3/Out-of-scope)
-- [ ] Apply 3 pre-confirmed reclassifications
-- [ ] Flag additional mismatches for review
-- [ ] Save report to `reports/02_scope_reclassification.md`
+- [x] Map each query to a use case (UC-X.X)
+- [x] Assign priority level (P1/P2/P3/Out-of-scope)
+- [x] Apply 3 pre-confirmed reclassifications
+- [x] Flag additional mismatches for review (#28 flagged)
+- [x] Save report to `reports/02_scope_reclassification.md`
+
+**Results**:
+- In-scope: 38 queries (24 P1, 10 P2, 4 P3)
+- Out-of-scope: 12 queries (10 Edge Cases + 2 reclassified)
+- Flagged for review: Query #28 (tracking-related, ambiguous)
+- Adjusted baseline: 82% (41/50)
 
 **Output**: `04_retrieval_optimization/reports/02_scope_reclassification.md`
 
@@ -82,23 +88,29 @@
 ---
 
 ### Task 3: Define the Revised Document List
-- **Status**: ⬜ Pending
+- **Status**: ✅ Complete
 - **Dependencies**: Task 1, Task 2, Review Point 1
 - **Blocks**: Task 6
-- **Estimated Time**: 1-1.5 hours
+- **Completed**: 2026-02-05
 
 **Objective**: Produce definitive document list for KB rebuild with actions per document.
 
 **Checklist**:
-- [ ] Start from existing 29-document list
-- [ ] Apply Task 1 fixes (new docs, restructure, enrich)
-- [ ] Apply Task 2 reclassifications
-- [ ] Identify 1-2 new synthetic documents for gaps
-- [ ] Ensure every P1/P2 use case has a document
-- [ ] Specify action per doc (RE-SCRAPE/RESTRUCTURE/CREATE/CARRY FORWARD)
-- [ ] Include retrieval-first guidelines
-- [ ] Include updated frontmatter template
-- [ ] Save to `REVISED_DOCUMENT_LIST.md`
+- [x] Start from existing 29-document list
+- [x] Apply Task 1 fixes (new docs, restructure, enrich)
+- [x] Apply Task 2 reclassifications
+- [x] Identify 1-2 new synthetic documents for gaps
+- [x] Ensure every P1/P2 use case has a document
+- [x] Specify action per doc (RE-SCRAPE/RESTRUCTURE/CREATE/CARRY FORWARD)
+- [x] Include retrieval-first guidelines
+- [x] Include updated frontmatter template
+- [x] Save to `REVISED_DOCUMENT_LIST.md`
+
+**Results**:
+- Total documents: 30 (29 existing + 1 new FAQ)
+- Actions: 24 CARRY FORWARD, 5 ENRICH, 1 CREATE
+- All 9 Task 1 fixes mapped to specific documents
+- All P1/P2 use cases confirmed covered
 
 **Output**: `04_retrieval_optimization/REVISED_DOCUMENT_LIST.md`
 

@@ -37,16 +37,16 @@
 - [x] Save `reports/01_audit_report.md`
 
 ### Task 2: Scope Reclassification
-**Status**: ⬜ Pending
+**Status**: ✅ Complete (2026-02-05)
 
-- [ ] Read `01_scope_definition.md`
-- [ ] Read `02_use_cases.md`
-- [ ] Map all 50 queries to use cases
-- [ ] Apply reclassification: Query #36
-- [ ] Apply reclassification: Query #38
-- [ ] Apply reclassification: Query #44
-- [ ] Flag additional mismatches
-- [ ] Save `reports/02_scope_reclassification.md`
+- [x] Read `01_scope_definition.md`
+- [x] Read `02_use_cases.md`
+- [x] Map all 50 queries to use cases
+- [x] Apply reclassification: Query #36
+- [x] Apply reclassification: Query #38
+- [x] Apply reclassification: Query #44
+- [x] Flag additional mismatches (#28 flagged for review)
+- [x] Save `reports/02_scope_reclassification.md`
 
 ### ⏸ Review Point 1
 - [ ] Rishi reviewed audit report
@@ -56,17 +56,17 @@
 - [ ] Direction confirmed for Task 3
 
 ### Task 3: Revised Document List
-**Status**: ⬜ Pending
+**Status**: ✅ Complete (2026-02-05)
 
-- [ ] Start from existing 29-doc list
-- [ ] Apply Task 1 fixes
-- [ ] Apply Task 2 reclassifications
-- [ ] Identify new synthetic documents
-- [ ] Ensure P1/P2 coverage
-- [ ] Specify actions per document
-- [ ] Document retrieval-first guidelines
-- [ ] Document frontmatter template
-- [ ] Save `REVISED_DOCUMENT_LIST.md`
+- [x] Start from existing 29-doc list
+- [x] Apply Task 1 fixes (9 fixes → 5 documents)
+- [x] Apply Task 2 reclassifications
+- [x] Identify new synthetic documents (1 FAQ document)
+- [x] Ensure P1/P2 coverage (all covered)
+- [x] Specify actions per document (24 CARRY FORWARD, 5 ENRICH, 1 CREATE)
+- [x] Document retrieval-first guidelines
+- [x] Document frontmatter template
+- [x] Save `REVISED_DOCUMENT_LIST.md`
 
 ---
 
@@ -227,8 +227,8 @@
 ## Summary
 
 **Total Tasks**: 10
-**Completed**: 1
-**Progress**: 10%
+**Completed**: 3
+**Progress**: 30%
 
 **Targets**:
 - Minimum: 80% adjusted hit rate
