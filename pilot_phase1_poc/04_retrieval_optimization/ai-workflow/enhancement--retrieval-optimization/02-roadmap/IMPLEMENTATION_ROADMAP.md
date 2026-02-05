@@ -11,10 +11,10 @@
 | Phase | Tasks | Completed | Status |
 |-------|-------|-----------|--------|
 | Phase 1: Audit | 3 | 3 | ✅ Complete |
-| Phase 2: Infrastructure | 2 | 0 | ⬜ Pending |
+| Phase 2: Infrastructure | 2 | 1 | 🔄 In Progress |
 | Phase 3: KB Rebuild | 2 | 0 | ⬜ Pending |
 | Phase 4: Refinement | 3 | 0 | ⬜ Pending |
-| **Total** | **10** | **3** | **30%** |
+| **Total** | **10** | **4** | **40%** |
 
 ---
 
@@ -119,22 +119,31 @@
 ## Phase 2: Infrastructure
 
 ### Task 4: Set Up 04_retrieval_optimization Folder
-- **Status**: ⬜ Pending
+- **Status**: ✅ Complete
 - **Dependencies**: None
 - **Blocks**: Task 5, Task 6
-- **Estimated Time**: 30-45 min
+- **Completed**: 2026-02-06
 
 **Objective**: Create folder structure and fork ingestion pipeline with parameterized chunking.
 
 **Checklist**:
-- [ ] Create directory structure per plan
-- [ ] Copy scripts from `02_ingestion_pipeline/`
-- [ ] Copy `retrieval_quality_test.py` from `03_rag_pipeline/scripts/`
-- [ ] Update `config.py` paths to point to new locations
-- [ ] Parameterize CHUNK_SIZE and CHUNK_OVERLAP via .env
-- [ ] Create empty `kb/` category folders with `pdfs/` subfolders
-- [ ] Set up Python virtual environment
-- [ ] Verify pipeline runs on empty KB
+- [x] Create directory structure per plan
+- [x] Copy scripts from `02_ingestion_pipeline/`
+- [x] Copy `retrieval_quality_test.py` from `03_rag_pipeline/scripts/`
+- [x] Update `config.py` paths to point to new locations
+- [x] Parameterize CHUNK_SIZE and CHUNK_OVERLAP via .env
+- [x] Create empty `kb/` category folders with `pdfs/` subfolders
+- [x] Set up Python virtual environment
+- [x] Verify pipeline runs on empty KB
+
+**Results**:
+- 7 scripts forked + 1 copied (retrieval_quality_test.py)
+- config.py parameterized: CHUNK_SIZE, CHUNK_OVERLAP via .env
+- kb/ has 4 category folders each with pdfs/ subfolder
+- venv created with all dependencies including pymupdf4llm
+- `ingest.py --dry-run` runs successfully on empty KB (0 docs, 0 chunks)
+- `verify_ingestion.py` runs and reports 0/33 (expected on empty KB)
+- No changes to protected paths (02_ingestion_pipeline, 01_knowledge_base/kb)
 
 **Output**: Working forked pipeline in `04_retrieval_optimization/`
 

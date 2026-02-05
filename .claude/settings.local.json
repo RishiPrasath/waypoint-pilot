@@ -91,7 +91,12 @@
       "Bash(node:*)",
       "Bash(curl:*)",
       "Bash(npm run lint)",
-      "Bash(npm test:*)"
+      "Bash(npm test:*)",
+      "Bash(ls:*)",
+      "Bash(py -3.11 -m venv:*)",
+      "Bash(venv/Scripts/pip install:*)",
+      "Bash(venv/Scripts/python:*)",
+      "Bash(PYTHONPATH=. venv/Scripts/python:*)"
     ]
   }
 }
