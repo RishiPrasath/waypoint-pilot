@@ -407,11 +407,72 @@ python -m scripts.e2e_test
 
 ---
 
+## Retrieval Optimization Coordination Rules (Week 3)
+
+### Rule 1: Check Roadmap Before Any Task
+- Read `pilot_phase1_poc/04_retrieval_optimization/ai-workflow/enhancement--retrieval-optimization/02-roadmap/IMPLEMENTATION_ROADMAP.md` first
+- Verify task status: ⬜ Pending | 🔄 In Progress | ✅ Complete | ❌ Blocked
+- Confirm all dependency tasks are complete before starting
+
+### Rule 2: Follow AI Workflow Process
+When user requests a task:
+1. Check roadmap for task details
+2. Generate prompt file at `04-prompts/[phase]/01-prompt/` → STOP
+3. Wait for human to review and say "Execute"
+4. Execute the task
+5. Create output report at `04-prompts/[phase]/02-output/`
+6. Update checklist and roadmap
+
+### Rule 3: Protected Paths (Week 3)
+Do NOT modify these (fork instead):
+- `pilot_phase1_poc/02_ingestion_pipeline/` - Week 1 stable baseline
+- `pilot_phase1_poc/01_knowledge_base/kb/` - Original KB baseline
+
+### Rule 4: Week 3 Workspace
+All Week 3 work happens in:
+```bash
+cd pilot_phase1_poc/04_retrieval_optimization
+
+# Setup
+py -3.11 -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+
+# Ingestion
+python scripts/ingest.py
+
+# PDF Extraction
+python scripts/pdf_extractor.py path/to/file.pdf
+
+# Retrieval Testing
+python scripts/retrieval_quality_test.py
+```
+
+### Rule 5: Week 3 Targets
+| Metric | Baseline | Adjusted | Min Target | Stretch |
+|--------|----------|----------|------------|---------|
+| Hit Rate | 76% | 82% | 80% | 90% |
+
+Reclassified as out-of-scope: Queries #36, #38, #44
+
+---
+
+## Active Initiatives
+
+| Initiative | Status | Path |
+|------------|--------|------|
+| Ingestion Pipeline (Week 1) | ✅ Complete | ./pilot_phase1_poc/02_ingestion_pipeline/ |
+| RAG Pipeline (Week 2) | ✅ Complete | ./pilot_phase1_poc/03_rag_pipeline/ |
+| Retrieval Optimization (Week 3) | 🔄 In Progress | ./pilot_phase1_poc/04_retrieval_optimization/ai-workflow/enhancement--retrieval-optimization/ |
+
+---
+
 ## Useful Resources
 
 - Root `CLAUDE.md`: Project overview and high-level architecture
 - `02_ingestion_pipeline/docs/01_implementation_roadmap.md`: Ingestion task checklist (Week 1)
 - `03_rag_pipeline/docs/01_implementation_roadmap.md`: RAG pipeline task checklist (Week 2)
+- `04_retrieval_optimization/ai-workflow/enhancement--retrieval-optimization/02-roadmap/IMPLEMENTATION_ROADMAP.md`: Retrieval optimization roadmap (Week 3)
 - `02_ingestion_pipeline/README.md`: Detailed pipeline documentation
 - `00_docs/04_technical_architecture.md`: Stack and API specification
 - `00_docs/02_use_cases.md`: 50 test queries and expected behaviors
