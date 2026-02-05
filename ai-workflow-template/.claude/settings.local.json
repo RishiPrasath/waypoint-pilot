@@ -2,7 +2,15 @@
   "permissions": {
     "allow": [
       "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\prasa\\\\Documents\\\\Github\\\\waypoint-pilot\\\\pilot_phase1_poc\\\\04_retrieval_optimization\\\\ai-workflow\\\\enhancement--retrieval-optimization\" -Recurse -Name)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nSet up Week 3 Retrieval Optimization AI workflow\n\n- Add Week 3 coordination rules to CLAUDE.md and AGENTS.md\n- Create 04_retrieval_optimization folder with plan and bootstrap prompt\n- Set up ai-workflow structure with PCTF templates\n- Create implementation roadmap, checklist, and test plan\n- Add checkpoint templates for 3 review gates\n- Create Task 1 prompt \\(Root Cause Analysis\\)\n- Add ai-workflow-template with bootstrap prompt v3\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push:*)",
+      "Bash(dir \"C:\\\\Users\\\\prasa\\\\Documents\\\\Github\\\\waypoint-pilot\\\\pilot_phase1_poc\\\\04_retrieval_optimization\\\\ai-workflow\\\\enhancement--retrieval-optimization\\\\05-checkpoints\\\\checkpoint_1\")",
+      "Bash(dir:*)",
+      "Bash(del:*)",
+      "Bash(del checkpoint_2CHECKPOINT_2_DESCRIPTION.md)",
+      "Bash(del checkpoint_3CHECKPOINT_3_DESCRIPTION.md)",
+      "Bash(git commit:*)"
     ]
   }
 }

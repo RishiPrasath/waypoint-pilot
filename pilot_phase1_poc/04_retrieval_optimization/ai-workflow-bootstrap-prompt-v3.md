@@ -209,10 +209,12 @@ Given a project plan (new project, feature addition, bugfix, refactor, or enhanc
     │   │   ├── 05-checkpoints/
     │   │   │   ├── CHECKPOINT_TEMPLATE.md
     │   │   │   ├── checkpoint_1/
-    │   │   │   │   ├── description/      # Created upfront
-    │   │   │   │   └── review/           # Created after checkpoint reached
+    │   │   │   │   ├── description/
+    │   │   │   │   │   └── DESCRIPTION.md    # Created upfront with checkpoint details
+    │   │   │   │   └── review/               # Created after checkpoint reached
     │   │   │   └── checkpoint_2/
     │   │   │       ├── description/
+    │   │   │       │   └── DESCRIPTION.md
     │   │   │       └── review/
     │   │   └── 06-validation/
     │   │       ├── TEST_PLAN.md
@@ -281,7 +283,7 @@ When you first receive the project plan, generate these files:
 | ✅ IMPLEMENTATION_ROADMAP.md | `[initiative-root]/ai-workflow/[initiative]/02-roadmap/` |
 | ✅ IMPLEMENTATION_CHECKLIST.md | `[initiative-root]/ai-workflow/[initiative]/03-checklist/` |
 | ✅ CHECKPOINT_TEMPLATE.md | `[initiative-root]/ai-workflow/[initiative]/05-checkpoints/` |
-| ✅ Checkpoint descriptions | `[initiative-root]/ai-workflow/[initiative]/05-checkpoints/checkpoint_N/description/` |
+| ✅ Checkpoint descriptions | `[initiative-root]/ai-workflow/[initiative]/05-checkpoints/checkpoint_N/description/DESCRIPTION.md` |
 | ✅ TEST_PLAN.md | `[initiative-root]/ai-workflow/[initiative]/06-validation/` |
 | ✅ **FIRST PROMPT ONLY** (Task 0) | `[initiative-root]/ai-workflow/[initiative]/04-prompts/01-[setup]/01-prompt/` |
 
