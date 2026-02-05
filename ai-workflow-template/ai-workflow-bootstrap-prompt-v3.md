@@ -203,9 +203,14 @@ Given a project plan (new project, feature addition, bugfix, refactor, or enhanc
     │   │   │   └── IMPLEMENTATION_CHECKLIST.md
     │   │   ├── 04-prompts/
     │   │   │   ├── 01-[phase-name]/
-    │   │   │   │   ├── 01-prompt/        # Prompt file (generated on request)
-    │   │   │   │   └── 02-output/        # Output report (after execution)
-    │   │   │   └── [empty until requested]
+    │   │   │   │   ├── task_1_[task-name]/
+    │   │   │   │   │   ├── 01-prompt/
+    │   │   │   │   │   │   └── prompt.md       # Generated on request
+    │   │   │   │   │   └── 02-output/          # Output report after execution
+    │   │   │   │   └── task_2_[task-name]/
+    │   │   │   │       ├── 01-prompt/
+    │   │   │   │       └── 02-output/
+    │   │   │   └── 02-[phase-name]/            # Additional phases as needed
     │   │   ├── 05-checkpoints/
     │   │   │   ├── CHECKPOINT_TEMPLATE.md
     │   │   │   ├── checkpoint_1/
