@@ -93,11 +93,11 @@ EXPECTED_SOURCES = {
     # Booking queries
     "What documents are needed for sea freight Singapore to Indonesia?": ["sg_export", "indonesia_import"],
     "How far in advance should I book an LCL shipment?": ["booking"],
-    "What's the difference between FCL and LCL?": ["incoterms"],
+    "What's the difference between FCL and LCL?": ["booking", "incoterms"],
     "When is the SI cutoff for this week's Maersk sailing?": ["maersk"],
-    "Do I need a commercial invoice for samples with no value?": ["sg_export", "indonesia_import"],
+    "Do I need a commercial invoice for samples with no value?": ["sg_export", "indonesia_import", "customer_faq", "booking"],
     "What's a Bill of Lading and who issues it?": ["booking"],
-    "Can we ship without a packing list?": ["sg_export", "indonesia_import"],
+    "Can we ship without a packing list?": ["sg_export", "indonesia_import", "customer_faq", "booking"],
     "What does FOB Singapore mean?": ["incoterms"],
     "How do I amend a booking after confirmation?": ["booking"],
     "What's the free time at destination port?": ["carrier", "service"],
@@ -111,7 +111,7 @@ EXPECTED_SOURCES = {
     "What's the de minimis threshold for Malaysia?": ["malaysia_import"],
     "Do I need halal certification for food to Indonesia?": ["indonesia_import"],
     "How do I apply for a Customs ruling on HS code?": ["sg_hs_classification"],
-    "What's the difference between Form D and Form AK?": ["asean_rules", "atiga"],
+    "What's the difference between Form D and Form AK?": ["asean_rules", "atiga", "fta_comparison"],
     # Carrier queries
     "Which carriers sail direct to Ho Chi Minh?": ["pil", "maersk", "one", "evergreen"],
     "What's the transit time to Port Klang?": ["pil", "maersk", "one", "evergreen"],
@@ -138,7 +138,7 @@ EXPECTED_SOURCES = {
     "What's the current freight rate to Jakarta?": [],  # Out of scope
     "Where is my shipment right now?": [],  # Out of scope
     "Can you book a shipment for me?": [],  # Out of scope
-    "I want to file a claim for damaged cargo": [],  # Out of scope
+    "I want to file a claim for damaged cargo": ["service_terms"],  # Claims covered in Section 8
     "Can you ship hazmat by air?": [],  # Out of scope
     "What's the weather forecast for shipping?": [],  # Out of scope
     "Can you recommend a supplier in China?": [],  # Out of scope

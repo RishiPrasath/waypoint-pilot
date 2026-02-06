@@ -23,6 +23,8 @@ logger = logging.getLogger(__name__)
 def discover_documents(path: Path) -> list[Path]:
     """
     Recursively discover all markdown documents in the knowledge base.
+    Excludes files in pdfs/ subdirectories (PDF extracts are reference
+    material — their content has been selectively merged into main docs).
 
     Args:
         path: Root path to search for documents (kb/ folder)
@@ -30,7 +32,10 @@ def discover_documents(path: Path) -> list[Path]:
     Returns:
         Sorted list of Path objects for each document
     """
-    documents = list(path.rglob("*.md"))
+    documents = [
+        f for f in path.rglob("*.md")
+        if "pdfs" not in f.relative_to(path).parts
+    ]
 
     # Sort for consistent ordering
     documents.sort()
