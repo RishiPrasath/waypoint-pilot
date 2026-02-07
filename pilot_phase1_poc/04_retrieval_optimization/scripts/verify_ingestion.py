@@ -31,8 +31,8 @@ from scripts.config import CHROMA_PERSIST_PATH, COLLECTION_NAME
 # =============================================================================
 
 # Expected chunk count range
-MIN_CHUNKS = 450
-MAX_CHUNKS = 520
+MIN_CHUNKS = 680
+MAX_CHUNKS = 740
 
 # Expected categories
 EXPECTED_CATEGORIES = [

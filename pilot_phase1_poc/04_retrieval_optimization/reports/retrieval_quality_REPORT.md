@@ -1,6 +1,6 @@
 # Retrieval Quality Report
 
-**Generated**: 2026-02-07T00:04:36.419331
+**Generated**: 2026-02-07T10:33:32.321641
 **Total Queries**: 50
 **Top-K**: 5
 **Threshold**: 0.15
@@ -9,12 +9,12 @@
 
 | Category | Queries | Hits (Top-3) | Hit Rate |
 |----------|---------|--------------|----------|
-| Booking Documentation | 10 | 10 | 100.0% |
+| Booking Documentation | 10 | 9 | 90.0% |
 | Customs Regulatory | 10 | 10 | 100.0% |
 | Carrier Information | 10 | 10 | 100.0% |
 | Sla Service | 10 | 8 | 80.0% |
 | Edge Cases Out Of Scope | 10 | 9 | 90.0% |
-| **TOTAL** | **50** | **47** | **94.0%** |
+| **TOTAL** | **50** | **46** | **92.0%** |
 
 ## Decision Gate
 
@@ -24,12 +24,13 @@
 | 60-74% | INVESTIGATE | Review failures, minor fixes |
 | <60% | REMEDIATE | Chunking optimization needed |
 
-**Result**: **PROCEED** (Hit rate: 94.0%)
+**Result**: **PROCEED** (Hit rate: 92.0%)
 
 ## Top 10 Failures
 
 | Query | Expected | Got | Score |
 |-------|----------|-----|-------|
+| What documents are needed for sea freight Singapor... | sg_export, indonesia_import | 02_carriers_pil_service_summary | 0.307 |
 | What's the current freight rate to Jakarta? | (out-of-scope) | 01_regulatory_indonesia_import_requireme | 0.155 |
 | What's the process for refused deliveries? | cod_procedure, service_terms | 03_reference_incoterms_2020_reference | -0.088 |
 | How do I upgrade to express service? | service_terms, booking | 02_carriers_one_service_summary | -0.204 |
@@ -40,7 +41,7 @@
 
 | # | Query | Top Result | Score | Hit? |
 |---|-------|------------|-------|------|
-| 1 | What documents are needed for sea freight Sin... | 01_regulatory_indonesia_import_requ | 0.389 | PASS |
+| 1 | What documents are needed for sea freight Sin... | 02_carriers_pil_service_summary | 0.307 | FAIL |
 | 2 | How far in advance should I book an LCL shipm... | 04_internal_synthetic_customer_faq | 0.452 | PASS |
 | 3 | What's the difference between FCL and LCL? | 04_internal_synthetic_booking_proce | 0.695 | PASS |
 | 4 | When is the SI cutoff for this week's Maersk ... | 02_carriers_maersk_service_summary | 0.089 | PASS |
@@ -101,12 +102,12 @@
 | # | Query | Top Result | Score | Hit? |
 |---|-------|------------|-------|------|
 | 41 | What's the current freight rate to Jakarta? | 01_regulatory_indonesia_import_requ | 0.155 | FAIL |
-| 42 | Where is my shipment right now? | 02_carriers_maersk_service_summary | -0.269 | PASS |
+| 42 | Where is my shipment right now? | 04_internal_synthetic_customer_faq | -0.207 | PASS |
 | 43 | Can you book a shipment for me? | 04_internal_synthetic_customer_faq | -0.119 | PASS |
 | 44 | I want to file a claim for damaged cargo | 04_internal_synthetic_service_terms | 0.264 | PASS |
 | 45 | Can you ship hazmat by air? | 03_reference_incoterms_comparison_c | -0.112 | PASS |
 | 46 | What's the weather forecast for shipping? | 03_reference_incoterms_2020_referen | -0.202 | PASS |
-| 47 | Can you recommend a supplier in China? | 03_reference_incoterms_2020_referen | -0.097 | PASS |
+| 47 | Can you recommend a supplier in China? | 04_internal_synthetic_fta_compariso | -0.185 | PASS |
 | 48 | What's your company's financial status? | 04_internal_synthetic_sla_policy | -0.172 | PASS |
 | 49 | How do I become a freight forwarder? | 04_internal_synthetic_service_terms | 0.130 | PASS |
 | 50 | What are your competitor's rates? | 04_internal_synthetic_sla_policy | -0.133 | PASS |
@@ -119,22 +120,16 @@
     "query_num": 1,
     "category": "booking_documentation",
     "query": "What documents are needed for sea freight Singapore to Indonesia?",
-    "top_result_doc_id": "01_regulatory_indonesia_import_requirements",
-    "top_result_title": "Indonesia Import Requirements",
-    "top_score": 0.3892,
-    "hit": true,
+    "top_result_doc_id": "02_carriers_pil_service_summary",
+    "top_result_title": "PIL (Pacific International Lines) Service Summary",
+    "top_score": 0.3069,
+    "hit": false,
     "expected_sources": [
       "sg_export",
       "indonesia_import"
     ],
-    "matched_source": "indonesia_import",
+    "matched_source": null,
     "top_5_chunks": [
-      {
-        "doc_id": "01_regulatory_indonesia_import_requirements",
-        "title": "Indonesia Import Requirements",
-        "section": "Key Regulatory Bodies",
-        "similarity": 0.3892
-      },
       {
         "doc_id": "02_carriers_pil_service_summary",
         "title": "PIL (Pacific International Lines) Service Summary",
@@ -158,6 +153,12 @@
         "title": "Incoterms 2020 Complete Reference Guide",
         "section": "Key Changes in Incoterms 2020",
         "similarity": 0.2862
+      },
+      {
+        "doc_id": "02_carriers_maersk_service_summary",
+        "title": "Maersk Service Summary",
+        "section": "Routes from Singapore",
+        "similarity": 0.2783
       }
     ]
   },
@@ -209,6 +210,6 @@
   {
     "query_num": 3,
     "category": "booking_documentation",
-    "query": "What's t
+    "query": "What's the difference between
 ... (truncated)
 ```

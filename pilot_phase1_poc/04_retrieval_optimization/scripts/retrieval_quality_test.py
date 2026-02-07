@@ -13,6 +13,9 @@ from datetime import datetime
 from pathlib import Path
 from typing import Optional
 
+# Ensure parent directory is in path for direct script execution
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
 import chromadb
 from chromadb.utils import embedding_functions
 

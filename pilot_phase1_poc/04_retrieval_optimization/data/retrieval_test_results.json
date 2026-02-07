@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-07T00:04:36.419331",
+  "timestamp": "2026-02-07T10:33:32.321641",
   "config": {
     "top_k": 5,
     "threshold": 0.15,
@@ -8,35 +8,29 @@
   },
   "summary": {
     "total_queries": 50,
-    "total_hits": 47,
-    "overall_hit_rate": 94.0
+    "total_hits": 46,
+    "overall_hit_rate": 92.0
   },
   "category_stats": {
     "booking_documentation": {
       "queries": 10,
-      "hits": 10,
-      "hit_rate": 100.0,
+      "hits": 9,
+      "hit_rate": 90.0,
       "results": [
         {
           "query_num": 1,
           "category": "booking_documentation",
           "query": "What documents are needed for sea freight Singapore to Indonesia?",
-          "top_result_doc_id": "01_regulatory_indonesia_import_requirements",
-          "top_result_title": "Indonesia Import Requirements",
-          "top_score": 0.3892,
-          "hit": true,
+          "top_result_doc_id": "02_carriers_pil_service_summary",
+          "top_result_title": "PIL (Pacific International Lines) Service Summary",
+          "top_score": 0.3069,
+          "hit": false,
           "expected_sources": [
             "sg_export",
             "indonesia_import"
           ],
-          "matched_source": "indonesia_import",
+          "matched_source": null,
           "top_5_chunks": [
-            {
-              "doc_id": "01_regulatory_indonesia_import_requirements",
-              "title": "Indonesia Import Requirements",
-              "section": "Key Regulatory Bodies",
-              "similarity": 0.3892
-            },
             {
               "doc_id": "02_carriers_pil_service_summary",
               "title": "PIL (Pacific International Lines) Service Summary",
@@ -60,6 +54,12 @@
               "title": "Incoterms 2020 Complete Reference Guide",
               "section": "Key Changes in Incoterms 2020",
               "similarity": 0.2862
+            },
+            {
+              "doc_id": "02_carriers_maersk_service_summary",
+              "title": "Maersk Service Summary",
+              "section": "Routes from Singapore",
+              "similarity": 0.2783
             }
           ]
         },
@@ -192,10 +192,10 @@
               "similarity": -0.1445
             },
             {
-              "doc_id": "02_carriers_maersk_service_summary",
-              "title": "Maersk Service Summary",
-              "section": "Key Terms and Abbreviations",
-              "similarity": -0.1807
+              "doc_id": "04_internal_synthetic_booking_procedure",
+              "title": "Sea Freight Booking Procedure",
+              "section": "5. Detailed Procedure",
+              "similarity": -0.167
             }
           ]
         },
@@ -333,10 +333,10 @@
               "similarity": 0.3509
             },
             {
-              "doc_id": "03_reference_incoterms_comparison_chart",
-              "title": "Incoterms 2020 Comparison Chart",
-              "section": "Decision Tree: Choosing the Right Incoterm",
-              "similarity": -0.024
+              "doc_id": "01_regulatory_sg_import_procedures",
+              "title": "Singapore Import Procedures",
+              "section": "Seven-Step Import Process",
+              "similarity": -0.0774
             }
           ]
         },
@@ -469,10 +469,10 @@
               "similarity": -0.2438
             },
             {
-              "doc_id": "03_reference_incoterms_comparison_chart",
-              "title": "Incoterms 2020 Comparison Chart",
-              "section": "Quick Visual Comparison",
-              "similarity": -0.245
+              "doc_id": "04_internal_synthetic_booking_procedure",
+              "title": "Sea Freight Booking Procedure",
+              "section": "5. Detailed Procedure",
+              "similarity": -0.265
             }
           ]
         }
@@ -775,28 +775,28 @@
               "similarity": 0.0874
             },
             {
-              "doc_id": "01_regulatory_atiga_overview",
-              "title": "ASEAN Trade in Goods Agreement (ATIGA) Overview",
-              "section": "ATIGA Average Tariff Rates by Country",
-              "similarity": -0.0847
+              "doc_id": "01_regulatory_malaysia_import_requirements",
+              "title": "Malaysia Import Requirements",
+              "section": "Import Licensing",
+              "similarity": -0.0619
             },
             {
               "doc_id": "01_regulatory_malaysia_import_requirements",
               "title": "Malaysia Import Requirements",
               "section": "Key Terms and Abbreviations",
-              "similarity": -0.0975
+              "similarity": -0.0664
             },
             {
-              "doc_id": "04_internal_synthetic_fta_comparison_matrix",
-              "title": "Singapore FTA Comparison Matrix",
-              "section": "6. Tariff Comparison by Product Category",
-              "similarity": -0.0997
+              "doc_id": "01_regulatory_malaysia_import_requirements",
+              "title": "Malaysia Import Requirements",
+              "section": "",
+              "similarity": -0.068
             },
             {
-              "doc_id": "01_regulatory_thailand_import_requirements",
-              "title": "Thailand Import Requirements",
-              "section": "Import Controls",
-              "similarity": -0.1003
+              "doc_id": "01_regulatory_atiga_overview",
+              "title": "ASEAN Trade in Goods Agreement (ATIGA) Overview",
+              "section": "ATIGA Average Tariff Rates by Country",
+              "similarity": -0.0847
             }
           ]
         },
@@ -1254,16 +1254,16 @@
               "similarity": -0.3167
             },
             {
-              "doc_id": "02_carriers_one_service_summary",
-              "title": "ONE (Ocean Network Express) Service Summary",
-              "section": "Company Overview",
-              "similarity": -0.343
+              "doc_id": "04_internal_synthetic_service_terms_conditions",
+              "title": "Service Terms and Conditions",
+              "section": "2. Scope of Services",
+              "similarity": -0.322
             },
             {
               "doc_id": "02_carriers_one_service_summary",
               "title": "ONE (Ocean Network Express) Service Summary",
-              "section": "About ONE",
-              "similarity": -0.3503
+              "section": "Company Overview",
+              "similarity": -0.343
             }
           ]
         },
@@ -1483,6 +1483,12 @@
               "similarity": 0.4645
             },
             {
+              "doc_id": "01_regulatory_sg_export_procedures",
+              "title": "Singapore Export Procedures",
+              "section": "Required Steps for Exporting Goods",
+              "similarity": -0.0377
+            },
+            {
               "doc_id": "03_reference_incoterms_2020_reference",
               "title": "Incoterms 2020 Complete Reference Guide",
               "section": "Detailed Incoterms 2020 Definitions",
@@ -1493,12 +1499,6 @@
               "title": "Incoterms 2020 Complete Reference Guide",
               "section": "Detailed Incoterms 2020 Definitions",
               "similarity": -0.1153
-            },
-            {
-              "doc_id": "03_reference_incoterms_2020_reference",
-              "title": "Incoterms 2020 Complete Reference Guide",
-              "section": "Detailed Incoterms 2020 Definitions",
-              "similarity": -0.197
             }
           ]
         },
@@ -1540,10 +1540,10 @@
               "similarity": -0.0088
             },
             {
-              "doc_id": "03_reference_incoterms_2020_reference",
-              "title": "Incoterms 2020 Complete Reference Guide",
-              "section": "Detailed Incoterms 2020 Definitions",
-              "similarity": -0.0207
+              "doc_id": "02_carriers_cathay_cargo_service_guide",
+              "title": "Cathay Cargo Service Guide",
+              "section": "Digital Tools & Services",
+              "similarity": -0.0253
             }
           ]
         },
@@ -1769,10 +1769,10 @@
               "similarity": -0.3629
             },
             {
-              "doc_id": "02_carriers_one_service_summary",
-              "title": "ONE (Ocean Network Express) Service Summary",
-              "section": "Documentation Requirements",
-              "similarity": -0.384
+              "doc_id": "02_carriers_cathay_cargo_service_guide",
+              "title": "Cathay Cargo Service Guide",
+              "section": "Specialized Products & Solutions",
+              "similarity": -0.3733
             }
           ]
         },
@@ -1922,13 +1922,19 @@
           "query_num": 42,
           "category": "edge_cases_out_of_scope",
           "query": "Where is my shipment right now?",
-          "top_result_doc_id": "02_carriers_maersk_service_summary",
-          "top_result_title": "Maersk Service Summary",
-          "top_score": -0.2685,
+          "top_result_doc_id": "04_internal_synthetic_customer_faq",
+          "top_result_title": "Frequently Asked Questions",
+          "top_score": -0.2072,
           "hit": true,
           "expected_sources": [],
           "matched_source": null,
           "top_5_chunks": [
+            {
+              "doc_id": "04_internal_synthetic_customer_faq",
+              "title": "Frequently Asked Questions",
+              "section": "Service Questions",
+              "similarity": -0.2072
+            },
             {
               "doc_id": "02_carriers_maersk_service_summary",
               "title": "Maersk Service Summary",
@@ -1942,22 +1948,16 @@
               "similarity": -0.2778
             },
             {
+              "doc_id": "04_internal_synthetic_customer_faq",
+              "title": "Frequently Asked Questions",
+              "section": "Service Questions",
+              "similarity": -0.2816
+            },
+            {
               "doc_id": "03_reference_incoterms_2020_reference",
               "title": "Incoterms 2020 Complete Reference Guide",
               "section": "Detailed Incoterms 2020 Definitions",
               "similarity": -0.2888
-            },
-            {
-              "doc_id": "04_internal_synthetic_sla_policy",
-              "title": "Service Level Agreement (SLA) Policy",
-              "section": "5. Delivery SLAs",
-              "similarity": -0.2927
-            },
-            {
-              "doc_id": "04_internal_synthetic_booking_procedure",
-              "title": "Sea Freight Booking Procedure",
-              "section": "5. Detailed Procedure",
-              "similarity": -0.2995
             }
           ]
         },
@@ -2073,12 +2073,6 @@
               "similarity": -0.1287
             },
             {
-              "doc_id": "04_internal_synthetic_cod_procedure",
-              "title": "Collect on Delivery (COD) Handling Procedure",
-              "section": "7. Collection Process",
-              "similarity": -0.1562
-            },
-            {
               "doc_id": "04_internal_synthetic_booking_procedure",
               "title": "Sea Freight Booking Procedure",
               "section": "",
@@ -2089,6 +2083,12 @@
               "title": "Incoterms 2020 Complete Reference Guide",
               "section": "Detailed Incoterms 2020 Definitions",
               "similarity": -0.167
+            },
+            {
+              "doc_id": "01_regulatory_sg_free_trade_zones",
+              "title": "Singapore Free Trade Zones",
+              "section": "FTZs in Singapore",
+              "similarity": -0.1838
             }
           ]
         },
@@ -2110,12 +2110,6 @@
               "similarity": -0.2019
             },
             {
-              "doc_id": "02_carriers_evergreen_service_summary",
-              "title": "Evergreen Service Summary",
-              "section": "Recent Developments",
-              "similarity": -0.24
-            },
-            {
               "doc_id": "04_internal_synthetic_booking_procedure",
               "title": "Sea Freight Booking Procedure",
               "section": "FCL vs LCL: Which Should I Choose?",
@@ -2132,6 +2126,12 @@
               "title": "Sea Freight Booking Procedure",
               "section": "FCL vs LCL: Which Should I Choose?",
               "similarity": -0.267
+            },
+            {
+              "doc_id": "04_internal_synthetic_booking_procedure",
+              "title": "Sea Freight Booking Procedure",
+              "section": "",
+              "similarity": -0.2817
             }
           ]
         },
@@ -2139,24 +2139,24 @@
           "query_num": 47,
           "category": "edge_cases_out_of_scope",
           "query": "Can you recommend a supplier in China?",
-          "top_result_doc_id": "03_reference_incoterms_2020_reference",
-          "top_result_title": "Incoterms 2020 Complete Reference Guide",
-          "top_score": -0.0973,
+          "top_result_doc_id": "04_internal_synthetic_fta_comparison_matrix",
+          "top_result_title": "Singapore FTA Comparison Matrix",
+          "top_score": -0.1849,
           "hit": true,
           "expected_sources": [],
           "matched_source": null,
           "top_5_chunks": [
             {
-              "doc_id": "03_reference_incoterms_2020_reference",
-              "title": "Incoterms 2020 Complete Reference Guide",
-              "section": "Detailed Incoterms 2020 Definitions",
-              "similarity": -0.0973
+              "doc_id": "04_internal_synthetic_fta_comparison_matrix",
+              "title": "Singapore FTA Comparison Matrix",
+              "section": "5. Certificate of Origin Requirements",
+              "similarity": -0.1849
             },
             {
-              "doc_id": "02_carriers_cathay_cargo_service_guide",
-              "title": "Cathay Cargo Service Guide",
-              "section": "Key Strengths for Singapore Shippers",
-              "similarity": -0.2138
+              "doc_id": "04_internal_synthetic_fta_comparison_matrix",
+              "title": "Singapore FTA Comparison Matrix",
+              "section": "3. FTA Selection Matrix",
+              "similarity": -0.2481
             },
             {
               "doc_id": "01_regulatory_atiga_overview",
@@ -2165,16 +2165,16 @@
               "similarity": -0.2563
             },
             {
-              "doc_id": "03_reference_incoterms_2020_reference",
-              "title": "Incoterms 2020 Complete Reference Guide",
-              "section": "Detailed Incoterms 2020 Definitions",
-              "similarity": -0.2569
+              "doc_id": "03_reference_incoterms_comparison_chart",
+              "title": "Incoterms 2020 Comparison Chart",
+              "section": "Common Combinations by Trade Route",
+              "similarity": -0.2597
             },
             {
-              "doc_id": "02_carriers_sia_cargo_service_guide",
-              "title": "Singapore Airlines Cargo Service Guide",
-              "section": "Key Strengths for Singapore Shippers",
-              "similarity": -0.2572
+              "doc_id": "04_internal_synthetic_fta_comparison_matrix",
+              "title": "Singapore FTA Comparison Matrix",
+              "section": "6. Tariff Comparison by Product Category",
+              "similarity": -0.2635
             }
           ]
         },
@@ -2214,10 +2214,10 @@
               "similarity": -0.3254
             },
             {
-              "doc_id": "04_internal_synthetic_escalation_procedure",
-              "title": "Escalation Procedure",
-              "section": "11. Post-Escalation Review",
-              "similarity": -0.3333
+              "doc_id": "02_carriers_one_service_summary",
+              "title": "ONE (Ocean Network Express) Service Summary",
+              "section": "Key Terms and Abbreviations",
+              "similarity": -0.3255
             }
           ]
         },
@@ -2315,22 +2315,16 @@
       "query_num": 1,
       "category": "booking_documentation",
       "query": "What documents are needed for sea freight Singapore to Indonesia?",
-      "top_result_doc_id": "01_regulatory_indonesia_import_requirements",
-      "top_result_title": "Indonesia Import Requirements",
-      "top_score": 0.3892,
-      "hit": true,
+      "top_result_doc_id": "02_carriers_pil_service_summary",
+      "top_result_title": "PIL (Pacific International Lines) Service Summary",
+      "top_score": 0.3069,
+      "hit": false,
       "expected_sources": [
         "sg_export",
         "indonesia_import"
       ],
-      "matched_source": "indonesia_import",
+      "matched_source": null,
       "top_5_chunks": [
-        {
-          "doc_id": "01_regulatory_indonesia_import_requirements",
-          "title": "Indonesia Import Requirements",
-          "section": "Key Regulatory Bodies",
-          "similarity": 0.3892
-        },
         {
           "doc_id": "02_carriers_pil_service_summary",
           "title": "PIL (Pacific International Lines) Service Summary",
@@ -2354,6 +2348,12 @@
           "title": "Incoterms 2020 Complete Reference Guide",
           "section": "Key Changes in Incoterms 2020",
           "similarity": 0.2862
+        },
+        {
+          "doc_id": "02_carriers_maersk_service_summary",
+          "title": "Maersk Service Summary",
+          "section": "Routes from Singapore",
+          "similarity": 0.2783
         }
       ]
     },
@@ -2486,10 +2486,10 @@
           "similarity": -0.1445
         },
         {
-          "doc_id": "02_carriers_maersk_service_summary",
-          "title": "Maersk Service Summary",
-          "section": "Key Terms and Abbreviations",
-          "similarity": -0.1807
+          "doc_id": "04_internal_synthetic_booking_procedure",
+          "title": "Sea Freight Booking Procedure",
+          "section": "5. Detailed Procedure",
+          "similarity": -0.167
         }
       ]
     },
@@ -2627,10 +2627,10 @@
           "similarity": 0.3509
         },
         {
-          "doc_id": "03_reference_incoterms_comparison_chart",
-          "title": "Incoterms 2020 Comparison Chart",
-          "section": "Decision Tree: Choosing the Right Incoterm",
-          "similarity": -0.024
+          "doc_id": "01_regulatory_sg_import_procedures",
+          "title": "Singapore Import Procedures",
+          "section": "Seven-Step Import Process",
+          "similarity": -0.0774
         }
       ]
     },
@@ -2763,10 +2763,10 @@
           "similarity": -0.2438
         },
         {
-          "doc_id": "03_reference_incoterms_comparison_chart",
-          "title": "Incoterms 2020 Comparison Chart",
-          "section": "Quick Visual Comparison",
-          "similarity": -0.245
+          "doc_id": "04_internal_synthetic_booking_procedure",
+          "title": "Sea Freight Booking Procedure",
+          "section": "5. Detailed Procedure",
+          "similarity": -0.265
         }
       ]
     },
@@ -3062,28 +3062,28 @@
           "similarity": 0.0874
         },
         {
-          "doc_id": "01_regulatory_atiga_overview",
-          "title": "ASEAN Trade in Goods Agreement (ATIGA) Overview",
-          "section": "ATIGA Average Tariff Rates by Country",
-          "similarity": -0.0847
+          "doc_id": "01_regulatory_malaysia_import_requirements",
+          "title": "Malaysia Import Requirements",
+          "section": "Import Licensing",
+          "similarity": -0.0619
         },
         {
           "doc_id": "01_regulatory_malaysia_import_requirements",
           "title": "Malaysia Import Requirements",
           "section": "Key Terms and Abbreviations",
-          "similarity": -0.0975
+          "similarity": -0.0664
         },
         {
-          "doc_id": "04_internal_synthetic_fta_comparison_matrix",
-          "title": "Singapore FTA Comparison Matrix",
-          "section": "6. Tariff Comparison by Product Category",
-          "similarity": -0.0997
+          "doc_id": "01_regulatory_malaysia_import_requirements",
+          "title": "Malaysia Import Requirements",
+          "section": "",
+          "similarity": -0.068
         },
         {
-          "doc_id": "01_regulatory_thailand_import_requirements",
-          "title": "Thailand Import Requirements",
-          "section": "Import Controls",
-          "similarity": -0.1003
+          "doc_id": "01_regulatory_atiga_overview",
+          "title": "ASEAN Trade in Goods Agreement (ATIGA) Overview",
+          "section": "ATIGA Average Tariff Rates by Country",
+          "similarity": -0.0847
         }
       ]
     },
@@ -3534,16 +3534,16 @@
           "similarity": -0.3167
         },
         {
-          "doc_id": "02_carriers_one_service_summary",
-          "title": "ONE (Ocean Network Express) Service Summary",
-          "section": "Company Overview",
-          "similarity": -0.343
+          "doc_id": "04_internal_synthetic_service_terms_conditions",
+          "title": "Service Terms and Conditions",
+          "section": "2. Scope of Services",
+          "similarity": -0.322
         },
         {
           "doc_id": "02_carriers_one_service_summary",
           "title": "ONE (Ocean Network Express) Service Summary",
-          "section": "About ONE",
-          "similarity": -0.3503
+          "section": "Company Overview",
+          "similarity": -0.343
         }
       ]
     },
@@ -3756,6 +3756,12 @@
           "similarity": 0.4645
         },
         {
+          "doc_id": "01_regulatory_sg_export_procedures",
+          "title": "Singapore Export Procedures",
+          "section": "Required Steps for Exporting Goods",
+          "similarity": -0.0377
+        },
+        {
           "doc_id": "03_reference_incoterms_2020_reference",
           "title": "Incoterms 2020 Complete Reference Guide",
           "section": "Detailed Incoterms 2020 Definitions",
@@ -3766,12 +3772,6 @@
           "title": "Incoterms 2020 Complete Reference Guide",
           "section": "Detailed Incoterms 2020 Definitions",
           "similarity": -0.1153
-        },
-        {
-          "doc_id": "03_reference_incoterms_2020_reference",
-          "title": "Incoterms 2020 Complete Reference Guide",
-          "section": "Detailed Incoterms 2020 Definitions",
-          "similarity": -0.197
         }
       ]
     },
@@ -3813,10 +3813,10 @@
           "similarity": -0.0088
         },
         {
-          "doc_id": "03_reference_incoterms_2020_reference",
-          "title": "Incoterms 2020 Complete Reference Guide",
-          "section": "Detailed Incoterms 2020 Definitions",
-          "similarity": -0.0207
+          "doc_id": "02_carriers_cathay_cargo_service_guide",
+          "title": "Cathay Cargo Service Guide",
+          "section": "Digital Tools & Services",
+          "similarity": -0.0253
         }
       ]
     },
@@ -4042,10 +4042,10 @@
           "similarity": -0.3629
         },
         {
-          "doc_id": "02_carriers_one_service_summary",
-          "title": "ONE (Ocean Network Express) Service Summary",
-          "section": "Documentation Requirements",
-          "similarity": -0.384
+          "doc_id": "02_carriers_cathay_cargo_service_guide",
+          "title": "Cathay Cargo Service Guide",
+          "section": "Specialized Products & Solutions",
+          "similarity": -0.3733
         }
       ]
     },
@@ -4188,13 +4188,19 @@
       "query_num": 42,
       "category": "edge_cases_out_of_scope",
       "query": "Where is my shipment right now?",
-      "top_result_doc_id": "02_carriers_maersk_service_summary",
-      "top_result_title": "Maersk Service Summary",
-      "top_score": -0.2685,
+      "top_result_doc_id": "04_internal_synthetic_customer_faq",
+      "top_result_title": "Frequently Asked Questions",
+      "top_score": -0.2072,
       "hit": true,
       "expected_sources": [],
       "matched_source": null,
       "top_5_chunks": [
+        {
+          "doc_id": "04_internal_synthetic_customer_faq",
+          "title": "Frequently Asked Questions",
+          "section": "Service Questions",
+          "similarity": -0.2072
+        },
         {
           "doc_id": "02_carriers_maersk_service_summary",
           "title": "Maersk Service Summary",
@@ -4208,22 +4214,16 @@
           "similarity": -0.2778
         },
         {
+          "doc_id": "04_internal_synthetic_customer_faq",
+          "title": "Frequently Asked Questions",
+          "section": "Service Questions",
+          "similarity": -0.2816
+        },
+        {
           "doc_id": "03_reference_incoterms_2020_reference",
           "title": "Incoterms 2020 Complete Reference Guide",
           "section": "Detailed Incoterms 2020 Definitions",
           "similarity": -0.2888
-        },
-        {
-          "doc_id": "04_internal_synthetic_sla_policy",
-          "title": "Service Level Agreement (SLA) Policy",
-          "section": "5. Delivery SLAs",
-          "similarity": -0.2927
-        },
-        {
-          "doc_id": "04_internal_synthetic_booking_procedure",
-          "title": "Sea Freight Booking Procedure",
-          "section": "5. Detailed Procedure",
-          "similarity": -0.2995
         }
       ]
     },
@@ -4339,12 +4339,6 @@
           "similarity": -0.1287
         },
         {
-          "doc_id": "04_internal_synthetic_cod_procedure",
-          "title": "Collect on Delivery (COD) Handling Procedure",
-          "section": "7. Collection Process",
-          "similarity": -0.1562
-        },
-        {
           "doc_id": "04_internal_synthetic_booking_procedure",
           "title": "Sea Freight Booking Procedure",
           "section": "",
@@ -4355,6 +4349,12 @@
           "title": "Incoterms 2020 Complete Reference Guide",
           "section": "Detailed Incoterms 2020 Definitions",
           "similarity": -0.167
+        },
+        {
+          "doc_id": "01_regulatory_sg_free_trade_zones",
+          "title": "Singapore Free Trade Zones",
+          "section": "FTZs in Singapore",
+          "similarity": -0.1838
         }
       ]
     },
@@ -4376,12 +4376,6 @@
           "similarity": -0.2019
         },
         {
-          "doc_id": "02_carriers_evergreen_service_summary",
-          "title": "Evergreen Service Summary",
-          "section": "Recent Developments",
-          "similarity": -0.24
-        },
-        {
           "doc_id": "04_internal_synthetic_booking_procedure",
           "title": "Sea Freight Booking Procedure",
           "section": "FCL vs LCL: Which Should I Choose?",
@@ -4398,6 +4392,12 @@
           "title": "Sea Freight Booking Procedure",
           "section": "FCL vs LCL: Which Should I Choose?",
           "similarity": -0.267
+        },
+        {
+          "doc_id": "04_internal_synthetic_booking_procedure",
+          "title": "Sea Freight Booking Procedure",
+          "section": "",
+          "similarity": -0.2817
         }
       ]
     },
@@ -4405,24 +4405,24 @@
       "query_num": 47,
       "category": "edge_cases_out_of_scope",
       "query": "Can you recommend a supplier in China?",
-      "top_result_doc_id": "03_reference_incoterms_2020_reference",
-      "top_result_title": "Incoterms 2020 Complete Reference Guide",
-      "top_score": -0.0973,
+      "top_result_doc_id": "04_internal_synthetic_fta_comparison_matrix",
+      "top_result_title": "Singapore FTA Comparison Matrix",
+      "top_score": -0.1849,
       "hit": true,
       "expected_sources": [],
       "matched_source": null,
       "top_5_chunks": [
         {
-          "doc_id": "03_reference_incoterms_2020_reference",
-          "title": "Incoterms 2020 Complete Reference Guide",
-          "section": "Detailed Incoterms 2020 Definitions",
-          "similarity": -0.0973
+          "doc_id": "04_internal_synthetic_fta_comparison_matrix",
+          "title": "Singapore FTA Comparison Matrix",
+          "section": "5. Certificate of Origin Requirements",
+          "similarity": -0.1849
         },
         {
-          "doc_id": "02_carriers_cathay_cargo_service_guide",
-          "title": "Cathay Cargo Service Guide",
-          "section": "Key Strengths for Singapore Shippers",
-          "similarity": -0.2138
+          "doc_id": "04_internal_synthetic_fta_comparison_matrix",
+          "title": "Singapore FTA Comparison Matrix",
+          "section": "3. FTA Selection Matrix",
+          "similarity": -0.2481
         },
         {
           "doc_id": "01_regulatory_atiga_overview",
@@ -4431,16 +4431,16 @@
           "similarity": -0.2563
         },
         {
-          "doc_id": "03_reference_incoterms_2020_reference",
-          "title": "Incoterms 2020 Complete Reference Guide",
-          "section": "Detailed Incoterms 2020 Definitions",
-          "similarity": -0.2569
+          "doc_id": "03_reference_incoterms_comparison_chart",
+          "title": "Incoterms 2020 Comparison Chart",
+          "section": "Common Combinations by Trade Route",
+          "similarity": -0.2597
         },
         {
-          "doc_id": "02_carriers_sia_cargo_service_guide",
-          "title": "Singapore Airlines Cargo Service Guide",
-          "section": "Key Strengths for Singapore Shippers",
-          "similarity": -0.2572
+          "doc_id": "04_internal_synthetic_fta_comparison_matrix",
+          "title": "Singapore FTA Comparison Matrix",
+          "section": "6. Tariff Comparison by Product Category",
+          "similarity": -0.2635
         }
       ]
     },
@@ -4480,10 +4480,10 @@
           "similarity": -0.3254
         },
         {
-          "doc_id": "04_internal_synthetic_escalation_procedure",
-          "title": "Escalation Procedure",
-          "section": "11. Post-Escalation Review",
-          "similarity": -0.3333
+          "doc_id": "02_carriers_one_service_summary",
+          "title": "ONE (Ocean Network Express) Service Summary",
+          "section": "Key Terms and Abbreviations",
+          "similarity": -0.3255
         }
       ]
     },
