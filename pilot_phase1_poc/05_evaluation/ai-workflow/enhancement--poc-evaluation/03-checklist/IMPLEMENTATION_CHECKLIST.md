@@ -63,7 +63,7 @@
 | Status | Task | Description | Roadmap Ref |
 |:------:|------|-------------|-------------|
 | [x] | Task 4.1 | Codebase documentation (Layers 2-4) | Phase 4 |
-| [ ] | Task 4.2 | Architecture documentation (6 files) | Phase 4 |
+| [x] | Task 4.2 | Architecture documentation (6 files) | Phase 4 |
 | [ ] | Task 4.3 | User-facing guides (3 files) | Phase 4 |
 | [ ] | Task 4.4 | Documentation index | Phase 4 |
 | [ ] | Task 4.5 | Project-level README | Phase 4 |
@@ -110,7 +110,7 @@
 | Phase 1 — UX Redesign | 4 | 4 | 100% |
 | Phase 2 — Testing | 13 | 13 | 100% |
 | Phase 3 — Fix Loop | 5 | 5 | 100% |
-| Phase 4 — Documentation | 9 | 1 | 11% |
+| Phase 4 — Documentation | 9 | 2 | 22% |
 | Phase 5 — Demo | 5 | 0 | 0% |
 | Phase 6 — Finalize | 3 | 0 | 0% |
-| **Total** | **45** | **29** | **64%** |
+| **Total** | **45** | **30** | **67%** |

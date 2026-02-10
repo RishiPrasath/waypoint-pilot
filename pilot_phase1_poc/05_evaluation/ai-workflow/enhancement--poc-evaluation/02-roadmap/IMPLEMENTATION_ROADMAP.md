@@ -14,10 +14,10 @@
 | Phase 1: UX Redesign | 4 | 4 | ✅ Complete |
 | Phase 2: Testing | 13 | 13 | ✅ Complete |
 | Phase 3: Fix Loop | 5 | 5 | ✅ Complete |
-| Phase 4: Documentation | 9 | 1 | 🔄 In Progress |
+| Phase 4: Documentation | 9 | 2 | 🔄 In Progress |
 | Phase 5: Demo | 5 | 0 | ⬜ Pending |
 | Phase 6: Finalize | 3 | 0 | ⬜ Pending |
-| **Total** | **45** | **29** | **64%** |
+| **Total** | **45** | **30** | **67%** |
 
 ---
 
@@ -54,7 +54,7 @@
 | 3.4 | Apply Hybrid B+A fixes (harness + selective reclassification) | Phase 3 | T3.3 | ✅ Complete |
 | 3.5 | Re-run evaluation (Round 4) | Phase 3 | T3.4 | ✅ Complete |
 | 4.1 | Codebase documentation (Layers 2-4: READMEs, codebase docs) | Phase 4 | CP3 | ✅ Complete |
-| 4.2 | Architecture documentation (6 files) | Phase 4 | CP3 | ⬜ Pending |
+| 4.2 | Architecture documentation (6 files) | Phase 4 | CP3 | ✅ Complete |
 | 4.3 | User-facing guides (3 files) | Phase 4 | CP3 | ⬜ Pending |
 | 4.4 | Documentation index | Phase 4 | T4.1-T4.3 | ⬜ Pending |
 | 4.5 | Project-level README | Phase 4 | T4.4 | ⬜ Pending |
@@ -1301,7 +1301,7 @@ All targets are hard gates. Fix loop continues until all are met. No "Min Viable
 ---
 
 ### Task 4.2 — Architecture documentation (6 files)
-- **Status**: ⬜ Pending
+- **Status**: ✅ Complete
 - **Dependencies**: CP3
 - **Blocks**: T4.4
 
@@ -1324,13 +1324,13 @@ All targets are hard gates. Fix loop continues until all are met. No "Min Viable
 6. Create `api_contract.md` — `/api/query` POST endpoint, request body shape, response body shape (answer, sources, relatedDocs, confidence, citations), error responses, status codes
 
 **Validation**:
-- [ ] 6 architecture docs created
-- [ ] `system_overview.md` includes tech stack with versions
-- [ ] `data_flow.md` includes sequence diagram
-- [ ] `ingestion_pipeline_flow.md` covers all stages with config parameters
-- [ ] `rag_pipeline_flow.md` covers all stages with config parameters
-- [ ] `kb_schema.md` covers all frontmatter fields and ChromaDB metadata
-- [ ] `api_contract.md` covers new 4-section response shape
+- [x] 6 architecture docs created
+- [x] `system_overview.md` includes tech stack with versions
+- [x] `data_flow.md` includes sequence diagram
+- [x] `ingestion_pipeline_flow.md` covers all stages with config parameters
+- [x] `rag_pipeline_flow.md` covers all stages with config parameters
+- [x] `kb_schema.md` covers all frontmatter fields and ChromaDB metadata
+- [x] `api_contract.md` covers new 4-section response shape
 
 **Prompt Location**: `./ai-workflow/enhancement--poc-evaluation/04-prompts/04-documentation/task_4_2/01-prompt/`
 **Output Location**: `./ai-workflow/enhancement--poc-evaluation/04-prompts/04-documentation/task_4_2/02-output/`
