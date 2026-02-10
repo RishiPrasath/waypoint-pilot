@@ -605,7 +605,7 @@ Standalone Vite app in `demo/presentation/`:
 | Ingestion Pipeline (Week 1) | ✅ Complete | ./pilot_phase1_poc/02_ingestion_pipeline/ |
 | RAG Pipeline (Week 2) | ✅ Complete | ./pilot_phase1_poc/03_rag_pipeline/ |
 | Retrieval Optimization (Week 3) | ✅ Complete | ./pilot_phase1_poc/04_retrieval_optimization/ |
-| **Evaluation & Documentation (Week 4)** | 🔄 In Progress (30/45 -- 67%) | ./pilot_phase1_poc/05_evaluation/ |
+| **Evaluation & Documentation (Week 4)** | 🔄 In Progress (37/45 -- 82%) | ./pilot_phase1_poc/05_evaluation/ |
 
 ---
 

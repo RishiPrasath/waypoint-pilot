@@ -64,13 +64,13 @@
 |:------:|------|-------------|-------------|
 | [x] | Task 4.1 | Codebase documentation (Layers 2-4) | Phase 4 |
 | [x] | Task 4.2 | Architecture documentation (6 files) | Phase 4 |
-| [ ] | Task 4.3 | User-facing guides (3 files) | Phase 4 |
-| [ ] | Task 4.4 | Documentation index | Phase 4 |
-| [ ] | Task 4.5 | Project-level README | Phase 4 |
-| [ ] | Task 4.6 | POC Evaluation Report | Phase 4 |
-| [ ] | Task 4.7 | Success criteria checklist | Phase 4 |
-| [ ] | Task 4.8 | Lessons learned (full retrospective) | Phase 4 |
-| [ ] | Task 4.9 | Phase 2 recommendations | Phase 4 |
+| [x] | Task 4.3 | User-facing guides (3 files) | Phase 4 |
+| [x] | Task 4.4 | Documentation index | Phase 4 |
+| [x] | Task 4.5 | Project-level README | Phase 4 |
+| [x] | Task 4.6 | POC Evaluation Report | Phase 4 |
+| [x] | Task 4.7 | Success criteria checklist | Phase 4 |
+| [x] | Task 4.8 | Lessons learned (full retrospective) | Phase 4 |
+| [x] | Task 4.9 | Phase 2 recommendations | Phase 4 |
 
 ## Phase 5: Demo Capture & Presentation
 
@@ -110,7 +110,7 @@
 | Phase 1 — UX Redesign | 4 | 4 | 100% |
 | Phase 2 — Testing | 13 | 13 | 100% |
 | Phase 3 — Fix Loop | 5 | 5 | 100% |
-| Phase 4 — Documentation | 9 | 2 | 22% |
+| Phase 4 — Documentation | 9 | 9 | 100% |
 | Phase 5 — Demo | 5 | 0 | 0% |
 | Phase 6 — Finalize | 3 | 0 | 0% |
-| **Total** | **45** | **30** | **67%** |
+| **Total** | **45** | **37** | **82%** |
