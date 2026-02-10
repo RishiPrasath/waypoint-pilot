@@ -56,6 +56,17 @@ You are a **Workflow Architect** specializing in AI-assisted software developmen
     │  You: Update checklist (mark task done)                         │
     │  You: Update roadmap (add actual time, notes)                   │
     │                                                                 │
+    │  ⚠️  If this task is the LAST task before a checkpoint:          │
+    │  You: AUTOMATICALLY create checkpoint review document at        │
+    │       05-checkpoints/checkpoint_N/review/CHECKPOINT_N_REVIEW.md │
+    │  Do NOT wait for human to ask — this is MANDATORY.              │
+    │                                                                 │
+    │  ⚠️  CHECKPOINT REVIEW = A NEW FILE in the review/ folder.     │
+    │  It is NOT the same as updating DESCRIPTION.md.                 │
+    │  You MUST create CHECKPOINT_N_REVIEW.md — this is the           │
+    │  deliverable. The description/ folder is pre-created metadata.  │
+    │  The review/ folder is the actual review output.                │
+    │                                                                 │
     │  >>> Task complete. Wait for human to request next task. <<<    │
     └─────────────────────────────────────────────────────────────────┘
 
@@ -65,6 +76,7 @@ You are a **Workflow Architect** specializing in AI-assisted software developmen
 |--------|---------|--------|
 | Generate prompt | "Generate prompt for Task N" | Create prompt file, then STOP |
 | Execute | "Execute" / "Go" / "Run it" | Do the work, create output report |
+| Checkpoint review | **AUTOMATIC** — last task before a checkpoint completed | Create checkpoint review doc in 05-checkpoints/ (no human trigger needed) |
 | Next task | "Generate prompt for Task N+1" | Create next prompt file, then STOP |
 
 ### What You Must NEVER Do:
@@ -371,13 +383,25 @@ Before any task, read and understand these rules completely.
 | C:\Users\name\projects\app\src\ | ./src/ |
 
 ### 4. After EVERY Task Execution
-**MANDATORY:** Update tracking documents for the active initiative:
-- Checklist: `./ai-workflow/[initiative]/03-checklist/IMPLEMENTATION_CHECKLIST.md`
-- Roadmap: `./ai-workflow/[initiative]/02-roadmap/IMPLEMENTATION_ROADMAP.md`
+**MANDATORY:** Update ALL tracking locations for the active initiative:
+- Checklist: `./ai-workflow/[initiative]/03-checklist/IMPLEMENTATION_CHECKLIST.md` — mark task [x] AND update Progress Summary totals
+- Roadmap: `./ai-workflow/[initiative]/02-roadmap/IMPLEMENTATION_ROADMAP.md` — update ALL THREE locations:
+  1. **Progress Tracker** table (top) — increment completed count and percentage
+  2. **Quick Reference** table — change task status ⬜ → ✅
+  3. **Detailed task entry** — change `**Status**: ⬜ Pending` → `**Status**: ✅ Complete`
+- Bootstrap file: Update the **Active Initiatives** table in the bootstrap prompt file (`ai-workflow-bootstrap-prompt*.md`) — set Status to current progress count (e.g., `🔄 In Progress (N/M -- X%)`)
+- **Verify**: Re-read all updated files after updating to confirm all locations are consistent
 
-### 5. After EVERY Checkpoint Completion
-**MANDATORY:** Create checkpoint review document:
+### 5. After EVERY Checkpoint Completion — AUTOMATIC
+**MANDATORY — Do NOT wait for human to ask.** When you complete the last task before a checkpoint, you MUST automatically create the checkpoint review document as part of your output:
 `./ai-workflow/[initiative]/05-checkpoints/checkpoint_N/review/CHECKPOINT_N_REVIEW.md`
+Check the roadmap's Checkpoints table to know which task triggers each checkpoint. The review must include: tasks completed, tests passing, validation results, verdict (PASS/FAIL), and next steps.
+
+**CRITICAL DISTINCTION:**
+- `description/DESCRIPTION.md` = pre-created acceptance criteria (exists before checkpoint is reached)
+- `review/CHECKPOINT_N_REVIEW.md` = the actual review deliverable (created ONLY when checkpoint is reached)
+- Updating DESCRIPTION.md checkboxes is NOT a substitute for creating the review document
+- The review document is the PRIMARY deliverable — always verify the file exists at `review/CHECKPOINT_N_REVIEW.md` before declaring a checkpoint complete
 
 ### 6. Protected Paths
 Do not modify files in these locations without explicit instruction:
@@ -420,6 +444,12 @@ Current AI-assisted development workflows:
 | Initiative | Status | Path |
 |------------|--------|------|
 | [Initiative Name] | 🔄 In Progress | ./ai-workflow/[type]--[name]/ |
+
+<!-- IMPORTANT: Update this table after EVERY task execution.
+     Format the Status column as: 🔄 In Progress (N/M -- X%)
+     where N = completed tasks, M = total tasks, X = percentage.
+     When initiative is complete, change to: ✅ Complete (M/M -- 100%)
+     This keeps the bootstrap file in sync with the roadmap/checklist. -->
 
 To work on an initiative:
 1. Read plan: `./ai-workflow/[initiative]/01-plan/DETAILED_PLAN.md`
@@ -702,8 +732,10 @@ All prompts follow **Persona-Context-Task-Format**:
     8. **Next Steps** - What comes next
 
     ### Update on Completion
-    - [ ] ./ai-workflow/[initiative]/03-checklist/IMPLEMENTATION_CHECKLIST.md - Mark task [x]
-    - [ ] ./ai-workflow/[initiative]/02-roadmap/IMPLEMENTATION_ROADMAP.md - Add actual time
+    - [ ] ./ai-workflow/[initiative]/03-checklist/IMPLEMENTATION_CHECKLIST.md - Mark task [x] + update Progress Summary totals
+    - [ ] ./ai-workflow/[initiative]/02-roadmap/IMPLEMENTATION_ROADMAP.md - Update ALL THREE: Progress Tracker totals, Quick Reference status, Detailed task status
+    - [ ] Bootstrap file (ai-workflow-bootstrap-prompt*.md) - Update Active Initiatives table status with current progress (N/M -- X%)
+    - [ ] Re-read all updated files to verify all locations are consistent
 
     ---
 
@@ -1252,8 +1284,10 @@ To proceed: "Generate prompt for Task [N+1]"
 
 ## Tracking Updates
 
-- [x] Checklist updated: Marked Task N complete
-- [x] Roadmap updated: Added actual time
+- [x] Checklist updated: Marked Task N [x] + Progress Summary totals
+- [x] Roadmap updated: Progress Tracker totals + Quick Reference status + Detailed task status
+- [x] Bootstrap file updated: Active Initiatives table status reflects current progress (N/M -- X%)
+- [x] Verified: Re-read all updated files, all locations consistent
 
 ---END TEMPLATE---
 
@@ -1432,10 +1466,15 @@ After initial generation, provide:
 | Human Says | You Do |
 |------------|--------|
 | "Generate prompt for Task N" | Create prompt file in 04-prompts/, then STOP |
-| "Execute" / "Go" / "Run it" | Execute the current prompt, create output report |
+| "Execute" / "Go" / "Run it" | Execute the current prompt, create output report. **If task triggers a checkpoint, automatically create checkpoint review too.** |
 | "Next task" | Same as "Generate prompt for Task N+1" |
-| "Review checkpoint N" | Create checkpoint review in 05-checkpoints/ |
+| "Run the checkpoint N review" | Create/recreate `CHECKPOINT_N_REVIEW.md` in `05-checkpoints/checkpoint_N/review/` (manual override — normally automatic) |
 | "Status" | Show current progress from checklist |
+
+**Note:** Checkpoint reviews are created AUTOMATICALLY after executing the last task before a checkpoint. The manual command is only needed if the human wants to re-generate a review.
+
+**IMPORTANT — Checkpoint Review Deliverable:**
+The checkpoint review is a **new file** at `05-checkpoints/checkpoint_N/review/CHECKPOINT_N_REVIEW.md`. It is NOT the same as ticking checkboxes in `description/DESCRIPTION.md`. Both should be updated, but the review file is the primary deliverable. Always verify the review file exists before reporting a checkpoint as complete.
 
 ---
 
@@ -1517,10 +1556,18 @@ AI creates all workflow files and the FIRST prompt only, then STOPS.
     └──────────────────────────────────────────────────────────┘
 
 ## Step 5: Checkpoint Reviews
-After completing a feature's tasks:
+Checkpoint reviews are **created automatically** when you execute the last task before a checkpoint. No separate command needed.
+
+    You: "Execute" (for the last task before checkpoint 1)
+    AI: [Executes task, creates output report]
+    AI: [AUTOMATICALLY creates checkpoint review document]
+        "Task N complete. Checkpoint 1 review created.
+         Verdict: PASSED. Review at 05-checkpoints/checkpoint_1/review/"
+
+If you need to re-generate a checkpoint review later:
 
     You: "Review checkpoint 1"
-    AI: [Creates checkpoint review document]
+    AI: [Re-creates checkpoint review document]
 
 ---
 

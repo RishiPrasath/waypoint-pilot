@@ -14,7 +14,7 @@ This document provides essential information for AI coding agents working on the
 - Carrier information (ocean and air)
 - Internal policies and SLAs
 
-**Phase 1 Scope**: Knowledge-base only RAG system with 29 curated documents. No live system integration (TMS/WMS, tracking, rates) in this phase.
+**Phase 1 Scope**: Knowledge-base only RAG system with 30 curated documents. No live system integration (TMS/WMS, tracking, rates) in this phase.
 
 ---
 
@@ -61,24 +61,44 @@ waypoint-pilot/
 │   │   ├── requirements.txt        # Python dependencies
 │   │   └── README.md               # Detailed documentation
 │   │
-│   └── 03_rag_pipeline/            # RAG Pipeline component (Week 2)
-│       ├── docs/                   # Pipeline planning documents
-│       │   ├── 00_week2_rag_pipeline_plan.md
-│       │   └── 01_implementation_roadmap.md  <-- CHECK THIS FIRST
-│       ├── prompts/                # PCTF task prompts
-│       ├── src/                    # Node.js backend (created during tasks)
-│       │   ├── index.js            # Express app entry point
-│       │   ├── config.js           # Environment config loader
-│       │   ├── routes/             # API route handlers
-│       │   ├── services/           # Business logic (pipeline, retrieval, llm)
-│       │   ├── prompts/            # System prompt templates
-│       │   └── utils/              # Utilities (logger, etc.)
-│       ├── client/                 # React UI (created during tasks)
-│       ├── scripts/                # Python evaluation scripts
-│       ├── tests/                  # Jest unit tests
-│       ├── logs/                   # Log files
-│       ├── .env                    # Environment config (gitignored)
-│       └── .env.example            # Environment template
+│   ├── 03_rag_pipeline/            # RAG Pipeline component (Week 2 - Complete)
+│   │   ├── docs/                   # Pipeline planning documents
+│   │   │   ├── 00_week2_rag_pipeline_plan.md
+│   │   │   └── 01_implementation_roadmap.md  <-- CHECK THIS FIRST
+│   │   ├── prompts/                # PCTF task prompts
+│   │   ├── src/                    # Node.js backend (created during tasks)
+│   │   │   ├── index.js            # Express app entry point
+│   │   │   ├── config.js           # Environment config loader
+│   │   │   ├── routes/             # API route handlers
+│   │   │   ├── services/           # Business logic (pipeline, retrieval, llm)
+│   │   │   ├── prompts/            # System prompt templates
+│   │   │   └── utils/              # Utilities (logger, etc.)
+│   │   ├── client/                 # React UI (created during tasks)
+│   │   ├── scripts/                # Python evaluation scripts
+│   │   ├── tests/                  # Jest unit tests
+│   │   ├── logs/                   # Log files
+│   │   ├── .env                    # Environment config (gitignored)
+│   │   └── .env.example            # Environment template
+│   │
+│   ├── 04_retrieval_optimization/  # Retrieval Optimization (Week 3 - Complete)
+│   │   ├── ai-workflow/            # Week 3 workflow (enhancement--retrieval-optimization)
+│   │   ├── kb/                     # Optimized KB (30 docs, 709 chunks)
+│   │   ├── scripts/                # Python ingestion + retrieval testing
+│   │   ├── chroma_db/              # Optimized vector store (92% hit rate)
+│   │   └── reports/                # Optimization reports
+│   │
+│   └── 05_evaluation/              # Evaluation & Documentation (Week 4 - In Progress)
+│       ├── ai-workflow/            # Week 4 workflow (enhancement--poc-evaluation)
+│       ├── backend/                # Express API (copied from 03, enhanced)
+│       ├── client/                 # React frontend (4-section response card)
+│       ├── kb/                     # Knowledge base (30 docs)
+│       ├── scripts/                # Python ingestion + evaluation harness
+│       ├── tests/                  # Python tests
+│       ├── data/                   # Evaluation baselines, test results
+│       ├── chroma_db/              # Vector store
+│       ├── reports/                # Evaluation reports
+│       ├── documentation/          # Full documentation suite (39 files)
+│       └── demo/                   # Presentation app + Selenium capture
 │
 ├── .github/workflows/ingestion.yml # CI/CD pipeline
 ├── CLAUDE.md                       # Root project guide
@@ -153,6 +173,36 @@ GitHub Actions workflow (`.github/workflows/ingestion.yml`):
 - Runs full ingestion with `--clear`
 - Runs verification (must pass)
 - Uploads ChromaDB artifact (7-day retention)
+
+### Evaluation & Documentation (Week 4)
+
+All commands run from `pilot_phase1_poc/05_evaluation/`:
+
+```bash
+cd pilot_phase1_poc/05_evaluation
+
+# Python setup
+py -3.11 -m venv venv
+venv/Scripts/activate
+pip install -r requirements.txt
+
+# Node.js backend
+npm install && npm start
+
+# React frontend
+cd client && npm install && npm run dev
+
+# Tests
+npm test                       # Jest backend tests (162 pass)
+cd client && npm test          # Vitest frontend tests (33 pass)
+python -m pytest tests/ -v     # Python tests
+
+# Ingestion
+python scripts/ingest.py --clear
+
+# Evaluation
+python scripts/evaluation_test.py
+```
 
 ---
 
@@ -298,7 +348,7 @@ Chunking settings (in `scripts/config.py`):
 ## RAG Pipeline Flow
 
 ```
-Knowledge Base (29 docs)
+Knowledge Base (30 docs)
         |
         v
 +-------------------+
@@ -327,7 +377,7 @@ Knowledge Base (29 docs)
         v
 +-------------------+
 | Verification      |  scripts/verify_ingestion.py
-| - Count checks    |  - 450-520 chunks expected
+| - Count checks    |  - 680-740 chunks expected
 | - Category checks |  - 4 categories
 | - Retrieval tests |  - 30 semantic queries
 +-------------------+
@@ -347,10 +397,23 @@ Knowledge Base (29 docs)
 
 ## Success Criteria
 
-- 29 documents parsed, ~350-400 chunks generated (actual: 483)
+### Week 1-2 (Ingestion + RAG Pipeline)
+- 29 documents parsed, 483 chunks generated
 - Tier 1 tests (category retrieval): 8/8 pass
 - Tier 2 tests (document retrieval): 10+/12 pass
-- 80% citation accuracy
+
+### Week 3 (Retrieval Optimization)
+- 30 documents parsed, 709 chunks generated
+- 92% raw hit rate / ~98% adjusted
+- Reclassified 3 queries (#36, #38, #44) as out-of-scope
+
+### Week 4 (Evaluation & Documentation)
+- 21/43 tasks complete (49%), Phase 2 Testing at 85%
+- Deflection rate: >= 40%
+- Citation accuracy: >= 80%
+- Hallucination rate: < 15%
+- Out-of-scope handling: >= 90%
+- Average latency: < 5s
 
 ---
 
@@ -457,13 +520,92 @@ Reclassified as out-of-scope: Queries #36, #38, #44
 
 ---
 
+## Evaluation & Documentation Coordination Rules (Week 4)
+
+### Rule 1: Check Roadmap Before Any Task
+- Read `pilot_phase1_poc/05_evaluation/ai-workflow/enhancement--poc-evaluation/02-roadmap/IMPLEMENTATION_ROADMAP.md` first
+- Verify task status: ⬜ Pending | 🔄 In Progress | ✅ Complete | ❌ Blocked
+- Confirm all dependency tasks are complete before starting
+
+### Rule 2: Follow AI Workflow Process
+When user requests a task:
+1. Check roadmap for task details
+2. Generate prompt file at `04-prompts/[phase]/task_N/01-prompt/` → STOP
+3. Wait for human to review and say "Execute"
+4. Execute the task
+5. Create output report at `04-prompts/[phase]/task_N/02-output/`
+6. Update checklist and roadmap
+
+### Rule 3: Protected Paths (Week 4)
+Do NOT modify these — all frozen from previous weeks:
+- `pilot_phase1_poc/01_knowledge_base/` — Original KB baseline
+- `pilot_phase1_poc/02_ingestion_pipeline/` — Week 1 stable
+- `pilot_phase1_poc/03_rag_pipeline/` — Week 2 stable
+- `pilot_phase1_poc/04_retrieval_optimization/` — Week 3 stable
+
+### Rule 4: Week 4 Workspace
+All Week 4 work happens in:
+```bash
+cd pilot_phase1_poc/05_evaluation
+
+# Python setup
+py -3.11 -m venv venv
+venv/Scripts/activate
+pip install -r requirements.txt
+
+# Node.js setup
+npm install
+
+# Backend
+npm start
+
+# React frontend
+cd client && npm install && npm run dev
+
+# Ingestion
+python scripts/ingest.py --clear
+
+# Evaluation harness
+python scripts/evaluation_test.py
+
+# Tests
+npm test                       # Jest backend tests (162 pass)
+cd client && npm test          # Vitest frontend tests (33 pass)
+python -m pytest tests/ -v     # Python tests
+```
+
+### Rule 5: Week 4 Targets
+| Metric | Target |
+|--------|--------|
+| Deflection Rate | ≥ 40% |
+| Citation Accuracy | ≥ 80% |
+| Hallucination Rate | < 15% |
+| OOS Handling | ≥ 90% |
+| Avg Latency | < 5s |
+| System Stability | No crashes |
+
+### Rule 6: Task Order
+UX redesign → Testing (5 layers) → Fix loop → Documentation → Demo → Finalize
+
+### Rule 7: New Dependencies
+- Selenium — demo capture (`demo/selenium/requirements.txt`)
+- framer-motion, react-mermaidjs, html2canvas — React presentation (`demo/presentation/package.json`)
+
+### Rule 8: Presentation
+Standalone Vite app in `demo/presentation/`:
+- `npm run dev` — preview
+- `npm run build` — static deploy
+
+---
+
 ## Active Initiatives
 
 | Initiative | Status | Path |
 |------------|--------|------|
 | Ingestion Pipeline (Week 1) | ✅ Complete | ./pilot_phase1_poc/02_ingestion_pipeline/ |
 | RAG Pipeline (Week 2) | ✅ Complete | ./pilot_phase1_poc/03_rag_pipeline/ |
-| Retrieval Optimization (Week 3) | 🔄 In Progress | ./pilot_phase1_poc/04_retrieval_optimization/ai-workflow/enhancement--retrieval-optimization/ |
+| Retrieval Optimization (Week 3) | ✅ Complete | ./pilot_phase1_poc/04_retrieval_optimization/ |
+| **Evaluation & Documentation (Week 4)** | 🔄 In Progress (25/43 -- 58%) | ./pilot_phase1_poc/05_evaluation/ |
 
 ---
 
@@ -473,6 +615,7 @@ Reclassified as out-of-scope: Queries #36, #38, #44
 - `02_ingestion_pipeline/docs/01_implementation_roadmap.md`: Ingestion task checklist (Week 1)
 - `03_rag_pipeline/docs/01_implementation_roadmap.md`: RAG pipeline task checklist (Week 2)
 - `04_retrieval_optimization/ai-workflow/enhancement--retrieval-optimization/02-roadmap/IMPLEMENTATION_ROADMAP.md`: Retrieval optimization roadmap (Week 3)
+- `05_evaluation/ai-workflow/enhancement--poc-evaluation/02-roadmap/IMPLEMENTATION_ROADMAP.md`: Evaluation & documentation roadmap (Week 4)
 - `02_ingestion_pipeline/README.md`: Detailed pipeline documentation
 - `00_docs/04_technical_architecture.md`: Stack and API specification
 - `00_docs/02_use_cases.md`: 50 test queries and expected behaviors

@@ -1,0 +1,4128 @@
+{
+  "run_id": "eval-2026-02-10T10-28-40",
+  "timestamp": "2026-02-10T02:28:40.275385+00:00",
+  "config": {
+    "delay_seconds": 10,
+    "api_url": "http://localhost:3000",
+    "start_from": "Q-01",
+    "baselines_version": "1.0"
+  },
+  "metrics": {
+    "deflection_rate": 89.5,
+    "citation_accuracy": 60.5,
+    "hallucination_rate": 0.0,
+    "oos_handling_rate": 100.0,
+    "avg_latency_ms": 1314.0,
+    "latency_under_5s": 100.0,
+    "total_queries": 50,
+    "successful_queries": 50,
+    "failed_queries": 0,
+    "in_scope_queries": 38,
+    "oos_queries": 12,
+    "by_category": {
+      "booking": {
+        "total": 10,
+        "in_scope": 10,
+        "oos": 0,
+        "deflection_rate": 80.0,
+        "citation_accuracy": 70.0,
+        "hallucination_rate": 0.0,
+        "avg_latency_ms": 1474.5
+      },
+      "customs": {
+        "total": 10,
+        "in_scope": 10,
+        "oos": 0,
+        "deflection_rate": 90.0,
+        "citation_accuracy": 90.0,
+        "hallucination_rate": 0.0,
+        "avg_latency_ms": 1498.3
+      },
+      "carrier": {
+        "total": 10,
+        "in_scope": 7,
+        "oos": 3,
+        "deflection_rate": 85.71428571428571,
+        "citation_accuracy": 14.285714285714285,
+        "hallucination_rate": 0.0,
+        "avg_latency_ms": 1262.7
+      },
+      "sla": {
+        "total": 10,
+        "in_scope": 10,
+        "oos": 0,
+        "deflection_rate": 100.0,
+        "citation_accuracy": 50.0,
+        "hallucination_rate": 0.0,
+        "avg_latency_ms": 1222.9
+      },
+      "edge_case": {
+        "total": 10,
+        "in_scope": 1,
+        "oos": 9,
+        "deflection_rate": 100.0,
+        "citation_accuracy": 100.0,
+        "hallucination_rate": 0.0,
+        "avg_latency_ms": 1110.6
+      }
+    }
+  },
+  "results": [
+    {
+      "id": "Q-01",
+      "category": "booking",
+      "query": "What documents are needed for sea freight Singapore to Indonesia?",
+      "is_oos": false,
+      "response": {
+        "answer": "### Required Documents for Sea Freight from Singapore to Indonesia\n\nFor sea freight shipments from Singapore to Indonesia, the following documents are typically required:\n\n1. **Commercial Invoice**: A detailed invoice showing the goods' description, quantity, value, and other relevant information.\n2. **Bill of Lading (B/L)**: A document issued by the carrier that serves as a receipt for the goods and evidence of the contract of carriage.\n3. **Packing List**: A detailed list of the goods packed in the container, including their quantity, weight, and description.\n4. **Certificate of Origin (COO)**: A document that certifies the country of origin of the goods, which is required for preferential tariff claims.\n5. **Export Declaration**: A document submitted to the Singapore Customs, declaring the goods being exported.\n6. **Import Declaration**: A document submitted to the Indonesian Customs, declaring the goods being imported.\n7. **Insurance Certificate**: A document that proves the goods are insured against loss or damage during transit.\n8. **Phytosanitary Certificate**: A document issued by the Singapore Plant Health Inspection Service, certifying that the goods are free from pests and diseases.\n9. **Fumigation Certificate**: A document issued by a certified fumigator, certifying that the goods have been fumigated to meet Indonesian regulations.\n\n### Electronic Submission\n\nIn addition to the above documents, electronic submissions are also required through the **Indonesia National Single Window (INSW)** platform using standardized Electronic Data Interchange (EDI) formats.\n\n**Source:** [Indonesia Import Requirements > Required Import Documentation]\n\nPlease note that additional documents may be required depending on the type of goods being shipped and the specific regulations in place. It is recommended to check with the relevant authorities and/or a freight forwarder for the most up-to-date information.",
+        "sources": [
+          {
+            "title": "Indonesia Import Requirements",
+            "org": "U.S. Department of Commerce - International Trade Administration",
+            "url": "https://www.trade.gov/country-commercial-guides/indonesia-import-requirements-and-documentation",
+            "section": "Required Import Documentation"
+          },
+          {
+            "title": "Indonesia Import Requirements",
+            "org": "U.S. Department of Commerce - International Trade Administration",
+            "url": "https://www.insw.go.id/",
+            "section": "Required Import Documentation"
+          },
+          {
+            "title": "Indonesia Import Requirements",
+            "org": "U.S. Department of Commerce - International Trade Administration",
+            "url": "https://www.beacukai.go.id/",
+            "section": "Required Import Documentation"
+          },
+          {
+            "title": "Indonesia Import Requirements",
+            "org": "U.S. Department of Commerce - International Trade Administration",
+            "url": "https://www.pajak.go.id/en/artikel/indonesias-2025-vat-rate-increase-strengthening-fiscal-foundations-national-development",
+            "section": "Required Import Documentation"
+          }
+        ],
+        "relatedDocs": [
+          {
+            "title": "Indonesia Import Requirements",
+            "category": "regulatory",
+            "docId": "01_regulatory_indonesia_import_requirements",
+            "url": "https://www.trade.gov/country-commercial-guides/indonesia-import-requirements-and-documentation"
+          },
+          {
+            "title": "PIL (Pacific International Lines) Service Summary",
+            "category": "carrier",
+            "docId": "02_carriers_pil_service_summary",
+            "url": "https://www.pilship.com/about-pil/"
+          },
+          {
+            "title": "Frequently Asked Questions",
+            "category": "internal",
+            "docId": "04_internal_synthetic_customer_faq",
+            "url": null
+          },
+          {
+            "title": "Service Level Agreement (SLA) Policy",
+            "category": "internal",
+            "docId": "04_internal_synthetic_sla_policy",
+            "url": null
+          },
+          {
+            "title": "Incoterms 2020 Complete Reference Guide",
+            "category": "reference",
+            "docId": "03_reference_incoterms_2020_reference",
+            "url": "https://iccwbo.org/business-solutions/incoterms-rules/"
+          },
+          {
+            "title": "Maersk Service Summary",
+            "category": "carrier",
+            "docId": "02_carriers_maersk_service_summary",
+            "url": "https://www.maersk.com/about"
+          },
+          {
+            "title": "Malaysia Import Requirements",
+            "category": "regulatory",
+            "docId": "01_regulatory_malaysia_import_requirements",
+            "url": "https://www.trade.gov/country-commercial-guides/malaysia-import-requirements-and-documentation"
+          },
+          {
+            "title": "Singapore Export Procedures",
+            "category": "regulatory",
+            "docId": "01_regulatory_sg_export_procedures",
+            "url": "https://www.customs.gov.sg/businesses/exporting-goods/overview/"
+          }
+        ],
+        "citations": [
+          {
+            "raw": "[Indonesia Import Requirements > Required Import Documentation]",
+            "title": "Indonesia Import Requirements",
+            "section": "Required Import Documentation",
+            "position": 1611,
+            "matched": true,
+            "sourceUrls": [
+              "https://www.trade.gov/country-commercial-guides/indonesia-import-requirements-and-documentation",
+              "https://www.insw.go.id/",
+              "https://www.beacukai.go.id/",
+              "https://www.pajak.go.id/en/artikel/indonesias-2025-vat-rate-increase-strengthening-fiscal-foundations-national-development"
+            ],
+            "docId": "01_regulatory_indonesia_import_requirements",
+            "score": 0.38920414447784424,
+            "fullTitle": "Indonesia Import Requirements"
+          }
+        ],
+        "confidence": {
+          "level": "Low",
+          "reason": "Low relevance scores (avg 29%)"
+        },
+        "metadata": {
+          "query": "What documents are needed for sea freight Singapore to Indonesia?",
+          "chunksRetrieved": 10,
+          "chunksUsed": 1,
+          "latencyMs": 1946,
+          "model": "llama-3.1-8b-instant"
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 3,
+          "matched": 3,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [
+            "sg_export",
+            "indonesia_import"
+          ],
+          "found": [
+            "sg_export",
+            "indonesia_import"
+          ]
+        },
+        "citation_present": {
+          "pass": true,
+          "source_count": 4,
+          "citation_count": 1
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1946,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": true,
+      "client_latency_ms": 1964,
+      "error": null
+    },
+    {
+      "id": "Q-02",
+      "category": "booking",
+      "query": "How far in advance should I book an LCL shipment?",
+      "is_oos": false,
+      "response": {
+        "answer": "**LCL shipments should be booked 7-10 days before your cargo is ready**, with a minimum of 5 days' notice.\n\nFor detailed information on booking procedures, see the Sea Freight Booking Procedure (SOP-001) [Sea Freight Booking Procedure > Recommended Booking Lead Times].",
+        "sources": [],
+        "relatedDocs": [
+          {
+            "title": "Frequently Asked Questions",
+            "category": "internal",
+            "docId": "04_internal_synthetic_customer_faq",
+            "url": null
+          },
+          {
+            "title": "Sea Freight Booking Procedure",
+            "category": "internal",
+            "docId": "04_internal_synthetic_booking_procedure",
+            "url": null
+          }
+        ],
+        "citations": [
+          {
+            "raw": "[Sea Freight Booking Procedure > Recommended Booking Lead Times]",
+            "title": "Sea Freight Booking Procedure",
+            "section": "Recommended Booking Lead Times",
+            "position": 204,
+            "matched": true,
+            "sourceUrls": [],
+            "docId": "04_internal_synthetic_booking_procedure",
+            "score": 0.1535501480102539,
+            "fullTitle": "Sea Freight Booking Procedure"
+          }
+        ],
+        "confidence": {
+          "level": "Low",
+          "reason": "Low relevance scores (avg 26%)"
+        },
+        "metadata": {
+          "query": "How far in advance should I book an LCL shipment?",
+          "chunksRetrieved": 3,
+          "chunksUsed": 1,
+          "latencyMs": 1277,
+          "model": "llama-3.1-8b-instant"
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 2,
+          "matched": 2,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [
+            "booking"
+          ],
+          "found": [
+            "booking"
+          ]
+        },
+        "citation_present": {
+          "pass": true,
+          "source_count": 0,
+          "citation_count": 1
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1277,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": true,
+      "client_latency_ms": 1279,
+      "error": null
+    },
+    {
+      "id": "Q-03",
+      "category": "booking",
+      "query": "What's the difference between FCL and LCL?",
+      "is_oos": false,
+      "response": {
+        "answer": "### Full Container Load (FCL) vs Less than Container Load (LCL)\n\n**Key Differences:**\n\n*   **Container Utilization:** FCL uses a full container (20' or 40') for a single shipment, while LCL uses a portion of a container for multiple shipments.\n*   **Cost:** FCL is generally more cost-effective for large shipments, while LCL is better suited for smaller shipments or when sharing a container with other shippers.\n*   **Space and Weight:** FCL requires more space and weight capacity than LCL, which can be beneficial for heavy or oversized items.\n*   **Handling and Storage:** FCL typically involves less handling and storage, as the entire container is dedicated to a single shipment. LCL, on the other hand, may require more handling and storage, as the cargo is consolidated with other shipments.\n\n**Choosing Between FCL and LCL:**\n\n*   **Large or Heavy Shipments:** FCL is often the better choice for large or heavy shipments that require a full container.\n*   **Small or Light Shipments:** LCL is usually more cost-effective for small or light shipments that don't require a full container.\n*   **Shared Container:** LCL allows shippers to share a container with other companies, which can be beneficial for smaller shipments or when coordinating with other businesses.\n\n**Required Documents:**\n\n*   **Commercial Invoice:** A commercial invoice is required for both FCL and LCL shipments, which includes details about the shipment, such as the goods, weight, and value.\n*   **Bill of Lading:** A bill of lading is also required for both FCL and LCL shipments, which serves as a contract between the shipper and the carrier.\n*   **Customs Declaration:** A customs declaration is required for both FCL and LCL shipments, which includes information about the shipment, such as the goods, weight, and value.\n\n**Process Steps:**\n\n1.  **Booking:** Book the shipment with the carrier, providing details about the shipment, such as the goods, weight, and value.\n2.  **Documentation:** Prepare and submit the required documents, including the commercial invoice, bill of lading, and customs declaration.\n3.  **Loading:** Load the shipment into the container, ensuring that it is properly secured and labeled.\n4.  **Transportation:** Transport the shipment to the destination, following the agreed-upon route and schedule.\n5.",
+        "sources": [],
+        "relatedDocs": [
+          {
+            "title": "Sea Freight Booking Procedure",
+            "category": "internal",
+            "docId": "04_internal_synthetic_booking_procedure",
+            "url": null
+          }
+        ],
+        "citations": [],
+        "confidence": {
+          "level": "Low",
+          "reason": "Only 1 source found"
+        },
+        "metadata": {
+          "query": "What's the difference between FCL and LCL?",
+          "chunksRetrieved": 1,
+          "chunksUsed": 0,
+          "latencyMs": 1930,
+          "model": "llama-3.1-8b-instant"
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 2,
+          "matched": 2,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [
+            "booking",
+            "incoterms"
+          ],
+          "found": [
+            "booking"
+          ]
+        },
+        "citation_present": {
+          "pass": false,
+          "source_count": 0,
+          "citation_count": 0
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1930,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": false,
+      "client_latency_ms": 1931,
+      "error": null
+    },
+    {
+      "id": "Q-04",
+      "category": "booking",
+      "query": "When is the SI cutoff for this week's Maersk sailing?",
+      "is_oos": false,
+      "response": {
+        "answer": "I don't have specific information about that topic in my knowledge base. Please try rephrasing your question or contact our customer service team for assistance.",
+        "sources": [],
+        "relatedDocs": [],
+        "citations": [],
+        "confidence": {
+          "level": "Low",
+          "reason": "No relevant documents found"
+        },
+        "metadata": {
+          "query": "When is the SI cutoff for this week's Maersk sailing?",
+          "chunksRetrieved": 0,
+          "chunksUsed": 0,
+          "latencyMs": 993,
+          "model": null
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": false,
+          "total": 2,
+          "matched": 0,
+          "missing": [
+            "shipping instructions",
+            "Maersk"
+          ]
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": false,
+          "expected": [
+            "maersk"
+          ],
+          "found": []
+        },
+        "citation_present": {
+          "pass": false,
+          "source_count": 0,
+          "citation_count": 0
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 993,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": false,
+      "client_latency_ms": 995,
+      "error": null
+    },
+    {
+      "id": "Q-05",
+      "category": "booking",
+      "query": "Do I need a commercial invoice for samples with no value?",
+      "is_oos": false,
+      "response": {
+        "answer": "**Yes, a commercial invoice is always required**, even for samples or gifts with no commercial value.\n\n[Citing: Frequently Asked Questions > Special Cases: Samples and No-Value Goods]\n\n| Scenario | Invoice Requirement | Declared Value |\n|----------|---------------------|----------------|\n| Trade samples | Required | \"No Commercial Value\" or NFV |\n| Promotional items | Required | Nominal value (e.g., SGD 1) |\n| Gifts | Required | Fair market value or nominal |\n| Warranty replacements | Required | Replacement value |\n\n**Important Notes**:\n- Mark invoice clearly: \"Sample - Not for Resale\" or \"No Commercial Value\"\n- Some countries require minimum declared value for customs purposes\n- Zero-value declarations may trigger customs inspection\n- Insurance claims require accurate value declaration\n\n[Citing: Sea Freight Booking Procedure > Important Notes]",
+        "sources": [],
+        "relatedDocs": [
+          {
+            "title": "Frequently Asked Questions",
+            "category": "internal",
+            "docId": "04_internal_synthetic_customer_faq",
+            "url": null
+          },
+          {
+            "title": "Sea Freight Booking Procedure",
+            "category": "internal",
+            "docId": "04_internal_synthetic_booking_procedure",
+            "url": null
+          }
+        ],
+        "citations": [
+          {
+            "raw": "[Citing: Frequently Asked Questions > Special Cases: Samples and No-Value Goods]",
+            "title": "Citing: Frequently Asked Questions",
+            "section": "Special Cases: Samples and No-Value Goods",
+            "position": 103,
+            "matched": true,
+            "sourceUrls": [],
+            "docId": "04_internal_synthetic_customer_faq",
+            "score": 0.5422911643981934,
+            "fullTitle": "Frequently Asked Questions"
+          },
+          {
+            "raw": "[Citing: Sea Freight Booking Procedure > Important Notes]",
+            "title": "Citing: Sea Freight Booking Procedure",
+            "section": "Important Notes",
+            "position": 799,
+            "matched": true,
+            "sourceUrls": [],
+            "docId": "04_internal_synthetic_booking_procedure",
+            "score": 0.48721837997436523,
+            "fullTitle": "Sea Freight Booking Procedure"
+          }
+        ],
+        "confidence": {
+          "level": "Medium",
+          "reason": "4 sources found, average relevance 36%"
+        },
+        "metadata": {
+          "query": "Do I need a commercial invoice for samples with no value?",
+          "chunksRetrieved": 4,
+          "chunksUsed": 2,
+          "latencyMs": 1464,
+          "model": "llama-3.1-8b-instant"
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 2,
+          "matched": 2,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [
+            "sg_export",
+            "indonesia_import",
+            "customer_faq",
+            "booking"
+          ],
+          "found": [
+            "customer_faq",
+            "booking"
+          ]
+        },
+        "citation_present": {
+          "pass": true,
+          "source_count": 0,
+          "citation_count": 2
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1464,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": true,
+      "client_latency_ms": 1466,
+      "error": null
+    },
+    {
+      "id": "Q-06",
+      "category": "booking",
+      "query": "What's a Bill of Lading and who issues it?",
+      "is_oos": false,
+      "response": {
+        "answer": "**A Bill of Lading (B/L) is a legal document issued by the carrier** (shipping line) or their agent that serves three essential purposes:\n\n| Function | Description |\n|----------|-------------|\n| **Receipt** | Confirms carrier received the goods in stated condition |\n| **Contract of Carriage** | Evidence of the transportation agreement |\n| **Document of Title** | Grants ownership/control of the goods |\n\n[Sea Freight Booking Procedure > Bill of Lading]",
+        "sources": [],
+        "relatedDocs": [
+          {
+            "title": "Sea Freight Booking Procedure",
+            "category": "internal",
+            "docId": "04_internal_synthetic_booking_procedure",
+            "url": null
+          },
+          {
+            "title": "Frequently Asked Questions",
+            "category": "internal",
+            "docId": "04_internal_synthetic_customer_faq",
+            "url": null
+          }
+        ],
+        "citations": [
+          {
+            "raw": "[Sea Freight Booking Procedure > Bill of Lading]",
+            "title": "Sea Freight Booking Procedure",
+            "section": "Bill of Lading",
+            "position": 406,
+            "matched": true,
+            "sourceUrls": [],
+            "docId": "04_internal_synthetic_booking_procedure",
+            "score": 0.42936813831329346,
+            "fullTitle": "Sea Freight Booking Procedure"
+          }
+        ],
+        "confidence": {
+          "level": "Medium",
+          "reason": "2 sources found, average relevance 43%"
+        },
+        "metadata": {
+          "query": "What's a Bill of Lading and who issues it?",
+          "chunksRetrieved": 2,
+          "chunksUsed": 1,
+          "latencyMs": 1344,
+          "model": "llama-3.1-8b-instant"
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 2,
+          "matched": 2,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [
+            "booking"
+          ],
+          "found": [
+            "booking"
+          ]
+        },
+        "citation_present": {
+          "pass": true,
+          "source_count": 0,
+          "citation_count": 1
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1344,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": true,
+      "client_latency_ms": 1346,
+      "error": null
+    },
+    {
+      "id": "Q-07",
+      "category": "booking",
+      "query": "Can we ship without a packing list?",
+      "is_oos": false,
+      "response": {
+        "answer": "**No. A packing list is mandatory for all shipments and cannot be waived.**\n\nAccording to our Sea Freight Booking Procedure [Sea Freight Booking Procedure > Packing List Requirements], a packing list is required for cargo verification and customs clearance. It must include an itemized list of all goods in shipment, quantities, weights (gross and net), dimensions, and package marks and numbers. Shipments submitted without a packing list will be rejected.\n\n[Sea Freight Booking Procedure > Packing List Requirements]",
+        "sources": [],
+        "relatedDocs": [
+          {
+            "title": "Frequently Asked Questions",
+            "category": "internal",
+            "docId": "04_internal_synthetic_customer_faq",
+            "url": null
+          },
+          {
+            "title": "Sea Freight Booking Procedure",
+            "category": "internal",
+            "docId": "04_internal_synthetic_booking_procedure",
+            "url": null
+          }
+        ],
+        "citations": [
+          {
+            "raw": "[Sea Freight Booking Procedure > Packing List Requirements]",
+            "title": "Sea Freight Booking Procedure",
+            "section": "Packing List Requirements",
+            "position": 124,
+            "matched": true,
+            "sourceUrls": [],
+            "docId": "04_internal_synthetic_booking_procedure",
+            "score": 0.5100461542606354,
+            "fullTitle": "Sea Freight Booking Procedure"
+          }
+        ],
+        "confidence": {
+          "level": "Medium",
+          "reason": "4 sources found, average relevance 44%"
+        },
+        "metadata": {
+          "query": "Can we ship without a packing list?",
+          "chunksRetrieved": 4,
+          "chunksUsed": 1,
+          "latencyMs": 1618,
+          "model": "llama-3.1-8b-instant"
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 2,
+          "matched": 2,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [
+            "sg_export",
+            "indonesia_import",
+            "customer_faq",
+            "booking"
+          ],
+          "found": [
+            "customer_faq",
+            "booking"
+          ]
+        },
+        "citation_present": {
+          "pass": true,
+          "source_count": 0,
+          "citation_count": 1
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1618,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": true,
+      "client_latency_ms": 1636,
+      "error": null
+    },
+    {
+      "id": "Q-08",
+      "category": "booking",
+      "query": "What does FOB Singapore mean?",
+      "is_oos": false,
+      "response": {
+        "answer": "**FOB Singapore** refers to the Incoterm (International Commercial Terms) where the seller is responsible for delivering the goods to the buyer at the port of Singapore, and the buyer is responsible for clearing customs and arranging transportation from the port to their final destination.\n\n[Incoterms 2020 Comparison Chart > FOB]\n\nIn this term, the seller's obligations include:\n\n* Loading the goods onto the vessel at the port of Singapore\n* Obtaining the necessary export documentation\n* Paying for the transportation costs to the port of Singapore\n\nThe buyer's obligations include:\n\n* Clearing customs and paying any applicable duties and taxes\n* Arranging for the transportation of the goods from the port of Singapore to their final destination\n\nIt's essential to note that FOB Singapore does not include the cost of insurance, which is typically the buyer's responsibility.",
+        "sources": [
+          {
+            "title": "Incoterms 2020 Comparison Chart",
+            "org": "International Chamber of Commerce (ICC)",
+            "url": "https://iccwbo.org/business-solutions/incoterms-rules/",
+            "section": "FOB"
+          },
+          {
+            "title": "Incoterms 2020 Comparison Chart",
+            "org": "International Chamber of Commerce (ICC)",
+            "url": "https://iccwbo.org/ressources-for-business-2/incoterms-rules/incoterms-2020/",
+            "section": "FOB"
+          }
+        ],
+        "relatedDocs": [
+          {
+            "title": "Incoterms 2020 Comparison Chart",
+            "category": "reference",
+            "docId": "03_reference_incoterms_comparison_chart",
+            "url": "https://iccwbo.org/business-solutions/incoterms-rules/"
+          }
+        ],
+        "citations": [
+          {
+            "raw": "[Incoterms 2020 Comparison Chart > FOB]",
+            "title": "Incoterms 2020 Comparison Chart",
+            "section": "FOB",
+            "position": 292,
+            "matched": true,
+            "sourceUrls": [
+              "https://iccwbo.org/business-solutions/incoterms-rules/",
+              "https://iccwbo.org/ressources-for-business-2/incoterms-rules/incoterms-2020/"
+            ],
+            "docId": "03_reference_incoterms_comparison_chart",
+            "score": 0.1501239538192749,
+            "fullTitle": "Incoterms 2020 Comparison Chart"
+          }
+        ],
+        "confidence": {
+          "level": "Low",
+          "reason": "Only 1 source found"
+        },
+        "metadata": {
+          "query": "What does FOB Singapore mean?",
+          "chunksRetrieved": 1,
+          "chunksUsed": 1,
+          "latencyMs": 1503,
+          "model": "llama-3.1-8b-instant"
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": false,
+          "total": 2,
+          "matched": 1,
+          "missing": [
+            "free on board"
+          ]
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [
+            "incoterms"
+          ],
+          "found": [
+            "incoterms"
+          ]
+        },
+        "citation_present": {
+          "pass": true,
+          "source_count": 2,
+          "citation_count": 1
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1503,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": false,
+      "client_latency_ms": 1504,
+      "error": null
+    },
+    {
+      "id": "Q-09",
+      "category": "booking",
+      "query": "How do I amend a booking after confirmation?",
+      "is_oos": false,
+      "response": {
+        "answer": "**Amending a Booking After Confirmation**\n\nTo amend a booking after confirmation, please follow these steps:\n\n1. **Contact Your Account Manager**: Reach out to your dedicated account manager to request changes to your booking. They will guide you through the process and ensure that any amendments are made in a timely manner.\n2. **Use the Booking System**: If you have access to the booking system, you can also log in and make changes to your booking online. Please note that some amendments may require account manager approval.\n3. **Provide Required Documentation**: Depending on the type of amendment, you may need to provide additional documentation, such as updated commercial invoices or certificates of origin.\n\n**Important Notes**:\n\n* **Amendment Fees**: Some amendments may incur additional fees, which will be discussed with your account manager.\n* **Carrier Approval**: Some amendments may require carrier approval, which may delay the amendment process.\n* **Booking Cancellation**: If you wish to cancel your booking entirely, please refer to our **Cancellation Policy** [Service Terms and Conditions > Cancellation Policy].\n\n**Timeline**:\n\n* **Amendment Requests**: Please submit amendment requests as soon as possible to avoid delays.\n* **Amendment Processing**: We will process amendments within 2 hours of receipt, subject to carrier approval and availability.\n\n**For More Information**:\n\n* **Booking Amendments**: Refer to our **Booking Procedure** [Sea Freight Booking Procedure > Amendment Process] for detailed information on the amendment process.\n* **Amendment Fees**: Contact your account manager for information on any additional fees associated with amendments.\n\nPlease note that this is a general guide, and specific requirements may vary depending on your booking and circumstances. If you have any questions or concerns, please don't hesitate to reach out to your account manager.",
+        "sources": [],
+        "relatedDocs": [
+          {
+            "title": "Service Terms and Conditions",
+            "category": "internal",
+            "docId": "04_internal_synthetic_service_terms_conditions",
+            "url": null
+          },
+          {
+            "title": "Sea Freight Booking Procedure",
+            "category": "internal",
+            "docId": "04_internal_synthetic_booking_procedure",
+            "url": null
+          }
+        ],
+        "citations": [
+          {
+            "raw": "[Service Terms and Conditions > Cancellation Policy]",
+            "title": "Service Terms and Conditions",
+            "section": "Cancellation Policy",
+            "position": 1085,
+            "matched": true,
+            "sourceUrls": [],
+            "docId": "04_internal_synthetic_service_terms_conditions",
+            "score": 0.3176681399345398,
+            "fullTitle": "Service Terms and Conditions"
+          },
+          {
+            "raw": "[Sea Freight Booking Procedure > Amendment Process]",
+            "title": "Sea Freight Booking Procedure",
+            "section": "Amendment Process",
+            "position": 1468,
+            "matched": true,
+            "sourceUrls": [],
+            "docId": "04_internal_synthetic_booking_procedure",
+            "score": 0.21412283182144165,
+            "fullTitle": "Sea Freight Booking Procedure"
+          }
+        ],
+        "confidence": {
+          "level": "Low",
+          "reason": "Low relevance scores (avg 27%)"
+        },
+        "metadata": {
+          "query": "How do I amend a booking after confirmation?",
+          "chunksRetrieved": 2,
+          "chunksUsed": 2,
+          "latencyMs": 1728,
+          "model": "llama-3.1-8b-instant"
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 2,
+          "matched": 2,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [
+            "booking"
+          ],
+          "found": [
+            "booking"
+          ]
+        },
+        "citation_present": {
+          "pass": true,
+          "source_count": 0,
+          "citation_count": 2
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1728,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": true,
+      "client_latency_ms": 1729,
+      "error": null
+    },
+    {
+      "id": "Q-10",
+      "category": "booking",
+      "query": "What's the free time at destination port?",
+      "is_oos": false,
+      "response": {
+        "answer": "I don't have specific information about that topic in my knowledge base. Please try rephrasing your question or contact our customer service team for assistance.",
+        "sources": [],
+        "relatedDocs": [],
+        "citations": [],
+        "confidence": {
+          "level": "Low",
+          "reason": "No relevant documents found"
+        },
+        "metadata": {
+          "query": "What's the free time at destination port?",
+          "chunksRetrieved": 0,
+          "chunksUsed": 0,
+          "latencyMs": 942,
+          "model": null
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 0,
+          "matched": 0,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": false,
+          "expected": [
+            "carrier",
+            "service"
+          ],
+          "found": []
+        },
+        "citation_present": {
+          "pass": false,
+          "source_count": 0,
+          "citation_count": 0
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 942,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": false,
+      "client_latency_ms": 936,
+      "error": null
+    },
+    {
+      "id": "Q-11",
+      "category": "customs",
+      "query": "What's the GST rate for imports into Singapore?",
+      "is_oos": false,
+      "response": {
+        "answer": "**GST Rate for Imports**: 9% [Singapore GST Guide for Imports > Overview]\n\nEffective 1 January 2024, the GST rate for imports into Singapore is 9%.",
+        "sources": [
+          {
+            "title": "Singapore GST Guide for Imports",
+            "org": "Singapore Customs",
+            "url": "https://www.customs.gov.sg/businesses/valuation-duties-taxes-fees/goods-and-services-tax-gst/",
+            "section": "Overview"
+          },
+          {
+            "title": "Singapore GST Guide for Imports",
+            "org": "Singapore Customs",
+            "url": "https://www.iras.gov.sg/taxes/goods-services-tax-(gst)/basics-of-gst/current-gst-rates",
+            "section": "Overview"
+          }
+        ],
+        "relatedDocs": [
+          {
+            "title": "Singapore GST Guide for Imports",
+            "category": "regulatory",
+            "docId": "01_regulatory_sg_gst_guide",
+            "url": "https://www.customs.gov.sg/businesses/valuation-duties-taxes-fees/goods-and-services-tax-gst/"
+          },
+          {
+            "title": "Singapore Certificates of Origin",
+            "category": "regulatory",
+            "docId": "01_regulatory_sg_certificates_of_origin",
+            "url": "https://www.customs.gov.sg/businesses/rules-of-origin/origin-documentation/"
+          },
+          {
+            "title": "Singapore Import Procedures",
+            "category": "regulatory",
+            "docId": "01_regulatory_sg_import_procedures",
+            "url": "https://www.customs.gov.sg/businesses/importing-goods/overview/"
+          },
+          {
+            "title": "Incoterms 2020 Complete Reference Guide",
+            "category": "reference",
+            "docId": "03_reference_incoterms_2020_reference",
+            "url": "https://iccwbo.org/business-solutions/incoterms-rules/"
+          },
+          {
+            "title": "Singapore Export Procedures",
+            "category": "regulatory",
+            "docId": "01_regulatory_sg_export_procedures",
+            "url": "https://www.customs.gov.sg/businesses/exporting-goods/overview/"
+          }
+        ],
+        "citations": [
+          {
+            "raw": "[Singapore GST Guide for Imports > Overview]",
+            "title": "Singapore GST Guide for Imports",
+            "section": "Overview",
+            "position": 29,
+            "matched": true,
+            "sourceUrls": [
+              "https://www.customs.gov.sg/businesses/valuation-duties-taxes-fees/goods-and-services-tax-gst/",
+              "https://www.iras.gov.sg/taxes/goods-services-tax-(gst)/basics-of-gst/current-gst-rates"
+            ],
+            "docId": "01_regulatory_sg_gst_guide",
+            "score": 0.6317572593688965,
+            "fullTitle": "Singapore GST Guide for Imports"
+          }
+        ],
+        "confidence": {
+          "level": "Medium",
+          "reason": "10 sources found, average relevance 44%"
+        },
+        "metadata": {
+          "query": "What's the GST rate for imports into Singapore?",
+          "chunksRetrieved": 10,
+          "chunksUsed": 1,
+          "latencyMs": 1336,
+          "model": "llama-3.1-8b-instant"
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 2,
+          "matched": 2,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [
+            "sg_gst"
+          ],
+          "found": [
+            "sg_gst"
+          ]
+        },
+        "citation_present": {
+          "pass": true,
+          "source_count": 2,
+          "citation_count": 1
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1336,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": true,
+      "client_latency_ms": 1338,
+      "error": null
+    },
+    {
+      "id": "Q-12",
+      "category": "customs",
+      "query": "How do I find the HS code for electronics?",
+      "is_oos": false,
+      "response": {
+        "answer": "### Finding HS Code for Electronics\n\nTo find the HS code for electronics, you can refer to the Harmonized System (HS) Code Structure Guide. The HS code is a six-digit code that categorizes products according to their type and characteristics.\n\n#### Step-by-Step Process\n\n1. **Determine the Chapter**: Identify the chapter that corresponds to the product category. For electronics, the relevant chapters are:\n\t* Chapter 85: Electrical machinery and equipment\n\t* Chapter 84: Nuclear reactors, boilers, machinery and mechanical appliances; parts thereof\n2. **Determine the Heading**: Within the chapter, identify the heading that corresponds to the product category. For electronics, the relevant headings are:\n\t* Heading 85.17: Telephone sets; cellular phones\n\t* Heading 84.71: Machinery for the manufacture or treatment of semiconductor materials\n3. **Determine the Subheading**: Within the heading, identify the subheading that corresponds to the product category. For electronics, the relevant subheadings are:\n\t* Subheading 8517.13: Smartphones\n\t* Subheading 8471.80: Machines for the manufacture or treatment of semiconductor materials\n\n#### Example\n\nFor a smartphone, the HS code would be:\n```\nHS Code: 85.17.13\n\nSection:    XVI (Machinery and Mechanical Appliances)\n  │\nChapter:   85 (Electrical machinery and equipment)\n  │         ├─ First 2 digits\n  │\nHeading:   85.17 (Telephone sets; cellular phones)\n  │         ├─ First 4 digits\n  │\nSubheading: 8517.13 (Smartphones)\n            ├─ First 6 digits (international standard)\n```\n\n[HS Code Structure Guide]\n# HS Code Structure Guide\r\n---\r\n\r\nPlease note that the HS code structure may vary depending on the country and the specific product. It's always best to consult the relevant customs authority or trade regulations for the most up-to-date information.",
+        "sources": [
+          {
+            "title": "HS Code Structure Guide",
+            "org": "World Customs Organization (WCO)",
+            "url": "https://www.wcoomd.org/en/topics/nomenclature/overview.aspx",
+            "section": null
+          },
+          {
+            "title": "HS Code Structure Guide",
+            "org": "World Customs Organization (WCO)",
+            "url": "https://www.wcoomd.org/en/topics/nomenclature/overview/what-is-the-harmonized-system.aspx",
+            "section": null
+          },
+          {
+            "title": "HS Code Structure Guide",
+            "org": "World Customs Organization (WCO)",
+            "url": "https://www.wcoomd.org/en/topics/nomenclature/overview/hs-multi-purposes-tool.aspx",
+            "section": null
+          }
+        ],
+        "relatedDocs": [
+          {
+            "title": "HS Code Structure Guide",
+            "category": "reference",
+            "docId": "03_reference_hs_code_structure_guide",
+            "url": "https://www.wcoomd.org/en/topics/nomenclature/overview.aspx"
+          }
+        ],
+        "citations": [
+          {
+            "raw": "[HS Code Structure Guide]",
+            "title": "HS Code Structure Guide",
+            "section": null,
+            "position": 1539,
+            "matched": true,
+            "sourceUrls": [
+              "https://www.wcoomd.org/en/topics/nomenclature/overview.aspx",
+              "https://www.wcoomd.org/en/topics/nomenclature/overview/what-is-the-harmonized-system.aspx",
+              "https://www.wcoomd.org/en/topics/nomenclature/overview/hs-multi-purposes-tool.aspx"
+            ],
+            "docId": "03_reference_hs_code_structure_guide",
+            "score": 0.2718127965927124,
+            "fullTitle": "HS Code Structure Guide"
+          }
+        ],
+        "confidence": {
+          "level": "Low",
+          "reason": "Low relevance scores (avg 23%)"
+        },
+        "metadata": {
+          "query": "How do I find the HS code for electronics?",
+          "chunksRetrieved": 2,
+          "chunksUsed": 1,
+          "latencyMs": 1738,
+          "model": "llama-3.1-8b-instant"
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": false,
+          "total": 2,
+          "matched": 1,
+          "missing": [
+            "classification"
+          ]
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [
+            "hs_classification",
+            "hs_code"
+          ],
+          "found": [
+            "hs_code"
+          ]
+        },
+        "citation_present": {
+          "pass": true,
+          "source_count": 3,
+          "citation_count": 1
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1738,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": false,
+      "client_latency_ms": 1740,
+      "error": null
+    },
+    {
+      "id": "Q-13",
+      "category": "customs",
+      "query": "Is Certificate of Origin required for Thailand?",
+      "is_oos": false,
+      "response": {
+        "answer": "**Certificate of Origin for Thailand**\n\nYes, a Certificate of Origin is required for imports into Thailand. The Certificate of Origin must be issued by the Chamber of Commerce or a designated authority in the exporting country and must be attached to the commercial invoice.\n\n**Source**: [Thailand Import Requirements > Certificate of Origin]\n\nPlease note that the Certificate of Origin must comply with the Harmonized System (HS) code and the Thai Customs Department's regulations.\n\n**Additional Requirements**\n\n* The Certificate of Origin must be signed and stamped by the Chamber of Commerce or designated authority.\n* The document must include the following information:\n\t+ Exporter's name and address\n\t+ Importer's name and address\n\t+ Description of goods\n\t+ HS code\n\t+ Quantity and weight of goods\n\t+ Country of origin\n* The Certificate of Origin must be issued within 6 months of the date of importation.\n\n**Source**: [Thailand Import Requirements > Certificate of Origin Requirements]",
+        "sources": [
+          {
+            "title": "Thailand Import Requirements",
+            "org": "U.S. Department of Commerce - International Trade Administration",
+            "url": "https://www.trade.gov/country-commercial-guides/thailand-import-requirements-and-documentation",
+            "section": "Certificate of Origin"
+          },
+          {
+            "title": "Thailand Import Requirements",
+            "org": "U.S. Department of Commerce - International Trade Administration",
+            "url": "https://www.customs.go.th/",
+            "section": "Certificate of Origin"
+          },
+          {
+            "title": "Thailand Import Requirements",
+            "org": "U.S. Department of Commerce - International Trade Administration",
+            "url": "https://www.nationthailand.com/business/economy/40059880",
+            "section": "Certificate of Origin"
+          },
+          {
+            "title": "Thailand Import Requirements",
+            "org": "U.S. Department of Commerce - International Trade Administration",
+            "url": "https://www.vatupdate.com/2025/10/06/7-vat-rate-in-thailand-extended-until-2026/",
+            "section": "Certificate of Origin"
+          }
+        ],
+        "relatedDocs": [
+          {
+            "title": "Thailand Import Requirements",
+            "category": "regulatory",
+            "docId": "01_regulatory_thailand_import_requirements",
+            "url": "https://www.trade.gov/country-commercial-guides/thailand-import-requirements-and-documentation"
+          },
+          {
+            "title": "Singapore Certificates of Origin",
+            "category": "regulatory",
+            "docId": "01_regulatory_sg_certificates_of_origin",
+            "url": "https://www.customs.gov.sg/businesses/rules-of-origin/origin-documentation/"
+          }
+        ],
+        "citations": [
+          {
+            "raw": "[Thailand Import Requirements > Certificate of Origin]",
+            "title": "Thailand Import Requirements",
+            "section": "Certificate of Origin",
+            "position": 288,
+            "matched": true,
+            "sourceUrls": [
+              "https://www.trade.gov/country-commercial-guides/thailand-import-requirements-and-documentation",
+              "https://www.customs.go.th/",
+              "https://www.nationthailand.com/business/economy/40059880",
+              "https://www.vatupdate.com/2025/10/06/7-vat-rate-in-thailand-extended-until-2026/"
+            ],
+            "docId": "01_regulatory_thailand_import_requirements",
+            "score": 0.20278829336166382,
+            "fullTitle": "Thailand Import Requirements"
+          }
+        ],
+        "confidence": {
+          "level": "Low",
+          "reason": "Low relevance scores (avg 17%)"
+        },
+        "metadata": {
+          "query": "Is Certificate of Origin required for Thailand?",
+          "chunksRetrieved": 3,
+          "chunksUsed": 1,
+          "latencyMs": 1476,
+          "model": "llama-3.1-8b-instant"
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 2,
+          "matched": 2,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [
+            "sg_certificates",
+            "atiga"
+          ],
+          "found": [
+            "sg_certificates"
+          ]
+        },
+        "citation_present": {
+          "pass": true,
+          "source_count": 4,
+          "citation_count": 1
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1476,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": true,
+      "client_latency_ms": 1477,
+      "error": null
+    },
+    {
+      "id": "Q-14",
+      "category": "customs",
+      "query": "What permits are needed to import cosmetics to Indonesia?",
+      "is_oos": false,
+      "response": {
+        "answer": "### Required Permits for Importing Cosmetics to Indonesia\n\nTo import cosmetics to Indonesia, you will need to obtain the following permits:\n\n1.  **BPOM Permit**: The Indonesian Food and Drug Authority (BPOM) is responsible for regulating cosmetics. You must obtain a permit from BPOM before importing cosmetics into Indonesia.\n2.  **API (Angka Pengenal Importir) Number**: As an importer, you need to register for an API number, which is a unique identifier assigned by the Indonesian government.\n3.  **Import Declaration Form (PIB)**: You must submit an import declaration form (PIB) to the Indonesian Customs (Bea Cukai) along with the required documents.\n4.  **Commercial Invoice**: A commercial invoice is required to declare the value, quantity, and description of the imported goods.\n5.  **Certificate of Origin**: A certificate of origin may be required to claim preferential tariff rates or to comply with regulations.\n\n### Process\n\n1.  **Register with BPOM**: Register your company with BPOM and obtain a permit to import cosmetics.\n2.  **Obtain API Number**: Register for an API number and obtain a unique identifier.\n3.  **Prepare Import Documents**: Prepare the commercial invoice, certificate of origin, and other required documents.\n4.  **Submit Import Declaration**: Submit the import declaration form (PIB) to the Indonesian Customs (Bea Cukai).\n5.  **Clear Customs**: Clear customs with the required documents and permits.\n\n**Source**: [Indonesia Import Requirements > Required Import Documentation] and [Indonesia Import Requirements > Overview]",
+        "sources": [
+          {
+            "title": "Indonesia Import Requirements",
+            "org": "U.S. Department of Commerce - International Trade Administration",
+            "url": "https://www.trade.gov/country-commercial-guides/indonesia-import-requirements-and-documentation",
+            "section": "Required Import Documentation"
+          },
+          {
+            "title": "Indonesia Import Requirements",
+            "org": "U.S. Department of Commerce - International Trade Administration",
+            "url": "https://www.insw.go.id/",
+            "section": "Required Import Documentation"
+          },
+          {
+            "title": "Indonesia Import Requirements",
+            "org": "U.S. Department of Commerce - International Trade Administration",
+            "url": "https://www.beacukai.go.id/",
+            "section": "Required Import Documentation"
+          },
+          {
+            "title": "Indonesia Import Requirements",
+            "org": "U.S. Department of Commerce - International Trade Administration",
+            "url": "https://www.pajak.go.id/en/artikel/indonesias-2025-vat-rate-increase-strengthening-fiscal-foundations-national-development",
+            "section": "Required Import Documentation"
+          }
+        ],
+        "relatedDocs": [
+          {
+            "title": "Indonesia Import Requirements",
+            "category": "regulatory",
+            "docId": "01_regulatory_indonesia_import_requirements",
+            "url": "https://www.trade.gov/country-commercial-guides/indonesia-import-requirements-and-documentation"
+          },
+          {
+            "title": "Malaysia Import Requirements",
+            "category": "regulatory",
+            "docId": "01_regulatory_malaysia_import_requirements",
+            "url": "https://www.trade.gov/country-commercial-guides/malaysia-import-requirements-and-documentation"
+          },
+          {
+            "title": "Philippines Import Requirements",
+            "category": "regulatory",
+            "docId": "01_regulatory_philippines_import_requirements",
+            "url": "https://www.trade.gov/country-commercial-guides/philippines-import-requirements-and-documentation"
+          },
+          {
+            "title": "ASEAN Trade in Goods Agreement (ATIGA) Overview",
+            "category": "regulatory",
+            "docId": "01_regulatory_atiga_overview",
+            "url": "https://asean.org/our-communities/economic-community/trade-in-goods/"
+          }
+        ],
+        "citations": [
+          {
+            "raw": "[Indonesia Import Requirements > Required Import Documentation]",
+            "title": "Indonesia Import Requirements",
+            "section": "Required Import Documentation",
+            "position": 1453,
+            "matched": true,
+            "sourceUrls": [
+              "https://www.trade.gov/country-commercial-guides/indonesia-import-requirements-and-documentation",
+              "https://www.insw.go.id/",
+              "https://www.beacukai.go.id/",
+              "https://www.pajak.go.id/en/artikel/indonesias-2025-vat-rate-increase-strengthening-fiscal-foundations-national-development"
+            ],
+            "docId": "01_regulatory_indonesia_import_requirements",
+            "score": 0.40579283237457275,
+            "fullTitle": "Indonesia Import Requirements"
+          }
+        ],
+        "confidence": {
+          "level": "Low",
+          "reason": "Low relevance scores (avg 26%)"
+        },
+        "metadata": {
+          "query": "What permits are needed to import cosmetics to Indonesia?",
+          "chunksRetrieved": 10,
+          "chunksUsed": 1,
+          "latencyMs": 1860,
+          "model": "llama-3.1-8b-instant"
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 2,
+          "matched": 2,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [
+            "indonesia_import"
+          ],
+          "found": [
+            "indonesia_import"
+          ]
+        },
+        "citation_present": {
+          "pass": true,
+          "source_count": 4,
+          "citation_count": 1
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1860,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": true,
+      "client_latency_ms": 1861,
+      "error": null
+    },
+    {
+      "id": "Q-15",
+      "category": "customs",
+      "query": "What's the ATIGA preferential duty rate?",
+      "is_oos": false,
+      "response": {
+        "answer": "**The ATIGA preferential duty rate is 0% (zero percent) for approximately 98.86% of all products traded between ASEAN member states.**\n\n[ASEAN Trade in Goods Agreement (ATIGA) Overview > ATIGA Preferential Duty Rate]",
+        "sources": [
+          {
+            "title": "ASEAN Trade in Goods Agreement (ATIGA) Overview",
+            "org": "ASEAN Secretariat",
+            "url": "https://asean.org/our-communities/economic-community/trade-in-goods/",
+            "section": "ATIGA Preferential Duty Rate"
+          }
+        ],
+        "relatedDocs": [
+          {
+            "title": "Frequently Asked Questions",
+            "category": "internal",
+            "docId": "04_internal_synthetic_customer_faq",
+            "url": null
+          },
+          {
+            "title": "ASEAN Trade in Goods Agreement (ATIGA) Overview",
+            "category": "regulatory",
+            "docId": "01_regulatory_atiga_overview",
+            "url": "https://asean.org/our-communities/economic-community/trade-in-goods/"
+          }
+        ],
+        "citations": [
+          {
+            "raw": "[ASEAN Trade in Goods Agreement (ATIGA) Overview > ATIGA Preferential Duty Rate]",
+            "title": "ASEAN Trade in Goods Agreement (ATIGA) Overview",
+            "section": "ATIGA Preferential Duty Rate",
+            "position": 136,
+            "matched": true,
+            "sourceUrls": [
+              "https://asean.org/our-communities/economic-community/trade-in-goods/"
+            ],
+            "docId": "01_regulatory_atiga_overview",
+            "score": 0.20480167865753174,
+            "fullTitle": "ASEAN Trade in Goods Agreement (ATIGA) Overview"
+          }
+        ],
+        "confidence": {
+          "level": "Low",
+          "reason": "Low relevance scores (avg 21%)"
+        },
+        "metadata": {
+          "query": "What's the ATIGA preferential duty rate?",
+          "chunksRetrieved": 2,
+          "chunksUsed": 1,
+          "latencyMs": 1284,
+          "model": "llama-3.1-8b-instant"
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 2,
+          "matched": 2,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [
+            "atiga"
+          ],
+          "found": [
+            "atiga"
+          ]
+        },
+        "citation_present": {
+          "pass": true,
+          "source_count": 1,
+          "citation_count": 1
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1284,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": true,
+      "client_latency_ms": 1285,
+      "error": null
+    },
+    {
+      "id": "Q-16",
+      "category": "customs",
+      "query": "How does the Free Trade Zone work for re-exports?",
+      "is_oos": false,
+      "response": {
+        "answer": "**Re-exports in Free Trade Zones**\n\nIn Singapore's Free Trade Zones (FTZs), re-exports are facilitated through a system that allows goods to be stored, handled, or reconfigured without incurring customs duties. Here's a step-by-step overview of the process:\n\n1. **Initial Import**: Goods arrive in Singapore and are deposited in an FTZ.\n2. **Temporary Storage**: The goods are stored in the FTZ for a specified period, usually up to 30 days [Singapore Free Trade Zones > Temporary Storage].\n3. **Re-export**: The goods are then re-exported from the FTZ to another country, without paying customs duties on the goods themselves.\n4. **No Duties on Re-export**: Since the goods have not been consumed or used in Singapore, no customs duties are payable on the re-export [Singapore Free Trade Zones > Re-exports].\n\n**Key Requirements**\n\n* Goods must be stored in an approved FTZ.\n* Goods must be re-exported within the specified storage period.\n* Proper documentation, including a re-export declaration, must be submitted to Customs.\n\n**Citation**: [Singapore Free Trade Zones > Re-exports]",
+        "sources": [
+          {
+            "title": "Singapore Free Trade Zones",
+            "org": "Singapore Customs",
+            "url": "https://www.customs.gov.sg/businesses/importing-goods/import-procedures/depositing-goods-in-ftz/",
+            "section": "Temporary Storage"
+          },
+          {
+            "title": "Singapore Free Trade Zones",
+            "org": "Singapore Customs",
+            "url": "https://www.customs.gov.sg/businesses/customs-schemes-licences-and-framework/ftz-operator-licence/",
+            "section": "Temporary Storage"
+          }
+        ],
+        "relatedDocs": [
+          {
+            "title": "Singapore Free Trade Zones",
+            "category": "regulatory",
+            "docId": "01_regulatory_sg_free_trade_zones",
+            "url": "https://www.customs.gov.sg/businesses/importing-goods/import-procedures/depositing-goods-in-ftz/"
+          }
+        ],
+        "citations": [
+          {
+            "raw": "[Singapore Free Trade Zones > Temporary Storage]",
+            "title": "Singapore Free Trade Zones",
+            "section": "Temporary Storage",
+            "position": 441,
+            "matched": true,
+            "sourceUrls": [
+              "https://www.customs.gov.sg/businesses/importing-goods/import-procedures/depositing-goods-in-ftz/",
+              "https://www.customs.gov.sg/businesses/customs-schemes-licences-and-framework/ftz-operator-licence/"
+            ],
+            "docId": "01_regulatory_sg_free_trade_zones",
+            "score": 0.15287935733795166,
+            "fullTitle": "Singapore Free Trade Zones"
+          }
+        ],
+        "confidence": {
+          "level": "Low",
+          "reason": "Only 1 source found"
+        },
+        "metadata": {
+          "query": "How does the Free Trade Zone work for re-exports?",
+          "chunksRetrieved": 1,
+          "chunksUsed": 1,
+          "latencyMs": 1472,
+          "model": "llama-3.1-8b-instant"
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 2,
+          "matched": 2,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [
+            "sg_free_trade"
+          ],
+          "found": [
+            "sg_free_trade"
+          ]
+        },
+        "citation_present": {
+          "pass": true,
+          "source_count": 2,
+          "citation_count": 1
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1472,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": true,
+      "client_latency_ms": 1472,
+      "error": null
+    },
+    {
+      "id": "Q-17",
+      "category": "customs",
+      "query": "What's the de minimis threshold for Malaysia?",
+      "is_oos": false,
+      "response": {
+        "answer": "I don't have specific information about that topic in my knowledge base. Please try rephrasing your question or contact our customer service team for assistance.",
+        "sources": [],
+        "relatedDocs": [],
+        "citations": [],
+        "confidence": {
+          "level": "Low",
+          "reason": "No relevant documents found"
+        },
+        "metadata": {
+          "query": "What's the de minimis threshold for Malaysia?",
+          "chunksRetrieved": 0,
+          "chunksUsed": 0,
+          "latencyMs": 1113,
+          "model": null
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 0,
+          "matched": 0,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": false,
+          "expected": [
+            "malaysia_import"
+          ],
+          "found": []
+        },
+        "citation_present": {
+          "pass": false,
+          "source_count": 0,
+          "citation_count": 0
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1113,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": false,
+      "client_latency_ms": 1115,
+      "error": null
+    },
+    {
+      "id": "Q-18",
+      "category": "customs",
+      "query": "Do I need halal certification for food to Indonesia?",
+      "is_oos": false,
+      "response": {
+        "answer": "**Halal Certification for Food to Indonesia**\n\nYes, for certain food products, **Halal certification** is mandatory when importing to Indonesia.\n\n[Cite: Indonesia Import Requirements > Halal Certification]\n\nAccording to the Indonesian government, food products that require Halal certification include:\n\n* Meat and its products\n* Animal by-products\n* Food additives\n* Food flavorings\n* Cosmetics\n\nPlease note that not all food products require Halal certification. It's essential to check with the relevant authorities or consult the Indonesian import regulations for specific requirements.\n\n[Cite: Indonesia Import Requirements > Products Requiring Halal Certification]\n\nFor more information on Halal certification and the certification process, please contact the **BPJPH (Badan Penyelenggara Jaminan Produk Halal)** or consult the relevant Indonesian government agencies.\n\n[Cite: Indonesia Import Requirements > Certification Authority]",
+        "sources": [
+          {
+            "title": "Indonesia Import Requirements",
+            "org": "U.S. Department of Commerce - International Trade Administration",
+            "url": "https://www.trade.gov/country-commercial-guides/indonesia-import-requirements-and-documentation",
+            "section": "Halal Certification"
+          },
+          {
+            "title": "Indonesia Import Requirements",
+            "org": "U.S. Department of Commerce - International Trade Administration",
+            "url": "https://www.insw.go.id/",
+            "section": "Halal Certification"
+          },
+          {
+            "title": "Indonesia Import Requirements",
+            "org": "U.S. Department of Commerce - International Trade Administration",
+            "url": "https://www.beacukai.go.id/",
+            "section": "Halal Certification"
+          },
+          {
+            "title": "Indonesia Import Requirements",
+            "org": "U.S. Department of Commerce - International Trade Administration",
+            "url": "https://www.pajak.go.id/en/artikel/indonesias-2025-vat-rate-increase-strengthening-fiscal-foundations-national-development",
+            "section": "Halal Certification"
+          }
+        ],
+        "relatedDocs": [
+          {
+            "title": "Indonesia Import Requirements",
+            "category": "regulatory",
+            "docId": "01_regulatory_indonesia_import_requirements",
+            "url": "https://www.trade.gov/country-commercial-guides/indonesia-import-requirements-and-documentation"
+          }
+        ],
+        "citations": [
+          {
+            "raw": "[Cite: Indonesia Import Requirements > Halal Certification]",
+            "title": "Cite: Indonesia Import Requirements",
+            "section": "Halal Certification",
+            "position": 146,
+            "matched": true,
+            "sourceUrls": [
+              "https://www.trade.gov/country-commercial-guides/indonesia-import-requirements-and-documentation",
+              "https://www.insw.go.id/",
+              "https://www.beacukai.go.id/",
+              "https://www.pajak.go.id/en/artikel/indonesias-2025-vat-rate-increase-strengthening-fiscal-foundations-national-development"
+            ],
+            "docId": "01_regulatory_indonesia_import_requirements",
+            "score": 0.30964016914367676,
+            "fullTitle": "Indonesia Import Requirements"
+          }
+        ],
+        "confidence": {
+          "level": "Low",
+          "reason": "Only 1 source found"
+        },
+        "metadata": {
+          "query": "Do I need halal certification for food to Indonesia?",
+          "chunksRetrieved": 1,
+          "chunksUsed": 1,
+          "latencyMs": 1477,
+          "model": "llama-3.1-8b-instant"
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 2,
+          "matched": 2,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [
+            "indonesia_import"
+          ],
+          "found": [
+            "indonesia_import"
+          ]
+        },
+        "citation_present": {
+          "pass": true,
+          "source_count": 4,
+          "citation_count": 1
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1477,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": true,
+      "client_latency_ms": 1478,
+      "error": null
+    },
+    {
+      "id": "Q-19",
+      "category": "customs",
+      "query": "How do I apply for a Customs ruling on HS code?",
+      "is_oos": false,
+      "response": {
+        "answer": "**Applying for a Customs Ruling on HS Code**\n\nTo apply for a Customs ruling on HS code, follow these steps:\n\n1. **Determine if a ruling is required**: Check if your product is not clearly classified under the HS code or if you need a formal decision on the correct classification.\n2. **Gather necessary documents**: Collect information about your product, including its description, specifications, and any relevant documentation (e.g., technical drawings, certificates of origin).\n3. **Submit an application**: Fill out the **Application for Customs Classification Ruling** form, which can be obtained from the Singapore Customs website or by contacting their office directly.\n4. **Pay the application fee**: A fee is required for each application, which can be found on the Singapore Customs website.\n5. **Wait for the ruling**: Singapore Customs will review your application and issue a ruling in writing, specifying the HS code and reasoning.\n\n**Note:** The validity of a ruling is as stated in the ruling letter, typically 3 years. A ruling is binding unless the product changes.\n\n[Citing Source: Singapore HS Classification Guide > Step 4: Receive Ruling]\n\nFor more information on the application process and fees, please visit the **Singapore Customs website** or contact their office directly.\n\n**Additional Resources:**\n\n* [Singapore Customs > Customs Classification]\n* [Singapore Customs > Application for Customs Classification Ruling]\n\nPlease note that this information is based on the knowledge base context provided. If you have any further questions or concerns, feel free to ask.",
+        "sources": [
+          {
+            "title": "Singapore HS Classification Guide",
+            "org": "Singapore Customs",
+            "url": "https://www.customs.gov.sg/businesses/harmonised-system-classification-of-goods/understanding-hs-classification",
+            "section": "Step 4: Receive Ruling"
+          },
+          {
+            "title": "Singapore HS Classification Guide",
+            "org": "Singapore Customs",
+            "url": "https://www.customs.gov.sg/businesses/importing-goods/overview/",
+            "section": "Step 4: Receive Ruling"
+          }
+        ],
+        "relatedDocs": [
+          {
+            "title": "HS Code Structure Guide",
+            "category": "reference",
+            "docId": "03_reference_hs_code_structure_guide",
+            "url": "https://www.wcoomd.org/en/topics/nomenclature/overview.aspx"
+          },
+          {
+            "title": "Singapore HS Classification Guide",
+            "category": "regulatory",
+            "docId": "01_regulatory_sg_hs_classification",
+            "url": "https://www.customs.gov.sg/businesses/harmonised-system-classification-of-goods/understanding-hs-classification"
+          },
+          {
+            "title": "Frequently Asked Questions",
+            "category": "internal",
+            "docId": "04_internal_synthetic_customer_faq",
+            "url": null
+          }
+        ],
+        "citations": [
+          {
+            "raw": "[Citing Source: Singapore HS Classification Guide > Step 4: Receive Ruling]",
+            "title": "Citing Source: Singapore HS Classification Guide",
+            "section": "Step 4: Receive Ruling",
+            "position": 1086,
+            "matched": true,
+            "sourceUrls": [
+              "https://www.customs.gov.sg/businesses/harmonised-system-classification-of-goods/understanding-hs-classification",
+              "https://www.customs.gov.sg/businesses/importing-goods/overview/"
+            ],
+            "docId": "01_regulatory_sg_hs_classification",
+            "score": 0.31847846508026123,
+            "fullTitle": "Singapore HS Classification Guide"
+          }
+        ],
+        "confidence": {
+          "level": "Medium",
+          "reason": "3 sources found, average relevance 31%"
+        },
+        "metadata": {
+          "query": "How do I apply for a Customs ruling on HS code?",
+          "chunksRetrieved": 3,
+          "chunksUsed": 1,
+          "latencyMs": 1698,
+          "model": "llama-3.1-8b-instant"
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 2,
+          "matched": 2,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [
+            "sg_hs_classification"
+          ],
+          "found": [
+            "sg_hs_classification"
+          ]
+        },
+        "citation_present": {
+          "pass": true,
+          "source_count": 2,
+          "citation_count": 1
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1698,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": true,
+      "client_latency_ms": 1694,
+      "error": null
+    },
+    {
+      "id": "Q-20",
+      "category": "customs",
+      "query": "What's the difference between Form D and Form AK?",
+      "is_oos": false,
+      "response": {
+        "answer": "**Key Differences Between Form D and Form AK**\n\n- **Form D**: For all intra-ASEAN trade (Singapore to/from any ASEAN member) [Singapore FTA Comparison Matrix > 5.4 Form D vs Form AK: Key Differences].\n- **Form AK**: ONLY when shipping to/from South Korea via ASEAN [Singapore FTA Comparison Matrix > 5.4 Form D vs Form AK: Key Differences].\n- **If both apply** (e.g., goods from Korea transiting through ASEAN): Compare duty rates — use whichever gives lower duty [Singapore FTA Comparison Matrix > 5.4 Form D vs Form AK: Key Differences].\n\n**Common confusion**: Form D and Form AK are NOT interchangeable. Using Form D for Korea-bound goods will result in no preferential treatment. Always verify the correct form for the specific trade route.",
+        "sources": [],
+        "relatedDocs": [
+          {
+            "title": "Singapore FTA Comparison Matrix",
+            "category": "internal",
+            "docId": "04_internal_synthetic_fta_comparison_matrix",
+            "url": null
+          }
+        ],
+        "citations": [
+          {
+            "raw": "[Singapore FTA Comparison Matrix > 5.4 Form D vs Form AK: Key Differences]",
+            "title": "Singapore FTA Comparison Matrix",
+            "section": "5.4 Form D vs Form AK: Key Differences",
+            "position": 125,
+            "matched": true,
+            "sourceUrls": [],
+            "docId": "04_internal_synthetic_fta_comparison_matrix",
+            "score": 0.7747288793325424,
+            "fullTitle": "Singapore FTA Comparison Matrix"
+          }
+        ],
+        "confidence": {
+          "level": "Medium",
+          "reason": "2 sources found, average relevance 49%"
+        },
+        "metadata": {
+          "query": "What's the difference between Form D and Form AK?",
+          "chunksRetrieved": 2,
+          "chunksUsed": 1,
+          "latencyMs": 1529,
+          "model": "llama-3.1-8b-instant"
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 2,
+          "matched": 2,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [
+            "asean_rules",
+            "atiga",
+            "fta_comparison"
+          ],
+          "found": [
+            "fta_comparison"
+          ]
+        },
+        "citation_present": {
+          "pass": true,
+          "source_count": 0,
+          "citation_count": 1
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1529,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": true,
+      "client_latency_ms": 1529,
+      "error": null
+    },
+    {
+      "id": "Q-21",
+      "category": "carrier",
+      "query": "Which carriers sail direct to Ho Chi Minh?",
+      "is_oos": true,
+      "response": {
+        "answer": "I don't have specific information about that topic in my knowledge base. Please try rephrasing your question or contact our customer service team for assistance.",
+        "sources": [],
+        "relatedDocs": [],
+        "citations": [],
+        "confidence": {
+          "level": "Low",
+          "reason": "No relevant documents found"
+        },
+        "metadata": {
+          "query": "Which carriers sail direct to Ho Chi Minh?",
+          "chunksRetrieved": 0,
+          "chunksUsed": 0,
+          "latencyMs": 1017,
+          "model": null
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 0,
+          "matched": 0,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [],
+          "found": []
+        },
+        "citation_present": {
+          "pass": false,
+          "source_count": 0,
+          "citation_count": 0
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": true,
+          "signals_found": [
+            "don't have",
+            "contact",
+            "specific information"
+          ]
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1017,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": false,
+      "client_latency_ms": 1036,
+      "error": null
+    },
+    {
+      "id": "Q-22",
+      "category": "carrier",
+      "query": "What's the transit time to Port Klang?",
+      "is_oos": true,
+      "response": {
+        "answer": "I don't have specific information about that topic in my knowledge base. Please try rephrasing your question or contact our customer service team for assistance.",
+        "sources": [],
+        "relatedDocs": [],
+        "citations": [],
+        "confidence": {
+          "level": "Low",
+          "reason": "No relevant documents found"
+        },
+        "metadata": {
+          "query": "What's the transit time to Port Klang?",
+          "chunksRetrieved": 0,
+          "chunksUsed": 0,
+          "latencyMs": 1312,
+          "model": null
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 0,
+          "matched": 0,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [],
+          "found": []
+        },
+        "citation_present": {
+          "pass": false,
+          "source_count": 0,
+          "citation_count": 0
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": true,
+          "signals_found": [
+            "don't have",
+            "contact",
+            "specific information"
+          ]
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1312,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": false,
+      "client_latency_ms": 1309,
+      "error": null
+    },
+    {
+      "id": "Q-23",
+      "category": "carrier",
+      "query": "Does PIL offer reefer containers?",
+      "is_oos": false,
+      "response": {
+        "answer": "**Yes**, PIL offers reefer containers for temperature-controlled shipments. \n\n[Container Types Available > Reefer Containers]",
+        "sources": [],
+        "relatedDocs": [
+          {
+            "title": "PIL (Pacific International Lines) Service Summary",
+            "category": "carrier",
+            "docId": "02_carriers_pil_service_summary",
+            "url": "https://www.pilship.com/about-pil/"
+          }
+        ],
+        "citations": [],
+        "confidence": {
+          "level": "Low",
+          "reason": "Only 1 source found"
+        },
+        "metadata": {
+          "query": "Does PIL offer reefer containers?",
+          "chunksRetrieved": 1,
+          "chunksUsed": 0,
+          "latencyMs": 1369,
+          "model": "llama-3.1-8b-instant"
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 2,
+          "matched": 2,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [
+            "pil"
+          ],
+          "found": [
+            "pil"
+          ]
+        },
+        "citation_present": {
+          "pass": false,
+          "source_count": 0,
+          "citation_count": 0
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1369,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": false,
+      "client_latency_ms": 1371,
+      "error": null
+    },
+    {
+      "id": "Q-24",
+      "category": "carrier",
+      "query": "How do I submit VGM to Maersk?",
+      "is_oos": false,
+      "response": {
+        "answer": "**VGM Submission Process**\n\nTo submit Verified Gross Mass (VGM) to Maersk, follow these steps:\n\n1. **VGM Cutoff**: Ensure you submit VGM before the cutoff time specified in your booking confirmation. [Maersk Service Summary > VGM Submission]\n2. **VGM Format**: Provide VGM in the required format: Gross Mass (kg) or Gross Mass (lbs) [Maersk Service Summary > VGM Submission]\n3. **VGM Submission Method**: Submit VGM through:\n\t* **Maersk.com**: Log in to your account, navigate to the \"My Bookings\" section, and select the relevant booking. Click on \"Add VGM\" to upload your VGM document. [Maersk Service Summary > VGM Submission]\n\t* **Customer Portal**: Log in to your customer portal and navigate to the \"VGM\" section to upload your VGM document.\n\t* **Email**: Email your VGM document to the designated email address specified in your booking confirmation.\n4. **VGM Document Requirements**: Ensure your VGM document includes:\n\t* **Booking reference**: Clearly mention the Maersk booking reference number.\n\t* **VGM value**: Provide the calculated VGM value in the required format (kg or lbs).\n\t* **Method of calculation**: Specify the method used to calculate the VGM (e.g., weighing, calculation, or a combination of both).\n\n**Important Note**: Failure to submit VGM on time may result in delays or additional fees. Always check with Maersk for specific VGM submission requirements and deadlines.",
+        "sources": [
+          {
+            "title": "Maersk Service Summary",
+            "org": "A.P. Moller - Maersk",
+            "url": "https://www.maersk.com/about",
+            "section": "VGM Submission"
+          },
+          {
+            "title": "Maersk Service Summary",
+            "org": "A.P. Moller - Maersk",
+            "url": "https://www.maersk.com/local-information/asia-pacific/singapore",
+            "section": "VGM Submission"
+          },
+          {
+            "title": "Maersk Service Summary",
+            "org": "A.P. Moller - Maersk",
+            "url": "https://www.maersk.com/schedules/",
+            "section": "VGM Submission"
+          },
+          {
+            "title": "Maersk Service Summary",
+            "org": "A.P. Moller - Maersk",
+            "url": "https://www.maersk.com/logistics-solutions",
+            "section": "VGM Submission"
+          },
+          {
+            "title": "Maersk Service Summary",
+            "org": "A.P. Moller - Maersk",
+            "url": "https://www.maersk.com/contact",
+            "section": "VGM Submission"
+          }
+        ],
+        "relatedDocs": [
+          {
+            "title": "Maersk Service Summary",
+            "category": "carrier",
+            "docId": "02_carriers_maersk_service_summary",
+            "url": "https://www.maersk.com/about"
+          }
+        ],
+        "citations": [
+          {
+            "raw": "[Maersk Service Summary > VGM Submission]",
+            "title": "Maersk Service Summary",
+            "section": "VGM Submission",
+            "position": 200,
+            "matched": true,
+            "sourceUrls": [
+              "https://www.maersk.com/about",
+              "https://www.maersk.com/local-information/asia-pacific/singapore",
+              "https://www.maersk.com/schedules/",
+              "https://www.maersk.com/logistics-solutions",
+              "https://www.maersk.com/contact"
+            ],
+            "docId": "02_carriers_maersk_service_summary",
+            "score": 0.2856718897819519,
+            "fullTitle": "Maersk Service Summary"
+          }
+        ],
+        "confidence": {
+          "level": "Low",
+          "reason": "Low relevance scores (avg 23%)"
+        },
+        "metadata": {
+          "query": "How do I submit VGM to Maersk?",
+          "chunksRetrieved": 2,
+          "chunksUsed": 1,
+          "latencyMs": 1848,
+          "model": "llama-3.1-8b-instant"
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 2,
+          "matched": 2,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [
+            "maersk"
+          ],
+          "found": [
+            "maersk"
+          ]
+        },
+        "citation_present": {
+          "pass": true,
+          "source_count": 5,
+          "citation_count": 1
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1848,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": true,
+      "client_latency_ms": 1849,
+      "error": null
+    },
+    {
+      "id": "Q-25",
+      "category": "carrier",
+      "query": "Can I get an electronic Bill of Lading?",
+      "is_oos": false,
+      "response": {
+        "answer": "I don't have specific information about that topic in my knowledge base. Please try rephrasing your question or contact our customer service team for assistance.",
+        "sources": [],
+        "relatedDocs": [],
+        "citations": [],
+        "confidence": {
+          "level": "Low",
+          "reason": "No relevant documents found"
+        },
+        "metadata": {
+          "query": "Can I get an electronic Bill of Lading?",
+          "chunksRetrieved": 0,
+          "chunksUsed": 0,
+          "latencyMs": 1041,
+          "model": null
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 0,
+          "matched": 0,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": false,
+          "expected": [
+            "carrier",
+            "maersk",
+            "evergreen"
+          ],
+          "found": []
+        },
+        "citation_present": {
+          "pass": false,
+          "source_count": 0,
+          "citation_count": 0
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1041,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": false,
+      "client_latency_ms": 1044,
+      "error": null
+    },
+    {
+      "id": "Q-26",
+      "category": "carrier",
+      "query": "What's the weight limit for a 40ft container?",
+      "is_oos": true,
+      "response": {
+        "answer": "I don't have specific information about that topic in my knowledge base. Please try rephrasing your question or contact our customer service team for assistance.",
+        "sources": [],
+        "relatedDocs": [],
+        "citations": [],
+        "confidence": {
+          "level": "Low",
+          "reason": "No relevant documents found"
+        },
+        "metadata": {
+          "query": "What's the weight limit for a 40ft container?",
+          "chunksRetrieved": 0,
+          "chunksUsed": 0,
+          "latencyMs": 988,
+          "model": null
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 0,
+          "matched": 0,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [],
+          "found": []
+        },
+        "citation_present": {
+          "pass": false,
+          "source_count": 0,
+          "citation_count": 0
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": true,
+          "signals_found": [
+            "don't have",
+            "contact",
+            "specific information"
+          ]
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 988,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": false,
+      "client_latency_ms": 990,
+      "error": null
+    },
+    {
+      "id": "Q-27",
+      "category": "carrier",
+      "query": "Does ONE service Surabaya?",
+      "is_oos": false,
+      "response": {
+        "answer": "I don't have specific information about that topic in my knowledge base. Please try rephrasing your question or contact our customer service team for assistance.",
+        "sources": [],
+        "relatedDocs": [],
+        "citations": [],
+        "confidence": {
+          "level": "Low",
+          "reason": "No relevant documents found"
+        },
+        "metadata": {
+          "query": "Does ONE service Surabaya?",
+          "chunksRetrieved": 0,
+          "chunksUsed": 0,
+          "latencyMs": 1048,
+          "model": null
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": false,
+          "total": 2,
+          "matched": 0,
+          "missing": [
+            "ONE",
+            "Surabaya"
+          ]
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": false,
+          "expected": [
+            "one"
+          ],
+          "found": []
+        },
+        "citation_present": {
+          "pass": false,
+          "source_count": 0,
+          "citation_count": 0
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1048,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": false,
+      "client_latency_ms": 1065,
+      "error": null
+    },
+    {
+      "id": "Q-28",
+      "category": "carrier",
+      "query": "How do I track my shipment with Evergreen?",
+      "is_oos": false,
+      "response": {
+        "answer": "I don't have specific information about that topic in my knowledge base. Please try rephrasing your question or contact our customer service team for assistance.",
+        "sources": [],
+        "relatedDocs": [],
+        "citations": [],
+        "confidence": {
+          "level": "Low",
+          "reason": "No relevant documents found"
+        },
+        "metadata": {
+          "query": "How do I track my shipment with Evergreen?",
+          "chunksRetrieved": 0,
+          "chunksUsed": 0,
+          "latencyMs": 1047,
+          "model": null
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 0,
+          "matched": 0,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": false,
+          "expected": [
+            "evergreen"
+          ],
+          "found": []
+        },
+        "citation_present": {
+          "pass": false,
+          "source_count": 0,
+          "citation_count": 0
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1047,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": false,
+      "client_latency_ms": 1049,
+      "error": null
+    },
+    {
+      "id": "Q-29",
+      "category": "carrier",
+      "query": "What's the difference between Maersk and ONE service?",
+      "is_oos": false,
+      "response": {
+        "answer": "**Service Comparison: Maersk and ONE**\n\nMaersk and ONE (Ocean Network Express) are two major container shipping lines that operate in the global market. While both offer container shipping services, there are key differences between them.\n\n**Key Differences:**\n\n*   **Network and Coverage**: Maersk has a more extensive network, with a presence in over 120 countries and a larger fleet of vessels. ONE, on the other hand, has a more focused network, with a strong presence in Asia and a smaller fleet.\n*   **Service Frequency**: Maersk offers more frequent sailings, with an average of 20-30 sailings per week on major trade lanes. ONE has a more limited service frequency, with an average of 10-20 sailings per week.\n*   **Transit Times**: Maersk generally offers faster transit times, with an average transit time of 20-30 days on major trade lanes. ONE's transit times are typically longer, with an average of 30-40 days.\n*   **Container Capacity**: Maersk has a larger container capacity, with over 4 million TEUs (twenty-foot equivalent units) in its fleet. ONE has a smaller container capacity, with around 1.5 million TEUs.\n*   **Service Reliability**: Both Maersk and ONE have a strong focus on service reliability, with high on-time performance rates. However, Maersk's larger network and more frequent sailings may give it a slight edge in this area.\n\n**Ultimately, the choice between Maersk and ONE depends on your specific shipping needs and requirements. If you need a more extensive network, faster transit times, and a larger container capacity, Maersk may be the better choice. If you prioritize a more focused network and a lower cost per container, ONE may be the better option.**\n\n*Source: Maersk Official Website (maersk.com) + ONE Official Website (one-line.com)*",
+        "sources": [],
+        "relatedDocs": [
+          {
+            "title": "Maersk Service Summary",
+            "category": "carrier",
+            "docId": "02_carriers_maersk_service_summary",
+            "url": "https://www.maersk.com/about"
+          }
+        ],
+        "citations": [],
+        "confidence": {
+          "level": "Low",
+          "reason": "Low relevance scores (avg 21%)"
+        },
+        "metadata": {
+          "query": "What's the difference between Maersk and ONE service?",
+          "chunksRetrieved": 2,
+          "chunksUsed": 0,
+          "latencyMs": 1908,
+          "model": "llama-3.1-8b-instant"
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 2,
+          "matched": 2,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [
+            "maersk",
+            "one"
+          ],
+          "found": [
+            "maersk"
+          ]
+        },
+        "citation_present": {
+          "pass": false,
+          "source_count": 0,
+          "citation_count": 0
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1908,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": false,
+      "client_latency_ms": 1926,
+      "error": null
+    },
+    {
+      "id": "Q-30",
+      "category": "carrier",
+      "query": "Who do I contact for a booking amendment?",
+      "is_oos": false,
+      "response": {
+        "answer": "I don't have specific information about that topic in my knowledge base. Please try rephrasing your question or contact our customer service team for assistance.",
+        "sources": [],
+        "relatedDocs": [],
+        "citations": [],
+        "confidence": {
+          "level": "Low",
+          "reason": "No relevant documents found"
+        },
+        "metadata": {
+          "query": "Who do I contact for a booking amendment?",
+          "chunksRetrieved": 0,
+          "chunksUsed": 0,
+          "latencyMs": 1049,
+          "model": null
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 0,
+          "matched": 0,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": false,
+          "expected": [
+            "booking",
+            "escalation"
+          ],
+          "found": []
+        },
+        "citation_present": {
+          "pass": false,
+          "source_count": 0,
+          "citation_count": 0
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1049,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": false,
+      "client_latency_ms": 1064,
+      "error": null
+    },
+    {
+      "id": "Q-31",
+      "category": "sla",
+      "query": "What's our standard delivery SLA for Singapore?",
+      "is_oos": false,
+      "response": {
+        "answer": "**Our standard delivery SLA for Singapore is 1-2 working days** from cargo arrival and customs clearance completion [Service Level Agreement (SLA) Policy > 5.1 Standard Delivery Commitments].\n\nThis SLA applies to door-to-door delivery services within Singapore [Frequently Asked Questions > Delivery SLA for Singapore].",
+        "sources": [],
+        "relatedDocs": [
+          {
+            "title": "Service Level Agreement (SLA) Policy",
+            "category": "internal",
+            "docId": "04_internal_synthetic_sla_policy",
+            "url": null
+          },
+          {
+            "title": "Frequently Asked Questions",
+            "category": "internal",
+            "docId": "04_internal_synthetic_customer_faq",
+            "url": null
+          },
+          {
+            "title": "Singapore Airlines Cargo Service Guide",
+            "category": "carrier",
+            "docId": "02_carriers_sia_cargo_service_guide",
+            "url": "https://www.siacargo.com/our-company/"
+          },
+          {
+            "title": "Singapore GST Guide for Imports",
+            "category": "regulatory",
+            "docId": "01_regulatory_sg_gst_guide",
+            "url": "https://www.customs.gov.sg/businesses/valuation-duties-taxes-fees/goods-and-services-tax-gst/"
+          },
+          {
+            "title": "Incoterms 2020 Complete Reference Guide",
+            "category": "reference",
+            "docId": "03_reference_incoterms_2020_reference",
+            "url": "https://iccwbo.org/business-solutions/incoterms-rules/"
+          }
+        ],
+        "citations": [
+          {
+            "raw": "[Service Level Agreement (SLA) Policy > 5.1 Standard Delivery Commitments]",
+            "title": "Service Level Agreement (SLA) Policy",
+            "section": "5.1 Standard Delivery Commitments",
+            "position": 116,
+            "matched": true,
+            "sourceUrls": [],
+            "docId": "04_internal_synthetic_sla_policy",
+            "score": 0.7228713929653168,
+            "fullTitle": "Service Level Agreement (SLA) Policy"
+          },
+          {
+            "raw": "[Frequently Asked Questions > Delivery SLA for Singapore]",
+            "title": "Frequently Asked Questions",
+            "section": "Delivery SLA for Singapore",
+            "position": 261,
+            "matched": true,
+            "sourceUrls": [],
+            "docId": "04_internal_synthetic_customer_faq",
+            "score": 0.5027441084384918,
+            "fullTitle": "Frequently Asked Questions"
+          }
+        ],
+        "confidence": {
+          "level": "Medium",
+          "reason": "10 sources found, average relevance 32%"
+        },
+        "metadata": {
+          "query": "What's our standard delivery SLA for Singapore?",
+          "chunksRetrieved": 10,
+          "chunksUsed": 2,
+          "latencyMs": 1401,
+          "model": "llama-3.1-8b-instant"
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 2,
+          "matched": 2,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [
+            "sla_policy"
+          ],
+          "found": [
+            "sla_policy"
+          ]
+        },
+        "citation_present": {
+          "pass": true,
+          "source_count": 0,
+          "citation_count": 2
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1401,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": true,
+      "client_latency_ms": 1402,
+      "error": null
+    },
+    {
+      "id": "Q-32",
+      "category": "sla",
+      "query": "Is customs clearance included in door-to-door?",
+      "is_oos": false,
+      "response": {
+        "answer": "**Yes, customs clearance is included as standard** in our door-to-door service.\n\n[Service Terms and Conditions > 2.3 Door-to-Door Service Definition]",
+        "sources": [],
+        "relatedDocs": [
+          {
+            "title": "Frequently Asked Questions",
+            "category": "internal",
+            "docId": "04_internal_synthetic_customer_faq",
+            "url": null
+          },
+          {
+            "title": "Service Terms and Conditions",
+            "category": "internal",
+            "docId": "04_internal_synthetic_service_terms_conditions",
+            "url": null
+          }
+        ],
+        "citations": [
+          {
+            "raw": "[Service Terms and Conditions > 2.3 Door-to-Door Service Definition]",
+            "title": "Service Terms and Conditions",
+            "section": "2.3 Door-to-Door Service Definition",
+            "position": 81,
+            "matched": true,
+            "sourceUrls": [],
+            "docId": "04_internal_synthetic_service_terms_conditions",
+            "score": 0.4644726514816284,
+            "fullTitle": "Service Terms and Conditions"
+          }
+        ],
+        "confidence": {
+          "level": "Medium",
+          "reason": "2 sources found, average relevance 48%"
+        },
+        "metadata": {
+          "query": "Is customs clearance included in door-to-door?",
+          "chunksRetrieved": 2,
+          "chunksUsed": 1,
+          "latencyMs": 1253,
+          "model": "llama-3.1-8b-instant"
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 2,
+          "matched": 2,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [
+            "service_terms",
+            "sla_policy"
+          ],
+          "found": [
+            "service_terms"
+          ]
+        },
+        "citation_present": {
+          "pass": true,
+          "source_count": 0,
+          "citation_count": 1
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1253,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": true,
+      "client_latency_ms": 1254,
+      "error": null
+    },
+    {
+      "id": "Q-33",
+      "category": "sla",
+      "query": "Do you provide cargo insurance?",
+      "is_oos": false,
+      "response": {
+        "answer": "**Yes, we can arrange marine cargo insurance.**\n\nThe Company can provide the following types of insurance coverage:\n\n* ICC(A) All Risks: 0.15-0.25% of CIF value [Service Terms and Conditions > 6.3 Cargo Insurance]\n* ICC(B) Named Perils: 0.10-0.15% of CIF value [Service Terms and Conditions > 6.3 Cargo Insurance]\n* ICC(C) Basic: 0.08-0.12% of CIF value [Service Terms and Conditions > 6.3 Cargo Insurance]\n\nThe minimum premium for cargo insurance is SGD 50 per shipment [Service Terms and Conditions > 6.3 Cargo Insurance].\n\nPlease note that cargo insurance is an add-on service and is payable separately. For full details, please refer to our Service Terms and Conditions (POL-001).",
+        "sources": [],
+        "relatedDocs": [
+          {
+            "title": "Service Terms and Conditions",
+            "category": "internal",
+            "docId": "04_internal_synthetic_service_terms_conditions",
+            "url": null
+          },
+          {
+            "title": "Frequently Asked Questions",
+            "category": "internal",
+            "docId": "04_internal_synthetic_customer_faq",
+            "url": null
+          }
+        ],
+        "citations": [
+          {
+            "raw": "[Service Terms and Conditions > 6.3 Cargo Insurance]",
+            "title": "Service Terms and Conditions",
+            "section": "6.3 Cargo Insurance",
+            "position": 161,
+            "matched": true,
+            "sourceUrls": [],
+            "docId": "04_internal_synthetic_service_terms_conditions",
+            "score": 0.36237192153930664,
+            "fullTitle": "Service Terms and Conditions"
+          }
+        ],
+        "confidence": {
+          "level": "Low",
+          "reason": "Low relevance scores (avg 29%)"
+        },
+        "metadata": {
+          "query": "Do you provide cargo insurance?",
+          "chunksRetrieved": 2,
+          "chunksUsed": 1,
+          "latencyMs": 1492,
+          "model": "llama-3.1-8b-instant"
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 2,
+          "matched": 2,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [
+            "service_terms"
+          ],
+          "found": [
+            "service_terms"
+          ]
+        },
+        "citation_present": {
+          "pass": true,
+          "source_count": 0,
+          "citation_count": 1
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1492,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": true,
+      "client_latency_ms": 1492,
+      "error": null
+    },
+    {
+      "id": "Q-34",
+      "category": "sla",
+      "query": "What happens if shipment is delayed?",
+      "is_oos": false,
+      "response": {
+        "answer": "I don't have specific information about that topic in my knowledge base. Please try rephrasing your question or contact our customer service team for assistance.",
+        "sources": [],
+        "relatedDocs": [],
+        "citations": [],
+        "confidence": {
+          "level": "Low",
+          "reason": "No relevant documents found"
+        },
+        "metadata": {
+          "query": "What happens if shipment is delayed?",
+          "chunksRetrieved": 0,
+          "chunksUsed": 0,
+          "latencyMs": 957,
+          "model": null
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 0,
+          "matched": 0,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": false,
+          "expected": [
+            "sla_policy",
+            "escalation"
+          ],
+          "found": []
+        },
+        "citation_present": {
+          "pass": false,
+          "source_count": 0,
+          "citation_count": 0
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 957,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": false,
+      "client_latency_ms": 958,
+      "error": null
+    },
+    {
+      "id": "Q-35",
+      "category": "sla",
+      "query": "Are duties and taxes included in the quote?",
+      "is_oos": false,
+      "response": {
+        "answer": "I don't have specific information about that topic in my knowledge base. Please try rephrasing your question or contact our customer service team for assistance.",
+        "sources": [],
+        "relatedDocs": [],
+        "citations": [],
+        "confidence": {
+          "level": "Low",
+          "reason": "No relevant documents found"
+        },
+        "metadata": {
+          "query": "Are duties and taxes included in the quote?",
+          "chunksRetrieved": 0,
+          "chunksUsed": 0,
+          "latencyMs": 975,
+          "model": null
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 0,
+          "matched": 0,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": false,
+          "expected": [
+            "service_terms"
+          ],
+          "found": []
+        },
+        "citation_present": {
+          "pass": false,
+          "source_count": 0,
+          "citation_count": 0
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 975,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": false,
+      "client_latency_ms": 976,
+      "error": null
+    },
+    {
+      "id": "Q-36",
+      "category": "sla",
+      "query": "What's the process for refused deliveries?",
+      "is_oos": false,
+      "response": {
+        "answer": "I don't have specific information about that topic in my knowledge base. Please try rephrasing your question or contact our customer service team for assistance.",
+        "sources": [],
+        "relatedDocs": [],
+        "citations": [],
+        "confidence": {
+          "level": "Low",
+          "reason": "No relevant documents found"
+        },
+        "metadata": {
+          "query": "What's the process for refused deliveries?",
+          "chunksRetrieved": 0,
+          "chunksUsed": 0,
+          "latencyMs": 950,
+          "model": null
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 0,
+          "matched": 0,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": false,
+          "expected": [
+            "cod_procedure",
+            "service_terms"
+          ],
+          "found": []
+        },
+        "citation_present": {
+          "pass": false,
+          "source_count": 0,
+          "citation_count": 0
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 950,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": false,
+      "client_latency_ms": 950,
+      "error": null
+    },
+    {
+      "id": "Q-37",
+      "category": "sla",
+      "query": "Do you handle import permit applications?",
+      "is_oos": false,
+      "response": {
+        "answer": "**Yes, we handle import permit applications** on your behalf as part of our customs brokerage services.\n\nAccording to our [Service Terms and Conditions > 2.4 Import Permit Services], we handle various types of import permits, including:\n\n* Standard import permits\n* Controlled goods permits (with customer's license required)\n* Food/health permits (SFA) (with product registration needed)\n* Transhipment permits (with routing details required)\n\nPlease refer to our [Frequently Asked Questions] for more information on the types of permits we handle and the requirements for each.\n\nFor specific processing times, please note that:\n\n* Standard import permit applications can be processed on the same day if submitted by 2 PM [Frequently Asked Questions > Processing Times]\n* Controlled goods permit applications typically take 1-3 working days\n* Food/health product permit applications typically take 3-5 working days\n\nHowever, please note that for controlled goods, you must hold the relevant license. We cannot apply for licenses on your behalf.",
+        "sources": [],
+        "relatedDocs": [
+          {
+            "title": "Frequently Asked Questions",
+            "category": "internal",
+            "docId": "04_internal_synthetic_customer_faq",
+            "url": null
+          },
+          {
+            "title": "Service Terms and Conditions",
+            "category": "internal",
+            "docId": "04_internal_synthetic_service_terms_conditions",
+            "url": null
+          },
+          {
+            "title": "Singapore Export Procedures",
+            "category": "regulatory",
+            "docId": "01_regulatory_sg_export_procedures",
+            "url": "https://www.customs.gov.sg/businesses/exporting-goods/overview/"
+          },
+          {
+            "title": "Philippines Import Requirements",
+            "category": "regulatory",
+            "docId": "01_regulatory_philippines_import_requirements",
+            "url": "https://www.trade.gov/country-commercial-guides/philippines-import-requirements-and-documentation"
+          }
+        ],
+        "citations": [
+          {
+            "raw": "[Service Terms and Conditions > 2.4 Import Permit Services]",
+            "title": "Service Terms and Conditions",
+            "section": "2.4 Import Permit Services",
+            "position": 122,
+            "matched": true,
+            "sourceUrls": [],
+            "docId": "04_internal_synthetic_service_terms_conditions",
+            "score": 0.3204416036605835,
+            "fullTitle": "Service Terms and Conditions"
+          },
+          {
+            "raw": "[Frequently Asked Questions]",
+            "title": "Frequently Asked Questions",
+            "section": null,
+            "position": 465,
+            "matched": true,
+            "sourceUrls": [],
+            "docId": "04_internal_synthetic_customer_faq",
+            "score": 0.41278231143951416,
+            "fullTitle": "Frequently Asked Questions"
+          }
+        ],
+        "confidence": {
+          "level": "Low",
+          "reason": "Low relevance scores (avg 25%)"
+        },
+        "metadata": {
+          "query": "Do you handle import permit applications?",
+          "chunksRetrieved": 5,
+          "chunksUsed": 2,
+          "latencyMs": 1649,
+          "model": "llama-3.1-8b-instant"
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 2,
+          "matched": 2,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [
+            "service_terms",
+            "booking"
+          ],
+          "found": [
+            "service_terms"
+          ]
+        },
+        "citation_present": {
+          "pass": true,
+          "source_count": 0,
+          "citation_count": 2
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1649,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": true,
+      "client_latency_ms": 1650,
+      "error": null
+    },
+    {
+      "id": "Q-38",
+      "category": "sla",
+      "query": "How do I upgrade to express service?",
+      "is_oos": false,
+      "response": {
+        "answer": "I don't have specific information about that topic in my knowledge base. Please try rephrasing your question or contact our customer service team for assistance.",
+        "sources": [],
+        "relatedDocs": [],
+        "citations": [],
+        "confidence": {
+          "level": "Low",
+          "reason": "No relevant documents found"
+        },
+        "metadata": {
+          "query": "How do I upgrade to express service?",
+          "chunksRetrieved": 0,
+          "chunksUsed": 0,
+          "latencyMs": 994,
+          "model": null
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 0,
+          "matched": 0,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": false,
+          "expected": [
+            "service_terms",
+            "booking"
+          ],
+          "found": []
+        },
+        "citation_present": {
+          "pass": false,
+          "source_count": 0,
+          "citation_count": 0
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 994,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": false,
+      "client_latency_ms": 1017,
+      "error": null
+    },
+    {
+      "id": "Q-39",
+      "category": "sla",
+      "query": "What's covered under standard liability?",
+      "is_oos": false,
+      "response": {
+        "answer": "**Standard Liability Coverage**\n\nAccording to our [Service Terms and Conditions > 6.1 Liability Coverage], standard liability covers loss or damage to goods due to:\n\n* **Negligence**: Our employees' or agents' acts or omissions\n* **Accidents**: Unforeseen events, such as collisions or fires, during transportation\n* **Theft**: Unauthorized removal of goods from our custody\n* **Fire**: Damage caused by fire during transportation or storage\n* **Water Damage**: Damage caused by water during transportation or storage\n\nHowever, please note that standard liability does not cover losses due to:\n\n* **Acts of God**, war, terrorism, or government actions\n* **Customer's acts or omissions**\n* **Inherent vice of goods**\n* **Insufficient or improper packing**\n* **Delays beyond our control**\n* **Electrical or mechanical derangement of reefer** [Service Terms and Conditions > 6.2 Exclusions from Liability]\n\nFor more information on liability coverage, please refer to our [Service Terms and Conditions > 6.1 Liability Coverage].",
+        "sources": [],
+        "relatedDocs": [
+          {
+            "title": "Service Terms and Conditions",
+            "category": "internal",
+            "docId": "04_internal_synthetic_service_terms_conditions",
+            "url": null
+          }
+        ],
+        "citations": [
+          {
+            "raw": "[Service Terms and Conditions > 6.1 Liability Coverage]",
+            "title": "Service Terms and Conditions",
+            "section": "6.1 Liability Coverage",
+            "position": 50,
+            "matched": true,
+            "sourceUrls": [],
+            "docId": "04_internal_synthetic_service_terms_conditions",
+            "score": 0.27445417642593384,
+            "fullTitle": "Service Terms and Conditions"
+          }
+        ],
+        "confidence": {
+          "level": "Low",
+          "reason": "Only 1 source found"
+        },
+        "metadata": {
+          "query": "What's covered under standard liability?",
+          "chunksRetrieved": 1,
+          "chunksUsed": 1,
+          "latencyMs": 1590,
+          "model": "llama-3.1-8b-instant"
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 2,
+          "matched": 2,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [
+            "service_terms",
+            "sla_policy"
+          ],
+          "found": [
+            "service_terms"
+          ]
+        },
+        "citation_present": {
+          "pass": true,
+          "source_count": 0,
+          "citation_count": 1
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1590,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": true,
+      "client_latency_ms": 1591,
+      "error": null
+    },
+    {
+      "id": "Q-40",
+      "category": "sla",
+      "query": "Can I get proof of delivery?",
+      "is_oos": false,
+      "response": {
+        "answer": "I don't have specific information about that topic in my knowledge base. Please try rephrasing your question or contact our customer service team for assistance.",
+        "sources": [],
+        "relatedDocs": [],
+        "citations": [],
+        "confidence": {
+          "level": "Low",
+          "reason": "No relevant documents found"
+        },
+        "metadata": {
+          "query": "Can I get proof of delivery?",
+          "chunksRetrieved": 0,
+          "chunksUsed": 0,
+          "latencyMs": 968,
+          "model": null
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 0,
+          "matched": 0,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": false,
+          "expected": [
+            "cod_procedure",
+            "service_terms"
+          ],
+          "found": []
+        },
+        "citation_present": {
+          "pass": false,
+          "source_count": 0,
+          "citation_count": 0
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 968,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": false,
+      "client_latency_ms": 982,
+      "error": null
+    },
+    {
+      "id": "Q-41",
+      "category": "edge_case",
+      "query": "What's the current freight rate to Jakarta?",
+      "is_oos": true,
+      "response": {
+        "answer": "I don't have specific information about the current freight rate to Jakarta in my knowledge base. Freight rates vary by route, timing, and other factors. For an accurate quote, please contact our sales team directly. They can provide you with the most up-to-date information and assist you with your shipping needs.",
+        "sources": [],
+        "relatedDocs": [
+          {
+            "title": "Indonesia Import Requirements",
+            "category": "regulatory",
+            "docId": "01_regulatory_indonesia_import_requirements",
+            "url": "https://www.trade.gov/country-commercial-guides/indonesia-import-requirements-and-documentation"
+          }
+        ],
+        "citations": [],
+        "confidence": {
+          "level": "Low",
+          "reason": "Only 1 source found"
+        },
+        "metadata": {
+          "query": "What's the current freight rate to Jakarta?",
+          "chunksRetrieved": 1,
+          "chunksUsed": 0,
+          "latencyMs": 1320,
+          "model": "llama-3.1-8b-instant"
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 0,
+          "matched": 0,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [],
+          "found": []
+        },
+        "citation_present": {
+          "pass": false,
+          "source_count": 0,
+          "citation_count": 0
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": true,
+          "signals_found": [
+            "don't have",
+            "contact",
+            "sales",
+            "specific information"
+          ]
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1320,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": false,
+      "client_latency_ms": 1321,
+      "error": null
+    },
+    {
+      "id": "Q-42",
+      "category": "edge_case",
+      "query": "Where is my shipment right now?",
+      "is_oos": true,
+      "response": {
+        "answer": "I don't have specific information about that topic in my knowledge base. Please try rephrasing your question or contact our customer service team for assistance.",
+        "sources": [],
+        "relatedDocs": [],
+        "citations": [],
+        "confidence": {
+          "level": "Low",
+          "reason": "No relevant documents found"
+        },
+        "metadata": {
+          "query": "Where is my shipment right now?",
+          "chunksRetrieved": 0,
+          "chunksUsed": 0,
+          "latencyMs": 973,
+          "model": null
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 0,
+          "matched": 0,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [],
+          "found": []
+        },
+        "citation_present": {
+          "pass": false,
+          "source_count": 0,
+          "citation_count": 0
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": true,
+          "signals_found": [
+            "don't have",
+            "contact"
+          ]
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 973,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": false,
+      "client_latency_ms": 974,
+      "error": null
+    },
+    {
+      "id": "Q-43",
+      "category": "edge_case",
+      "query": "Can you book a shipment for me?",
+      "is_oos": true,
+      "response": {
+        "answer": "I don't have specific information about that topic in my knowledge base. Please try rephrasing your question or contact our customer service team for assistance.",
+        "sources": [],
+        "relatedDocs": [],
+        "citations": [],
+        "confidence": {
+          "level": "Low",
+          "reason": "No relevant documents found"
+        },
+        "metadata": {
+          "query": "Can you book a shipment for me?",
+          "chunksRetrieved": 0,
+          "chunksUsed": 0,
+          "latencyMs": 963,
+          "model": null
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 0,
+          "matched": 0,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [],
+          "found": []
+        },
+        "citation_present": {
+          "pass": false,
+          "source_count": 0,
+          "citation_count": 0
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": true,
+          "signals_found": [
+            "don't have",
+            "contact"
+          ]
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 963,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": false,
+      "client_latency_ms": 964,
+      "error": null
+    },
+    {
+      "id": "Q-44",
+      "category": "edge_case",
+      "query": "I want to file a claim for damaged cargo",
+      "is_oos": false,
+      "response": {
+        "answer": "**Damaged Cargo Claims**\n\nTo file a claim for damaged cargo, you must notify us within 3 days from delivery [Service Terms and Conditions > 8.1 Claim Notification]. Please provide the following documentation:\n\n* Written claim with full details\n* Original transport documents\n* Commercial invoice and packing list\n* Survey report (if applicable)\n* Photographs of damage\n* Proof of value\n\n**Required Documents**\n\nPlease ensure you have all the necessary documents before submitting your claim. You can find more information on our [Booking Procedure > Required Documents] page.\n\n**Claim Process**\n\nOnce you have all the required documents, please submit your claim to our customer service team. We will review your claim and respond within 5 working days [SLA Policy > Claim Response Time].\n\n**Important**\n\nPlease note that claims for concealed damage must be notified within 3 days from delivery, while claims for visible damage can be notified at the time of delivery. For partial loss and total loss claims, please notify us within 7 and 21 days from delivery, respectively. Delay claims must also be notified within 21 days from delivery.\n\nIf you have any questions or concerns about the claim process, please don't hesitate to reach out to us.",
+        "sources": [],
+        "relatedDocs": [
+          {
+            "title": "Service Terms and Conditions",
+            "category": "internal",
+            "docId": "04_internal_synthetic_service_terms_conditions",
+            "url": null
+          }
+        ],
+        "citations": [
+          {
+            "raw": "[Service Terms and Conditions > 8.1 Claim Notification]",
+            "title": "Service Terms and Conditions",
+            "section": "8.1 Claim Notification",
+            "position": 108,
+            "matched": true,
+            "sourceUrls": [],
+            "docId": "04_internal_synthetic_service_terms_conditions",
+            "score": 0.2634970545768738,
+            "fullTitle": "Service Terms and Conditions"
+          }
+        ],
+        "confidence": {
+          "level": "Low",
+          "reason": "Only 1 source found"
+        },
+        "metadata": {
+          "query": "I want to file a claim for damaged cargo",
+          "chunksRetrieved": 1,
+          "chunksUsed": 1,
+          "latencyMs": 1781,
+          "model": "llama-3.1-8b-instant"
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 2,
+          "matched": 2,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [
+            "service_terms"
+          ],
+          "found": [
+            "service_terms"
+          ]
+        },
+        "citation_present": {
+          "pass": true,
+          "source_count": 0,
+          "citation_count": 1
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": false,
+          "signals_found": []
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1781,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": true,
+      "client_latency_ms": 1782,
+      "error": null
+    },
+    {
+      "id": "Q-45",
+      "category": "edge_case",
+      "query": "Can you ship hazmat by air?",
+      "is_oos": true,
+      "response": {
+        "answer": "I don't have specific information about that topic in my knowledge base. Please try rephrasing your question or contact our customer service team for assistance.",
+        "sources": [],
+        "relatedDocs": [],
+        "citations": [],
+        "confidence": {
+          "level": "Low",
+          "reason": "No relevant documents found"
+        },
+        "metadata": {
+          "query": "Can you ship hazmat by air?",
+          "chunksRetrieved": 0,
+          "chunksUsed": 0,
+          "latencyMs": 1121,
+          "model": null
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 0,
+          "matched": 0,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [],
+          "found": []
+        },
+        "citation_present": {
+          "pass": false,
+          "source_count": 0,
+          "citation_count": 0
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": true,
+          "signals_found": [
+            "don't have",
+            "contact",
+            "specific information"
+          ]
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1121,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": false,
+      "client_latency_ms": 1122,
+      "error": null
+    },
+    {
+      "id": "Q-46",
+      "category": "edge_case",
+      "query": "What's the weather forecast for shipping?",
+      "is_oos": true,
+      "response": {
+        "answer": "I don't have specific information about that topic in my knowledge base. Please try rephrasing your question or contact our customer service team for assistance.",
+        "sources": [],
+        "relatedDocs": [],
+        "citations": [],
+        "confidence": {
+          "level": "Low",
+          "reason": "No relevant documents found"
+        },
+        "metadata": {
+          "query": "What's the weather forecast for shipping?",
+          "chunksRetrieved": 0,
+          "chunksUsed": 0,
+          "latencyMs": 981,
+          "model": null
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 0,
+          "matched": 0,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [],
+          "found": []
+        },
+        "citation_present": {
+          "pass": false,
+          "source_count": 0,
+          "citation_count": 0
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": true,
+          "signals_found": [
+            "don't have"
+          ]
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 981,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": false,
+      "client_latency_ms": 998,
+      "error": null
+    },
+    {
+      "id": "Q-47",
+      "category": "edge_case",
+      "query": "Can you recommend a supplier in China?",
+      "is_oos": true,
+      "response": {
+        "answer": "I don't have specific information about that topic in my knowledge base. Please try rephrasing your question or contact our customer service team for assistance.",
+        "sources": [],
+        "relatedDocs": [],
+        "citations": [],
+        "confidence": {
+          "level": "Low",
+          "reason": "No relevant documents found"
+        },
+        "metadata": {
+          "query": "Can you recommend a supplier in China?",
+          "chunksRetrieved": 0,
+          "chunksUsed": 0,
+          "latencyMs": 986,
+          "model": null
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 0,
+          "matched": 0,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [],
+          "found": []
+        },
+        "citation_present": {
+          "pass": false,
+          "source_count": 0,
+          "citation_count": 0
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": true,
+          "signals_found": [
+            "don't have"
+          ]
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 986,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": false,
+      "client_latency_ms": 987,
+      "error": null
+    },
+    {
+      "id": "Q-48",
+      "category": "edge_case",
+      "query": "What's your company's financial status?",
+      "is_oos": true,
+      "response": {
+        "answer": "I don't have specific information about that topic in my knowledge base. Please try rephrasing your question or contact our customer service team for assistance.",
+        "sources": [],
+        "relatedDocs": [],
+        "citations": [],
+        "confidence": {
+          "level": "Low",
+          "reason": "No relevant documents found"
+        },
+        "metadata": {
+          "query": "What's your company's financial status?",
+          "chunksRetrieved": 0,
+          "chunksUsed": 0,
+          "latencyMs": 1012,
+          "model": null
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 0,
+          "matched": 0,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [],
+          "found": []
+        },
+        "citation_present": {
+          "pass": false,
+          "source_count": 0,
+          "citation_count": 0
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": true,
+          "signals_found": [
+            "don't have"
+          ]
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 1012,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": false,
+      "client_latency_ms": 1013,
+      "error": null
+    },
+    {
+      "id": "Q-49",
+      "category": "edge_case",
+      "query": "How do I become a freight forwarder?",
+      "is_oos": true,
+      "response": {
+        "answer": "I don't have specific information about that topic in my knowledge base. Please try rephrasing your question or contact our customer service team for assistance.",
+        "sources": [],
+        "relatedDocs": [],
+        "citations": [],
+        "confidence": {
+          "level": "Low",
+          "reason": "No relevant documents found"
+        },
+        "metadata": {
+          "query": "How do I become a freight forwarder?",
+          "chunksRetrieved": 0,
+          "chunksUsed": 0,
+          "latencyMs": 990,
+          "model": null
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 0,
+          "matched": 0,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [],
+          "found": []
+        },
+        "citation_present": {
+          "pass": false,
+          "source_count": 0,
+          "citation_count": 0
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": true,
+          "signals_found": [
+            "don't have"
+          ]
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 990,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": false,
+      "client_latency_ms": 991,
+      "error": null
+    },
+    {
+      "id": "Q-50",
+      "category": "edge_case",
+      "query": "What are your competitor's rates?",
+      "is_oos": true,
+      "response": {
+        "answer": "I don't have specific information about that topic in my knowledge base. Please try rephrasing your question or contact our customer service team for assistance.",
+        "sources": [],
+        "relatedDocs": [],
+        "citations": [],
+        "confidence": {
+          "level": "Low",
+          "reason": "No relevant documents found"
+        },
+        "metadata": {
+          "query": "What are your competitor's rates?",
+          "chunksRetrieved": 0,
+          "chunksUsed": 0,
+          "latencyMs": 979,
+          "model": null
+        }
+      },
+      "checks": {
+        "must_contain": {
+          "pass": true,
+          "total": 0,
+          "matched": 0,
+          "missing": []
+        },
+        "must_not_contain": {
+          "pass": true,
+          "found": []
+        },
+        "expected_docs": {
+          "pass": true,
+          "expected": [],
+          "found": []
+        },
+        "citation_present": {
+          "pass": false,
+          "source_count": 0,
+          "citation_count": 0
+        },
+        "oos_handling": {
+          "pass": true,
+          "applicable": true,
+          "signals_found": [
+            "don't have"
+          ]
+        },
+        "latency": {
+          "pass": true,
+          "latency_ms": 979,
+          "threshold_ms": 5000
+        }
+      },
+      "overall_pass": false,
+      "client_latency_ms": 980,
+      "error": null
+    }
+  ]
+}
