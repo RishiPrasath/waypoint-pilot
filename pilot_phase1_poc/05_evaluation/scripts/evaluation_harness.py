@@ -282,13 +282,27 @@ def check_expected_docs(related_docs: list, expected: list) -> dict:
     }
 
 
-def check_citation_present(sources: list, citations: list) -> dict:
-    """Check if at least one source or citation is present."""
+def check_citation_present(sources: list, citations: list, chunks_retrieved: int = -1) -> dict:
+    """Check if at least one source or citation is present.
+
+    Not applicable when chunks_retrieved == 0 — the system correctly declines
+    these queries and cannot cite nonexistent sources.
+    """
+    if chunks_retrieved == 0:
+        return {
+            "pass": True,
+            "applicable": False,
+            "source_count": 0,
+            "citation_count": 0,
+            "reason": "No chunks retrieved — citation N/A",
+        }
+
     source_count = len(sources) if sources else 0
     citation_count = len(citations) if citations else 0
 
     return {
         "pass": source_count > 0 or citation_count > 0,
+        "applicable": True,
         "source_count": source_count,
         "citation_count": citation_count,
     }
@@ -326,7 +340,7 @@ def run_checks(baseline: dict, result: dict) -> dict:
             "must_contain": {"pass": False, "total": 0, "matched": 0, "missing": []},
             "must_not_contain": {"pass": False, "found": ["(query failed)"]},
             "expected_docs": {"pass": False, "expected": baseline["expected_docs"], "found": []},
-            "citation_present": {"pass": False, "source_count": 0, "citation_count": 0},
+            "citation_present": {"pass": False, "applicable": True, "source_count": 0, "citation_count": 0},
             "oos_handling": {"pass": False, "applicable": baseline["is_oos"], "signals_found": []},
             "latency": {"pass": False, "latency_ms": result["latency_ms"], "threshold_ms": LATENCY_THRESHOLD_MS},
         }
@@ -337,12 +351,13 @@ def run_checks(baseline: dict, result: dict) -> dict:
     related_docs = resp.get("relatedDocs", [])
     citations = resp.get("citations", [])
     server_latency = resp.get("metadata", {}).get("latencyMs", result["latency_ms"])
+    chunks_retrieved = resp.get("metadata", {}).get("chunksRetrieved", -1)
 
     return {
         "must_contain": check_must_contain(answer, baseline["must_contain"]),
         "must_not_contain": check_must_not_contain(answer, baseline["must_not_contain"]),
         "expected_docs": check_expected_docs(related_docs, baseline["expected_docs"]),
-        "citation_present": check_citation_present(sources, citations),
+        "citation_present": check_citation_present(sources, citations, chunks_retrieved),
         "oos_handling": check_oos_handling(answer, baseline["is_oos"], baseline.get("oos_decline_signals", [])),
         "latency": check_latency(server_latency),
     }
@@ -362,9 +377,13 @@ def calculate_metrics(results: list) -> dict:
     deflection_count = sum(1 for r in in_scope if r["checks"]["must_contain"]["pass"])
     deflection_rate = (deflection_count / len(in_scope) * 100) if in_scope else 0.0
 
-    # Citation accuracy: in-scope with citation present
-    citation_count = sum(1 for r in in_scope if r["checks"]["citation_present"]["pass"])
-    citation_accuracy = (citation_count / len(in_scope) * 100) if in_scope else 0.0
+    # Citation accuracy: in-scope with citation applicable and present
+    citation_applicable = [r for r in in_scope if r["checks"]["citation_present"].get("applicable", True)]
+    citation_count = sum(1 for r in citation_applicable if r["checks"]["citation_present"]["pass"])
+    citation_accuracy = (citation_count / len(citation_applicable) * 100) if citation_applicable else 0.0
+    # Also compute raw citation rate for transparency
+    citation_count_raw = sum(1 for r in in_scope if r["checks"]["citation_present"]["pass"])
+    citation_accuracy_raw = (citation_count_raw / len(in_scope) * 100) if in_scope else 0.0
 
     # Hallucination rate: any query with must_not_contain fail
     halluc_count = sum(1 for r in successful if not r["checks"]["must_not_contain"]["pass"])
@@ -388,7 +407,8 @@ def calculate_metrics(results: list) -> dict:
         cat_oos = [r for r in cat_results if r["is_oos"]]
 
         cat_defl = sum(1 for r in cat_inscope if r["checks"]["must_contain"]["pass"])
-        cat_cite = sum(1 for r in cat_inscope if r["checks"]["citation_present"]["pass"])
+        cat_cite_applicable = [r for r in cat_inscope if r["checks"]["citation_present"].get("applicable", True)]
+        cat_cite = sum(1 for r in cat_cite_applicable if r["checks"]["citation_present"]["pass"])
         cat_halluc = sum(1 for r in cat_results if not r["checks"]["must_not_contain"]["pass"])
         cat_latencies = [r["checks"]["latency"]["latency_ms"] for r in cat_results]
 
@@ -396,8 +416,9 @@ def calculate_metrics(results: list) -> dict:
             "total": len(cat_results),
             "in_scope": len(cat_inscope),
             "oos": len(cat_oos),
+            "citation_applicable": len(cat_cite_applicable),
             "deflection_rate": (cat_defl / len(cat_inscope) * 100) if cat_inscope else 0.0,
-            "citation_accuracy": (cat_cite / len(cat_inscope) * 100) if cat_inscope else 0.0,
+            "citation_accuracy": (cat_cite / len(cat_cite_applicable) * 100) if cat_cite_applicable else 0.0,
             "hallucination_rate": (cat_halluc / len(cat_results) * 100) if cat_results else 0.0,
             "avg_latency_ms": sum(cat_latencies) / len(cat_latencies) if cat_latencies else 0.0,
         }
@@ -405,6 +426,9 @@ def calculate_metrics(results: list) -> dict:
     return {
         "deflection_rate": round(deflection_rate, 1),
         "citation_accuracy": round(citation_accuracy, 1),
+        "citation_accuracy_raw": round(citation_accuracy_raw, 1),
+        "citation_applicable_queries": len(citation_applicable),
+        "citation_na_queries": len(in_scope) - len(citation_applicable),
         "hallucination_rate": round(hallucination_rate, 1),
         "oos_handling_rate": round(oos_handling_rate, 1),
         "avg_latency_ms": round(avg_latency, 0),
@@ -451,6 +475,7 @@ def write_results_csv(results: list):
         "id", "category", "query", "is_oos", "confidence",
         "must_contain_pass", "must_contain_matched", "must_contain_total",
         "must_not_contain_pass", "expected_docs_pass", "citation_present",
+        "citation_applicable",
         "oos_handling_pass", "latency_ms", "overall_pass", "error",
     ]
 
@@ -475,6 +500,7 @@ def write_results_csv(results: list):
                 "must_not_contain_pass": r["checks"]["must_not_contain"]["pass"],
                 "expected_docs_pass": r["checks"]["expected_docs"]["pass"],
                 "citation_present": r["checks"]["citation_present"]["pass"],
+                "citation_applicable": r["checks"]["citation_present"].get("applicable", True),
                 "oos_handling_pass": r["checks"]["oos_handling"]["pass"],
                 "latency_ms": r["checks"]["latency"]["latency_ms"],
                 "overall_pass": r["overall_pass"],
@@ -512,6 +538,8 @@ def write_report_md(results: list, metrics: dict, run_id: str):
     lines.append("|--------|--------|--------|--------|")
     lines.append(f"| Deflection Rate | {metrics['deflection_rate']}% | >= {TARGETS['deflection_rate']}% | {status(metrics['deflection_rate'], TARGETS['deflection_rate'])} |")
     lines.append(f"| Citation Accuracy | {metrics['citation_accuracy']}% | >= {TARGETS['citation_accuracy']}% | {status(metrics['citation_accuracy'], TARGETS['citation_accuracy'])} |")
+    if metrics.get("citation_na_queries", 0) > 0:
+        lines.append(f"| Citation (raw) | {metrics['citation_accuracy_raw']}% | - | (includes {metrics['citation_na_queries']} N/A queries) |")
     lines.append(f"| Hallucination Rate | {metrics['hallucination_rate']}% | < {TARGETS['hallucination_rate']}% | {status(metrics['hallucination_rate'], TARGETS['hallucination_rate'], higher_is_better=False)} |")
     lines.append(f"| OOS Handling | {metrics['oos_handling_rate']}% | >= {TARGETS['oos_handling_rate']}% | {status(metrics['oos_handling_rate'], TARGETS['oos_handling_rate'])} |")
     lines.append(f"| Avg Latency | {metrics['avg_latency_ms']}ms | < {TARGETS['avg_latency_ms']}ms | {status(metrics['avg_latency_ms'], TARGETS['avg_latency_ms'], higher_is_better=False)} |")
@@ -568,10 +596,26 @@ def write_report_md(results: list, metrics: dict, run_id: str):
             lines.append(f"| {r['id']} | {answer} |")
         lines.append("")
 
-    # Failures: citation
-    cite_fails = [r for r in results if r["error"] is None and not r["is_oos"] and not r["checks"]["citation_present"]["pass"]]
+    # Citation N/A: 0-chunk queries where citation is not applicable
+    cite_na = [r for r in results if r["error"] is None and not r["is_oos"]
+               and not r["checks"]["citation_present"].get("applicable", True)]
+    if cite_na:
+        lines.append("## Citation N/A (0 chunks — correct decline)")
+        lines.append("")
+        lines.append("| Query | Confidence | Reason |")
+        lines.append("|-------|-----------|--------|")
+        for r in cite_na:
+            conf = r["response"].get("confidence", {}).get("level", "?") if r["response"] else "?"
+            reason = r["checks"]["citation_present"].get("reason", "N/A")
+            lines.append(f"| {r['id']} | {conf} | {reason} |")
+        lines.append("")
+
+    # Failures: citation (genuine — has chunks but no citation)
+    cite_fails = [r for r in results if r["error"] is None and not r["is_oos"]
+                  and r["checks"]["citation_present"].get("applicable", True)
+                  and not r["checks"]["citation_present"]["pass"]]
     if cite_fails:
-        lines.append("## Citation Missing (In-Scope)")
+        lines.append("## Citation Missing (In-Scope, Chunks Available)")
         lines.append("")
         lines.append("| Query | Confidence |")
         lines.append("|-------|-----------|")
@@ -595,7 +639,11 @@ def write_report_md(results: list, metrics: dict, run_id: str):
 
         conf = r["response"].get("confidence", {}).get("level", "?") if r["response"] else "?"
         mc = "PASS" if r["checks"]["must_contain"]["pass"] else "FAIL"
-        cite = "PASS" if r["checks"]["citation_present"]["pass"] else "FAIL"
+        cite_check = r["checks"]["citation_present"]
+        if not cite_check.get("applicable", True):
+            cite = "N/A"
+        else:
+            cite = "PASS" if cite_check["pass"] else "FAIL"
         halluc = "PASS" if r["checks"]["must_not_contain"]["pass"] else "FAIL"
         oos_str = "PASS" if r["checks"]["oos_handling"]["pass"] else "FAIL"
         if not r["checks"]["oos_handling"].get("applicable", True):

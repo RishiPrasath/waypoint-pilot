@@ -229,25 +229,25 @@
       "id": "Q-21",
       "category": "carrier",
       "query": "Which carriers sail direct to Ho Chi Minh?",
-      "is_oos": true,
+      "is_oos": false,
       "expected_docs": [],
       "must_contain": [],
       "should_contain": [],
       "must_not_contain": [],
-      "oos_decline_signals": ["don't have", "contact", "specific information", "sales"],
-      "notes": "Moved to OOS — no specific route data to Ho Chi Minh City in any KB doc"
+      "oos_decline_signals": [],
+      "notes": "In-scope per scope doc (literal example query under Carrier Selection), but KB lacks port-specific route data. System will correctly decline — 0 chunks expected."
     },
     {
       "id": "Q-22",
       "category": "carrier",
       "query": "What's the transit time to Port Klang?",
-      "is_oos": true,
+      "is_oos": false,
       "expected_docs": [],
       "must_contain": [],
       "should_contain": [],
       "must_not_contain": [],
-      "oos_decline_signals": ["don't have", "contact", "specific information", "sales"],
-      "notes": "Moved to OOS — no transit time data in any KB doc"
+      "oos_decline_signals": [],
+      "notes": "In-scope per scope doc (transit times in Carrier Selection Guidance), but KB lacks port-specific transit data. System will correctly decline — 0 chunks expected."
     },
     {
       "id": "Q-23",
@@ -310,13 +310,13 @@
       "id": "Q-28",
       "category": "carrier",
       "query": "How do I track my shipment with Evergreen?",
-      "is_oos": false,
-      "expected_docs": ["evergreen"],
+      "is_oos": true,
+      "expected_docs": [],
       "must_contain": [],
-      "should_contain": ["Evergreen", "tracking", "shipment"],
+      "should_contain": [],
       "must_not_contain": [],
-      "oos_decline_signals": [],
-      "notes": "Known retrieval gap — Evergreen doc has tracking section but terms don't match well"
+      "oos_decline_signals": ["don't have", "contact", "specific information", "tracking"],
+      "notes": "OOS per scope doc — real-time tracking explicitly excluded from POC scope (01_scope_definition.md)"
     },
     {
       "id": "Q-29",

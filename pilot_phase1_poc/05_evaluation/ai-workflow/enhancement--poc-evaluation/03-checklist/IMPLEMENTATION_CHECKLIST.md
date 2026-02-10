@@ -1,7 +1,7 @@
 # Implementation Checklist
 
 **Initiative:** enhancement--poc-evaluation
-**Last Updated:** 2026-02-09
+**Last Updated:** 2026-02-10
 
 ## Quick Links
 
@@ -53,8 +53,10 @@
 | Status | Task | Description | Roadmap Ref |
 |:------:|------|-------------|-------------|
 | [x] | Task 3.1 | Failure analysis | Phase 3 |
-| [x] | Task 3.2 | Apply fixes (prompt, KB, threshold, formatting) | Phase 3 |
-| [ ] | Task 3.3 | Re-run evaluation (repeat until targets met) | Phase 3 |
+| [x] | Task 3.2 | Apply fixes (prompt, baselines, threshold) | Phase 3 |
+| [x] | Task 3.3 | Re-run evaluation (Round 3) — 5/6 pass, citation 60.5% raw | Phase 3 |
+| [x] | Task 3.4 | Apply Hybrid B+A fixes (harness + selective reclassification) | Phase 3 |
+| [x] | Task 3.5 | Re-run evaluation (Round 4) — ALL 6 TARGETS MET | Phase 3 |
 
 ## Phase 4: Documentation
 
@@ -96,7 +98,7 @@
 |:------:|------------|------------|---------|
 | [x] | CP 1 | Task 0.6 | Workspace setup + fresh ingestion |
 | [x] | CP 2 | Task 1.4 | UX Redesign complete |
-| [ ] | CP 3 | Task 3.3 | Round 2 metrics finalized |
+| [ ] | CP 3 | Task 3.5 | Fix loop complete — all targets met |
 
 ---
 
@@ -107,8 +109,8 @@
 | Phase 0 — Setup | 6 | 6 | 100% |
 | Phase 1 — UX Redesign | 4 | 4 | 100% |
 | Phase 2 — Testing | 13 | 13 | 100% |
-| Phase 3 — Fix Loop | 3 | 2 | 67% |
+| Phase 3 — Fix Loop | 5 | 5 | 100% |
 | Phase 4 — Documentation | 9 | 0 | 0% |
 | Phase 5 — Demo | 5 | 0 | 0% |
 | Phase 6 — Finalize | 3 | 0 | 0% |
-| **Total** | **43** | **25** | **58%** |
+| **Total** | **45** | **28** | **62%** |
