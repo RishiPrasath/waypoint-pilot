@@ -14,10 +14,10 @@
 | Phase 1: UX Redesign | 4 | 4 | ✅ Complete |
 | Phase 2: Testing | 13 | 13 | ✅ Complete |
 | Phase 3: Fix Loop | 5 | 5 | ✅ Complete |
-| Phase 4: Documentation | 9 | 0 | ⬜ Pending |
+| Phase 4: Documentation | 9 | 1 | 🔄 In Progress |
 | Phase 5: Demo | 5 | 0 | ⬜ Pending |
 | Phase 6: Finalize | 3 | 0 | ⬜ Pending |
-| **Total** | **45** | **28** | **62%** |
+| **Total** | **45** | **29** | **64%** |
 
 ---
 
@@ -53,7 +53,7 @@
 | 3.3 | Re-run evaluation (Round 3) | Phase 3 | T3.2 | ✅ Complete |
 | 3.4 | Apply Hybrid B+A fixes (harness + selective reclassification) | Phase 3 | T3.3 | ✅ Complete |
 | 3.5 | Re-run evaluation (Round 4) | Phase 3 | T3.4 | ✅ Complete |
-| 4.1 | Codebase documentation (Layers 2-4: READMEs, codebase docs) | Phase 4 | CP3 | ⬜ Pending |
+| 4.1 | Codebase documentation (Layers 2-4: READMEs, codebase docs) | Phase 4 | CP3 | ✅ Complete |
 | 4.2 | Architecture documentation (6 files) | Phase 4 | CP3 | ⬜ Pending |
 | 4.3 | User-facing guides (3 files) | Phase 4 | CP3 | ⬜ Pending |
 | 4.4 | Documentation index | Phase 4 | T4.1-T4.3 | ⬜ Pending |
@@ -1235,7 +1235,7 @@ All targets are hard gates. Fix loop continues until all are met. No "Min Viable
 ## Phase 4: Documentation
 
 ### Task 4.1 — Codebase documentation (Layers 2-4: READMEs, codebase docs)
-- **Status**: ⬜ Pending
+- **Status**: ✅ Complete
 - **Dependencies**: CP3
 - **Blocks**: T4.4
 
@@ -1288,12 +1288,12 @@ All targets are hard gates. Fix loop continues until all are met. No "Min Viable
 7. Verify all links between pointer READMEs and detailed docs are correct
 
 **Validation**:
-- [ ] 5 pointer READMEs created with correct links
-- [ ] 18 detailed codebase docs created
-- [ ] 6 ADR files created in standard format
-- [ ] All internal links resolve correctly
-- [ ] Each ADR covers: context, decision, alternatives considered, consequences
-- [ ] Total: 29 files created
+- [x] 5 pointer READMEs created with correct links
+- [x] 18 detailed codebase docs created
+- [x] 6 ADR files created in standard format
+- [x] All internal links resolve correctly
+- [x] Each ADR covers: context, decision, alternatives considered, consequences
+- [x] Total: 29 files created
 
 **Prompt Location**: `./ai-workflow/enhancement--poc-evaluation/04-prompts/04-documentation/task_4_1/01-prompt/`
 **Output Location**: `./ai-workflow/enhancement--poc-evaluation/04-prompts/04-documentation/task_4_1/02-output/`

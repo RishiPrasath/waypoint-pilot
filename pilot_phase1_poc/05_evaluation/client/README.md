@@ -1,16 +1,34 @@
-# React + Vite
+# Client — React Frontend (4-Section Response Card)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + Vite frontend for the Waypoint co-pilot. Displays query results in a structured 4-section response card: answer, sources, related documents, and confidence indicator.
 
-Currently, two official plugins are available:
+## File Structure
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+| File | Purpose |
+|------|---------|
+| `src/App.jsx` | Root component, layout, state management |
+| `src/main.jsx` | Vite entry point |
+| `src/api/query.js` | API client for backend /api/query endpoint |
+| `src/types.js` | Shared type definitions |
+| `src/components/QueryInput.jsx` | Search input with submit handling |
+| `src/components/ResponseCard.jsx` | Main response container (4-section card) |
+| `src/components/SourcesSection.jsx` | Cited sources with document attribution |
+| `src/components/RelatedDocsSection.jsx` | Related knowledge base documents |
+| `src/components/ConfidenceFooter.jsx` | Confidence level indicator |
+| `src/components/Loading.jsx` | Loading state animation |
 
-## React Compiler
+Component tests are located in `src/components/__tests__/`.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Quick Start
 
-## Expanding the ESLint configuration
+```bash
+cd pilot_phase1_poc/05_evaluation/client
+npm install
+npm run dev      # Dev server on port 5173
+npm run build    # Production build to dist/
+npm test         # Run Vitest component tests
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Detailed Docs
+
+See [detailed documentation](../documentation/codebase/frontend/overview.md) for component hierarchy, state flow, and styling.
