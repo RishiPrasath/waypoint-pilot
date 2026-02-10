@@ -358,7 +358,7 @@ describe('System Prompt Content', () => {
     const prompt = loadSystemPrompt();
 
     expect(prompt).toContain('Be Direct and Scannable');
-    expect(prompt).toContain('Cite Your Sources Inline');
+    expect(prompt).toContain('Cite Your Sources');  // T3.2: changed to "MANDATORY"
     expect(prompt).toContain('Handle Limitations Honestly');
     expect(prompt).toContain('Format Your Response with Markdown');
   });
@@ -367,7 +367,7 @@ describe('System Prompt Content', () => {
     const prompt = loadSystemPrompt();
 
     expect(prompt).toContain('[Document Title > Section Name]');
-    expect(prompt).toContain('[Document Title > Section]');
+    expect(prompt).toContain('MANDATORY');  // T3.2: strengthened citation instructions
   });
 
   test('contains out-of-scope handling instructions', () => {

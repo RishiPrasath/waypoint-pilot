@@ -98,7 +98,7 @@
 |:------:|------------|------------|---------|
 | [x] | CP 1 | Task 0.6 | Workspace setup + fresh ingestion |
 | [x] | CP 2 | Task 1.4 | UX Redesign complete |
-| [ ] | CP 3 | Task 3.5 | Fix loop complete — all targets met |
+| [x] | CP 3 | Task 3.5 | Fix loop complete — all targets met |
 
 ---
 

@@ -227,6 +227,7 @@ describe('Pipeline Orchestrator', () => {
     });
 
     test('calculates average score correctly', () => {
+      // 3 chunks with avgScore 0.55 >= 0.5 threshold → High (T3.2 thresholds)
       const chunks = [
         { score: 0.6 },
         { score: 0.55 },
@@ -235,13 +236,13 @@ describe('Pipeline Orchestrator', () => {
       const citationResult = { stats: { matched: 1 } };
 
       const confidence = calculateConfidence(chunks, citationResult);
-      const avgScore = (0.6 + 0.55 + 0.5) / 3;
 
-      expect(confidence.level).toBe('Medium');
-      expect(confidence.reason).toContain(`${(avgScore * 100).toFixed(0)}%`);
+      expect(confidence.level).toBe('High');
+      expect(confidence.reason).toContain('relevant sources');
     });
 
     test('handles low average score case', () => {
+      // 2 chunks with avgScore 0.375 >= 0.3 threshold → Medium (T3.2 thresholds)
       const chunks = [
         { score: 0.4 },
         { score: 0.35 },
@@ -250,8 +251,8 @@ describe('Pipeline Orchestrator', () => {
 
       const confidence = calculateConfidence(chunks, citationResult);
 
-      expect(confidence.level).toBe('Low');
-      expect(confidence.reason).toContain('Low relevance scores');
+      expect(confidence.level).toBe('Medium');
+      expect(confidence.reason).toContain('average relevance');
     });
   });
 });

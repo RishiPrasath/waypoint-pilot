@@ -79,7 +79,7 @@
 |----|------------|---------|-----------|
 | CP1 | T0.6 | Workspace setup + fresh ingestion | All existing tests pass (pytest + Jest + 92% retrieval) |
 | CP2 | T1.4 | UX Redesign complete | 4-section response card working in browser |
-| CP3 | T3.3 | Round 2 + Fix loop complete | All targets met (deflection >=40%, citation >=80%, hallucination <15%, OOS >=90%, latency <5s) |
+| CP3 | T3.5 | Round 2 + Fix loop complete | All targets met (deflection >=40%, citation >=80%, hallucination <15%, OOS >=90%, latency <5s) | ✅ PASSED |
 
 ---
 
