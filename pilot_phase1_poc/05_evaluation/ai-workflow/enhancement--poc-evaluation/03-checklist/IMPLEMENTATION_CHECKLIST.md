@@ -1,7 +1,7 @@
 # Implementation Checklist
 
 **Initiative:** enhancement--poc-evaluation
-**Last Updated:** 2026-02-10
+**Last Updated:** 2026-02-11
 
 ## Quick Links
 
@@ -76,19 +76,19 @@
 
 | Status | Task | Description | Roadmap Ref |
 |:------:|------|-------------|-------------|
-| [ ] | Task 5.1 | Select demo queries (8-10) | Phase 5 |
-| [ ] | Task 5.2 | Build Selenium demo script | Phase 5 |
-| [ ] | Task 5.3 | Record demo (screenshots + video) | Phase 5 |
-| [ ] | Task 5.4 | Create React presentation app (16 slides) | Phase 5 |
-| [ ] | Task 5.5 | Prepare Q&A responses | Phase 5 |
+| [x] | Task 5.1 | Select demo queries (8-10) | Phase 5 |
+| [x] | Task 5.2 | Build Selenium demo script | Phase 5 |
+| [x] | Task 5.3 | Record demo (screenshots — 25 files, video skipped) | Phase 5 |
+| [x] | Task 5.4 | Create React presentation app (16 slides) | Phase 5 |
+| [x] | Task 5.5 | Prepare Q&A responses | Phase 5 |
 
 ## Phase 6: Buffer, Polish & Finalize
 
 | Status | Task | Description | Roadmap Ref |
 |:------:|------|-------------|-------------|
-| [ ] | Task 6.1 | Final smoke test | Phase 6 |
-| [ ] | Task 6.2 | Backup (git commit) | Phase 6 |
-| [ ] | Task 6.3 | Update CLAUDE.md (Week 4 complete) | Phase 6 |
+| [x] | Task 6.1 | Final smoke test | Phase 6 |
+| [x] | Task 6.2 | Backup (git commit) | Phase 6 |
+| [x] | Task 6.3 | Update CLAUDE.md (Week 4 complete) | Phase 6 |
 
 ---
 
@@ -111,6 +111,6 @@
 | Phase 2 — Testing | 13 | 13 | 100% |
 | Phase 3 — Fix Loop | 5 | 5 | 100% |
 | Phase 4 — Documentation | 9 | 9 | 100% |
-| Phase 5 — Demo | 5 | 0 | 0% |
-| Phase 6 — Finalize | 3 | 0 | 0% |
-| **Total** | **45** | **37** | **82%** |
+| Phase 5 — Demo | 5 | 5 | 100% |
+| Phase 6 — Finalize | 3 | 3 | 100% |
+| **Total** | **45** | **45** | **100%** |

@@ -1,0 +1,22 @@
+Waypoint POC Demo — Results Summary
+========================================
+Date: 2026-02-11 13:00:07
+Queries run: 10
+Succeeded: 10
+Failed: 0
+Avg response time: 3.5s
+
+Per-query results:
+----------------------------------------
+  Demo  1 (Q-01) [happy   ] — OK   (3.1s)
+  Demo  2 (Q-11) [happy   ] — OK   (2.0s)
+  Demo  3 (Q-13) [happy   ] — OK   (2.0s)
+  Demo  4 (Q-24) [happy   ] — OK   (3.1s)
+  Demo  5 (Q-14) [happy   ] — OK   (3.5s)
+  Demo  6 (Q-03) [happy   ] — OK   (2.5s)
+  Demo  7 (Q-31) [happy   ] — OK   (13.7s)
+  Demo  8 (Q-42) [oos     ] — OK   (1.5s)
+  Demo  9 (Q-46) [oos     ] — OK   (1.5s)
+  Demo 10 (Q-04) [boundary] — OK   (1.5s)
+
+Screenshots saved to: C:\Users\prasa\Documents\Github\waypoint-pilot\pilot_phase1_poc\05_evaluation\demo\presentation\public\demo\screenshots

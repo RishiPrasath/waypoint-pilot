@@ -1,0 +1,112 @@
+{
+  "generated": "2026-02-11T13:00:07",
+  "resolution": "1400x900",
+  "total_files": 25,
+  "queries": [
+    {
+      "demo": 1,
+      "id": "Q-01",
+      "query": "What documents are needed for sea freight Singapore to Indonesia?",
+      "type": "happy",
+      "files": {
+        "typed": "demo_01_typed.png",
+        "response": "demo_01_response.png",
+        "full": "demo_01_response_full.png"
+      }
+    },
+    {
+      "demo": 2,
+      "id": "Q-11",
+      "query": "What's the GST rate for imports into Singapore?",
+      "type": "happy",
+      "files": {
+        "typed": "demo_02_typed.png",
+        "response": "demo_02_response.png"
+      }
+    },
+    {
+      "demo": 3,
+      "id": "Q-13",
+      "query": "Is Certificate of Origin required for Thailand?",
+      "type": "happy",
+      "files": {
+        "typed": "demo_03_typed.png",
+        "response": "demo_03_response.png",
+        "full": "demo_03_response_full.png"
+      }
+    },
+    {
+      "demo": 4,
+      "id": "Q-24",
+      "query": "How do I submit VGM to Maersk?",
+      "type": "happy",
+      "files": {
+        "typed": "demo_04_typed.png",
+        "response": "demo_04_response.png",
+        "full": "demo_04_response_full.png"
+      }
+    },
+    {
+      "demo": 5,
+      "id": "Q-14",
+      "query": "What permits are needed to import cosmetics to Indonesia?",
+      "type": "happy",
+      "files": {
+        "typed": "demo_05_typed.png",
+        "response": "demo_05_response.png",
+        "full": "demo_05_response_full.png"
+      }
+    },
+    {
+      "demo": 6,
+      "id": "Q-03",
+      "query": "What's the difference between FCL and LCL?",
+      "type": "happy",
+      "files": {
+        "typed": "demo_06_typed.png",
+        "response": "demo_06_response.png",
+        "full": "demo_06_response_full.png"
+      }
+    },
+    {
+      "demo": 7,
+      "id": "Q-31",
+      "query": "What's our standard delivery SLA for Singapore?",
+      "type": "happy",
+      "files": {
+        "typed": "demo_07_typed.png",
+        "response": "demo_07_response.png"
+      }
+    },
+    {
+      "demo": 8,
+      "id": "Q-42",
+      "query": "Where is my shipment right now?",
+      "type": "oos",
+      "files": {
+        "typed": "demo_08_typed.png",
+        "response": "demo_08_response.png"
+      }
+    },
+    {
+      "demo": 9,
+      "id": "Q-46",
+      "query": "What's the weather forecast for shipping?",
+      "type": "oos",
+      "files": {
+        "typed": "demo_09_typed.png",
+        "response": "demo_09_response.png"
+      }
+    },
+    {
+      "demo": 10,
+      "id": "Q-04",
+      "query": "When is the SI cutoff for this week's Maersk sailing?",
+      "type": "boundary",
+      "files": {
+        "typed": "demo_10_typed.png",
+        "response": "demo_10_response.png"
+      }
+    }
+  ]
+}
