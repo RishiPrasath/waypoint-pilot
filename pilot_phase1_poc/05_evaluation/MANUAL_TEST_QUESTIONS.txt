@@ -1,0 +1,366 @@
+================================================================================
+WAYPOINT CO-PILOT - MANUAL TEST QUESTIONS
+Freight Forwarding RAG Application Test Guide
+================================================================================
+
+This file contains test questions for manual testing of the Waypoint co-pilot
+application. Test scenarios include happy path, edge cases, deflection scenarios,
+and citation verification.
+
+SECTIONS:
+1. Happy Path Scenarios (normal queries, should work well)
+2. Edge Cases (ambiguous, partial, multi-topic)
+3. Out-of-Scope Deflection (should decline gracefully)
+4. Citation & Source Verification (check source attribution)
+5. Confidence & Uncertainty Handling (verify confidence levels)
+6. Carrier-Specific Queries (airline, ocean, trucking)
+7. Regional Regulatory Queries (Singapore, SEA focus)
+
+================================================================================
+1. HAPPY PATH SCENARIOS
+================================================================================
+These should return clear, well-cited answers with high confidence.
+
+Q1.1: What documents are needed for exporting from Singapore?
+Expected: Commercial invoice, packing list, bill of lading, export permit, certificate of origin
+
+Q1.2: What is the difference between FCL and LCL?
+Expected: Clear explanation of Full Container Load vs Less than Container Load
+
+Q1.3: What are Incoterms and why do they matter?
+Expected: Definition, list of major terms (FOB, CIF, DDP, etc.), trade implications
+
+Q1.4: What are the main customs regulations for importing into Singapore?
+Expected: Tariffs, documentation, prohibited items, inspection procedures
+
+Q1.5: How do I know if my shipment is HS classified correctly?
+Expected: Explanation of HS codes, how to find them, where to look
+
+Q1.6: What is a bill of lading (BL)?
+Expected: Definition, types (straight vs order), key fields, purpose
+
+Q1.7: What air carriers does your company work with?
+Expected: List of carriers and their capabilities
+
+Q1.8: What insurance coverage is available for shipments?
+Expected: Types of coverage, cost implications, policy details
+
+Q1.9: What is ASEAN and how does it affect trade?
+Expected: Member countries, tariff implications, trade agreements
+
+Q1.10: How are shipping costs calculated?
+Expected: Weight vs volume, minimum charges, additional fees
+
+
+================================================================================
+2. EDGE CASES
+================================================================================
+These test ambiguous, partial, or unusual queries.
+
+Q2.1: I have a parcel. (Too vague - should ask for clarification or use defaults)
+Expected: Either asks for more info or provides general guidance
+
+Q2.2: SI? (Abbreviation without context - should handle or decline gracefully)
+Expected: Recognizes as "Shipping Instructions" or asks for clarification
+
+Q2.3: What's a 20ft and 40ft container? (Partial query, mixed types)
+Expected: Explains both container types clearly
+
+Q2.4: Can I export rubber and palm oil together?
+Expected: Regulatory info about both products
+
+Q2.5: When's the next shipment to Bangkok?
+Expected: Declines (out-of-scope - requires real-time data)
+
+Q2.6: My shipment was damaged - what now?
+Expected: Declines (out-of-scope - requires case management, not knowledge base)
+
+Q2.7: BL = ? (Abbreviation lookup - should resolve)
+Expected: Bill of Lading
+
+Q2.8: FCL vs LCL vs LTL (Multiple acronyms - verify clarity)
+Expected: Distinguishes all three clearly
+
+Q2.9: Indonesia import - what do I need?
+Expected: Regulatory requirements for Indonesia (uses jurisdiction filter)
+
+Q2.10: Trade Vietnam ASEAN (Keywords only - should handle or decline)
+Expected: Either connects keywords or declines gracefully
+
+
+================================================================================
+3. OUT-OF-SCOPE DEFLECTION
+================================================================================
+These should be declined gracefully with a polite message.
+
+Q3.1: What's the real-time tracking for shipment CONT-12345?
+Expected: "I don't have access to live tracking" / deflection
+
+Q3.2: How much will it cost to ship my goods?
+Expected: "I don't have pricing information" / deflection (or generic guidance)
+
+Q3.3: Can you book a shipment for me?
+Expected: "I cannot book directly" / deflection to agent
+
+Q3.4: What's your company's revenue last year?
+Expected: Deflection (company-internal, not customer service)
+
+Q3.5: I need to arrange payment for an invoice
+Expected: Deflection (finance process, not service knowledge)
+
+Q3.6: Can you send me a quote for air freight to USA?
+Expected: Deflection (requires quote engine / pricing system)
+
+Q3.7: What are your payment terms?
+Expected: Deflection (business/legal, not customer service knowledge base)
+
+Q3.8: When will my container arrive in Singapore?
+Expected: Deflection (requires tracking system, not available)
+
+Q3.9: Can you tell me about your competitors?
+Expected: Deflection (out of scope)
+
+Q3.10: What's your insurance claim process?
+Expected: Deflection or generic guidance (specific claims require case management)
+
+
+================================================================================
+4. CITATION & SOURCE VERIFICATION
+================================================================================
+Test that sources are properly attributed and traceable.
+
+Q4.1: What are Singapore's prohibited import items?
+Check: Source mentions "Singapore Customs" or similar
+Check: URL is included (if available)
+Check: Quote can be verified
+
+Q4.2: What is the Form D in ASEAN trade?
+Check: Source identifies origin (ASEAN agreement, specific country)
+Check: Citation is specific (not just "knowledge base")
+
+Q4.3: What's an air waybill?
+Check: Source is carrier documentation or standard reference
+Check: Multiple sources if available
+
+Q4.4: How are HS codes organized?
+Check: Source provides official reference (WCO, customs agency)
+
+Q4.5: What documents does Maersk require?
+Check: Source is Maersk-specific (carrier documentation)
+Check: Distinguishes from general carrier requirements
+
+Q4.6: What are typical lead times for LCL?
+Check: Source provides booking/carrier reference
+Check: Timeframe is specific (days, weeks, etc.)
+
+Q4.7: What's the difference between air and sea freight?
+Check: Sources distinguish the modalities clearly
+Check: Cost/time trade-offs are cited
+
+Q4.8: What is GST in imports?
+Check: Source provides regulatory reference (Singapore or relevant jurisdiction)
+
+Q4.9: What are tariff classifications?
+Check: Source references HS codes or customs guidelines
+
+Q4.10: Tell me about certificate of origin requirements.
+Check: Source identifies jurisdictional requirements
+Check: Multiple sources if multiple countries apply
+
+
+================================================================================
+5. CONFIDENCE & UNCERTAINTY HANDLING
+================================================================================
+Verify that the app indicates confidence levels appropriately.
+
+Q5.1: What's the exact SI cutoff for tomorrow?
+Expected: Low confidence or deflection (real-time info needed)
+
+Q5.2: What are Singapore customs regulations?
+Expected: High confidence (stable, documented)
+
+Q5.3: Might there be any restrictions on electronics exports?
+Expected: Medium confidence with caveats (product-specific, regulatory)
+
+Q5.4: What's a typical sea freight timeline from Singapore to Australia?
+Expected: Medium-high confidence with ranges (typical, not exact)
+
+Q5.5: Can I export used machinery?
+Expected: Medium confidence with regulatory caveats (case-dependent)
+
+Q5.6: What documents might I need for SE Asian trade?
+Expected: Medium confidence (jurisdiction-dependent, uses "might" or qualifiers)
+
+Q5.7: What are the top 5 carriers in Southeast Asia?
+Expected: High confidence (factual, documented)
+
+Q5.8: Are there any special procedures for hazmat?
+Expected: High confidence (regulated, documented) OR deflection (safety-critical)
+
+Q5.9: What if my shipment is overweight for LCL?
+Expected: Medium confidence (depends on carrier, commodity)
+
+Q5.10: Is my product subject to export control?
+Expected: Medium-low confidence or deflection (product-specific, regulatory)
+
+
+================================================================================
+6. CARRIER-SPECIFIC QUERIES
+================================================================================
+Test carrier-specific knowledge and distinguish between carriers.
+
+Q6.1: What carriers can handle reefer shipments?
+Expected: Lists carriers with reefer capability
+
+Q6.2: Does [Carrier Name] operate this route?
+Expected: Either confirms specific carrier or lists available carriers
+
+Q6.3: What's the difference between Maersk and CMA CGM?
+Expected: Distinguishes carriers (if data available)
+
+Q6.4: What air carriers fly to Hanoi?
+Expected: Lists relevant air carriers
+
+Q6.5: What's a standard sea freight booking process?
+Expected: General carrier process or references specific carrier procedures
+
+Q6.6: What are the baggage/cargo limits for air freight?
+Expected: General limits or references to carrier documentation
+
+Q6.7: Which carriers offer express service?
+Expected: Identifies expedited service options (if available)
+
+Q6.8: What are import-export procedures with [Carrier]?
+Expected: Either carrier-specific or general carrier procedures
+
+Q6.9: Can I book LCL with [Carrier]?
+Expected: Checks carrier service offerings
+
+Q6.10: What's the transit time for sea freight via [Carrier]?
+Expected: General transit time ranges (specific booking would be out-of-scope)
+
+
+================================================================================
+7. REGIONAL REGULATORY QUERIES
+================================================================================
+Test jurisdiction-specific and regional regulatory knowledge.
+
+Q7.1: What are Singapore's import duties?
+Expected: Singapore-specific tariff/customs info
+
+Q7.2: What's required to import into Malaysia?
+Expected: Malaysia-specific regulatory requirements
+
+Q7.3: Does ASEAN trade reduce tariffs?
+Expected: ASEAN agreement and tariff implications
+
+Q7.4: What's the difference between SG and MY import requirements?
+Expected: Distinguishes Singapore vs Malaysia requirements
+
+Q7.5: Are there any export restrictions from Thailand?
+Expected: Thailand-specific export regulations
+
+Q7.6: What documentation is standard for ASEAN trade?
+Expected: Regional/standardized documentation for ASEAN
+
+Q7.7: What are Indonesia's customs procedures?
+Expected: Indonesia-specific customs requirements
+
+Q7.8: Which ASEAN countries have free trade agreements?
+Expected: Trade relationship overview within ASEAN
+
+Q7.9: What's the cost impact of tariffs on a 40ft container?
+Expected: Deflection or generic guidance (specific pricing out-of-scope)
+
+Q7.10: How do COVID restrictions affect trade now?
+Expected: Deflection (outdated scenario) OR current regulatory info if available
+
+
+================================================================================
+TESTING CHECKLIST
+================================================================================
+
+When testing each query, verify:
+
+☐ ANSWER QUALITY
+  ☐ Is the answer clear and direct?
+  ☐ Is it relevant to the question asked?
+  ☐ Are key terms explained (acronyms, trade terms)?
+  ☐ Is the tone appropriate for customer service?
+
+☐ SOURCES & CITATIONS
+  ☐ Are sources identified (document, organization)?
+  ☐ Can you verify sources are from knowledge base?
+  ☐ Are quotes/references accurately attributed?
+  ☐ If multiple sources, are all listed?
+
+☐ SCOPE HANDLING
+  ☐ Out-of-scope queries deflected gracefully?
+  ☐ Deflection message is clear and helpful?
+  ☐ Agent direction provided (if applicable)?
+
+☐ CONFIDENCE INDICATOR
+  ☐ Is confidence level displayed?
+  ☐ Does confidence match answer certainty?
+  ☐ Are caveats/uncertainties mentioned?
+
+☐ UI & FORMATTING
+  ☐ 4-section card renders correctly (Answer/Sources/Related/Confidence)?
+  ☐ Text is readable and well-formatted?
+  ☐ No overlapping elements or layout issues?
+  ☐ Loading state is visible during API call?
+  ☐ Error messages (if any) are user-friendly?
+
+☐ PERFORMANCE
+  ☐ Response time is < 5 seconds?
+  ☐ No console errors (check DevTools)?
+  ☐ App handles rapid successive queries?
+
+☐ EDGE CASES
+  ☐ Empty input handling?
+  ☐ Very long queries handled?
+  ☐ Special characters (accents, symbols)?
+  ☐ Repeated queries cached or re-queried?
+
+
+================================================================================
+ISSUE REPORTING TEMPLATE
+================================================================================
+
+If you find an issue while testing, note:
+
+Test Case: [Q number or query text]
+Expected: [What should happen]
+Actual: [What actually happened]
+Severity: [Critical / High / Medium / Low]
+Screenshots/Console Errors: [If applicable]
+Reproducible: [Yes / No / Sometimes]
+Notes: [Any additional context]
+
+
+================================================================================
+SUCCESS CRITERIA
+================================================================================
+
+Target metrics for manual testing:
+- Happy Path Pass Rate: 90%+ correct answers
+- Deflection Rate: 40%+ (out-of-scope queries correctly declined)
+- Citation Accuracy: 80%+ (sources properly attributed)
+- UI Rendering: 100% (no layout/display issues)
+- Response Time: 95%+ under 5 seconds
+- Confidence Calibration: Plausible (high for stable facts, lower for specifics)
+
+================================================================================
+NOTES FOR TESTERS
+================================================================================
+
+1. Test in the browser UI (http://localhost:3000 if running locally)
+2. Check browser console for errors: F12 → Console tab
+3. Test with different window sizes to verify responsive design
+4. Try both keyboard (Enter) and click-to-submit
+5. Test network tab to verify API calls reach backend
+6. Note any latency issues or slow responses
+7. Look for hallucinations (facts not in knowledge base)
+8. Verify regional/jurisdiction-specific answers
+
+Happy testing!

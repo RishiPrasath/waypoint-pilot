@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-09T17:43:10.097458",
+  "timestamp": "2026-06-28T16:03:12.125248",
   "config": {
     "top_k": 5,
     "threshold": 0.15,
@@ -8,8 +8,8 @@
   },
   "summary": {
     "total_queries": 50,
-    "total_hits": 47,
-    "overall_hit_rate": 94.0
+    "total_hits": 46,
+    "overall_hit_rate": 92.0
   },
   "category_stats": {
     "booking_documentation": {
@@ -21,22 +21,16 @@
           "query_num": 1,
           "category": "booking_documentation",
           "query": "What documents are needed for sea freight Singapore to Indonesia?",
-          "top_result_doc_id": "01_regulatory_indonesia_import_requirements",
-          "top_result_title": "Indonesia Import Requirements",
-          "top_score": 0.3892,
-          "hit": true,
+          "top_result_doc_id": "02_carriers_pil_service_summary",
+          "top_result_title": "PIL (Pacific International Lines) Service Summary",
+          "top_score": 0.3069,
+          "hit": false,
           "expected_sources": [
             "sg_export",
             "indonesia_import"
           ],
-          "matched_source": "indonesia_import",
+          "matched_source": null,
           "top_5_chunks": [
-            {
-              "doc_id": "01_regulatory_indonesia_import_requirements",
-              "title": "Indonesia Import Requirements",
-              "section": "Key Regulatory Bodies",
-              "similarity": 0.3892
-            },
             {
               "doc_id": "02_carriers_pil_service_summary",
               "title": "PIL (Pacific International Lines) Service Summary",
@@ -60,6 +54,12 @@
               "title": "Incoterms 2020 Complete Reference Guide",
               "section": "Key Changes in Incoterms 2020",
               "similarity": 0.2862
+            },
+            {
+              "doc_id": "02_carriers_maersk_service_summary",
+              "title": "Maersk Service Summary",
+              "section": "Routes from Singapore",
+              "similarity": 0.2783
             }
           ]
         },
@@ -129,14 +129,14 @@
               "similarity": 0.6946
             },
             {
-              "doc_id": "02_carriers_pil_service_summary",
-              "title": "PIL (Pacific International Lines) Service Summary",
+              "doc_id": "02_carriers_one_service_summary",
+              "title": "ONE (Ocean Network Express) Service Summary",
               "section": "Key Terms and Abbreviations",
               "similarity": -0.1129
             },
             {
-              "doc_id": "02_carriers_one_service_summary",
-              "title": "ONE (Ocean Network Express) Service Summary",
+              "doc_id": "02_carriers_pil_service_summary",
+              "title": "PIL (Pacific International Lines) Service Summary",
               "section": "Key Terms and Abbreviations",
               "similarity": -0.1129
             },
@@ -158,44 +158,44 @@
           "query_num": 4,
           "category": "booking_documentation",
           "query": "When is the SI cutoff for this week's Maersk sailing?",
-          "top_result_doc_id": "04_internal_synthetic_booking_procedure",
-          "top_result_title": "Sea Freight Booking Procedure",
-          "top_score": -0.167,
-          "hit": false,
+          "top_result_doc_id": "02_carriers_maersk_service_summary",
+          "top_result_title": "Maersk Service Summary",
+          "top_score": 0.0892,
+          "hit": true,
           "expected_sources": [
             "maersk"
           ],
-          "matched_source": null,
+          "matched_source": "maersk",
           "top_5_chunks": [
             {
-              "doc_id": "04_internal_synthetic_booking_procedure",
-              "title": "Sea Freight Booking Procedure",
-              "section": "5. Detailed Procedure",
-              "similarity": -0.167
-            },
-            {
-              "doc_id": "02_carriers_pil_service_summary",
-              "title": "PIL (Pacific International Lines) Service Summary",
-              "section": "Digital Solutions",
-              "similarity": -0.2382
-            },
-            {
-              "doc_id": "04_internal_synthetic_sla_policy",
-              "title": "Service Level Agreement (SLA) Policy",
-              "section": "7. Issue Resolution SLAs",
-              "similarity": -0.242
-            },
-            {
-              "doc_id": "04_internal_synthetic_booking_procedure",
-              "title": "Sea Freight Booking Procedure",
-              "section": "8. Exception Handling",
-              "similarity": -0.2994
-            },
-            {
-              "doc_id": "04_internal_synthetic_booking_procedure",
-              "title": "Sea Freight Booking Procedure",
+              "doc_id": "02_carriers_maersk_service_summary",
+              "title": "Maersk Service Summary",
               "section": "",
-              "similarity": -0.3026
+              "similarity": 0.0892
+            },
+            {
+              "doc_id": "02_carriers_maersk_service_summary",
+              "title": "Maersk Service Summary",
+              "section": "Key Strengths for Singapore Shippers",
+              "similarity": 0.0237
+            },
+            {
+              "doc_id": "02_carriers_maersk_service_summary",
+              "title": "Maersk Service Summary",
+              "section": "Import Demurrage & Detention",
+              "similarity": -0.1219
+            },
+            {
+              "doc_id": "02_carriers_maersk_service_summary",
+              "title": "Maersk Service Summary",
+              "section": "Key Terms and Abbreviations",
+              "similarity": -0.1445
+            },
+            {
+              "doc_id": "02_carriers_maersk_service_summary",
+              "title": "Maersk Service Summary",
+              "section": "Key Terms and Abbreviations",
+              "similarity": -0.1807
             }
           ]
         },
@@ -251,8 +251,8 @@
           "query_num": 6,
           "category": "booking_documentation",
           "query": "What's a Bill of Lading and who issues it?",
-          "top_result_doc_id": "04_internal_synthetic_customer_faq",
-          "top_result_title": "Frequently Asked Questions",
+          "top_result_doc_id": "04_internal_synthetic_booking_procedure",
+          "top_result_title": "Sea Freight Booking Procedure",
           "top_score": 0.4294,
           "hit": true,
           "expected_sources": [
@@ -261,15 +261,15 @@
           "matched_source": "booking",
           "top_5_chunks": [
             {
-              "doc_id": "04_internal_synthetic_customer_faq",
-              "title": "Frequently Asked Questions",
-              "section": "Documentation Questions",
-              "similarity": 0.4294
-            },
-            {
               "doc_id": "04_internal_synthetic_booking_procedure",
               "title": "Sea Freight Booking Procedure",
               "section": "5. Detailed Procedure",
+              "similarity": 0.4294
+            },
+            {
+              "doc_id": "04_internal_synthetic_customer_faq",
+              "title": "Frequently Asked Questions",
+              "section": "Documentation Questions",
               "similarity": 0.4294
             },
             {
@@ -434,9 +434,9 @@
           "query_num": 10,
           "category": "booking_documentation",
           "query": "What's the free time at destination port?",
-          "top_result_doc_id": "04_internal_synthetic_sla_policy",
-          "top_result_title": "Service Level Agreement (SLA) Policy",
-          "top_score": -0.1815,
+          "top_result_doc_id": "03_reference_incoterms_2020_reference",
+          "top_result_title": "Incoterms 2020 Complete Reference Guide",
+          "top_score": -0.1433,
           "hit": true,
           "expected_sources": [
             "carrier",
@@ -444,6 +444,12 @@
           ],
           "matched_source": "carrier",
           "top_5_chunks": [
+            {
+              "doc_id": "03_reference_incoterms_2020_reference",
+              "title": "Incoterms 2020 Complete Reference Guide",
+              "section": "Detailed Incoterms 2020 Definitions",
+              "similarity": -0.1433
+            },
             {
               "doc_id": "04_internal_synthetic_sla_policy",
               "title": "Service Level Agreement (SLA) Policy",
@@ -467,12 +473,6 @@
               "title": "Sea Freight Booking Procedure",
               "section": "5. Detailed Procedure",
               "similarity": -0.265
-            },
-            {
-              "doc_id": "02_carriers_maersk_service_summary",
-              "title": "Maersk Service Summary",
-              "section": "Documentation Requirements",
-              "similarity": -0.3035
             }
           ]
         }
@@ -793,10 +793,10 @@
               "similarity": -0.068
             },
             {
-              "doc_id": "01_regulatory_malaysia_import_requirements",
-              "title": "Malaysia Import Requirements",
-              "section": "Key Terms and Abbreviations",
-              "similarity": -0.0975
+              "doc_id": "01_regulatory_atiga_overview",
+              "title": "ASEAN Trade in Goods Agreement (ATIGA) Overview",
+              "section": "ATIGA Average Tariff Rates by Country",
+              "similarity": -0.0847
             }
           ]
         },
@@ -883,10 +883,10 @@
               "similarity": 0.1441
             },
             {
-              "doc_id": "01_regulatory_thailand_import_requirements",
-              "title": "Thailand Import Requirements",
-              "section": "Free Zones",
-              "similarity": 0.1002
+              "doc_id": "03_reference_hs_code_structure_guide",
+              "title": "HS Code Structure Guide",
+              "section": "",
+              "similarity": 0.0747
             }
           ]
         },
@@ -1134,8 +1134,8 @@
           "query_num": 25,
           "category": "carrier_information",
           "query": "Can I get an electronic Bill of Lading?",
-          "top_result_doc_id": "04_internal_synthetic_customer_faq",
-          "top_result_title": "Frequently Asked Questions",
+          "top_result_doc_id": "04_internal_synthetic_booking_procedure",
+          "top_result_title": "Sea Freight Booking Procedure",
           "top_score": 0.0099,
           "hit": true,
           "expected_sources": [
@@ -1146,15 +1146,15 @@
           "matched_source": "carrier",
           "top_5_chunks": [
             {
-              "doc_id": "04_internal_synthetic_customer_faq",
-              "title": "Frequently Asked Questions",
-              "section": "Documentation Questions",
-              "similarity": 0.0099
-            },
-            {
               "doc_id": "04_internal_synthetic_booking_procedure",
               "title": "Sea Freight Booking Procedure",
               "section": "5. Detailed Procedure",
+              "similarity": 0.0099
+            },
+            {
+              "doc_id": "04_internal_synthetic_customer_faq",
+              "title": "Frequently Asked Questions",
+              "section": "Documentation Questions",
               "similarity": 0.0099
             },
             {
@@ -1209,14 +1209,14 @@
               "similarity": -0.1584
             },
             {
-              "doc_id": "02_carriers_pil_service_summary",
-              "title": "PIL (Pacific International Lines) Service Summary",
+              "doc_id": "02_carriers_one_service_summary",
+              "title": "ONE (Ocean Network Express) Service Summary",
               "section": "Key Terms and Abbreviations",
               "similarity": -0.16
             },
             {
-              "doc_id": "02_carriers_one_service_summary",
-              "title": "ONE (Ocean Network Express) Service Summary",
+              "doc_id": "02_carriers_pil_service_summary",
+              "title": "PIL (Pacific International Lines) Service Summary",
               "section": "Key Terms and Abbreviations",
               "similarity": -0.16
             }
@@ -1449,9 +1449,9 @@
               "similarity": 0.4564
             },
             {
-              "doc_id": "04_internal_synthetic_customer_faq",
-              "title": "Frequently Asked Questions",
-              "section": "Service Questions",
+              "doc_id": "04_internal_synthetic_sla_policy",
+              "title": "Service Level Agreement (SLA) Policy",
+              "section": "5. Delivery SLAs",
               "similarity": 0.1943
             }
           ]
@@ -1751,6 +1751,12 @@
               "similarity": -0.2041
             },
             {
+              "doc_id": "02_carriers_maersk_service_summary",
+              "title": "Maersk Service Summary",
+              "section": "Routes from Singapore",
+              "similarity": -0.2679
+            },
+            {
               "doc_id": "02_carriers_cathay_cargo_service_guide",
               "title": "Cathay Cargo Service Guide",
               "section": "Specialized Products & Solutions",
@@ -1767,12 +1773,6 @@
               "title": "Service Terms and Conditions",
               "section": "1. Definitions",
               "similarity": -0.3629
-            },
-            {
-              "doc_id": "02_carriers_cathay_cargo_service_guide",
-              "title": "Cathay Cargo Service Guide",
-              "section": "Specialized Products & Solutions",
-              "similarity": -0.3733
             }
           ]
         },
@@ -1826,9 +1826,9 @@
           "query_num": 40,
           "category": "sla_service",
           "query": "Can I get proof of delivery?",
-          "top_result_doc_id": "04_internal_synthetic_service_terms_conditions",
-          "top_result_title": "Service Terms and Conditions",
-          "top_score": -0.084,
+          "top_result_doc_id": "02_carriers_maersk_service_summary",
+          "top_result_title": "Maersk Service Summary",
+          "top_score": -0.1556,
           "hit": true,
           "expected_sources": [
             "cod_procedure",
@@ -1836,12 +1836,6 @@
           ],
           "matched_source": "service_terms",
           "top_5_chunks": [
-            {
-              "doc_id": "04_internal_synthetic_service_terms_conditions",
-              "title": "Service Terms and Conditions",
-              "section": "7. Payment Terms",
-              "similarity": -0.084
-            },
             {
               "doc_id": "02_carriers_maersk_service_summary",
               "title": "Maersk Service Summary",
@@ -1853,6 +1847,12 @@
               "title": "Service Terms and Conditions",
               "section": "4. Booking and Cancellation",
               "similarity": -0.2273
+            },
+            {
+              "doc_id": "02_carriers_maersk_service_summary",
+              "title": "Maersk Service Summary",
+              "section": "Import Demurrage & Detention",
+              "similarity": -0.2332
             },
             {
               "doc_id": "04_internal_synthetic_booking_procedure",
@@ -1872,25 +1872,37 @@
     },
     "edge_cases_out_of_scope": {
       "queries": 10,
-      "hits": 10,
-      "hit_rate": 100.0,
+      "hits": 9,
+      "hit_rate": 90.0,
       "results": [
         {
           "query_num": 41,
           "category": "edge_cases_out_of_scope",
           "query": "What's the current freight rate to Jakarta?",
-          "top_result_doc_id": "04_internal_synthetic_booking_procedure",
-          "top_result_title": "Sea Freight Booking Procedure",
-          "top_score": 0.1281,
-          "hit": true,
+          "top_result_doc_id": "01_regulatory_indonesia_import_requirements",
+          "top_result_title": "Indonesia Import Requirements",
+          "top_score": 0.1551,
+          "hit": false,
           "expected_sources": [],
           "matched_source": null,
           "top_5_chunks": [
+            {
+              "doc_id": "01_regulatory_indonesia_import_requirements",
+              "title": "Indonesia Import Requirements",
+              "section": "Halal Certification",
+              "similarity": 0.1551
+            },
             {
               "doc_id": "04_internal_synthetic_booking_procedure",
               "title": "Sea Freight Booking Procedure",
               "section": "FCL vs LCL: Which Should I Choose?",
               "similarity": 0.1281
+            },
+            {
+              "doc_id": "01_regulatory_indonesia_import_requirements",
+              "title": "Indonesia Import Requirements",
+              "section": "Key Regulatory Bodies",
+              "similarity": 0.028
             },
             {
               "doc_id": "04_internal_synthetic_fta_comparison_matrix",
@@ -1903,18 +1915,6 @@
               "title": "Incoterms 2020 Comparison Chart",
               "section": "Price Comparison Example",
               "similarity": -0.023
-            },
-            {
-              "doc_id": "04_internal_synthetic_fta_comparison_matrix",
-              "title": "Singapore FTA Comparison Matrix",
-              "section": "5. Certificate of Origin Requirements",
-              "similarity": -0.0259
-            },
-            {
-              "doc_id": "04_internal_synthetic_fta_comparison_matrix",
-              "title": "Singapore FTA Comparison Matrix",
-              "section": "6. Tariff Comparison by Product Category",
-              "similarity": -0.0325
             }
           ]
         },
@@ -1922,19 +1922,13 @@
           "query_num": 42,
           "category": "edge_cases_out_of_scope",
           "query": "Where is my shipment right now?",
-          "top_result_doc_id": "04_internal_synthetic_customer_faq",
-          "top_result_title": "Frequently Asked Questions",
-          "top_score": -0.2072,
+          "top_result_doc_id": "02_carriers_maersk_service_summary",
+          "top_result_title": "Maersk Service Summary",
+          "top_score": -0.2685,
           "hit": true,
           "expected_sources": [],
           "matched_source": null,
           "top_5_chunks": [
-            {
-              "doc_id": "04_internal_synthetic_customer_faq",
-              "title": "Frequently Asked Questions",
-              "section": "Service Questions",
-              "similarity": -0.2072
-            },
             {
               "doc_id": "02_carriers_maersk_service_summary",
               "title": "Maersk Service Summary",
@@ -1948,16 +1942,22 @@
               "similarity": -0.2778
             },
             {
-              "doc_id": "04_internal_synthetic_customer_faq",
-              "title": "Frequently Asked Questions",
-              "section": "Service Questions",
-              "similarity": -0.2816
+              "doc_id": "03_reference_incoterms_2020_reference",
+              "title": "Incoterms 2020 Complete Reference Guide",
+              "section": "Detailed Incoterms 2020 Definitions",
+              "similarity": -0.2888
+            },
+            {
+              "doc_id": "04_internal_synthetic_booking_procedure",
+              "title": "Sea Freight Booking Procedure",
+              "section": "5. Detailed Procedure",
+              "similarity": -0.2995
             },
             {
               "doc_id": "03_reference_incoterms_2020_reference",
               "title": "Incoterms 2020 Complete Reference Guide",
               "section": "Detailed Incoterms 2020 Definitions",
-              "similarity": -0.2888
+              "similarity": -0.3281
             }
           ]
         },
@@ -2110,12 +2110,6 @@
               "similarity": -0.2019
             },
             {
-              "doc_id": "02_carriers_evergreen_service_summary",
-              "title": "Evergreen Service Summary",
-              "section": "Recent Developments",
-              "similarity": -0.24
-            },
-            {
               "doc_id": "04_internal_synthetic_booking_procedure",
               "title": "Sea Freight Booking Procedure",
               "section": "FCL vs LCL: Which Should I Choose?",
@@ -2132,6 +2126,12 @@
               "title": "Sea Freight Booking Procedure",
               "section": "FCL vs LCL: Which Should I Choose?",
               "similarity": -0.267
+            },
+            {
+              "doc_id": "04_internal_synthetic_booking_procedure",
+              "title": "Sea Freight Booking Procedure",
+              "section": "",
+              "similarity": -0.2817
             }
           ]
         },
@@ -2214,10 +2214,10 @@
               "similarity": -0.3254
             },
             {
-              "doc_id": "04_internal_synthetic_escalation_procedure",
-              "title": "Escalation Procedure",
-              "section": "11. Post-Escalation Review",
-              "similarity": -0.3333
+              "doc_id": "02_carriers_one_service_summary",
+              "title": "ONE (Ocean Network Express) Service Summary",
+              "section": "Key Terms and Abbreviations",
+              "similarity": -0.3255
             }
           ]
         },
@@ -2282,28 +2282,28 @@
               "similarity": -0.1334
             },
             {
-              "doc_id": "04_internal_synthetic_service_terms_conditions",
-              "title": "Service Terms and Conditions",
-              "section": "2. Scope of Services",
-              "similarity": -0.1449
-            },
-            {
               "doc_id": "04_internal_synthetic_cod_procedure",
               "title": "Collect on Delivery (COD) Handling Procedure",
               "section": "10. Shipper Liability",
               "similarity": -0.1514
             },
             {
+              "doc_id": "01_regulatory_atiga_overview",
+              "title": "ASEAN Trade in Goods Agreement (ATIGA) Overview",
+              "section": "Key Provisions",
+              "similarity": -0.1833
+            },
+            {
+              "doc_id": "04_internal_synthetic_customer_faq",
+              "title": "Frequently Asked Questions",
+              "section": "Customs Questions",
+              "similarity": -0.2008
+            },
+            {
               "doc_id": "01_regulatory_sg_hs_classification",
               "title": "Singapore HS Classification Guide",
               "section": "General Interpretative Rules (GIR)",
               "similarity": -0.2342
-            },
-            {
-              "doc_id": "04_internal_synthetic_fta_comparison_matrix",
-              "title": "Singapore FTA Comparison Matrix",
-              "section": "3. FTA Selection Matrix",
-              "similarity": -0.2662
             }
           ]
         }
@@ -2315,22 +2315,16 @@
       "query_num": 1,
       "category": "booking_documentation",
       "query": "What documents are needed for sea freight Singapore to Indonesia?",
-      "top_result_doc_id": "01_regulatory_indonesia_import_requirements",
-      "top_result_title": "Indonesia Import Requirements",
-      "top_score": 0.3892,
-      "hit": true,
+      "top_result_doc_id": "02_carriers_pil_service_summary",
+      "top_result_title": "PIL (Pacific International Lines) Service Summary",
+      "top_score": 0.3069,
+      "hit": false,
       "expected_sources": [
         "sg_export",
         "indonesia_import"
       ],
-      "matched_source": "indonesia_import",
+      "matched_source": null,
       "top_5_chunks": [
-        {
-          "doc_id": "01_regulatory_indonesia_import_requirements",
-          "title": "Indonesia Import Requirements",
-          "section": "Key Regulatory Bodies",
-          "similarity": 0.3892
-        },
         {
           "doc_id": "02_carriers_pil_service_summary",
           "title": "PIL (Pacific International Lines) Service Summary",
@@ -2354,6 +2348,12 @@
           "title": "Incoterms 2020 Complete Reference Guide",
           "section": "Key Changes in Incoterms 2020",
           "similarity": 0.2862
+        },
+        {
+          "doc_id": "02_carriers_maersk_service_summary",
+          "title": "Maersk Service Summary",
+          "section": "Routes from Singapore",
+          "similarity": 0.2783
         }
       ]
     },
@@ -2423,14 +2423,14 @@
           "similarity": 0.6946
         },
         {
-          "doc_id": "02_carriers_pil_service_summary",
-          "title": "PIL (Pacific International Lines) Service Summary",
+          "doc_id": "02_carriers_one_service_summary",
+          "title": "ONE (Ocean Network Express) Service Summary",
           "section": "Key Terms and Abbreviations",
           "similarity": -0.1129
         },
         {
-          "doc_id": "02_carriers_one_service_summary",
-          "title": "ONE (Ocean Network Express) Service Summary",
+          "doc_id": "02_carriers_pil_service_summary",
+          "title": "PIL (Pacific International Lines) Service Summary",
           "section": "Key Terms and Abbreviations",
           "similarity": -0.1129
         },
@@ -2452,44 +2452,44 @@
       "query_num": 4,
       "category": "booking_documentation",
       "query": "When is the SI cutoff for this week's Maersk sailing?",
-      "top_result_doc_id": "04_internal_synthetic_booking_procedure",
-      "top_result_title": "Sea Freight Booking Procedure",
-      "top_score": -0.167,
-      "hit": false,
+      "top_result_doc_id": "02_carriers_maersk_service_summary",
+      "top_result_title": "Maersk Service Summary",
+      "top_score": 0.0892,
+      "hit": true,
       "expected_sources": [
         "maersk"
       ],
-      "matched_source": null,
+      "matched_source": "maersk",
       "top_5_chunks": [
         {
-          "doc_id": "04_internal_synthetic_booking_procedure",
-          "title": "Sea Freight Booking Procedure",
-          "section": "5. Detailed Procedure",
-          "similarity": -0.167
-        },
-        {
-          "doc_id": "02_carriers_pil_service_summary",
-          "title": "PIL (Pacific International Lines) Service Summary",
-          "section": "Digital Solutions",
-          "similarity": -0.2382
-        },
-        {
-          "doc_id": "04_internal_synthetic_sla_policy",
-          "title": "Service Level Agreement (SLA) Policy",
-          "section": "7. Issue Resolution SLAs",
-          "similarity": -0.242
-        },
-        {
-          "doc_id": "04_internal_synthetic_booking_procedure",
-          "title": "Sea Freight Booking Procedure",
-          "section": "8. Exception Handling",
-          "similarity": -0.2994
-        },
-        {
-          "doc_id": "04_internal_synthetic_booking_procedure",
-          "title": "Sea Freight Booking Procedure",
+          "doc_id": "02_carriers_maersk_service_summary",
+          "title": "Maersk Service Summary",
           "section": "",
-          "similarity": -0.3026
+          "similarity": 0.0892
+        },
+        {
+          "doc_id": "02_carriers_maersk_service_summary",
+          "title": "Maersk Service Summary",
+          "section": "Key Strengths for Singapore Shippers",
+          "similarity": 0.0237
+        },
+        {
+          "doc_id": "02_carriers_maersk_service_summary",
+          "title": "Maersk Service Summary",
+          "section": "Import Demurrage & Detention",
+          "similarity": -0.1219
+        },
+        {
+          "doc_id": "02_carriers_maersk_service_summary",
+          "title": "Maersk Service Summary",
+          "section": "Key Terms and Abbreviations",
+          "similarity": -0.1445
+        },
+        {
+          "doc_id": "02_carriers_maersk_service_summary",
+          "title": "Maersk Service Summary",
+          "section": "Key Terms and Abbreviations",
+          "similarity": -0.1807
         }
       ]
     },
@@ -2545,8 +2545,8 @@
       "query_num": 6,
       "category": "booking_documentation",
       "query": "What's a Bill of Lading and who issues it?",
-      "top_result_doc_id": "04_internal_synthetic_customer_faq",
-      "top_result_title": "Frequently Asked Questions",
+      "top_result_doc_id": "04_internal_synthetic_booking_procedure",
+      "top_result_title": "Sea Freight Booking Procedure",
       "top_score": 0.4294,
       "hit": true,
       "expected_sources": [
@@ -2555,15 +2555,15 @@
       "matched_source": "booking",
       "top_5_chunks": [
         {
-          "doc_id": "04_internal_synthetic_customer_faq",
-          "title": "Frequently Asked Questions",
-          "section": "Documentation Questions",
-          "similarity": 0.4294
-        },
-        {
           "doc_id": "04_internal_synthetic_booking_procedure",
           "title": "Sea Freight Booking Procedure",
           "section": "5. Detailed Procedure",
+          "similarity": 0.4294
+        },
+        {
+          "doc_id": "04_internal_synthetic_customer_faq",
+          "title": "Frequently Asked Questions",
+          "section": "Documentation Questions",
           "similarity": 0.4294
         },
         {
@@ -2728,9 +2728,9 @@
       "query_num": 10,
       "category": "booking_documentation",
       "query": "What's the free time at destination port?",
-      "top_result_doc_id": "04_internal_synthetic_sla_policy",
-      "top_result_title": "Service Level Agreement (SLA) Policy",
-      "top_score": -0.1815,
+      "top_result_doc_id": "03_reference_incoterms_2020_reference",
+      "top_result_title": "Incoterms 2020 Complete Reference Guide",
+      "top_score": -0.1433,
       "hit": true,
       "expected_sources": [
         "carrier",
@@ -2738,6 +2738,12 @@
       ],
       "matched_source": "carrier",
       "top_5_chunks": [
+        {
+          "doc_id": "03_reference_incoterms_2020_reference",
+          "title": "Incoterms 2020 Complete Reference Guide",
+          "section": "Detailed Incoterms 2020 Definitions",
+          "similarity": -0.1433
+        },
         {
           "doc_id": "04_internal_synthetic_sla_policy",
           "title": "Service Level Agreement (SLA) Policy",
@@ -2761,12 +2767,6 @@
           "title": "Sea Freight Booking Procedure",
           "section": "5. Detailed Procedure",
           "similarity": -0.265
-        },
-        {
-          "doc_id": "02_carriers_maersk_service_summary",
-          "title": "Maersk Service Summary",
-          "section": "Documentation Requirements",
-          "similarity": -0.3035
         }
       ]
     },
@@ -3080,10 +3080,10 @@
           "similarity": -0.068
         },
         {
-          "doc_id": "01_regulatory_malaysia_import_requirements",
-          "title": "Malaysia Import Requirements",
-          "section": "Key Terms and Abbreviations",
-          "similarity": -0.0975
+          "doc_id": "01_regulatory_atiga_overview",
+          "title": "ASEAN Trade in Goods Agreement (ATIGA) Overview",
+          "section": "ATIGA Average Tariff Rates by Country",
+          "similarity": -0.0847
         }
       ]
     },
@@ -3170,10 +3170,10 @@
           "similarity": 0.1441
         },
         {
-          "doc_id": "01_regulatory_thailand_import_requirements",
-          "title": "Thailand Import Requirements",
-          "section": "Free Zones",
-          "similarity": 0.1002
+          "doc_id": "03_reference_hs_code_structure_guide",
+          "title": "HS Code Structure Guide",
+          "section": "",
+          "similarity": 0.0747
         }
       ]
     },
@@ -3414,8 +3414,8 @@
       "query_num": 25,
       "category": "carrier_information",
       "query": "Can I get an electronic Bill of Lading?",
-      "top_result_doc_id": "04_internal_synthetic_customer_faq",
-      "top_result_title": "Frequently Asked Questions",
+      "top_result_doc_id": "04_internal_synthetic_booking_procedure",
+      "top_result_title": "Sea Freight Booking Procedure",
       "top_score": 0.0099,
       "hit": true,
       "expected_sources": [
@@ -3426,15 +3426,15 @@
       "matched_source": "carrier",
       "top_5_chunks": [
         {
-          "doc_id": "04_internal_synthetic_customer_faq",
-          "title": "Frequently Asked Questions",
-          "section": "Documentation Questions",
-          "similarity": 0.0099
-        },
-        {
           "doc_id": "04_internal_synthetic_booking_procedure",
           "title": "Sea Freight Booking Procedure",
           "section": "5. Detailed Procedure",
+          "similarity": 0.0099
+        },
+        {
+          "doc_id": "04_internal_synthetic_customer_faq",
+          "title": "Frequently Asked Questions",
+          "section": "Documentation Questions",
           "similarity": 0.0099
         },
         {
@@ -3489,14 +3489,14 @@
           "similarity": -0.1584
         },
         {
-          "doc_id": "02_carriers_pil_service_summary",
-          "title": "PIL (Pacific International Lines) Service Summary",
+          "doc_id": "02_carriers_one_service_summary",
+          "title": "ONE (Ocean Network Express) Service Summary",
           "section": "Key Terms and Abbreviations",
           "similarity": -0.16
         },
         {
-          "doc_id": "02_carriers_one_service_summary",
-          "title": "ONE (Ocean Network Express) Service Summary",
+          "doc_id": "02_carriers_pil_service_summary",
+          "title": "PIL (Pacific International Lines) Service Summary",
           "section": "Key Terms and Abbreviations",
           "similarity": -0.16
         }
@@ -3722,9 +3722,9 @@
           "similarity": 0.4564
         },
         {
-          "doc_id": "04_internal_synthetic_customer_faq",
-          "title": "Frequently Asked Questions",
-          "section": "Service Questions",
+          "doc_id": "04_internal_synthetic_sla_policy",
+          "title": "Service Level Agreement (SLA) Policy",
+          "section": "5. Delivery SLAs",
           "similarity": 0.1943
         }
       ]
@@ -4024,6 +4024,12 @@
           "similarity": -0.2041
         },
         {
+          "doc_id": "02_carriers_maersk_service_summary",
+          "title": "Maersk Service Summary",
+          "section": "Routes from Singapore",
+          "similarity": -0.2679
+        },
+        {
           "doc_id": "02_carriers_cathay_cargo_service_guide",
           "title": "Cathay Cargo Service Guide",
           "section": "Specialized Products & Solutions",
@@ -4040,12 +4046,6 @@
           "title": "Service Terms and Conditions",
           "section": "1. Definitions",
           "similarity": -0.3629
-        },
-        {
-          "doc_id": "02_carriers_cathay_cargo_service_guide",
-          "title": "Cathay Cargo Service Guide",
-          "section": "Specialized Products & Solutions",
-          "similarity": -0.3733
         }
       ]
     },
@@ -4099,9 +4099,9 @@
       "query_num": 40,
       "category": "sla_service",
       "query": "Can I get proof of delivery?",
-      "top_result_doc_id": "04_internal_synthetic_service_terms_conditions",
-      "top_result_title": "Service Terms and Conditions",
-      "top_score": -0.084,
+      "top_result_doc_id": "02_carriers_maersk_service_summary",
+      "top_result_title": "Maersk Service Summary",
+      "top_score": -0.1556,
       "hit": true,
       "expected_sources": [
         "cod_procedure",
@@ -4109,12 +4109,6 @@
       ],
       "matched_source": "service_terms",
       "top_5_chunks": [
-        {
-          "doc_id": "04_internal_synthetic_service_terms_conditions",
-          "title": "Service Terms and Conditions",
-          "section": "7. Payment Terms",
-          "similarity": -0.084
-        },
         {
           "doc_id": "02_carriers_maersk_service_summary",
           "title": "Maersk Service Summary",
@@ -4126,6 +4120,12 @@
           "title": "Service Terms and Conditions",
           "section": "4. Booking and Cancellation",
           "similarity": -0.2273
+        },
+        {
+          "doc_id": "02_carriers_maersk_service_summary",
+          "title": "Maersk Service Summary",
+          "section": "Import Demurrage & Detention",
+          "similarity": -0.2332
         },
         {
           "doc_id": "04_internal_synthetic_booking_procedure",
@@ -4145,18 +4145,30 @@
       "query_num": 41,
       "category": "edge_cases_out_of_scope",
       "query": "What's the current freight rate to Jakarta?",
-      "top_result_doc_id": "04_internal_synthetic_booking_procedure",
-      "top_result_title": "Sea Freight Booking Procedure",
-      "top_score": 0.1281,
-      "hit": true,
+      "top_result_doc_id": "01_regulatory_indonesia_import_requirements",
+      "top_result_title": "Indonesia Import Requirements",
+      "top_score": 0.1551,
+      "hit": false,
       "expected_sources": [],
       "matched_source": null,
       "top_5_chunks": [
+        {
+          "doc_id": "01_regulatory_indonesia_import_requirements",
+          "title": "Indonesia Import Requirements",
+          "section": "Halal Certification",
+          "similarity": 0.1551
+        },
         {
           "doc_id": "04_internal_synthetic_booking_procedure",
           "title": "Sea Freight Booking Procedure",
           "section": "FCL vs LCL: Which Should I Choose?",
           "similarity": 0.1281
+        },
+        {
+          "doc_id": "01_regulatory_indonesia_import_requirements",
+          "title": "Indonesia Import Requirements",
+          "section": "Key Regulatory Bodies",
+          "similarity": 0.028
         },
         {
           "doc_id": "04_internal_synthetic_fta_comparison_matrix",
@@ -4169,18 +4181,6 @@
           "title": "Incoterms 2020 Comparison Chart",
           "section": "Price Comparison Example",
           "similarity": -0.023
-        },
-        {
-          "doc_id": "04_internal_synthetic_fta_comparison_matrix",
-          "title": "Singapore FTA Comparison Matrix",
-          "section": "5. Certificate of Origin Requirements",
-          "similarity": -0.0259
-        },
-        {
-          "doc_id": "04_internal_synthetic_fta_comparison_matrix",
-          "title": "Singapore FTA Comparison Matrix",
-          "section": "6. Tariff Comparison by Product Category",
-          "similarity": -0.0325
         }
       ]
     },
@@ -4188,19 +4188,13 @@
       "query_num": 42,
       "category": "edge_cases_out_of_scope",
       "query": "Where is my shipment right now?",
-      "top_result_doc_id": "04_internal_synthetic_customer_faq",
-      "top_result_title": "Frequently Asked Questions",
-      "top_score": -0.2072,
+      "top_result_doc_id": "02_carriers_maersk_service_summary",
+      "top_result_title": "Maersk Service Summary",
+      "top_score": -0.2685,
       "hit": true,
       "expected_sources": [],
       "matched_source": null,
       "top_5_chunks": [
-        {
-          "doc_id": "04_internal_synthetic_customer_faq",
-          "title": "Frequently Asked Questions",
-          "section": "Service Questions",
-          "similarity": -0.2072
-        },
         {
           "doc_id": "02_carriers_maersk_service_summary",
           "title": "Maersk Service Summary",
@@ -4214,16 +4208,22 @@
           "similarity": -0.2778
         },
         {
-          "doc_id": "04_internal_synthetic_customer_faq",
-          "title": "Frequently Asked Questions",
-          "section": "Service Questions",
-          "similarity": -0.2816
+          "doc_id": "03_reference_incoterms_2020_reference",
+          "title": "Incoterms 2020 Complete Reference Guide",
+          "section": "Detailed Incoterms 2020 Definitions",
+          "similarity": -0.2888
+        },
+        {
+          "doc_id": "04_internal_synthetic_booking_procedure",
+          "title": "Sea Freight Booking Procedure",
+          "section": "5. Detailed Procedure",
+          "similarity": -0.2995
         },
         {
           "doc_id": "03_reference_incoterms_2020_reference",
           "title": "Incoterms 2020 Complete Reference Guide",
           "section": "Detailed Incoterms 2020 Definitions",
-          "similarity": -0.2888
+          "similarity": -0.3281
         }
       ]
     },
@@ -4376,12 +4376,6 @@
           "similarity": -0.2019
         },
         {
-          "doc_id": "02_carriers_evergreen_service_summary",
-          "title": "Evergreen Service Summary",
-          "section": "Recent Developments",
-          "similarity": -0.24
-        },
-        {
           "doc_id": "04_internal_synthetic_booking_procedure",
           "title": "Sea Freight Booking Procedure",
           "section": "FCL vs LCL: Which Should I Choose?",
@@ -4398,6 +4392,12 @@
           "title": "Sea Freight Booking Procedure",
           "section": "FCL vs LCL: Which Should I Choose?",
           "similarity": -0.267
+        },
+        {
+          "doc_id": "04_internal_synthetic_booking_procedure",
+          "title": "Sea Freight Booking Procedure",
+          "section": "",
+          "similarity": -0.2817
         }
       ]
     },
@@ -4480,10 +4480,10 @@
           "similarity": -0.3254
         },
         {
-          "doc_id": "04_internal_synthetic_escalation_procedure",
-          "title": "Escalation Procedure",
-          "section": "11. Post-Escalation Review",
-          "similarity": -0.3333
+          "doc_id": "02_carriers_one_service_summary",
+          "title": "ONE (Ocean Network Express) Service Summary",
+          "section": "Key Terms and Abbreviations",
+          "similarity": -0.3255
         }
       ]
     },
@@ -4548,28 +4548,28 @@
           "similarity": -0.1334
         },
         {
-          "doc_id": "04_internal_synthetic_service_terms_conditions",
-          "title": "Service Terms and Conditions",
-          "section": "2. Scope of Services",
-          "similarity": -0.1449
-        },
-        {
           "doc_id": "04_internal_synthetic_cod_procedure",
           "title": "Collect on Delivery (COD) Handling Procedure",
           "section": "10. Shipper Liability",
           "similarity": -0.1514
         },
         {
+          "doc_id": "01_regulatory_atiga_overview",
+          "title": "ASEAN Trade in Goods Agreement (ATIGA) Overview",
+          "section": "Key Provisions",
+          "similarity": -0.1833
+        },
+        {
+          "doc_id": "04_internal_synthetic_customer_faq",
+          "title": "Frequently Asked Questions",
+          "section": "Customs Questions",
+          "similarity": -0.2008
+        },
+        {
           "doc_id": "01_regulatory_sg_hs_classification",
           "title": "Singapore HS Classification Guide",
           "section": "General Interpretative Rules (GIR)",
           "similarity": -0.2342
-        },
-        {
-          "doc_id": "04_internal_synthetic_fta_comparison_matrix",
-          "title": "Singapore FTA Comparison Matrix",
-          "section": "3. FTA Selection Matrix",
-          "similarity": -0.2662
         }
       ]
     }

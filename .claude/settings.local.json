@@ -147,7 +147,23 @@
       "Bash(git status:*)",
       "Bash(netstat:*)",
       "Bash(findstr:*)",
-      "Bash(taskkill:*)"
+      "Bash(taskkill:*)",
+      "Bash(find:*)",
+      "Bash(npx jest --verbose)",
+      "Bash(npx kill-port:*)",
+      "Bash(cmd //c \"taskkill /PID 27192 /F\")",
+      "Bash(cmd //c \"taskkill /PID 32916 /F & taskkill /PID 12268 /F & taskkill /PID 35520 /F\")",
+      "Bash(cmd //c \"taskkill /PID 32216 /F & taskkill /PID 37676 /F\")",
+      "Bash(cmd //c \"taskkill /PID 35816 /F\")",
+      "Bash(cmd //c \"taskkill /PID 35476 /F\")",
+      "Bash(cmd //c \"taskkill /PID 42732 /F\")",
+      "Bash(cmd //c \"taskkill /PID 40484 /F\")",
+      "Bash(for dir in backend client scripts tests kb)",
+      "Bash(do test -f \"/c/Users/prasa/Documents/Github/waypoint-pilot/pilot_phase1_poc/05_evaluation/$dir/README.md\")",
+      "Bash(python3:*)",
+      "Bash(cmd //c \"taskkill /PID 40984 /F\")",
+      "Bash(cmd //c \"taskkill /PID 46420 /F\")",
+      "Bash(cmd //c \"taskkill /PID 51788 /F\")"
     ]
   }
 }

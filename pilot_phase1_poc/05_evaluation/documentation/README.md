@@ -95,6 +95,15 @@ Practical guides for different audiences.
 | [deployment_notes.md](guides/deployment_notes.md) | Developers/IT | Prerequisites, 6-step installation, full .env reference, troubleshooting (11 common issues) |
 | [known_limitations.md](guides/known_limitations.md) | All stakeholders | Scope limits, technical constraints, KB gaps, evaluation results, Phase 2 recommendations |
 
+## Review Templates and Reports (2 files)
+
+Reusable structure for codebase review and the completed evaluation codebase review.
+
+| File | Audience | Description |
+|------|----------|-------------|
+| [codebase_review_template.md](guides/codebase_review_template.md) | Internal reviewers | Template for documenting architecture, behavior, evaluation, strengths, weaknesses, and regression risk |
+| [codebase_review_report.md](guides/codebase_review_report.md) | Internal reviewers | Filled review of the final `05_evaluation` codebase using the review template structure |
+
 ---
 
 ## Pointer READMEs (5 files)
@@ -122,5 +131,6 @@ Quick-start overviews located in each code directory, pointing to detailed docum
 | Codebase — Tests | 4 |
 | ADRs | 6 |
 | Guides | 3 |
+| Review Templates and Reports | 2 |
 | Pointer READMEs | 5 |
-| **Total** | **38** |
+| **Total** | **40** |
