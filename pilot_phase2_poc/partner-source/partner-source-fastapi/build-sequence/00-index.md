@@ -21,8 +21,8 @@ FastAPI must match the same local contract and the Spring Boot reference behavio
 
 | Step | Task | Status | Outcome |
 |---:|---|---|---|
-| 01 | [Project setup](01-project-setup.md) | Not Started | FastAPI scaffold and first passing pytest. |
-| 02 | [CI pipeline](02-ci-pipeline.md) | Not Started | GitHub Actions runs pytest. |
+| 01 | [Project setup](01-project-setup.md) | Done | FastAPI scaffold and first passing pytest. |
+| 02 | [CI pipeline](02-ci-pipeline.md) | Done | GitHub Actions runs pytest. |
 | 03 | [Package layout](03-package-layout.md) | Not Started | App modules are ready. |
 | 04 | [Status transition policy](04-status-transition-policy.md) | Not Started | Domain policy mirrors Spring Boot. |
 | 05 | [Assignment authorization policy](05-assignment-authorization-policy.md) | Not Started | Authorization rule mirrors Spring Boot. |

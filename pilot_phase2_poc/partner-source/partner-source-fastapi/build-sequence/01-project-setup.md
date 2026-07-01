@@ -2,7 +2,7 @@
 
 ## Status
 
-- Status: Not Started
+- Status: Done
 - Last Updated: 2026-07-02
 
 ## Purpose
@@ -247,8 +247,9 @@ tests/test_app.py
 
 ## Change Notes
 
-- This task starts as a clean scaffold target and should be updated if the actual FastAPI setup differs from the draft commands.
-- Keep the note short and factual if the module ends up using a slightly different toolchain or file layout.
+- The scaffold was implemented with `uv`, matching the preferred path in the task instructions.
+- The project uses Python 3.13 locally, which satisfies the `>=3.12` requirement from the build book.
+- The first test passes, so the skeleton is ready for the next task.
 
 ## Stop / Do Not Add
 

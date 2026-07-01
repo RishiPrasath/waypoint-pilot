@@ -2,7 +2,7 @@
 
 ## Status
 
-- Status: Not Started
+- Status: Done
 - Last Updated: 2026-07-02
 
 ## Purpose
@@ -57,14 +57,14 @@ jobs:
       run:
         working-directory: pilot_phase2_poc/partner-source/partner-source-fastapi
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
           cache: pip
-      - run: python -m pip install --upgrade pip
-      - run: pip install -r requirements.txt -r requirements-dev.txt
-      - run: python -m pytest
+      - uses: astral-sh/setup-uv@v8.1.0
+      - run: uv sync --all-extras --dev
+      - run: uv run pytest
 ```
 
 If using `uv`, replace install/test steps with an official `uv` setup and `uv run pytest` after local `uv` setup is stable.
@@ -92,16 +92,17 @@ git status --short
 
 ## Done Criteria
 
-- [ ] Workflow file exists at repo root.
-- [ ] Workflow uses Python 3.12.
-- [ ] Workflow runs pytest.
-- [ ] Workflow path filters include this module and local docs/contracts.
-- [ ] CI is green after push or PR.
+- [x] Workflow file exists at repo root.
+- [x] Workflow uses Python 3.12.
+- [x] Workflow runs pytest.
+- [x] Workflow path filters include this module and local docs/contracts.
+- [x] CI is green after push or PR.
 
 ## Change Notes
 
-- Update this section if the workflow needs to match a newer GitHub Actions runtime or a different FastAPI local setup.
-- Keep the workflow behavior aligned with the module root commands and the shared contract expectations.
+- The workflow was updated to use the `uv` setup path because the module is scaffolded with `uv`.
+- The runner uses `actions/checkout@v5`, `actions/setup-python@v6`, and `astral-sh/setup-uv@v8.1.0`.
+- The behavior stayed the same: GitHub installs Python 3.12, syncs dependencies, and runs `uv run pytest`.
 
 ## Stop / Do Not Add
 

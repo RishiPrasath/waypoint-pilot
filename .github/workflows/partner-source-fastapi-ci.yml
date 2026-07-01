@@ -1,0 +1,44 @@
+name: Partner Source FastAPI CI
+
+# Run this workflow when FastAPI code, shared docs, or the workflow file changes.
+on:
+  pull_request:
+    paths:
+      - "pilot_phase2_poc/partner-source/partner-source-fastapi/**"
+      - "pilot_phase2_poc/partner-source/docs/**"
+      - "pilot_phase2_poc/partner-source/AGREED_SPEC.md"
+      - ".github/workflows/partner-source-fastapi-ci.yml"
+  push:
+    branches: [main]
+    paths:
+      - "pilot_phase2_poc/partner-source/partner-source-fastapi/**"
+      - "pilot_phase2_poc/partner-source/docs/**"
+      - "pilot_phase2_poc/partner-source/AGREED_SPEC.md"
+      - ".github/workflows/partner-source-fastapi-ci.yml"
+
+permissions:
+  # Read-only access is enough for checkout and test execution.
+  contents: read
+
+jobs:
+  # One job that checks whether the FastAPI module still passes its tests.
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        # Run shell commands from the FastAPI module folder.
+        working-directory: pilot_phase2_poc/partner-source/partner-source-fastapi
+    steps:
+      # Download the repository into the runner.
+      - uses: actions/checkout@v5
+      # Set up Python 3.12 for this workflow.
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+      # Install uv so the workflow can use the same dependency manager as the module.
+      - uses: astral-sh/setup-uv@v8.1.0
+      # Sync dependencies from the project configuration.
+      - run: uv sync --all-extras --dev
+      # Run the test suite.
+      - run: uv run pytest

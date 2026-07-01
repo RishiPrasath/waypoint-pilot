@@ -1,0 +1,25 @@
+# Project metadata for the FastAPI module.
+[project]
+name = "partner-source-fastapi"
+version = "0.1.0"
+description = "Waypoint Partner Source FastAPI parity implementation"
+requires-python = ">=3.12"
+
+# Packages the app needs at runtime.
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "pydantic",
+]
+
+# Packages used only for development and testing.
+[dependency-groups]
+dev = [
+    "pytest",
+    "httpx",
+]
+
+# Pytest settings for this project.
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
