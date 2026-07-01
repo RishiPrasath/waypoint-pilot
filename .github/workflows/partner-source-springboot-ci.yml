@@ -30,9 +30,9 @@ jobs:
         working-directory: pilot_phase2_poc/partner-source/partner-source-springboot
     steps:
       # Download the repository into the runner.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       # Install Java 21 and cache Maven dependencies for faster builds.
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: "21"
