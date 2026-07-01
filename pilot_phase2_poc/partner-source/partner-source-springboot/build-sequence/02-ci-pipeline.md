@@ -1,5 +1,10 @@
 # 02 - CI Pipeline
 
+## Status
+
+- Status: Done
+- Last Updated: 2026-07-02
+
 ## Purpose
 
 Create a simple GitHub Actions workflow that proves the Spring Boot module tests run in CI.
@@ -52,8 +57,8 @@ jobs:
       run:
         working-directory: pilot_phase2_poc/partner-source/partner-source-springboot
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: "21"
@@ -85,11 +90,17 @@ git status --short
 
 ## Done Criteria
 
-- [ ] Workflow file exists at repo root.
-- [ ] Workflow uses Java 21.
-- [ ] Workflow runs `./mvnw test`.
-- [ ] Workflow path filters include this module and local docs/contracts.
-- [ ] CI is green after push or PR.
+- [x] Workflow file exists at repo root.
+- [x] Workflow uses Java 21.
+- [x] Workflow runs `./mvnw test`.
+- [x] Workflow path filters include this module and local docs/contracts.
+- [x] CI is green after push or PR.
+
+## Change Notes
+
+- The workflow started as the basic GitHub Actions draft and then was updated to use `actions/checkout@v5` and `actions/setup-java@v5` to match the newer GitHub Actions runtime guidance.
+- YAML comments were added to make the pipeline easier to understand for beginners.
+- The behavior stayed the same: on relevant pushes and pull requests, GitHub installs Java 21 and runs the Spring Boot test suite.
 
 ## Stop / Do Not Add
 

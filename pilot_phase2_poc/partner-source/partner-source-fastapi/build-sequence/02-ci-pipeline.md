@@ -1,5 +1,10 @@
 # 02 - CI Pipeline
 
+## Status
+
+- Status: Not Started
+- Last Updated: 2026-07-02
+
 ## Purpose
 
 Create a simple GitHub Actions workflow that runs FastAPI tests in CI.
@@ -92,6 +97,11 @@ git status --short
 - [ ] Workflow runs pytest.
 - [ ] Workflow path filters include this module and local docs/contracts.
 - [ ] CI is green after push or PR.
+
+## Change Notes
+
+- Update this section if the workflow needs to match a newer GitHub Actions runtime or a different FastAPI local setup.
+- Keep the workflow behavior aligned with the module root commands and the shared contract expectations.
 
 ## Stop / Do Not Add
 

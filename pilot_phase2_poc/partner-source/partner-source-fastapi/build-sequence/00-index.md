@@ -19,25 +19,45 @@ FastAPI must match the same local contract and the Spring Boot reference behavio
 
 ## Build Order
 
-| Step | Task | Outcome |
-|---:|---|---|
-| 01 | [Project setup](01-project-setup.md) | FastAPI scaffold and first passing pytest. |
-| 02 | [CI pipeline](02-ci-pipeline.md) | GitHub Actions runs pytest. |
-| 03 | [Package layout](03-package-layout.md) | App modules are ready. |
-| 04 | [Status transition policy](04-status-transition-policy.md) | Domain policy mirrors Spring Boot. |
-| 05 | [Assignment authorization policy](05-assignment-authorization-policy.md) | Authorization rule mirrors Spring Boot. |
-| 06 | [Seed store and repositories](06-seed-store-and-repositories.md) | Deterministic in-memory data layer exists. |
-| 07 | [Health endpoint](07-health-endpoint.md) | `GET /health` returns `UP`. |
-| 08 | [Readiness endpoint](08-readiness-endpoint.md) | `GET /ready` proves seed readiness. |
-| 09 | [Order status lookup](09-order-status-lookup.md) | First contract read endpoint works. |
-| 10 | [ProblemDetail errors](10-problem-detail-errors.md) | Shared error envelope is centralized. |
-| 11 | [Order timeline](11-order-timeline.md) | Chronological timeline endpoint works. |
-| 12 | [Driver profile](12-driver-profile.md) | Driver profile endpoint works. |
-| 13 | [Driver assignments](13-driver-assignments.md) | Assignment list endpoint works. |
-| 14 | [Create status event](14-create-status-event.md) | Write endpoint validates, appends, and mutates status. |
-| 15 | [Integration tests](15-integration-tests.md) | Full FastAPI flow is verified. |
-| 16 | [Manual HTTP checklist](16-manual-http-checklist.md) | Human request matrix passes locally. |
-| 17 | [FastAPI final gate](17-fastapi-final-gate.md) | Implementation is ready for parity checks. |
+| Step | Task | Status | Outcome |
+|---:|---|---|---|
+| 01 | [Project setup](01-project-setup.md) | Not Started | FastAPI scaffold and first passing pytest. |
+| 02 | [CI pipeline](02-ci-pipeline.md) | Not Started | GitHub Actions runs pytest. |
+| 03 | [Package layout](03-package-layout.md) | Not Started | App modules are ready. |
+| 04 | [Status transition policy](04-status-transition-policy.md) | Not Started | Domain policy mirrors Spring Boot. |
+| 05 | [Assignment authorization policy](05-assignment-authorization-policy.md) | Not Started | Authorization rule mirrors Spring Boot. |
+| 06 | [Seed store and repositories](06-seed-store-and-repositories.md) | Not Started | Deterministic in-memory data layer exists. |
+| 07 | [Health endpoint](07-health-endpoint.md) | Not Started | `GET /health` returns `UP`. |
+| 08 | [Readiness endpoint](08-readiness-endpoint.md) | Not Started | `GET /ready` proves seed readiness. |
+| 09 | [Order status lookup](09-order-status-lookup.md) | Not Started | First contract read endpoint works. |
+| 10 | [ProblemDetail errors](10-problem-detail-errors.md) | Not Started | Shared error envelope is centralized. |
+| 11 | [Order timeline](11-order-timeline.md) | Not Started | Chronological timeline endpoint works. |
+| 12 | [Driver profile](12-driver-profile.md) | Not Started | Driver profile endpoint works. |
+| 13 | [Driver assignments](13-driver-assignments.md) | Not Started | Assignment list endpoint works. |
+| 14 | [Create status event](14-create-status-event.md) | Not Started | Write endpoint validates, appends, and mutates status. |
+| 15 | [Integration tests](15-integration-tests.md) | Not Started | Full FastAPI flow is verified. |
+| 16 | [Manual HTTP checklist](16-manual-http-checklist.md) | Not Started | Human request matrix passes locally. |
+| 17 | [FastAPI final gate](17-fastapi-final-gate.md) | Not Started | Implementation is ready for parity checks. |
+
+## Status Legend
+
+| Status | Meaning |
+|---|---|
+| Not Started | Task has not begun yet. |
+| In Progress | Work has started, but the task is not finished. |
+| Blocked | The task cannot move forward yet. |
+| Done | The task is complete and verified. |
+
+## Change Notes
+
+If a task changes while you are building it, update the task doc with a short note describing:
+
+- what changed
+- why it changed
+- whether the acceptance criteria changed
+- what was actually delivered
+
+Keep this book aligned with reality, not just with the original plan.
 
 ## Per-Task Rule
 

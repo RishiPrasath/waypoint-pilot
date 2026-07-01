@@ -1,5 +1,10 @@
 # 01 - Project Setup
 
+## Status
+
+- Status: Done
+- Last Updated: 2026-07-02
+
 ## Purpose
 
 Create the Spring Boot reference module with Java 21, Maven, and one tiny passing test.
@@ -185,10 +190,16 @@ BUILD SUCCESS
 
 ## Done Criteria
 
-- [ ] `.\mvnw.cmd test` passes.
-- [ ] Package is `com.waypoint.partnersource`.
-- [ ] `pom.xml`, `mvnw`, `mvnw.cmd`, `.mvn/wrapper/`, `src/main/`, and `src/test/` exist.
-- [ ] No domain code or endpoints were added yet.
+- [x] `.\mvnw.cmd test` passes.
+- [x] Package is `com.waypoint.partnersource`.
+- [x] `pom.xml`, `mvnw`, `mvnw.cmd`, `.mvn/wrapper/`, `src/main/`, and `src/test/` exist.
+- [x] No domain code or endpoints were added yet.
+
+## Change Notes
+
+- Spring Initializr generated the scaffold, but the first Java file picked up a hidden UTF-8 BOM from PowerShell.
+- The application and test classes were rewritten cleanly to remove the encoding issue.
+- The resulting setup is still the same intended scaffold: a minimal Spring Boot app with one passing context-load test.
 
 ## Stop / Do Not Add
 

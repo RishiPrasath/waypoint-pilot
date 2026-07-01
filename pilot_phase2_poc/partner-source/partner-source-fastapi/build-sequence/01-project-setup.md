@@ -1,5 +1,10 @@
 # 01 - Project Setup
 
+## Status
+
+- Status: Not Started
+- Last Updated: 2026-07-02
+
 ## Purpose
 
 Create the FastAPI parity module with Python 3.12+, FastAPI, pytest, and one tiny passing test.
@@ -239,6 +244,11 @@ tests/test_app.py
 - [ ] Dependency files exist.
 - [ ] `app/main.py` and `tests/test_app.py` exist.
 - [ ] No real Partner Source endpoint behavior was added yet.
+
+## Change Notes
+
+- This task starts as a clean scaffold target and should be updated if the actual FastAPI setup differs from the draft commands.
+- Keep the note short and factual if the module ends up using a slightly different toolchain or file layout.
 
 ## Stop / Do Not Add
 

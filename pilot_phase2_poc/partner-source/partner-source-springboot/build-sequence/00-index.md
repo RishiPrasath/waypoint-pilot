@@ -18,25 +18,45 @@ Build the app by hand, test first, and keep every step aligned with the local so
 
 ## Build Order
 
-| Step | Task | Outcome |
-|---:|---|---|
-| 01 | [Project setup](01-project-setup.md) | Spring Boot scaffold and first passing test. |
-| 02 | [CI pipeline](02-ci-pipeline.md) | GitHub Actions runs the module tests. |
-| 03 | [Package layout](03-package-layout.md) | Feature-based package structure is ready. |
-| 04 | [Status transition policy](04-status-transition-policy.md) | First real domain rule is TDD-built. |
-| 05 | [Assignment authorization policy](05-assignment-authorization-policy.md) | Driver/order authorization rule is TDD-built. |
-| 06 | [Seed store and repositories](06-seed-store-and-repositories.md) | Deterministic in-memory data layer exists. |
-| 07 | [Health endpoint](07-health-endpoint.md) | `GET /health` returns `UP`. |
-| 08 | [Readiness endpoint](08-readiness-endpoint.md) | `GET /ready` proves seed readiness. |
-| 09 | [Order status lookup](09-order-status-lookup.md) | First contract read endpoint works. |
-| 10 | [ProblemDetail errors](10-problem-detail-errors.md) | Shared error envelope is centralized. |
-| 11 | [Order timeline](11-order-timeline.md) | Chronological timeline endpoint works. |
-| 12 | [Driver profile](12-driver-profile.md) | Driver profile endpoint works. |
-| 13 | [Driver assignments](13-driver-assignments.md) | Assignment list endpoint works. |
-| 14 | [Create status event](14-create-status-event.md) | Write endpoint validates, appends, and mutates status. |
-| 15 | [Integration tests](15-integration-tests.md) | Full Spring Boot flow is verified. |
-| 16 | [Manual HTTP checklist](16-manual-http-checklist.md) | Human request matrix passes locally. |
-| 17 | [Final gate](17-springboot-final-gate.md) | Reference implementation is ready for FastAPI parity. |
+| Step | Task | Status | Outcome |
+|---:|---|---|---|
+| 01 | [Project setup](01-project-setup.md) | Done | Spring Boot scaffold and first passing test. |
+| 02 | [CI pipeline](02-ci-pipeline.md) | Done | GitHub Actions runs the module tests. |
+| 03 | [Package layout](03-package-layout.md) | Not Started | Feature-based package structure is ready. |
+| 04 | [Status transition policy](04-status-transition-policy.md) | Not Started | First real domain rule is TDD-built. |
+| 05 | [Assignment authorization policy](05-assignment-authorization-policy.md) | Not Started | Driver/order authorization rule is TDD-built. |
+| 06 | [Seed store and repositories](06-seed-store-and-repositories.md) | Not Started | Deterministic in-memory data layer exists. |
+| 07 | [Health endpoint](07-health-endpoint.md) | Not Started | `GET /health` returns `UP`. |
+| 08 | [Readiness endpoint](08-readiness-endpoint.md) | Not Started | `GET /ready` proves seed readiness. |
+| 09 | [Order status lookup](09-order-status-lookup.md) | Not Started | First contract read endpoint works. |
+| 10 | [ProblemDetail errors](10-problem-detail-errors.md) | Not Started | Shared error envelope is centralized. |
+| 11 | [Order timeline](11-order-timeline.md) | Not Started | Chronological timeline endpoint works. |
+| 12 | [Driver profile](12-driver-profile.md) | Not Started | Driver profile endpoint works. |
+| 13 | [Driver assignments](13-driver-assignments.md) | Not Started | Assignment list endpoint works. |
+| 14 | [Create status event](14-create-status-event.md) | Not Started | Write endpoint validates, appends, and mutates status. |
+| 15 | [Integration tests](15-integration-tests.md) | Not Started | Full Spring Boot flow is verified. |
+| 16 | [Manual HTTP checklist](16-manual-http-checklist.md) | Not Started | Human request matrix passes locally. |
+| 17 | [Final gate](17-springboot-final-gate.md) | Not Started | Reference implementation is ready for FastAPI parity. |
+
+## Status Legend
+
+| Status | Meaning |
+|---|---|
+| Not Started | Task has not begun yet. |
+| In Progress | Work has started, but the task is not finished. |
+| Blocked | The task cannot move forward yet. |
+| Done | The task is complete and verified. |
+
+## Change Notes
+
+If a task changes while you are building it, update the task doc with a short note describing:
+
+- what changed
+- why it changed
+- whether the acceptance criteria changed
+- what was actually delivered
+
+Keep this book aligned with reality, not just with the original plan.
 
 ## Per-Task Rule
 
