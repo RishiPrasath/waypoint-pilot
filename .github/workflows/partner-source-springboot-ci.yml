@@ -1,0 +1,43 @@
+name: Partner Source Spring Boot CI
+
+# Run this workflow when Spring Boot code, shared docs, or the workflow file changes.
+on:
+  pull_request:
+    paths:
+      - "pilot_phase2_poc/partner-source/partner-source-springboot/**"
+      - "pilot_phase2_poc/partner-source/docs/**"
+      - "pilot_phase2_poc/partner-source/AGREED_SPEC.md"
+      - ".github/workflows/partner-source-springboot-ci.yml"
+  push:
+    branches: [main]
+    paths:
+      - "pilot_phase2_poc/partner-source/partner-source-springboot/**"
+      - "pilot_phase2_poc/partner-source/docs/**"
+      - "pilot_phase2_poc/partner-source/AGREED_SPEC.md"
+      - ".github/workflows/partner-source-springboot-ci.yml"
+
+permissions:
+  # Read-only access is enough for checkout and test execution.
+  contents: read
+
+jobs:
+  # One job that checks whether the Spring Boot module still passes its tests.
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        # Run shell commands from the Spring Boot module folder.
+        working-directory: pilot_phase2_poc/partner-source/partner-source-springboot
+    steps:
+      # Download the repository into the runner.
+      - uses: actions/checkout@v4
+      # Install Java 21 and cache Maven dependencies for faster builds.
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+      # Linux needs the wrapper script to be executable.
+      - run: chmod +x ./mvnw
+      # Compile the module and run its tests.
+      - run: ./mvnw test
