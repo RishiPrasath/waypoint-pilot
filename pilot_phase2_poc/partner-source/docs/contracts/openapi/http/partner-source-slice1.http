@@ -1,0 +1,235 @@
+@baseUrl = http://localhost:8080
+@orderId = ORD-1001
+@inTransitOrderId = ORD-1002
+@deliveredOrderId = ORD-1003
+@missingOrderId = ORD-9999
+@driverId = DRV-2001
+@unassignedDriverId = DRV-2002
+@driverWithNoAssignmentsId = DRV-2003
+@missingDriverId = DRV-9999
+
+# Partner Source API - Slice 1 manual request checklist
+# Run against a local implementation seeded with the agreed synthetic data.
+# The "Create delivered status event" request mutates ORD-1001, so run it after read-only checks or reset seed data before reruns.
+
+### Health check
+# Expected status: 200
+# Expected key fields: status = UP, service = partner-source
+GET {{baseUrl}}/health
+Accept: application/json
+
+### Readiness check
+# Expected status: 200 when dependencies are ready
+# Expected key fields: status = READY, service = partner-source, checks.persistence = UP, checks.seedData = UP
+GET {{baseUrl}}/ready
+Accept: application/json
+
+### Readiness check - not ready
+# Expected status: 503 when dependencies or seed data are not ready
+# Expected key fields: status = NOT_READY, service = partner-source, checks.persistence or checks.seedData = DOWN
+# Note: this requires running the app in a deliberately not-ready local setup.
+GET {{baseUrl}}/ready
+Accept: application/json
+
+### Get current order status - happy path
+# Expected status: 200
+# Expected key fields: orderId = ORD-1001, currentStatus = OUT_FOR_DELIVERY, assignedDriver.driverId = DRV-2001
+GET {{baseUrl}}/api/v1/orders/{{orderId}}/status
+Accept: application/json
+
+### Get missing order status
+# Expected status: 404
+# Expected errorCode: ORDER_NOT_FOUND
+# Expected key fields: status = 404, instance = /api/v1/orders/ORD-9999/status
+GET {{baseUrl}}/api/v1/orders/{{missingOrderId}}/status
+Accept: application/problem+json
+
+### Get order status - invalid order ID format
+# Expected status: 400
+# Expected errorCode: INVALID_REQUEST
+GET {{baseUrl}}/api/v1/orders/INVALID/status
+Accept: application/problem+json
+
+### Get order timeline - happy path
+# Expected status: 200
+# Expected key fields: orderId = ORD-1001, totalItems = 5, items ordered from EVT-4001 to EVT-4005
+GET {{baseUrl}}/api/v1/orders/{{orderId}}/timeline?page=1&pageSize=20
+Accept: application/json
+
+### Get missing order timeline
+# Expected status: 404
+# Expected errorCode: ORDER_NOT_FOUND
+GET {{baseUrl}}/api/v1/orders/{{missingOrderId}}/timeline?page=1&pageSize=20
+Accept: application/problem+json
+
+### Get order timeline - invalid page
+# Expected status: 400
+# Expected errorCode: INVALID_REQUEST
+GET {{baseUrl}}/api/v1/orders/{{orderId}}/timeline?page=0&pageSize=20
+Accept: application/problem+json
+
+### Get driver profile - active driver
+# Expected status: 200
+# Expected key fields: driverId = DRV-2001, availabilityStatus = AVAILABLE, activeAssignmentCount = 2
+GET {{baseUrl}}/api/v1/drivers/{{driverId}}
+Accept: application/json
+
+### Get missing driver profile
+# Expected status: 404
+# Expected errorCode: DRIVER_NOT_FOUND
+# Expected key fields: status = 404, instance = /api/v1/drivers/DRV-9999
+GET {{baseUrl}}/api/v1/drivers/{{missingDriverId}}
+Accept: application/problem+json
+
+### Get driver profile - invalid driver ID format
+# Expected status: 400
+# Expected errorCode: INVALID_REQUEST
+GET {{baseUrl}}/api/v1/drivers/INVALID
+Accept: application/problem+json
+
+### List driver assignments - active driver
+# Expected status: 200
+# Expected key fields: driverId = DRV-2001, totalItems = 2, includes ORD-1001 and ORD-1002
+GET {{baseUrl}}/api/v1/drivers/{{driverId}}/assignments?page=1&pageSize=20
+Accept: application/json
+
+### List driver assignments filtered by status
+# Expected status: 200
+# Expected key fields: driverId = DRV-2001, items only contain currentStatus = OUT_FOR_DELIVERY
+GET {{baseUrl}}/api/v1/drivers/{{driverId}}/assignments?status=OUT_FOR_DELIVERY&page=1&pageSize=20
+Accept: application/json
+
+### List driver assignments - invalid status filter
+# Expected status: 400
+# Expected errorCode: INVALID_REQUEST
+GET {{baseUrl}}/api/v1/drivers/{{driverId}}/assignments?status=NOT_A_STATUS&page=1&pageSize=20
+Accept: application/problem+json
+
+### List driver assignments - driver with no active assignments
+# Expected status: 200
+# Expected key fields: driverId = DRV-2003, items = [], totalItems = 0
+GET {{baseUrl}}/api/v1/drivers/{{driverWithNoAssignmentsId}}/assignments?page=1&pageSize=20
+Accept: application/json
+
+### List driver assignments - missing driver
+# Expected status: 404
+# Expected errorCode: DRIVER_NOT_FOUND
+GET {{baseUrl}}/api/v1/drivers/{{missingDriverId}}/assignments?page=1&pageSize=20
+Accept: application/problem+json
+
+### List driver assignments - invalid page
+# Expected status: 400
+# Expected errorCode: INVALID_REQUEST
+GET {{baseUrl}}/api/v1/drivers/{{driverId}}/assignments?page=0&pageSize=20
+Accept: application/problem+json
+
+### Create status event - unassigned driver rejected
+# Expected status: 403
+# Expected errorCode: ORDER_NOT_ASSIGNED_TO_DRIVER
+POST {{baseUrl}}/api/v1/orders/{{orderId}}/status-events
+Content-Type: application/json
+Accept: application/problem+json
+
+{
+  "driverId": "DRV-2002",
+  "status": "DELIVERED",
+  "occurredAt": "2026-06-30T15:40:00+08:00",
+  "note": "This should fail because DRV-2002 is not assigned to ORD-1001",
+  "proofOfDeliveryAvailable": false
+}
+
+### Create status event - missing driver rejected
+# Expected status: 404
+# Expected errorCode: DRIVER_NOT_FOUND
+POST {{baseUrl}}/api/v1/orders/{{orderId}}/status-events
+Content-Type: application/json
+Accept: application/problem+json
+
+{
+  "driverId": "DRV-9999",
+  "status": "DELIVERED",
+  "occurredAt": "2026-06-30T15:41:00+08:00",
+  "note": "This should fail because DRV-9999 does not exist",
+  "proofOfDeliveryAvailable": false
+}
+
+### Create status event - invalid transition rejected
+# Expected status: 409
+# Expected errorCode: INVALID_STATUS_TRANSITION
+POST {{baseUrl}}/api/v1/orders/{{deliveredOrderId}}/status-events
+Content-Type: application/json
+Accept: application/problem+json
+
+{
+  "driverId": "DRV-2001",
+  "status": "OUT_FOR_DELIVERY",
+  "occurredAt": "2026-06-30T15:42:00+08:00",
+  "note": "This should fail because ORD-1003 is already delivered",
+  "proofOfDeliveryAvailable": false
+}
+
+### Create status event - invalid status event rejected
+# Expected status: 422
+# Expected errorCode: INVALID_STATUS_EVENT
+POST {{baseUrl}}/api/v1/orders/{{orderId}}/status-events
+Content-Type: application/json
+Accept: application/problem+json
+
+{
+  "driverId": "DRV-2001",
+  "status": "DELIVERED",
+  "occurredAt": "2099-06-30T15:42:30+08:00",
+  "note": "This should fail because the event shape is valid but the event time is semantically invalid",
+  "proofOfDeliveryAvailable": false
+}
+
+### Create status event - missing order rejected
+# Expected status: 404
+# Expected errorCode: ORDER_NOT_FOUND
+POST {{baseUrl}}/api/v1/orders/{{missingOrderId}}/status-events
+Content-Type: application/json
+Accept: application/problem+json
+
+{
+  "driverId": "DRV-2001",
+  "status": "DELIVERED",
+  "occurredAt": "2026-06-30T15:43:00+08:00",
+  "note": "This should fail because the order does not exist",
+  "proofOfDeliveryAvailable": false
+}
+
+### Create status event - malformed body rejected
+# Expected status: 400
+# Expected errorCode: INVALID_REQUEST
+POST {{baseUrl}}/api/v1/orders/{{orderId}}/status-events
+Content-Type: application/json
+Accept: application/problem+json
+
+{
+  "driverId": "DRV-2001",
+  "status": "DELIVERED",
+  "occurredAt": "not-a-date",
+  "unexpectedField": true
+}
+
+### Create delivered status event - happy path
+# Expected status: 201
+# Expected key fields: orderId = ORD-1001, previousStatus = OUT_FOR_DELIVERY, newStatus = DELIVERED, orderCurrentStatus = DELIVERED
+# Run this after read-only checks because it mutates ORD-1001.
+POST {{baseUrl}}/api/v1/orders/{{orderId}}/status-events
+Content-Type: application/json
+Accept: application/json
+
+{
+  "driverId": "DRV-2001",
+  "status": "DELIVERED",
+  "occurredAt": "2026-06-30T15:45:00+08:00",
+  "location": {
+    "label": "Customer address",
+    "latitude": 1.3521,
+    "longitude": 103.9448,
+    "capturedAt": "2026-06-30T15:45:00+08:00"
+  },
+  "note": "Left with reception",
+  "proofOfDeliveryAvailable": true
+}

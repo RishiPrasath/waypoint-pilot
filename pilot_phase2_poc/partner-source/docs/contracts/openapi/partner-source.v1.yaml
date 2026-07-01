@@ -1,0 +1,1064 @@
+openapi: 3.1.0
+info:
+  title: Waypoint Partner Source API
+  version: 1.0.0
+  summary: Slice 1 contract for the mock partner logistics data source.
+  description: |
+    Partner Source exposes synthetic logistics data to Waypoint through a
+    contract-first API. Slice 1 proves the core loop: a delivery agent retrieves
+    assigned orders, creates a status event, and customer service reads the
+    updated order status and timeline.
+servers:
+  - url: http://localhost:8080
+    description: Local Spring Boot implementation
+tags:
+  - name: Orders
+    description: Order status and timeline read operations.
+  - name: Drivers
+    description: Driver profile and assignment operations.
+  - name: Status Events
+    description: Delivery-agent status event writes.
+  - name: Operations
+    description: Service health and readiness checks.
+paths:
+  /api/v1/orders/{orderId}/status:
+    get:
+      tags:
+        - Orders
+      operationId: getOrderStatus
+      summary: Get current order status
+      description: Returns the current customer-safe operational status for one order.
+      parameters:
+        - $ref: "#/components/parameters/OrderId"
+      responses:
+        "200":
+          description: Current order status returned.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OrderStatusResponse"
+              examples:
+                outForDelivery:
+                  $ref: "#/components/examples/OrderStatusOutForDelivery"
+        "400":
+          $ref: "#/components/responses/InvalidRequest"
+        "404":
+          $ref: "#/components/responses/OrderNotFound"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+
+  /api/v1/orders/{orderId}/timeline:
+    get:
+      tags:
+        - Orders
+      operationId: getOrderTimeline
+      summary: Get order timeline
+      description: Returns chronological status events for one order.
+      parameters:
+        - $ref: "#/components/parameters/OrderId"
+        - $ref: "#/components/parameters/Page"
+        - $ref: "#/components/parameters/PageSize"
+      responses:
+        "200":
+          description: Order timeline returned.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OrderTimelineResponse"
+              examples:
+                timeline:
+                  $ref: "#/components/examples/OrderTimeline"
+        "400":
+          $ref: "#/components/responses/InvalidRequest"
+        "404":
+          $ref: "#/components/responses/OrderNotFound"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+
+  /api/v1/drivers/{driverId}:
+    get:
+      tags:
+        - Drivers
+      operationId: getDriver
+      summary: Get driver profile
+      description: Returns a seeded driver profile for the driver frontend demo flow.
+      parameters:
+        - $ref: "#/components/parameters/DriverId"
+      responses:
+        "200":
+          description: Driver profile returned.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DriverResponse"
+              examples:
+                activeDriver:
+                  $ref: "#/components/examples/Driver"
+        "400":
+          $ref: "#/components/responses/InvalidRequest"
+        "404":
+          $ref: "#/components/responses/DriverNotFound"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+
+  /api/v1/drivers/{driverId}/assignments:
+    get:
+      tags:
+        - Drivers
+      operationId: listDriverAssignments
+      summary: List driver assignments
+      description: Returns orders assigned to one driver, including lightweight delivery details.
+      parameters:
+        - $ref: "#/components/parameters/DriverId"
+        - name: status
+          in: query
+          required: false
+          description: Optional order status filter.
+          schema:
+            $ref: "#/components/schemas/OrderStatus"
+        - $ref: "#/components/parameters/Page"
+        - $ref: "#/components/parameters/PageSize"
+      responses:
+        "200":
+          description: Driver assignments returned.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DriverAssignmentsResponse"
+              examples:
+                assignments:
+                  $ref: "#/components/examples/DriverAssignments"
+        "400":
+          $ref: "#/components/responses/InvalidRequest"
+        "404":
+          $ref: "#/components/responses/DriverNotFound"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+
+  /api/v1/orders/{orderId}/status-events:
+    post:
+      tags:
+        - Status Events
+      operationId: createOrderStatusEvent
+      summary: Create order status event
+      description: |
+        Creates a delivery status event for an order. The service must validate
+        that the order exists, the driver exists, the driver is assigned to the
+        order, and the requested transition is allowed.
+      parameters:
+        - $ref: "#/components/parameters/OrderId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateStatusEventRequest"
+            examples:
+              delivered:
+                $ref: "#/components/examples/CreateDeliveredStatusEvent"
+      responses:
+        "201":
+          description: Status event created and order current status updated.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StatusEventResponse"
+              examples:
+                delivered:
+                  $ref: "#/components/examples/DeliveredStatusEvent"
+        "400":
+          $ref: "#/components/responses/InvalidRequest"
+        "403":
+          $ref: "#/components/responses/OrderNotAssignedToDriver"
+        "404":
+          description: Order or driver was not found.
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetail"
+              examples:
+                orderNotFound:
+                  $ref: "#/components/examples/OrderNotFoundProblem"
+                driverNotFound:
+                  $ref: "#/components/examples/DriverNotFoundProblem"
+        "409":
+          $ref: "#/components/responses/InvalidStatusTransition"
+        "422":
+          $ref: "#/components/responses/InvalidStatusEvent"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+
+  /health:
+    get:
+      tags:
+        - Operations
+      operationId: getHealth
+      summary: Health check
+      description: Confirms the service process is alive.
+      responses:
+        "200":
+          description: Service is alive.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthResponse"
+              examples:
+                up:
+                  $ref: "#/components/examples/HealthUp"
+
+  /ready:
+    get:
+      tags:
+        - Operations
+      operationId: getReadiness
+      summary: Readiness check
+      description: Confirms the service is ready to handle API requests.
+      responses:
+        "200":
+          description: Service is ready.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReadinessResponse"
+              examples:
+                ready:
+                  $ref: "#/components/examples/Ready"
+        "503":
+          description: Service is not ready.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReadinessResponse"
+              examples:
+                notReady:
+                  $ref: "#/components/examples/NotReady"
+
+components:
+  parameters:
+    OrderId:
+      name: orderId
+      in: path
+      required: true
+      description: Stable synthetic order ID.
+      schema:
+        type: string
+        pattern: "^ORD-[0-9]{4}$"
+        example: ORD-1001
+    DriverId:
+      name: driverId
+      in: path
+      required: true
+      description: Stable synthetic driver ID.
+      schema:
+        type: string
+        pattern: "^DRV-[0-9]{4}$"
+        example: DRV-2001
+    Page:
+      name: page
+      in: query
+      required: false
+      description: One-based page number.
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+        example: 1
+    PageSize:
+      name: pageSize
+      in: query
+      required: false
+      description: Number of items to return.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+        example: 20
+
+  responses:
+    InvalidRequest:
+      description: Request syntax, path parameter, or query parameter is invalid.
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/ProblemDetail"
+          examples:
+            invalidRequest:
+              $ref: "#/components/examples/InvalidRequestProblem"
+    OrderNotFound:
+      description: Order was not found.
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/ProblemDetail"
+          examples:
+            orderNotFound:
+              $ref: "#/components/examples/OrderNotFoundProblem"
+    DriverNotFound:
+      description: Driver was not found.
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/ProblemDetail"
+          examples:
+            driverNotFound:
+              $ref: "#/components/examples/DriverNotFoundProblem"
+    OrderNotAssignedToDriver:
+      description: Driver is not allowed to update this order.
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/ProblemDetail"
+          examples:
+            notAssigned:
+              $ref: "#/components/examples/OrderNotAssignedProblem"
+    InvalidStatusTransition:
+      description: Requested status transition is not allowed.
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/ProblemDetail"
+          examples:
+            invalidTransition:
+              $ref: "#/components/examples/InvalidStatusTransitionProblem"
+    InvalidStatusEvent:
+      description: Status event is semantically invalid.
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/ProblemDetail"
+          examples:
+            invalidStatusEvent:
+              $ref: "#/components/examples/InvalidStatusEventProblem"
+    InternalServerError:
+      description: Unexpected server failure.
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/ProblemDetail"
+          examples:
+            internalServerError:
+              $ref: "#/components/examples/InternalServerErrorProblem"
+
+  schemas:
+    OrderStatus:
+      type: string
+      enum:
+        - CREATED
+        - CONFIRMED
+        - PICKED_UP
+        - IN_TRANSIT
+        - OUT_FOR_DELIVERY
+        - DELIVERY_ATTEMPTED
+        - DELIVERED
+        - CANCELLED
+
+    AssignmentStatus:
+      type: string
+      enum:
+        - ASSIGNED
+        - ACCEPTED
+        - COMPLETED
+        - CANCELLED
+
+    ActorType:
+      type: string
+      enum:
+        - SYSTEM
+        - DRIVER
+        - SUPPORT_AGENT
+
+    DriverAvailabilityStatus:
+      type: string
+      enum:
+        - AVAILABLE
+        - UNAVAILABLE
+        - OFFLINE
+
+    DeliveryWindow:
+      type: object
+      required:
+        - start
+        - end
+      properties:
+        start:
+          type: string
+          format: date-time
+          example: "2026-06-30T14:00:00+08:00"
+        end:
+          type: string
+          format: date-time
+          example: "2026-06-30T18:00:00+08:00"
+      additionalProperties: false
+
+    LocationSnapshot:
+      type:
+        - object
+        - "null"
+      required:
+        - label
+        - capturedAt
+      properties:
+        label:
+          type: string
+          minLength: 1
+          maxLength: 120
+          example: Tampines Delivery Hub
+        latitude:
+          type: number
+          format: double
+          minimum: -90
+          maximum: 90
+          example: 1.3521
+        longitude:
+          type: number
+          format: double
+          minimum: -180
+          maximum: 180
+          example: 103.9448
+        capturedAt:
+          type: string
+          format: date-time
+          example: "2026-06-30T10:15:00+08:00"
+      additionalProperties: false
+
+    AssignedDriverSummary:
+      type:
+        - object
+        - "null"
+      required:
+        - driverId
+        - displayName
+      properties:
+        driverId:
+          type: string
+          pattern: "^DRV-[0-9]{4}$"
+          example: DRV-2001
+        displayName:
+          type: string
+          minLength: 1
+          maxLength: 120
+          example: A. Kumar
+      additionalProperties: false
+
+    OrderStatusResponse:
+      type: object
+      required:
+        - orderId
+        - currentStatus
+        - statusLabel
+        - estimatedDeliveryAt
+        - deliveryWindow
+        - lastUpdatedAt
+      properties:
+        orderId:
+          type: string
+          pattern: "^ORD-[0-9]{4}$"
+          example: ORD-1001
+        currentStatus:
+          $ref: "#/components/schemas/OrderStatus"
+        statusLabel:
+          type: string
+          example: Out for delivery
+        currentLocation:
+          $ref: "#/components/schemas/LocationSnapshot"
+        estimatedDeliveryAt:
+          type:
+            - string
+            - "null"
+          format: date-time
+          example: "2026-06-30T18:00:00+08:00"
+        deliveryWindow:
+          $ref: "#/components/schemas/DeliveryWindow"
+        assignedDriver:
+          $ref: "#/components/schemas/AssignedDriverSummary"
+        lastUpdatedAt:
+          type: string
+          format: date-time
+          example: "2026-06-30T10:15:00+08:00"
+      additionalProperties: false
+
+    OrderTimelineResponse:
+      type: object
+      required:
+        - orderId
+        - items
+        - page
+        - pageSize
+        - totalItems
+      properties:
+        orderId:
+          type: string
+          pattern: "^ORD-[0-9]{4}$"
+          example: ORD-1001
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/TimelineEvent"
+        page:
+          type: integer
+          minimum: 1
+          example: 1
+        pageSize:
+          type: integer
+          minimum: 1
+          maximum: 100
+          example: 20
+        totalItems:
+          type: integer
+          minimum: 0
+          example: 2
+      additionalProperties: false
+
+    TimelineEvent:
+      type: object
+      required:
+        - eventId
+        - status
+        - statusLabel
+        - occurredAt
+        - actorType
+        - actorId
+      properties:
+        eventId:
+          type: string
+          pattern: "^EVT-[0-9]{4}$"
+          example: EVT-4001
+        status:
+          $ref: "#/components/schemas/OrderStatus"
+        statusLabel:
+          type: string
+          example: Out for delivery
+        occurredAt:
+          type: string
+          format: date-time
+          example: "2026-06-30T10:15:00+08:00"
+        actorType:
+          $ref: "#/components/schemas/ActorType"
+        actorId:
+          type: string
+          example: DRV-2001
+        location:
+          $ref: "#/components/schemas/LocationSnapshot"
+        note:
+          type:
+            - string
+            - "null"
+          maxLength: 500
+          example: Loaded onto delivery vehicle
+      additionalProperties: false
+
+    DriverResponse:
+      type: object
+      required:
+        - driverId
+        - displayName
+        - availabilityStatus
+        - activeAssignmentCount
+      properties:
+        driverId:
+          type: string
+          pattern: "^DRV-[0-9]{4}$"
+          example: DRV-2001
+        displayName:
+          type: string
+          minLength: 1
+          maxLength: 120
+          example: A. Kumar
+        availabilityStatus:
+          $ref: "#/components/schemas/DriverAvailabilityStatus"
+        activeAssignmentCount:
+          type: integer
+          minimum: 0
+          example: 3
+      additionalProperties: false
+
+    DriverAssignmentsResponse:
+      type: object
+      required:
+        - driverId
+        - items
+        - page
+        - pageSize
+        - totalItems
+      properties:
+        driverId:
+          type: string
+          pattern: "^DRV-[0-9]{4}$"
+          example: DRV-2001
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/DriverAssignmentItem"
+        page:
+          type: integer
+          minimum: 1
+          example: 1
+        pageSize:
+          type: integer
+          minimum: 1
+          maximum: 100
+          example: 20
+        totalItems:
+          type: integer
+          minimum: 0
+          example: 1
+      additionalProperties: false
+
+    DriverAssignmentItem:
+      type: object
+      required:
+        - assignmentId
+        - orderId
+        - assignmentStatus
+        - currentStatus
+        - recipientName
+        - deliveryAddressSummary
+        - deliveryWindow
+        - lastUpdatedAt
+      properties:
+        assignmentId:
+          type: string
+          pattern: "^ASN-[0-9]{4}$"
+          example: ASN-3001
+        orderId:
+          type: string
+          pattern: "^ORD-[0-9]{4}$"
+          example: ORD-1001
+        assignmentStatus:
+          $ref: "#/components/schemas/AssignmentStatus"
+        currentStatus:
+          $ref: "#/components/schemas/OrderStatus"
+        recipientName:
+          type: string
+          minLength: 1
+          maxLength: 120
+          example: Jamie Tan
+        deliveryAddressSummary:
+          type: string
+          minLength: 1
+          maxLength: 240
+          example: Tampines, Singapore
+        deliveryWindow:
+          $ref: "#/components/schemas/DeliveryWindow"
+        lastUpdatedAt:
+          type: string
+          format: date-time
+          example: "2026-06-30T10:15:00+08:00"
+      additionalProperties: false
+
+    CreateStatusEventRequest:
+      type: object
+      required:
+        - driverId
+        - status
+      properties:
+        driverId:
+          type: string
+          pattern: "^DRV-[0-9]{4}$"
+          example: DRV-2001
+        status:
+          $ref: "#/components/schemas/OrderStatus"
+        occurredAt:
+          type: string
+          format: date-time
+          example: "2026-06-30T15:45:00+08:00"
+        location:
+          $ref: "#/components/schemas/LocationSnapshot"
+        note:
+          type: string
+          maxLength: 500
+          example: Left with reception
+        proofOfDeliveryAvailable:
+          type: boolean
+          example: true
+      additionalProperties: false
+
+    StatusEventResponse:
+      type: object
+      required:
+        - eventId
+        - orderId
+        - previousStatus
+        - newStatus
+        - statusLabel
+        - occurredAt
+        - actorType
+        - actorId
+        - orderCurrentStatus
+      properties:
+        eventId:
+          type: string
+          pattern: "^EVT-[0-9]{4}$"
+          example: EVT-4003
+        orderId:
+          type: string
+          pattern: "^ORD-[0-9]{4}$"
+          example: ORD-1001
+        previousStatus:
+          $ref: "#/components/schemas/OrderStatus"
+        newStatus:
+          $ref: "#/components/schemas/OrderStatus"
+        statusLabel:
+          type: string
+          example: Delivered
+        occurredAt:
+          type: string
+          format: date-time
+          example: "2026-06-30T15:45:00+08:00"
+        actorType:
+          $ref: "#/components/schemas/ActorType"
+        actorId:
+          type: string
+          example: DRV-2001
+        location:
+          $ref: "#/components/schemas/LocationSnapshot"
+        note:
+          type:
+            - string
+            - "null"
+          maxLength: 500
+          example: Left with reception
+        proofOfDeliveryAvailable:
+          type: boolean
+          example: true
+        orderCurrentStatus:
+          $ref: "#/components/schemas/OrderStatus"
+      additionalProperties: false
+
+    HealthResponse:
+      type: object
+      required:
+        - status
+        - service
+      properties:
+        status:
+          type: string
+          enum:
+            - UP
+          example: UP
+        service:
+          type: string
+          example: partner-source
+      additionalProperties: false
+
+    ReadinessResponse:
+      type: object
+      required:
+        - status
+        - service
+        - checks
+      properties:
+        status:
+          type: string
+          enum:
+            - READY
+            - NOT_READY
+          example: READY
+        service:
+          type: string
+          example: partner-source
+        checks:
+          type: object
+          required:
+            - persistence
+            - seedData
+          properties:
+            persistence:
+              type: string
+              enum:
+                - UP
+                - DOWN
+              example: UP
+            seedData:
+              type: string
+              enum:
+                - UP
+                - DOWN
+              example: UP
+          additionalProperties: false
+      additionalProperties: false
+
+    ProblemDetail:
+      type: object
+      required:
+        - type
+        - title
+        - status
+        - detail
+        - instance
+        - errorCode
+        - correlationId
+      properties:
+        type:
+          type: string
+          format: uri
+          example: https://waypoint.local/problems/order-not-found
+        title:
+          type: string
+          example: Order not found
+        status:
+          type: integer
+          minimum: 400
+          maximum: 599
+          example: 404
+        detail:
+          type: string
+          example: No order exists for orderId ORD-9999.
+        instance:
+          type: string
+          example: /api/v1/orders/ORD-9999/status
+        errorCode:
+          type: string
+          enum:
+            - INVALID_REQUEST
+            - ORDER_NOT_FOUND
+            - DRIVER_NOT_FOUND
+            - ASSIGNMENT_NOT_FOUND
+            - ORDER_NOT_ASSIGNED_TO_DRIVER
+            - INVALID_STATUS_TRANSITION
+            - INVALID_STATUS_EVENT
+            - INTERNAL_SERVER_ERROR
+          example: ORDER_NOT_FOUND
+        correlationId:
+          type: string
+          example: req-123
+      additionalProperties: false
+
+  examples:
+    OrderStatusOutForDelivery:
+      value:
+        orderId: ORD-1001
+        currentStatus: OUT_FOR_DELIVERY
+        statusLabel: Out for delivery
+        currentLocation:
+          label: Tampines Delivery Hub
+          latitude: 1.3521
+          longitude: 103.9448
+          capturedAt: "2026-06-30T10:15:00+08:00"
+        estimatedDeliveryAt: "2026-06-30T18:00:00+08:00"
+        deliveryWindow:
+          start: "2026-06-30T14:00:00+08:00"
+          end: "2026-06-30T18:00:00+08:00"
+        assignedDriver:
+          driverId: DRV-2001
+          displayName: A. Kumar
+        lastUpdatedAt: "2026-06-30T10:15:00+08:00"
+
+    OrderTimeline:
+      value:
+        orderId: ORD-1001
+        items:
+          - eventId: EVT-4001
+            status: CREATED
+            statusLabel: Created
+            occurredAt: "2026-06-30T08:00:00+08:00"
+            actorType: SYSTEM
+            actorId: SYSTEM
+            location: null
+            note: Order created
+          - eventId: EVT-4002
+            status: CONFIRMED
+            statusLabel: Confirmed
+            occurredAt: "2026-06-30T08:10:00+08:00"
+            actorType: SYSTEM
+            actorId: SYSTEM
+            location: null
+            note: Order confirmed by partner source
+          - eventId: EVT-4003
+            status: PICKED_UP
+            statusLabel: Picked up
+            occurredAt: "2026-06-30T09:30:00+08:00"
+            actorType: DRIVER
+            actorId: DRV-2001
+            location:
+              label: Tampines Collection Point
+              latitude: 1.3521
+              longitude: 103.9448
+              capturedAt: "2026-06-30T09:30:00+08:00"
+            note: Goods collected by driver
+          - eventId: EVT-4004
+            status: IN_TRANSIT
+            statusLabel: In transit
+            occurredAt: "2026-06-30T09:50:00+08:00"
+            actorType: DRIVER
+            actorId: DRV-2001
+            location:
+              label: Tampines Delivery Hub
+              latitude: 1.3521
+              longitude: 103.9448
+              capturedAt: "2026-06-30T09:50:00+08:00"
+            note: Package in transit
+          - eventId: EVT-4005
+            status: OUT_FOR_DELIVERY
+            statusLabel: Out for delivery
+            occurredAt: "2026-06-30T10:15:00+08:00"
+            actorType: DRIVER
+            actorId: DRV-2001
+            location:
+              label: Tampines Delivery Hub
+              latitude: 1.3521
+              longitude: 103.9448
+              capturedAt: "2026-06-30T10:15:00+08:00"
+            note: Loaded onto delivery vehicle
+        page: 1
+        pageSize: 20
+        totalItems: 5
+
+    Driver:
+      value:
+        driverId: DRV-2001
+        displayName: A. Kumar
+        availabilityStatus: AVAILABLE
+        activeAssignmentCount: 2
+
+    DriverAssignments:
+      value:
+        driverId: DRV-2001
+        items:
+          - assignmentId: ASN-3001
+            orderId: ORD-1001
+            assignmentStatus: ASSIGNED
+            currentStatus: OUT_FOR_DELIVERY
+            recipientName: Jamie Tan
+            deliveryAddressSummary: Tampines, Singapore
+            deliveryWindow:
+              start: "2026-06-30T14:00:00+08:00"
+              end: "2026-06-30T18:00:00+08:00"
+            lastUpdatedAt: "2026-06-30T10:15:00+08:00"
+          - assignmentId: ASN-3002
+            orderId: ORD-1002
+            assignmentStatus: ASSIGNED
+            currentStatus: IN_TRANSIT
+            recipientName: Priya Nair
+            deliveryAddressSummary: Jurong East, Singapore
+            deliveryWindow:
+              start: "2026-07-01T09:00:00+08:00"
+              end: "2026-07-01T12:00:00+08:00"
+            lastUpdatedAt: "2026-06-30T11:00:00+08:00"
+        page: 1
+        pageSize: 20
+        totalItems: 2
+
+    CreateDeliveredStatusEvent:
+      value:
+        driverId: DRV-2001
+        status: DELIVERED
+        occurredAt: "2026-06-30T15:45:00+08:00"
+        location:
+          label: Customer address
+          latitude: 1.3521
+          longitude: 103.9448
+          capturedAt: "2026-06-30T15:45:00+08:00"
+        note: Left with reception
+        proofOfDeliveryAvailable: true
+
+    DeliveredStatusEvent:
+      value:
+        eventId: EVT-4006
+        orderId: ORD-1001
+        previousStatus: OUT_FOR_DELIVERY
+        newStatus: DELIVERED
+        statusLabel: Delivered
+        occurredAt: "2026-06-30T15:45:00+08:00"
+        actorType: DRIVER
+        actorId: DRV-2001
+        location:
+          label: Customer address
+          latitude: 1.3521
+          longitude: 103.9448
+          capturedAt: "2026-06-30T15:45:00+08:00"
+        note: Left with reception
+        proofOfDeliveryAvailable: true
+        orderCurrentStatus: DELIVERED
+
+    HealthUp:
+      value:
+        status: UP
+        service: partner-source
+
+    Ready:
+      value:
+        status: READY
+        service: partner-source
+        checks:
+          persistence: UP
+          seedData: UP
+
+    NotReady:
+      value:
+        status: NOT_READY
+        service: partner-source
+        checks:
+          persistence: DOWN
+          seedData: DOWN
+
+    InvalidRequestProblem:
+      value:
+        type: https://waypoint.local/problems/invalid-request
+        title: Invalid request
+        status: 400
+        detail: Request syntax or parameters are invalid.
+        instance: /api/v1/orders/INVALID/status
+        errorCode: INVALID_REQUEST
+        correlationId: req-123
+
+    OrderNotFoundProblem:
+      value:
+        type: https://waypoint.local/problems/order-not-found
+        title: Order not found
+        status: 404
+        detail: No order exists for orderId ORD-9999.
+        instance: /api/v1/orders/ORD-9999/status
+        errorCode: ORDER_NOT_FOUND
+        correlationId: req-123
+
+    DriverNotFoundProblem:
+      value:
+        type: https://waypoint.local/problems/driver-not-found
+        title: Driver not found
+        status: 404
+        detail: No driver exists for driverId DRV-9999.
+        instance: /api/v1/drivers/DRV-9999
+        errorCode: DRIVER_NOT_FOUND
+        correlationId: req-123
+
+    OrderNotAssignedProblem:
+      value:
+        type: https://waypoint.local/problems/order-not-assigned-to-driver
+        title: Order not assigned to driver
+        status: 403
+        detail: Driver DRV-2002 is not assigned to order ORD-1001.
+        instance: /api/v1/orders/ORD-1001/status-events
+        errorCode: ORDER_NOT_ASSIGNED_TO_DRIVER
+        correlationId: req-123
+
+    InvalidStatusTransitionProblem:
+      value:
+        type: https://waypoint.local/problems/invalid-status-transition
+        title: Invalid status transition
+        status: 409
+        detail: Cannot transition order ORD-1003 from DELIVERED to OUT_FOR_DELIVERY.
+        instance: /api/v1/orders/ORD-1003/status-events
+        errorCode: INVALID_STATUS_TRANSITION
+        correlationId: req-123
+
+    InvalidStatusEventProblem:
+      value:
+        type: https://waypoint.local/problems/invalid-status-event
+        title: Invalid status event
+        status: 422
+        detail: Status event is semantically invalid.
+        instance: /api/v1/orders/ORD-1001/status-events
+        errorCode: INVALID_STATUS_EVENT
+        correlationId: req-123
+
+    InternalServerErrorProblem:
+      value:
+        type: https://waypoint.local/problems/internal-server-error
+        title: Internal server error
+        status: 500
+        detail: An unexpected server error occurred.
+        instance: /api/v1/orders/ORD-1001/status
+        errorCode: INTERNAL_SERVER_ERROR
+        correlationId: req-123
