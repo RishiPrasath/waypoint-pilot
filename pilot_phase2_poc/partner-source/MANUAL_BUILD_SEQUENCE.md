@@ -65,3 +65,38 @@ read AGREED_SPEC.md and the numbered task file
 -> run full module test
 -> mark checkbox
 ```
+
+## Build Schedule
+
+### Thursday
+
+- [ ] Read `AGREED_SPEC.md` and the Spring Boot build book.
+- [ ] Finish project scaffold, package layout, and CI pipeline.
+- [ ] Write and pass `StatusTransitionPolicyTest`.
+- [ ] Start `AssignmentAuthorizationPolicyTest` if time remains.
+
+### Friday
+
+- [ ] Finish assignment authorization policy.
+- [ ] Build the seed store and in-memory repositories.
+- [ ] Lock in seeded data for orders, drivers, assignments, and timelines.
+- [ ] Run focused tests, then full module tests.
+- [ ] Resolve the `ORD-1003` invalid-transition fixture decision before moving on.
+
+### Saturday
+
+- [ ] Implement `/health`.
+- [ ] Implement `/ready`.
+- [ ] Implement `GET /api/v1/orders/{orderId}/status`.
+- [ ] Add the shared `ProblemDetail`-style error handling.
+- [ ] Run module tests and fix any contract mismatches.
+
+### Sunday
+
+- [ ] Implement `GET /api/v1/orders/{orderId}/timeline`.
+- [ ] Implement `GET /api/v1/drivers/{driverId}`.
+- [ ] Implement `GET /api/v1/drivers/{driverId}/assignments`.
+- [ ] Implement `POST /api/v1/orders/{orderId}/status-events`.
+- [ ] Finish integration tests.
+- [ ] Run the manual HTTP checklist.
+- [ ] Complete the final gate and cleanup.
