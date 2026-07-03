@@ -1,0 +1,12 @@
+package com.waypoint.partnersource.shared.error;
+
+public enum ErrorCode {
+    INVALID_REQUEST,
+    ORDER_NOT_FOUND,
+    DRIVER_NOT_FOUND,
+    ASSIGNMENT_NOT_FOUND,
+    ORDER_NOT_ASSIGNED_TO_DRIVER,
+    INVALID_STATUS_TRANSITION,
+    INVALID_STATUS_EVENT,
+    INTERNAL_SERVER_ERROR
+}

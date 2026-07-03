@@ -3,11 +3,11 @@
 ## Status
 
 - Status: Done
-- Last Updated: 2026-07-02
+- Last Updated: 2026-07-03
 
 ## Purpose
 
-Create the Spring Boot reference module with Java 21, Maven, and one tiny passing test.
+Create the Spring Boot reference module with Java 21, Maven Wrapper, and one tiny passing context-load test.
 
 ## Source Docs To Read
 
@@ -15,23 +15,61 @@ Create the Spring Boot reference module with Java 21, Maven, and one tiny passin
 - `../../docs/active/springboot-implementation-handoff.md`
 - `../../docs/support/implementation-schematic-and-task-sequence.md`
 
+## Prereqs
+
+- Java 21 is installed and active.
+- Work inside `partner-source-springboot`.
+- Keep existing `README.md` and `build-sequence/` files.
+
 ## Tests To Write First
 
-Spring Initializr will generate the first scaffold test:
+Create:
+
+**Test Block Explanation**
+
+- What this block does: Lists the test file paths, expected failures, or test setup for `src/test/java/com/waypoint/partnersource/PartnerSourceApplicationTests.java`.
+- Why it exists: It makes the expected behavior executable before implementation, so the task stays test-first.
+- How to read it: Treat each line as an exact test path or expected first failure, not as a suggestion to rename.
 
 ```text
 src/test/java/com/waypoint/partnersource/PartnerSourceApplicationTests.java
 ```
 
-Expected behavior:
+Use this exact scaffold test:
 
-- The application context loads.
-- No Partner Source behavior is implemented yet.
+**Test Block Explanation**
 
-## Code To Implement
+- What this block does: Shows the test code to write first for Use this exact scaffold test.
+- Why it exists: It makes the expected behavior executable before implementation, so the task stays test-first.
+- How to read it: Read each test as arrange, act, assert: setup objects, call the behavior, then check the promised result.
+
+```java
+package com.waypoint.partnersource;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class PartnerSourceApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+}
+
+```
+
+Expected behavior: the application context loads and no Partner Source behavior exists yet.
+## File Map
 
 Create or generate:
 
+**Block Explanation**
+
+- What this block does: Lists the exact files, folders, or package targets for Create or generate.
+- Why it exists: It removes folder and package ambiguity, which is the main thing that slows agents and humans down.
+- How to read it: Treat each line as exact project structure, expected output, or rule text unless the task says otherwise.
+
 ```text
 pom.xml
 mvnw
@@ -39,169 +77,108 @@ mvnw.cmd
 .mvn/wrapper/
 src/main/java/com/waypoint/partnersource/PartnerSourceApplication.java
 src/test/java/com/waypoint/partnersource/PartnerSourceApplicationTests.java
+src/main/resources/application.properties
+
 ```
 
-Use:
+## Exact Code
 
-| Setting | Value |
-|---|---|
-| Java | 21 |
-| Build | Maven |
-| Group | `com.waypoint` |
-| Artifact | `partner-source-springboot` |
-| Package | `com.waypoint.partnersource` |
-| Dependencies | Spring Web, Spring Validation, Spring Boot Test |
+`pom.xml` must target Java 21:
+
+**Code Block Explanation**
+
+- What this block does: Shows the exact XML code for `pom.xml`.
+- Why it exists: It gives the concrete implementation target while keeping the slice inside the approved contract boundaries.
+- How to read it: Read it top-down and keep the names, paths, and casing exactly as shown.
+
+```xml
+<properties>
+    <java.version>21</java.version>
+</properties>
+```
+
+Create `PartnerSourceApplication.java`:
+
+**Code Block Explanation**
+
+- What this block does: Shows the exact Java code for `PartnerSourceApplication.java`.
+- Why it exists: It gives the concrete implementation target while keeping the slice inside the approved contract boundaries.
+- How to read it: Read top-down: package, imports, class or record declaration, then the methods and assertions.
+
+```java
+package com.waypoint.partnersource;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class PartnerSourceApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(PartnerSourceApplication.class, args);
+    }
+}
+
+```
+
+Create `PartnerSourceApplicationTests.java`:
+
+**Code Block Explanation**
+
+- What this block does: Shows the exact Java code for `PartnerSourceApplicationTests.java`.
+- Why it exists: It gives the concrete implementation target while keeping the slice inside the approved contract boundaries.
+- How to read it: Read top-down: package, imports, class or record declaration, then the methods and assertions.
+
+```java
+package com.waypoint.partnersource;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class PartnerSourceApplicationTests {
+    @Test
+    void contextLoads() {
+    }
+}
+
+```
+
+If Initializr creates `PartnerSourceSpringbootApplication`, rename it to `PartnerSourceApplication` and rename the test class too.
 
 ## Commands To Run
 
-### 1. Open The Module Folder
+**Command Block Explanation**
+
+- What this block does: Shows the exact PowerShell commands for Commands To Run.
+- Why it exists: It gives the verification path for this task without making the reader guess the right shell or module folder.
+- How to read it: Run the lines in order from the folder named by the task, and keep them in PowerShell syntax.
 
 ```powershell
 cd C:\Users\prasa\Documents\Github\waypoint-pilot\pilot_phase2_poc\partner-source\partner-source-springboot
-Get-ChildItem -Force
-```
-
-Expected before scaffold:
-
-```text
-README.md
-build-sequence
-```
-
-### 2. Check Tools
-
-```powershell
 java -version
-git --version
-```
-
-Expected:
-
-- Java reports version `21`.
-- Git is available.
-
-Maven does not need to be installed globally if the Spring Initializr scaffold includes Maven Wrapper.
-
-### 3. Generate The Spring Boot Project
-
-Run this from `partner-source-springboot`.
-
-This downloads a Spring Initializr project into a temp folder, then copies the generated project files into the current folder without deleting the existing `README.md` or `build-sequence/`.
-
-```powershell
-$ErrorActionPreference = "Stop"
-
-cd C:\Users\prasa\Documents\Github\waypoint-pilot\pilot_phase2_poc\partner-source\partner-source-springboot
-
-$starterZip = Join-Path $env:TEMP "partner-source-springboot-starter.zip"
-$extractDir = Join-Path $env:TEMP "partner-source-springboot-starter"
-
-if (Test-Path $starterZip) {
-  Remove-Item -LiteralPath $starterZip -Force
-}
-
-if (Test-Path $extractDir) {
-  Remove-Item -LiteralPath $extractDir -Recurse -Force
-}
-
-$query = @(
-  "type=maven-project"
-  "language=java"
-  "baseDir=partner-source-springboot"
-  "groupId=com.waypoint"
-  "artifactId=partner-source-springboot"
-  "name=partner-source-springboot"
-  "description=Waypoint%20Partner%20Source%20Spring%20Boot%20reference%20implementation"
-  "packageName=com.waypoint.partnersource"
-  "packaging=jar"
-  "javaVersion=21"
-  "dependencies=web,validation"
-) -join "&"
-
-Invoke-WebRequest "https://start.spring.io/starter.zip?$query" -OutFile $starterZip
-Expand-Archive -Path $starterZip -DestinationPath $extractDir
-
-Copy-Item -Path (Join-Path $extractDir "partner-source-springboot\*") -Destination . -Recurse -Force
-```
-
-Expected generated files:
-
-```text
-pom.xml
-mvnw
-mvnw.cmd
-.mvn/wrapper/
-src/main/java/com/waypoint/partnersource/PartnerSourceSpringbootApplication.java
-src/test/java/com/waypoint/partnersource/PartnerSourceSpringbootApplicationTests.java
-```
-
-### 4. Normalize The Application Class Name
-
-Spring Initializr may generate `PartnerSourceSpringbootApplication`. Rename it to the agreed class name:
-
-```powershell
-$src = "src\main\java\com\waypoint\partnersource\PartnerSourceSpringbootApplication.java"
-$dst = "src\main\java\com\waypoint\partnersource\PartnerSourceApplication.java"
-
-if (Test-Path $src) {
-  Move-Item -LiteralPath $src -Destination $dst -Force
-  (Get-Content $dst) `
-    -replace "PartnerSourceSpringbootApplication", "PartnerSourceApplication" |
-    Set-Content -Path $dst -Encoding UTF8
-}
-
-$testSrc = "src\test\java\com\waypoint\partnersource\PartnerSourceSpringbootApplicationTests.java"
-$testDst = "src\test\java\com\waypoint\partnersource\PartnerSourceApplicationTests.java"
-
-if (Test-Path $testSrc) {
-  Move-Item -LiteralPath $testSrc -Destination $testDst -Force
-  (Get-Content $testDst) `
-    -replace "PartnerSourceSpringbootApplicationTests", "PartnerSourceApplicationTests" |
-    Set-Content -Path $testDst -Encoding UTF8
-}
-```
-
-Expected files after rename:
-
-```text
-src/main/java/com/waypoint/partnersource/PartnerSourceApplication.java
-src/test/java/com/waypoint/partnersource/PartnerSourceApplicationTests.java
-```
-
-### 5. Run The Scaffold Test
-
-```powershell
 .\mvnw.cmd test
-```
-
-If `mvnw.cmd` is missing, the scaffold did not generate correctly. Stop and fix the scaffold before continuing.
-
-If Maven Wrapper exists but fails because of execution or download issues, try:
-
-```powershell
-mvn test
-```
-
-## Expected Output
-
-```text
-BUILD SUCCESS
 ```
 
 ## Done Criteria
 
-- [x] `.\mvnw.cmd test` passes.
-- [x] Package is `com.waypoint.partnersource`.
 - [x] `pom.xml`, `mvnw`, `mvnw.cmd`, `.mvn/wrapper/`, `src/main/`, and `src/test/` exist.
-- [x] No domain code or endpoints were added yet.
+- [x] Package is `com.waypoint.partnersource`.
+- [x] Context-load test passes.
+- [x] No domain code or endpoints were added in this task.
 
-## Change Notes
+## Common Mistakes
 
-- Spring Initializr generated the scaffold, but the first Java file picked up a hidden UTF-8 BOM from PowerShell.
-- The application and test classes were rewritten cleanly to remove the encoding issue.
-- The resulting setup is still the same intended scaffold: a minimal Spring Boot app with one passing context-load test.
+- Running with Java 17 and hitting `release version 21 not supported`.
+- Leaving the generated class name as `PartnerSourceSpringbootApplication`.
+- Adding `/health` or domain classes during scaffold setup.
 
 ## Stop / Do Not Add
 
 - Do not add JPA, Actuator, Security, database drivers, Docker, or OpenAPI generation.
 - Do not implement `/health` yet.
+
+## Change Notes
+
+- Added per-code-block explanation wrappers so every fenced block states what it does, why it exists, and how to read it.
+- Template normalized to the shared build-task format.
+- Existing scaffold is complete.

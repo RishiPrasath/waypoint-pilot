@@ -2,6 +2,14 @@
 
 This is the short progress dashboard. It is not an instruction source.
 
+Agent note:
+
+- The canonical progress marker for each task lives in the numbered task file's `## Status` block.
+- The dashboard checkboxes below are a summary view, not the source of truth.
+- When checking progress, read the current task file first, then update the dashboard if needed.
+- If a task is verified complete, mark it `Done` and sync the dashboard in the same pass.
+- Do not wait for a second confirmation when the acceptance criteria are already met.
+
 Use the numbered build books for instructions:
 
 ```text
@@ -30,15 +38,15 @@ AGREED_SPEC.md
 - [ ] Human Step 0.1: open implementation lane.
 - [ ] Human Step 0.2: read `AGREED_SPEC.md`.
 - [ ] Human Step 0.3: check Java, Maven, Python, and Git.
-- [ ] Human Step 1.1: create Spring Boot project.
-- [ ] Human Step 1.2: run Spring Boot scaffold test.
-- [ ] Human Step 1.3: create Spring Boot package folders.
-- [ ] Human Step 2.1: add Spring Boot CI workflow.
-- [ ] Human Step 2.2: verify Spring Boot CI.
-- [ ] Human Step 3.1: create FastAPI project.
-- [ ] Human Step 3.2: run FastAPI scaffold test.
-- [ ] Human Step 4.1: add FastAPI CI workflow.
-- [ ] Human Step 4.2: verify FastAPI CI.
+- [x] Human Step 1.1: create Spring Boot project.
+- [x] Human Step 1.2: run Spring Boot scaffold test.
+- [x] Human Step 1.3: create Spring Boot package folders.
+- [x] Human Step 2.1: add Spring Boot CI workflow.
+- [x] Human Step 2.2: verify Spring Boot CI.
+- [x] Human Step 3.1: create FastAPI project.
+- [x] Human Step 3.2: run FastAPI scaffold test.
+- [x] Human Step 4.1: add FastAPI CI workflow.
+- [x] Human Step 4.2: verify FastAPI CI.
 - [ ] Human Phase 5: implement status transition policy in Spring Boot, then FastAPI.
 - [ ] Human Phase 6: implement assignment authorization policy in Spring Boot, then FastAPI.
 - [ ] Human Phase 7: implement seed store and in-memory repositories in Spring Boot, then FastAPI.
@@ -70,8 +78,8 @@ read AGREED_SPEC.md and the numbered task file
 
 ### Thursday
 
-- [ ] Read `AGREED_SPEC.md` and the Spring Boot build book.
-- [ ] Finish project scaffold, package layout, and CI pipeline.
+- [x] Read `AGREED_SPEC.md` and the Spring Boot build book.
+- [x] Finish project scaffold, package layout, and CI pipeline.
 - [ ] Write and pass `StatusTransitionPolicyTest`.
 - [ ] Start `AssignmentAuthorizationPolicyTest` if time remains.
 

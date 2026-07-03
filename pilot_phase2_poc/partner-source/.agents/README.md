@@ -29,6 +29,8 @@ AGREED_SPEC.md
 | [05-springboot-tdd-coach.md](personas/05-springboot-tdd-coach.md) | Rishi is building the Java/Spring Boot reference implementation. |
 | [06-fastapi-parity-coach.md](personas/06-fastapi-parity-coach.md) | Rishi is mirroring behavior in FastAPI. |
 | [07-ci-checker.md](personas/07-ci-checker.md) | Rishi is setting up or debugging GitHub Actions. |
+| [08-springboot-expert.md](personas/08-springboot-expert.md) | Rishi wants deeper Spring Boot and Java architecture explanations. |
+| [09-fastapi-expert.md](personas/09-fastapi-expert.md) | Rishi wants deeper FastAPI and Python architecture explanations. |
 
 ## Checklists
 
@@ -37,4 +39,3 @@ Use these before giving guidance:
 - [01-source-of-truth-check.md](checklists/01-source-of-truth-check.md)
 - [02-slice-1-no-scope-creep.md](checklists/02-slice-1-no-scope-creep.md)
 - [03-done-before-next-task.md](checklists/03-done-before-next-task.md)
-
