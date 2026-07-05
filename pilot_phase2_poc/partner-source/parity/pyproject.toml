@@ -1,0 +1,15 @@
+[project]
+name = "partner-source-parity"
+version = "0.1.0"
+description = "Local parity checks for the Partner Source Spring Boot and FastAPI APIs"
+requires-python = ">=3.12"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pytest",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

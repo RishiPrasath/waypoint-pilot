@@ -1,0 +1,2103 @@
+{
+  "summary": {
+    "timestamp": "2026-07-05T11:58:41+08:00",
+    "springBaseUrl": "http://localhost:8080",
+    "fastapiBaseUrl": "http://localhost:8000",
+    "total": 24,
+    "passed": 24,
+    "failed": 0,
+    "skipped": 0
+  },
+  "results": [
+    {
+      "scenario": {
+        "id": "service-health",
+        "use_case": "Service liveness",
+        "actor": "System",
+        "intent": "Confirm service process is running",
+        "resource": "health",
+        "method": "GET",
+        "path": "/health",
+        "expected_status": 200,
+        "body": null,
+        "expected_values": [
+          {
+            "path": "status",
+            "expected": "UP"
+          },
+          {
+            "path": "service",
+            "expected": "partner-source"
+          }
+        ],
+        "required_paths": [
+          "status",
+          "service"
+        ],
+        "compare_paths": [
+          "status",
+          "service"
+        ],
+        "contains_values": [],
+        "all_values": [],
+        "state_changing": false
+      },
+      "spring": {
+        "statusCode": 200,
+        "contentType": "application/json",
+        "body": {
+          "status": "UP",
+          "service": "partner-source"
+        },
+        "error": null
+      },
+      "fastapi": {
+        "statusCode": 200,
+        "contentType": "application/json",
+        "body": {
+          "status": "UP",
+          "service": "partner-source"
+        },
+        "error": null
+      },
+      "result": "PASS",
+      "mismatches": []
+    },
+    {
+      "scenario": {
+        "id": "service-readiness",
+        "use_case": "Service readiness",
+        "actor": "System",
+        "intent": "Confirm seed data and in-memory persistence are ready",
+        "resource": "ready",
+        "method": "GET",
+        "path": "/ready",
+        "expected_status": 200,
+        "body": null,
+        "expected_values": [
+          {
+            "path": "status",
+            "expected": "READY"
+          },
+          {
+            "path": "service",
+            "expected": "partner-source"
+          },
+          {
+            "path": "checks.persistence",
+            "expected": "UP"
+          },
+          {
+            "path": "checks.seedData",
+            "expected": "UP"
+          }
+        ],
+        "required_paths": [
+          "status",
+          "service",
+          "checks.persistence",
+          "checks.seedData"
+        ],
+        "compare_paths": [
+          "status",
+          "service",
+          "checks.persistence",
+          "checks.seedData"
+        ],
+        "contains_values": [],
+        "all_values": [],
+        "state_changing": false
+      },
+      "spring": {
+        "statusCode": 200,
+        "contentType": "application/json",
+        "body": {
+          "status": "READY",
+          "service": "partner-source",
+          "checks": {
+            "persistence": "UP",
+            "seedData": "UP"
+          }
+        },
+        "error": null
+      },
+      "fastapi": {
+        "statusCode": 200,
+        "contentType": "application/json",
+        "body": {
+          "status": "READY",
+          "service": "partner-source",
+          "checks": {
+            "persistence": "UP",
+            "seedData": "UP"
+          }
+        },
+        "error": null
+      },
+      "result": "PASS",
+      "mismatches": []
+    },
+    {
+      "scenario": {
+        "id": "CSA-02-order-status-happy-path",
+        "use_case": "CSA-02",
+        "actor": "Customer Service Agent",
+        "intent": "View current order status",
+        "resource": "orders",
+        "method": "GET",
+        "path": "/api/v1/orders/ORD-1001/status",
+        "expected_status": 200,
+        "body": null,
+        "expected_values": [
+          {
+            "path": "orderId",
+            "expected": "ORD-1001"
+          },
+          {
+            "path": "currentStatus",
+            "expected": "OUT_FOR_DELIVERY"
+          },
+          {
+            "path": "statusLabel",
+            "expected": "Out for delivery"
+          },
+          {
+            "path": "assignedDriver.driverId",
+            "expected": "DRV-2001"
+          }
+        ],
+        "required_paths": [
+          "orderId",
+          "currentStatus",
+          "statusLabel",
+          "deliveryWindow",
+          "assignedDriver.driverId",
+          "lastUpdatedAt"
+        ],
+        "compare_paths": [
+          "orderId",
+          "currentStatus",
+          "statusLabel",
+          "assignedDriver.driverId"
+        ],
+        "contains_values": [],
+        "all_values": [],
+        "state_changing": false
+      },
+      "spring": {
+        "statusCode": 200,
+        "contentType": "application/json",
+        "body": {
+          "orderId": "ORD-1001",
+          "currentStatus": "OUT_FOR_DELIVERY",
+          "statusLabel": "Out for delivery",
+          "currentLocation": null,
+          "estimatedDeliveryAt": null,
+          "deliveryWindow": {
+            "start": null,
+            "end": null
+          },
+          "assignedDriver": {
+            "driverId": "DRV-2001",
+            "displayName": "A. Kumar"
+          },
+          "lastUpdatedAt": "2026-07-02T09:00:00+08:00"
+        },
+        "error": null
+      },
+      "fastapi": {
+        "statusCode": 200,
+        "contentType": "application/json",
+        "body": {
+          "orderId": "ORD-1001",
+          "currentStatus": "OUT_FOR_DELIVERY",
+          "statusLabel": "Out for delivery",
+          "estimatedDeliveryAt": null,
+          "deliveryWindow": {
+            "start": null,
+            "end": null
+          },
+          "currentLocation": null,
+          "assignedDriver": {
+            "driverId": "DRV-2001",
+            "displayName": "A. Kumar"
+          },
+          "lastUpdatedAt": "2026-07-02T09:00:00Z"
+        },
+        "error": null
+      },
+      "result": "PASS",
+      "mismatches": []
+    },
+    {
+      "scenario": {
+        "id": "CSA-03-order-timeline-happy-path",
+        "use_case": "CSA-03",
+        "actor": "Customer Service Agent",
+        "intent": "View chronological order timeline",
+        "resource": "status-events",
+        "method": "GET",
+        "path": "/api/v1/orders/ORD-1001/timeline?page=1&pageSize=20",
+        "expected_status": 200,
+        "body": null,
+        "expected_values": [
+          {
+            "path": "orderId",
+            "expected": "ORD-1001"
+          },
+          {
+            "path": "page",
+            "expected": 1
+          },
+          {
+            "path": "pageSize",
+            "expected": 20
+          },
+          {
+            "path": "totalItems",
+            "expected": 5
+          },
+          {
+            "path": "items[0].eventId",
+            "expected": "EVT-4001"
+          },
+          {
+            "path": "items[4].eventId",
+            "expected": "EVT-4005"
+          }
+        ],
+        "required_paths": [
+          "orderId",
+          "items",
+          "page",
+          "pageSize",
+          "totalItems"
+        ],
+        "compare_paths": [
+          "orderId",
+          "page",
+          "pageSize",
+          "totalItems",
+          "items[0].status",
+          "items[4].status"
+        ],
+        "contains_values": [],
+        "all_values": [],
+        "state_changing": false
+      },
+      "spring": {
+        "statusCode": 200,
+        "contentType": "application/json",
+        "body": {
+          "orderId": "ORD-1001",
+          "items": [
+            {
+              "eventId": "EVT-4001",
+              "status": "CREATED",
+              "statusLabel": "Created",
+              "occurredAt": "2026-07-02T05:00:00+08:00",
+              "actorType": "SYSTEM",
+              "actorId": "system",
+              "location": null,
+              "note": null
+            },
+            {
+              "eventId": "EVT-4002",
+              "status": "CONFIRMED",
+              "statusLabel": "Confirmed",
+              "occurredAt": "2026-07-02T06:00:00+08:00",
+              "actorType": "SYSTEM",
+              "actorId": "system",
+              "location": null,
+              "note": null
+            },
+            {
+              "eventId": "EVT-4003",
+              "status": "PICKED_UP",
+              "statusLabel": "Picked up",
+              "occurredAt": "2026-07-02T07:00:00+08:00",
+              "actorType": "DRIVER",
+              "actorId": "DRV-2001",
+              "location": null,
+              "note": null
+            },
+            {
+              "eventId": "EVT-4004",
+              "status": "IN_TRANSIT",
+              "statusLabel": "In transit",
+              "occurredAt": "2026-07-02T08:00:00+08:00",
+              "actorType": "DRIVER",
+              "actorId": "DRV-2001",
+              "location": null,
+              "note": null
+            },
+            {
+              "eventId": "EVT-4005",
+              "status": "OUT_FOR_DELIVERY",
+              "statusLabel": "Out for delivery",
+              "occurredAt": "2026-07-02T09:00:00+08:00",
+              "actorType": "DRIVER",
+              "actorId": "DRV-2001",
+              "location": null,
+              "note": null
+            }
+          ],
+          "page": 1,
+          "pageSize": 20,
+          "totalItems": 5
+        },
+        "error": null
+      },
+      "fastapi": {
+        "statusCode": 200,
+        "contentType": "application/json",
+        "body": {
+          "orderId": "ORD-1001",
+          "items": [
+            {
+              "eventId": "EVT-4001",
+              "status": "CREATED",
+              "statusLabel": "Created",
+              "occurredAt": "2026-07-02T05:00:00Z",
+              "actorType": "SYSTEM",
+              "actorId": "system",
+              "location": null,
+              "note": null
+            },
+            {
+              "eventId": "EVT-4002",
+              "status": "CONFIRMED",
+              "statusLabel": "Confirmed",
+              "occurredAt": "2026-07-02T06:00:00Z",
+              "actorType": "SYSTEM",
+              "actorId": "system",
+              "location": null,
+              "note": null
+            },
+            {
+              "eventId": "EVT-4003",
+              "status": "PICKED_UP",
+              "statusLabel": "Picked up",
+              "occurredAt": "2026-07-02T07:00:00Z",
+              "actorType": "DRIVER",
+              "actorId": "DRV-2001",
+              "location": null,
+              "note": null
+            },
+            {
+              "eventId": "EVT-4004",
+              "status": "IN_TRANSIT",
+              "statusLabel": "In transit",
+              "occurredAt": "2026-07-02T08:00:00Z",
+              "actorType": "DRIVER",
+              "actorId": "DRV-2001",
+              "location": null,
+              "note": null
+            },
+            {
+              "eventId": "EVT-4005",
+              "status": "OUT_FOR_DELIVERY",
+              "statusLabel": "Out for delivery",
+              "occurredAt": "2026-07-02T09:00:00Z",
+              "actorType": "DRIVER",
+              "actorId": "DRV-2001",
+              "location": null,
+              "note": null
+            }
+          ],
+          "page": 1,
+          "pageSize": 20,
+          "totalItems": 5
+        },
+        "error": null
+      },
+      "result": "PASS",
+      "mismatches": []
+    },
+    {
+      "scenario": {
+        "id": "DA-01-driver-profile-happy-path",
+        "use_case": "DA-01",
+        "actor": "Delivery Agent",
+        "intent": "Confirm seeded driver identity",
+        "resource": "drivers",
+        "method": "GET",
+        "path": "/api/v1/drivers/DRV-2001",
+        "expected_status": 200,
+        "body": null,
+        "expected_values": [
+          {
+            "path": "driverId",
+            "expected": "DRV-2001"
+          },
+          {
+            "path": "availabilityStatus",
+            "expected": "AVAILABLE"
+          },
+          {
+            "path": "activeAssignmentCount",
+            "expected": 2
+          }
+        ],
+        "required_paths": [
+          "driverId",
+          "displayName",
+          "availabilityStatus",
+          "activeAssignmentCount"
+        ],
+        "compare_paths": [
+          "driverId",
+          "displayName",
+          "availabilityStatus",
+          "activeAssignmentCount"
+        ],
+        "contains_values": [],
+        "all_values": [],
+        "state_changing": false
+      },
+      "spring": {
+        "statusCode": 200,
+        "contentType": "application/json",
+        "body": {
+          "driverId": "DRV-2001",
+          "displayName": "A. Kumar",
+          "availabilityStatus": "AVAILABLE",
+          "activeAssignmentCount": 2
+        },
+        "error": null
+      },
+      "fastapi": {
+        "statusCode": 200,
+        "contentType": "application/json",
+        "body": {
+          "driverId": "DRV-2001",
+          "displayName": "A. Kumar",
+          "availabilityStatus": "AVAILABLE",
+          "activeAssignmentCount": 2
+        },
+        "error": null
+      },
+      "result": "PASS",
+      "mismatches": []
+    },
+    {
+      "scenario": {
+        "id": "DA-02-driver-assignments-active-driver",
+        "use_case": "DA-02",
+        "actor": "Delivery Agent",
+        "intent": "Retrieve active assigned orders",
+        "resource": "assignments",
+        "method": "GET",
+        "path": "/api/v1/drivers/DRV-2001/assignments?page=1&pageSize=20",
+        "expected_status": 200,
+        "body": null,
+        "expected_values": [
+          {
+            "path": "driverId",
+            "expected": "DRV-2001"
+          },
+          {
+            "path": "page",
+            "expected": 1
+          },
+          {
+            "path": "pageSize",
+            "expected": 20
+          },
+          {
+            "path": "totalItems",
+            "expected": 2
+          }
+        ],
+        "required_paths": [
+          "driverId",
+          "items",
+          "page",
+          "pageSize",
+          "totalItems"
+        ],
+        "compare_paths": [
+          "driverId",
+          "page",
+          "pageSize",
+          "totalItems"
+        ],
+        "contains_values": [
+          {
+            "path": "items[*].orderId",
+            "expected": [
+              "ORD-1001",
+              "ORD-1002"
+            ]
+          }
+        ],
+        "all_values": [],
+        "state_changing": false
+      },
+      "spring": {
+        "statusCode": 200,
+        "contentType": "application/json",
+        "body": {
+          "driverId": "DRV-2001",
+          "items": [
+            {
+              "assignmentId": "ASN-3001",
+              "orderId": "ORD-1001",
+              "assignmentStatus": "ASSIGNED",
+              "currentStatus": "OUT_FOR_DELIVERY",
+              "recipientName": "Jamie Tan",
+              "deliveryAddressSummary": "Tampines, Singapore",
+              "deliveryWindow": {
+                "start": null,
+                "end": null
+              },
+              "lastUpdatedAt": "2026-07-02T09:00:00+08:00"
+            },
+            {
+              "assignmentId": "ASN-3002",
+              "orderId": "ORD-1002",
+              "assignmentStatus": "ASSIGNED",
+              "currentStatus": "IN_TRANSIT",
+              "recipientName": "Priya Nair",
+              "deliveryAddressSummary": "Jurong East, Singapore",
+              "deliveryWindow": {
+                "start": null,
+                "end": null
+              },
+              "lastUpdatedAt": "2026-07-02T08:30:00+08:00"
+            }
+          ],
+          "page": 1,
+          "pageSize": 20,
+          "totalItems": 2
+        },
+        "error": null
+      },
+      "fastapi": {
+        "statusCode": 200,
+        "contentType": "application/json",
+        "body": {
+          "driverId": "DRV-2001",
+          "items": [
+            {
+              "assignmentId": "ASN-3001",
+              "orderId": "ORD-1001",
+              "assignmentStatus": "ASSIGNED",
+              "currentStatus": "OUT_FOR_DELIVERY",
+              "recipientName": "Jamie Tan",
+              "deliveryAddressSummary": "Tampines, Singapore",
+              "deliveryWindow": {
+                "start": null,
+                "end": null
+              },
+              "lastUpdatedAt": "2026-07-02T09:00:00Z"
+            },
+            {
+              "assignmentId": "ASN-3002",
+              "orderId": "ORD-1002",
+              "assignmentStatus": "ASSIGNED",
+              "currentStatus": "IN_TRANSIT",
+              "recipientName": "Priya Nair",
+              "deliveryAddressSummary": "Jurong East, Singapore",
+              "deliveryWindow": {
+                "start": null,
+                "end": null
+              },
+              "lastUpdatedAt": "2026-07-02T08:30:00Z"
+            }
+          ],
+          "page": 1,
+          "pageSize": 20,
+          "totalItems": 2
+        },
+        "error": null
+      },
+      "result": "PASS",
+      "mismatches": []
+    },
+    {
+      "scenario": {
+        "id": "DA-02-driver-assignments-filtered-status",
+        "use_case": "DA-02",
+        "actor": "Delivery Agent",
+        "intent": "Filter assigned orders by current status",
+        "resource": "assignments",
+        "method": "GET",
+        "path": "/api/v1/drivers/DRV-2001/assignments?status=OUT_FOR_DELIVERY&page=1&pageSize=20",
+        "expected_status": 200,
+        "body": null,
+        "expected_values": [
+          {
+            "path": "driverId",
+            "expected": "DRV-2001"
+          },
+          {
+            "path": "page",
+            "expected": 1
+          },
+          {
+            "path": "pageSize",
+            "expected": 20
+          },
+          {
+            "path": "totalItems",
+            "expected": 1
+          }
+        ],
+        "required_paths": [
+          "driverId",
+          "items",
+          "page",
+          "pageSize",
+          "totalItems"
+        ],
+        "compare_paths": [
+          "driverId",
+          "page",
+          "pageSize",
+          "totalItems"
+        ],
+        "contains_values": [
+          {
+            "path": "items[*].orderId",
+            "expected": [
+              "ORD-1001"
+            ]
+          }
+        ],
+        "all_values": [
+          {
+            "path": "items[*].currentStatus",
+            "expected": "OUT_FOR_DELIVERY"
+          }
+        ],
+        "state_changing": false
+      },
+      "spring": {
+        "statusCode": 200,
+        "contentType": "application/json",
+        "body": {
+          "driverId": "DRV-2001",
+          "items": [
+            {
+              "assignmentId": "ASN-3001",
+              "orderId": "ORD-1001",
+              "assignmentStatus": "ASSIGNED",
+              "currentStatus": "OUT_FOR_DELIVERY",
+              "recipientName": "Jamie Tan",
+              "deliveryAddressSummary": "Tampines, Singapore",
+              "deliveryWindow": {
+                "start": null,
+                "end": null
+              },
+              "lastUpdatedAt": "2026-07-02T09:00:00+08:00"
+            }
+          ],
+          "page": 1,
+          "pageSize": 20,
+          "totalItems": 1
+        },
+        "error": null
+      },
+      "fastapi": {
+        "statusCode": 200,
+        "contentType": "application/json",
+        "body": {
+          "driverId": "DRV-2001",
+          "items": [
+            {
+              "assignmentId": "ASN-3001",
+              "orderId": "ORD-1001",
+              "assignmentStatus": "ASSIGNED",
+              "currentStatus": "OUT_FOR_DELIVERY",
+              "recipientName": "Jamie Tan",
+              "deliveryAddressSummary": "Tampines, Singapore",
+              "deliveryWindow": {
+                "start": null,
+                "end": null
+              },
+              "lastUpdatedAt": "2026-07-02T09:00:00Z"
+            }
+          ],
+          "page": 1,
+          "pageSize": 20,
+          "totalItems": 1
+        },
+        "error": null
+      },
+      "result": "PASS",
+      "mismatches": []
+    },
+    {
+      "scenario": {
+        "id": "DA-02-driver-assignments-empty-driver",
+        "use_case": "DA-02",
+        "actor": "Delivery Agent",
+        "intent": "Retrieve assignments for driver with no active assignments",
+        "resource": "assignments",
+        "method": "GET",
+        "path": "/api/v1/drivers/DRV-2003/assignments?page=1&pageSize=20",
+        "expected_status": 200,
+        "body": null,
+        "expected_values": [
+          {
+            "path": "driverId",
+            "expected": "DRV-2003"
+          },
+          {
+            "path": "items",
+            "expected": []
+          },
+          {
+            "path": "totalItems",
+            "expected": 0
+          }
+        ],
+        "required_paths": [
+          "driverId",
+          "items",
+          "page",
+          "pageSize",
+          "totalItems"
+        ],
+        "compare_paths": [
+          "driverId",
+          "items",
+          "totalItems"
+        ],
+        "contains_values": [],
+        "all_values": [],
+        "state_changing": false
+      },
+      "spring": {
+        "statusCode": 200,
+        "contentType": "application/json",
+        "body": {
+          "driverId": "DRV-2003",
+          "items": [],
+          "page": 1,
+          "pageSize": 20,
+          "totalItems": 0
+        },
+        "error": null
+      },
+      "fastapi": {
+        "statusCode": 200,
+        "contentType": "application/json",
+        "body": {
+          "driverId": "DRV-2003",
+          "items": [],
+          "page": 1,
+          "pageSize": 20,
+          "totalItems": 0
+        },
+        "error": null
+      },
+      "result": "PASS",
+      "mismatches": []
+    },
+    {
+      "scenario": {
+        "id": "CSA-01-order-status-missing-order",
+        "use_case": "CSA-01",
+        "actor": "Customer Service Agent",
+        "intent": "Look up missing order by order ID",
+        "resource": "orders",
+        "method": "GET",
+        "path": "/api/v1/orders/ORD-9999/status",
+        "expected_status": 404,
+        "body": null,
+        "expected_values": [
+          {
+            "path": "status",
+            "expected": 404
+          },
+          {
+            "path": "errorCode",
+            "expected": "ORDER_NOT_FOUND"
+          },
+          {
+            "path": "instance",
+            "expected": "/api/v1/orders/ORD-9999/status"
+          }
+        ],
+        "required_paths": [
+          "type",
+          "title",
+          "status",
+          "detail",
+          "instance",
+          "errorCode",
+          "correlationId"
+        ],
+        "compare_paths": [
+          "type",
+          "title",
+          "status",
+          "errorCode",
+          "instance"
+        ],
+        "contains_values": [],
+        "all_values": [],
+        "state_changing": false
+      },
+      "spring": {
+        "statusCode": 404,
+        "contentType": "application/problem+json",
+        "body": {
+          "type": "https://waypoint.local/problems/order-not-found",
+          "title": "Order not found",
+          "status": 404,
+          "detail": "No order exists for orderId ORD-9999.",
+          "instance": "/api/v1/orders/ORD-9999/status",
+          "errorCode": "ORDER_NOT_FOUND",
+          "correlationId": "local-dev"
+        },
+        "error": null
+      },
+      "fastapi": {
+        "statusCode": 404,
+        "contentType": "application/problem+json",
+        "body": {
+          "type": "https://waypoint.local/problems/order-not-found",
+          "title": "Order not found",
+          "status": 404,
+          "detail": "No order exists for orderId ORD-9999.",
+          "instance": "/api/v1/orders/ORD-9999/status",
+          "errorCode": "ORDER_NOT_FOUND",
+          "correlationId": "local-dev"
+        },
+        "error": null
+      },
+      "result": "PASS",
+      "mismatches": []
+    },
+    {
+      "scenario": {
+        "id": "CSA-01-order-status-invalid-id",
+        "use_case": "CSA-01",
+        "actor": "Customer Service Agent",
+        "intent": "Reject malformed order ID",
+        "resource": "orders",
+        "method": "GET",
+        "path": "/api/v1/orders/INVALID/status",
+        "expected_status": 400,
+        "body": null,
+        "expected_values": [
+          {
+            "path": "status",
+            "expected": 400
+          },
+          {
+            "path": "errorCode",
+            "expected": "INVALID_REQUEST"
+          },
+          {
+            "path": "instance",
+            "expected": "/api/v1/orders/INVALID/status"
+          }
+        ],
+        "required_paths": [
+          "type",
+          "title",
+          "status",
+          "detail",
+          "instance",
+          "errorCode",
+          "correlationId"
+        ],
+        "compare_paths": [
+          "type",
+          "title",
+          "status",
+          "errorCode",
+          "instance"
+        ],
+        "contains_values": [],
+        "all_values": [],
+        "state_changing": false
+      },
+      "spring": {
+        "statusCode": 400,
+        "contentType": "application/problem+json",
+        "body": {
+          "type": "https://waypoint.local/problems/invalid-request",
+          "title": "Invalid request",
+          "status": 400,
+          "detail": "Invalid orderId.",
+          "instance": "/api/v1/orders/INVALID/status",
+          "errorCode": "INVALID_REQUEST",
+          "correlationId": "local-dev"
+        },
+        "error": null
+      },
+      "fastapi": {
+        "statusCode": 400,
+        "contentType": "application/problem+json",
+        "body": {
+          "type": "https://waypoint.local/problems/invalid-request",
+          "title": "Invalid request",
+          "status": 400,
+          "detail": "Invalid orderId.",
+          "instance": "/api/v1/orders/INVALID/status",
+          "errorCode": "INVALID_REQUEST",
+          "correlationId": "local-dev"
+        },
+        "error": null
+      },
+      "result": "PASS",
+      "mismatches": []
+    },
+    {
+      "scenario": {
+        "id": "CSA-03-order-timeline-missing-order",
+        "use_case": "CSA-03",
+        "actor": "Customer Service Agent",
+        "intent": "Reject timeline lookup for missing order",
+        "resource": "status-events",
+        "method": "GET",
+        "path": "/api/v1/orders/ORD-9999/timeline?page=1&pageSize=20",
+        "expected_status": 404,
+        "body": null,
+        "expected_values": [
+          {
+            "path": "status",
+            "expected": 404
+          },
+          {
+            "path": "errorCode",
+            "expected": "ORDER_NOT_FOUND"
+          },
+          {
+            "path": "instance",
+            "expected": "/api/v1/orders/ORD-9999/timeline"
+          }
+        ],
+        "required_paths": [
+          "type",
+          "title",
+          "status",
+          "detail",
+          "instance",
+          "errorCode",
+          "correlationId"
+        ],
+        "compare_paths": [
+          "type",
+          "title",
+          "status",
+          "errorCode",
+          "instance"
+        ],
+        "contains_values": [],
+        "all_values": [],
+        "state_changing": false
+      },
+      "spring": {
+        "statusCode": 404,
+        "contentType": "application/problem+json",
+        "body": {
+          "type": "https://waypoint.local/problems/order-not-found",
+          "title": "Order not found",
+          "status": 404,
+          "detail": "No order exists for orderId ORD-9999.",
+          "instance": "/api/v1/orders/ORD-9999/timeline",
+          "errorCode": "ORDER_NOT_FOUND",
+          "correlationId": "local-dev"
+        },
+        "error": null
+      },
+      "fastapi": {
+        "statusCode": 404,
+        "contentType": "application/problem+json",
+        "body": {
+          "type": "https://waypoint.local/problems/order-not-found",
+          "title": "Order not found",
+          "status": 404,
+          "detail": "No order exists for orderId ORD-9999.",
+          "instance": "/api/v1/orders/ORD-9999/timeline",
+          "errorCode": "ORDER_NOT_FOUND",
+          "correlationId": "local-dev"
+        },
+        "error": null
+      },
+      "result": "PASS",
+      "mismatches": []
+    },
+    {
+      "scenario": {
+        "id": "CSA-03-order-timeline-invalid-page",
+        "use_case": "CSA-03",
+        "actor": "Customer Service Agent",
+        "intent": "Reject invalid timeline pagination",
+        "resource": "status-events",
+        "method": "GET",
+        "path": "/api/v1/orders/ORD-1001/timeline?page=0&pageSize=20",
+        "expected_status": 400,
+        "body": null,
+        "expected_values": [
+          {
+            "path": "status",
+            "expected": 400
+          },
+          {
+            "path": "errorCode",
+            "expected": "INVALID_REQUEST"
+          },
+          {
+            "path": "instance",
+            "expected": "/api/v1/orders/ORD-1001/timeline"
+          }
+        ],
+        "required_paths": [
+          "type",
+          "title",
+          "status",
+          "detail",
+          "instance",
+          "errorCode",
+          "correlationId"
+        ],
+        "compare_paths": [
+          "type",
+          "title",
+          "status",
+          "errorCode",
+          "instance"
+        ],
+        "contains_values": [],
+        "all_values": [],
+        "state_changing": false
+      },
+      "spring": {
+        "statusCode": 400,
+        "contentType": "application/problem+json",
+        "body": {
+          "type": "https://waypoint.local/problems/invalid-request",
+          "title": "Invalid request",
+          "status": 400,
+          "detail": "Invalid timeline request.",
+          "instance": "/api/v1/orders/ORD-1001/timeline",
+          "errorCode": "INVALID_REQUEST",
+          "correlationId": "local-dev"
+        },
+        "error": null
+      },
+      "fastapi": {
+        "statusCode": 400,
+        "contentType": "application/problem+json",
+        "body": {
+          "type": "https://waypoint.local/problems/invalid-request",
+          "title": "Invalid request",
+          "status": 400,
+          "detail": "Invalid timeline request.",
+          "instance": "/api/v1/orders/ORD-1001/timeline",
+          "errorCode": "INVALID_REQUEST",
+          "correlationId": "local-dev"
+        },
+        "error": null
+      },
+      "result": "PASS",
+      "mismatches": []
+    },
+    {
+      "scenario": {
+        "id": "DA-01-driver-profile-missing-driver",
+        "use_case": "DA-01",
+        "actor": "Delivery Agent",
+        "intent": "Reject missing driver lookup",
+        "resource": "drivers",
+        "method": "GET",
+        "path": "/api/v1/drivers/DRV-9999",
+        "expected_status": 404,
+        "body": null,
+        "expected_values": [
+          {
+            "path": "status",
+            "expected": 404
+          },
+          {
+            "path": "errorCode",
+            "expected": "DRIVER_NOT_FOUND"
+          },
+          {
+            "path": "instance",
+            "expected": "/api/v1/drivers/DRV-9999"
+          }
+        ],
+        "required_paths": [
+          "type",
+          "title",
+          "status",
+          "detail",
+          "instance",
+          "errorCode",
+          "correlationId"
+        ],
+        "compare_paths": [
+          "type",
+          "title",
+          "status",
+          "errorCode",
+          "instance"
+        ],
+        "contains_values": [],
+        "all_values": [],
+        "state_changing": false
+      },
+      "spring": {
+        "statusCode": 404,
+        "contentType": "application/problem+json",
+        "body": {
+          "type": "https://waypoint.local/problems/driver-not-found",
+          "title": "Driver not found",
+          "status": 404,
+          "detail": "No driver exists for driverId DRV-9999.",
+          "instance": "/api/v1/drivers/DRV-9999",
+          "errorCode": "DRIVER_NOT_FOUND",
+          "correlationId": "local-dev"
+        },
+        "error": null
+      },
+      "fastapi": {
+        "statusCode": 404,
+        "contentType": "application/problem+json",
+        "body": {
+          "type": "https://waypoint.local/problems/driver-not-found",
+          "title": "Driver not found",
+          "status": 404,
+          "detail": "No driver exists for driverId DRV-9999.",
+          "instance": "/api/v1/drivers/DRV-9999",
+          "errorCode": "DRIVER_NOT_FOUND",
+          "correlationId": "local-dev"
+        },
+        "error": null
+      },
+      "result": "PASS",
+      "mismatches": []
+    },
+    {
+      "scenario": {
+        "id": "DA-01-driver-profile-invalid-id",
+        "use_case": "DA-01",
+        "actor": "Delivery Agent",
+        "intent": "Reject malformed driver ID",
+        "resource": "drivers",
+        "method": "GET",
+        "path": "/api/v1/drivers/INVALID",
+        "expected_status": 400,
+        "body": null,
+        "expected_values": [
+          {
+            "path": "status",
+            "expected": 400
+          },
+          {
+            "path": "errorCode",
+            "expected": "INVALID_REQUEST"
+          },
+          {
+            "path": "instance",
+            "expected": "/api/v1/drivers/INVALID"
+          }
+        ],
+        "required_paths": [
+          "type",
+          "title",
+          "status",
+          "detail",
+          "instance",
+          "errorCode",
+          "correlationId"
+        ],
+        "compare_paths": [
+          "type",
+          "title",
+          "status",
+          "errorCode",
+          "instance"
+        ],
+        "contains_values": [],
+        "all_values": [],
+        "state_changing": false
+      },
+      "spring": {
+        "statusCode": 400,
+        "contentType": "application/problem+json",
+        "body": {
+          "type": "https://waypoint.local/problems/invalid-request",
+          "title": "Invalid request",
+          "status": 400,
+          "detail": "Invalid driverId.",
+          "instance": "/api/v1/drivers/INVALID",
+          "errorCode": "INVALID_REQUEST",
+          "correlationId": "local-dev"
+        },
+        "error": null
+      },
+      "fastapi": {
+        "statusCode": 400,
+        "contentType": "application/problem+json",
+        "body": {
+          "type": "https://waypoint.local/problems/invalid-request",
+          "title": "Invalid request",
+          "status": 400,
+          "detail": "Invalid driverId.",
+          "instance": "/api/v1/drivers/INVALID",
+          "errorCode": "INVALID_REQUEST",
+          "correlationId": "local-dev"
+        },
+        "error": null
+      },
+      "result": "PASS",
+      "mismatches": []
+    },
+    {
+      "scenario": {
+        "id": "DA-02-driver-assignments-invalid-status-filter",
+        "use_case": "DA-02",
+        "actor": "Delivery Agent",
+        "intent": "Reject invalid assignment status filter",
+        "resource": "assignments",
+        "method": "GET",
+        "path": "/api/v1/drivers/DRV-2001/assignments?status=NOT_A_STATUS&page=1&pageSize=20",
+        "expected_status": 400,
+        "body": null,
+        "expected_values": [
+          {
+            "path": "status",
+            "expected": 400
+          },
+          {
+            "path": "errorCode",
+            "expected": "INVALID_REQUEST"
+          },
+          {
+            "path": "instance",
+            "expected": "/api/v1/drivers/DRV-2001/assignments"
+          }
+        ],
+        "required_paths": [
+          "type",
+          "title",
+          "status",
+          "detail",
+          "instance",
+          "errorCode",
+          "correlationId"
+        ],
+        "compare_paths": [
+          "type",
+          "title",
+          "status",
+          "errorCode",
+          "instance"
+        ],
+        "contains_values": [],
+        "all_values": [],
+        "state_changing": false
+      },
+      "spring": {
+        "statusCode": 400,
+        "contentType": "application/problem+json",
+        "body": {
+          "type": "https://waypoint.local/problems/invalid-request",
+          "title": "Invalid request",
+          "status": 400,
+          "detail": "Request validation failed.",
+          "instance": "/api/v1/drivers/DRV-2001/assignments",
+          "errorCode": "INVALID_REQUEST",
+          "correlationId": "local-dev"
+        },
+        "error": null
+      },
+      "fastapi": {
+        "statusCode": 400,
+        "contentType": "application/problem+json",
+        "body": {
+          "type": "https://waypoint.local/problems/invalid-request",
+          "title": "Invalid request",
+          "status": 400,
+          "detail": "Request validation failed.",
+          "instance": "/api/v1/drivers/DRV-2001/assignments",
+          "errorCode": "INVALID_REQUEST",
+          "correlationId": "local-dev"
+        },
+        "error": null
+      },
+      "result": "PASS",
+      "mismatches": []
+    },
+    {
+      "scenario": {
+        "id": "DA-02-driver-assignments-missing-driver",
+        "use_case": "DA-02",
+        "actor": "Delivery Agent",
+        "intent": "Reject assignment lookup for missing driver",
+        "resource": "assignments",
+        "method": "GET",
+        "path": "/api/v1/drivers/DRV-9999/assignments?page=1&pageSize=20",
+        "expected_status": 404,
+        "body": null,
+        "expected_values": [
+          {
+            "path": "status",
+            "expected": 404
+          },
+          {
+            "path": "errorCode",
+            "expected": "DRIVER_NOT_FOUND"
+          },
+          {
+            "path": "instance",
+            "expected": "/api/v1/drivers/DRV-9999/assignments"
+          }
+        ],
+        "required_paths": [
+          "type",
+          "title",
+          "status",
+          "detail",
+          "instance",
+          "errorCode",
+          "correlationId"
+        ],
+        "compare_paths": [
+          "type",
+          "title",
+          "status",
+          "errorCode",
+          "instance"
+        ],
+        "contains_values": [],
+        "all_values": [],
+        "state_changing": false
+      },
+      "spring": {
+        "statusCode": 404,
+        "contentType": "application/problem+json",
+        "body": {
+          "type": "https://waypoint.local/problems/driver-not-found",
+          "title": "Driver not found",
+          "status": 404,
+          "detail": "No driver exists for driverId DRV-9999.",
+          "instance": "/api/v1/drivers/DRV-9999/assignments",
+          "errorCode": "DRIVER_NOT_FOUND",
+          "correlationId": "local-dev"
+        },
+        "error": null
+      },
+      "fastapi": {
+        "statusCode": 404,
+        "contentType": "application/problem+json",
+        "body": {
+          "type": "https://waypoint.local/problems/driver-not-found",
+          "title": "Driver not found",
+          "status": 404,
+          "detail": "No driver exists for driverId DRV-9999.",
+          "instance": "/api/v1/drivers/DRV-9999/assignments",
+          "errorCode": "DRIVER_NOT_FOUND",
+          "correlationId": "local-dev"
+        },
+        "error": null
+      },
+      "result": "PASS",
+      "mismatches": []
+    },
+    {
+      "scenario": {
+        "id": "DA-02-driver-assignments-invalid-page",
+        "use_case": "DA-02",
+        "actor": "Delivery Agent",
+        "intent": "Reject invalid assignment pagination",
+        "resource": "assignments",
+        "method": "GET",
+        "path": "/api/v1/drivers/DRV-2001/assignments?page=0&pageSize=20",
+        "expected_status": 400,
+        "body": null,
+        "expected_values": [
+          {
+            "path": "status",
+            "expected": 400
+          },
+          {
+            "path": "errorCode",
+            "expected": "INVALID_REQUEST"
+          },
+          {
+            "path": "instance",
+            "expected": "/api/v1/drivers/DRV-2001/assignments"
+          }
+        ],
+        "required_paths": [
+          "type",
+          "title",
+          "status",
+          "detail",
+          "instance",
+          "errorCode",
+          "correlationId"
+        ],
+        "compare_paths": [
+          "type",
+          "title",
+          "status",
+          "errorCode",
+          "instance"
+        ],
+        "contains_values": [],
+        "all_values": [],
+        "state_changing": false
+      },
+      "spring": {
+        "statusCode": 400,
+        "contentType": "application/problem+json",
+        "body": {
+          "type": "https://waypoint.local/problems/invalid-request",
+          "title": "Invalid request",
+          "status": 400,
+          "detail": "Invalid driver assignment request.",
+          "instance": "/api/v1/drivers/DRV-2001/assignments",
+          "errorCode": "INVALID_REQUEST",
+          "correlationId": "local-dev"
+        },
+        "error": null
+      },
+      "fastapi": {
+        "statusCode": 400,
+        "contentType": "application/problem+json",
+        "body": {
+          "type": "https://waypoint.local/problems/invalid-request",
+          "title": "Invalid request",
+          "status": 400,
+          "detail": "Invalid driver assignment request.",
+          "instance": "/api/v1/drivers/DRV-2001/assignments",
+          "errorCode": "INVALID_REQUEST",
+          "correlationId": "local-dev"
+        },
+        "error": null
+      },
+      "result": "PASS",
+      "mismatches": []
+    },
+    {
+      "scenario": {
+        "id": "DA-05-status-event-unassigned-driver",
+        "use_case": "DA-05",
+        "actor": "Delivery Agent",
+        "intent": "Reject status event from unassigned driver",
+        "resource": "status-events",
+        "method": "POST",
+        "path": "/api/v1/orders/ORD-1001/status-events",
+        "expected_status": 403,
+        "body": {
+          "driverId": "DRV-2002",
+          "status": "DELIVERED",
+          "occurredAt": "2026-06-30T15:40:00+08:00",
+          "note": "This should fail because DRV-2002 is not assigned to ORD-1001",
+          "proofOfDeliveryAvailable": false
+        },
+        "expected_values": [
+          {
+            "path": "status",
+            "expected": 403
+          },
+          {
+            "path": "errorCode",
+            "expected": "ORDER_NOT_ASSIGNED_TO_DRIVER"
+          },
+          {
+            "path": "instance",
+            "expected": "/api/v1/orders/ORD-1001/status-events"
+          }
+        ],
+        "required_paths": [
+          "type",
+          "title",
+          "status",
+          "detail",
+          "instance",
+          "errorCode",
+          "correlationId"
+        ],
+        "compare_paths": [
+          "type",
+          "title",
+          "status",
+          "errorCode",
+          "instance"
+        ],
+        "contains_values": [],
+        "all_values": [],
+        "state_changing": false
+      },
+      "spring": {
+        "statusCode": 403,
+        "contentType": "application/problem+json",
+        "body": {
+          "type": "https://waypoint.local/problems/order-not-assigned-to-driver",
+          "title": "Order not assigned to driver",
+          "status": 403,
+          "detail": "Driver DRV-2002 is not assigned to order ORD-1001.",
+          "instance": "/api/v1/orders/ORD-1001/status-events",
+          "errorCode": "ORDER_NOT_ASSIGNED_TO_DRIVER",
+          "correlationId": "local-dev"
+        },
+        "error": null
+      },
+      "fastapi": {
+        "statusCode": 403,
+        "contentType": "application/problem+json",
+        "body": {
+          "type": "https://waypoint.local/problems/order-not-assigned-to-driver",
+          "title": "Order not assigned to driver",
+          "status": 403,
+          "detail": "Driver DRV-2002 is not assigned to order ORD-1001.",
+          "instance": "/api/v1/orders/ORD-1001/status-events",
+          "errorCode": "ORDER_NOT_ASSIGNED_TO_DRIVER",
+          "correlationId": "local-dev"
+        },
+        "error": null
+      },
+      "result": "PASS",
+      "mismatches": []
+    },
+    {
+      "scenario": {
+        "id": "DA-05-status-event-missing-driver",
+        "use_case": "DA-05",
+        "actor": "Delivery Agent",
+        "intent": "Reject status event from missing driver",
+        "resource": "status-events",
+        "method": "POST",
+        "path": "/api/v1/orders/ORD-1001/status-events",
+        "expected_status": 404,
+        "body": {
+          "driverId": "DRV-9999",
+          "status": "DELIVERED",
+          "occurredAt": "2026-06-30T15:41:00+08:00",
+          "note": "This should fail because DRV-9999 does not exist",
+          "proofOfDeliveryAvailable": false
+        },
+        "expected_values": [
+          {
+            "path": "status",
+            "expected": 404
+          },
+          {
+            "path": "errorCode",
+            "expected": "DRIVER_NOT_FOUND"
+          },
+          {
+            "path": "instance",
+            "expected": "/api/v1/orders/ORD-1001/status-events"
+          }
+        ],
+        "required_paths": [
+          "type",
+          "title",
+          "status",
+          "detail",
+          "instance",
+          "errorCode",
+          "correlationId"
+        ],
+        "compare_paths": [
+          "type",
+          "title",
+          "status",
+          "errorCode",
+          "instance"
+        ],
+        "contains_values": [],
+        "all_values": [],
+        "state_changing": false
+      },
+      "spring": {
+        "statusCode": 404,
+        "contentType": "application/problem+json",
+        "body": {
+          "type": "https://waypoint.local/problems/driver-not-found",
+          "title": "Driver not found",
+          "status": 404,
+          "detail": "No driver exists for driverId DRV-9999.",
+          "instance": "/api/v1/orders/ORD-1001/status-events",
+          "errorCode": "DRIVER_NOT_FOUND",
+          "correlationId": "local-dev"
+        },
+        "error": null
+      },
+      "fastapi": {
+        "statusCode": 404,
+        "contentType": "application/problem+json",
+        "body": {
+          "type": "https://waypoint.local/problems/driver-not-found",
+          "title": "Driver not found",
+          "status": 404,
+          "detail": "No driver exists for driverId DRV-9999.",
+          "instance": "/api/v1/orders/ORD-1001/status-events",
+          "errorCode": "DRIVER_NOT_FOUND",
+          "correlationId": "local-dev"
+        },
+        "error": null
+      },
+      "result": "PASS",
+      "mismatches": []
+    },
+    {
+      "scenario": {
+        "id": "DA-05-status-event-invalid-transition",
+        "use_case": "DA-05",
+        "actor": "Delivery Agent",
+        "intent": "Reject invalid status transition",
+        "resource": "status-events",
+        "method": "POST",
+        "path": "/api/v1/orders/ORD-1003/status-events",
+        "expected_status": 409,
+        "body": {
+          "driverId": "DRV-2001",
+          "status": "OUT_FOR_DELIVERY",
+          "occurredAt": "2026-06-30T15:42:00+08:00",
+          "note": "This should fail because ORD-1003 is already delivered",
+          "proofOfDeliveryAvailable": false
+        },
+        "expected_values": [
+          {
+            "path": "status",
+            "expected": 409
+          },
+          {
+            "path": "errorCode",
+            "expected": "INVALID_STATUS_TRANSITION"
+          },
+          {
+            "path": "instance",
+            "expected": "/api/v1/orders/ORD-1003/status-events"
+          }
+        ],
+        "required_paths": [
+          "type",
+          "title",
+          "status",
+          "detail",
+          "instance",
+          "errorCode",
+          "correlationId"
+        ],
+        "compare_paths": [
+          "type",
+          "title",
+          "status",
+          "errorCode",
+          "instance"
+        ],
+        "contains_values": [],
+        "all_values": [],
+        "state_changing": false
+      },
+      "spring": {
+        "statusCode": 409,
+        "contentType": "application/problem+json",
+        "body": {
+          "type": "https://waypoint.local/problems/invalid-status-transition",
+          "title": "Invalid status transition",
+          "status": 409,
+          "detail": "Cannot transition order ORD-1003 from DELIVERED to OUT_FOR_DELIVERY.",
+          "instance": "/api/v1/orders/ORD-1003/status-events",
+          "errorCode": "INVALID_STATUS_TRANSITION",
+          "correlationId": "local-dev"
+        },
+        "error": null
+      },
+      "fastapi": {
+        "statusCode": 409,
+        "contentType": "application/problem+json",
+        "body": {
+          "type": "https://waypoint.local/problems/invalid-status-transition",
+          "title": "Invalid status transition",
+          "status": 409,
+          "detail": "Cannot transition order ORD-1003 from DELIVERED to OUT_FOR_DELIVERY.",
+          "instance": "/api/v1/orders/ORD-1003/status-events",
+          "errorCode": "INVALID_STATUS_TRANSITION",
+          "correlationId": "local-dev"
+        },
+        "error": null
+      },
+      "result": "PASS",
+      "mismatches": []
+    },
+    {
+      "scenario": {
+        "id": "DA-05-status-event-future-occurred-at",
+        "use_case": "DA-05",
+        "actor": "Delivery Agent",
+        "intent": "Reject semantically invalid future status event",
+        "resource": "status-events",
+        "method": "POST",
+        "path": "/api/v1/orders/ORD-1001/status-events",
+        "expected_status": 422,
+        "body": {
+          "driverId": "DRV-2001",
+          "status": "DELIVERED",
+          "occurredAt": "2099-06-30T15:42:30+08:00",
+          "note": "This should fail because the event shape is valid but the event time is semantically invalid",
+          "proofOfDeliveryAvailable": false
+        },
+        "expected_values": [
+          {
+            "path": "status",
+            "expected": 422
+          },
+          {
+            "path": "errorCode",
+            "expected": "INVALID_STATUS_EVENT"
+          },
+          {
+            "path": "instance",
+            "expected": "/api/v1/orders/ORD-1001/status-events"
+          }
+        ],
+        "required_paths": [
+          "type",
+          "title",
+          "status",
+          "detail",
+          "instance",
+          "errorCode",
+          "correlationId"
+        ],
+        "compare_paths": [
+          "type",
+          "title",
+          "status",
+          "errorCode",
+          "instance"
+        ],
+        "contains_values": [],
+        "all_values": [],
+        "state_changing": false
+      },
+      "spring": {
+        "statusCode": 422,
+        "contentType": "application/problem+json",
+        "body": {
+          "type": "https://waypoint.local/problems/invalid-status-event",
+          "title": "Invalid status event",
+          "status": 422,
+          "detail": "Status event occurredAt is too far in the future.",
+          "instance": "/api/v1/orders/ORD-1001/status-events",
+          "errorCode": "INVALID_STATUS_EVENT",
+          "correlationId": "local-dev"
+        },
+        "error": null
+      },
+      "fastapi": {
+        "statusCode": 422,
+        "contentType": "application/problem+json",
+        "body": {
+          "type": "https://waypoint.local/problems/invalid-status-event",
+          "title": "Invalid status event",
+          "status": 422,
+          "detail": "Status event occurredAt is too far in the future.",
+          "instance": "/api/v1/orders/ORD-1001/status-events",
+          "errorCode": "INVALID_STATUS_EVENT",
+          "correlationId": "local-dev"
+        },
+        "error": null
+      },
+      "result": "PASS",
+      "mismatches": []
+    },
+    {
+      "scenario": {
+        "id": "DA-05-status-event-missing-order",
+        "use_case": "DA-05",
+        "actor": "Delivery Agent",
+        "intent": "Reject status event for missing order",
+        "resource": "status-events",
+        "method": "POST",
+        "path": "/api/v1/orders/ORD-9999/status-events",
+        "expected_status": 404,
+        "body": {
+          "driverId": "DRV-2001",
+          "status": "DELIVERED",
+          "occurredAt": "2026-06-30T15:43:00+08:00",
+          "note": "This should fail because the order does not exist",
+          "proofOfDeliveryAvailable": false
+        },
+        "expected_values": [
+          {
+            "path": "status",
+            "expected": 404
+          },
+          {
+            "path": "errorCode",
+            "expected": "ORDER_NOT_FOUND"
+          },
+          {
+            "path": "instance",
+            "expected": "/api/v1/orders/ORD-9999/status-events"
+          }
+        ],
+        "required_paths": [
+          "type",
+          "title",
+          "status",
+          "detail",
+          "instance",
+          "errorCode",
+          "correlationId"
+        ],
+        "compare_paths": [
+          "type",
+          "title",
+          "status",
+          "errorCode",
+          "instance"
+        ],
+        "contains_values": [],
+        "all_values": [],
+        "state_changing": false
+      },
+      "spring": {
+        "statusCode": 404,
+        "contentType": "application/problem+json",
+        "body": {
+          "type": "https://waypoint.local/problems/order-not-found",
+          "title": "Order not found",
+          "status": 404,
+          "detail": "No order exists for orderId ORD-9999.",
+          "instance": "/api/v1/orders/ORD-9999/status-events",
+          "errorCode": "ORDER_NOT_FOUND",
+          "correlationId": "local-dev"
+        },
+        "error": null
+      },
+      "fastapi": {
+        "statusCode": 404,
+        "contentType": "application/problem+json",
+        "body": {
+          "type": "https://waypoint.local/problems/order-not-found",
+          "title": "Order not found",
+          "status": 404,
+          "detail": "No order exists for orderId ORD-9999.",
+          "instance": "/api/v1/orders/ORD-9999/status-events",
+          "errorCode": "ORDER_NOT_FOUND",
+          "correlationId": "local-dev"
+        },
+        "error": null
+      },
+      "result": "PASS",
+      "mismatches": []
+    },
+    {
+      "scenario": {
+        "id": "DA-05-status-event-malformed-body",
+        "use_case": "DA-05",
+        "actor": "Delivery Agent",
+        "intent": "Reject malformed status event body",
+        "resource": "status-events",
+        "method": "POST",
+        "path": "/api/v1/orders/ORD-1001/status-events",
+        "expected_status": 400,
+        "body": {
+          "driverId": "DRV-2001",
+          "status": "DELIVERED",
+          "occurredAt": "not-a-date",
+          "unexpectedField": true
+        },
+        "expected_values": [
+          {
+            "path": "status",
+            "expected": 400
+          },
+          {
+            "path": "errorCode",
+            "expected": "INVALID_REQUEST"
+          },
+          {
+            "path": "instance",
+            "expected": "/api/v1/orders/ORD-1001/status-events"
+          }
+        ],
+        "required_paths": [
+          "type",
+          "title",
+          "status",
+          "detail",
+          "instance",
+          "errorCode",
+          "correlationId"
+        ],
+        "compare_paths": [
+          "type",
+          "title",
+          "status",
+          "errorCode",
+          "instance"
+        ],
+        "contains_values": [],
+        "all_values": [],
+        "state_changing": false
+      },
+      "spring": {
+        "statusCode": 400,
+        "contentType": "application/problem+json",
+        "body": {
+          "type": "https://waypoint.local/problems/invalid-request",
+          "title": "Invalid request",
+          "status": 400,
+          "detail": "Request validation failed.",
+          "instance": "/api/v1/orders/ORD-1001/status-events",
+          "errorCode": "INVALID_REQUEST",
+          "correlationId": "local-dev"
+        },
+        "error": null
+      },
+      "fastapi": {
+        "statusCode": 400,
+        "contentType": "application/problem+json",
+        "body": {
+          "type": "https://waypoint.local/problems/invalid-request",
+          "title": "Invalid request",
+          "status": 400,
+          "detail": "Request validation failed.",
+          "instance": "/api/v1/orders/ORD-1001/status-events",
+          "errorCode": "INVALID_REQUEST",
+          "correlationId": "local-dev"
+        },
+        "error": null
+      },
+      "result": "PASS",
+      "mismatches": []
+    },
+    {
+      "scenario": {
+        "id": "DA-06-status-event-delivered-happy-path",
+        "use_case": "DA-06",
+        "actor": "Delivery Agent",
+        "intent": "Mark order as delivered",
+        "resource": "status-events",
+        "method": "POST",
+        "path": "/api/v1/orders/ORD-1001/status-events",
+        "expected_status": 201,
+        "body": {
+          "driverId": "DRV-2001",
+          "status": "DELIVERED",
+          "occurredAt": "2026-06-30T15:45:00+08:00",
+          "location": {
+            "label": "Customer address",
+            "latitude": 1.3521,
+            "longitude": 103.9448,
+            "capturedAt": "2026-06-30T15:45:00+08:00"
+          },
+          "note": "Left with reception",
+          "proofOfDeliveryAvailable": true
+        },
+        "expected_values": [
+          {
+            "path": "orderId",
+            "expected": "ORD-1001"
+          },
+          {
+            "path": "previousStatus",
+            "expected": "OUT_FOR_DELIVERY"
+          },
+          {
+            "path": "newStatus",
+            "expected": "DELIVERED"
+          },
+          {
+            "path": "statusLabel",
+            "expected": "Delivered"
+          },
+          {
+            "path": "actorType",
+            "expected": "DRIVER"
+          },
+          {
+            "path": "actorId",
+            "expected": "DRV-2001"
+          },
+          {
+            "path": "orderCurrentStatus",
+            "expected": "DELIVERED"
+          }
+        ],
+        "required_paths": [
+          "eventId",
+          "orderId",
+          "previousStatus",
+          "newStatus",
+          "statusLabel",
+          "occurredAt",
+          "actorType",
+          "actorId",
+          "orderCurrentStatus"
+        ],
+        "compare_paths": [
+          "orderId",
+          "previousStatus",
+          "newStatus",
+          "statusLabel",
+          "actorType",
+          "actorId",
+          "orderCurrentStatus"
+        ],
+        "contains_values": [],
+        "all_values": [],
+        "state_changing": true
+      },
+      "spring": {
+        "statusCode": 201,
+        "contentType": "application/json",
+        "body": {
+          "eventId": "EVT-4006",
+          "orderId": "ORD-1001",
+          "previousStatus": "OUT_FOR_DELIVERY",
+          "newStatus": "DELIVERED",
+          "statusLabel": "Delivered",
+          "occurredAt": "2026-06-30T07:45:00Z",
+          "actorType": "DRIVER",
+          "actorId": "DRV-2001",
+          "location": {
+            "label": "Customer address",
+            "latitude": 1.3521,
+            "longitude": 103.9448,
+            "capturedAt": "2026-06-30T07:45:00Z"
+          },
+          "note": "Left with reception",
+          "proofOfDeliveryAvailable": true,
+          "orderCurrentStatus": "DELIVERED"
+        },
+        "error": null
+      },
+      "fastapi": {
+        "statusCode": 201,
+        "contentType": "application/json",
+        "body": {
+          "eventId": "EVT-4006",
+          "orderId": "ORD-1001",
+          "previousStatus": "OUT_FOR_DELIVERY",
+          "newStatus": "DELIVERED",
+          "statusLabel": "Delivered",
+          "occurredAt": "2026-06-30T15:45:00+08:00",
+          "actorType": "DRIVER",
+          "actorId": "DRV-2001",
+          "location": {
+            "label": "Customer address",
+            "latitude": 1.3521,
+            "longitude": 103.9448,
+            "capturedAt": "2026-06-30T15:45:00+08:00"
+          },
+          "note": "Left with reception",
+          "proofOfDeliveryAvailable": true,
+          "orderCurrentStatus": "DELIVERED"
+        },
+        "error": null
+      },
+      "result": "PASS",
+      "mismatches": []
+    }
+  ]
+}
