@@ -3,7 +3,7 @@
 ## Status
 
 - Status: Active
-- Last Updated: 2026-07-03
+- Last Updated: 2026-07-06
 
 ## Purpose
 
@@ -25,6 +25,7 @@ FastAPI must match the same local contract and the Spring Boot reference behavio
 ..\..\docs\active\contract-handoff.md
 ..\..\docs\active\data-and-seed-handoff.md
 ..\..\docs\active\test-and-acceptance-handoff.md
+..\..\docs\active\auth-access-control-plan.md
 ..\..\docs\contracts\openapi\partner-source.v1.yaml
 ..\..\docs\contracts\shared-error-contract.md
 ..\..\partner-source-springboot\build-sequence\00-index.md
@@ -62,6 +63,11 @@ No test file is written for this index. Verification is a documentation consiste
 | 15 | [Integration tests](15-integration-tests.md) | Done | Full FastAPI flow is verified. |
 | 16 | [Manual HTTP checklist](16-manual-http-checklist.md) | Done | Manual request matrix is covered by full-stack integration checks. |
 | 17 | [FastAPI final gate](17-fastapi-final-gate.md) | Done | Implementation is ready for parity checks. |
+| 18 | [Auth contract update](18-auth-contract-update.md) | Done | Auth errors, demo login, and protected-route expectations. |
+| 19 | [Demo login and principal](19-demo-login-and-principal.md) | Done | Deterministic bearer-token login and principal model. |
+| 20 | [Access policy and route guards](20-access-policy-and-route-guards.md) | Done | Protected routes enforce the access-control matrix. |
+| 21 | [Status event principal migration](21-status-event-principal-migration.md) | Done | Status-event `driverId` cannot spoof another driver. |
+| 22 | [Auth final gate](22-auth-final-gate.md) | Done | Full FastAPI auth slice verification. |
 
 ## Exact Code
 
@@ -139,7 +145,7 @@ python -m uvicorn app.main:app --reload
 ## Done Criteria
 
 - [x] Build order lists every numbered FastAPI task.
-- [x] Task statuses mirror completed work through Task 17.
+- [x] Task statuses mirror completed work through Task 22.
 - [x] Default commands are PowerShell-friendly.
 - [x] The index points to local source-of-truth docs.
 
@@ -164,3 +170,5 @@ python -m uvicorn app.main:app --reload
 - Updated Task 06 to `Done` to match the verified task file.
 - Updated Tasks 07 and 08 to `Done` after focused and full FastAPI tests passed.
 - Updated Tasks 09 through 17 to `Done` after focused, integration, and full FastAPI tests passed.
+- Added Tasks 18 through 22 for the auth/access-control implementation slice.
+- Updated Tasks 18 through 22 to `Done` after the full pytest suite and auth parity checks passed.

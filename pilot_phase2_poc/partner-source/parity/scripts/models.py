@@ -30,6 +30,7 @@ class Scenario:
     contains_values: tuple[FieldExpectation, ...] = ()
     all_values: tuple[FieldExpectation, ...] = ()
     state_changing: bool = False
+    headers: dict[str, str] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)

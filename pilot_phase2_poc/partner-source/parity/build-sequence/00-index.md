@@ -11,9 +11,12 @@ Do not start parity scripts before both implementations pass their own final gat
 ..\..\CONTRACT_SYNC.md
 ..\..\docs\contracts\openapi\partner-source.v1.yaml
 ..\..\docs\contracts\shared-error-contract.md
+..\..\docs\active\auth-access-control-plan.md
 ..\..\docs\contracts\openapi\http\partner-source-slice1.http
 ..\..\partner-source-springboot\build-sequence\17-springboot-final-gate.md
 ..\..\partner-source-fastapi\build-sequence\17-fastapi-final-gate.md
+..\..\partner-source-springboot\build-sequence\22-auth-final-gate.md
+..\..\partner-source-fastapi\build-sequence\22-auth-final-gate.md
 ```
 
 ## Build Order
@@ -25,6 +28,7 @@ Do not start parity scripts before both implementations pass their own final gat
 | 03 | [Spring Boot vs FastAPI response checks](03-springboot-vs-fastapi-response-checks.md) | Success response parity is checked. |
 | 04 | [Error contract checks](04-error-contract-checks.md) | ProblemDetail parity is checked. |
 | 05 | [Parity final gate](05-parity-final-gate.md) | Both implementations are accepted as contract-equivalent. |
+| 06 | [Auth access-control parity](06-auth-access-control-parity.md) | Auth and access-control behavior is checked and passing. |
 
 ## Default Local URLs
 

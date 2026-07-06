@@ -10,6 +10,8 @@ def test_success_matrix_covers_default_http_checklist_successes() -> None:
     expected_ids = {
         "service-health",
         "service-readiness",
+        "AUTH-16-demo-driver-login",
+        "AUTH-17-demo-csa-login",
         "CSA-02-order-status-happy-path",
         "CSA-03-order-timeline-happy-path",
         "DA-01-driver-profile-happy-path",

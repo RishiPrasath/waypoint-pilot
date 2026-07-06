@@ -11,6 +11,16 @@ class InvalidRequestError(PartnerSourceError):
         super().__init__(400, "INVALID_REQUEST", "Invalid request", detail)
 
 
+class UnauthenticatedError(PartnerSourceError):
+    def __init__(self, detail: str = "Authentication is required for this route.") -> None:
+        super().__init__(401, "UNAUTHENTICATED", "Unauthenticated", detail)
+
+
+class AccessDeniedError(PartnerSourceError):
+    def __init__(self, detail: str = "Caller is not allowed to access this resource.") -> None:
+        super().__init__(403, "ACCESS_DENIED", "Access denied", detail)
+
+
 class OrderNotFoundError(PartnerSourceError):
     def __init__(self, order_id: str) -> None:
         super().__init__(404, "ORDER_NOT_FOUND", "Order not found", f"No order exists for orderId {order_id}.")

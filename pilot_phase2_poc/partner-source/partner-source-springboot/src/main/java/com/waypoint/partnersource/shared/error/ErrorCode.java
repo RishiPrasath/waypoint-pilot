@@ -2,6 +2,8 @@ package com.waypoint.partnersource.shared.error;
 
 public enum ErrorCode {
     INVALID_REQUEST,
+    UNAUTHENTICATED,
+    ACCESS_DENIED,
     ORDER_NOT_FOUND,
     DRIVER_NOT_FOUND,
     ASSIGNMENT_NOT_FOUND,

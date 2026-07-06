@@ -29,6 +29,7 @@ def problem(
     status: int,
     error_code: str,
     body: object = None,
+    headers: dict[str, str] | None = None,
 ) -> Scenario:
     return Scenario(
         id=scenario_id,
@@ -40,6 +41,7 @@ def problem(
         path=path,
         expected_status=status,
         body=body,
+        headers=headers or {},
         required_paths=PROBLEM_DETAIL_FIELDS,
         expected_values=(
             expect("status", status),
@@ -48,6 +50,13 @@ def problem(
         ),
         compare_paths=("type", "title", "status", "errorCode", "instance"),
     )
+
+
+DRIVER_2001_HEADERS = {"Authorization": "Bearer demo-driver-2001-token"}
+DRIVER_2002_HEADERS = {"Authorization": "Bearer demo-driver-2002-token"}
+DRIVER_2003_HEADERS = {"Authorization": "Bearer demo-driver-2003-token"}
+CSA_HEADERS = {"Authorization": "Bearer demo-csa-5001-token"}
+INVALID_TOKEN_HEADERS = {"Authorization": "Bearer invalid-token"}
 
 
 SCENARIOS: tuple[Scenario, ...] = (
@@ -83,6 +92,79 @@ SCENARIOS: tuple[Scenario, ...] = (
         compare_paths=("status", "service", "checks.persistence", "checks.seedData"),
     ),
     Scenario(
+        id="AUTH-16-demo-driver-login",
+        use_case="AUTH-16",
+        actor="Delivery Agent",
+        intent="Exchange seeded driver identity for a demo bearer token",
+        resource="auth",
+        method="POST",
+        path="/api/v1/auth/demo-login",
+        expected_status=200,
+        body={"actorType": "DRIVER", "actorId": "DRV-2001"},
+        required_paths=("accessToken", "tokenType", "expiresIn", "principal.role", "principal.actorId"),
+        expected_values=(
+            expect("accessToken", "demo-driver-2001-token"),
+            expect("tokenType", "Bearer"),
+            expect("principal.role", "DELIVERY_DRIVER"),
+            expect("principal.actorId", "DRV-2001"),
+        ),
+        compare_paths=("accessToken", "tokenType", "principal.role", "principal.actorId"),
+    ),
+    Scenario(
+        id="AUTH-17-demo-csa-login",
+        use_case="AUTH-17",
+        actor="Customer Service Agent",
+        intent="Exchange seeded CSA identity for a demo bearer token",
+        resource="auth",
+        method="POST",
+        path="/api/v1/auth/demo-login",
+        expected_status=200,
+        body={"actorType": "USER", "actorId": "CSA-5001"},
+        required_paths=("accessToken", "tokenType", "principal.role", "principal.actorId"),
+        expected_values=(
+            expect("accessToken", "demo-csa-5001-token"),
+            expect("tokenType", "Bearer"),
+            expect("principal.role", "CUSTOMER_SERVICE_AGENT"),
+            expect("principal.actorId", "CSA-5001"),
+        ),
+        compare_paths=("accessToken", "tokenType", "principal.role", "principal.actorId"),
+    ),
+    problem(
+        "AUTH-18-unknown-driver-login",
+        "AUTH-18",
+        "Delivery Agent",
+        "Reject unknown demo driver identity",
+        "auth",
+        "POST",
+        "/api/v1/auth/demo-login",
+        404,
+        "DRIVER_NOT_FOUND",
+        body={"actorType": "DRIVER", "actorId": "DRV-9999"},
+    ),
+    problem(
+        "AUTH-01-missing-token-order-status",
+        "AUTH-01",
+        "Delivery Agent",
+        "Reject protected order status lookup without token",
+        "orders",
+        "GET",
+        "/api/v1/orders/ORD-1001/status",
+        401,
+        "UNAUTHENTICATED",
+    ),
+    problem(
+        "AUTH-02-invalid-token-order-status",
+        "AUTH-02",
+        "Delivery Agent",
+        "Reject protected order status lookup with invalid token",
+        "orders",
+        "GET",
+        "/api/v1/orders/ORD-1001/status",
+        401,
+        "UNAUTHENTICATED",
+        headers=INVALID_TOKEN_HEADERS,
+    ),
+    Scenario(
         id="CSA-02-order-status-happy-path",
         use_case="CSA-02",
         actor="Customer Service Agent",
@@ -91,6 +173,7 @@ SCENARIOS: tuple[Scenario, ...] = (
         method="GET",
         path="/api/v1/orders/ORD-1001/status",
         expected_status=200,
+        headers=CSA_HEADERS,
         required_paths=(
             "orderId",
             "currentStatus",
@@ -116,6 +199,7 @@ SCENARIOS: tuple[Scenario, ...] = (
         method="GET",
         path="/api/v1/orders/ORD-1001/timeline?page=1&pageSize=20",
         expected_status=200,
+        headers=CSA_HEADERS,
         required_paths=("orderId", "items", "page", "pageSize", "totalItems"),
         expected_values=(
             expect("orderId", "ORD-1001"),
@@ -136,6 +220,7 @@ SCENARIOS: tuple[Scenario, ...] = (
         method="GET",
         path="/api/v1/drivers/DRV-2001",
         expected_status=200,
+        headers=DRIVER_2001_HEADERS,
         required_paths=("driverId", "displayName", "availabilityStatus", "activeAssignmentCount"),
         expected_values=(
             expect("driverId", "DRV-2001"),
@@ -153,6 +238,7 @@ SCENARIOS: tuple[Scenario, ...] = (
         method="GET",
         path="/api/v1/drivers/DRV-2001/assignments?page=1&pageSize=20",
         expected_status=200,
+        headers=DRIVER_2001_HEADERS,
         required_paths=("driverId", "items", "page", "pageSize", "totalItems"),
         expected_values=(
             expect("driverId", "DRV-2001"),
@@ -172,6 +258,7 @@ SCENARIOS: tuple[Scenario, ...] = (
         method="GET",
         path="/api/v1/drivers/DRV-2001/assignments?status=OUT_FOR_DELIVERY&page=1&pageSize=20",
         expected_status=200,
+        headers=DRIVER_2001_HEADERS,
         required_paths=("driverId", "items", "page", "pageSize", "totalItems"),
         expected_values=(
             expect("driverId", "DRV-2001"),
@@ -192,6 +279,7 @@ SCENARIOS: tuple[Scenario, ...] = (
         method="GET",
         path="/api/v1/drivers/DRV-2003/assignments?page=1&pageSize=20",
         expected_status=200,
+        headers=DRIVER_2003_HEADERS,
         required_paths=("driverId", "items", "page", "pageSize", "totalItems"),
         expected_values=(
             expect("driverId", "DRV-2003"),
@@ -210,6 +298,7 @@ SCENARIOS: tuple[Scenario, ...] = (
         "/api/v1/orders/ORD-9999/status",
         404,
         "ORDER_NOT_FOUND",
+        headers=CSA_HEADERS,
     ),
     problem(
         "CSA-01-order-status-invalid-id",
@@ -221,6 +310,7 @@ SCENARIOS: tuple[Scenario, ...] = (
         "/api/v1/orders/INVALID/status",
         400,
         "INVALID_REQUEST",
+        headers=CSA_HEADERS,
     ),
     problem(
         "CSA-03-order-timeline-missing-order",
@@ -232,6 +322,7 @@ SCENARIOS: tuple[Scenario, ...] = (
         "/api/v1/orders/ORD-9999/timeline?page=1&pageSize=20",
         404,
         "ORDER_NOT_FOUND",
+        headers=CSA_HEADERS,
     ),
     problem(
         "CSA-03-order-timeline-invalid-page",
@@ -243,17 +334,19 @@ SCENARIOS: tuple[Scenario, ...] = (
         "/api/v1/orders/ORD-1001/timeline?page=0&pageSize=20",
         400,
         "INVALID_REQUEST",
+        headers=CSA_HEADERS,
     ),
     problem(
-        "DA-01-driver-profile-missing-driver",
-        "DA-01",
+        "AUTH-04-driver-other-profile-denied",
+        "AUTH-04",
         "Delivery Agent",
-        "Reject missing driver lookup",
+        "Reject another driver's profile lookup",
         "drivers",
         "GET",
-        "/api/v1/drivers/DRV-9999",
-        404,
-        "DRIVER_NOT_FOUND",
+        "/api/v1/drivers/DRV-2002",
+        403,
+        "ACCESS_DENIED",
+        headers=DRIVER_2001_HEADERS,
     ),
     problem(
         "DA-01-driver-profile-invalid-id",
@@ -265,6 +358,7 @@ SCENARIOS: tuple[Scenario, ...] = (
         "/api/v1/drivers/INVALID",
         400,
         "INVALID_REQUEST",
+        headers=DRIVER_2001_HEADERS,
     ),
     problem(
         "DA-02-driver-assignments-invalid-status-filter",
@@ -276,17 +370,19 @@ SCENARIOS: tuple[Scenario, ...] = (
         "/api/v1/drivers/DRV-2001/assignments?status=NOT_A_STATUS&page=1&pageSize=20",
         400,
         "INVALID_REQUEST",
+        headers=DRIVER_2001_HEADERS,
     ),
     problem(
-        "DA-02-driver-assignments-missing-driver",
-        "DA-02",
+        "AUTH-06-driver-other-assignments-denied",
+        "AUTH-06",
         "Delivery Agent",
-        "Reject assignment lookup for missing driver",
+        "Reject another driver's assignment lookup",
         "assignments",
         "GET",
-        "/api/v1/drivers/DRV-9999/assignments?page=1&pageSize=20",
-        404,
-        "DRIVER_NOT_FOUND",
+        "/api/v1/drivers/DRV-2002/assignments?page=1&pageSize=20",
+        403,
+        "ACCESS_DENIED",
+        headers=DRIVER_2001_HEADERS,
     ),
     problem(
         "DA-02-driver-assignments-invalid-page",
@@ -298,6 +394,7 @@ SCENARIOS: tuple[Scenario, ...] = (
         "/api/v1/drivers/DRV-2001/assignments?page=0&pageSize=20",
         400,
         "INVALID_REQUEST",
+        headers=DRIVER_2001_HEADERS,
     ),
     problem(
         "DA-05-status-event-unassigned-driver",
@@ -316,24 +413,26 @@ SCENARIOS: tuple[Scenario, ...] = (
             "note": "This should fail because DRV-2002 is not assigned to ORD-1001",
             "proofOfDeliveryAvailable": False,
         },
+        headers=DRIVER_2002_HEADERS,
     ),
     problem(
-        "DA-05-status-event-missing-driver",
-        "DA-05",
+        "AUTH-11-driver-spoofed-body-driver-denied",
+        "AUTH-11",
         "Delivery Agent",
-        "Reject status event from missing driver",
+        "Reject status event that spoofs another driver",
         "status-events",
         "POST",
         "/api/v1/orders/ORD-1001/status-events",
-        404,
-        "DRIVER_NOT_FOUND",
+        403,
+        "ACCESS_DENIED",
         body={
-            "driverId": "DRV-9999",
+            "driverId": "DRV-2002",
             "status": "DELIVERED",
             "occurredAt": "2026-06-30T15:41:00+08:00",
-            "note": "This should fail because DRV-9999 does not exist",
+            "note": "This should fail because the token is DRV-2001 but the body is DRV-2002",
             "proofOfDeliveryAvailable": False,
         },
+        headers=DRIVER_2001_HEADERS,
     ),
     problem(
         "DA-05-status-event-invalid-transition",
@@ -352,6 +451,7 @@ SCENARIOS: tuple[Scenario, ...] = (
             "note": "This should fail because ORD-1003 is already delivered",
             "proofOfDeliveryAvailable": False,
         },
+        headers=DRIVER_2001_HEADERS,
     ),
     problem(
         "DA-05-status-event-future-occurred-at",
@@ -370,6 +470,7 @@ SCENARIOS: tuple[Scenario, ...] = (
             "note": "This should fail because the event shape is valid but the event time is semantically invalid",
             "proofOfDeliveryAvailable": False,
         },
+        headers=DRIVER_2001_HEADERS,
     ),
     problem(
         "DA-05-status-event-missing-order",
@@ -388,6 +489,7 @@ SCENARIOS: tuple[Scenario, ...] = (
             "note": "This should fail because the order does not exist",
             "proofOfDeliveryAvailable": False,
         },
+        headers=DRIVER_2001_HEADERS,
     ),
     problem(
         "DA-05-status-event-malformed-body",
@@ -405,6 +507,20 @@ SCENARIOS: tuple[Scenario, ...] = (
             "occurredAt": "not-a-date",
             "unexpectedField": True,
         },
+        headers=DRIVER_2001_HEADERS,
+    ),
+    problem(
+        "AUTH-13-csa-status-event-write-denied",
+        "AUTH-13",
+        "Customer Service Agent",
+        "Reject CSA status-event writes",
+        "status-events",
+        "POST",
+        "/api/v1/orders/ORD-1001/status-events",
+        403,
+        "ACCESS_DENIED",
+        body={"driverId": "DRV-2001", "status": "DELIVERED"},
+        headers=CSA_HEADERS,
     ),
     Scenario(
         id="DA-06-status-event-delivered-happy-path",
@@ -415,6 +531,7 @@ SCENARIOS: tuple[Scenario, ...] = (
         method="POST",
         path="/api/v1/orders/ORD-1001/status-events",
         expected_status=201,
+        headers=DRIVER_2001_HEADERS,
         body={
             "driverId": "DRV-2001",
             "status": "DELIVERED",

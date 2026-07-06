@@ -11,7 +11,13 @@ import com.waypoint.partnersource.order.domain.ActorType;
 import com.waypoint.partnersource.order.domain.OrderStatus;
 import com.waypoint.partnersource.order.service.StatusEventService;
 import com.waypoint.partnersource.shared.error.PartnerSourceException;
+import com.waypoint.partnersource.shared.security.AccessPolicy;
+import com.waypoint.partnersource.shared.security.ActorRole;
+import com.waypoint.partnersource.shared.security.AuthenticatedPrincipal;
+import com.waypoint.partnersource.shared.security.CurrentPrincipal;
+import com.waypoint.partnersource.shared.security.PrincipalActorType;
 import java.time.OffsetDateTime;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +34,22 @@ class StatusEventControllerTest {
     @MockitoBean
     StatusEventService statusEventService;
 
+    @MockitoBean
+    AccessPolicy accessPolicy;
+
+    private final AuthenticatedPrincipal driverPrincipal = new AuthenticatedPrincipal(
+            "driver:DRV-2001",
+            ActorRole.DELIVERY_DRIVER,
+            PrincipalActorType.DRIVER,
+            "DRV-2001",
+            List.of(),
+            "ORG-DEMO-1",
+            "DRIVER_APP"
+    );
+
     @Test
     void createStatusEventReturnsCreated() throws Exception {
+        when(accessPolicy.canSubmitDriverId(driverPrincipal, "DRV-2001")).thenReturn(true);
         when(statusEventService.createStatusEvent(
                 ArgumentMatchers.eq("ORD-1001"),
                 ArgumentMatchers.any(CreateStatusEventRequest.class)
@@ -49,6 +69,10 @@ class StatusEventControllerTest {
         ));
 
         mockMvc.perform(post("/api/v1/orders/ORD-1001/status-events")
+                        .with(request -> {
+                            request.setAttribute(CurrentPrincipal.ATTRIBUTE, driverPrincipal);
+                            return request;
+                        })
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
                                 {
@@ -68,12 +92,26 @@ class StatusEventControllerTest {
 
     @Test
     void unassignedDriverReturnsProblemDetail() throws Exception {
+        var driver2002 = new AuthenticatedPrincipal(
+                "driver:DRV-2002",
+                ActorRole.DELIVERY_DRIVER,
+                PrincipalActorType.DRIVER,
+                "DRV-2002",
+                List.of(),
+                "ORG-DEMO-1",
+                "DRIVER_APP"
+        );
+        when(accessPolicy.canSubmitDriverId(driver2002, "DRV-2002")).thenReturn(true);
         when(statusEventService.createStatusEvent(
                 ArgumentMatchers.eq("ORD-1001"),
                 ArgumentMatchers.any(CreateStatusEventRequest.class)
         )).thenThrow(PartnerSourceException.orderNotAssignedToDriver("ORD-1001", "DRV-2002"));
 
         mockMvc.perform(post("/api/v1/orders/ORD-1001/status-events")
+                        .with(request -> {
+                            request.setAttribute(CurrentPrincipal.ATTRIBUTE, driver2002);
+                            return request;
+                        })
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
                                 {
@@ -88,6 +126,10 @@ class StatusEventControllerTest {
     @Test
     void malformedBodyReturnsInvalidRequestProblemDetail() throws Exception {
         mockMvc.perform(post("/api/v1/orders/ORD-1001/status-events")
+                        .with(request -> {
+                            request.setAttribute(CurrentPrincipal.ATTRIBUTE, driverPrincipal);
+                            return request;
+                        })
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
                                 {

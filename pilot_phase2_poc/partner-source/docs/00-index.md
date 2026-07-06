@@ -19,6 +19,7 @@ This folder is the local source of truth for the Partner Source implementation l
 | [active/test-and-acceptance-handoff.md](active/test-and-acceptance-handoff.md) | Test levels, acceptance scenarios, and contract gates. |
 | [active/implementation-overview.md](active/implementation-overview.md) | How Spring Boot and FastAPI relate without duplicating the API design. |
 | [active/implementation-mapping.md](active/implementation-mapping.md) | Side-by-side mapping from the same API behavior to Spring Boot classes and FastAPI files/functions. |
+| [active/auth-access-control-plan.md](active/auth-access-control-plan.md) | Draft next-slice plan for authentication, access control, TDD implementation, and parity checks. |
 | [active/springboot-implementation-handoff.md](active/springboot-implementation-handoff.md) | Spring Boot-specific setup, package direction, test order, and first CI/CD pipeline. |
 | [active/fastapi-implementation-handoff.md](active/fastapi-implementation-handoff.md) | FastAPI-specific parity rules, timing, tests, and separate CI/CD pipeline. |
 

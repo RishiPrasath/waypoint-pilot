@@ -15,6 +15,7 @@ def request_scenario(base_url: str, scenario: Scenario, timeout: float = 10.0) -
         "Accept": "application/json, application/problem+json",
         "X-Correlation-Id": "local-dev",
     }
+    headers.update(scenario.headers)
 
     if scenario.body is not None:
         data = json.dumps(scenario.body).encode("utf-8")

@@ -40,6 +40,8 @@ Use a `ProblemDetail`-style response.
 |---|---|
 | Request trace field | Use `correlationId`. Do not use `requestId` unless the whole contract is deliberately renamed later. |
 | Validation failure | Use `INVALID_REQUEST` for malformed path/query/body shape. Use a domain-specific code for semantic failures. |
+| Missing or invalid bearer token | Use `UNAUTHENTICATED`. Do not expose whether a submitted token almost matched a known credential. |
+| Authenticated but not allowed | Use `ACCESS_DENIED` for role, ownership, or route-level authorization failures. |
 | Status transition failure | Use `INVALID_STATUS_TRANSITION`. Do not use `ORDER_TRANSITION_INVALID`. |
 | Media type | Prefer `application/problem+json` for error responses. |
 | Unknown server failure | Use `INTERNAL_SERVER_ERROR`. Do not expose stack traces or internal implementation details. |
@@ -48,6 +50,8 @@ Use a `ProblemDetail`-style response.
 
 | Error Code | HTTP Status | Owner | When To Use |
 |---|---:|---|---|
+| `UNAUTHENTICATED` | `401` | shared | Protected route was called without a valid bearer token. |
+| `ACCESS_DENIED` | `403` | shared | Authenticated principal is not allowed to access the resource or action. |
 | `INVALID_REQUEST` | `400` | shared | Request syntax, path parameter, query parameter, or JSON shape is invalid. |
 | `ORDER_NOT_FOUND` | `404` | partner-source | No order exists for the requested `orderId`. |
 | `DRIVER_NOT_FOUND` | `404` | partner-source | No driver exists for the requested `driverId`. |
@@ -63,6 +67,8 @@ Use these rules to decide between `400`, `409`, and `422`.
 
 | Case | HTTP Status | Error Code | Layer That Should Catch It | Examples |
 |---|---:|---|---|---|
+| Caller is missing valid authentication | `401` | `UNAUTHENTICATED` | Auth filter/dependency | missing `Authorization` header, invalid bearer token |
+| Caller is authenticated but forbidden | `403` | `ACCESS_DENIED` | Access policy/route guard | driver reads another driver's resource, customer-service user attempts a driver write |
 | Request shape is invalid | `400` | `INVALID_REQUEST` | Controller/request validation | malformed JSON, unknown field, missing required field, invalid path ID format, invalid query parameter, invalid enum value, invalid date-time format |
 | Request shape is valid, but the order lifecycle rejects the move | `409` | `INVALID_STATUS_TRANSITION` | Domain policy | `DELIVERED -> OUT_FOR_DELIVERY`, `CANCELLED -> IN_TRANSIT` |
 | Request shape is valid, but the status event meaning is invalid | `422` | `INVALID_STATUS_EVENT` | Service/domain validation | `occurredAt` is far in the future, delivery-event business details fail a Slice 1 semantic rule |
@@ -103,7 +109,35 @@ These codes are not all required for `partner-source` Slice 1, but they should u
 }
 ```
 
-### 8.2 Missing Driver
+### 8.2 Unauthenticated
+
+```json
+{
+  "type": "https://waypoint.local/problems/unauthenticated",
+  "title": "Unauthenticated",
+  "status": 401,
+  "detail": "Missing or invalid bearer token.",
+  "instance": "/api/v1/orders/ORD-1001/status",
+  "errorCode": "UNAUTHENTICATED",
+  "correlationId": "req-123"
+}
+```
+
+### 8.3 Access Denied
+
+```json
+{
+  "type": "https://waypoint.local/problems/access-denied",
+  "title": "Access denied",
+  "status": 403,
+  "detail": "Caller cannot access this resource.",
+  "instance": "/api/v1/orders/ORD-1001/status",
+  "errorCode": "ACCESS_DENIED",
+  "correlationId": "req-123"
+}
+```
+
+### 8.4 Missing Driver
 
 ```json
 {
@@ -117,7 +151,7 @@ These codes are not all required for `partner-source` Slice 1, but they should u
 }
 ```
 
-### 8.3 Order Not Assigned To Driver
+### 8.5 Order Not Assigned To Driver
 
 ```json
 {
@@ -131,7 +165,7 @@ These codes are not all required for `partner-source` Slice 1, but they should u
 }
 ```
 
-### 8.4 Invalid Status Transition
+### 8.6 Invalid Status Transition
 
 ```json
 {
@@ -145,7 +179,7 @@ These codes are not all required for `partner-source` Slice 1, but they should u
 }
 ```
 
-### 8.5 Invalid Status Event
+### 8.7 Invalid Status Event
 
 ```json
 {

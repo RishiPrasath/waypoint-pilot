@@ -3,10 +3,10 @@ from fastapi.testclient import TestClient
 from app.main import app
 
 
-def test_get_order_timeline_returns_contract_shape() -> None:
+def test_get_order_timeline_returns_contract_shape(driver_2001_headers: dict[str, str]) -> None:
     client = TestClient(app)
 
-    response = client.get("/api/v1/orders/ORD-1001/timeline?page=1&pageSize=20")
+    response = client.get("/api/v1/orders/ORD-1001/timeline?page=1&pageSize=20", headers=driver_2001_headers)
 
     assert response.status_code == 200
     body = response.json()
@@ -23,10 +23,10 @@ def test_get_order_timeline_returns_contract_shape() -> None:
     ]
 
 
-def test_invalid_order_timeline_id_returns_problem_detail() -> None:
+def test_invalid_order_timeline_id_returns_problem_detail(csa_headers: dict[str, str]) -> None:
     client = TestClient(app)
 
-    response = client.get("/api/v1/orders/INVALID/timeline")
+    response = client.get("/api/v1/orders/INVALID/timeline", headers=csa_headers)
 
     assert response.status_code == 400
     assert response.json()["errorCode"] == "INVALID_REQUEST"

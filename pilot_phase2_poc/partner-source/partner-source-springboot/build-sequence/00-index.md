@@ -3,7 +3,7 @@
 ## Status
 
 - Status: In Progress
-- Last Updated: 2026-07-03
+- Last Updated: 2026-07-06
 
 ## Purpose
 
@@ -25,6 +25,7 @@ Use this folder to move task by task, test first, while keeping Spring Boot as t
 ../../docs/active/contract-handoff.md
 ../../docs/active/data-and-seed-handoff.md
 ../../docs/active/test-and-acceptance-handoff.md
+../../docs/active/auth-access-control-plan.md
 ../../docs/contracts/openapi/partner-source.v1.yaml
 ../../docs/contracts/shared-error-contract.md
 
@@ -79,6 +80,11 @@ read source docs
 | 15 | [Integration tests](15-integration-tests.md) | Done | Full Spring Boot flow is verified. |
 | 16 | [Manual HTTP checklist](16-manual-http-checklist.md) | Done | Manual request matrix is covered by full-stack integration checks. |
 | 17 | [Spring Boot final gate](17-springboot-final-gate.md) | Done | Reference implementation is ready for FastAPI parity. |
+| 18 | [Auth contract update](18-auth-contract-update.md) | Done | Auth errors, demo login, and protected-route expectations. |
+| 19 | [Demo login and principal](19-demo-login-and-principal.md) | Done | Deterministic bearer-token login and principal model. |
+| 20 | [Access policy and route guards](20-access-policy-and-route-guards.md) | Done | Protected routes enforce the access-control matrix. |
+| 21 | [Status event principal migration](21-status-event-principal-migration.md) | Done | Status-event `driverId` cannot spoof another driver. |
+| 22 | [Auth final gate](22-auth-final-gate.md) | Done | Full Spring Boot auth slice verification. |
 
 ## Exact Code
 
@@ -158,7 +164,7 @@ java -version
 
 - [ ] Every task file follows the shared 12-section template.
 - [ ] Every task has concrete files, code direction, commands, and stop rules.
-- [x] Index statuses match actual completed work through Task 17.
+- [x] Index statuses match actual completed work through Task 22.
 - [ ] No deferred Slice 1 technology is introduced.
 
 ## Common Mistakes
@@ -182,3 +188,5 @@ java -version
 - Updated Task 09 to `Done` after focused tests and the full Maven suite passed.
 - Updated Task 10 to `Done` after focused tests and the full Maven suite passed.
 - Updated Tasks 11 through 17 to `Done` after endpoint, mutation, and integration coverage passed.
+- Added Tasks 18 through 22 for the auth/access-control implementation slice.
+- Updated Tasks 18 through 22 to `Done` after the full Maven suite and auth parity checks passed.

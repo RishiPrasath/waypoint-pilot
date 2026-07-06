@@ -19,6 +19,16 @@ public class PartnerSourceException extends RuntimeException {
                 "Invalid request", detail);
     }
 
+    public static PartnerSourceException unauthenticated(String detail) {
+        return new PartnerSourceException(HttpStatus.UNAUTHORIZED, ErrorCode.UNAUTHENTICATED,
+                "Unauthenticated", detail);
+    }
+
+    public static PartnerSourceException accessDenied(String detail) {
+        return new PartnerSourceException(HttpStatus.FORBIDDEN, ErrorCode.ACCESS_DENIED,
+                "Access denied", detail);
+    }
+
     public static PartnerSourceException orderNotFound(String orderId) {
         return new PartnerSourceException(HttpStatus.NOT_FOUND, ErrorCode.ORDER_NOT_FOUND,
                 "Order not found", "No order exists for orderId " + orderId + ".");

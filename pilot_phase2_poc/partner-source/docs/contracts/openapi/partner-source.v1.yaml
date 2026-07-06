@@ -12,6 +12,8 @@ servers:
   - url: http://localhost:8080
     description: Local Spring Boot implementation
 tags:
+  - name: Auth
+    description: Demo authentication for Slice 1 local implementations.
   - name: Orders
     description: Order status and timeline read operations.
   - name: Drivers
@@ -21,10 +23,50 @@ tags:
   - name: Operations
     description: Service health and readiness checks.
 paths:
+  /api/v1/auth/demo-login:
+    post:
+      tags:
+        - Auth
+      operationId: demoLogin
+      summary: Create a demo bearer token
+      description: |
+        Returns a deterministic Slice 1 demo token for a seeded driver or
+        accepted customer-service identity. This is a local/demo login endpoint,
+        not production authentication.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DemoLoginRequest"
+            examples:
+              driver:
+                $ref: "#/components/examples/DemoDriverLoginRequest"
+              customerService:
+                $ref: "#/components/examples/DemoCsaLoginRequest"
+      responses:
+        "200":
+          description: Demo token issued.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DemoLoginResponse"
+              examples:
+                driverToken:
+                  $ref: "#/components/examples/DemoDriverLoginResponse"
+        "400":
+          $ref: "#/components/responses/InvalidRequest"
+        "404":
+          $ref: "#/components/responses/DriverNotFound"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+
   /api/v1/orders/{orderId}/status:
     get:
       tags:
         - Orders
+      security:
+        - bearerAuth: []
       operationId: getOrderStatus
       summary: Get current order status
       description: Returns the current customer-safe operational status for one order.
@@ -42,6 +84,10 @@ paths:
                   $ref: "#/components/examples/OrderStatusOutForDelivery"
         "400":
           $ref: "#/components/responses/InvalidRequest"
+        "401":
+          $ref: "#/components/responses/Unauthenticated"
+        "403":
+          $ref: "#/components/responses/AccessDenied"
         "404":
           $ref: "#/components/responses/OrderNotFound"
         "500":
@@ -51,6 +97,8 @@ paths:
     get:
       tags:
         - Orders
+      security:
+        - bearerAuth: []
       operationId: getOrderTimeline
       summary: Get order timeline
       description: Returns chronological status events for one order.
@@ -70,6 +118,10 @@ paths:
                   $ref: "#/components/examples/OrderTimeline"
         "400":
           $ref: "#/components/responses/InvalidRequest"
+        "401":
+          $ref: "#/components/responses/Unauthenticated"
+        "403":
+          $ref: "#/components/responses/AccessDenied"
         "404":
           $ref: "#/components/responses/OrderNotFound"
         "500":
@@ -79,6 +131,8 @@ paths:
     get:
       tags:
         - Drivers
+      security:
+        - bearerAuth: []
       operationId: getDriver
       summary: Get driver profile
       description: Returns a seeded driver profile for the driver frontend demo flow.
@@ -96,6 +150,10 @@ paths:
                   $ref: "#/components/examples/Driver"
         "400":
           $ref: "#/components/responses/InvalidRequest"
+        "401":
+          $ref: "#/components/responses/Unauthenticated"
+        "403":
+          $ref: "#/components/responses/AccessDenied"
         "404":
           $ref: "#/components/responses/DriverNotFound"
         "500":
@@ -105,6 +163,8 @@ paths:
     get:
       tags:
         - Drivers
+      security:
+        - bearerAuth: []
       operationId: listDriverAssignments
       summary: List driver assignments
       description: Returns orders assigned to one driver, including lightweight delivery details.
@@ -130,6 +190,10 @@ paths:
                   $ref: "#/components/examples/DriverAssignments"
         "400":
           $ref: "#/components/responses/InvalidRequest"
+        "401":
+          $ref: "#/components/responses/Unauthenticated"
+        "403":
+          $ref: "#/components/responses/AccessDenied"
         "404":
           $ref: "#/components/responses/DriverNotFound"
         "500":
@@ -139,6 +203,8 @@ paths:
     post:
       tags:
         - Status Events
+      security:
+        - bearerAuth: []
       operationId: createOrderStatusEvent
       summary: Create order status event
       description: |
@@ -168,8 +234,19 @@ paths:
                   $ref: "#/components/examples/DeliveredStatusEvent"
         "400":
           $ref: "#/components/responses/InvalidRequest"
+        "401":
+          $ref: "#/components/responses/Unauthenticated"
         "403":
-          $ref: "#/components/responses/OrderNotAssignedToDriver"
+          description: Caller is not allowed to create this status event, or the driver is not assigned to this order.
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ProblemDetail"
+              examples:
+                accessDenied:
+                  $ref: "#/components/examples/AccessDeniedProblem"
+                notAssigned:
+                  $ref: "#/components/examples/OrderNotAssignedProblem"
         "404":
           description: Order or driver was not found.
           content:
@@ -234,6 +311,12 @@ paths:
                   $ref: "#/components/examples/NotReady"
 
 components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: DemoToken
+
   parameters:
     OrderId:
       name: orderId
@@ -276,6 +359,24 @@ components:
         example: 20
 
   responses:
+    Unauthenticated:
+      description: Bearer token is missing or invalid.
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/ProblemDetail"
+          examples:
+            unauthenticated:
+              $ref: "#/components/examples/UnauthenticatedProblem"
+    AccessDenied:
+      description: Authenticated principal is not allowed to access this resource or action.
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/ProblemDetail"
+          examples:
+            accessDenied:
+              $ref: "#/components/examples/AccessDeniedProblem"
     InvalidRequest:
       description: Request syntax, path parameter, or query parameter is invalid.
       content:
@@ -341,6 +442,91 @@ components:
               $ref: "#/components/examples/InternalServerErrorProblem"
 
   schemas:
+    DemoLoginRequest:
+      type: object
+      required:
+        - actorType
+        - actorId
+      properties:
+        actorType:
+          type: string
+          enum:
+            - DRIVER
+            - USER
+          example: DRIVER
+        actorId:
+          type: string
+          example: DRV-2001
+      additionalProperties: false
+
+    DemoLoginResponse:
+      type: object
+      required:
+        - accessToken
+        - tokenType
+        - expiresIn
+        - principal
+      properties:
+        accessToken:
+          type: string
+          example: demo-driver-2001-token
+        tokenType:
+          type: string
+          enum:
+            - Bearer
+          example: Bearer
+        expiresIn:
+          type: integer
+          minimum: 1
+          example: 3600
+        principal:
+          $ref: "#/components/schemas/AuthenticatedPrincipal"
+      additionalProperties: false
+
+    AuthenticatedPrincipal:
+      type: object
+      required:
+        - subject
+        - role
+        - actorType
+        - actorId
+        - scopes
+        - demoOrgId
+        - channel
+      properties:
+        subject:
+          type: string
+          example: driver:DRV-2001
+        role:
+          type: string
+          enum:
+            - DELIVERY_DRIVER
+            - CUSTOMER_SERVICE_AGENT
+          example: DELIVERY_DRIVER
+        actorType:
+          type: string
+          enum:
+            - DRIVER
+            - USER
+          example: DRIVER
+        actorId:
+          type: string
+          example: DRV-2001
+        scopes:
+          type: array
+          items:
+            type: string
+          example:
+            - orders:read:assigned
+            - status-events:create
+        demoOrgId:
+          type: string
+          example: demo-org-1
+        channel:
+          type: string
+          example: driver-app
+      additionalProperties: false
+
     OrderStatus:
       type: string
       enum:
@@ -811,6 +997,8 @@ components:
         errorCode:
           type: string
           enum:
+            - UNAUTHENTICATED
+            - ACCESS_DENIED
             - INVALID_REQUEST
             - ORDER_NOT_FOUND
             - DRIVER_NOT_FOUND
@@ -826,6 +1014,32 @@ components:
       additionalProperties: false
 
   examples:
+    DemoDriverLoginRequest:
+      value:
+        actorType: DRIVER
+        actorId: DRV-2001
+
+    DemoCsaLoginRequest:
+      value:
+        actorType: USER
+        actorId: CSA-5001
+
+    DemoDriverLoginResponse:
+      value:
+        accessToken: demo-driver-2001-token
+        tokenType: Bearer
+        expiresIn: 3600
+        principal:
+          subject: driver:DRV-2001
+          role: DELIVERY_DRIVER
+          actorType: DRIVER
+          actorId: DRV-2001
+          scopes:
+            - orders:read:assigned
+            - status-events:create
+          demoOrgId: demo-org-1
+          channel: driver-app
+
     OrderStatusOutForDelivery:
       value:
         orderId: ORD-1001
@@ -1001,6 +1215,26 @@ components:
         detail: Request syntax or parameters are invalid.
         instance: /api/v1/orders/INVALID/status
         errorCode: INVALID_REQUEST
+        correlationId: req-123
+
+    UnauthenticatedProblem:
+      value:
+        type: https://waypoint.local/problems/unauthenticated
+        title: Unauthenticated
+        status: 401
+        detail: Missing or invalid bearer token.
+        instance: /api/v1/orders/ORD-1001/status
+        errorCode: UNAUTHENTICATED
+        correlationId: req-123
+
+    AccessDeniedProblem:
+      value:
+        type: https://waypoint.local/problems/access-denied
+        title: Access denied
+        status: 403
+        detail: Caller cannot access this resource.
+        instance: /api/v1/orders/ORD-1001/status
+        errorCode: ACCESS_DENIED
         correlationId: req-123
 
     OrderNotFoundProblem:
