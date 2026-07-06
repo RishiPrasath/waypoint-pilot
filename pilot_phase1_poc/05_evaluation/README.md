@@ -2,6 +2,8 @@
 
 A RAG-based customer service co-pilot for freight forwarding companies in Singapore and Southeast Asia. Answers questions about shipment booking, customs regulations, carrier information, and internal policies using a curated knowledge base of 30 documents.
 
+This folder is the definitive Phase 1 application. Earlier Phase 1 folders show the build history; `05_evaluation` contains the final backend, frontend, knowledge base, tests, reports, and evaluation harness.
+
 **Status**: Phase 1 POC complete | All 6 evaluation targets met | Phase 2 planned
 
 ---
@@ -15,29 +17,31 @@ A RAG-based customer service co-pilot for freight forwarding companies in Singap
 
 ### Setup
 
-```bash
+```powershell
 # 1. Python environment
 py -3.11 -m venv venv
-venv/Scripts/activate            # Windows
-# source venv/bin/activate       # macOS/Linux
+.\venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 
 # 2. Node.js dependencies
 npm install
-cd client && npm install && cd ..
+Push-Location client
+npm install
+Pop-Location
 
 # 3. Environment variables
-cp .env.example .env
-# Edit .env and add: GROQ_API_KEY=your_key_here
+Copy-Item .env.example .env
+# Edit .env and add: LLM_API_KEY=gsk_your_key_here
 
 # 4. Ingest knowledge base into ChromaDB
-python scripts/ingest.py --clear
+python scripts\ingest.py --clear
 
 # 5. Start the backend API (port 3000)
 npm start
 
 # 6. Start the frontend (new terminal, port 5173)
-cd client && npm run dev
+Push-Location client
+npm run dev
 ```
 
 Open [http://localhost:5173](http://localhost:5173) to use the co-pilot.
@@ -134,17 +138,21 @@ python scripts/verify_ingestion.py   # Verify chunk counts and metadata
 
 ### Development
 
-```bash
+```powershell
 npm start                            # Start API server (port 3000)
 npm run dev                          # Dev mode with --watch
-cd client && npm run dev             # Vite dev server (port 5173)
+Push-Location client
+npm run dev                          # Vite dev server (port 5173)
+Pop-Location
 ```
 
 ### Testing
 
-```bash
+```powershell
 npm test                             # Jest backend tests (162 tests)
-cd client && npm run test            # Vitest frontend tests
+Push-Location client
+npm run test                         # Vitest frontend tests
+Pop-Location
 python -m pytest tests/ -v           # pytest Python tests (55 tests)
 python scripts/retrieval_quality_test.py  # 50-query retrieval hit rate
 ```
@@ -210,11 +218,14 @@ Copy `.env.example` to `.env` and configure:
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `GROQ_API_KEY` | *(required)* | Groq API key for LLM calls |
+| `LLM_API_KEY` | *(required)* | Groq API key for LLM calls |
+| `LLM_BASE_URL` | `https://api.groq.com/openai/v1` | OpenAI-compatible LLM endpoint |
+| `LLM_MODEL` | `llama-3.1-8b-instant` | LLM model identifier |
 | `PORT` | `3000` | Express API server port |
 | `CHUNK_SIZE` | `600` | Characters per chunk |
 | `CHUNK_OVERLAP` | `90` | Overlap between chunks |
 | `COLLECTION_NAME` | `waypoint_kb` | ChromaDB collection name |
+| `CHROMA_PATH` | `./chroma_db` | ChromaDB path used by the backend |
 | `CHROMA_PERSIST_PATH` | `./chroma_db` | ChromaDB storage path |
 | `KNOWLEDGE_BASE_PATH` | `./kb` | Knowledge base document path |
 | `LOG_LEVEL` | `INFO` | Logging verbosity |

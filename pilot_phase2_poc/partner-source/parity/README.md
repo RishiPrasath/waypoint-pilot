@@ -2,6 +2,21 @@
 
 This folder contains the local parity harness that compares the Spring Boot and FastAPI implementations against the same Slice 1 contract.
 
+## Current Status
+
+The parity harness is implemented and has a latest generated report:
+
+```text
+reports\latest\parity-report.md
+reports\latest\parity-report.json
+```
+
+Latest result:
+
+| Total scenarios | Passed | Failed | Skipped |
+|---:|---:|---:|---:|
+| 24 | 24 | 0 | 0 |
+
 Use the numbered parity build book for the implementation sequence:
 
 ```text

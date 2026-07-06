@@ -32,7 +32,7 @@ npm test         # Run Jest test suite (162 tests)
 
 ## Environment Variables
 
-Requires `GROQ_API_KEY` in `.env`. See `config.js` for all options.
+Requires `LLM_API_KEY` in `.env`. See `config.js` for all options.
 
 ## Detailed Docs
 

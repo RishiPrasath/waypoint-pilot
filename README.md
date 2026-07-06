@@ -4,13 +4,15 @@
 
 A RAG-based customer service co-pilot for freight forwarding companies in Singapore and Southeast Asia. Waypoint helps customer service agents instantly find accurate, source-cited answers across shipping documentation, customs regulations, carrier policies, and internal procedures — turning complex queries that typically require 30+ minutes of research into near-instant responses.
 
-> **Status**: Phase 1 POC (active development) · Built by [CYAIRE](https://cyaire.com) (AI Solution Engineering, Singapore)
+> **Status**: Phase 1 POC complete. Phase 2 POC has completed Partner Source Slice 1, including Spring Boot, FastAPI, and parity checks; `rag-db`, BFF orchestration, and frontend clients are next. Built by [CYAIRE](https://cyaire.com) (AI Solution Engineering, Singapore)
 
 ---
 
 ## Overview
 
 Customer service agents in freight forwarding spend significant time searching for information across fragmented sources — government portals, carrier manuals, internal policy docs, and trade references. Waypoint consolidates these into a single, searchable knowledge base and uses retrieval-augmented generation to deliver accurate, cited answers in seconds.
+
+Phase 2 is the current product direction. It expands the original knowledge-only pilot into a contract-driven logistics support platform: operational logistics data comes from `partner-source`, knowledge answers come from the RAG layer, and a later BFF will orchestrate both into a chatbot frontend for customer service agents and a delivery app frontend for delivery drivers.
 
 ### What It Does
 
@@ -42,7 +44,58 @@ Customer service agents in freight forwarding spend significant time searching f
 
 ---
 
-## Architecture
+## Current Phase 2 Architecture
+
+Phase 2 separates operational truth from knowledge retrieval so the assistant can answer both data-backed and policy-backed questions without blurring responsibilities.
+
+```text
+Chatbot frontend                 Delivery app frontend
+for customer service agents      for delivery drivers
+             |                              |
+             +--------------+---------------+
+                            |
+                            v
+                  BFF orchestration layer
+                            |
+              +-------------+-------------+
+              |                           |
+              v                           v
+      partner-source                    rag-db
+      Operational logistics truth       Retrieval and knowledge layer
+      - order status                    - document ingestion
+      - order timeline                  - hybrid retrieval
+      - drivers and assignments         - query planning
+      - status events                   - citations and safeguards
+              |                           |
+              +-------------+-------------+
+                            v
+             Grounded client-specific response
+```
+
+### Module Boundaries
+
+| Module | Owns | Does Not Own |
+|--------|------|--------------|
+| `partner-source` | Orders, drivers, assignments, status events, deterministic seed data, and API contract behavior. | Chatbot wording, RAG answers, frontend view models, retrieval logic. |
+| `rag-db` | Knowledge sources, ingestion, retrieval, query planning, chunk/source validation, safeguards, and evaluation. | Partner order state, driver assignments, delivery status mutations, UI formatting. |
+| `bff` | Service orchestration, client-specific response shaping, timeout handling, and combining operational data with retrieved knowledge for both frontend clients. | Source-of-truth persistence, retrieval internals, framework-specific API behavior, long-lived client state. |
+| `chatbot-frontend` | Chatbot experience for customer service agents: order questions, policy/procedure answers, citations, confidence display, and escalation states. | Delivery app workflows, status mutation rules, backend business rules, retrieval ranking. |
+| `delivery-app-frontend` | Delivery app experience for delivery drivers: driver profile, assigned orders, delivery details, and status-update actions. | Customer service chatbot wording, RAG answer generation, order source-of-truth persistence, transition rules. |
+
+### What Phase 2 Proves Today
+
+| Capability | Evidence |
+|------------|----------|
+| Contract-first partner API | Shared OpenAPI contract, shared error model, manual HTTP checklist, and deterministic seed scenarios. |
+| Spring Boot reference implementation | Partner Source Slice 1 implemented and covered by focused, integration, and final-gate tests. |
+| FastAPI parity implementation | Same Slice 1 behavior implemented against the shared contract and Spring Boot reference behavior. |
+| Cross-stack parity | Latest local parity report: 24 scenarios passed, 0 failed, 0 skipped. |
+| Operational question support | Current endpoints support customer questions like "Where is my order?" and driver questions like "What orders are assigned to me?" through order status, timeline, drivers, assignments, and status events. |
+| Next architecture step | Pin `rag-db` and BFF contracts, then connect `partner-source` and `rag-db` behind client-shaped responses for the customer-service chatbot frontend and delivery-driver app frontend. |
+
+## Phase 1 RAG Foundation
+
+Phase 1 proved the knowledge-retrieval foundation: document ingestion, semantic retrieval, source-cited generation, confidence indicators, out-of-scope handling, and evaluation.
 
 ```
 ┌─────────────┐     ┌─────────────────────────────────────────────────┐
@@ -59,7 +112,7 @@ Customer service agents in freight forwarding spend significant time searching f
                 └──────────┘     └──────────────┘   └──────────┘
 ```
 
-### Data Flow
+### Phase 1 Data Flow
 
 1. **Query Input** — User submits question via React UI or REST API
 2. **Retrieval** — Query embedded and matched against ChromaDB (top-5 chunks, relevance threshold 0.3)
@@ -72,16 +125,31 @@ Customer service agents in freight forwarding spend significant time searching f
 
 ## Tech Stack
 
+### Phase 2 POC
+
+Phase 2 is tracked as modules and client components. Technology choices stay inside each module once that module is active.
+
+| Module / Component | Role | Current State |
+|--------------------|------|---------------|
+| `partner-source` | Operational logistics source for orders, timelines, drivers, assignments, and status events. | Slice 1 complete with Spring Boot, FastAPI, OpenAPI contract, and parity checks. |
+| `rag-db` | Knowledge and retrieval layer for ingestion, query planning, citations, safeguards, and evaluation. | Next module to plan and build. |
+| `bff` | Orchestration layer that combines Partner Source data with RAG answers and shapes client responses. | Planned after `rag-db` and BFF contracts are pinned. |
+| `chatbot-frontend` | Chatbot application for customer service agents. | Planned after BFF contract. |
+| `delivery-app-frontend` | Delivery app for delivery drivers. | Planned after BFF contract. |
+| Regression gates | Per-module checks, contract checks, parity checks, and later cross-component checks. | Partner Source gates complete; expand as new modules are built. |
+
+### Phase 1 Definitive Application
+
 | Component | Technology | Purpose |
 |-----------|------------|---------|
 | Vector Database | ChromaDB 0.5.23 | Local vector storage and semantic retrieval |
 | Embeddings | all-MiniLM-L6-v2 (ONNX) | 384-dimensional embeddings (ChromaDB default) |
 | LLM | Groq API — Llama 3.1 8B Instant | Response generation |
 | Backend | Node.js 18+ / Express | REST API server |
-| Frontend | React 18+ / Tailwind CSS / Vite | Chat interface |
+| Frontend | React 19 / Tailwind CSS / Vite | Final evaluation chat interface |
 | Document Processing | Python 3.11+ | Ingestion pipeline (chunking, embedding, indexing) |
 | Text Splitting | LangChain RecursiveCharacterTextSplitter | Semantic chunking with header awareness |
-| Testing | pytest (Python) / Jest (Node.js) | Unit + integration + E2E tests |
+| Evaluation | pytest, Jest, Vitest, retrieval test, evaluation harness | Final Phase 1 proof package |
 
 ---
 
@@ -147,7 +215,14 @@ waypoint-pilot/
 │   │   ├── kb/                             Rebuilt knowledge base
 │   │   └── Retrieval_Optimization_Plan.md
 │   │
-│   └── 05_evaluation/                 Week 4 — Final evaluation (planned)
+│   └── 05_evaluation/                 Week 4 — definitive Phase 1 app + evaluation (complete)
+│
+├── pilot_phase2_poc/
+│   └── partner-source/                Phase 2 — Synthetic logistics partner API
+│       ├── docs/                      Local source-of-truth docs, contracts, and handoffs
+│       ├── partner-source-springboot/ Spring Boot reference implementation
+│       ├── partner-source-fastapi/    FastAPI contract-parity implementation
+│       └── parity/                    Spring Boot vs FastAPI parity harness and reports
 │
 ├── CLAUDE.md                           Claude Code project instructions
 ├── AGENTS.md                           AI coding agent guide
@@ -166,69 +241,99 @@ waypoint-pilot/
 
 ### Installation
 
-```bash
+For Phase 1, use `pilot_phase1_poc\05_evaluation`. Earlier Phase 1 folders are build history; the evaluation folder is the definitive runnable application.
+
+```powershell
 # Clone the repository
 git clone https://github.com/your-org/waypoint-pilot.git
 cd waypoint-pilot
 
-# --- Ingestion Pipeline (Python) ---
-cd pilot_phase1_poc/02_ingestion_pipeline
+# --- Phase 1 final evaluation app ---
+cd pilot_phase1_poc\05_evaluation
 
 # Create virtual environment
-py -3.11 -m venv venv          # Windows
-python3.11 -m venv venv        # macOS/Linux
+py -3.11 -m venv venv
 
 # Activate
-venv\Scripts\activate           # Windows
-source venv/bin/activate        # macOS/Linux
+.\venv\Scripts\Activate.ps1      # Windows PowerShell
 
 # Install dependencies
 pip install -r requirements.txt
 
+# Configure environment
+Copy-Item .env.example .env
+# Edit .env and set LLM_API_KEY=gsk_your_key_here
+
 # Run ingestion (populates ChromaDB)
-python -m scripts.ingest --clear
+python scripts\ingest.py --clear
 
 # Verify ingestion quality
-python -m scripts.verify_ingestion
+python scripts\verify_ingestion.py
 
-# --- RAG Pipeline (Node.js) ---
-cd ../03_rag_pipeline
-
-# Install backend
+# --- Node.js application dependencies ---
 npm install
 
 # Install frontend
-cd client && npm install && cd ..
-
-# Configure environment
-cp .env.example .env
-# Edit .env → add GROQ_API_KEY
+Push-Location client
+npm install
+Pop-Location
 ```
 
 ### Running
 
-```bash
+Use the startup script for the final Phase 1 app:
+
+```powershell
+cd pilot_phase1_poc\05_evaluation
+.\start.ps1
+```
+
+Manual startup is also fine:
+
+```powershell
 # Terminal 1: Start backend API
-cd pilot_phase1_poc/03_rag_pipeline
+cd pilot_phase1_poc\05_evaluation
 npm start
-# → http://localhost:3000
+# http://localhost:3000
 
 # Terminal 2: Start frontend UI
-cd pilot_phase1_poc/03_rag_pipeline/client
+cd pilot_phase1_poc\05_evaluation\client
 npm run dev
-# → http://localhost:5173
+# http://localhost:5173
+```
+
+### Phase 2 Partner Source
+
+```powershell
+# Spring Boot reference implementation
+cd pilot_phase2_poc\partner-source\partner-source-springboot
+.\mvnw.cmd test
+
+# FastAPI parity implementation
+cd ..\partner-source-fastapi
+uv run pytest
+
+# Parity harness tests
+cd ..\parity
+python -m pytest
+```
+
+To run the live parity report, start Spring Boot on `http://localhost:8080`, start FastAPI on `http://localhost:8000`, then run:
+
+```powershell
+cd pilot_phase2_poc\partner-source\parity
+python -m parity_runner
 ```
 
 ### Quick Test
 
-```bash
+```powershell
 # Health check
-curl http://localhost:3000/api/health
+Invoke-RestMethod http://localhost:3000/api/health
 
 # Query
-curl -X POST http://localhost:3000/api/query \
-  -H "Content-Type: application/json" \
-  -d '{"query": "What is the GST rate in Singapore?"}'
+$body = @{ query = "What is the GST rate in Singapore?" } | ConvertTo-Json
+Invoke-RestMethod http://localhost:3000/api/query -Method Post -ContentType "application/json" -Body $body
 ```
 
 ---
@@ -239,20 +344,21 @@ curl -X POST http://localhost:3000/api/query \
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `GROQ_API_KEY` | — | **Required.** Groq API key |
-| `GROQ_MODEL` | `llama-3.1-8b-instant` | LLM model identifier |
+| `LLM_API_KEY` | required | Groq API key used by the OpenAI-compatible client |
+| `LLM_MODEL` | `llama-3.1-8b-instant` | LLM model identifier |
+| `LLM_BASE_URL` | `https://api.groq.com/openai/v1` | OpenAI-compatible LLM endpoint |
 | `PORT` | `3000` | Express server port |
-| `CHROMA_PATH` | `./chroma_data` | ChromaDB storage directory |
+| `CHROMA_PATH` | `./chroma_db` | ChromaDB storage directory used by the backend |
 | `COLLECTION_NAME` | `waypoint_kb` | ChromaDB collection name |
-| `LOG_LEVEL` | `info` | Logging: debug / info / warn / error |
+| `LOG_LEVEL` | `INFO` | Python script logging verbosity |
 
 ### Retrieval Parameters
 
 | Parameter | Default | Description |
 |-----------|---------|-------------|
-| `RETRIEVAL_TOP_K` | `5` | Number of chunks to retrieve per query |
-| `RELEVANCE_THRESHOLD` | `0.3` | Minimum similarity score to include a chunk |
-| `MAX_CONTEXT_CHARS` | `4000` | Maximum context window for LLM prompt |
+| `RETRIEVAL_TOP_K` | `10` | Number of chunks to retrieve per query |
+| `RELEVANCE_THRESHOLD` | `0.15` | Minimum similarity score to include a chunk |
+| `MAX_CONTEXT_TOKENS` | `2000` | Maximum context size for LLM prompt construction |
 
 ### Chunking Configuration
 
@@ -289,22 +395,23 @@ curl -X POST http://localhost:3000/api/query \
 
 ### Running Tests
 
-```bash
-# Python unit tests (ingestion pipeline)
-cd pilot_phase1_poc/02_ingestion_pipeline
-python -m pytest tests/ -v                    # 87 tests
+```powershell
+cd pilot_phase1_poc\05_evaluation
 
-# Node.js unit tests (RAG pipeline)
-cd pilot_phase1_poc/03_rag_pipeline
-npm test                                       # 105 tests
+# Backend tests
+npm test
 
-# Ingestion verification (30 semantic queries)
-cd pilot_phase1_poc/02_ingestion_pipeline
-python -m scripts.verify_ingestion --verbose
+# Frontend tests
+Push-Location client
+npm test
+Pop-Location
 
-# E2E test suite (30 end-to-end tests)
-cd pilot_phase1_poc/03_rag_pipeline
-python scripts/e2e_test_suite.py
+# Python tests and retrieval quality
+python -m pytest tests -v
+python scripts\retrieval_quality_test.py
+
+# Full evaluation harness; requires the backend to be running
+python scripts\evaluation_harness.py
 ```
 
 ### Scoring Rubric
@@ -322,14 +429,27 @@ python scripts/e2e_test_suite.py
 
 ## Roadmap
 
-### Phase 1 POC — 30 Days (Current)
+### Phase 1 POC — 30 Days (Complete)
 
 | Week | Focus | Status |
 |------|-------|--------|
 | Week 1 | Foundation: knowledge base + ingestion pipeline | ✅ Complete |
 | Week 2 | RAG pipeline: API + UI + E2E testing | ✅ Complete |
 | Week 3 | Retrieval optimization: KB rebuild + tuning | ✅ Complete |
-| Week 4 | Final evaluation + documentation | ⬜ Planned |
+| Week 4 | Final evaluation + documentation | ✅ Complete |
+
+### Phase 2 POC — Component Status
+
+| Component | Purpose | Status |
+|-----------|---------|--------|
+| Partner Source contract | Shared OpenAPI and error contract for order status, timelines, drivers, assignments, and status events. | Slice 1 complete |
+| Partner Source Spring Boot API | Reference implementation for the Partner Source Slice 1 contract. | Complete and tested |
+| Partner Source FastAPI API | Independent implementation proving the same behavior across another stack. | Complete and tested |
+| Partner Source parity harness | Local comparison runner for Spring Boot and FastAPI responses across shared scenarios. | Complete; latest report: 24 passed, 0 failed, 0 skipped |
+| `rag-db` | Retrieval module for policy/procedure knowledge, citations, safeguards, and query planning. | Planned next component |
+| `bff` | Orchestration layer that combines Partner Source operational truth with RAG answers and shapes client responses. | Planned after component contracts are pinned |
+| Chatbot frontend for customer service agents | Customer service experience for order questions, policy answers, and grounded assistant responses. | Planned after BFF contract |
+| Delivery app frontend for delivery drivers | Driver experience for profile, assigned orders, delivery details, and status updates. | Planned after BFF contract |
 
 ---
 
@@ -358,4 +478,4 @@ python scripts/e2e_test_suite.py
 
 ## License
 
-Internal use only — CYAIRE / Waypoint Phase 1 POC
+Internal use only — CYAIRE / Waypoint POC

@@ -1,8 +1,26 @@
 # Partner Source Phase 2 Implementation Lane
 
-This folder is the fresh implementation lane for the Waypoint Phase 2 Partner Source API.
+`partner-source` is the completed Slice 1 Phase 2 implementation lane for Waypoint.
 
-You will build the code by hand from scratch. Agents are support tools only: use them for command help, explanation, debugging, or review when you ask.
+It is a synthetic logistics partner API that gives Waypoint operational data for customer-service questions such as:
+
+- Where is my order?
+- When will it arrive?
+- Who is delivering it?
+- What happened to my shipment?
+- Can the assigned driver mark this order as delivered?
+
+This lane proves the Phase 2 contract boundary before the BFF, chatbot frontend for customer service agents, and delivery app frontend for delivery drivers depend on it.
+
+## Current Status
+
+| Area | Status |
+|------|--------|
+| Shared Slice 1 contract | Complete; frozen locally in `docs/contracts/` and summarized in `AGREED_SPEC.md`. |
+| Spring Boot reference implementation | Complete and tested. |
+| FastAPI parity implementation | Complete and tested against the same behavior. |
+| Local parity harness | Complete; latest report: 24 passed, 0 failed, 0 skipped. |
+| Next product layer | BFF integration that consumes Partner Source and RAG services through contracts for the customer-service chatbot frontend and delivery-driver app frontend. |
 
 ## Folder Layout
 
@@ -13,21 +31,12 @@ partner-source/
 |-- MANUAL_BUILD_SEQUENCE.md
 |-- CONTRACT_SYNC.md
 |-- AGENTS.md
-|-- .gitignore
 |-- .agents/
 |-- docs/
 |-- parity/
 |-- partner-source-springboot/
 `-- partner-source-fastapi/
 ```
-
-## Implementation Folders
-
-| Folder | Purpose | Status |
-|---|---|---|
-| `partner-source-springboot/` | Spring Boot reference implementation. Build this first. | fresh, scaffold-ready |
-| `partner-source-fastapi/` | FastAPI parity implementation. Build after the first Spring Boot proof path. | fresh, scaffold-ready |
-| `parity/` | Future shared contract/parity checks for comparing both APIs. | docs only |
 
 ## Source Of Truth
 
@@ -45,76 +54,68 @@ docs\contracts\shared-error-contract.md
 AGREED_SPEC.md
 ```
 
-Some `docs/support`, `docs/research`, and `docs/archive` files preserve older context. When there is a conflict, follow `AGREED_SPEC.md` and the files under `docs/active` and `docs/contracts`.
+Some `docs/support`, `docs/research`, and `docs/archive` files preserve older context. When there is a conflict, follow `AGREED_SPEC.md`, `docs/active`, and `docs/contracts`.
 
-## Manual Build Path
+## Implementation Folders
 
-Start here for the agreed behavior:
+| Folder | Purpose | Status |
+|---|---|---|
+| `partner-source-springboot/` | Spring Boot reference implementation for Partner Source Slice 1. | Implemented and tested. |
+| `partner-source-fastapi/` | FastAPI implementation that proves parity against the same contract behavior. | Implemented and tested. |
+| `parity/` | Shared checks comparing Spring Boot and FastAPI responses. | Implemented; latest report passes 24/24 scenarios. |
 
-```text
-AGREED_SPEC.md
-```
+## Contract Boundary
 
-Then use the numbered build books:
+Both implementations expose the same Slice 1 API:
 
-```text
-partner-source-springboot\build-sequence\00-index.md
-partner-source-fastapi\build-sequence\00-index.md
-parity\build-sequence\00-index.md
-```
+| Method | Path |
+|---|---|
+| `GET` | `/health` |
+| `GET` | `/ready` |
+| `GET` | `/api/v1/orders/{orderId}/status` |
+| `GET` | `/api/v1/orders/{orderId}/timeline` |
+| `GET` | `/api/v1/drivers/{driverId}` |
+| `GET` | `/api/v1/drivers/{driverId}/assignments` |
+| `POST` | `/api/v1/orders/{orderId}/status-events` |
 
-Use the short tracker only as a progress dashboard:
+Errors use the shared `ProblemDetail`-style envelope with `errorCode` and `correlationId`.
 
-```text
-MANUAL_BUILD_SEQUENCE.md
-```
-
-The build order is:
-
-```text
-read agreed spec
--> check tools
--> Spring Boot scaffold
--> Spring Boot tiny test
--> Spring Boot CI proof
--> FastAPI scaffold
--> FastAPI tiny test
--> FastAPI CI proof
--> first real TDD slice
--> every endpoint in spec order
--> manual HTTP checklist
--> contract/parity checks
-```
-
-Older long-form manuals are archived under `docs\archive\manuals\` for history only. They are not execution authority.
-
-## First Commands
-
-Check the current folder:
+## Verification
 
 ```powershell
-cd C:\Users\prasa\Documents\Github\waypoint-pilot\pilot_phase2_poc\partner-source
-Get-ChildItem -Force
+# Spring Boot
+cd C:\Users\prasa\Documents\Github\waypoint-pilot\pilot_phase2_poc\partner-source\partner-source-springboot
+.\mvnw.cmd test
+
+# FastAPI
+cd ..\partner-source-fastapi
+uv run pytest
+
+# Parity harness tests
+cd ..\parity
+python -m pytest
 ```
 
-When you are ready to scaffold Spring Boot, move into:
+To generate a live parity report:
 
 ```powershell
-cd .\partner-source-springboot
-```
+# Terminal 1
+cd C:\Users\prasa\Documents\Github\waypoint-pilot\pilot_phase2_poc\partner-source\partner-source-springboot
+.\mvnw.cmd spring-boot:run
 
-When you are ready to scaffold FastAPI, move into:
+# Terminal 2
+cd C:\Users\prasa\Documents\Github\waypoint-pilot\pilot_phase2_poc\partner-source\partner-source-fastapi
+uv run uvicorn app.main:app --host 127.0.0.1 --port 8000
 
-```powershell
-cd .\partner-source-fastapi
+# Terminal 3
+cd C:\Users\prasa\Documents\Github\waypoint-pilot\pilot_phase2_poc\partner-source\parity
+python -m parity_runner
 ```
 
 ## Rules
 
-- Build by hand.
-- Write tests before real behavior.
 - Keep Spring Boot and FastAPI separate.
 - Keep the contract shared.
+- Fix implementation drift in the implementation, not by weakening parity checks.
 - Do not add databases, authentication, deployment, Docker, or framework extras in Slice 1 unless the plan changes deliberately.
 - Use `.agents/` personas for command help, debugging, review, contract stewardship, TDD coaching, and CI checks.
-- Ask for help when a step is unclear or blocked.

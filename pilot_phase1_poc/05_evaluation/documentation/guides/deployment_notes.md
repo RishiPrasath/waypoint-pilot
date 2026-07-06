@@ -1,5 +1,7 @@
 # Deployment Notes — Waypoint Co-Pilot
 
+These notes deploy the definitive Phase 1 application in `pilot_phase1_poc/05_evaluation`. Earlier Phase 1 folders are build history and should not be used as the primary run target.
+
 ## Prerequisites
 
 | Requirement | Version | Notes |
@@ -168,7 +170,9 @@ Open `http://localhost:5173` in your browser to use the application.
 npm test
 
 # Frontend tests (Vitest) — component tests
-cd client && npm test
+Push-Location client
+npm test
+Pop-Location
 
 # Python tests (pytest) — 55 tests
 python -m pytest tests/ -v

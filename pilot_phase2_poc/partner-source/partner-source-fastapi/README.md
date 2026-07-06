@@ -1,90 +1,89 @@
 # Partner Source FastAPI
 
-Fresh FastAPI parity implementation folder for Waypoint Phase 2 Partner Source.
+FastAPI is the contract-parity implementation for Waypoint Phase 2 Partner Source.
 
-This folder is intentionally not scaffolded yet. Build it from scratch by hand when you are ready.
+It proves that the same operational logistics API behavior can be implemented independently in Python while staying aligned with the Spring Boot reference implementation and shared OpenAPI contract.
 
-## Role
+## Current Status
 
-FastAPI proves the same Partner Source contract can be implemented in Python.
+| Area | Status |
+|------|--------|
+| Project scaffold | Complete. |
+| Domain policies | Implemented and tested. |
+| In-memory seed store and repositories | Implemented and tested. |
+| Health and readiness endpoints | Implemented and tested. |
+| Order and driver read endpoints | Implemented and tested. |
+| Status event write endpoint | Implemented and tested. |
+| Shared error envelope | Implemented and tested. |
+| Integration and final gate | Complete. |
 
-It must not become a second product or a second source of API truth.
-
-## Starting Choices
+## Stack
 
 | Area | Choice |
 |---|---|
 | Python | 3.12 or newer |
 | Framework | FastAPI |
-| Server | `uvicorn[standard]` |
+| Server | `uvicorn` |
 | Tests | pytest, httpx, FastAPI `TestClient` |
-| Dependency manager | Prefer `uv`; requirements files are acceptable for the first scaffold |
+| Dependency manager | `uv` |
 | Persistence | In-memory repositories only |
 | Health | Custom `/health` and `/ready` |
 
-Do not add SQLAlchemy, Alembic, background workers, authentication packages, Docker, deployment config, or OpenAPI server generation for Slice 1.
+## Contract Scope
 
-## First Manual Setup Target
-
-Create the app here with:
+The implementation follows the shared Partner Source Slice 1 contract:
 
 ```text
-pyproject.toml or requirements files
-.python-version
-app/main.py
-app/api/
-app/schemas/
-app/domain/
-app/repositories/
-app/services/
-app/seed/
-app/errors/
-tests/
+..\docs\contracts\openapi\partner-source.v1.yaml
+..\docs\contracts\shared-error-contract.md
+..\AGREED_SPEC.md
 ```
 
-If using `uv`, first validation command:
+It exposes:
+
+```text
+GET  /health
+GET  /ready
+GET  /api/v1/orders/{orderId}/status
+GET  /api/v1/orders/{orderId}/timeline
+GET  /api/v1/drivers/{driverId}
+GET  /api/v1/drivers/{driverId}/assignments
+POST /api/v1/orders/{orderId}/status-events
+```
+
+## Verification
+
+Run from this folder:
 
 ```powershell
 cd C:\Users\prasa\Documents\Github\waypoint-pilot\pilot_phase2_poc\partner-source\partner-source-fastapi
-uv sync --locked --all-extras --dev
 uv run pytest
 ```
 
-If using requirements files first:
+Run the service locally:
 
 ```powershell
-cd C:\Users\prasa\Documents\Github\waypoint-pilot\pilot_phase2_poc\partner-source\partner-source-fastapi
-py -3.12 -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install --upgrade pip
-pip install -r requirements.txt -r requirements-dev.txt
-python -m pytest
+uv run uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 
-## First Real TDD Target
-
-Mirror the Spring Boot status transition tests:
+Default local URL:
 
 ```text
-tests/domain/test_status_transition_policy.py
+http://localhost:8000
 ```
 
-Follow the root checklist:
+## Build Book
 
-```text
-..\MANUAL_BUILD_SEQUENCE.md
-```
-
-Use the numbered human build sequence for all instructions:
+The numbered build sequence records the implementation path and verification history:
 
 ```text
 build-sequence\00-index.md
 ```
 
-For agreed behavior, use:
+Task 17 is the final gate for this implementation.
 
-```text
-..\AGREED_SPEC.md
-```
+## Guardrails
 
-Older long-form manuals are archived under `..\docs\archive\manuals\` for history only.
+- Do not add SQLAlchemy, Alembic, background workers, authentication packages, Docker, deployment config, or OpenAPI server generation for Slice 1.
+- Do not treat FastAPI's generated OpenAPI output as the source of truth.
+- If FastAPI and Spring Boot drift, fix the implementation that drifted from the contract or reference behavior.
