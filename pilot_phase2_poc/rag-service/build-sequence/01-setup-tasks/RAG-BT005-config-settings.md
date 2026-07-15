@@ -1,6 +1,6 @@
 # RAG-BT005: Add Config And Settings Module
 
-Status: Draft
+Status: Complete
 
 | Field | Value |
 |---|---|
@@ -12,7 +12,7 @@ Status: Draft
 | Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-bt005-config-settings` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Draft |
+| Status | Complete |
 
 ## 1. Task Definition
 
@@ -189,30 +189,35 @@ worktree.
 
 ## 8. Task Evidence
 
-Branch:
-Worktree:
-PR:
-Commit:
+Branch: `codex/rag-bt005-config-settings`
+Worktree: `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-bt005-config-settings`
+PR: https://github.com/RishiPrasath/waypoint-pilot/pull/7
+Commit: `32f4be3`
 
 Files Changed:
--
+- `app/core/config.py`
+- `app/core/tests/test_config.py`
+- `build-evidence/RAG-BT005-config-settings.md`
 
 Tests Run:
--
+- `uv run pytest app/core/tests/test_config.py -q`
+- Result: 3 passed
 
 CI Result:
+- PR #7 merged
 
 AI Review Findings:
--
+- Initial pass missed secret-gated access behavior; added explicit secret helpers and masking coverage.
 
 Human Review Notes:
--
+- PR merged after review.
 
 Issues Encountered:
--
+- None after the config hardening pass.
 
 Resolution:
--
+- Added explicit secret access methods and updated tests to prove safe defaults and masked secrets.
 
 Debt / Follow-Ups:
+- Refresh the local `main` checkout to `origin/main` when convenient.
 -
