@@ -5,6 +5,7 @@ Status: Complete
 ## Sequence Entry
 
 Start from build-sequence/00-index.md, then open the lane index for this task before opening the task file.
+Task files should follow the canonical template in build-sequence/00-task-sequence-template-proposal.md.
 
 | Field | Value |
 |---|---|
@@ -464,5 +465,7 @@ Debt / Follow-Ups:
 Closeout:
 - Implementation merged in PR #2.
 - Follow-up closeout recorded in this task update.
+
+
 
 
