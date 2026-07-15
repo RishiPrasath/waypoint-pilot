@@ -1,3 +1,13 @@
-from app.shared.vector_db.client import VectorDbConfig
+from app.shared.vector_db.client import (
+    QdrantVectorDbClient,
+    VectorDbConfig,
+    VectorPoint,
+    VectorSearchMatch,
+)
 
-__all__ = ["VectorDbConfig"]
+__all__ = [
+    "QdrantVectorDbClient",
+    "VectorDbConfig",
+    "VectorPoint",
+    "VectorSearchMatch",
+]

@@ -20,3 +20,11 @@ dev = [
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
+
+[tool.bandit]
+exclude_dirs = [
+  "app/api/tests",
+  "app/core/tests",
+  "app/shared/tests",
+  "app/shared/vector_db/tests",
+]

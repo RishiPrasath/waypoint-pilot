@@ -7,6 +7,13 @@ class Settings(BaseSettings):
     environment: str = "local"
     groq_api_key: SecretStr | None = None
     qdrant_api_key: SecretStr | None = None
+    qdrant_url: str = "http://localhost:6333"
+    qdrant_collection_name: str = "rag_chunks"
+    qdrant_vector_size: int = 384
+    qdrant_distance: str = "Cosine"
+    qdrant_payload_schema_version: str = "v1"
+    qdrant_embedding_model_name: str | None = None
+    qdrant_embedding_model_version: str | None = None
 
     model_config = SettingsConfigDict(
         env_prefix="RAG_", env_file=".env", extra="ignore"
