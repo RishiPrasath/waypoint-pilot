@@ -55,6 +55,8 @@ updated main
 -> merge
 -> main CI/CD
 -> worktree cleanup
+-> local branch cleanup
+-> remote branch cleanup when permitted
 ```
 
 ## CI Build And Test Strategy

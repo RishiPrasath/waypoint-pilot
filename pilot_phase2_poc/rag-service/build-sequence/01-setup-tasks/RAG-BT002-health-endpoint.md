@@ -1,6 +1,6 @@
 # RAG-BT002: Add Health Endpoint
 
-Status: Draft
+Status: Complete
 
 | Field | Value |
 |---|---|
@@ -12,7 +12,7 @@ Status: Draft
 | Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-bt002-health-endpoint` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Draft |
+| Status | Complete |
 
 ## 1. Task Definition
 
@@ -189,14 +189,16 @@ Open a PR to `main`.
 
 ## 7. Merge
 
-Merge after PR CI/CD and `main` CI/CD pass. Then clean up the worktree.
+Merge after PR CI/CD and `main` CI/CD pass. Then clean up the worktree,
+delete the merged local branch, and delete the merged remote branch when
+permitted.
 
 ## 8. Task Evidence
 
 Branch:
 Worktree:
-PR:
-Commit:
+PR: https://github.com/RishiPrasath/waypoint-pilot/pull/4
+Commit: e9cf290
 
 Files Changed:
 -
@@ -220,3 +222,7 @@ Resolution:
 
 Debt / Follow-Ups:
 -
+
+Closeout:
+- Health endpoint implemented, tested, pushed, and merged.
+- Worktree cleanup was attempted after merge; the worktree is no longer registered.

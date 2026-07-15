@@ -178,7 +178,8 @@ Open a PR to `main`.
 
 ## 7. Merge
 
-Merge after review and CI. Then clean up the worktree.
+Merge after review and CI. Then clean up the worktree, delete the merged local
+branch, and delete the merged remote branch when permitted.
 
 ## 8. Task Evidence
 

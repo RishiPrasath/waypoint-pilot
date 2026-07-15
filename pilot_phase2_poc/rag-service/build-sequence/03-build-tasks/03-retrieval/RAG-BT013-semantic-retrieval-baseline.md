@@ -222,7 +222,8 @@ Required PR checks:
 ## 7. Merge
 
 Merge only after CI passes and the PR is reviewed. After merge, confirm `main`
-CI/CD also runs successfully, then clean up the worktree.
+CI/CD also runs successfully, then clean up the worktree, delete the merged
+local branch, and delete the merged remote branch when permitted.
 
 ### Windows PowerShell
 

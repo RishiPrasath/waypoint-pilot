@@ -335,7 +335,8 @@ Open a PR to `main`.
 ## 7. Merge
 
 Merge only after PR CI/CD passes and confirm `main` CI/CD also passes. Then
-clean up the worktree.
+clean up the worktree, delete the merged local branch, and delete the merged
+remote branch when permitted.
 
 ## 8. Task Evidence
 
