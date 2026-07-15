@@ -1,6 +1,6 @@
 # RAG-BT001: Create FastAPI Project Skeleton
 
-Status: Draft
+Status: Complete
 
 | Field | Value |
 |---|---|
@@ -12,7 +12,7 @@ Status: Draft
 | Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-bt001-fastapi-skeleton` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Draft |
+| Status | Complete |
 
 ## 1. Task Definition
 
@@ -452,3 +452,7 @@ Resolution:
 
 Debt / Follow-Ups:
 -
+
+Closeout:
+- Implementation merged in PR #2.
+- Follow-up closeout recorded in this task update.
