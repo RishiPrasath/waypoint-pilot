@@ -1,9 +1,10 @@
 # RAG-BT010: Qdrant Vector DB Client Wrapper Evidence
 
-Branch: local continuation after merge checkpoint
-Worktree: `C:\Users\prasa\Documents\Github\waypoint-pilot\pilot_phase2_poc\rag-service`
-PR:
-Commit:
+Branch: `codex/rag-bt010-qdrant-vector-db-client`
+Worktree: `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-bt010-qdrant-vector-db-client`
+PR: https://github.com/RishiPrasath/waypoint-pilot/pull/10
+Commit: `3a42684f89e189562cfac764a238e9af0cbb04c1`
+Merge Commit: `eb9e5904e656f1764110b11cb16af2d88eb22d45`
 
 Files Changed:
 - `app/core/config.py`
@@ -20,7 +21,7 @@ Tests Run:
 - `uv run bandit -c pyproject.toml -r app -ll` -> No issues identified
 
 CI Result:
-- Not run locally.
+- PR #10 merged into `main` on 2026-07-15.
 
 AI Review Findings:
 - Implemented a mocked Qdrant-style boundary for upsert, search, and delete cleanup without requiring a local Qdrant service in Stage 1 CI.
