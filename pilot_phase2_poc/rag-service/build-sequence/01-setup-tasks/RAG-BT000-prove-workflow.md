@@ -1,6 +1,6 @@
 # RAG-BT000: Prove Branch, Worktree, PR, And Evidence Workflow
 
-Status: Draft
+Status: Complete
 
 | Field | Value |
 |---|---|
@@ -12,7 +12,7 @@ Status: Draft
 | Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-bt000-prove-workflow` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Draft |
+| Status | Complete |
 
 ## 1. Task Definition
 
@@ -54,6 +54,8 @@ $WorktreePath = Join-Path $WorktreeRoot "$TaskId-$Slug"
 
 New-Item -ItemType Directory -Force -Path $WorktreeRoot | Out-Null
 git -C $RepoRoot fetch origin
+git -C $RepoRoot pull --ff-only origin main
+git -C $RepoRoot config core.longpaths true
 git -C $RepoRoot worktree add -b $Branch $WorktreePath origin/main
 git -C $WorktreePath status --short --branch
 ```
@@ -70,6 +72,8 @@ WORKTREE_PATH="$WORKTREE_ROOT/$TASK_ID-$SLUG"
 
 mkdir -p "$WORKTREE_ROOT"
 git -C "$REPO_ROOT" fetch origin
+git -C "$REPO_ROOT" pull --ff-only origin main
+git -C "$REPO_ROOT" config core.longpaths true
 git -C "$REPO_ROOT" worktree add -b "$BRANCH" "$WORKTREE_PATH" origin/main
 git -C "$WORKTREE_PATH" status --short --branch
 ```
@@ -215,3 +219,6 @@ Resolution:
 
 Debt / Follow-Ups:
 -
+
+Closeout:
+- Workflow proof completed and recorded in the task evidence file.

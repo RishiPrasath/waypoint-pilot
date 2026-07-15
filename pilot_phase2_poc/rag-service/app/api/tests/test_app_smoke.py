@@ -1,4 +1,4 @@
-﻿from app.main import app
+from app.main import app
 
 
 def test_fastapi_app_exists():
