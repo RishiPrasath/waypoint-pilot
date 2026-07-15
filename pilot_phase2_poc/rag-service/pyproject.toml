@@ -12,7 +12,7 @@ dependencies = [
 [dependency-groups]
 dev = [
   "bandit",
-  "httpx",
+  "httpx2",
   "pip-audit",
   "pytest",
   "ruff",
