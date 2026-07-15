@@ -9,6 +9,9 @@ Any agent starting work in this sequence should begin here, read this file
 first, and then follow the relevant lane index before opening an individual
 task file.
 
+Task files should follow the canonical template in
+`build-sequence/00-task-sequence-template-proposal.md`.
+
 It is split into three task lanes:
 
 ```text

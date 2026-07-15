@@ -6,7 +6,8 @@ Date: 2026-07-09
 This folder contains setup tasks for `rag-service`.
 
 Start from `../00-index.md`, then use this lane index, then open the task
-file.
+file. Task files should follow
+`../00-task-sequence-template-proposal.md`.
 
 Setup tasks prepare the repository, FastAPI skeleton, CI/CD pipeline, quality
 gates, security scan foundation, configuration, shared schemas, and vector DB

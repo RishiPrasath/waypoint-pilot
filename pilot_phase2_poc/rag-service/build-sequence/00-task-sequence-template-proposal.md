@@ -1,14 +1,15 @@
-# RAG Service Task Sequence Template Proposal
+# RAG Service Task Sequence Template
 
-Status: Proposal - not approved for canonical use
+Status: Approved canonical task template
 Date: 2026-07-15
 
 ## Purpose
 
-Make every setup, design, and build task executable, auditable, and closable
-without relying on chat history or undocumented recovery steps.
+Use this template for every setup, design, and build task so it stays
+executable, auditable, and closable without relying on chat history or
+undocumented recovery steps.
 
-This proposal responds to the issues found while running RAG-BT000 and
+This template responds to the issues found while running RAG-BT000 and
 RAG-BT001:
 
 - Windows long-path failure during worktree checkout
@@ -55,11 +56,11 @@ build-evidence/
   ...
 ```
 
-The task files remain in their current lanes. The new governance files become
-the single source of truth for how tasks are written and executed. Evidence
-remains outside `build-sequence/` and is linked from each task file.
+The task files remain in their current lanes. This template is the single
+source of truth for how tasks are written and executed. Evidence remains
+outside `build-sequence/` and is linked from each task file.
 
-## Proposed Task File Template
+## Task File Template
 
 Each task file should contain only the task specification and a pointer to its
 evidence. It should not contain a second blank evidence form.
@@ -113,7 +114,7 @@ Use one command per code block. Windows commands must be BOM-safe.
 ## 11. Out Of Scope And Deferred Work
 ```
 
-## Proposed Evidence Template
+## Evidence Template
 
 The evidence file is the execution record. It is created on the task branch,
 updated before the PR is merged, and completed by a documented closeout commit
@@ -173,7 +174,7 @@ Branch cleanup:
 Blank fields are not allowed. Use an explicit value such as `N/A - no
 rag-service CI exists until RAG-BT004` when a check is not applicable.
 
-## Proposed Status Model
+## Status Model
 
 ```text
 Planned
@@ -196,7 +197,7 @@ Rules:
 - The next task cannot start while a required predecessor is not `Complete` or
   explicitly `Deferred`.
 
-## Proposed Windows Preflight
+## Windows Preflight
 
 Commands must be shown separately and executed separately:
 
@@ -228,7 +229,7 @@ only valid base for new task branches. If a task branch was created before the
 latest `origin/main` was fetched, rebase or recreate the worktree before
 continuing.
 
-## Proposed Windows File-Writing Rule
+## Windows File-Writing Rule
 
 Do not use `Set-Content -Encoding UTF8` for TOML, YAML, JSON, or Python files
 when the parser rejects a BOM. Use a shared helper in the command convention
@@ -239,7 +240,7 @@ $Utf8NoBom = New-Object System.Text.UTF8Encoding($false)
 [System.IO.File]::WriteAllText($Path, $Content, $Utf8NoBom)
 ```
 
-## Proposed Python Test Rule
+## Python Test Rule
 
 Use this as the standard local invocation:
 
@@ -255,7 +256,7 @@ explicit project-root configuration such as:
 pythonpath = ["."]
 ```
 
-## Proposed Git Structure Rule
+## Git Structure Rule
 
 Acceptance criteria must never depend on empty directories. Every required
 placeholder directory must contain one of:
@@ -268,7 +269,7 @@ placeholder directory must contain one of:
 The structural acceptance test must verify the committed tree, not only the
 local filesystem.
 
-## Proposed Closeout Sequence
+## Closeout Sequence
 
 1. Run local tests and checks.
 2. Complete the pre-PR evidence gate below.
@@ -289,7 +290,7 @@ local filesystem.
 15. Complete post-merge evidence in a closeout commit/PR.
 16. Mark the task `Complete` only after the closeout evidence is merged.
 
-## Proposed Pre-PR Evidence Gate
+## Pre-PR Evidence Gate
 
 The PR must not be opened until the task evidence file exists on the task
 branch and contains:
@@ -315,15 +316,10 @@ before merge. After merge, complete the merged commit and cleanup fields in the
 closeout commit/PR. This makes evidence a gate at every transition rather than
 an after-the-fact report.
 
-## Proposed Approval Boundary
+## Rollout Guidance
 
-This file is a proposal only. After approval:
-
-1. add the governance templates under `build-sequence/00-governance/`
-2. update `build-sequence/00-index.md` with the status and closeout gates
-3. update lane indexes to reference the canonical template
-4. rewrite future task files before starting RAG-BT002
-5. optionally migrate BT000 and BT001 records to the new format
-
-Existing task files should not be bulk-rewritten until the template is
-approved.
+1. Keep `build-sequence/00-index.md` as the entrypoint for every agent.
+2. Keep the lane indexes as the next hop after the root index.
+3. Keep the sequence entry note in each task file.
+4. Use this template for any new or rewritten task file.
+5. Optionally migrate older task files to match this format over time.

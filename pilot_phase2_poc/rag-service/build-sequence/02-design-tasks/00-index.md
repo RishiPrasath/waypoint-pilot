@@ -7,7 +7,8 @@ This folder contains the remaining design-decision tasks that must be completed
 before blocked RAG build work begins.
 
 Start from `../00-index.md`, then use this lane index, then open the task
-file.
+file. Task files should follow
+`../00-task-sequence-template-proposal.md`.
 
 Design tasks produce decisions, plans, schemas, registries, fixtures, research
 evidence, and acceptance criteria. They do not produce runtime service

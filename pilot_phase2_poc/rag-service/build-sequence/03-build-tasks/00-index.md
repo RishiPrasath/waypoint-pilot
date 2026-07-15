@@ -6,7 +6,8 @@ Date: 2026-07-09
 This folder contains the final implementation tasks for actual RAG behavior.
 
 Start from `../00-index.md`, then use this lane index, then open the task
-file.
+file. Task files should follow
+`../00-task-sequence-template-proposal.md`.
 
 These tasks must run only after the relevant setup tasks and design-decision
 tasks are complete or explicitly deferred.
