@@ -1,6 +1,6 @@
 # RAG-BT003: Add Readiness Endpoint
 
-Status: Draft
+Status: Planned
 
 | Field | Value |
 |---|---|
@@ -9,10 +9,21 @@ Status: Draft
 | Source Question | Codebase setup and local runnable increments |
 | Decision / ADR | ADR-RAG-0011 |
 | Branch | `codex/rag-bt003-readiness-endpoint` |
-| Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-bt003-readiness-endpoint` |
+| Worktree Path | `C:\tmp\rag-bt003-readiness-endpoint` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Draft |
+| Status | Planned |
+| Evidence | `build-evidence/RAG-BT003-readiness-endpoint.md` |
+
+## Mandatory Execution Contract
+
+This task follows `build-sequence/00-governance/`. Its matching execution record
+must be maintained at the Evidence path above. Run one PowerShell command per
+block, use the canonical Windows/Python command conventions, and record the
+exact checks and results in the evidence file. The pre-PR evidence gate is
+mandatory; `Complete` requires merged closeout, clean `main`, and worktree
+cleanup.
+
 
 ## 1. Task Definition
 
@@ -40,7 +51,7 @@ Out Of Scope:
 
 ```powershell
 $RepoRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot"
-$WorktreeRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees"
+$WorktreeRoot = "C:\tmp"
 $TaskId = "rag-bt003"
 $Slug = "readiness-endpoint"
 $Branch = "codex/$TaskId-$Slug"
@@ -87,7 +98,7 @@ def test_ready_endpoint_returns_ready():
 
     assert response.status_code == 200
     assert response.json()["status"] == "ready"
-'@ | Set-Content -Path $TestPath -Encoding UTF8
+'@ | Set-Content -Path $TestPath -Encoding utf8NoBOM
 ```
 
 ### Linux / macOS Bash Test File Creation
@@ -126,7 +137,7 @@ router = APIRouter()
 @router.get("/ready")
 def ready() -> dict[str, str]:
     return {"status": "ready"}
-'@ | Set-Content -Path $ReadyPath -Encoding UTF8
+'@ | Set-Content -Path $ReadyPath -Encoding utf8NoBOM
 ```
 
 ### Linux / macOS Bash Implementation File Creation
@@ -151,14 +162,14 @@ EOF
 
 ```powershell
 cd "$WorktreePath\pilot_phase2_poc\rag-service"
-uv run pytest app/api/tests/test_ready.py -q
+uv run python -m pytest app/api/tests/test_ready.py -q
 ```
 
 ### Linux / macOS Bash
 
 ```bash
 cd "$WORKTREE_PATH/pilot_phase2_poc/rag-service"
-uv run pytest app/api/tests/test_ready.py -q
+uv run python -m pytest app/api/tests/test_ready.py -q
 ```
 
 ## 6. Branch Workflow

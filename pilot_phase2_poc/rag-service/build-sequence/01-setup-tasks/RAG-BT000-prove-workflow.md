@@ -1,6 +1,6 @@
 # RAG-BT000: Prove Branch, Worktree, PR, And Evidence Workflow
 
-Status: Draft
+Status: Complete
 
 | Field | Value |
 |---|---|
@@ -12,7 +12,18 @@ Status: Draft
 | Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-bt000-prove-workflow` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Draft |
+| Status | Complete |
+| Evidence | `build-evidence/RAG-BT000-prove-workflow.md` |
+
+## Mandatory Execution Contract
+
+This task follows `build-sequence/00-governance/`. Its matching execution record
+must be maintained at the Evidence path above. Run one PowerShell command per
+block, use the canonical Windows/Python command conventions, and record the
+exact checks and results in the evidence file. The pre-PR evidence gate is
+mandatory; `Complete` requires merged closeout, clean `main`, and worktree
+cleanup.
+
 
 ## 1. Task Definition
 
@@ -46,7 +57,7 @@ Out Of Scope:
 
 ```powershell
 $RepoRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot"
-$WorktreeRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees"
+$WorktreeRoot = "C:\tmp"
 $TaskId = "rag-bt000"
 $Slug = "prove-workflow"
 $Branch = "codex/$TaskId-$Slug"
@@ -109,7 +120,7 @@ PR:
 PR CI/CD:
 Main CI/CD:
 Cleanup:
-'@ | Set-Content -Path $EvidencePath -Encoding UTF8
+'@ | Set-Content -Path $EvidencePath -Encoding utf8NoBOM
 ```
 
 ### Linux / macOS Bash
@@ -186,32 +197,10 @@ git -C "$REPO_ROOT" worktree prune
 git -C "$REPO_ROOT" pull --ff-only origin main
 ```
 
-## 8. Task Evidence
+## 8. Evidence
 
-Branch:
-Worktree:
-PR:
-Commit:
+Execution record: `build-evidence/RAG-BT000-prove-workflow.md`
 
-Files Changed:
--
-
-Tests Run:
--
-
-CI Result:
-
-AI Review Findings:
--
-
-Human Review Notes:
--
-
-Issues Encountered:
--
-
-Resolution:
--
-
-Debt / Follow-Ups:
--
+This task record contains the plan and acceptance criteria. The linked evidence
+file is the authoritative record of commands, results, PR state, merge state,
+and cleanup.

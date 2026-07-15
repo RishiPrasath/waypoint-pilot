@@ -1,6 +1,6 @@
 # RAG Service Design Task Lane
 
-Status: Draft executable task files under accepted sequence
+Status: Planned task lane governed by canonical templates
 Date: 2026-07-09
 
 This folder contains the remaining design-decision tasks that must be completed
@@ -23,6 +23,10 @@ design tasks before build tasks or runtime ingestion can depend on it.
 Design tasks may create `docs/design/`, `docs/evaluation/`, and
 `knowledge_base/` artifacts as part of their accepted output. Those folders are
 not assumed to exist before the relevant task runs.
+
+Every design task follows `../00-governance/`: its execution record lives under
+`build-evidence/`, the pre-PR evidence gate must pass before review, and the
+task is not `Complete` until post-merge closeout is recorded.
 
 ## Folder Layout
 
@@ -76,22 +80,22 @@ decision reconciliation
 
 ## Design Task List
 
-| Order | ID | Task | File | Status |
-|---:|---|---|---|---|
-| 8 | `RAG-DT001` | Reconcile architecture checklist with accepted ADRs | `01-decision-reconciliation/RAG-DT001-architecture-checklist-reconciliation.md` | Draft |
-| 9 | `RAG-DT002` | Create Phase 1 KB source audit table | `02-source-scope-and-registry/RAG-DT002-phase1-kb-source-audit.md` | Draft |
-| 10 | `RAG-DT008` | Define source registry schema and validation rules | `02-source-scope-and-registry/RAG-DT008-source-registry-schema.md` | Draft |
-| 11 | `RAG-DT003` | Create APAC source candidate registry | `02-source-scope-and-registry/RAG-DT003-apac-source-candidate-registry.md` | Draft |
-| 12 | `RAG-DT004` | Confirm KB folder layout and source registry storage location | `03-kb-materialization/RAG-DT004-kb-folder-layout.md` | Draft |
-| 13 | `RAG-DT012` | Define source snapshot and canonical markdown candidate plan | `03-kb-materialization/RAG-DT012-source-snapshot-and-canonical-markdown-candidates.md` | Draft |
-| 14 | `RAG-DT005` | Run chunking experiment during KB curation | `04-chunking-and-evaluation-design/RAG-DT005-chunking-experiment.md` | Draft |
-| 15 | `RAG-DT006` | Define golden questions and answer rubrics | `04-chunking-and-evaluation-design/RAG-DT006-golden-questions.md` | Draft |
-| 16 | `RAG-DT007` | Define query planner vocabulary and rules artifacts | `05-runtime-technical-design/RAG-DT007-query-planner-artifacts.md` | Draft |
-| 17 | `RAG-DT009` | Define LLM model evaluation fixture | `05-runtime-technical-design/RAG-DT009-llm-model-evaluation-fixture.md` | Draft |
-| 18 | `RAG-DT010` | Define embedding benchmark fixture | `05-runtime-technical-design/RAG-DT010-embedding-benchmark-fixture.md` | Draft |
-| 19 | `RAG-DT014` | Define test vector DB and CI integration strategy | `05-runtime-technical-design/RAG-DT014-test-vector-db-ci-strategy.md` | Draft |
-| 20 | `RAG-DT011` | Define Docker/local ops design when ready | `05-runtime-technical-design/RAG-DT011-docker-local-ops-design.md` | Deferred Draft |
-| 21 | `RAG-DT013` | Final build task impact review | `06-build-impact-review/RAG-DT013-final-build-task-impact-review.md` | Draft |
+| Order | ID | Task | File | Status | Evidence |
+|---:|---|---|---|---|---|
+| 8 | `RAG-DT001` | Reconcile architecture checklist with accepted ADRs | `01-decision-reconciliation/RAG-DT001-architecture-checklist-reconciliation.md` | Planned | `build-evidence/RAG-DT001-architecture-checklist-reconciliation.md` |
+| 9 | `RAG-DT002` | Create Phase 1 KB source audit table | `02-source-scope-and-registry/RAG-DT002-phase1-kb-source-audit.md` | Planned | `build-evidence/RAG-DT002-phase1-kb-source-audit.md` |
+| 10 | `RAG-DT008` | Define source registry schema and validation rules | `02-source-scope-and-registry/RAG-DT008-source-registry-schema.md` | Planned | `build-evidence/RAG-DT008-source-registry-schema.md` |
+| 11 | `RAG-DT003` | Create APAC source candidate registry | `02-source-scope-and-registry/RAG-DT003-apac-source-candidate-registry.md` | Planned | `build-evidence/RAG-DT003-apac-source-candidate-registry.md` |
+| 12 | `RAG-DT004` | Confirm KB folder layout and source registry storage location | `03-kb-materialization/RAG-DT004-kb-folder-layout.md` | Planned | `build-evidence/RAG-DT004-kb-folder-layout.md` |
+| 13 | `RAG-DT012` | Define source snapshot and canonical markdown candidate plan | `03-kb-materialization/RAG-DT012-source-snapshot-and-canonical-markdown-candidates.md` | Planned | `build-evidence/RAG-DT012-source-snapshot-and-canonical-markdown-candidates.md` |
+| 14 | `RAG-DT005` | Run chunking experiment during KB curation | `04-chunking-and-evaluation-design/RAG-DT005-chunking-experiment.md` | Planned | `build-evidence/RAG-DT005-chunking-experiment.md` |
+| 15 | `RAG-DT006` | Define golden questions and answer rubrics | `04-chunking-and-evaluation-design/RAG-DT006-golden-questions.md` | Planned | `build-evidence/RAG-DT006-golden-questions.md` |
+| 16 | `RAG-DT007` | Define query planner vocabulary and rules artifacts | `05-runtime-technical-design/RAG-DT007-query-planner-artifacts.md` | Planned | `build-evidence/RAG-DT007-query-planner-artifacts.md` |
+| 17 | `RAG-DT009` | Define LLM model evaluation fixture | `05-runtime-technical-design/RAG-DT009-llm-model-evaluation-fixture.md` | Planned | `build-evidence/RAG-DT009-llm-model-evaluation-fixture.md` |
+| 18 | `RAG-DT010` | Define embedding benchmark fixture | `05-runtime-technical-design/RAG-DT010-embedding-benchmark-fixture.md` | Planned | `build-evidence/RAG-DT010-embedding-benchmark-fixture.md` |
+| 19 | `RAG-DT014` | Define test vector DB and CI integration strategy | `05-runtime-technical-design/RAG-DT014-test-vector-db-ci-strategy.md` | Planned | `build-evidence/RAG-DT014-test-vector-db-ci-strategy.md` |
+| 20 | `RAG-DT011` | Define Docker/local ops design when ready | `05-runtime-technical-design/RAG-DT011-docker-local-ops-design.md` | Deferred | `build-evidence/RAG-DT011-docker-local-ops-design.md` |
+| 21 | `RAG-DT013` | Final build task impact review | `06-build-impact-review/RAG-DT013-final-build-task-impact-review.md` | Planned | `build-evidence/RAG-DT013-final-build-task-impact-review.md` |
 
 ## How Design Tasks Fit The Build Sequence
 

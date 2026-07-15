@@ -1,6 +1,6 @@
 # RAG-DT011: Define Docker And Local Ops Design
 
-Status: Deferred Draft
+Status: Deferred
 
 | Field | Value |
 |---|---|
@@ -12,10 +12,21 @@ Status: Deferred Draft
 | Related Planning Docs | `02-rag-db/planning/definition-of-done.md`, `02-rag-db/planning/cicd-pipeline-proposal.md` |
 | Affected Build Tasks | RAG-BT020, RAG-BT021, RAG-BT022, RAG-BT004 |
 | Branch | `codex/rag-dt011-docker-local-ops-design` |
-| Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-dt011-docker-local-ops-design` |
+| Worktree Path | `C:\tmp\rag-dt011-docker-local-ops-design` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Deferred Draft |
+| Status | Deferred |
+| Evidence | `build-evidence/RAG-DT011-docker-local-ops-design.md` |
+
+## Mandatory Execution Contract
+
+This task follows `build-sequence/00-governance/`. Its matching execution record
+must be maintained at the Evidence path above. Run one PowerShell command per
+block, use the canonical Windows/Python command conventions, and record the
+exact checks and results in the evidence file. The pre-PR evidence gate is
+mandatory; `Complete` requires merged closeout, clean `main`, and worktree
+cleanup.
+
 
 ## 1. Task Definition
 
@@ -55,7 +66,7 @@ Create the branch and worktree before creating or editing design artifacts.
 
 ```powershell
 $RepoRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot"
-$WorktreeRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees"
+$WorktreeRoot = "C:\tmp"
 $TaskId = "rag-dt011"
 $Slug = "docker-local-ops-design"
 $Branch = "codex/$TaskId-$Slug"

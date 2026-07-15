@@ -1,6 +1,6 @@
 # RAG-BT010: Add Qdrant Vector DB Client Wrapper
 
-Status: Draft
+Status: Planned
 
 | Field | Value |
 |---|---|
@@ -9,10 +9,21 @@ Status: Draft
 | Source Question | Vector database selection |
 | Decision / ADR | ADR-RAG-0002 |
 | Branch | `codex/rag-bt010-qdrant-vector-db-client` |
-| Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-bt010-qdrant-vector-db-client` |
+| Worktree Path | `C:\tmp\rag-bt010-qdrant-vector-db-client` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Draft |
+| Status | Planned |
+| Evidence | `build-evidence/RAG-BT010-qdrant-vector-db-client.md` |
+
+## Mandatory Execution Contract
+
+This task follows `build-sequence/00-governance/`. Its matching execution record
+must be maintained at the Evidence path above. Run one PowerShell command per
+block, use the canonical Windows/Python command conventions, and record the
+exact checks and results in the evidence file. The pre-PR evidence gate is
+mandatory; `Complete` requires merged closeout, clean `main`, and worktree
+cleanup.
+
 
 ## 1. Task Definition
 
@@ -43,7 +54,7 @@ Out Of Scope:
 
 ```powershell
 $RepoRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot"
-$WorktreeRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees"
+$WorktreeRoot = "C:\tmp"
 $TaskId = "rag-bt010"
 $Slug = "qdrant-vector-db-client"
 $Branch = "codex/$TaskId-$Slug"
@@ -96,7 +107,7 @@ def test_vector_db_config_has_collection_name():
     assert config.vector_size == 384
     assert config.distance == "Cosine"
     assert config.payload_schema_version == "v1"
-'@ | Set-Content -Path $TestPath -Encoding UTF8
+'@ | Set-Content -Path $TestPath -Encoding utf8NoBOM
 ```
 
 ### Linux / macOS Bash Test File Creation
@@ -146,7 +157,7 @@ class VectorDbConfig(BaseModel):
     payload_schema_version: str = "v1"
     embedding_model_name: str | None = None
     embedding_model_version: str | None = None
-'@ | Set-Content -Path $ClientPath -Encoding UTF8
+'@ | Set-Content -Path $ClientPath -Encoding utf8NoBOM
 ```
 
 ### Linux / macOS Bash Implementation File Creation
@@ -176,14 +187,14 @@ EOF
 
 ```powershell
 cd "$WorktreePath\pilot_phase2_poc\rag-service"
-uv run pytest app/shared/vector_db/tests -q
+uv run python -m pytest app/shared/vector_db/tests -q
 ```
 
 ### Linux / macOS Bash
 
 ```bash
 cd "$WORKTREE_PATH/pilot_phase2_poc/rag-service"
-uv run pytest app/shared/vector_db/tests -q
+uv run python -m pytest app/shared/vector_db/tests -q
 ```
 
 Optional smoke test requires local Qdrant and must be marked explicitly.

@@ -1,6 +1,6 @@
 # RAG-DT003: Create APAC Source Candidate Registry
 
-Status: Draft
+Status: Planned
 
 | Field | Value |
 |---|---|
@@ -12,10 +12,21 @@ Status: Draft
 | Related Planning Docs | `02-rag-db/research/authoritative-sources-apac.md`, `02-rag-db/active/02-knowledge-source-plan.md` |
 | Affected Build Tasks | RAG-BT008, RAG-BT012, RAG-BT013, RAG-BT014, RAG-BT019 |
 | Branch | `codex/rag-dt003-apac-source-candidate-registry` |
-| Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-dt003-apac-source-candidate-registry` |
+| Worktree Path | `C:\tmp\rag-dt003-apac-source-candidate-registry` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Draft |
+| Status | Planned |
+| Evidence | `build-evidence/RAG-DT003-apac-source-candidate-registry.md` |
+
+## Mandatory Execution Contract
+
+This task follows `build-sequence/00-governance/`. Its matching execution record
+must be maintained at the Evidence path above. Run one PowerShell command per
+block, use the canonical Windows/Python command conventions, and record the
+exact checks and results in the evidence file. The pre-PR evidence gate is
+mandatory; `Complete` requires merged closeout, clean `main`, and worktree
+cleanup.
+
 
 ## 1. Task Definition
 
@@ -56,7 +67,7 @@ Create the branch and worktree before creating or editing design artifacts.
 
 ```powershell
 $RepoRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot"
-$WorktreeRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees"
+$WorktreeRoot = "C:\tmp"
 $TaskId = "rag-dt003"
 $Slug = "apac-source-candidate-registry"
 $Branch = "codex/$TaskId-$Slug"

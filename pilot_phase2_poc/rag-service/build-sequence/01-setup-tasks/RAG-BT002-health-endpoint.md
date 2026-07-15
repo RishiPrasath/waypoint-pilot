@@ -1,6 +1,6 @@
 # RAG-BT002: Add Health Endpoint
 
-Status: Draft
+Status: Planned
 
 | Field | Value |
 |---|---|
@@ -9,10 +9,21 @@ Status: Draft
 | Source Question | Codebase setup and local runnable increments |
 | Decision / ADR | ADR-RAG-0001, ADR-RAG-0011 |
 | Branch | `codex/rag-bt002-health-endpoint` |
-| Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-bt002-health-endpoint` |
+| Worktree Path | `C:\tmp\rag-bt002-health-endpoint` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Draft |
+| Status | Planned |
+| Evidence | `build-evidence/RAG-BT002-health-endpoint.md` |
+
+## Mandatory Execution Contract
+
+This task follows `build-sequence/00-governance/`. Its matching execution record
+must be maintained at the Evidence path above. Run one PowerShell command per
+block, use the canonical Windows/Python command conventions, and record the
+exact checks and results in the evidence file. The pre-PR evidence gate is
+mandatory; `Complete` requires merged closeout, clean `main`, and worktree
+cleanup.
+
 
 ## 1. Task Definition
 
@@ -40,7 +51,7 @@ Out Of Scope:
 
 ```powershell
 $RepoRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot"
-$WorktreeRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees"
+$WorktreeRoot = "C:\tmp"
 $TaskId = "rag-bt002"
 $Slug = "health-endpoint"
 $Branch = "codex/$TaskId-$Slug"
@@ -87,7 +98,7 @@ def test_health_endpoint_returns_ok():
 
     assert response.status_code == 200
     assert response.json() == {"status": "ok"}
-'@ | Set-Content -Path $TestPath -Encoding UTF8
+'@ | Set-Content -Path $TestPath -Encoding utf8NoBOM
 ```
 
 ### Linux / macOS Bash Test File Creation
@@ -126,7 +137,7 @@ router = APIRouter()
 @router.get("/health")
 def health() -> dict[str, str]:
     return {"status": "ok"}
-'@ | Set-Content -Path $HealthPath -Encoding UTF8
+'@ | Set-Content -Path $HealthPath -Encoding utf8NoBOM
 ```
 
 Register the router in `app/main.py`.
@@ -155,14 +166,14 @@ Register the router in `app/main.py`.
 
 ```powershell
 cd "$WorktreePath\pilot_phase2_poc\rag-service"
-uv run pytest app/api/tests/test_health.py -q
+uv run python -m pytest app/api/tests/test_health.py -q
 ```
 
 ### Linux / macOS Bash
 
 ```bash
 cd "$WORKTREE_PATH/pilot_phase2_poc/rag-service"
-uv run pytest app/api/tests/test_health.py -q
+uv run python -m pytest app/api/tests/test_health.py -q
 ```
 
 ## 6. Branch Workflow

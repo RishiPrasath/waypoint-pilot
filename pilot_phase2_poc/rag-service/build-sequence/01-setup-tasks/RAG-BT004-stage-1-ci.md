@@ -1,6 +1,6 @@
 # RAG-BT004: Add Stage 1 CI, CodeQL, And Dependabot
 
-Status: Draft
+Status: Planned
 
 | Field | Value |
 |---|---|
@@ -9,10 +9,21 @@ Status: Draft
 | Source Question | CI/CD pipeline and security scan baseline |
 | Decision / ADR | ADR-RAG-0010, ADR-RAG-0011 |
 | Branch | `codex/rag-bt004-stage-1-ci` |
-| Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-bt004-stage-1-ci` |
+| Worktree Path | `C:\tmp\rag-bt004-stage-1-ci` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Draft |
+| Status | Planned |
+| Evidence | `build-evidence/RAG-BT004-stage-1-ci.md` |
+
+## Mandatory Execution Contract
+
+This task follows `build-sequence/00-governance/`. Its matching execution record
+must be maintained at the Evidence path above. Run one PowerShell command per
+block, use the canonical Windows/Python command conventions, and record the
+exact checks and results in the evidence file. The pre-PR evidence gate is
+mandatory; `Complete` requires merged closeout, clean `main`, and worktree
+cleanup.
+
 
 ## 1. Task Definition
 
@@ -60,7 +71,7 @@ Out Of Scope:
 
 ```powershell
 $RepoRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot"
-$WorktreeRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees"
+$WorktreeRoot = "C:\tmp"
 $TaskId = "rag-bt004"
 $Slug = "stage-1-ci"
 $Branch = "codex/$TaskId-$Slug"
@@ -155,10 +166,10 @@ jobs:
       - run: uv sync --all-extras --dev
       - run: uv run ruff format --check .
       - run: uv run ruff check .
-      - run: uv run pytest -q
+      - run: uv run python -m pytest -q
       - run: uv run bandit -r app -ll
       - run: uv run pip-audit --strict
-'@ | Set-Content -Path "$WorkflowDir\rag-service-ci.yml" -Encoding UTF8
+'@ | Set-Content -Path "$WorkflowDir\rag-service-ci.yml" -Encoding utf8NoBOM
 ```
 
 Create CodeQL and Dependabot config:
@@ -189,7 +200,7 @@ jobs:
         with:
           languages: python
       - uses: github/codeql-action/analyze@v3
-'@ | Set-Content -Path "$WorkflowDir\codeql.yml" -Encoding UTF8
+'@ | Set-Content -Path "$WorkflowDir\codeql.yml" -Encoding utf8NoBOM
 
 @'
 version: 2
@@ -202,7 +213,7 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-'@ | Set-Content -Path "$WorktreePath\.github\dependabot.yml" -Encoding UTF8
+'@ | Set-Content -Path "$WorktreePath\.github\dependabot.yml" -Encoding utf8NoBOM
 ```
 
 ### Linux / macOS Bash Implementation File Creation
@@ -234,7 +245,7 @@ jobs:
       - run: uv sync --all-extras --dev
       - run: uv run ruff format --check .
       - run: uv run ruff check .
-      - run: uv run pytest -q
+      - run: uv run python -m pytest -q
       - run: uv run bandit -r app -ll
       - run: uv run pip-audit --strict
 EOF
@@ -292,7 +303,7 @@ cd "$WorktreePath\pilot_phase2_poc\rag-service"
 uv sync --all-extras --dev
 uv run ruff format --check .
 uv run ruff check .
-uv run pytest -q
+uv run python -m pytest -q
 uv run bandit -r app -ll
 uv run pip-audit --strict
 ```
@@ -305,7 +316,7 @@ cd "$WORKTREE_PATH/pilot_phase2_poc/rag-service"
 uv sync --all-extras --dev
 uv run ruff format --check .
 uv run ruff check .
-uv run pytest -q
+uv run python -m pytest -q
 uv run bandit -r app -ll
 uv run pip-audit --strict
 ```

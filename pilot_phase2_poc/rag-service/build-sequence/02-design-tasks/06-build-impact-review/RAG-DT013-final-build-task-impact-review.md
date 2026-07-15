@@ -1,6 +1,6 @@
 # RAG-DT013: Final Build Task Impact Review
 
-Status: Draft
+Status: Planned
 
 | Field | Value |
 |---|---|
@@ -12,10 +12,21 @@ Status: Draft
 | Related Planning Docs | `build-sequence/02-design-tasks/`, `build-sequence/03-build-tasks/`, `02-rag-db/planning/confirmed-build-sequence.md` |
 | Affected Build Tasks | All 03-build-tasks files |
 | Branch | `codex/rag-dt013-final-build-task-impact-review` |
-| Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-dt013-final-build-task-impact-review` |
+| Worktree Path | `C:\tmp\rag-dt013-final-build-task-impact-review` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Draft |
+| Status | Planned |
+| Evidence | `build-evidence/RAG-DT013-final-build-task-impact-review.md` |
+
+## Mandatory Execution Contract
+
+This task follows `build-sequence/00-governance/`. Its matching execution record
+must be maintained at the Evidence path above. Run one PowerShell command per
+block, use the canonical Windows/Python command conventions, and record the
+exact checks and results in the evidence file. The pre-PR evidence gate is
+mandatory; `Complete` requires merged closeout, clean `main`, and worktree
+cleanup.
+
 
 ## 1. Task Definition
 
@@ -57,7 +68,7 @@ Create the branch and worktree before creating or editing design artifacts.
 
 ```powershell
 $RepoRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot"
-$WorktreeRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees"
+$WorktreeRoot = "C:\tmp"
 $TaskId = "rag-dt013"
 $Slug = "final-build-task-impact-review"
 $Branch = "codex/$TaskId-$Slug"

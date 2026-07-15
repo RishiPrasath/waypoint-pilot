@@ -1,6 +1,6 @@
 ﻿# RAG Service Execution Sequence
 
-Status: Accepted sequence with draft executable task files
+Status: Active sequence governed by canonical task and evidence templates
 Date: 2026-07-09
 
 This folder is the main execution hub for `rag-service`.
@@ -49,12 +49,28 @@ updated main
 -> failing test or acceptance check
 -> implementation or design artifact
 -> local checks
+-> completed pre-PR evidence gate
 -> commit
 -> PR
 -> PR CI/CD
 -> merge
 -> main CI/CD
 -> worktree cleanup
+-> merged closeout evidence
+
+## Mandatory Governance
+
+Every task must follow the canonical rules in `00-governance/`:
+
+- [`01-task-template.md`](00-governance/01-task-template.md) — task record and execution contract
+- [`02-evidence-template.md`](00-governance/02-evidence-template.md) — one durable evidence record per task
+- [`03-closeout-checklist.md`](00-governance/03-closeout-checklist.md) — pre-PR, merge, and cleanup gates
+- [`04-command-conventions.md`](00-governance/04-command-conventions.md) — Windows/Git/Python command rules
+- [`05-status-model.md`](00-governance/05-status-model.md) — allowed task lifecycle
+
+The matching file under `build-evidence/` must exist and have no unexplained
+blank required fields before a PR is opened. `Complete` is reserved for a task
+whose merged closeout evidence confirms clean `main` and worktree cleanup.
 ```
 
 ## CI Build And Test Strategy
@@ -198,16 +214,20 @@ Execution hub:
 C:\Users\prasa\Documents\Github\waypoint-pilot\pilot_phase2_poc\rag-service\build-sequence
 
 Worktree root:
-C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees
+C:\tmp
 ```
 
 ## Standard Branch Setup
 
 Every task file should customize only `$TaskId` and `$Slug`.
 
+Use the command conventions in `00-governance/04-command-conventions.md`: enable
+`core.longpaths`, prefer a short worktree path, and execute each command as a
+separate PowerShell block.
+
 ```powershell
 $RepoRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot"
-$WorktreeRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees"
+$WorktreeRoot = "C:\tmp"
 $TaskId = "rag-bt000"
 $Slug = "short-name"
 $Branch = "codex/$TaskId-$Slug"
@@ -215,6 +235,8 @@ $WorktreePath = Join-Path $WorktreeRoot "$TaskId-$Slug"
 
 New-Item -ItemType Directory -Force -Path $WorktreeRoot | Out-Null
 git -C $RepoRoot fetch origin
+git -C $RepoRoot config core.longpaths true
+git -C $RepoRoot config --get core.longpaths
 git -C $RepoRoot worktree add -b $Branch $WorktreePath origin/main
 git -C $WorktreePath status --short --branch
 ```

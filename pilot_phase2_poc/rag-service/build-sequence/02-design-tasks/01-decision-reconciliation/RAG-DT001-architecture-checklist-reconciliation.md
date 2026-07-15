@@ -1,6 +1,6 @@
 # RAG-DT001: Reconcile Architecture Checklist With Accepted ADRs
 
-Status: Draft
+Status: Planned
 
 | Field | Value |
 |---|---|
@@ -12,10 +12,21 @@ Status: Draft
 | Related Planning Docs | `02-rag-db/planning/architecture-confirmation-checklist.md`, `02-rag-db/adrs/` |
 | Affected Build Tasks | All setup and final build tasks |
 | Branch | `codex/rag-dt001-architecture-checklist-reconciliation` |
-| Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-dt001-architecture-checklist-reconciliation` |
+| Worktree Path | `C:\tmp\rag-dt001-architecture-checklist-reconciliation` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Draft |
+| Status | Planned |
+| Evidence | `build-evidence/RAG-DT001-architecture-checklist-reconciliation.md` |
+
+## Mandatory Execution Contract
+
+This task follows `build-sequence/00-governance/`. Its matching execution record
+must be maintained at the Evidence path above. Run one PowerShell command per
+block, use the canonical Windows/Python command conventions, and record the
+exact checks and results in the evidence file. The pre-PR evidence gate is
+mandatory; `Complete` requires merged closeout, clean `main`, and worktree
+cleanup.
+
 
 ## 1. Task Definition
 
@@ -51,7 +62,7 @@ Create the branch and worktree before creating or editing design artifacts.
 
 ```powershell
 $RepoRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot"
-$WorktreeRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees"
+$WorktreeRoot = "C:\tmp"
 $TaskId = "rag-dt001"
 $Slug = "architecture-checklist-reconciliation"
 $Branch = "codex/$TaskId-$Slug"

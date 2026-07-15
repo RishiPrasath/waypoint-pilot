@@ -13,6 +13,17 @@ Status: Complete
 | Owner | solo developer |
 | AI Review Partner | Codex |
 | Status | Complete |
+| Evidence | `build-evidence/RAG-BT001-fastapi-skeleton.md` |
+
+## Mandatory Execution Contract
+
+This task follows `build-sequence/00-governance/`. Its matching execution record
+must be maintained at the Evidence path above. Run one PowerShell command per
+block, use the canonical Windows/Python command conventions, and record the
+exact checks and results in the evidence file. The pre-PR evidence gate is
+mandatory; `Complete` requires merged closeout, clean `main`, and worktree
+cleanup.
+
 
 ## 1. Task Definition
 
@@ -52,7 +63,7 @@ Out Of Scope:
 
 ```powershell
 $RepoRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot"
-$WorktreeRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees"
+$WorktreeRoot = "C:\tmp"
 $TaskId = "rag-bt001"
 $Slug = "fastapi-skeleton"
 $Branch = "codex/$TaskId-$Slug"
@@ -96,7 +107,7 @@ from app.main import app
 
 def test_fastapi_app_exists():
     assert app.title == "rag-service"
-'@ | Set-Content -Path $TestPath -Encoding UTF8
+'@ | Set-Content -Path $TestPath -Encoding utf8NoBOM
 ```
 
 ### Linux / macOS Bash Test File Creation
@@ -265,7 +276,7 @@ Create the minimal app and project files:
 from fastapi import FastAPI
 
 app = FastAPI(title="rag-service")
-'@ | Set-Content -Path (Join-Path $ServiceRoot "app/main.py") -Encoding UTF8
+'@ | Set-Content -Path (Join-Path $ServiceRoot "app/main.py") -Encoding utf8NoBOM
 
 @'
 [project]
@@ -287,10 +298,10 @@ dev = [
   "pytest",
   "ruff",
 ]
-'@ | Set-Content -Path (Join-Path $ServiceRoot "pyproject.toml") -Encoding UTF8
+'@ | Set-Content -Path (Join-Path $ServiceRoot "pyproject.toml") -Encoding utf8NoBOM
 
-"3.12" | Set-Content -Path (Join-Path $ServiceRoot ".python-version") -Encoding UTF8
-"# Knowledge Base`n" | Set-Content -Path (Join-Path $ServiceRoot "knowledge_base/README.md") -Encoding UTF8
+"3.12" | Set-Content -Path (Join-Path $ServiceRoot ".python-version") -Encoding utf8NoBOM
+"# Knowledge Base`n" | Set-Content -Path (Join-Path $ServiceRoot "knowledge_base/README.md") -Encoding utf8NoBOM
 ```
 
 ### Linux / macOS Bash Implementation File Creation
@@ -386,14 +397,14 @@ printf '# Knowledge Base\n' > "$SERVICE_ROOT/knowledge_base/README.md"
 
 ```powershell
 cd "$WorktreePath\pilot_phase2_poc\rag-service"
-uv run pytest app/api/tests/test_app_smoke.py -q
+uv run python -m pytest app/api/tests/test_app_smoke.py -q
 ```
 
 ### Linux / macOS Bash
 
 ```bash
 cd "$WORKTREE_PATH/pilot_phase2_poc/rag-service"
-uv run pytest app/api/tests/test_app_smoke.py -q
+uv run python -m pytest app/api/tests/test_app_smoke.py -q
 ```
 
 ## 6. Branch Workflow
@@ -423,36 +434,10 @@ Open a PR to `main`.
 Merge after local tests, PR review, PR CI/CD, and `main` CI/CD pass. Then clean
 up the worktree.
 
-## 8. Task Evidence
+## 8. Evidence
 
-Branch:
-Worktree:
-PR:
-Commit:
+Execution record: `build-evidence/RAG-BT001-fastapi-skeleton.md`
 
-Files Changed:
--
-
-Tests Run:
--
-
-CI Result:
-
-AI Review Findings:
--
-
-Human Review Notes:
--
-
-Issues Encountered:
--
-
-Resolution:
--
-
-Debt / Follow-Ups:
--
-
-Closeout:
-- Implementation merged in PR #2.
-- Follow-up closeout recorded in this task update.
+This task record contains the plan and acceptance criteria. The linked evidence
+file is the authoritative record of commands, results, PR state, merge state,
+and cleanup.

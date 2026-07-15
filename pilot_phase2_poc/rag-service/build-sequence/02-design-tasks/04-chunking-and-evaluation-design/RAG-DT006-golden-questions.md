@@ -1,6 +1,6 @@
 # RAG-DT006: Define Golden Questions And Answer Rubrics
 
-Status: Draft
+Status: Planned
 
 | Field | Value |
 |---|---|
@@ -12,10 +12,21 @@ Status: Draft
 | Related Planning Docs | `02-rag-db/active/07-evaluation-plan.md` |
 | Affected Build Tasks | RAG-BT019, RAG-BT013, RAG-BT014, RAG-BT018 |
 | Branch | `codex/rag-dt006-golden-questions` |
-| Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-dt006-golden-questions` |
+| Worktree Path | `C:\tmp\rag-dt006-golden-questions` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Draft |
+| Status | Planned |
+| Evidence | `build-evidence/RAG-DT006-golden-questions.md` |
+
+## Mandatory Execution Contract
+
+This task follows `build-sequence/00-governance/`. Its matching execution record
+must be maintained at the Evidence path above. Run one PowerShell command per
+block, use the canonical Windows/Python command conventions, and record the
+exact checks and results in the evidence file. The pre-PR evidence gate is
+mandatory; `Complete` requires merged closeout, clean `main`, and worktree
+cleanup.
+
 
 ## 1. Task Definition
 
@@ -55,7 +66,7 @@ Create the branch and worktree before creating or editing design artifacts.
 
 ```powershell
 $RepoRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot"
-$WorktreeRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees"
+$WorktreeRoot = "C:\tmp"
 $TaskId = "rag-dt006"
 $Slug = "golden-questions"
 $Branch = "codex/$TaskId-$Slug"

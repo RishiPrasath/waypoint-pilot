@@ -1,6 +1,6 @@
 # RAG-BT018: Add Query API Endpoint
 
-Status: Draft
+Status: Planned
 
 | Field | Value |
 |---|---|
@@ -12,10 +12,21 @@ Status: Draft
 | Design Dependencies | RAG-BT015, RAG-BT013, RAG-BT014, RAG-BT016, RAG-BT017, RAG-DT013 |
 | Depends On Build Tasks | see section 1 and section 3 |
 | Branch | `codex/rag-bt018-query-api-endpoint` |
-| Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-bt018-query-api-endpoint` |
+| Worktree Path | `C:\tmp\rag-bt018-query-api-endpoint` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Draft |
+| Status | Planned |
+| Evidence | `build-evidence/RAG-BT018-query-api-endpoint.md` |
+
+## Mandatory Execution Contract
+
+This task follows `build-sequence/00-governance/`. Its matching execution record
+must be maintained at the Evidence path above. Run one PowerShell command per
+block, use the canonical Windows/Python command conventions, and record the
+exact checks and results in the evidence file. The pre-PR evidence gate is
+mandatory; `Complete` requires merged closeout, clean `main`, and worktree
+cleanup.
+
 
 ## 1. Task Definition
 
@@ -55,7 +66,7 @@ Do not write task code directly on `main`.
 
 ```powershell
 $RepoRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot"
-$WorktreeRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees"
+$WorktreeRoot = "C:\tmp"
 $TaskId = "rag-bt018"
 $Slug = "query-api-endpoint"
 $Branch = "codex/$TaskId-$Slug"
@@ -104,7 +115,7 @@ New-Item -ItemType Directory -Force -Path (Split-Path $TestPath) | Out-Null
   '# Replace this placeholder with the task-specific failing test after design gates are complete.',
   'def test_query_api_endpoint():',
   '    assert False, "Implement RAG-BT018 after design dependencies are confirmed"'
-) | Set-Content -Path $TestPath -Encoding UTF8
+) | Set-Content -Path $TestPath -Encoding utf8NoBOM
 ```
 
 ### Linux / macOS Bash Test File Creation
@@ -169,16 +180,16 @@ point in the build sequence.
 
 ```powershell
 Set-Location "$WorktreePath\pilot_phase2_poc\rag-service"
-uv run pytest "app/api/tests/test_query_endpoint.py" -q
-uv run pytest -q
+uv run python -m pytest "app/api/tests/test_query_endpoint.py" -q
+uv run python -m pytest -q
 ```
 
 ### Linux / macOS Bash
 
 ```bash
 cd "$WORKTREE_PATH/pilot_phase2_poc/rag-service"
-uv run pytest "app/api/tests/test_query_endpoint.py" -q
-uv run pytest -q
+uv run python -m pytest "app/api/tests/test_query_endpoint.py" -q
+uv run python -m pytest -q
 ```
 
 Record:

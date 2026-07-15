@@ -1,12 +1,16 @@
 # RAG Service Final Build Task Lane
 
-Status: Draft executable task files under accepted sequence
+Status: Planned task lane governed by canonical templates
 Date: 2026-07-09
 
 This folder contains the final implementation tasks for actual RAG behavior.
 
 These tasks must run only after the relevant setup tasks and design-decision
 tasks are complete or explicitly deferred.
+
+Every build task follows `../00-governance/`: create its matching evidence file,
+pass the pre-PR evidence gate before review, and record merged closeout before
+marking the task `Complete`.
 
 ## Build Task Template Rule
 
