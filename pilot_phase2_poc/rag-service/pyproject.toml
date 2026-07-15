@@ -1,0 +1,19 @@
+[project]
+name = "rag-service"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi",
+  "pydantic",
+  "pydantic-settings",
+  "uvicorn",
+]
+
+[dependency-groups]
+dev = [
+  "bandit",
+  "httpx",
+  "pip-audit",
+  "pytest",
+  "ruff",
+]
