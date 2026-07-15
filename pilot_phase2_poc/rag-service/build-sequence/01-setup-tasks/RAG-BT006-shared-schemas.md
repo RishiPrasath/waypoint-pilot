@@ -1,6 +1,6 @@
 ﻿# RAG-BT006: Add Shared Schemas And Error Envelope
 
-Status: Draft
+Status: Complete
 
 ## Sequence Entry
 
@@ -17,7 +17,7 @@ Task files should follow the canonical template in build-sequence/00-task-sequen
 | Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-bt006-shared-schemas` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Draft |
+| Status | Complete |
 
 ## 1. Task Definition
 
@@ -192,32 +192,40 @@ branch, and delete the merged remote branch when permitted.
 
 ## 8. Task Evidence
 
-Branch:
-Worktree:
-PR:
-Commit:
+Branch: `codex/rag-bt006-shared-schemas`
+Worktree: `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-bt006-shared-schemas`
+PR: https://github.com/RishiPrasath/waypoint-pilot/pull/8
+Commit: `d935d94`
 
 Files Changed:
--
+- `app/shared/tests/test_error_schema.py`
+- `app/shared/schemas/base.py`
+- `app/shared/schemas/__init__.py`
+- `app/shared/errors/schemas.py`
+- `app/shared/errors/__init__.py`
+- `build-evidence/RAG-BT006-shared-schemas.md`
 
 Tests Run:
--
+- `uv run pytest app/shared/tests -q`
+- Result: 2 passed
 
 CI Result:
+- PR #8 merged
 
 AI Review Findings:
--
+- None after the shared schema and error envelope implementation.
 
 Human Review Notes:
--
+- PR merged after review.
 
 Issues Encountered:
--
+- None.
 
 Resolution:
--
+- Added a versioned base response and a reusable error envelope for later API tasks.
 
 Debt / Follow-Ups:
+- Refresh the local main checkout to `origin/main` when convenient.
 -
 
 
