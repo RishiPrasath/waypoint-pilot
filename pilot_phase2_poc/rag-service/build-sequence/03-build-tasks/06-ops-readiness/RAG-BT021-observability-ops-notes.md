@@ -1,6 +1,10 @@
-# RAG-BT021: Add Observability And Ops Notes
+﻿# RAG-BT021: Add Observability And Ops Notes
 
 Status: Draft
+
+## Sequence Entry
+
+Start from build-sequence/00-index.md, then open the lane index for this task before opening the task file.
 
 | Field | Value |
 |---|---|
@@ -301,3 +305,5 @@ Resolution:
 
 Debt / Follow-Ups:
 -
+
+

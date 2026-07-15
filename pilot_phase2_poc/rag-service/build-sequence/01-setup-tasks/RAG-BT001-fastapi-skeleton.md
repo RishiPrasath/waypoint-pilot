@@ -1,6 +1,10 @@
-# RAG-BT001: Create FastAPI Project Skeleton
+﻿# RAG-BT001: Create FastAPI Project Skeleton
 
 Status: Complete
+
+## Sequence Entry
+
+Start from build-sequence/00-index.md, then open the lane index for this task before opening the task file.
 
 | Field | Value |
 |---|---|
@@ -460,3 +464,5 @@ Debt / Follow-Ups:
 Closeout:
 - Implementation merged in PR #2.
 - Follow-up closeout recorded in this task update.
+
+

@@ -22,6 +22,10 @@ RAG-BT001:
 - execution evidence was blank or split across multiple locations
 - post-merge evidence required an unplanned follow-up PR
 
+Any agent working a task from the build sequence should start at
+`build-sequence/00-index.md`, then open the relevant lane index, and only then
+open the task file itself.
+
 ## Proposed Folder Layout
 
 ```text

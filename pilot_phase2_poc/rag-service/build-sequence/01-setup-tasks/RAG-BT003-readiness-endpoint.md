@@ -1,6 +1,10 @@
-# RAG-BT003: Add Readiness Endpoint
+﻿# RAG-BT003: Add Readiness Endpoint
 
 Status: Complete
+
+## Sequence Entry
+
+Start from build-sequence/00-index.md, then open the lane index for this task before opening the task file.
 
 | Field | Value |
 |---|---|
@@ -226,3 +230,5 @@ Debt / Follow-Ups:
 Closeout:
 - Readiness endpoint implemented, tested, pushed, and merged.
 - Worktree cleanup was completed and the local branch was removed.
+
+

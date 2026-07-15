@@ -1,6 +1,10 @@
-# RAG-BT000: Prove Branch, Worktree, PR, And Evidence Workflow
+﻿# RAG-BT000: Prove Branch, Worktree, PR, And Evidence Workflow
 
 Status: Complete
+
+## Sequence Entry
+
+Start from build-sequence/00-index.md, then open the lane index for this task before opening the task file.
 
 | Field | Value |
 |---|---|
@@ -222,3 +226,5 @@ Debt / Follow-Ups:
 
 Closeout:
 - Workflow proof completed and recorded in the task evidence file.
+
+

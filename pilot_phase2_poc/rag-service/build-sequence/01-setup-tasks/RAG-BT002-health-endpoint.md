@@ -1,6 +1,10 @@
-# RAG-BT002: Add Health Endpoint
+﻿# RAG-BT002: Add Health Endpoint
 
 Status: Complete
+
+## Sequence Entry
+
+Start from build-sequence/00-index.md, then open the lane index for this task before opening the task file.
 
 | Field | Value |
 |---|---|
@@ -230,3 +234,5 @@ Debt / Follow-Ups:
 Closeout:
 - Health endpoint implemented, tested, pushed, and merged.
 - Worktree cleanup was attempted after merge; the worktree is no longer registered.
+
+

@@ -1,6 +1,10 @@
-# RAG-DT002: Create Phase 1 KB Source Audit Table
+﻿# RAG-DT002: Create Phase 1 KB Source Audit Table
 
 Status: Draft
+
+## Sequence Entry
+
+Start from build-sequence/00-index.md, then open the lane index for this task before opening the task file.
 
 | Field | Value |
 |---|---|
@@ -213,6 +217,8 @@ Resolution:
 
 Debt / Follow-Ups:
 -
+
+
 
 
 

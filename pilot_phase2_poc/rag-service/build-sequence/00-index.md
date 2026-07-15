@@ -5,6 +5,10 @@ Date: 2026-07-09
 
 This folder is the main execution hub for `rag-service`.
 
+Any agent starting work in this sequence should begin here, read this file
+first, and then follow the relevant lane index before opening an individual
+task file.
+
 It is split into three task lanes:
 
 ```text
@@ -226,5 +230,15 @@ git -C $RepoRoot pull --ff-only origin main
 git -C $RepoRoot config core.longpaths true
 git -C $RepoRoot worktree add -b $Branch $WorktreePath origin/main
 git -C $WorktreePath status --short --branch
+```
+
+## Agent Start Path
+
+Recommended entry order for any task:
+
+```text
+build-sequence/00-index.md
+-> lane index
+-> task file
 ```
 

@@ -1,6 +1,10 @@
-# RAG-DT011: Define Docker And Local Ops Design
+﻿# RAG-DT011: Define Docker And Local Ops Design
 
 Status: Deferred Draft
+
+## Sequence Entry
+
+Start from build-sequence/00-index.md, then open the lane index for this task before opening the task file.
 
 | Field | Value |
 |---|---|
@@ -219,6 +223,8 @@ Resolution:
 
 Debt / Follow-Ups:
 -
+
+
 
 
 

@@ -1,6 +1,10 @@
-# RAG-BT019: Add Evaluation Harness
+﻿# RAG-BT019: Add Evaluation Harness
 
 Status: Draft
+
+## Sequence Entry
+
+Start from build-sequence/00-index.md, then open the lane index for this task before opening the task file.
 
 | Field | Value |
 |---|---|
@@ -312,3 +316,5 @@ Resolution:
 
 Debt / Follow-Ups:
 -
+
+

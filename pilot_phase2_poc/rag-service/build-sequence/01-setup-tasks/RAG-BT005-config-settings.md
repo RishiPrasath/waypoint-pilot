@@ -1,6 +1,10 @@
-# RAG-BT005: Add Config And Settings Module
+﻿# RAG-BT005: Add Config And Settings Module
 
 Status: Complete
+
+## Sequence Entry
+
+Start from build-sequence/00-index.md, then open the lane index for this task before opening the task file.
 
 | Field | Value |
 |---|---|
@@ -221,3 +225,5 @@ Resolution:
 Debt / Follow-Ups:
 - Refresh the local `main` checkout to `origin/main` when convenient.
 -
+
+

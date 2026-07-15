@@ -1,6 +1,10 @@
-# RAG-BT011: Add Embedding Adapter
+﻿# RAG-BT011: Add Embedding Adapter
 
 Status: Draft
+
+## Sequence Entry
+
+Start from build-sequence/00-index.md, then open the lane index for this task before opening the task file.
 
 | Field | Value |
 |---|---|
@@ -302,3 +306,5 @@ Resolution:
 
 Debt / Follow-Ups:
 -
+
+

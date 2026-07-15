@@ -1,6 +1,10 @@
-# RAG-BT008: Add Phase 1 KB Audit Artifacts
+﻿# RAG-BT008: Add Phase 1 KB Audit Artifacts
 
 Status: Draft
+
+## Sequence Entry
+
+Start from build-sequence/00-index.md, then open the lane index for this task before opening the task file.
 
 | Field | Value |
 |---|---|
@@ -311,3 +315,5 @@ Resolution:
 
 Debt / Follow-Ups:
 -
+
+

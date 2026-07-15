@@ -1,6 +1,10 @@
-# RAG-DT003: Create APAC Source Candidate Registry
+﻿# RAG-DT003: Create APAC Source Candidate Registry
 
 Status: Draft
+
+## Sequence Entry
+
+Start from build-sequence/00-index.md, then open the lane index for this task before opening the task file.
 
 | Field | Value |
 |---|---|
@@ -208,6 +212,8 @@ Resolution:
 
 Debt / Follow-Ups:
 -
+
+
 
 
 

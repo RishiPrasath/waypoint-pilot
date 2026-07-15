@@ -1,6 +1,10 @@
-# RAG-DT014: Test Vector DB And CI Integration Strategy
+﻿# RAG-DT014: Test Vector DB And CI Integration Strategy
 
 Status: Draft
+
+## Sequence Entry
+
+Start from build-sequence/00-index.md, then open the lane index for this task before opening the task file.
 
 | Field | Value |
 |---|---|
@@ -243,3 +247,5 @@ Resolution:
 
 Debt / Follow-Ups:
 -
+
+
