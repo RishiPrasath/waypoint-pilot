@@ -219,6 +219,11 @@ documented and must reuse the existing branch rather than attempting to create
 it again. A shorter worktree path such as `C:\tmp\rag-$TaskId` is an approved
 fallback.
 
+The accepted workflow should treat the refreshed `origin/main` commit as the
+only valid base for new task branches. If a task branch was created before the
+latest `origin/main` was fetched, rebase or recreate the worktree before
+continuing.
+
 ## Proposed Windows File-Writing Rule
 
 Do not use `Set-Content -Encoding UTF8` for TOML, YAML, JSON, or Python files

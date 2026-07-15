@@ -40,6 +40,11 @@ before implementation starts.
 
 Do not work directly on `main`.
 
+Before creating any task worktree, refresh the repository from `origin/main`
+and confirm the base commit is current. If a task branch or worktree was
+created from an older snapshot, rebase or recreate it from the refreshed
+`origin/main` before making changes.
+
 Every task must use:
 
 ```text
@@ -217,6 +222,8 @@ $WorktreePath = Join-Path $WorktreeRoot "$TaskId-$Slug"
 
 New-Item -ItemType Directory -Force -Path $WorktreeRoot | Out-Null
 git -C $RepoRoot fetch origin
+git -C $RepoRoot pull --ff-only origin main
+git -C $RepoRoot config core.longpaths true
 git -C $RepoRoot worktree add -b $Branch $WorktreePath origin/main
 git -C $WorktreePath status --short --branch
 ```

@@ -50,6 +50,8 @@ $Branch = "codex/$TaskId-$Slug"
 $WorktreePath = Join-Path $WorktreeRoot "$TaskId-$Slug"
 New-Item -ItemType Directory -Force -Path $WorktreeRoot | Out-Null
 git -C $RepoRoot fetch origin
+git -C $RepoRoot pull --ff-only origin main
+git -C $RepoRoot config core.longpaths true
 git -C $RepoRoot worktree add -b $Branch $WorktreePath origin/main
 git -C $WorktreePath status --short --branch
 ```
@@ -65,6 +67,8 @@ BRANCH="codex/$TASK_ID-$SLUG"
 WORKTREE_PATH="$WORKTREE_ROOT/$TASK_ID-$SLUG"
 mkdir -p "$WORKTREE_ROOT"
 git -C "$REPO_ROOT" fetch origin
+git -C "$REPO_ROOT" pull --ff-only origin main
+git -C "$REPO_ROOT" config core.longpaths true
 git -C "$REPO_ROOT" worktree add -b "$BRANCH" "$WORKTREE_PATH" origin/main
 git -C "$WORKTREE_PATH" status --short --branch
 ```
