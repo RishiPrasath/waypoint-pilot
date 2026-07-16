@@ -1,6 +1,6 @@
 ﻿# RAG-DT008: Define Source Registry Schema And Validation Rules
 
-Status: Draft
+Status: Complete
 
 ## Sequence Entry
 
@@ -17,10 +17,10 @@ Task files should follow the canonical template in build-sequence/00-task-sequen
 | Related Planning Docs | `02-rag-db/active/02-knowledge-source-plan.md` |
 | Affected Build Tasks | RAG-BT007, RAG-BT008, RAG-BT012, RAG-BT013, RAG-BT014 |
 | Branch | `codex/rag-dt008-source-registry-schema` |
-| Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-dt008-source-registry-schema` |
+| Worktree Path | `D:\Code\Github\waypoint-pilot-worktrees\rag-dt008-source-registry-schema` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Draft |
+| Status | Complete |
 
 ## 1. Task Definition
 
@@ -191,37 +191,52 @@ git -C "$REPO_ROOT" pull --ff-only origin main
 ```
 ## 9. Task Evidence
 
-Branch:
-Worktree:
+Branch: `codex/rag-dt008-source-registry-schema`
+Worktree: `D:\Code\Github\waypoint-pilot-worktrees\rag-dt008-source-registry-schema`
 PR:
 Commit:
 
 Design Artifact:
 
+`pilot_phase2_poc/rag-service/knowledge_base/registry/source_registry.schema.json`
+
 Affected Build Tasks:
 
+RAG-BT007, RAG-BT008, RAG-BT012, RAG-BT013, RAG-BT014
+
 Files Changed:
--
+- `pilot_phase2_poc/rag-service/knowledge_base/registry/source_registry.schema.json`
+- `pilot_phase2_poc/rag-service/docs/design/source-registry-schema.md`
+- `pilot_phase2_poc/rag-service/build-sequence/02-design-tasks/02-source-scope-and-registry/RAG-DT008-source-registry-schema.md`
 
 Checks Run:
--
+- `python -m json.tool pilot_phase2_poc/rag-service/knowledge_base/registry/source_registry.schema.json`
+- `Select-String -Path pilot_phase2_poc/rag-service/knowledge_base/registry/source_registry.schema.json -Pattern "document_id|source_uri|authority_level|source_status|promotion_status|retrieval_eligible|source_access_pattern|translation_review_required|dynamic_lookup_snapshot|legal_disclaimer|license_sensitive|reuse_mode|retrieval_namespace"`
+- Draft 2020-12 validation with `jsonschema` 4.26.0: schema accepted, 3 embedded examples validated, candidate-with-retrieval negative case rejected, carrier-in-regulatory-namespace negative case rejected.
 
 CI Result:
 
+Pending PR.
+
 AI Review Findings:
--
+- Pending PR review.
 
 Human Review Notes:
--
+- Pending human owner review.
 
 Issues Encountered:
--
+- `jsonschema` was not initially installed in the active shell environment.
+- Validation shell used Python 3.13.14 although the project runtime target is Python 3.12.
 
 Resolution:
--
+- Installed `jsonschema` and reran Draft 2020-12 validation successfully.
+- Python 3.13.14 use is limited to standalone JSON Schema validation and does not affect the project runtime artifact.
 
 Debt / Follow-Ups:
--
+- Runtime validator code remains out of scope for DT008 and belongs to RAG-BT007.
+- DT003 should use this schema when creating the APAC source candidate registry.
+- DT004/DT012 should align registry storage, snapshot handling, and canonical Markdown materialization with this schema.
+- DT013 should review build-task impact after the remaining design tasks complete.
 
 
 
