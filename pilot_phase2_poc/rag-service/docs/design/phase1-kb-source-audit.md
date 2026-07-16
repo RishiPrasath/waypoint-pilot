@@ -1,6 +1,6 @@
 # Phase 1 Knowledge Base Source Audit
 
-Status: Complete audit input for Phase 2 source-registry design
+Status: Pending review by Knowledge Base Curator and Logistics Domain Expert
 Date: 2026-07-16
 Task: `RAG-DT002`
 Audit root: `legacy/phase1-kb-snapshot/`
@@ -79,7 +79,39 @@ source registry task.
 | REG-012 | `01_regulatory/sg_import_procedures.md` | public_regulatory | Singapore Customs; verify | promote-after-review | URL/date | confirm current procedure | P0 |
 | REG-013 | `01_regulatory/thailand_import_requirements.md` | public_regulatory | Thailand authority; verify | candidate | authority/date | validate jurisdiction | P1 |
 | REG-014 | `01_regulatory/vietnam_import_requirements.md` | public_regulatory | Vietnam authority; verify | candidate | authority/date | validate jurisdiction | P1 |
-| REG-015–REG-046 | `01_regulatory/pdfs/*.md` | public_regulatory_candidate | Original PDF authority varies | candidate | PDF pairing, extraction, edition | DT012 deduplicate and normalize | P0 |
+| REG-015 | `01_regulatory/pdfs/aec_2025_trade_facilitation_sap.md` | public_regulatory_candidate | ASEAN; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P0 |
+| REG-016 | `01_regulatory/pdfs/ahtn_2022_changes.md` | public_regulatory_candidate | ASEAN; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P0 |
+| REG-017 | `01_regulatory/pdfs/asean_import_licensing_guidelines.md` | public_regulatory_candidate | ASEAN; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P0 |
+| REG-018 | `01_regulatory/pdfs/asean_ntm_guidelines.md` | public_regulatory_candidate | ASEAN; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P0 |
+| REG-019 | `01_regulatory/pdfs/asean_seamless_trade_facilitation_astfi.md` | public_regulatory_candidate | ASEAN; verify original | candidate | PDF provenance/edition/size | DT012 verify and normalize | P0 |
+| REG-020 | `01_regulatory/pdfs/asean_tariff_finder_leaflet.md` | public_regulatory_candidate | ASEAN; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P0 |
+| REG-021 | `01_regulatory/pdfs/asean_trade_facilitation_framework.md` | public_regulatory_candidate | ASEAN; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P0 |
+| REG-022 | `01_regulatory/pdfs/atiga_annex3_psr_hs2022.md` | public_regulatory_candidate | ASEAN; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P0 |
+| REG-023 | `01_regulatory/pdfs/atiga_annex5_rvc_guidelines.md` | public_regulatory_candidate | ASEAN; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P0 |
+| REG-024 | `01_regulatory/pdfs/atiga_annex6_partial_cumulation.md` | public_regulatory_candidate | ASEAN; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P0 |
+| REG-025 | `01_regulatory/pdfs/atiga_annex7_form_d.md` | public_regulatory_candidate | ASEAN; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P0 |
+| REG-026 | `01_regulatory/pdfs/atiga_annex8_awsc_ocp.md` | public_regulatory_candidate | ASEAN; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P0 |
+| REG-027 | `01_regulatory/pdfs/atiga_fact_sheet_wto.md` | public_regulatory_candidate | WTO/ASEAN; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P0 |
+| REG-028 | `01_regulatory/pdfs/atiga_first_protocol_amendment.md` | public_regulatory_candidate | ASEAN; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P0 |
+| REG-029 | `01_regulatory/pdfs/atiga_full_text.md` | public_regulatory_candidate | ASEAN; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P0 |
+| REG-030 | `01_regulatory/pdfs/atiga_psr_implementing_guidelines.md` | public_regulatory_candidate | ASEAN; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P0 |
+| REG-031 | `01_regulatory/pdfs/average_cept_atiga_tariff_rates.md` | public_regulatory_candidate | ASEAN; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P0 |
+| REG-032 | `01_regulatory/pdfs/awsc_guidebook_english.md` | public_regulatory_candidate | ASEAN; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P0 |
+| REG-033 | `01_regulatory/pdfs/awsc_origin_declaration_format.md` | public_regulatory_candidate | ASEAN; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P0 |
+| REG-034 | `01_regulatory/pdfs/customs_guide_records_image_system.md` | public_regulatory_candidate | Singapore Customs; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P0 |
+| REG-035 | `01_regulatory/pdfs/eform_d_full_implementation.md` | public_regulatory_candidate | ASEAN; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P0 |
+| REG-036 | `01_regulatory/pdfs/ftz_circular_01_2020.md` | public_regulatory_candidate | Singapore Customs; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P0 |
+| REG-037 | `01_regulatory/pdfs/general_interpretative_rules.md` | public_regulatory_candidate | WCO/Customs; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P0 |
+| REG-038 | `01_regulatory/pdfs/handbook_non_preferential_roo.md` | public_regulatory_candidate | ASEAN/WCO; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P0 |
+| REG-039 | `01_regulatory/pdfs/handbook_roo_preferential_co.md` | public_regulatory_candidate | ASEAN/WCO; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P0 |
+| REG-040 | `01_regulatory/pdfs/how_to_determine_hs_code.md` | public_regulatory_candidate | Singapore Customs; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P0 |
+| REG-041 | `01_regulatory/pdfs/how_to_read_the_hs.md` | public_regulatory_candidate | Singapore Customs; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P0 |
+| REG-042 | `01_regulatory/pdfs/minor_discrepancies_proof_of_origin.md` | public_regulatory_candidate | ASEAN; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P0 |
+| REG-043 | `01_regulatory/pdfs/sg_customs_asean_aeo_mra.md` | public_regulatory_candidate | Singapore Customs; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P0 |
+| REG-044 | `01_regulatory/pdfs/sg_customs_handbook_co_tradenet.md` | public_regulatory_candidate | Singapore Customs; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P0 |
+| REG-045 | `01_regulatory/pdfs/sg_customs_important_permit_fields.md` | public_regulatory_candidate | Singapore Customs; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P0 |
+| REG-046 | `01_regulatory/pdfs/sg_customs_mra_factsheet_asean.md` | public_regulatory_candidate | Singapore Customs; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P0 |
+| REG-047 | `01_regulatory/pdfs/asean_self_certification_guidebook.pdf` | public_regulatory_candidate | ASEAN; no extracted Markdown candidate | audit-only | PDF-only source; provenance/edition/extraction not reviewed | DT012 extract, verify, and assign canonical candidate | P0 |
 
 The `01_regulatory/pdfs/*.md` group contains: `aec_2025_trade_facilitation_sap`,
 `ahtn_2022_changes`, `asean_import_licensing_guidelines`,
@@ -102,12 +134,28 @@ The `01_regulatory/pdfs/*.md` group contains: `aec_2025_trade_facilitation_sap`,
 
 | ID | Legacy path | Source type | Authority | Target status | Blocker | Next action | Priority |
 |---|---|---|---|---|---|---|---|
-| CAR-001–CAR-006 | `02_carriers/{cathay,evergreen,maersk,one,pil,sia}_*.md` | public_carrier_candidate | Named carrier or secondary summary; verify ownership | audit-only by default | no confirmed Phase 2 static-carrier use case; freshness/marketing | exclude marketing; retain only if a confirmed use case requires static guidance | P1 |
-| CAR-007–CAR-019 | `02_carriers/pdfs/*.md` | public_carrier_candidate | Named carrier PDF; verify original | audit-only by default | PDF pairing, freshness, and use-case fit | DT012 review; promote only approved static guidance into `carrier_reference` | P1 |
+| CAR-001 | `02_carriers/cathay_cargo_service_guide.md` | public_carrier_candidate | Cathay Cargo; source URL/version not recorded | audit-only | no confirmed static-carrier use case; provenance/freshness | exclude unless approved use case and authority evidence | P1 |
+| CAR-002 | `02_carriers/evergreen_service_summary.md` | public_carrier_candidate | Evergreen; source URL/version not recorded | audit-only | summary/marketing risk; provenance/freshness | exclude unless approved use case and authority evidence | P1 |
+| CAR-003 | `02_carriers/maersk_service_summary.md` | public_carrier_candidate | Maersk; source URL/version not recorded | audit-only | summary/marketing risk; provenance/freshness | exclude unless approved use case and authority evidence | P1 |
+| CAR-004 | `02_carriers/one_service_summary.md` | public_carrier_candidate | ONE; source URL/version not recorded | audit-only | summary/marketing risk; provenance/freshness | exclude unless approved use case and authority evidence | P1 |
+| CAR-005 | `02_carriers/pil_service_summary.md` | public_carrier_candidate | PIL; source URL/version not recorded | audit-only | summary/marketing risk; provenance/freshness | exclude unless approved use case and authority evidence | P1 |
+| CAR-006 | `02_carriers/sia_cargo_service_guide.md` | public_carrier_candidate | SIA Cargo; source URL/version not recorded | audit-only | guide provenance/freshness; no confirmed use case | exclude unless approved use case and authority evidence | P1 |
+| CAR-007 | `02_carriers/pdfs/maersk_sg_booking_amendment.md` | public_carrier_candidate | Maersk; original PDF/source must be verified | audit-only | PDF fidelity, provenance, freshness, use-case fit | DT012 review; promote only approved static guidance | P1 |
+| CAR-008 | `02_carriers/pdfs/maersk_sg_demurrage_detention_calc.md` | public_carrier_candidate | Maersk; original PDF/source must be verified | audit-only | PDF fidelity, provenance, freshness, use-case fit | DT012 review; promote only approved static guidance | P1 |
+| CAR-009 | `02_carriers/pdfs/maersk_sg_demurrage_detention.md` | public_carrier_candidate | Maersk; original PDF/source must be verified | audit-only | PDF fidelity, provenance, freshness, use-case fit | DT012 review; promote only approved static guidance | P1 |
+| CAR-010 | `02_carriers/pdfs/maersk_sg_import_delivery_order.md` | public_carrier_candidate | Maersk; original PDF/source must be verified | audit-only | PDF fidelity, provenance, freshness, use-case fit | DT012 review; promote only approved static guidance | P1 |
+| CAR-011 | `02_carriers/pdfs/maersk_sg_notifications_guide.md` | public_carrier_candidate | Maersk; original PDF/source must be verified | audit-only | PDF fidelity, provenance, freshness, use-case fit | DT012 review; promote only approved static guidance | P1 |
+| CAR-012 | `02_carriers/pdfs/maersk_sg_shipping_instructions_guide.md` | public_carrier_candidate | Maersk; original PDF/source must be verified | audit-only | PDF fidelity, provenance, freshness, use-case fit | DT012 review; promote only approved static guidance | P1 |
+| CAR-013 | `02_carriers/pdfs/maersk_sg_shipping_instructions.md` | public_carrier_candidate | Maersk; original PDF/source must be verified | audit-only | PDF fidelity, provenance, freshness, use-case fit | DT012 review; promote only approved static guidance | P1 |
+| CAR-014 | `02_carriers/pdfs/maersk_sg_spot_booking_guide.md` | public_carrier_candidate | Maersk; original PDF/source must be verified | audit-only | PDF fidelity, provenance, freshness, use-case fit | DT012 review; promote only approved static guidance | P1 |
+| CAR-015 | `02_carriers/pdfs/maersk_sg_spot_booking.md` | public_carrier_candidate | Maersk; original PDF/source must be verified | audit-only | PDF fidelity, provenance, freshness, use-case fit | DT012 review; promote only approved static guidance | P1 |
+| CAR-016 | `02_carriers/pdfs/maersk_sg_telex_release_template.md` | public_carrier_candidate | Maersk; original PDF/source must be verified | audit-only | PDF fidelity, provenance, freshness, use-case fit | DT012 review; promote only approved static guidance | P1 |
+| CAR-017 | `02_carriers/pdfs/maersk_sg_telex_release.md` | public_carrier_candidate | Maersk; original PDF/source must be verified | audit-only | PDF fidelity, provenance, freshness, use-case fit | DT012 review; promote only approved static guidance | P1 |
+| CAR-018 | `02_carriers/pdfs/sia_cargo_thrucool_brochure.md` | public_carrier_candidate | SIA Cargo; original PDF/source must be verified | audit-only | marketing/brochure risk; provenance/freshness | exclude unless approved use case and authority evidence | P1 |
+| CAR-019 | `02_carriers/pdfs/sia_cargo_thrufresh_brochure.md` | public_carrier_candidate | SIA Cargo; original PDF/source must be verified | audit-only | marketing/brochure risk; provenance/freshness | exclude unless approved use case and authority evidence | P1 |
 
-The carrier PDF group contains the Maersk booking amendment, demurrage/detention,
-import delivery order, notifications, shipping instructions, spot booking, and
-telex release materials, plus SIA Cargo ThruCool and ThruFresh brochures.
+The original PDFs paired with CAR-007 through CAR-019 are separate audit inputs;
+each must retain the same source ID as its extracted Markdown candidate.
 
 ### Reference sources
 
@@ -116,7 +164,12 @@ telex release materials, plus SIA Cargo ThruCool and ThruFresh brochures.
 | REF-001 | `03_reference/hs_code_structure_guide.md` | public_reference | Verify Singapore Customs/WCO | candidate | edition/source | validate primary source | P1 |
 | REF-002 | `03_reference/incoterms_2020_reference.md` | public_reference | ICC; verify licensing/source | candidate | edition/source | validate reference use | P1 |
 | REF-003 | `03_reference/incoterms_comparison_chart.md` | public_reference | Secondary/reference; verify | candidate | authority/licensing | retain only if sourced | P1 |
-| REF-004–REF-009 | `03_reference/pdfs/*.md` | public_reference_candidate | WCO/Singapore Customs; verify per file | candidate | PDF pairing and edition | DT012 review and deduplicate | P1 |
+| REF-004 | `03_reference/pdfs/sg_customs_ahtn_2022_changes.md` | public_reference_candidate | Singapore Customs; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P1 |
+| REF-005 | `03_reference/pdfs/sg_customs_gir.md` | public_reference_candidate | Singapore Customs; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P1 |
+| REF-006 | `03_reference/pdfs/sg_customs_how_to_determine_hs_code.md` | public_reference_candidate | Singapore Customs; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P1 |
+| REF-007 | `03_reference/pdfs/sg_customs_how_to_read_hs.md` | public_reference_candidate | Singapore Customs; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P1 |
+| REF-008 | `03_reference/pdfs/wco_hs_compendium_30years.md` | public_reference_candidate | WCO; verify original | candidate | PDF provenance/edition/age | DT012 verify and normalize | P1 |
+| REF-009 | `03_reference/pdfs/wco_understanding_hs_2028.md` | public_reference_candidate | WCO; verify original | candidate | PDF provenance/edition | DT012 verify and normalize | P1 |
 
 The PDF group contains Singapore Customs HS/AHTN/GIR guidance and WCO HS
 reference material.
@@ -143,6 +196,9 @@ PDF files without a separately listed Markdown row remain paired audit inputs;
 they must be checked for extraction fidelity and provenance before any Markdown
 candidate is promoted. Duplicate PDF/Markdown pairs must resolve to one
 canonical source record, not two ingestion records.
+
+All regulatory and reference PDF candidates now have one source row. Original
+PDFs must retain the same source ID as their extracted Markdown candidate.
 
 ## Phase 2 source boundary
 

@@ -1,6 +1,6 @@
 ﻿# RAG-DT002: Create Phase 1 KB Source Audit Table
 
-Status: Complete
+Status: Pending Review
 
 ## Sequence Entry
 
@@ -208,7 +208,7 @@ Checks Run:
 - `git diff --check`
 
 CI Result:
-- Pending PR CI.
+- Pending PR CI and human review.
 
 AI Review Findings:
 - No runtime code was changed; audit conservatively keeps all legacy content
@@ -220,6 +220,8 @@ Human Review Notes:
 - Phase 2 planning confirms `partner-source` owns operational shipment truth;
   carrier sources are therefore audit-only by default and require explicit
   static-knowledge use-case approval before promotion.
+- Final review identified that regulatory/reference grouped ranges still need
+  one-row-per-file expansion before the audit can be marked complete.
 
 Issues Encountered:
 - PDF-derived Markdown and original PDFs require later provenance and
@@ -230,6 +232,8 @@ Resolution:
   DT012 rather than treating derivatives as canonical sources.
 - Added the partner-source/RAG boundary, carrier-reference namespace guidance,
   and non-retrieval-eligible default for carrier material.
+- Expanded the carrier section to individual source records and left the task
+  pending until regulatory/reference PDF rows are similarly expanded.
 
 Debt / Follow-Ups:
 - DT003 and DT008 must refine source authority, metadata, and registry rules.
