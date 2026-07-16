@@ -1,6 +1,6 @@
 ﻿# RAG-DT002: Create Phase 1 KB Source Audit Table
 
-Status: Pending Review
+Status: Complete
 
 ## Sequence Entry
 
@@ -189,8 +189,8 @@ git -C "$REPO_ROOT" pull --ff-only origin main
 
 Branch: `codex/rag-dt002-phase1-kb-source-audit`
 Worktree: `D:\Code\Github\waypoint-pilot-worktrees\rag-dt002-phase1-kb-source-audit`
-PR: Pending creation after push
-Commit: Pending
+PR: https://github.com/RishiPrasath/waypoint-pilot/pull/12
+Commit: `da6d9a09f47fd324ca0d2b82ae955ce7962f7b10` (merge commit)
 
 Design Artifact:
 - `docs/design/phase1-kb-source-audit.md`
@@ -208,7 +208,7 @@ Checks Run:
 - `git diff --check`
 
 CI Result:
-- Pending PR CI and human review.
+- PR #12 merged successfully; human review completed.
 
 AI Review Findings:
 - No runtime code was changed; audit conservatively keeps all legacy content
@@ -220,8 +220,10 @@ Human Review Notes:
 - Phase 2 planning confirms `partner-source` owns operational shipment truth;
   carrier sources are therefore audit-only by default and require explicit
   static-knowledge use-case approval before promotion.
-- Final review identified that regulatory/reference grouped ranges still need
-  one-row-per-file expansion before the audit can be marked complete.
+- Final review confirmed that regulatory/reference sources were expanded to
+  one-row-per-file records before merge.
+- PR #12 review and merge completed after expanding all source records and
+  clarifying the partner-source/carrier boundary.
 
 Issues Encountered:
 - PDF-derived Markdown and original PDFs require later provenance and
