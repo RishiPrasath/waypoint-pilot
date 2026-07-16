@@ -1,0 +1,520 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.local/schemas/rag/source_registry.schema.json",
+  "title": "Waypoint Phase 2 Source Registry Record",
+  "description": "Validation contract for one Phase 2 RAG source registry record. The registry may include legacy audit inputs, but retrieval eligibility is an explicit promotion gate.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "document_id",
+    "source_uri",
+    "title",
+    "source_type",
+    "authority_level",
+    "source_status",
+    "promotion_status",
+    "retrieval_eligible",
+    "retrieval_namespace",
+    "jurisdiction",
+    "language",
+    "source_access_pattern",
+    "translation_review_required",
+    "dynamic_lookup_snapshot",
+    "legal_disclaimer",
+    "license_sensitive",
+    "reuse_mode"
+  ],
+  "properties": {
+    "document_id": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9]{1,9}-[0-9]{3,6}$",
+      "description": "Stable source identifier used for audit traceability, chunk metadata, citations, and promotion decisions. Examples: REG-001, CAR-019, REF-002, INT-007."
+    },
+    "source_uri": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Canonical source location or documented acquisition path. This may be a public URL, local legacy path, internal source path, or PDF acquisition note."
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human-readable source title."
+    },
+    "source_type": {
+      "type": "string",
+      "enum": [
+        "public_regulatory",
+        "public_regulatory_candidate",
+        "public_reference",
+        "public_reference_candidate",
+        "public_carrier_candidate",
+        "synthetic_internal",
+        "metadata",
+        "derivative"
+      ],
+      "description": "Source classification from the audit and APAC source review process."
+    },
+    "authority_level": {
+      "type": "string",
+      "enum": [
+        "primary_government",
+        "intergovernmental",
+        "carrier_published",
+        "internal_owner_approved",
+        "secondary_reference",
+        "metadata_only",
+        "unverified"
+      ],
+      "description": "Authority class used to rank source trust and identify required promotion review."
+    },
+    "source_status": {
+      "type": "string",
+      "enum": [
+        "audit_only",
+        "candidate",
+        "under_review",
+        "approved",
+        "blocked",
+        "rejected",
+        "replaced",
+        "stale"
+      ],
+      "description": "Lifecycle state of the source record. Audit-only and candidate records are traceable but not ingestible."
+    },
+    "promotion_status": {
+      "type": "string",
+      "enum": [
+        "legacy_audit",
+        "candidate",
+        "needs_review",
+        "approved",
+        "rejected",
+        "superseded"
+      ],
+      "description": "Promotion gate state. Only approved records may become retrieval eligible."
+    },
+    "retrieval_eligible": {
+      "type": "boolean",
+      "description": "Explicit ingestion and retrieval gate. False means the source may be tracked for audit but must not be indexed for user answers."
+    },
+    "retrieval_namespace": {
+      "type": "string",
+      "enum": [
+        "audit_only",
+        "regulatory",
+        "reference",
+        "internal_policy",
+        "carrier_reference"
+      ],
+      "description": "Retrieval namespace used after promotion. Live operational shipment facts are intentionally excluded and must route to partner-source outside RAG."
+    },
+    "jurisdiction": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "SG",
+          "MY",
+          "ID",
+          "TH",
+          "VN",
+          "PH",
+          "ASEAN",
+          "Global",
+          "Internal",
+          "Unknown"
+        ]
+      },
+      "description": "Country, region, or internal scope to which the source applies."
+    },
+    "language": {
+      "type": "string",
+      "pattern": "^[a-z]{2}(-[A-Z]{2})?$",
+      "description": "BCP 47-style source language code such as en, ms, id, th, vi, or zh-CN."
+    },
+    "source_access_pattern": {
+      "type": "string",
+      "enum": [
+        "public_web",
+        "public_pdf",
+        "downloaded_pdf",
+        "internal_document",
+        "partner_static_export",
+        "manual_snapshot",
+        "legacy_snapshot"
+      ],
+      "description": "How the source is acquired or refreshed."
+    },
+    "translation_review_required": {
+      "type": "boolean",
+      "description": "True when translation quality must be reviewed before promotion or use in answers."
+    },
+    "dynamic_lookup_snapshot": {
+      "type": "boolean",
+      "description": "True when the source is a snapshot of data that normally changes dynamically and therefore needs freshness controls."
+    },
+    "legal_disclaimer": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Required disclaimer or answer-safety note for legal, customs, tax, licensing, or operational-risk content."
+    },
+    "license_sensitive": {
+      "type": "boolean",
+      "description": "True when copyright, licensing, or publisher terms limit reuse, summarization, or storage."
+    },
+    "reuse_mode": {
+      "type": "string",
+      "enum": [
+        "cite_and_summarize",
+        "cite_only",
+        "internal_use_only",
+        "do_not_ingest",
+        "open_reuse"
+      ],
+      "description": "Allowed source reuse mode for ingestion, answer generation, and citations."
+    },
+    "snapshot_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the source was captured or converted into a registry candidate."
+    },
+    "last_verified_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date authority, currentness, and provenance were last verified."
+    },
+    "review_owner": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Person or team responsible for source approval."
+    },
+    "blocker": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Reason the source cannot yet be promoted, if any."
+    },
+    "next_action": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Next review, promotion, exclusion, or materialization action."
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "P0",
+        "P1",
+        "P2"
+      ],
+      "description": "Review priority from source audit and APAC registry planning."
+    },
+    "related_legacy_paths": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "Legacy Phase 1 snapshot paths represented by this source record."
+    },
+    "paired_source_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z][A-Z0-9]{1,9}-[0-9]{3,6}$"
+      },
+      "description": "Related registry IDs for duplicates, PDF/Markdown pairings, replacements, or superseded sources."
+    },
+    "notes": {
+      "type": "string",
+      "description": "Free-text audit notes. Do not store secrets or customer data."
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "retrieval_eligible": {
+            "const": true
+          }
+        },
+        "required": [
+          "retrieval_eligible"
+        ]
+      },
+      "then": {
+        "properties": {
+          "source_status": {
+            "const": "approved"
+          },
+          "promotion_status": {
+            "const": "approved"
+          },
+          "retrieval_namespace": {
+            "not": {
+              "const": "audit_only"
+            }
+          },
+          "reuse_mode": {
+            "not": {
+              "enum": [
+                "do_not_ingest",
+                "cite_only"
+              ]
+            }
+          }
+        },
+        "required": [
+          "snapshot_date",
+          "last_verified_date",
+          "review_owner"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "source_status": {
+            "enum": [
+              "audit_only",
+              "candidate",
+              "under_review",
+              "blocked",
+              "rejected",
+              "replaced",
+              "stale"
+            ]
+          }
+        },
+        "required": [
+          "source_status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "retrieval_eligible": {
+            "const": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "promotion_status": {
+            "enum": [
+              "legacy_audit",
+              "candidate",
+              "needs_review",
+              "rejected",
+              "superseded"
+            ]
+          }
+        },
+        "required": [
+          "promotion_status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "retrieval_eligible": {
+            "const": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "source_type": {
+            "const": "public_carrier_candidate"
+          }
+        },
+        "required": [
+          "source_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "retrieval_namespace": {
+            "enum": [
+              "audit_only",
+              "carrier_reference"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "retrieval_namespace": {
+            "const": "carrier_reference"
+          }
+        },
+        "required": [
+          "retrieval_namespace"
+        ]
+      },
+      "then": {
+        "properties": {
+          "source_type": {
+            "const": "public_carrier_candidate"
+          },
+          "authority_level": {
+            "const": "carrier_published"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "source_type": {
+            "enum": [
+              "metadata",
+              "derivative"
+            ]
+          }
+        },
+        "required": [
+          "source_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "retrieval_eligible": {
+            "const": false
+          },
+          "retrieval_namespace": {
+            "const": "audit_only"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "license_sensitive": {
+            "const": true
+          }
+        },
+        "required": [
+          "license_sensitive"
+        ]
+      },
+      "then": {
+        "properties": {
+          "reuse_mode": {
+            "enum": [
+              "cite_only",
+              "internal_use_only",
+              "do_not_ingest"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "dynamic_lookup_snapshot": {
+            "const": true
+          }
+        },
+        "required": [
+          "dynamic_lookup_snapshot"
+        ]
+      },
+      "then": {
+        "required": [
+          "snapshot_date"
+        ]
+      }
+    }
+  ],
+  "examples": [
+    {
+      "document_id": "REG-001",
+      "source_uri": "legacy/phase1-kb-snapshot/01_regulatory/asean_rules_of_origin.md",
+      "title": "ASEAN Rules of Origin",
+      "source_type": "public_regulatory",
+      "authority_level": "intergovernmental",
+      "source_status": "candidate",
+      "promotion_status": "legacy_audit",
+      "retrieval_eligible": false,
+      "retrieval_namespace": "audit_only",
+      "jurisdiction": [
+        "ASEAN"
+      ],
+      "language": "en",
+      "source_access_pattern": "legacy_snapshot",
+      "translation_review_required": false,
+      "dynamic_lookup_snapshot": false,
+      "legal_disclaimer": "Use only after authority, edition, and currentness review.",
+      "license_sensitive": false,
+      "reuse_mode": "do_not_ingest",
+      "blocker": "Authority and date require validation.",
+      "next_action": "Validate registry metadata in DT003.",
+      "priority": "P0",
+      "related_legacy_paths": [
+        "legacy/phase1-kb-snapshot/01_regulatory/asean_rules_of_origin.md"
+      ]
+    },
+    {
+      "document_id": "CAR-001",
+      "source_uri": "legacy/phase1-kb-snapshot/02_carriers/cathay_cargo_service_guide.md",
+      "title": "Cathay Cargo Service Guide",
+      "source_type": "public_carrier_candidate",
+      "authority_level": "carrier_published",
+      "source_status": "audit_only",
+      "promotion_status": "legacy_audit",
+      "retrieval_eligible": false,
+      "retrieval_namespace": "audit_only",
+      "jurisdiction": [
+        "Global"
+      ],
+      "language": "en",
+      "source_access_pattern": "legacy_snapshot",
+      "translation_review_required": false,
+      "dynamic_lookup_snapshot": false,
+      "legal_disclaimer": "Carrier material is non-authoritative for live shipment status, ETA, assignment, timeline, and delivery-event questions.",
+      "license_sensitive": true,
+      "reuse_mode": "do_not_ingest",
+      "blocker": "No confirmed static-carrier use case; provenance and freshness not verified.",
+      "next_action": "Exclude unless approved static carrier-reference use case is confirmed.",
+      "priority": "P1",
+      "related_legacy_paths": [
+        "legacy/phase1-kb-snapshot/02_carriers/cathay_cargo_service_guide.md"
+      ]
+    },
+    {
+      "document_id": "REG-900",
+      "source_uri": "https://example.gov.sg/customs/current-guide",
+      "title": "Approved Singapore Customs Guide",
+      "source_type": "public_regulatory",
+      "authority_level": "primary_government",
+      "source_status": "approved",
+      "promotion_status": "approved",
+      "retrieval_eligible": true,
+      "retrieval_namespace": "regulatory",
+      "jurisdiction": [
+        "SG"
+      ],
+      "language": "en",
+      "source_access_pattern": "public_web",
+      "translation_review_required": false,
+      "dynamic_lookup_snapshot": false,
+      "legal_disclaimer": "Cite the public authority and avoid legal-advice framing.",
+      "license_sensitive": false,
+      "reuse_mode": "cite_and_summarize",
+      "snapshot_date": "2026-07-16",
+      "last_verified_date": "2026-07-16",
+      "review_owner": "Knowledge Base Curator",
+      "priority": "P0"
+    }
+  ],
+  "$comment": "Validation failure behavior: validator runtime code is out of scope for DT008. Future validators must reject records that violate this schema, report the JSON path and failed rule, and treat failed or unknown records as non-retrieval-eligible by default."
+}
