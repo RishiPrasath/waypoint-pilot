@@ -1,6 +1,6 @@
 ﻿# RAG-DT003: Create APAC Source Candidate Registry
 
-Status: Draft
+Status: Complete
 
 ## Sequence Entry
 
@@ -17,10 +17,10 @@ Task files should follow the canonical template in build-sequence/00-task-sequen
 | Related Planning Docs | `02-rag-db/research/authoritative-sources-apac.md`, `02-rag-db/active/02-knowledge-source-plan.md` |
 | Affected Build Tasks | RAG-BT008, RAG-BT012, RAG-BT013, RAG-BT014, RAG-BT019 |
 | Branch | `codex/rag-dt003-apac-source-candidate-registry` |
-| Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-dt003-apac-source-candidate-registry` |
+| Worktree Path | `D:\Code\Github\waypoint-pilot-worktrees\rag-dt003-apac-source-candidate-registry` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Draft |
+| Status | Complete |
 
 ## 1. Task Definition
 
@@ -182,37 +182,65 @@ git -C "$REPO_ROOT" pull --ff-only origin main
 ```
 ## 9. Task Evidence
 
-Branch:
-Worktree:
+Branch: `codex/rag-dt003-apac-source-candidate-registry`
+Worktree: `D:\Code\Github\waypoint-pilot-worktrees\rag-dt003-apac-source-candidate-registry`
 PR:
 Commit:
 
 Design Artifact:
 
+`pilot_phase2_poc/rag-service/knowledge_base/registry/source_registry.yaml`
+
 Affected Build Tasks:
 
+RAG-BT008, RAG-BT012, RAG-BT013, RAG-BT014, RAG-BT019
+
 Files Changed:
--
+- `pilot_phase2_poc/rag-service/knowledge_base/registry/source_registry.yaml`
+- `pilot_phase2_poc/rag-service/knowledge_base/registry/source_registry.schema.json`
+- `pilot_phase2_poc/rag-service/docs/design/source-registry-schema.md`
+- `pilot_phase2_poc/rag-service/build-sequence/02-design-tasks/02-source-scope-and-registry/RAG-DT003-apac-source-candidate-registry.md`
 
 Checks Run:
--
+- YAML parse and schema validation using PyYAML 6.0.3 and `jsonschema` 4.26.0.
+- Validated 46 `sources[]` records in `source_registry.yaml` against `source_registry.schema.json`.
+- Confirmed `retrieval_eligible_true=0`.
+- Confirmed first-pass markets: SG, MY, ID, TH, VN, PH, ASEAN, Global.
+- `Select-String -Path pilot_phase2_poc/rag-service/knowledge_base/registry/source_registry.yaml -Pattern "document_id|source_uri|source_owner|authority_level|source_status|promotion_status|retrieval_eligible|source_access_pattern|language|translation_review_required|dynamic_lookup_snapshot|legal_disclaimer|license_sensitive|reuse_mode|retrieval_namespace"`
 
 CI Result:
 
+Pending PR.
+
 AI Review Findings:
--
+- Three subagent research lanes completed and were normalized into the registry:
+  - Singapore, Malaysia, Indonesia
+  - Thailand, Viet Nam, Philippines
+  - ASEAN, WCO, WTO, UN/CEFACT, ICC/global references
+- No carrier rows were promoted into the APAC candidate registry.
+- No live operational shipment/order/status/timeline source was added.
 
 Human Review Notes:
--
+- Pending human owner review.
 
 Issues Encountered:
--
+- DT003 requires `source_owner`, but the DT008 schema did not include it as a first-class field.
+- ICC Incoterms sources require an authority class that is not government/intergovernmental.
+- Several tariff/trade repository sources are dynamic lookup portals and are unsafe for direct static ingestion without later materialization rules.
 
 Resolution:
--
+- Added required `source_owner` to `source_registry.schema.json` and updated embedded schema examples.
+- Added `standards_body` to `authority_level` for ICC Incoterms sources.
+- Set all DT003 candidate rows to `retrieval_eligible: false`.
+- Used `manual_snapshot` and license-sensitive reuse modes for dynamic or controlled sources.
 
 Debt / Follow-Ups:
--
+- RAG-DT004 must align registry storage/layout decisions with `source_registry.yaml`.
+- RAG-DT012 must decide snapshot, canonical Markdown, and extraction rules for each promoted source.
+- RAG-BT008/BT012 must consume only explicitly promoted registry rows.
+- RAG-BT013/BT014/BT019 must preserve `document_id`, `source_owner`, namespace, language, legal disclaimer, and reuse metadata.
+- ICC/WCO licensed or copyright-controlled materials require legal/reuse approval before any ingestion.
+- Dynamic portals such as tariff finders and national trade repositories require explicit snapshot/query-output policy before materialization.
 
 
 
