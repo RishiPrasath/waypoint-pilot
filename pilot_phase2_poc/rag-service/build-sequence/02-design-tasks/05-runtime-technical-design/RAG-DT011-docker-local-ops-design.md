@@ -1,11 +1,11 @@
-﻿# RAG-DT011: Define Docker And Local Ops Design
+# RAG-DT011: Define Docker And Local Ops Design
 
-Status: Deferred Draft
+Status: Deferred
 
 ## Sequence Entry
 
 Start from build-sequence/00-index.md, then open the lane index for this task before opening the task file.
-Task files should follow the canonical template in build-sequence/00-task-sequence-template-proposal.md.
+Task files should follow the canonical template in build-sequence/00-governance/01-task-template.md.
 
 | Field | Value |
 |---|---|
@@ -17,10 +17,11 @@ Task files should follow the canonical template in build-sequence/00-task-sequen
 | Related Planning Docs | `02-rag-db/planning/definition-of-done.md`, `02-rag-db/planning/cicd-pipeline-proposal.md` |
 | Affected Build Tasks | RAG-BT020, RAG-BT021, RAG-BT022, RAG-BT004 |
 | Branch | `codex/rag-dt011-docker-local-ops-design` |
-| Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-dt011-docker-local-ops-design` |
+| Worktree Path | `C:\tmp\rag-dt011-docker-local-ops-design` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Deferred Draft |
+| Status | Deferred |
+| Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-DT011-docker-local-ops-design.md` |
 
 ## 1. Task Definition
 
@@ -60,7 +61,7 @@ Create the branch and worktree before creating or editing design artifacts.
 
 ```powershell
 $RepoRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot"
-$WorktreeRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees"
+$WorktreeRoot = "C:\tmp"
 $TaskId = "rag-dt011"
 $Slug = "docker-local-ops-design"
 $Branch = "codex/$TaskId-$Slug"
@@ -191,45 +192,6 @@ git -C "$REPO_ROOT" worktree remove "$WORKTREE_PATH"
 git -C "$REPO_ROOT" worktree prune
 git -C "$REPO_ROOT" pull --ff-only origin main
 ```
-## 9. Task Evidence
+## Task Evidence
 
-Branch:
-Worktree:
-PR:
-Commit:
-
-Design Artifact:
-
-Affected Build Tasks:
-
-Files Changed:
--
-
-Checks Run:
--
-
-CI Result:
-
-AI Review Findings:
--
-
-Human Review Notes:
--
-
-Issues Encountered:
--
-
-Resolution:
--
-
-Debt / Follow-Ups:
--
-
-
-
-
-
-
-
-
-
+Evidence is recorded in `pilot_phase2_poc/rag-service/build-evidence/RAG-DT011-docker-local-ops-design.md`.

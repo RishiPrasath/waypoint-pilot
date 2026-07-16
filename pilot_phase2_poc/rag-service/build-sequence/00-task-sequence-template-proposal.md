@@ -203,7 +203,7 @@ Commands must be shown separately and executed separately:
 
 ```powershell
 $RepoRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot"
-$WorktreeRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees"
+$WorktreeRoot = "C:\tmp"
 $TaskId = "rag-bt001"
 $Slug = "fastapi-skeleton"
 $Branch = "codex/$TaskId-$Slug"

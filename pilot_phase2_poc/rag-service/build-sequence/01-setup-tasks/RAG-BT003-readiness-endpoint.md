@@ -1,11 +1,11 @@
-﻿# RAG-BT003: Add Readiness Endpoint
+# RAG-BT003: Add Readiness Endpoint
 
 Status: Complete
 
 ## Sequence Entry
 
 Start from build-sequence/00-index.md, then open the lane index for this task before opening the task file.
-Task files should follow the canonical template in build-sequence/00-task-sequence-template-proposal.md.
+Task files should follow the canonical template in build-sequence/00-governance/01-task-template.md.
 
 | Field | Value |
 |---|---|
@@ -14,10 +14,11 @@ Task files should follow the canonical template in build-sequence/00-task-sequen
 | Source Question | Codebase setup and local runnable increments |
 | Decision / ADR | ADR-RAG-0011 |
 | Branch | `codex/rag-bt003-readiness-endpoint` |
-| Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-bt003-readiness-endpoint` |
+| Worktree Path | `C:\tmp\rag-bt003-readiness-endpoint` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
 | Status | Complete |
+| Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-BT003-readiness-endpoint.md` |
 
 ## 1. Task Definition
 
@@ -45,7 +46,7 @@ Out Of Scope:
 
 ```powershell
 $RepoRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot"
-$WorktreeRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees"
+$WorktreeRoot = "C:\tmp"
 $TaskId = "rag-bt003"
 $Slug = "readiness-endpoint"
 $Branch = "codex/$TaskId-$Slug"
@@ -198,40 +199,6 @@ Merge after review, PR CI/CD, and `main` CI/CD. Then clean up the worktree,
 delete the merged local branch, and delete the merged remote branch when
 permitted.
 
-## 8. Task Evidence
+## Task Evidence
 
-Branch:
-Worktree:
-PR: https://github.com/RishiPrasath/waypoint-pilot/pull/5
-Commit: 71f2cfb
-
-Files Changed:
--
-
-Tests Run:
--
-
-CI Result:
-
-AI Review Findings:
--
-
-Human Review Notes:
--
-
-Issues Encountered:
--
-
-Resolution:
--
-
-Debt / Follow-Ups:
--
-
-Closeout:
-- Readiness endpoint implemented, tested, pushed, and merged.
-- Worktree cleanup was completed and the local branch was removed.
-
-
-
-
+Evidence is recorded in `pilot_phase2_poc/rag-service/build-evidence/RAG-BT003-readiness-endpoint.md`.

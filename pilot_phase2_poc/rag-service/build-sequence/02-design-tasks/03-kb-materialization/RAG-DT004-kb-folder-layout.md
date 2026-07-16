@@ -1,11 +1,11 @@
-﻿# RAG-DT004: Confirm KB Folder Layout And Registry Storage
+# RAG-DT004: Confirm KB Folder Layout And Registry Storage
 
-Status: Draft
+Status: Planned
 
 ## Sequence Entry
 
 Start from build-sequence/00-index.md, then open the lane index for this task before opening the task file.
-Task files should follow the canonical template in build-sequence/00-task-sequence-template-proposal.md.
+Task files should follow the canonical template in build-sequence/00-governance/01-task-template.md.
 
 | Field | Value |
 |---|---|
@@ -17,10 +17,11 @@ Task files should follow the canonical template in build-sequence/00-task-sequen
 | Related Planning Docs | `02-rag-db/active/02-knowledge-source-plan.md` |
 | Affected Build Tasks | RAG-BT007, RAG-BT008, RAG-BT009, RAG-BT012, RAG-BT019, RAG-BT020 |
 | Branch | `codex/rag-dt004-kb-folder-layout` |
-| Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-dt004-kb-folder-layout` |
+| Worktree Path | `C:\tmp\rag-dt004-kb-folder-layout` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Draft |
+| Status | Planned |
+| Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-DT004-kb-folder-layout.md` |
 
 ## 1. Task Definition
 
@@ -57,7 +58,7 @@ Create the branch and worktree before creating or editing design artifacts.
 
 ```powershell
 $RepoRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot"
-$WorktreeRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees"
+$WorktreeRoot = "C:\tmp"
 $TaskId = "rag-dt004"
 $Slug = "kb-folder-layout"
 $Branch = "codex/$TaskId-$Slug"
@@ -184,45 +185,6 @@ git -C "$REPO_ROOT" worktree remove "$WORKTREE_PATH"
 git -C "$REPO_ROOT" worktree prune
 git -C "$REPO_ROOT" pull --ff-only origin main
 ```
-## 9. Task Evidence
+## Task Evidence
 
-Branch:
-Worktree:
-PR:
-Commit:
-
-Design Artifact:
-
-Affected Build Tasks:
-
-Files Changed:
--
-
-Checks Run:
--
-
-CI Result:
-
-AI Review Findings:
--
-
-Human Review Notes:
--
-
-Issues Encountered:
--
-
-Resolution:
--
-
-Debt / Follow-Ups:
--
-
-
-
-
-
-
-
-
-
+Evidence is recorded in `pilot_phase2_poc/rag-service/build-evidence/RAG-DT004-kb-folder-layout.md`.

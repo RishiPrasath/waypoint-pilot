@@ -1,11 +1,11 @@
-﻿# RAG-DT014: Test Vector DB And CI Integration Strategy
+# RAG-DT014: Test Vector DB And CI Integration Strategy
 
-Status: Draft
+Status: Planned
 
 ## Sequence Entry
 
 Start from build-sequence/00-index.md, then open the lane index for this task before opening the task file.
-Task files should follow the canonical template in build-sequence/00-task-sequence-template-proposal.md.
+Task files should follow the canonical template in build-sequence/00-governance/01-task-template.md.
 
 | Field | Value |
 |---|---|
@@ -17,10 +17,11 @@ Task files should follow the canonical template in build-sequence/00-task-sequen
 | Related Planning Docs | `02-rag-db/planning/cicd-pipeline-proposal.md`, `02-rag-db/research/vector-database-selection.md` |
 | Affected Build Tasks | RAG-BT010, RAG-BT012, RAG-BT013, RAG-BT014, RAG-BT019, RAG-BT020 |
 | Branch | `codex/rag-dt014-test-vector-db-ci-strategy` |
-| Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-dt014-test-vector-db-ci-strategy` |
+| Worktree Path | `C:\tmp\rag-dt014-test-vector-db-ci-strategy` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Draft |
+| Status | Planned |
+| Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-DT014-test-vector-db-ci-strategy.md` |
 
 ## 1. Task Definition
 
@@ -70,7 +71,7 @@ Create the branch and worktree before creating or editing design artifacts.
 
 ```powershell
 $RepoRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot"
-$WorktreeRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees"
+$WorktreeRoot = "C:\tmp"
 $TaskId = "rag-dt014"
 $Slug = "test-vector-db-ci-strategy"
 $Branch = "codex/$TaskId-$Slug"
@@ -215,40 +216,6 @@ git -C "$REPO_ROOT" worktree prune
 git -C "$REPO_ROOT" pull --ff-only origin main
 ```
 
-## 9. Task Evidence
+## Task Evidence
 
-Branch:
-Worktree:
-PR:
-Commit:
-
-Design Artifact:
-
-Affected Build Tasks:
-
-Files Changed:
--
-
-Checks Run:
--
-
-CI Result:
-
-AI Review Findings:
--
-
-Human Review Notes:
--
-
-Issues Encountered:
--
-
-Resolution:
--
-
-Debt / Follow-Ups:
--
-
-
-
-
+Evidence is recorded in `pilot_phase2_poc/rag-service/build-evidence/RAG-DT014-test-vector-db-ci-strategy.md`.

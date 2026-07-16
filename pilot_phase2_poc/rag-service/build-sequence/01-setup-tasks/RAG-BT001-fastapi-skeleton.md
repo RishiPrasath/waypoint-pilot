@@ -1,11 +1,11 @@
-﻿# RAG-BT001: Create FastAPI Project Skeleton
+# RAG-BT001: Create FastAPI Project Skeleton
 
 Status: Complete
 
 ## Sequence Entry
 
 Start from build-sequence/00-index.md, then open the lane index for this task before opening the task file.
-Task files should follow the canonical template in build-sequence/00-task-sequence-template-proposal.md.
+Task files should follow the canonical template in build-sequence/00-governance/01-task-template.md.
 
 | Field | Value |
 |---|---|
@@ -14,10 +14,11 @@ Task files should follow the canonical template in build-sequence/00-task-sequen
 | Source Question | Codebase structure and setup |
 | Decision / ADR | ADR-RAG-0001 |
 | Branch | `codex/rag-bt001-fastapi-skeleton` |
-| Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-bt001-fastapi-skeleton` |
+| Worktree Path | `C:\tmp\rag-bt001-fastapi-skeleton` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
 | Status | Complete |
+| Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-BT001-fastapi-skeleton.md` |
 
 ## 1. Task Definition
 
@@ -57,7 +58,7 @@ Out Of Scope:
 
 ```powershell
 $RepoRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot"
-$WorktreeRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees"
+$WorktreeRoot = "C:\tmp"
 $TaskId = "rag-bt001"
 $Slug = "fastapi-skeleton"
 $Branch = "codex/$TaskId-$Slug"
@@ -432,40 +433,6 @@ Open a PR to `main`.
 Merge after local tests, PR review, PR CI/CD, and `main` CI/CD pass. Then clean
 up the worktree.
 
-## 8. Task Evidence
+## Task Evidence
 
-Branch:
-Worktree:
-PR:
-Commit:
-
-Files Changed:
--
-
-Tests Run:
--
-
-CI Result:
-
-AI Review Findings:
--
-
-Human Review Notes:
--
-
-Issues Encountered:
--
-
-Resolution:
--
-
-Debt / Follow-Ups:
--
-
-Closeout:
-- Implementation merged in PR #2.
-- Follow-up closeout recorded in this task update.
-
-
-
-
+Evidence is recorded in `pilot_phase2_poc/rag-service/build-evidence/RAG-BT001-fastapi-skeleton.md`.

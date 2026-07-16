@@ -1,11 +1,11 @@
-﻿# RAG-BT000: Prove Branch, Worktree, PR, And Evidence Workflow
+# RAG-BT000: Prove Branch, Worktree, PR, And Evidence Workflow
 
 Status: Complete
 
 ## Sequence Entry
 
 Start from build-sequence/00-index.md, then open the lane index for this task before opening the task file.
-Task files should follow the canonical template in build-sequence/00-task-sequence-template-proposal.md.
+Task files should follow the canonical template in build-sequence/00-governance/01-task-template.md.
 
 | Field | Value |
 |---|---|
@@ -14,10 +14,11 @@ Task files should follow the canonical template in build-sequence/00-task-sequen
 | Source Question | Engineering defaults and task auditability |
 | Decision / ADR | ADR-RAG-0011, ADR-RAG-0014 |
 | Branch | `codex/rag-bt000-prove-workflow` |
-| Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-bt000-prove-workflow` |
+| Worktree Path | `C:\tmp\rag-bt000-prove-workflow` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
 | Status | Complete |
+| Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-BT000-prove-workflow.md` |
 
 ## 1. Task Definition
 
@@ -51,7 +52,7 @@ Out Of Scope:
 
 ```powershell
 $RepoRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot"
-$WorktreeRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees"
+$WorktreeRoot = "C:\tmp"
 $TaskId = "rag-bt000"
 $Slug = "prove-workflow"
 $Branch = "codex/$TaskId-$Slug"
@@ -195,39 +196,6 @@ git -C "$REPO_ROOT" worktree prune
 git -C "$REPO_ROOT" pull --ff-only origin main
 ```
 
-## 8. Task Evidence
+## Task Evidence
 
-Branch:
-Worktree:
-PR:
-Commit:
-
-Files Changed:
--
-
-Tests Run:
--
-
-CI Result:
-
-AI Review Findings:
--
-
-Human Review Notes:
--
-
-Issues Encountered:
--
-
-Resolution:
--
-
-Debt / Follow-Ups:
--
-
-Closeout:
-- Workflow proof completed and recorded in the task evidence file.
-
-
-
-
+Evidence is recorded in `pilot_phase2_poc/rag-service/build-evidence/RAG-BT000-prove-workflow.md`.
