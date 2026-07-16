@@ -1,6 +1,6 @@
 ﻿# RAG-DT002: Create Phase 1 KB Source Audit Table
 
-Status: Draft
+Status: Pending Review
 
 ## Sequence Entry
 
@@ -187,37 +187,59 @@ git -C "$REPO_ROOT" pull --ff-only origin main
 ```
 ## 9. Task Evidence
 
-Branch:
-Worktree:
-PR:
-Commit:
+Branch: `codex/rag-dt002-phase1-kb-source-audit`
+Worktree: `D:\Code\Github\waypoint-pilot-worktrees\rag-dt002-phase1-kb-source-audit`
+PR: Pending creation after push
+Commit: Pending
 
 Design Artifact:
+- `docs/design/phase1-kb-source-audit.md`
 
 Affected Build Tasks:
+- `RAG-BT008`, `RAG-BT009`, `RAG-BT012`, `RAG-BT013`, `RAG-BT019`
 
 Files Changed:
--
+- `docs/design/phase1-kb-source-audit.md`
+- `build-sequence/02-design-tasks/02-source-scope-and-registry/RAG-DT002-phase1-kb-source-audit.md`
 
 Checks Run:
--
+- Legacy snapshot inventory: 82 Markdown files and 52 PDFs
+- Category count verification
+- `git diff --check`
 
 CI Result:
+- Pending PR CI and human review.
 
 AI Review Findings:
--
+- No runtime code was changed; audit conservatively keeps all legacy content
+  outside the active Phase 2 knowledge base.
 
 Human Review Notes:
--
+- Historical research paths referenced by the task are unavailable; the audit
+  uses the checked-in legacy snapshot and current DT001 architecture checklist.
+- Phase 2 planning confirms `partner-source` owns operational shipment truth;
+  carrier sources are therefore audit-only by default and require explicit
+  static-knowledge use-case approval before promotion.
+- Final review identified that regulatory/reference grouped ranges still need
+  one-row-per-file expansion before the audit can be marked complete.
 
 Issues Encountered:
--
+- PDF-derived Markdown and original PDFs require later provenance and
+  extraction-fidelity review.
 
 Resolution:
--
+- Recorded PDF/Markdown pairing as an explicit blocker and assigned the work to
+  DT012 rather than treating derivatives as canonical sources.
+- Added the partner-source/RAG boundary, carrier-reference namespace guidance,
+  and non-retrieval-eligible default for carrier material.
+- Expanded the carrier section to individual source records and left the task
+  pending until regulatory/reference PDF rows are similarly expanded.
 
 Debt / Follow-Ups:
--
+- DT003 and DT008 must refine source authority, metadata, and registry rules.
+- DT012 must resolve canonical snapshot/materialization and deduplication.
+- DT006 and DT007 must encode carrier static-reference cases separately from
+  partner-source operational routing.
 
 
 
