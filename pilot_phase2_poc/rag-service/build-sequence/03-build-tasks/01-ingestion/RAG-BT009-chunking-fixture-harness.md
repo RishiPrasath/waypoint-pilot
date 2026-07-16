@@ -13,8 +13,8 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Task Name | Add Chunking Rules And Fixture Harness |
 | Build Stage | 01-ingestion - Ingestion |
 | Source Question | RAG-Q011 |
-| Decision / ADR | RAG-DT002, RAG-DT005, RAG-DT012, RAG-DT013 |
-| Design Dependencies | RAG-DT002, RAG-DT005, RAG-DT012, RAG-DT013 |
+| Decision / ADR | RAG-DT002, RAG-DT004, RAG-DT005, RAG-DT012, RAG-DT013 |
+| Design Dependencies | RAG-DT002, RAG-DT004, RAG-DT005, RAG-DT012, RAG-DT013 |
 | Depends On Build Tasks | see section 1 and section 3 |
 | Branch | `codex/rag-bt009-chunking-fixture-harness` |
 | Worktree Path | `C:\tmp\rag-bt009-chunking-fixture-harness` |
@@ -34,6 +34,7 @@ Module: `app/stages/stage_01_ingestion/chunkers/`.
 Design Gates:
 
 - `RAG-DT002`
+- `RAG-DT004`
 - `RAG-DT005`
 - `RAG-DT012`
 - `RAG-DT013`
@@ -58,6 +59,12 @@ legacy/phase1-kb-snapshot is audit input only.
 It must not be ingested directly.
 Only audited/promoted material may become fixture, candidate, or canonical KB content.
 ```
+
+DT004 KB Path Contract:
+
+- Chunking fixtures must come from `knowledge_base/candidates/` or `knowledge_base/canonical/`.
+- `knowledge_base/reference/` may inform review cases but is not a runtime chunking source.
+- `legacy/`, `drop/`, and `archive/` are not valid chunking fixture inputs.
 
 ## 2. Worktree And Branch Setup
 

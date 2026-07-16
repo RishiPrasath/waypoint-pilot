@@ -1,6 +1,6 @@
 # RAG-DT004: Confirm KB Folder Layout And Registry Storage
 
-Status: Planned
+Status: Complete
 
 ## Sequence Entry
 
@@ -20,7 +20,7 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Worktree Path | `C:\tmp\rag-dt004-kb-folder-layout` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Planned |
+| Status | Complete |
 | Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-DT004-kb-folder-layout.md` |
 
 ## 1. Task Definition
@@ -129,6 +129,18 @@ Deferred Impact:
 Impact Review Status:
 
 - Pending RAG-DT013 review.
+
+Accepted Path Contract:
+
+- Registry: `knowledge_base/registry/source_registry.yaml`
+- Registry schema: `knowledge_base/registry/source_registry.schema.json`
+- Snapshots: `knowledge_base/snapshots/`
+- Cleaned candidates: `knowledge_base/candidates/`
+- Canonical retrieval material: `knowledge_base/canonical/`
+- Non-runtime review/reference material: `knowledge_base/reference/`
+- Superseded/rejected material: `knowledge_base/archive/`
+- Temporary untrusted intake: `knowledge_base/drop/`
+- Legacy audit input only: `legacy/phase1-kb-snapshot/`
 
 ## 6. Verification
 

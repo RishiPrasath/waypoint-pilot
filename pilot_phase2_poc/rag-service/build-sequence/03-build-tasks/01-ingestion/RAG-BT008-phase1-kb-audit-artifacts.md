@@ -13,8 +13,8 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Task Name | Add Phase 1 KB Audit Artifacts |
 | Build Stage | 01-ingestion - Ingestion |
 | Source Question | RAG-Q013, RAG-Q005, RAG-Q006 |
-| Decision / ADR | ADR-RAG-0013, RAG-DT002, RAG-DT003, RAG-DT013 |
-| Design Dependencies | RAG-DT002, RAG-DT003, RAG-DT013 |
+| Decision / ADR | ADR-RAG-0013, RAG-DT002, RAG-DT003, RAG-DT004, RAG-DT013 |
+| Design Dependencies | RAG-DT002, RAG-DT003, RAG-DT004, RAG-DT013 |
 | Depends On Build Tasks | see section 1 and section 3 |
 | Branch | `codex/rag-bt008-phase1-kb-audit-artifacts` |
 | Worktree Path | `C:\tmp\rag-bt008-phase1-kb-audit-artifacts` |
@@ -35,6 +35,7 @@ Design Gates:
 
 - `RAG-DT002`
 - `RAG-DT003`
+- `RAG-DT004`
 - `RAG-DT013`
 
 Acceptance Criteria:
@@ -57,6 +58,12 @@ legacy/phase1-kb-snapshot is audit input only.
 It must not be ingested directly.
 Only audited/promoted material may become fixture, candidate, or canonical KB content.
 ```
+
+DT004 KB Path Contract:
+
+- Keep audit outputs in `docs/design/` and registry metadata in `knowledge_base/registry/`.
+- Do not place promoted content directly into `canonical/`; promotion remains out of scope for this task.
+- Use `archive/` and `drop/` only as documented categories, not as runtime ingestion paths.
 
 ## 2. Worktree And Branch Setup
 

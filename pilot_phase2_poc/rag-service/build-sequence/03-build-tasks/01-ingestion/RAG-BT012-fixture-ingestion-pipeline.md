@@ -64,6 +64,13 @@ It must not be ingested directly.
 Only audited/promoted material may become fixture, candidate, or canonical KB content.
 ```
 
+DT004 KB Path Contract:
+
+- Fixture ingestion may read `knowledge_base/canonical/` only for approved retrieval material.
+- Fixture ingestion may read `knowledge_base/candidates/` only for explicit test/review cases.
+- Fixture ingestion must write reports outside `legacy/` and must never read `drop/`, `archive/`, or unapproved `reference/` material.
+- Every ingested source must trace back to `knowledge_base/registry/source_registry.yaml`.
+
 ## 2. Worktree And Branch Setup
 
 Create the branch and worktree before creating tests or implementation files.
