@@ -217,6 +217,9 @@ AI Review Findings:
 Human Review Notes:
 - Historical research paths referenced by the task are unavailable; the audit
   uses the checked-in legacy snapshot and current DT001 architecture checklist.
+- Phase 2 planning confirms `partner-source` owns operational shipment truth;
+  carrier sources are therefore audit-only by default and require explicit
+  static-knowledge use-case approval before promotion.
 
 Issues Encountered:
 - PDF-derived Markdown and original PDFs require later provenance and
@@ -225,10 +228,14 @@ Issues Encountered:
 Resolution:
 - Recorded PDF/Markdown pairing as an explicit blocker and assigned the work to
   DT012 rather than treating derivatives as canonical sources.
+- Added the partner-source/RAG boundary, carrier-reference namespace guidance,
+  and non-retrieval-eligible default for carrier material.
 
 Debt / Follow-Ups:
 - DT003 and DT008 must refine source authority, metadata, and registry rules.
 - DT012 must resolve canonical snapshot/materialization and deduplication.
+- DT006 and DT007 must encode carrier static-reference cases separately from
+  partner-source operational routing.
 
 
 

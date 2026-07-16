@@ -50,7 +50,7 @@ material.
 | Singapore regulatory Markdown | public_regulatory | Singapore Customs or stated public authority; verify per file | promote-after-review | source URL, date, and duplicate checks | DT003/DT008 registry review | P0 |
 | ASEAN/regional regulatory Markdown | public_regulatory | ASEAN/WCO/other stated authority; verify per file | candidate | jurisdiction and edition validation | DT003 authority review | P0 |
 | Regulatory PDF-derived Markdown | public_regulatory_candidate | original PDF authority not yet normalized | candidate | PDF/Markdown pairing and extraction fidelity | DT012 snapshot/materialization review | P0 |
-| Carrier summaries and guides | public_carrier_candidate | carrier or secondary summary; not assumed authoritative | candidate | carrier ownership, currentness, and marketing content | retain only scoped operational facts | P1 |
+| Carrier summaries and guides | public_carrier_candidate | carrier or secondary summary; not assumed authoritative | audit-only by default | carrier ownership, currentness, marketing content, and Phase 2 use-case fit | exclude marketing; promote static guidance only after explicit use-case approval | P1 |
 | HS/Incoterms reference | public_reference | WCO, Singapore Customs, ICC, or stated publisher | candidate | edition/date and primary-source verification | DT003/DT012 review | P1 |
 | Synthetic internal procedures/policies | synthetic_internal | internal product owner, not public authority | candidate | owner approval, version, and policy scope | separate namespace and approval | P2 |
 | Snapshot README and generated derivatives | metadata_or_derivative | repository metadata, not domain authority | audit-only or exclude-or-replace | not a knowledge source | preserve for audit trail only | P2 |
@@ -102,8 +102,8 @@ The `01_regulatory/pdfs/*.md` group contains: `aec_2025_trade_facilitation_sap`,
 
 | ID | Legacy path | Source type | Authority | Target status | Blocker | Next action | Priority |
 |---|---|---|---|---|---|---|---|
-| CAR-001–CAR-006 | `02_carriers/{cathay,evergreen,maersk,one,pil,sia}_*.md` | public_carrier_candidate | Named carrier or summary; verify ownership | candidate | freshness/marketing | keep scoped facts only | P1 |
-| CAR-007–CAR-019 | `02_carriers/pdfs/*.md` | public_carrier_candidate | Named carrier PDF; verify original | candidate | PDF pairing/freshness | DT012 review and deduplicate | P1 |
+| CAR-001–CAR-006 | `02_carriers/{cathay,evergreen,maersk,one,pil,sia}_*.md` | public_carrier_candidate | Named carrier or secondary summary; verify ownership | audit-only by default | no confirmed Phase 2 static-carrier use case; freshness/marketing | exclude marketing; retain only if a confirmed use case requires static guidance | P1 |
+| CAR-007–CAR-019 | `02_carriers/pdfs/*.md` | public_carrier_candidate | Named carrier PDF; verify original | audit-only by default | PDF pairing, freshness, and use-case fit | DT012 review; promote only approved static guidance into `carrier_reference` | P1 |
 
 The carrier PDF group contains the Maersk booking amendment, demurrage/detention,
 import delivery order, notifications, shipping instructions, spot booking, and
@@ -144,6 +144,27 @@ they must be checked for extraction fidelity and provenance before any Markdown
 candidate is promoted. Duplicate PDF/Markdown pairs must resolve to one
 canonical source record, not two ingestion records.
 
+## Phase 2 source boundary
+
+`partner-source` is authoritative for live and operational shipment facts:
+orders, current status, assignments, timelines, delivery events, and related
+operational updates. Carrier documents must not answer order status, assignment,
+ETA, timeline, or delivery-event questions. Those questions must be routed to
+`partner-source` through the future BFF/orchestration layer.
+
+Carrier material is not currently a required Phase 2 RAG source. It remains in
+the audit for traceability and may be promoted only when all of the following
+are true:
+
+- a confirmed Phase 2 use case requires static carrier-specific guidance;
+- the original carrier authority and current version are verified;
+- citation and provenance are recorded;
+- the source is placed in a separate `carrier_reference` namespace; and
+- the source is marked non-authoritative for operational questions.
+
+Carrier marketing brochures and generic service summaries should be excluded or
+replaced unless a specific approved use case justifies them.
+
 ## Promotion rules and risks
 
 1. A source requires a stable ID, title, authority, jurisdiction, source URL or
@@ -158,16 +179,20 @@ canonical source record, not two ingestion records.
    canonicalization.
 6. Missing provenance, stale editions, extraction defects, and unresolved
    contradictions are blockers, not reasons to silently promote content.
+7. Legacy carrier content defaults to non-retrieval-eligible until the carrier
+   boundary and promotion conditions above are satisfied.
 
 ## Outputs and downstream impact
 
 This audit unblocks source-registry design but does not authorize ingestion.
 
 - DT003: use the candidate groups and authority-review rules to build the APAC
-  source registry.
+  source registry; decide whether any carrier reference sources are needed.
 - DT004: keep legacy material outside active `knowledge_base/` until promotion.
 - DT008: encode the required audit fields and statuses in the registry schema.
 - DT012: define PDF snapshot and canonical Markdown handling.
+- DT006/DT007: encode carrier-reference use cases separately from partner-source
+  operational routing and negative cases.
 - BT008/BT009/BT012: consume only explicitly promoted sources and resolved
   metadata.
 - BT013/BT019: preserve source IDs and provenance for retrieval and evaluation.
