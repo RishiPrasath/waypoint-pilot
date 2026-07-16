@@ -1,6 +1,6 @@
 ﻿# RAG-DT001: Reconcile Architecture Checklist With Accepted ADRs
 
-Status: Draft
+Status: Complete
 
 ## Sequence Entry
 
@@ -173,37 +173,50 @@ git -C "$REPO_ROOT" pull --ff-only origin main
 ```
 ## 9. Task Evidence
 
-Branch:
-Worktree:
-PR:
-Commit:
+Branch: `codex/rag-dt001-architecture-checklist-reconciliation`
+Worktree: `D:\Code\Github\waypoint-pilot-worktrees\rag-dt001-architecture-checklist-reconciliation`
+PR: Pending creation after push
+Commit: Pending
 
 Design Artifact:
+- `docs/planning/architecture-confirmation-checklist.md`
 
 Affected Build Tasks:
+- All setup and final build tasks; no gate changes were required.
 
 Files Changed:
--
+- `docs/planning/architecture-confirmation-checklist.md`
+- `build-sequence/02-design-tasks/01-decision-reconciliation/RAG-DT001-architecture-checklist-reconciliation.md`
 
 Checks Run:
--
+- `git diff --check`
+- Checklist reference and required-target verification
+- Setup dependency-gate review against `build-sequence/03-build-tasks/00-index.md`
 
 CI Result:
+- Pending PR CI.
 
 AI Review Findings:
--
+- No implementation changes or build-gate changes were required.
 
 Human Review Notes:
--
+- The historical `02-rag-db/planning/` and `02-rag-db/adrs/` paths referenced by
+  this task are absent from the current checkout; the design artifact records
+  that absence explicitly.
 
 Issues Encountered:
--
+- Initial Windows worktree checkout encountered legacy paths exceeding the
+  default path limit.
 
 Resolution:
--
+- Enabled repository Git long-path support and recreated the worktree
+  successfully.
 
 Debt / Follow-Ups:
--
+- Correct stale Draft metadata in the BT004 and BT010 task files in a separate
+  documentation cleanup.
+- RAG-DT013 must perform the final design-to-build impact review before final
+  RAG implementation begins.
 
 
 
