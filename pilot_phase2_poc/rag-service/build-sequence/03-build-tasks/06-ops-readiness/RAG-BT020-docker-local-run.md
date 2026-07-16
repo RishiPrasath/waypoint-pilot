@@ -13,8 +13,8 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Task Name | Add Docker Local Run |
 | Build Stage | 06-ops-readiness - Ops Readiness |
 | Source Question | RAG-Q019 |
-| Decision / ADR | ADR-RAG-0010, ADR-RAG-0011, RAG-DT011, RAG-DT013 |
-| Design Dependencies | RAG-DT011, RAG-DT014, RAG-DT013 |
+| Decision / ADR | ADR-RAG-0010, ADR-RAG-0011, RAG-DT004, RAG-DT011, RAG-DT013 |
+| Design Dependencies | RAG-DT004, RAG-DT011, RAG-DT014, RAG-DT013 |
 | Depends On Build Tasks | see section 1 and section 3 |
 | Branch | `codex/rag-bt020-docker-local-run` |
 | Worktree Path | `C:\tmp\rag-bt020-docker-local-run` |
@@ -33,6 +33,7 @@ Module: `Dockerfile, docker-compose.yml, and docs/ops/`.
 
 Design Gates:
 
+- `RAG-DT004`
 - `RAG-DT011`
 - `RAG-DT014`
 - `RAG-DT013`
@@ -51,6 +52,12 @@ Out Of Scope:
 
 - cloud deployment
 - Kubernetes
+
+DT004 KB Path Contract:
+
+- Local Docker/Compose volumes may mount `knowledge_base/` but must not mount `legacy/` as runtime KB input.
+- Runtime config must point to the registry under `knowledge_base/registry/`.
+- Container smoke tests must use approved fixture/canonical material or explicitly mocked KB input.
 
 ## 2. Worktree And Branch Setup
 

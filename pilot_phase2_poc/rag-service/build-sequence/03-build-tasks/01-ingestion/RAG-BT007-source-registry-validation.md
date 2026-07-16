@@ -58,6 +58,13 @@ It must not be ingested directly.
 Only audited/promoted material may become fixture, candidate, or canonical KB content.
 ```
 
+DT004 KB Path Contract:
+
+- Validate the registry at `knowledge_base/registry/source_registry.yaml`.
+- Validate against `knowledge_base/registry/source_registry.schema.json`.
+- Do not validate or load source content from `legacy/`, `drop/`, `archive/`, or `reference/`.
+- Treat `canonical/` and `snapshots/` as readable only when an approved registry row allows it.
+
 ## 2. Worktree And Branch Setup
 
 Create the branch and worktree before creating tests or implementation files.
