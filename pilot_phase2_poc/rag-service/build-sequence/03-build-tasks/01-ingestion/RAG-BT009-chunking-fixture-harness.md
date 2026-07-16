@@ -66,6 +66,18 @@ DT004 KB Path Contract:
 - `knowledge_base/reference/` may inform review cases but is not a runtime chunking source.
 - `legacy/`, `drop/`, and `archive/` are not valid chunking fixture inputs.
 
+DT012 Fixture Input Contract:
+
+- Use the manifest at
+  `knowledge_base/snapshots/first-pass-snapshot-manifest.md` to select chunking
+  fixtures.
+- Use source-derived candidates under
+  `knowledge_base/candidates/first-pass/` as the initial fixture corpus.
+- Exclude `APAC-215` from chunking experiments because it is metadata-only and
+  license-sensitive.
+- Verify candidate SHA-256 values from the manifest before producing fixture
+  assertions or comparison reports.
+
 ## 2. Worktree And Branch Setup
 
 Create the branch and worktree before creating tests or implementation files.

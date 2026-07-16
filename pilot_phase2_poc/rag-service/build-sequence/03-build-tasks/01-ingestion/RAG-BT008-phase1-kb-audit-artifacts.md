@@ -13,8 +13,8 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Task Name | Add Phase 1 KB Audit Artifacts |
 | Build Stage | 01-ingestion - Ingestion |
 | Source Question | RAG-Q013, RAG-Q005, RAG-Q006 |
-| Decision / ADR | ADR-RAG-0013, RAG-DT002, RAG-DT003, RAG-DT004, RAG-DT013 |
-| Design Dependencies | RAG-DT002, RAG-DT003, RAG-DT004, RAG-DT013 |
+| Decision / ADR | ADR-RAG-0013, RAG-DT002, RAG-DT003, RAG-DT004, RAG-DT012, RAG-DT013 |
+| Design Dependencies | RAG-DT002, RAG-DT003, RAG-DT004, RAG-DT012, RAG-DT013 |
 | Depends On Build Tasks | see section 1 and section 3 |
 | Branch | `codex/rag-bt008-phase1-kb-audit-artifacts` |
 | Worktree Path | `C:\tmp\rag-bt008-phase1-kb-audit-artifacts` |
@@ -36,6 +36,7 @@ Design Gates:
 - `RAG-DT002`
 - `RAG-DT003`
 - `RAG-DT004`
+- `RAG-DT012`
 - `RAG-DT013`
 
 Acceptance Criteria:
@@ -64,6 +65,15 @@ DT004 KB Path Contract:
 - Keep audit outputs in `docs/design/` and registry metadata in `knowledge_base/registry/`.
 - Do not place promoted content directly into `canonical/`; promotion remains out of scope for this task.
 - Use `archive/` and `drop/` only as documented categories, not as runtime ingestion paths.
+
+DT012 Source Candidate Contract:
+
+- Compare legacy audit findings against the first-pass source-derived
+  candidates listed in
+  `knowledge_base/snapshots/first-pass-snapshot-manifest.md`.
+- Do not overwrite or mutate DT012 candidate files during this audit task.
+- Any proposed promotion or rejection must preserve candidate source lineage,
+  reuse mode, license sensitivity, retrieval eligibility, and SHA-256 evidence.
 
 ## 2. Worktree And Branch Setup
 

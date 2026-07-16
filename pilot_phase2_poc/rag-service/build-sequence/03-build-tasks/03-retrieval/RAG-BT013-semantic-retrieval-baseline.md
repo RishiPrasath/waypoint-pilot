@@ -13,8 +13,8 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Task Name | Add Semantic Retrieval Baseline |
 | Build Stage | 03-retrieval - Retrieval |
 | Source Question | RAG-Q009, RAG-Q017 |
-| Decision / ADR | ADR-RAG-0007, RAG-DT013 |
-| Design Dependencies | RAG-BT012, RAG-DT014, RAG-DT013 |
+| Decision / ADR | ADR-RAG-0007, RAG-DT012, RAG-DT013 |
+| Design Dependencies | RAG-BT012, RAG-DT012, RAG-DT014, RAG-DT013 |
 | Depends On Build Tasks | see section 1 and section 3 |
 | Branch | `codex/rag-bt013-semantic-retrieval-baseline` |
 | Worktree Path | `C:\tmp\rag-bt013-semantic-retrieval-baseline` |
@@ -34,6 +34,7 @@ Module: `app/stages/stage_03_retrieval/`.
 Design Gates:
 
 - `RAG-BT012`
+- `RAG-DT012`
 - `RAG-DT014`
 - `RAG-DT013`
 
@@ -43,12 +44,22 @@ Acceptance Criteria:
 - seeded semantic retrieval returns expected chunk
 - metadata filter limits results correctly
 - result includes source ID and chunk ID
+- result metadata preserves source lineage and candidate hash from the DT012
+  manifest when seeded from source-derived candidates
 
 Out Of Scope:
 
 - hybrid retrieval
 - reranking
 - generation
+
+DT012 Retrieval Fixture Contract:
+
+- Seed retrieval tests only from fixture ingestion outputs that can trace back
+  to `knowledge_base/snapshots/first-pass-snapshot-manifest.md`.
+- Retrieval assertions must include `document_id`, `snapshot_id`, source URI,
+  and candidate SHA-256 when the fixture originates from DT012 candidates.
+- Do not seed `APAC-215` as retrievable domain content.
 
 ## 2. Worktree And Branch Setup
 

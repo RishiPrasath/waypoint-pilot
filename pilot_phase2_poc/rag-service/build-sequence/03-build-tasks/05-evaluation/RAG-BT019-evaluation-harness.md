@@ -13,8 +13,8 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Task Name | Add Evaluation Harness |
 | Build Stage | 05-evaluation - Evaluation |
 | Source Question | RAG-Q010, RAG-Q023 |
-| Decision / ADR | ADR-RAG-0008, RAG-DT004, RAG-DT006, RAG-DT013 |
-| Design Dependencies | RAG-DT004, RAG-DT006, RAG-DT014, RAG-BT018, RAG-DT013 |
+| Decision / ADR | ADR-RAG-0008, RAG-DT004, RAG-DT006, RAG-DT012, RAG-DT013 |
+| Design Dependencies | RAG-DT004, RAG-DT006, RAG-DT012, RAG-DT014, RAG-BT018, RAG-DT013 |
 | Depends On Build Tasks | see section 1 and section 3 |
 | Branch | `codex/rag-bt019-evaluation-harness` |
 | Worktree Path | `C:\tmp\rag-bt019-evaluation-harness` |
@@ -35,6 +35,7 @@ Design Gates:
 
 - `RAG-DT004`
 - `RAG-DT006`
+- `RAG-DT012`
 - `RAG-DT014`
 - `RAG-BT018`
 - `RAG-DT013`
@@ -65,6 +66,17 @@ DT004 KB Path Contract:
 - Golden answers and citation checks must cite approved `canonical/` material or explicitly scoped `reference/` review material.
 - Evaluation fixtures may use legacy files only as coverage-gap examples, never as expected runtime sources.
 - Evaluation reports must flag any answer that cites `legacy/`, `drop/`, or `archive/` material as a source.
+
+DT012 Evaluation Source Contract:
+
+- Golden-question citations may reference DT012 source-derived candidates only
+  when the fixture explicitly records candidate provenance from
+  `knowledge_base/snapshots/first-pass-snapshot-manifest.md`.
+- Citation validity checks must compare returned source lineage against
+  `document_id`, `snapshot_id`, source URI, reuse mode, license sensitivity,
+  retrieval eligibility, and candidate SHA-256.
+- License-sensitive metadata-only candidates such as `APAC-215` may be used to
+  test exclusion behavior, not expected answer content.
 
 ## 2. Worktree And Branch Setup
 
