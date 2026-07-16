@@ -9,6 +9,7 @@
     "document_id",
     "source_uri",
     "title",
+    "source_owner",
     "source_type",
     "authority_level",
     "source_status",
@@ -40,6 +41,11 @@
       "minLength": 1,
       "description": "Human-readable source title."
     },
+    "source_owner": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Organization responsible for publishing or owning the source, such as Singapore Customs, ASEAN Secretariat, WCO, or ICC."
+    },
     "source_type": {
       "type": "string",
       "enum": [
@@ -59,6 +65,7 @@
       "enum": [
         "primary_government",
         "intergovernmental",
+        "standards_body",
         "carrier_published",
         "internal_owner_approved",
         "secondary_reference",
@@ -440,6 +447,7 @@
       "document_id": "REG-001",
       "source_uri": "legacy/phase1-kb-snapshot/01_regulatory/asean_rules_of_origin.md",
       "title": "ASEAN Rules of Origin",
+      "source_owner": "ASEAN Secretariat",
       "source_type": "public_regulatory",
       "authority_level": "intergovernmental",
       "source_status": "candidate",
@@ -467,6 +475,7 @@
       "document_id": "CAR-001",
       "source_uri": "legacy/phase1-kb-snapshot/02_carriers/cathay_cargo_service_guide.md",
       "title": "Cathay Cargo Service Guide",
+      "source_owner": "Cathay Cargo",
       "source_type": "public_carrier_candidate",
       "authority_level": "carrier_published",
       "source_status": "audit_only",
@@ -494,6 +503,7 @@
       "document_id": "REG-900",
       "source_uri": "https://example.gov.sg/customs/current-guide",
       "title": "Approved Singapore Customs Guide",
+      "source_owner": "Singapore Customs",
       "source_type": "public_regulatory",
       "authority_level": "primary_government",
       "source_status": "approved",

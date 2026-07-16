@@ -1,0 +1,1297 @@
+registry_metadata:
+  task_id: RAG-DT003
+  title: APAC source candidate registry
+  status: draft
+  created_on: "2026-07-16"
+  verified_on: "2026-07-16"
+  schema: source_registry.schema.json
+  first_pass_markets:
+    - SG
+    - MY
+    - ID
+    - TH
+    - VN
+    - PH
+    - ASEAN
+    - Global
+  default_retrieval_policy: All RAG-DT003 records are candidates and remain retrieval_eligible false until later source review and KB materialization tasks approve promotion.
+  excluded_source_classes:
+    - live shipment status
+    - order status
+    - carrier assignment
+    - ETA and delivery event feeds
+    - authenticated transaction systems
+  notes: Carrier sources are intentionally excluded from this APAC registry pass unless a later approved static carrier-reference use case requires them.
+
+source_groups:
+  - group_id: sg_customs
+    jurisdictions:
+      - SG
+    source_owner: Singapore Customs and Singapore legal authority portals
+    review_focus: import/export permits, TradeNet, controlled goods, rules of origin, primary legislation
+  - group_id: my_customs
+    jurisdictions:
+      - MY
+    source_owner: Royal Malaysian Customs Department and MITI
+    review_focus: import/export procedures, MNTR, tariff lookup, strategic trade, rules of origin
+  - group_id: id_customs
+    jurisdictions:
+      - ID
+    source_owner: Directorate General of Customs and Excise, INSW, and JDIH Kemenkeu
+    review_focus: import/export procedure, BTKI, restrictions, INTR, legal instruments
+  - group_id: th_vn_ph_customs
+    jurisdictions:
+      - TH
+      - VN
+      - PH
+    source_owner: national customs, national trade repository, and tariff authority portals
+    review_focus: customs procedures, legal indexes, tariff references, trade repositories
+  - group_id: asean_global_reference
+    jurisdictions:
+      - ASEAN
+      - Global
+    source_owner: ASEAN Secretariat, WCO, WTO, UN/CEFACT, ICC
+    review_focus: regional agreements, rules of origin, tariff tools, HS classification, Incoterms licensing
+
+sources:
+  - document_id: APAC-001
+    source_uri: "https://www.customs.gov.sg/doing-business/import-operations/import-procedures/obtain-a-customs-import-permit/"
+    title: Singapore Customs - Obtain a Customs Import Permit
+    source_owner: Singapore Customs
+    source_type: public_regulatory_candidate
+    authority_level: primary_government
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: regulatory
+    jurisdiction:
+      - SG
+    language: en
+    source_access_pattern: public_web
+    translation_review_required: false
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: Use as cited customs guidance only; verify current Singapore Customs requirements before operational or legal decisions.
+    license_sensitive: false
+    reuse_mode: cite_and_summarize
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Needs SME/legal review and linked permit dependency review before retrieval promotion.
+    next_action: Snapshot page and linked import-procedure pages; validate against current Singapore Customs legal references.
+    priority: P0
+    notes: Official Singapore source for import permit prerequisites and TradeNet submission flow.
+
+  - document_id: APAC-002
+    source_uri: "https://www.customs.gov.sg/doing-business/export-operations/export-procedures/obtain-customs-export-permit/"
+    title: Singapore Customs - Obtain Customs Export Permit
+    source_owner: Singapore Customs
+    source_type: public_regulatory_candidate
+    authority_level: primary_government
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: regulatory
+    jurisdiction:
+      - SG
+    language: en
+    source_access_pattern: public_web
+    translation_review_required: false
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: Use as cited customs guidance only; verify current Singapore Customs requirements before operational or legal decisions.
+    license_sensitive: false
+    reuse_mode: cite_and_summarize
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Needs review for linked permit-fee, declaring-agent, and export-control dependencies.
+    next_action: Snapshot page and map export-permit workflow sections for DT012 materialization.
+    priority: P0
+    notes: Primary official reference for Singapore export permit workflow.
+
+  - document_id: APAC-003
+    source_uri: "https://www.customs.gov.sg/doing-business/quick-links-for-traders/tradenet/"
+    title: Singapore Customs - TradeNet National Single Window
+    source_owner: Singapore Customs
+    source_type: public_reference_candidate
+    authority_level: primary_government
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: reference
+    jurisdiction:
+      - SG
+    language: en
+    source_access_pattern: public_web
+    translation_review_required: false
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: Public explanation only; do not treat as live permit, login, declaration, or status data.
+    license_sensitive: false
+    reuse_mode: cite_and_summarize
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Must exclude transactional, authenticated, and status endpoints from ingestion.
+    next_action: Capture public explanatory content only and map related Customs Account requirements.
+    priority: P0
+    notes: TradeNet is Singapore's official permit-submission channel for import, export, and transhipment declarations.
+
+  - document_id: APAC-004
+    source_uri: "https://www.customs.gov.sg/doing-business/import-operations/import-procedures/controlled-and-prohibited-goods-for-imports/"
+    title: Singapore Customs - Controlled and Prohibited Goods for Imports
+    source_owner: Singapore Customs
+    source_type: public_regulatory_candidate
+    authority_level: primary_government
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: regulatory
+    jurisdiction:
+      - SG
+    language: en
+    source_access_pattern: public_web
+    translation_review_required: false
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: Not legal advice; confirm controlled-goods requirements with the named competent authority.
+    license_sensitive: false
+    reuse_mode: cite_and_summarize
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Competent-authority links require separate authority and currentness review.
+    next_action: Snapshot page and identify linked competent-authority pages for child candidate records.
+    priority: P0
+    notes: Key official source for Singapore import restrictions and approval requirements.
+
+  - document_id: APAC-005
+    source_uri: "https://www.customs.gov.sg/doing-business/rules-of-origin/rules-of-origin-overview/"
+    title: Singapore Customs - Rules of Origin Overview
+    source_owner: Singapore Customs
+    source_type: public_regulatory_candidate
+    authority_level: primary_government
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: regulatory
+    jurisdiction:
+      - SG
+    language: en
+    source_access_pattern: public_web
+    translation_review_required: false
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: Preferential-origin eligibility is transaction-specific and should be confirmed with competent authorities.
+    license_sensitive: false
+    reuse_mode: cite_and_summarize
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: FTA-specific linked materials need separate authority review.
+    next_action: Snapshot overview and map origin-documentation pages to FTA source candidates.
+    priority: P1
+    notes: Useful official source for Singapore origin and certificate-of-origin questions.
+
+  - document_id: APAC-006
+    source_uri: "https://sso.agc.gov.sg/Act/RIEA1995"
+    title: Singapore Statutes Online - Regulation of Imports and Exports Act 1995
+    source_owner: Attorney-General's Chambers, Singapore Statutes Online
+    source_type: public_regulatory_candidate
+    authority_level: primary_government
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: regulatory
+    jurisdiction:
+      - SG
+    language: en
+    source_access_pattern: public_web
+    translation_review_required: false
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: Primary legal source but not legal advice; verify current legislation before use in operational decisions.
+    license_sensitive: true
+    reuse_mode: cite_only
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Legal-content handling policy and current-version review required before ingestion.
+    next_action: Snapshot current version metadata and related subsidiary legislation links.
+    priority: P0
+    notes: Primary legal basis for Singapore import and export regulation.
+
+  - document_id: APAC-007
+    source_uri: "https://www.customs.gov.my/en/business/import-export/import/import-procedure"
+    title: Royal Malaysian Customs Department - Import Procedure
+    source_owner: Royal Malaysian Customs Department
+    source_type: public_regulatory_candidate
+    authority_level: primary_government
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: regulatory
+    jurisdiction:
+      - MY
+    language: en
+    source_access_pattern: public_web
+    translation_review_required: false
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: Operational guidance only; verify against current Malaysian customs legal texts and official procedures.
+    license_sensitive: false
+    reuse_mode: cite_and_summarize
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Linked Malay guides and procedure documents require separate review.
+    next_action: Snapshot page and linked import-procedure guidance for DT012.
+    priority: P0
+    notes: Primary Malaysian customs source for import procedure guidance.
+
+  - document_id: APAC-008
+    source_uri: "https://www.customs.gov.my/en/cp/Pages/cp_timp.aspx"
+    title: Royal Malaysian Customs Department - Export Procedure
+    source_owner: Royal Malaysian Customs Department
+    source_type: public_regulatory_candidate
+    authority_level: primary_government
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: regulatory
+    jurisdiction:
+      - MY
+    language: en
+    source_access_pattern: public_web
+    translation_review_required: false
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: Operational guidance only; verify against current Malaysian customs legal texts and official procedures.
+    license_sensitive: false
+    reuse_mode: cite_and_summarize
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Linked export and strategic-goods guidance requires version review.
+    next_action: Snapshot page and validate export procedure dependencies.
+    priority: P0
+    notes: Primary Malaysian customs source for export procedure guidance.
+
+  - document_id: APAC-009
+    source_uri: "https://www.customs.gov.my/en/business/facilitation/malaysia-national-trade-repository-mntr"
+    title: Malaysia National Trade Repository
+    source_owner: Royal Malaysian Customs Department
+    source_type: public_reference_candidate
+    authority_level: primary_government
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: reference
+    jurisdiction:
+      - MY
+    language: en
+    source_access_pattern: public_web
+    translation_review_required: false
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: Reference index only; official legal text and issuing authority pages should prevail.
+    license_sensitive: false
+    reuse_mode: cite_and_summarize
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Aggregates links; each law, tariff, ROO, NTM, and procedure item needs separate validation.
+    next_action: Use as registry index and extract child candidates for priority trade topics.
+    priority: P0
+    notes: Official Malaysian transparency repository for trade and customs information.
+
+  - document_id: APAC-010
+    source_uri: "https://ezhs.customs.gov.my/"
+    title: JKDM HS Explorer
+    source_owner: Royal Malaysian Customs Department
+    source_type: public_reference_candidate
+    authority_level: primary_government
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: reference
+    jurisdiction:
+      - MY
+    language: en
+    source_access_pattern: manual_snapshot
+    translation_review_required: false
+    dynamic_lookup_snapshot: true
+    legal_disclaimer: Reference aid only; official gazetted tariff orders and customs rulings should prevail.
+    license_sensitive: true
+    reuse_mode: cite_only
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Dynamic tariff search interface; no scraping or bulk ingestion without approval.
+    next_action: Evaluate static tariff-order PDFs or approved snapshots instead of live search extraction.
+    priority: P1
+    notes: Official Malaysian HS and tariff lookup source.
+
+  - document_id: APAC-011
+    source_uri: "https://www.miti.gov.my/index.php/pages/view/sta2010"
+    title: MITI Malaysia - Strategic Trade Act 2010
+    source_owner: Ministry of Investment, Trade and Industry Malaysia
+    source_type: public_regulatory_candidate
+    authority_level: primary_government
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: regulatory
+    jurisdiction:
+      - MY
+    language: en
+    source_access_pattern: public_web
+    translation_review_required: false
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: Export-control guidance only; obtain authority or legal confirmation for controlled goods decisions.
+    license_sensitive: false
+    reuse_mode: cite_and_summarize
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Strategic-items lists and directives may change and require version control.
+    next_action: Snapshot page and create child candidates for current strategic-items documents.
+    priority: P0
+    notes: Official Malaysia source for strategic export, transit, transhipment, and brokering controls.
+
+  - document_id: APAC-012
+    source_uri: "https://www.customs.gov.my/en/business/facilitation/rules-of-origin-roo/faq-rules-of-origin"
+    title: Royal Malaysian Customs Department - FAQ Rules of Origin
+    source_owner: Royal Malaysian Customs Department
+    source_type: public_reference_candidate
+    authority_level: primary_government
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: reference
+    jurisdiction:
+      - MY
+    language: en
+    source_access_pattern: public_web
+    translation_review_required: false
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: Reference guidance only; FTA legal text and customs rulings should prevail.
+    license_sensitive: false
+    reuse_mode: cite_and_summarize
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: FAQ format may omit edge cases and FTA-specific rules.
+    next_action: Snapshot FAQ and pair with authority sources for customs rulings on origin.
+    priority: P1
+    notes: Useful official source for Malaysia proof-of-origin and preferential-tariff questions.
+
+  - document_id: APAC-013
+    source_uri: "https://www.beacukai.go.id/impor-untuk-dipakai"
+    title: Indonesia Customs - Impor Untuk Dipakai
+    source_owner: Directorate General of Customs and Excise, Ministry of Finance Indonesia
+    source_type: public_regulatory_candidate
+    authority_level: primary_government
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: regulatory
+    jurisdiction:
+      - ID
+    language: id
+    source_access_pattern: public_web
+    translation_review_required: true
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: Operational guidance only; verify against current Indonesian legal text and customs authority guidance.
+    license_sensitive: false
+    reuse_mode: cite_and_summarize
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Underlying PMK and PER legal documents need separate source capture.
+    next_action: Snapshot page and locate official JDIH legal-basis candidates.
+    priority: P0
+    notes: Primary Indonesian customs source for import-for-use procedure and PIB concepts.
+
+  - document_id: APAC-014
+    source_uri: "https://www.beacukai.go.id/tata-laksana-ekspor"
+    title: Indonesia Customs - Tata Laksana Ekspor
+    source_owner: Directorate General of Customs and Excise, Ministry of Finance Indonesia
+    source_type: public_regulatory_candidate
+    authority_level: primary_government
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: regulatory
+    jurisdiction:
+      - ID
+    language: id
+    source_access_pattern: public_web
+    translation_review_required: true
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: Operational guidance only; verify against current Indonesian legal text and customs authority guidance.
+    license_sensitive: false
+    reuse_mode: cite_and_summarize
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Multiple cited PMK documents require version-controlled legal source candidates.
+    next_action: Snapshot page and pair with JDIH PMK export-procedure legal sources.
+    priority: P0
+    notes: Primary Indonesian customs source for export procedure and PEB workflow.
+
+  - document_id: APAC-015
+    source_uri: "https://www.beacukai.go.id/btki-dan-tarif"
+    title: Indonesia Customs - Buku Tarif Kepabeanan Indonesia 2022
+    source_owner: Directorate General of Customs and Excise, Ministry of Finance Indonesia
+    source_type: public_reference_candidate
+    authority_level: primary_government
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: reference
+    jurisdiction:
+      - ID
+    language: id
+    source_access_pattern: public_web
+    translation_review_required: true
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: Reference only; official PMK and national tariff legal text control tariff treatment.
+    license_sensitive: true
+    reuse_mode: cite_only
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Chapter-level tariff files require separate access, license, and extraction review.
+    next_action: Inventory linked tariff chapters and promote only reviewed static sources.
+    priority: P0
+    notes: Official Indonesian tariff and classification source for BTKI, HS, AHTN, and duty context.
+
+  - document_id: APAC-016
+    source_uri: "https://www.beacukai.go.id/larangan-pembatasan"
+    title: Indonesia Customs - Larangan Pembatasan
+    source_owner: Directorate General of Customs and Excise, Ministry of Finance Indonesia
+    source_type: public_regulatory_candidate
+    authority_level: primary_government
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: regulatory
+    jurisdiction:
+      - ID
+    language: id
+    source_access_pattern: public_web
+    translation_review_required: true
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: Not legal advice; prohibited and restricted goods must be checked against current INSW/INTR and ministry rules.
+    license_sensitive: false
+    reuse_mode: cite_and_summarize
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Actual commodity-specific restrictions live in INTR and ministerial regulations.
+    next_action: Snapshot page and use INTR as a separate dynamic source candidate.
+    priority: P0
+    notes: Official Indonesian source explaining prohibited and restricted import/export categories.
+
+  - document_id: APAC-017
+    source_uri: "https://www.insw.go.id/intr"
+    title: Indonesia National Single Window - Indonesia National Trade Repository
+    source_owner: Indonesia National Single Window Agency, Ministry of Finance Indonesia
+    source_type: public_reference_candidate
+    authority_level: primary_government
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: reference
+    jurisdiction:
+      - ID
+    language: id
+    source_access_pattern: manual_snapshot
+    translation_review_required: true
+    dynamic_lookup_snapshot: true
+    legal_disclaimer: Reference lookup only; authoritative regulations should be verified from issuing ministries and JDIH.
+    license_sensitive: true
+    reuse_mode: cite_only
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Dynamic JavaScript/search interface; no scraping without technical and legal approval.
+    next_action: Define manual snapshot workflow for representative HS and restriction pages, or keep as pointer only.
+    priority: P0
+    notes: Official Indonesia trade repository source for HS, tariffs, restrictions, and permit requirements.
+
+  - document_id: APAC-018
+    source_uri: "https://jdih.kemenkeu.go.id/dok/155-pmk-04-2022/files"
+    title: JDIH Kemenkeu - PMK 155/PMK.04/2022 Export Customs Provisions
+    source_owner: JDIH Ministry of Finance Indonesia
+    source_type: public_regulatory_candidate
+    authority_level: primary_government
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: regulatory
+    jurisdiction:
+      - ID
+    language: id
+    source_access_pattern: public_web
+    translation_review_required: true
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: Primary legal source but not legal advice; verify amendment history before use.
+    license_sensitive: true
+    reuse_mode: cite_only
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Need authoritative PDF/fulltext capture and amendment-history review.
+    next_action: Snapshot JDIH metadata, PDF, summary, and related-document history.
+    priority: P0
+    notes: Primary legal source for Indonesia export customs provisions.
+
+  - document_id: APAC-101
+    source_uri: "https://en.customs.go.th/content.php?ini_content=import_export_151006_01&lang=en&left_menu=menu_i"
+    title: Thai Customs - Import Clearance Procedures
+    source_owner: Thai Customs Department, Ministry of Finance
+    source_type: public_regulatory_candidate
+    authority_level: primary_government
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: regulatory
+    jurisdiction:
+      - TH
+    language: en
+    source_access_pattern: public_web
+    translation_review_required: false
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: Operational guidance only; verify against current Thai law, customs notices, and competent agency requirements.
+    license_sensitive: false
+    reuse_mode: cite_and_summarize
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Requires currentness review against Thai Customs notices and legal text.
+    next_action: Snapshot import-clearance page and identify linked form/system dependencies.
+    priority: P0
+    notes: Official English Thai Customs source for import declaration and e-Customs workflow.
+
+  - document_id: APAC-102
+    source_uri: "https://en.customs.go.th/content.php?ini_content=import_export_151006_02&lang=en&left_menu=m"
+    title: Thai Customs - Export Clearance Procedures
+    source_owner: Thai Customs Department, Ministry of Finance
+    source_type: public_regulatory_candidate
+    authority_level: primary_government
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: regulatory
+    jurisdiction:
+      - TH
+    language: en
+    source_access_pattern: public_web
+    translation_review_required: false
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: Operational guidance only; verify against current Thai law, customs notices, and competent agency requirements.
+    license_sensitive: false
+    reuse_mode: cite_and_summarize
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Requires currentness review against Thai Customs notices and legal text.
+    next_action: Snapshot export-clearance page and identify linked export declaration dependencies.
+    priority: P0
+    notes: Official English Thai Customs source for export declaration and clearance process.
+
+  - document_id: APAC-103
+    source_uri: "https://www.customs.go.th/data_files/9b58e9c383e05163c0223e8e2e7e6991.pdf"
+    title: Thailand Customs Act B.E. 2560 English Translation
+    source_owner: Thai Customs Department, Ministry of Finance
+    source_type: public_regulatory_candidate
+    authority_level: primary_government
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: regulatory
+    jurisdiction:
+      - TH
+    language: en
+    source_access_pattern: public_pdf
+    translation_review_required: true
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: English translation may be unofficial; Thai legal text and official Gazette should control.
+    license_sensitive: true
+    reuse_mode: cite_only
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Needs amendment/current-law review and pairing with Thai-language legal text.
+    next_action: Pair with Thai-language law PDF and check Gazette and amendment history.
+    priority: P0
+    notes: Primary statutory basis for Thai customs formalities, duties, import/export, transit, and transshipment.
+
+  - document_id: APAC-104
+    source_uri: "https://www.thailandntr.com/en"
+    title: Thailand National Trade Repository
+    source_owner: Thailand National Trade Repository and Department of Trade Negotiations
+    source_type: public_reference_candidate
+    authority_level: primary_government
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: reference
+    jurisdiction:
+      - TH
+    language: en
+    source_access_pattern: public_web
+    translation_review_required: false
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: Aggregated trade repository content should be verified against the issuing authority before reliance.
+    license_sensitive: true
+    reuse_mode: cite_only
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Aggregator source; legal content should be traced to issuing authority before promotion.
+    next_action: Inventory trade-in-goods sections and map each to a primary issuing agency.
+    priority: P0
+    notes: Official national trade repository for Thailand trade regulations and documentary requirements.
+
+  - document_id: APAC-105
+    source_uri: "https://www.customs.gov.vn/index.jsp?aid=206305&cid=4123&pageId=2281"
+    title: Viet Nam Customs - Customs Procedures
+    source_owner: General Department of Viet Nam Customs, Ministry of Finance
+    source_type: public_regulatory_candidate
+    authority_level: primary_government
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: regulatory
+    jurisdiction:
+      - VN
+    language: en
+    source_access_pattern: manual_snapshot
+    translation_review_required: true
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: Use for guidance only until matched to current Vietnamese legal instruments.
+    license_sensitive: false
+    reuse_mode: cite_and_summarize
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Dynamic official site requires manual snapshot and currentness confirmation.
+    next_action: Capture manual browser snapshot and reconcile against current legal documents.
+    priority: P0
+    notes: Primary customs-agency source for Viet Nam import, export, and transit procedure guidance.
+
+  - document_id: APAC-106
+    source_uri: "https://www.customs.gov.vn/index.jsp?cid=4149&pageId=2283"
+    title: Viet Nam Customs - Legal Documents
+    source_owner: General Department of Viet Nam Customs, Ministry of Finance
+    source_type: public_regulatory_candidate
+    authority_level: primary_government
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: regulatory
+    jurisdiction:
+      - VN
+    language: en
+    source_access_pattern: manual_snapshot
+    translation_review_required: true
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: Registry summaries must not be presented as binding legal advice.
+    license_sensitive: true
+    reuse_mode: cite_only
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Dynamic legal index requires document-level selection and amendment review.
+    next_action: Identify current customs law, implementing decrees, and circulars relevant to freight-forwarding scope.
+    priority: P0
+    notes: Primary official index for Viet Nam customs legal instruments.
+
+  - document_id: APAC-107
+    source_uri: "https://vntr.moit.gov.vn/procedures"
+    title: Viet Nam National Trade Repository - Procedures and Documentary Requirements
+    source_owner: Ministry of Industry and Trade Viet Nam
+    source_type: public_reference_candidate
+    authority_level: primary_government
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: reference
+    jurisdiction:
+      - VN
+    language: en
+    source_access_pattern: public_web
+    translation_review_required: true
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: VNTR procedure content is consultation guidance and should be verified with competent authorities.
+    license_sensitive: true
+    reuse_mode: cite_only
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Some detailed procedures may be hidden behind interactive controls and require validation.
+    next_action: Snapshot procedure list and validate selected records against competent authority sources.
+    priority: P0
+    notes: Official Viet Nam trade portal for customs procedures and documentary requirements.
+
+  - document_id: APAC-108
+    source_uri: "https://vntr.moit.gov.vn/tariff/tfta"
+    title: Viet Nam National Trade Repository - Tariff Schedules
+    source_owner: Ministry of Industry and Trade Viet Nam
+    source_type: public_reference_candidate
+    authority_level: primary_government
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: reference
+    jurisdiction:
+      - VN
+    language: en
+    source_access_pattern: public_web
+    translation_review_required: true
+    dynamic_lookup_snapshot: true
+    legal_disclaimer: Tariff outputs are not a substitute for competent authority confirmation.
+    license_sensitive: true
+    reuse_mode: cite_only
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Interactive tariff search may not be fully captured by static ingestion.
+    next_action: Decide whether to ingest explanatory pages only or structured tariff query outputs under a later design.
+    priority: P1
+    notes: Official Viet Nam tariff and FTA schedule reference.
+
+  - document_id: APAC-109
+    source_uri: "https://customs.gov.ph/guidelines-on-importation/"
+    title: Philippines Bureau of Customs - Guidelines on Importation
+    source_owner: Bureau of Customs, Department of Finance Philippines
+    source_type: public_regulatory_candidate
+    authority_level: primary_government
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: regulatory
+    jurisdiction:
+      - PH
+    language: en
+    source_access_pattern: public_web
+    translation_review_required: false
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: FAQ-style guidance is not a substitute for customs or legal advice.
+    license_sensitive: false
+    reuse_mode: cite_and_summarize
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Needs cross-check with current implementing orders and CMTA references.
+    next_action: Map cited CMTA sections and related CAO/CMO documents.
+    priority: P0
+    notes: Official Bureau of Customs import guidance for duties, taxes, import types, and restricted/prohibited goods.
+
+  - document_id: APAC-110
+    source_uri: "https://customs.gov.ph/guidelines-on-exportation/"
+    title: Philippines Bureau of Customs - Guidelines on Exportation
+    source_owner: Bureau of Customs, Department of Finance Philippines
+    source_type: public_regulatory_candidate
+    authority_level: primary_government
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: regulatory
+    jurisdiction:
+      - PH
+    language: en
+    source_access_pattern: public_web
+    translation_review_required: false
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: Procedure summary should not be represented as exhaustive legal advice.
+    license_sensitive: false
+    reuse_mode: cite_and_summarize
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Needs cross-reference with PNTR commodity permits and current BOC export orders.
+    next_action: Snapshot page and validate AEDS/export memorandum dependencies.
+    priority: P0
+    notes: Official Bureau of Customs export procedure source for freight-forwarding questions.
+
+  - document_id: APAC-111
+    source_uri: "https://customs.gov.ph/aduana-library/"
+    title: Philippines Bureau of Customs - Aduana Library
+    source_owner: Bureau of Customs, Department of Finance Philippines
+    source_type: public_regulatory_candidate
+    authority_level: primary_government
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: regulatory
+    jurisdiction:
+      - PH
+    language: en
+    source_access_pattern: public_web
+    translation_review_required: false
+    dynamic_lookup_snapshot: true
+    legal_disclaimer: Individual orders and circulars must be interpreted in context and may amend older issuances.
+    license_sensitive: true
+    reuse_mode: cite_only
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: High-volume issuance catalog includes operational/internal notices and needs scope filters.
+    next_action: Select only trade-facilitation and customs-procedure issuances; exclude shipment tracking and admin-only items.
+    priority: P0
+    notes: Official source of Philippine customs orders, circulars, and administrative issuances.
+
+  - document_id: APAC-112
+    source_uri: "https://customs.gov.ph/wp-content/uploads/2023/01/CMTA-RA-10863-2.pdf"
+    title: Philippines Customs Modernization and Tariff Act RA 10863
+    source_owner: Bureau of Customs, Department of Finance Philippines
+    source_type: public_regulatory_candidate
+    authority_level: primary_government
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: regulatory
+    jurisdiction:
+      - PH
+    language: en
+    source_access_pattern: public_pdf
+    translation_review_required: false
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: Statutory text requires legal interpretation and current amendment review.
+    license_sensitive: true
+    reuse_mode: cite_only
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Not sufficient alone for operational procedure answers.
+    next_action: Pair with Aduana Library implementing CAOs/CMOs and BOC guidance pages.
+    priority: P0
+    notes: Core Philippine customs and tariff statute.
+
+  - document_id: APAC-113
+    source_uri: "https://finder.tariffcommission.gov.ph/"
+    title: Philippine Tariff Finder
+    source_owner: Tariff Commission, Republic of the Philippines
+    source_type: public_reference_candidate
+    authority_level: primary_government
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: reference
+    jurisdiction:
+      - PH
+    language: en
+    source_access_pattern: public_web
+    translation_review_required: false
+    dynamic_lookup_snapshot: true
+    legal_disclaimer: Search results are general information and not substitutes for official tariff classification decisions.
+    license_sensitive: true
+    reuse_mode: cite_only
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Interactive search results require manual or structured capture rules.
+    next_action: Use as reference candidate for tariff lookups; do not ingest generated query results until a schema is defined.
+    priority: P1
+    notes: Official Philippine tariff schedule and rules-of-origin lookup facility.
+
+  - document_id: APAC-114
+    source_uri: "https://www.pntr.gov.ph/search-commodity/"
+    title: Philippine National Trade Repository - Commodity Search and National Trade Laws
+    source_owner: Department of Trade and Industry Philippines, Bureau of Import Services
+    source_type: public_reference_candidate
+    authority_level: primary_government
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: reference
+    jurisdiction:
+      - PH
+    language: en
+    source_access_pattern: public_web
+    translation_review_required: false
+    dynamic_lookup_snapshot: true
+    legal_disclaimer: Commodity-specific permit guidance must be verified with the named regulating agency.
+    license_sensitive: true
+    reuse_mode: cite_only
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Mixed link targets require authority validation and scope filtering.
+    next_action: Promote only after commodity pages and legal links are individually verified.
+    priority: P0
+    notes: Official Philippine trade repository for commodity permits, trade laws, and regulating-agency discovery.
+
+  - document_id: APAC-201
+    source_uri: "https://atr.asean.org/read/about-asean-trade-repository/22"
+    title: ASEAN Trade Repository
+    source_owner: ASEAN Secretariat
+    source_type: public_regulatory_candidate
+    authority_level: intergovernmental
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: regulatory
+    jurisdiction:
+      - ASEAN
+    language: en
+    source_access_pattern: public_web
+    translation_review_required: false
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: Use as an information gateway only; country-specific obligations must be verified against national authorities.
+    license_sensitive: false
+    reuse_mode: cite_and_summarize
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Aggregator links out to national sources with varying freshness and formats.
+    next_action: Register as parent/index source and evaluate linked national repositories separately.
+    priority: P0
+    notes: Central ASEAN entry point for tariffs, rules of origin, NTMs, customs laws, procedures, rulings, trade facilitation, and AEO information.
+
+  - document_id: APAC-202
+    source_uri: "https://atr.asean.org/read/national-trade-repositories-asean-member-countries/60"
+    title: ASEAN Member States National Trade Repositories Index
+    source_owner: ASEAN Secretariat
+    source_type: public_reference_candidate
+    authority_level: intergovernmental
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: reference
+    jurisdiction:
+      - ASEAN
+    language: en
+    source_access_pattern: public_web
+    translation_review_required: false
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: Binding requirements remain with national customs and trade authorities.
+    license_sensitive: false
+    reuse_mode: cite_and_summarize
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Requires per-country source review and possible multilingual handling.
+    next_action: Create child candidate records for priority NTRs as needed.
+    priority: P0
+    notes: Official route to ASEAN country-level import/export, tariff, ROO, and customs-procedure sources.
+
+  - document_id: APAC-203
+    source_uri: "https://asean.org/asean-trade-in-goods-agreement-atiga/"
+    title: ASEAN Trade in Goods Agreement Key Documents
+    source_owner: ASEAN Secretariat
+    source_type: public_regulatory_candidate
+    authority_level: intergovernmental
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: regulatory
+    jurisdiction:
+      - ASEAN
+    language: en
+    source_access_pattern: public_web
+    translation_review_required: false
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: Cite source and advise confirmation with competent authorities for binding treatment.
+    license_sensitive: true
+    reuse_mode: cite_only
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Page is a document hub; annexes require separate records and snapshots.
+    next_action: Map current main text and annexes into controlled child candidates.
+    priority: P0
+    notes: Primary ASEAN legal framework for trade in goods, tariff preferences, rules of origin, and customs facilitation.
+
+  - document_id: APAC-204
+    source_uri: "https://asean.org/our-communities/economic-community/rules-of-origin/"
+    title: ASEAN Rules of Origin and ATIGA ROO Annexes
+    source_owner: ASEAN Secretariat
+    source_type: public_regulatory_candidate
+    authority_level: intergovernmental
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: regulatory
+    jurisdiction:
+      - ASEAN
+    language: en
+    source_access_pattern: public_web
+    translation_review_required: false
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: Preferential-origin eligibility is transaction-specific and should be confirmed with issuing or receiving authorities.
+    license_sensitive: true
+    reuse_mode: cite_only
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Multiple linked annexes and guidebooks require document-level scoping.
+    next_action: Snapshot priority ROO, PSR HS 2022, OCP, and Form D materials as separate review candidates.
+    priority: P0
+    notes: Core source for ASEAN preferential origin explanations and documentation workflows.
+
+  - document_id: APAC-205
+    source_uri: "https://asean.mendel-online.com/"
+    title: ASEAN Tariff Finder
+    source_owner: ASEAN Secretariat
+    source_type: public_reference_candidate
+    authority_level: intergovernmental
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: reference
+    jurisdiction:
+      - ASEAN
+    language: en
+    source_access_pattern: manual_snapshot
+    translation_review_required: false
+    dynamic_lookup_snapshot: true
+    legal_disclaimer: Tariff and ROO output should be treated as guidance, not a binding customs ruling.
+    license_sensitive: true
+    reuse_mode: cite_only
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Dynamic portal may require session flow and terms review.
+    next_action: Use as verified external lookup candidate; do not ingest bulk results until licensing and access are approved.
+    priority: P0
+    notes: Official ASEAN tool for tariff and ROO discovery across ASEAN and FTA contexts.
+
+  - document_id: APAC-206
+    source_uri: "https://asean.org/our-communities/economic-community/asean-single-window/"
+    title: ASEAN Single Window
+    source_owner: ASEAN Secretariat
+    source_type: public_regulatory_candidate
+    authority_level: intergovernmental
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: regulatory
+    jurisdiction:
+      - ASEAN
+    language: en
+    source_access_pattern: public_web
+    translation_review_required: false
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: Explain ASW at policy/process level only; do not imply live document availability or clearance status.
+    license_sensitive: false
+    reuse_mode: cite_and_summarize
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Operational specifications and live exchanges may not be public or appropriate for RAG.
+    next_action: Promote only public overview and legal-framework references; exclude live ASW operations.
+    priority: P0
+    notes: Regional trade-facilitation source for electronic cross-border customs and trade documents.
+
+  - document_id: APAC-207
+    source_uri: "https://acts.asean.org/"
+    title: ASEAN Customs Transit System
+    source_owner: ASEAN Secretariat and ASEAN Customs
+    source_type: public_regulatory_candidate
+    authority_level: intergovernmental
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: regulatory
+    jurisdiction:
+      - ASEAN
+    language: en
+    source_access_pattern: public_web
+    translation_review_required: false
+    dynamic_lookup_snapshot: true
+    legal_disclaimer: Do not answer live transit-declaration, guarantee, or shipment-status questions from this source.
+    license_sensitive: true
+    reuse_mode: cite_only
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: ACTS portal may expose dynamic or restricted operational functions.
+    next_action: Use public ASEAN overview for RAG; keep operational portal link-only unless approved.
+    priority: P0
+    notes: Regional source for ASEAN cross-border road transit procedure concepts.
+
+  - document_id: APAC-208
+    source_uri: "https://asean.org/our-communities/economic-community/asean-customs/areas-of-cooperation/"
+    title: ASEAN Harmonised Tariff Nomenclature Overview
+    source_owner: ASEAN Secretariat and ASEAN Customs
+    source_type: public_regulatory_candidate
+    authority_level: intergovernmental
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: regulatory
+    jurisdiction:
+      - ASEAN
+    language: en
+    source_access_pattern: public_web
+    translation_review_required: false
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: AHTN supports classification consistency; national tariff schedules and customs rulings remain decisive.
+    license_sensitive: false
+    reuse_mode: cite_and_summarize
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Actual AHTN and tariff schedule data is split across files and national implementations.
+    next_action: Pair with ATIGA Annex 2 tariff schedules and WCO HS records.
+    priority: P0
+    notes: Regional classification layer derived from WCO HS and essential for ASEAN freight-forwarding queries.
+
+  - document_id: APAC-209
+    source_uri: "https://asean.org/annex-2-tariff-schedules/"
+    title: ATIGA Annex 2 Tariff Schedules - AHTN 2022
+    source_owner: ASEAN Secretariat
+    source_type: public_regulatory_candidate
+    authority_level: intergovernmental
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: regulatory
+    jurisdiction:
+      - ASEAN
+    language: en
+    source_access_pattern: manual_snapshot
+    translation_review_required: false
+    dynamic_lookup_snapshot: true
+    legal_disclaimer: Tariff duty treatment is fact-specific and may change; cite sources and recommend authority confirmation.
+    license_sensitive: true
+    reuse_mode: cite_only
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Spreadsheet content requires controlled extraction, version tracking, and update monitoring.
+    next_action: Create separate candidate snapshots per member-state schedule.
+    priority: P0
+    notes: Official ASEAN tariff-schedule source tied to AHTN 2022 and ATIGA preferences.
+
+  - document_id: APAC-215
+    source_uri: "https://www.wcoomd.org/en/topics/nomenclature/instrument-and-tools/hs-nomenclature-2022-edition/hs-nomenclature-2022-edition.aspx"
+    title: WCO HS Nomenclature 2022 Edition
+    source_owner: World Customs Organization
+    source_type: public_reference_candidate
+    authority_level: intergovernmental
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: reference
+    jurisdiction:
+      - Global
+    language: en
+    source_access_pattern: public_web
+    translation_review_required: false
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: HS supports classification at the international level; national tariff codes and binding rulings control local treatment.
+    license_sensitive: true
+    reuse_mode: cite_only
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: WCO copyright and reuse terms require review before full-text ingestion.
+    next_action: Promote only after reuse terms are cleared and chunking respects legal notes and chapters.
+    priority: P0
+    notes: Authoritative global classification backbone for APAC customs and tariff questions.
+
+  - document_id: APAC-217
+    source_uri: "https://www.wcoomd.org/en/topics/nomenclature/instrument-and-tools/tools-to-assist-with-the-classification-in-the-hs/explanatory-notes.aspx"
+    title: WCO Explanatory Notes to the Harmonized System
+    source_owner: World Customs Organization
+    source_type: public_reference_candidate
+    authority_level: intergovernmental
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: reference
+    jurisdiction:
+      - Global
+    language: en
+    source_access_pattern: manual_snapshot
+    translation_review_required: false
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: Explanatory Notes guide interpretation but do not replace national binding rulings.
+    license_sensitive: true
+    reuse_mode: do_not_ingest
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Full content requires licensed access and explicit reuse approval.
+    next_action: Record metadata only unless Waypoint obtains WCO Trade Tools license and reuse approval.
+    priority: P0
+    notes: Critical authoritative interpretive source for difficult HS classification questions.
+
+  - document_id: APAC-222
+    source_uri: "https://www.wto.org/english/docs_e/legal_e/tfa_e.htm"
+    title: WTO Agreement on Trade Facilitation - Legal Text
+    source_owner: World Trade Organization
+    source_type: public_regulatory_candidate
+    authority_level: intergovernmental
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: regulatory
+    jurisdiction:
+      - Global
+    language: en
+    source_access_pattern: public_web
+    translation_review_required: false
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: Member obligations depend on notifications, categories, and implementation timelines.
+    license_sensitive: true
+    reuse_mode: cite_only
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Needs article-level chunking and links to member implementation data.
+    next_action: Prioritize articles on publication, advance rulings, release, clearance, transit, single window, and authorized operators.
+    priority: P0
+    notes: Global legal baseline for customs release, clearance, transit, and trade facilitation.
+
+  - document_id: APAC-226
+    source_uri: "https://iccwbo.org/business-solutions/incoterms-rules/incoterms-2020/"
+    title: ICC Incoterms 2020 Official Overview
+    source_owner: International Chamber of Commerce
+    source_type: public_reference_candidate
+    authority_level: standards_body
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: reference
+    jurisdiction:
+      - Global
+    language: en
+    source_access_pattern: public_web
+    translation_review_required: false
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: Incoterms guidance is not a substitute for contract or legal advice and does not decide title transfer or payment terms.
+    license_sensitive: true
+    reuse_mode: cite_only
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Cannot ingest or reproduce full rule text without ICC permission or license.
+    next_action: Use as metadata and link-only source unless licensed content is approved.
+    priority: P0
+    notes: Official source for current Incoterms edition and trade-terms scope.
+
+  - document_id: APAC-227
+    source_uri: "https://iccwbo.org/business-solutions/incoterms-rules/incoterms-rules-trademark-and-copyright-policy/"
+    title: ICC Incoterms Rules Trademark and Copyright Policy
+    source_owner: International Chamber of Commerce
+    source_type: public_reference_candidate
+    authority_level: standards_body
+    source_status: candidate
+    promotion_status: needs_review
+    retrieval_eligible: false
+    retrieval_namespace: reference
+    jurisdiction:
+      - Global
+    language: en
+    source_access_pattern: public_web
+    translation_review_required: false
+    dynamic_lookup_snapshot: false
+    legal_disclaimer: Use this source to constrain what the RAG may quote, summarize, or brand as Incoterms content.
+    license_sensitive: true
+    reuse_mode: do_not_ingest
+    snapshot_date: "2026-07-16"
+    last_verified_date: "2026-07-16"
+    review_owner: Knowledge Base Curator
+    blocker: Legal and IP approval required before any Incoterms-related content is promoted.
+    next_action: Make this a gating source for Incoterms-related registry promotion.
+    priority: P0
+    notes: Necessary control source for licensing-sensitive Incoterms handling.

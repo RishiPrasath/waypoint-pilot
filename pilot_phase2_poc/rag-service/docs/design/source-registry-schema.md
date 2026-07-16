@@ -1,6 +1,7 @@
 # Source Registry Schema
 
-Status: Draft for `RAG-DT008`
+Status: Draft for `RAG-DT008`; updated by `RAG-DT003` for source-owner
+capture and standards-body authority classification.
 Schema artifact: `knowledge_base/registry/source_registry.schema.json`
 
 ## Purpose
@@ -19,6 +20,7 @@ record may exist for traceability while `retrieval_eligible` remains `false`.
 | `document_id` | Stable source ID used for audits, citations, chunks, and promotion decisions. |
 | `source_uri` | Canonical source URL, legacy path, internal path, or acquisition note. |
 | `title` | Human-readable source title. |
+| `source_owner` | Organization responsible for publishing or owning the source. This is separate from `review_owner`, which is the internal approval owner. |
 | `source_type` | Source classification, such as regulatory, reference, carrier candidate, internal, metadata, or derivative. |
 | `authority_level` | Trust class used to identify review requirements and source precedence. |
 | `source_status` | Lifecycle state of the source record. |
@@ -35,6 +37,12 @@ record may exist for traceability while `retrieval_eligible` remains `false`.
 | `reuse_mode` | Allowed reuse pattern for ingestion, summarization, and citations. |
 
 ## Allowed statuses
+
+`authority_level` includes government, intergovernmental, standards-body,
+carrier, internal, secondary-reference, metadata-only, and unverified authority
+classes. `standards_body` is used for official standards publishers such as ICC
+where the source is authoritative for its own standard but is not a government
+or intergovernmental source.
 
 `source_status` values:
 
@@ -84,6 +92,7 @@ approved until the source has:
 - verified authority
 - verified currentness or snapshot date
 - source URL or documented acquisition path
+- source owner
 - review owner
 - jurisdiction and language metadata
 - reuse and licensing decision
