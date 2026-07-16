@@ -1,11 +1,11 @@
-﻿# RAG-BT005: Add Config And Settings Module
+# RAG-BT005: Add Config And Settings Module
 
 Status: Complete
 
 ## Sequence Entry
 
 Start from build-sequence/00-index.md, then open the lane index for this task before opening the task file.
-Task files should follow the canonical template in build-sequence/00-task-sequence-template-proposal.md.
+Task files should follow the canonical template in build-sequence/00-governance/01-task-template.md.
 
 | Field | Value |
 |---|---|
@@ -14,10 +14,11 @@ Task files should follow the canonical template in build-sequence/00-task-sequen
 | Source Question | Runtime configuration and secrets policy |
 | Decision / ADR | ADR-RAG-0011 |
 | Branch | `codex/rag-bt005-config-settings` |
-| Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-bt005-config-settings` |
+| Worktree Path | `C:\tmp\rag-bt005-config-settings` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
 | Status | Complete |
+| Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-BT005-config-settings.md` |
 
 ## 1. Task Definition
 
@@ -45,7 +46,7 @@ Out Of Scope:
 
 ```powershell
 $RepoRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot"
-$WorktreeRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees"
+$WorktreeRoot = "C:\tmp"
 $TaskId = "rag-bt005"
 $Slug = "config-settings"
 $Branch = "codex/$TaskId-$Slug"
@@ -192,41 +193,6 @@ Open a PR to `main`.
 Merge after local checks, PR CI/CD, and `main` CI/CD. Then clean up the
 worktree.
 
-## 8. Task Evidence
+## Task Evidence
 
-Branch: `codex/rag-bt005-config-settings`
-Worktree: `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-bt005-config-settings`
-PR: https://github.com/RishiPrasath/waypoint-pilot/pull/7
-Commit: `32f4be3`
-
-Files Changed:
-- `app/core/config.py`
-- `app/core/tests/test_config.py`
-- `build-evidence/RAG-BT005-config-settings.md`
-
-Tests Run:
-- `uv run pytest app/core/tests/test_config.py -q`
-- Result: 3 passed
-
-CI Result:
-- PR #7 merged
-
-AI Review Findings:
-- Initial pass missed secret-gated access behavior; added explicit secret helpers and masking coverage.
-
-Human Review Notes:
-- PR merged after review.
-
-Issues Encountered:
-- None after the config hardening pass.
-
-Resolution:
-- Added explicit secret access methods and updated tests to prove safe defaults and masked secrets.
-
-Debt / Follow-Ups:
-- Refresh the local `main` checkout to `origin/main` when convenient.
--
-
-
-
-
+Evidence is recorded in `pilot_phase2_poc/rag-service/build-evidence/RAG-BT005-config-settings.md`.

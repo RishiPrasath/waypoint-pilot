@@ -1,11 +1,11 @@
-﻿# RAG-DT012: Source Snapshot And Canonical Markdown Candidates
+# RAG-DT012: Source Snapshot And Canonical Markdown Candidates
 
-Status: Draft
+Status: Planned
 
 ## Sequence Entry
 
 Start from build-sequence/00-index.md, then open the lane index for this task before opening the task file.
-Task files should follow the canonical template in build-sequence/00-task-sequence-template-proposal.md.
+Task files should follow the canonical template in build-sequence/00-governance/01-task-template.md.
 
 | Field | Value |
 |---|---|
@@ -17,10 +17,11 @@ Task files should follow the canonical template in build-sequence/00-task-sequen
 | Related Planning Docs | `02-rag-db/research/kb-enrichment-rescrape-plan.md`, `02-rag-db/research/authoritative-sources-apac.md` |
 | Affected Build Tasks | RAG-BT008, RAG-BT009, RAG-BT012, RAG-BT013, RAG-BT019 |
 | Branch | `codex/rag-dt012-source-snapshot-and-canonical-markdown-candidates` |
-| Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-dt012-source-snapshot-and-canonical-markdown-candidates` |
+| Worktree Path | `C:\tmp\rag-dt012-source-snapshot-and-canonical-markdown-candidates` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Draft |
+| Status | Planned |
+| Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-DT012-source-snapshot-and-canonical-markdown-candidates.md` |
 
 ## 1. Task Definition
 
@@ -66,7 +67,7 @@ Create the branch and worktree before creating or editing design artifacts.
 
 ```powershell
 $RepoRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot"
-$WorktreeRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees"
+$WorktreeRoot = "C:\tmp"
 $TaskId = "rag-dt012"
 $Slug = "source-snapshot-and-canonical-markdown-candidates"
 $Branch = "codex/$TaskId-$Slug"
@@ -213,45 +214,6 @@ git -C "$REPO_ROOT" worktree remove "$WORKTREE_PATH"
 git -C "$REPO_ROOT" worktree prune
 git -C "$REPO_ROOT" pull --ff-only origin main
 ```
-## 9. Task Evidence
+## Task Evidence
 
-Branch:
-Worktree:
-PR:
-Commit:
-
-Design Artifact:
-
-Affected Build Tasks:
-
-Files Changed:
--
-
-Checks Run:
--
-
-CI Result:
-
-AI Review Findings:
--
-
-Human Review Notes:
--
-
-Issues Encountered:
--
-
-Resolution:
--
-
-Debt / Follow-Ups:
--
-
-
-
-
-
-
-
-
-
+Evidence is recorded in `pilot_phase2_poc/rag-service/build-evidence/RAG-DT012-source-snapshot-and-canonical-markdown-candidates.md`.

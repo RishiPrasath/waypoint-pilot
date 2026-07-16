@@ -1,11 +1,11 @@
-﻿# RAG-BT017: Add Output Validation And Retry/Fallback
+# RAG-BT017: Add Output Validation And Retry/Fallback
 
-Status: Draft
+Status: Planned
 
 ## Sequence Entry
 
 Start from build-sequence/00-index.md, then open the lane index for this task before opening the task file.
-Task files should follow the canonical template in build-sequence/00-task-sequence-template-proposal.md.
+Task files should follow the canonical template in build-sequence/00-governance/01-task-template.md.
 
 | Field | Value |
 |---|---|
@@ -17,10 +17,11 @@ Task files should follow the canonical template in build-sequence/00-task-sequen
 | Design Dependencies | RAG-BT006, RAG-BT015, RAG-BT016, RAG-DT013 |
 | Depends On Build Tasks | see section 1 and section 3 |
 | Branch | `codex/rag-bt017-output-validation-retry-fallback` |
-| Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-bt017-output-validation-retry-fallback` |
+| Worktree Path | `C:\tmp\rag-bt017-output-validation-retry-fallback` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Draft |
+| Status | Planned |
+| Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-BT017-output-validation-retry-fallback.md` |
 
 ## 1. Task Definition
 
@@ -58,7 +59,7 @@ Do not write task code directly on `main`.
 
 ```powershell
 $RepoRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot"
-$WorktreeRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees"
+$WorktreeRoot = "C:\tmp"
 $TaskId = "rag-bt017"
 $Slug = "output-validation-retry-fallback"
 $Branch = "codex/$TaskId-$Slug"
@@ -261,54 +262,6 @@ Record:
 - unresolved risks
 - follow-up debt entries, if any
 
-## 8. Task Evidence
+## Task Evidence
 
-Branch:
-Worktree:
-PR:
-Commit:
-Merge Commit:
-
-Design Gates Confirmed:
--
-
-Files Changed:
--
-
-Tests Written First:
--
-
-Tests Run:
--
-
-CI Result Before Merge:
-
-Main CI/CD Result After Merge:
-
-AI Review Findings:
--
-
-Human Review Notes:
--
-
-Security Impact:
--
-
-Evaluation Impact:
--
-
-Docker / Seed Data Impact:
--
-
-Issues Encountered:
--
-
-Resolution:
--
-
-Debt / Follow-Ups:
--
-
-
-
-
+Evidence is recorded in `pilot_phase2_poc/rag-service/build-evidence/RAG-BT017-output-validation-retry-fallback.md`.

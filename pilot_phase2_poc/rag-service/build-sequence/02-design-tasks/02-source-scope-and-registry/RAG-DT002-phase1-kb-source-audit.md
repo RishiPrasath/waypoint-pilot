@@ -1,11 +1,11 @@
-﻿# RAG-DT002: Create Phase 1 KB Source Audit Table
+# RAG-DT002: Create Phase 1 KB Source Audit Table
 
 Status: Complete
 
 ## Sequence Entry
 
 Start from build-sequence/00-index.md, then open the lane index for this task before opening the task file.
-Task files should follow the canonical template in build-sequence/00-task-sequence-template-proposal.md.
+Task files should follow the canonical template in build-sequence/00-governance/01-task-template.md.
 
 | Field | Value |
 |---|---|
@@ -17,10 +17,11 @@ Task files should follow the canonical template in build-sequence/00-task-sequen
 | Related Planning Docs | `02-rag-db/research/phase1-kb-scan-report.md`, `02-rag-db/active/02-knowledge-source-plan.md` |
 | Affected Build Tasks | RAG-BT008, RAG-BT009, RAG-BT012, RAG-BT013, RAG-BT019 |
 | Branch | `codex/rag-dt002-phase1-kb-source-audit` |
-| Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-dt002-phase1-kb-source-audit` |
+| Worktree Path | `C:\tmp\rag-dt002-phase1-kb-source-audit` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Draft |
+| Status | Complete |
+| Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-DT002-phase1-kb-source-audit.md` |
 
 ## 1. Task Definition
 
@@ -59,7 +60,7 @@ Create the branch and worktree before creating or editing design artifacts.
 
 ```powershell
 $RepoRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot"
-$WorktreeRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees"
+$WorktreeRoot = "C:\tmp"
 $TaskId = "rag-dt002"
 $Slug = "phase1-kb-source-audit"
 $Branch = "codex/$TaskId-$Slug"
@@ -185,69 +186,6 @@ git -C "$REPO_ROOT" worktree remove "$WORKTREE_PATH"
 git -C "$REPO_ROOT" worktree prune
 git -C "$REPO_ROOT" pull --ff-only origin main
 ```
-## 9. Task Evidence
+## Task Evidence
 
-Branch: `codex/rag-dt002-phase1-kb-source-audit`
-Worktree: `D:\Code\Github\waypoint-pilot-worktrees\rag-dt002-phase1-kb-source-audit`
-PR: https://github.com/RishiPrasath/waypoint-pilot/pull/12
-Commit: `da6d9a09f47fd324ca0d2b82ae955ce7962f7b10` (merge commit)
-
-Design Artifact:
-- `docs/design/phase1-kb-source-audit.md`
-
-Affected Build Tasks:
-- `RAG-BT008`, `RAG-BT009`, `RAG-BT012`, `RAG-BT013`, `RAG-BT019`
-
-Files Changed:
-- `docs/design/phase1-kb-source-audit.md`
-- `build-sequence/02-design-tasks/02-source-scope-and-registry/RAG-DT002-phase1-kb-source-audit.md`
-
-Checks Run:
-- Legacy snapshot inventory: 82 Markdown files and 52 PDFs
-- Category count verification
-- `git diff --check`
-
-CI Result:
-- PR #12 merged successfully; human review completed.
-
-AI Review Findings:
-- No runtime code was changed; audit conservatively keeps all legacy content
-  outside the active Phase 2 knowledge base.
-
-Human Review Notes:
-- Historical research paths referenced by the task are unavailable; the audit
-  uses the checked-in legacy snapshot and current DT001 architecture checklist.
-- Phase 2 planning confirms `partner-source` owns operational shipment truth;
-  carrier sources are therefore audit-only by default and require explicit
-  static-knowledge use-case approval before promotion.
-- Final review confirmed that regulatory/reference sources were expanded to
-  one-row-per-file records before merge.
-- PR #12 review and merge completed after expanding all source records and
-  clarifying the partner-source/carrier boundary.
-
-Issues Encountered:
-- PDF-derived Markdown and original PDFs require later provenance and
-  extraction-fidelity review.
-
-Resolution:
-- Recorded PDF/Markdown pairing as an explicit blocker and assigned the work to
-  DT012 rather than treating derivatives as canonical sources.
-- Added the partner-source/RAG boundary, carrier-reference namespace guidance,
-  and non-retrieval-eligible default for carrier material.
-- Expanded the carrier section to individual source records and left the task
-  pending until regulatory/reference PDF rows are similarly expanded.
-
-Debt / Follow-Ups:
-- DT003 and DT008 must refine source authority, metadata, and registry rules.
-- DT012 must resolve canonical snapshot/materialization and deduplication.
-- DT006 and DT007 must encode carrier static-reference cases separately from
-  partner-source operational routing.
-
-
-
-
-
-
-
-
-
+Evidence is recorded in `pilot_phase2_poc/rag-service/build-evidence/RAG-DT002-phase1-kb-source-audit.md`.

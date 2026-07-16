@@ -1,6 +1,6 @@
-﻿# RAG Service Execution Sequence
+# RAG Service Execution Sequence
 
-Status: Accepted sequence with draft executable task files
+Status: Accepted sequence with governed executable task files
 Date: 2026-07-09
 
 This folder is the main execution hub for `rag-service`.
@@ -10,12 +10,13 @@ first, and then follow the relevant lane index before opening an individual
 task file.
 
 Task files should follow the canonical template in
-`build-sequence/00-task-sequence-template-proposal.md`.
+`build-sequence/00-governance/01-task-template.md`.
 
 It is split into three task lanes:
 
 ```text
 build-sequence/
+  00-governance/
   01-setup-tasks/
   02-design-tasks/
   03-build-tasks/
@@ -212,7 +213,7 @@ Execution hub:
 C:\Users\prasa\Documents\Github\waypoint-pilot\pilot_phase2_poc\rag-service\build-sequence
 
 Worktree root:
-C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees
+C:\tmp
 ```
 
 ## Standard Branch Setup
@@ -221,7 +222,7 @@ Every task file should customize only `$TaskId` and `$Slug`.
 
 ```powershell
 $RepoRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot"
-$WorktreeRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees"
+$WorktreeRoot = "C:\tmp"
 $TaskId = "rag-bt000"
 $Slug = "short-name"
 $Branch = "codex/$TaskId-$Slug"

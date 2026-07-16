@@ -1,11 +1,11 @@
-﻿# RAG-BT004: Add Stage 1 CI, CodeQL, And Dependabot
+# RAG-BT004: Add Stage 1 CI, CodeQL, And Dependabot
 
-Status: Draft
+Status: Complete
 
 ## Sequence Entry
 
 Start from build-sequence/00-index.md, then open the lane index for this task before opening the task file.
-Task files should follow the canonical template in build-sequence/00-task-sequence-template-proposal.md.
+Task files should follow the canonical template in build-sequence/00-governance/01-task-template.md.
 
 | Field | Value |
 |---|---|
@@ -14,10 +14,11 @@ Task files should follow the canonical template in build-sequence/00-task-sequen
 | Source Question | CI/CD pipeline and security scan baseline |
 | Decision / ADR | ADR-RAG-0010, ADR-RAG-0011 |
 | Branch | `codex/rag-bt004-stage-1-ci` |
-| Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-bt004-stage-1-ci` |
+| Worktree Path | `C:\tmp\rag-bt004-stage-1-ci` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Draft |
+| Status | Complete |
+| Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-BT004-stage-1-ci.md` |
 
 ## 1. Task Definition
 
@@ -65,7 +66,7 @@ Out Of Scope:
 
 ```powershell
 $RepoRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot"
-$WorktreeRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees"
+$WorktreeRoot = "C:\tmp"
 $TaskId = "rag-bt004"
 $Slug = "stage-1-ci"
 $Branch = "codex/$TaskId-$Slug"
@@ -347,36 +348,6 @@ Merge only after PR CI/CD passes and confirm `main` CI/CD also passes. Then
 clean up the worktree, delete the merged local branch, and delete the merged
 remote branch when permitted.
 
-## 8. Task Evidence
+## Task Evidence
 
-Branch:
-Worktree:
-PR:
-Commit:
-
-Files Changed:
--
-
-Tests Run:
--
-
-CI Result:
-
-AI Review Findings:
--
-
-Human Review Notes:
--
-
-Issues Encountered:
--
-
-Resolution:
--
-
-Debt / Follow-Ups:
--
-
-
-
-
+Evidence is recorded in `pilot_phase2_poc/rag-service/build-evidence/RAG-BT004-stage-1-ci.md`.

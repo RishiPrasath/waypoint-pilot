@@ -1,11 +1,11 @@
-﻿# RAG-BT002: Add Health Endpoint
+# RAG-BT002: Add Health Endpoint
 
 Status: Complete
 
 ## Sequence Entry
 
 Start from build-sequence/00-index.md, then open the lane index for this task before opening the task file.
-Task files should follow the canonical template in build-sequence/00-task-sequence-template-proposal.md.
+Task files should follow the canonical template in build-sequence/00-governance/01-task-template.md.
 
 | Field | Value |
 |---|---|
@@ -14,10 +14,11 @@ Task files should follow the canonical template in build-sequence/00-task-sequen
 | Source Question | Codebase setup and local runnable increments |
 | Decision / ADR | ADR-RAG-0001, ADR-RAG-0011 |
 | Branch | `codex/rag-bt002-health-endpoint` |
-| Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-bt002-health-endpoint` |
+| Worktree Path | `C:\tmp\rag-bt002-health-endpoint` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
 | Status | Complete |
+| Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-BT002-health-endpoint.md` |
 
 ## 1. Task Definition
 
@@ -45,7 +46,7 @@ Out Of Scope:
 
 ```powershell
 $RepoRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot"
-$WorktreeRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees"
+$WorktreeRoot = "C:\tmp"
 $TaskId = "rag-bt002"
 $Slug = "health-endpoint"
 $Branch = "codex/$TaskId-$Slug"
@@ -202,40 +203,6 @@ Merge after PR CI/CD and `main` CI/CD pass. Then clean up the worktree,
 delete the merged local branch, and delete the merged remote branch when
 permitted.
 
-## 8. Task Evidence
+## Task Evidence
 
-Branch:
-Worktree:
-PR: https://github.com/RishiPrasath/waypoint-pilot/pull/4
-Commit: e9cf290
-
-Files Changed:
--
-
-Tests Run:
--
-
-CI Result:
-
-AI Review Findings:
--
-
-Human Review Notes:
--
-
-Issues Encountered:
--
-
-Resolution:
--
-
-Debt / Follow-Ups:
--
-
-Closeout:
-- Health endpoint implemented, tested, pushed, and merged.
-- Worktree cleanup was attempted after merge; the worktree is no longer registered.
-
-
-
-
+Evidence is recorded in `pilot_phase2_poc/rag-service/build-evidence/RAG-BT002-health-endpoint.md`.

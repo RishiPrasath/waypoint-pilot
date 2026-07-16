@@ -1,11 +1,11 @@
-﻿# RAG-BT006: Add Shared Schemas And Error Envelope
+# RAG-BT006: Add Shared Schemas And Error Envelope
 
 Status: Complete
 
 ## Sequence Entry
 
 Start from build-sequence/00-index.md, then open the lane index for this task before opening the task file.
-Task files should follow the canonical template in build-sequence/00-task-sequence-template-proposal.md.
+Task files should follow the canonical template in build-sequence/00-governance/01-task-template.md.
 
 | Field | Value |
 |---|---|
@@ -14,10 +14,11 @@ Task files should follow the canonical template in build-sequence/00-task-sequen
 | Source Question | API response schema and validation |
 | Decision / ADR | ADR-RAG-0001, ADR-RAG-0011 |
 | Branch | `codex/rag-bt006-shared-schemas` |
-| Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-bt006-shared-schemas` |
+| Worktree Path | `C:\tmp\rag-bt006-shared-schemas` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
 | Status | Complete |
+| Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-BT006-shared-schemas.md` |
 
 ## 1. Task Definition
 
@@ -44,7 +45,7 @@ Out Of Scope:
 
 ```powershell
 $RepoRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot"
-$WorktreeRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees"
+$WorktreeRoot = "C:\tmp"
 $TaskId = "rag-bt006"
 $Slug = "shared-schemas"
 $Branch = "codex/$TaskId-$Slug"
@@ -190,44 +191,6 @@ Open a PR to `main`.
 Merge after review and CI. Then clean up the worktree, delete the merged local
 branch, and delete the merged remote branch when permitted.
 
-## 8. Task Evidence
+## Task Evidence
 
-Branch: `codex/rag-bt006-shared-schemas`
-Worktree: `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-bt006-shared-schemas`
-PR: https://github.com/RishiPrasath/waypoint-pilot/pull/8
-Commit: `d935d94`
-
-Files Changed:
-- `app/shared/tests/test_error_schema.py`
-- `app/shared/schemas/base.py`
-- `app/shared/schemas/__init__.py`
-- `app/shared/errors/schemas.py`
-- `app/shared/errors/__init__.py`
-- `build-evidence/RAG-BT006-shared-schemas.md`
-
-Tests Run:
-- `uv run pytest app/shared/tests -q`
-- Result: 2 passed
-
-CI Result:
-- PR #8 merged
-
-AI Review Findings:
-- None after the shared schema and error envelope implementation.
-
-Human Review Notes:
-- PR merged after review.
-
-Issues Encountered:
-- None.
-
-Resolution:
-- Added a versioned base response and a reusable error envelope for later API tasks.
-
-Debt / Follow-Ups:
-- Refresh the local main checkout to `origin/main` when convenient.
--
-
-
-
-
+Evidence is recorded in `pilot_phase2_poc/rag-service/build-evidence/RAG-BT006-shared-schemas.md`.

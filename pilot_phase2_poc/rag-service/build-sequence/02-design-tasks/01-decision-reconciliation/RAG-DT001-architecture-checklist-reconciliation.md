@@ -1,11 +1,11 @@
-﻿# RAG-DT001: Reconcile Architecture Checklist With Accepted ADRs
+# RAG-DT001: Reconcile Architecture Checklist With Accepted ADRs
 
 Status: Complete
 
 ## Sequence Entry
 
 Start from build-sequence/00-index.md, then open the lane index for this task before opening the task file.
-Task files should follow the canonical template in build-sequence/00-task-sequence-template-proposal.md.
+Task files should follow the canonical template in build-sequence/00-governance/01-task-template.md.
 
 | Field | Value |
 |---|---|
@@ -17,10 +17,11 @@ Task files should follow the canonical template in build-sequence/00-task-sequen
 | Related Planning Docs | `02-rag-db/planning/architecture-confirmation-checklist.md`, `02-rag-db/adrs/` |
 | Affected Build Tasks | All setup and final build tasks |
 | Branch | `codex/rag-dt001-architecture-checklist-reconciliation` |
-| Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-dt001-architecture-checklist-reconciliation` |
+| Worktree Path | `C:\tmp\rag-dt001-architecture-checklist-reconciliation` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Draft |
+| Status | Complete |
+| Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-DT001-architecture-checklist-reconciliation.md` |
 
 ## 1. Task Definition
 
@@ -56,7 +57,7 @@ Create the branch and worktree before creating or editing design artifacts.
 
 ```powershell
 $RepoRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot"
-$WorktreeRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees"
+$WorktreeRoot = "C:\tmp"
 $TaskId = "rag-dt001"
 $Slug = "architecture-checklist-reconciliation"
 $Branch = "codex/$TaskId-$Slug"
@@ -171,58 +172,6 @@ git -C "$REPO_ROOT" worktree remove "$WORKTREE_PATH"
 git -C "$REPO_ROOT" worktree prune
 git -C "$REPO_ROOT" pull --ff-only origin main
 ```
-## 9. Task Evidence
+## Task Evidence
 
-Branch: `codex/rag-dt001-architecture-checklist-reconciliation`
-Worktree: `D:\Code\Github\waypoint-pilot-worktrees\rag-dt001-architecture-checklist-reconciliation`
-PR: Pending creation after push
-Commit: Pending
-
-Design Artifact:
-- `docs/planning/architecture-confirmation-checklist.md`
-
-Affected Build Tasks:
-- All setup and final build tasks; no gate changes were required.
-
-Files Changed:
-- `docs/planning/architecture-confirmation-checklist.md`
-- `build-sequence/02-design-tasks/01-decision-reconciliation/RAG-DT001-architecture-checklist-reconciliation.md`
-
-Checks Run:
-- `git diff --check`
-- Checklist reference and required-target verification
-- Setup dependency-gate review against `build-sequence/03-build-tasks/00-index.md`
-
-CI Result:
-- Pending PR CI.
-
-AI Review Findings:
-- No implementation changes or build-gate changes were required.
-
-Human Review Notes:
-- The historical `02-rag-db/planning/` and `02-rag-db/adrs/` paths referenced by
-  this task are absent from the current checkout; the design artifact records
-  that absence explicitly.
-
-Issues Encountered:
-- Initial Windows worktree checkout encountered legacy paths exceeding the
-  default path limit.
-
-Resolution:
-- Enabled repository Git long-path support and recreated the worktree
-  successfully.
-
-Debt / Follow-Ups:
-- Correct stale Draft metadata in the BT004 and BT010 task files in a separate
-  documentation cleanup.
-- RAG-DT013 must perform the final design-to-build impact review before final
-  RAG implementation begins.
-
-
-
-
-
-
-
-
-
+Evidence is recorded in `pilot_phase2_poc/rag-service/build-evidence/RAG-DT001-architecture-checklist-reconciliation.md`.

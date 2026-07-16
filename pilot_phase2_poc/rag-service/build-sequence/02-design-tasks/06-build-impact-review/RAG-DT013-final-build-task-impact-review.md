@@ -1,11 +1,11 @@
-﻿# RAG-DT013: Final Build Task Impact Review
+# RAG-DT013: Final Build Task Impact Review
 
-Status: Draft
+Status: Planned
 
 ## Sequence Entry
 
 Start from build-sequence/00-index.md, then open the lane index for this task before opening the task file.
-Task files should follow the canonical template in build-sequence/00-task-sequence-template-proposal.md.
+Task files should follow the canonical template in build-sequence/00-governance/01-task-template.md.
 
 | Field | Value |
 |---|---|
@@ -17,10 +17,11 @@ Task files should follow the canonical template in build-sequence/00-task-sequen
 | Related Planning Docs | `build-sequence/02-design-tasks/`, `build-sequence/03-build-tasks/`, `02-rag-db/planning/confirmed-build-sequence.md` |
 | Affected Build Tasks | All 03-build-tasks files |
 | Branch | `codex/rag-dt013-final-build-task-impact-review` |
-| Worktree Path | `C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees\rag-dt013-final-build-task-impact-review` |
+| Worktree Path | `C:\tmp\rag-dt013-final-build-task-impact-review` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Draft |
+| Status | Planned |
+| Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-DT013-final-build-task-impact-review.md` |
 
 ## 1. Task Definition
 
@@ -62,7 +63,7 @@ Create the branch and worktree before creating or editing design artifacts.
 
 ```powershell
 $RepoRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot"
-$WorktreeRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot-worktrees"
+$WorktreeRoot = "C:\tmp"
 $TaskId = "rag-dt013"
 $Slug = "final-build-task-impact-review"
 $Branch = "codex/$TaskId-$Slug"
@@ -199,45 +200,6 @@ git -C "$REPO_ROOT" worktree remove "$WORKTREE_PATH"
 git -C "$REPO_ROOT" worktree prune
 git -C "$REPO_ROOT" pull --ff-only origin main
 ```
-## 9. Task Evidence
+## Task Evidence
 
-Branch:
-Worktree:
-PR:
-Commit:
-
-Design Artifact:
-
-Affected Build Tasks:
-
-Files Changed:
--
-
-Checks Run:
--
-
-CI Result:
-
-AI Review Findings:
--
-
-Human Review Notes:
--
-
-Issues Encountered:
--
-
-Resolution:
--
-
-Debt / Follow-Ups:
--
-
-
-
-
-
-
-
-
-
+Evidence is recorded in `pilot_phase2_poc/rag-service/build-evidence/RAG-DT013-final-build-task-impact-review.md`.
