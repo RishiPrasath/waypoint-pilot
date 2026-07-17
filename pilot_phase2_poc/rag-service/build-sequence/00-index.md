@@ -92,6 +92,10 @@ broader local runtime plan.
 Before final build-task impact review, `RAG-DT016` must audit the whole CI/CD
 and REST-service readiness environment, implement any missing CI/CD gates that
 are required before real RAG implementation begins, and prove those gates work.
+After that, `RAG-DT017` must perform an overall architecture sufficiency review
+across design specs, completed design decisions, setup code, CI/CD posture, and
+planned build tasks before `RAG-DT013` is allowed to approve the final build
+task set.
 
 The intended CI maturity path is:
 
@@ -163,7 +167,8 @@ integration, or evaluation build work.
 | 20 | Define test vector DB and CI integration strategy | `02-design-tasks/05-runtime-technical-design/RAG-DT014-test-vector-db-ci-strategy.md` | Qdrant integration tests, seed/cleanup, CI test DB setup. |
 | 21 | Define Docker/local ops design when ready | `02-design-tasks/05-runtime-technical-design/RAG-DT011-docker-local-ops-design.md` | Docker local run and ops readiness. |
 | 22 | Audit and implement CI/CD REST service readiness gate | `02-design-tasks/05-runtime-technical-design/RAG-DT016-cicd-rest-service-readiness-gate.md` | CI/CD gaps, REST service checks, GitHub Actions proof before final impact review. |
-| 23 | Review final build task impact | `02-design-tasks/06-build-impact-review/RAG-DT013-final-build-task-impact-review.md` | All final build tasks. |
+| 23 | Review overall architecture and design sufficiency | `02-design-tasks/05-runtime-technical-design/RAG-DT017-architecture-sufficiency-review.md` | Multi-expert architecture review and follow-up design task recommendations before final impact review. |
+| 24 | Review final build task impact | `02-design-tasks/06-build-impact-review/RAG-DT013-final-build-task-impact-review.md` | All final build tasks. |
 
 ## Lane 3: Final Build Tasks
 
@@ -190,21 +195,21 @@ before implementation starts.
 
 | Order | Task | File | Gate |
 |---:|---|---|---|
-| 24 | Add source registry schema validation | `03-build-tasks/01-ingestion/RAG-BT007-source-registry-validation.md` | Requires `RAG-DT004`, `RAG-DT008`, `RAG-DT013`. |
-| 25 | Add Phase 1 KB audit artifacts | `03-build-tasks/01-ingestion/RAG-BT008-phase1-kb-audit-artifacts.md` | Requires `RAG-DT002`, `RAG-DT003`, `RAG-DT013`. |
-| 26 | Add chunking rules and fixture harness | `03-build-tasks/01-ingestion/RAG-BT009-chunking-fixture-harness.md` | Requires `RAG-DT002`, `RAG-DT005`, `RAG-DT012`, `RAG-DT013`. |
-| 27 | Add embedding adapter | `03-build-tasks/01-ingestion/RAG-BT011-embedding-adapter.md` | Requires `RAG-DT010`, `RAG-DT013`. |
-| 28 | Add fixture ingestion pipeline | `03-build-tasks/01-ingestion/RAG-BT012-fixture-ingestion-pipeline.md` | Requires KB, `RAG-DT005` chunking, Qdrant, embedding gates, `RAG-DT012`, `RAG-DT014`, `RAG-DT013`. |
-| 29 | Add query safeguards and deterministic query planning | `03-build-tasks/02-query/RAG-BT015-query-planning.md` | Requires `RAG-DT007`, `RAG-DT013`. |
-| 30 | Add semantic retrieval baseline | `03-build-tasks/03-retrieval/RAG-BT013-semantic-retrieval-baseline.md` | Requires ingestion fixture data, `RAG-DT005`, `RAG-DT014`, and `RAG-DT013`. |
-| 31 | Add lexical/hybrid retrieval | `03-build-tasks/03-retrieval/RAG-BT014-lexical-hybrid-retrieval.md` | Requires semantic baseline, `RAG-DT005`, `RAG-DT014`, and `RAG-DT013`. |
-| 32 | Add Groq/OpenAI-compatible generation adapter | `03-build-tasks/04-generation/RAG-BT016-generation-adapter.md` | Requires `RAG-DT009`, `RAG-DT015`, `RAG-DT013`. |
-| 33 | Add output validation and retry/fallback | `03-build-tasks/04-generation/RAG-BT017-output-validation-retry-fallback.md` | Requires shared schemas, safeguards, `RAG-DT015`, `RAG-DT013`. |
-| 34 | Add query API endpoint | `03-build-tasks/02-query/RAG-BT018-query-api-endpoint.md` | Requires query, retrieval, generation, validation, `RAG-DT015`, `RAG-DT013`. |
-| 35 | Add evaluation harness | `03-build-tasks/05-evaluation/RAG-BT019-evaluation-harness.md` | Requires `RAG-DT005`, `RAG-DT006`, LLM evaluation result, test DB strategy, query API, `RAG-DT014`, `RAG-DT015`, `RAG-DT013`. |
-| 36 | Add Docker local run | `03-build-tasks/06-ops-readiness/RAG-BT020-docker-local-run.md` | Requires `RAG-DT011`, `RAG-DT014`, `RAG-DT013`, or explicit defer/approval. |
-| 37 | Add observability and ops notes | `03-build-tasks/06-ops-readiness/RAG-BT021-observability-ops-notes.md` | Requires query flow, logging decisions, `RAG-DT013`. |
-| 38 | Production-readiness review | `03-build-tasks/06-ops-readiness/RAG-BT022-production-readiness-review.md` | Requires all required tasks done or deferred. |
+| 25 | Add source registry schema validation | `03-build-tasks/01-ingestion/RAG-BT007-source-registry-validation.md` | Requires `RAG-DT004`, `RAG-DT008`, `RAG-DT013`. |
+| 26 | Add Phase 1 KB audit artifacts | `03-build-tasks/01-ingestion/RAG-BT008-phase1-kb-audit-artifacts.md` | Requires `RAG-DT002`, `RAG-DT003`, `RAG-DT013`. |
+| 27 | Add chunking rules and fixture harness | `03-build-tasks/01-ingestion/RAG-BT009-chunking-fixture-harness.md` | Requires `RAG-DT002`, `RAG-DT005`, `RAG-DT012`, `RAG-DT013`. |
+| 28 | Add embedding adapter | `03-build-tasks/01-ingestion/RAG-BT011-embedding-adapter.md` | Requires `RAG-DT010`, `RAG-DT013`. |
+| 29 | Add fixture ingestion pipeline | `03-build-tasks/01-ingestion/RAG-BT012-fixture-ingestion-pipeline.md` | Requires KB, `RAG-DT005` chunking, Qdrant, embedding gates, `RAG-DT012`, `RAG-DT014`, `RAG-DT013`. |
+| 30 | Add query safeguards and deterministic query planning | `03-build-tasks/02-query/RAG-BT015-query-planning.md` | Requires `RAG-DT007`, `RAG-DT013`. |
+| 31 | Add semantic retrieval baseline | `03-build-tasks/03-retrieval/RAG-BT013-semantic-retrieval-baseline.md` | Requires ingestion fixture data, `RAG-DT005`, `RAG-DT014`, and `RAG-DT013`. |
+| 32 | Add lexical/hybrid retrieval | `03-build-tasks/03-retrieval/RAG-BT014-lexical-hybrid-retrieval.md` | Requires semantic baseline, `RAG-DT005`, `RAG-DT014`, and `RAG-DT013`. |
+| 33 | Add Groq/OpenAI-compatible generation adapter | `03-build-tasks/04-generation/RAG-BT016-generation-adapter.md` | Requires `RAG-DT009`, `RAG-DT015`, `RAG-DT013`. |
+| 34 | Add output validation and retry/fallback | `03-build-tasks/04-generation/RAG-BT017-output-validation-retry-fallback.md` | Requires shared schemas, safeguards, `RAG-DT015`, `RAG-DT013`. |
+| 35 | Add query API endpoint | `03-build-tasks/02-query/RAG-BT018-query-api-endpoint.md` | Requires query, retrieval, generation, validation, `RAG-DT015`, `RAG-DT013`. |
+| 36 | Add evaluation harness | `03-build-tasks/05-evaluation/RAG-BT019-evaluation-harness.md` | Requires `RAG-DT005`, `RAG-DT006`, LLM evaluation result, test DB strategy, query API, `RAG-DT014`, `RAG-DT015`, `RAG-DT013`. |
+| 37 | Add Docker local run | `03-build-tasks/06-ops-readiness/RAG-BT020-docker-local-run.md` | Requires `RAG-DT011`, `RAG-DT014`, `RAG-DT013`, or explicit defer/approval. |
+| 38 | Add observability and ops notes | `03-build-tasks/06-ops-readiness/RAG-BT021-observability-ops-notes.md` | Requires query flow, logging decisions, `RAG-DT013`. |
+| 39 | Production-readiness review | `03-build-tasks/06-ops-readiness/RAG-BT022-production-readiness-review.md` | Requires all required tasks done or deferred. |
 
 ## Standard Paths
 

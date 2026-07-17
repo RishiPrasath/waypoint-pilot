@@ -77,6 +77,7 @@ decision reconciliation
 -> chunking and evaluation design
 -> runtime technical design
 -> CI/CD and REST service readiness gate
+-> overall architecture sufficiency review
 -> final build impact review
 ```
 
@@ -99,7 +100,8 @@ decision reconciliation
 | 20 | `RAG-DT014` | Define test vector DB and CI integration strategy | `05-runtime-technical-design/RAG-DT014-test-vector-db-ci-strategy.md` | Complete |
 | 21 | `RAG-DT011` | Define Docker/local ops design when ready | `05-runtime-technical-design/RAG-DT011-docker-local-ops-design.md` | Deferred |
 | 22 | `RAG-DT016` | Audit and implement CI/CD REST service readiness gate | `05-runtime-technical-design/RAG-DT016-cicd-rest-service-readiness-gate.md` | Planned |
-| 23 | `RAG-DT013` | Final build task impact review | `06-build-impact-review/RAG-DT013-final-build-task-impact-review.md` | Planned |
+| 23 | `RAG-DT017` | Overall architecture and design sufficiency review | `05-runtime-technical-design/RAG-DT017-architecture-sufficiency-review.md` | Planned |
+| 24 | `RAG-DT013` | Final build task impact review | `06-build-impact-review/RAG-DT013-final-build-task-impact-review.md` | Planned |
 
 ## How Design Tasks Fit The Build Sequence
 
@@ -113,7 +115,9 @@ Design tasks happen after foundation setup and CI/CD, but before actual RAG
 implementation tasks such as ingestion, retrieval, generation, API integration,
 or evaluation. `RAG-DT016` is the exception-shaped readiness gate: it may
 implement CI/CD workflow gaps because its purpose is to prove the project
-runway before `RAG-DT013` approves final build tasks.
+runway before architecture and final build-task review. `RAG-DT017` then
+performs a multi-perspective architecture sufficiency review and may recommend
+additional design tasks before `RAG-DT013` approves final build tasks.
 
 ## Standard Design Task Sections
 
