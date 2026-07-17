@@ -1,0 +1,57 @@
+{
+  "case_count": 8,
+  "chunk_count": 10,
+  "generated_at": "2026-07-17T13:32:12.774514+00:00",
+  "model_summaries": [
+    {
+      "case_count": 8,
+      "model_name": "BAAI/bge-small-en",
+      "mrr": 0.9166666666666666,
+      "qdrant_search_p50_ms": 0.7773500037728809,
+      "qdrant_search_p95_ms": 0.967820005462272,
+      "query_embedding_p50_ms": 2.7823999989777803,
+      "query_embedding_p95_ms": 3.106929998466512,
+      "recall_at_1": 0.875,
+      "recall_at_3": 1.0,
+      "recall_at_5": 1.0,
+      "source_mrr": 1.0,
+      "source_recall_at_1": 1.0,
+      "source_recall_at_3": 1.0,
+      "source_recall_at_5": 1.0
+    },
+    {
+      "case_count": 8,
+      "model_name": "BAAI/bge-base-en-v1.5",
+      "mrr": 0.9166666666666666,
+      "qdrant_search_p50_ms": 1.4020500020706095,
+      "qdrant_search_p95_ms": 1.4615600026445463,
+      "query_embedding_p50_ms": 10.38449999759905,
+      "query_embedding_p95_ms": 10.888250000425614,
+      "recall_at_1": 0.875,
+      "recall_at_3": 1.0,
+      "recall_at_5": 1.0,
+      "source_mrr": 1.0,
+      "source_recall_at_1": 1.0,
+      "source_recall_at_3": 1.0,
+      "source_recall_at_5": 1.0
+    },
+    {
+      "case_count": 8,
+      "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+      "mrr": 0.875,
+      "qdrant_search_p50_ms": 0.7618000017828308,
+      "qdrant_search_p95_ms": 0.9234650009602773,
+      "query_embedding_p50_ms": 6.229899998288602,
+      "query_embedding_p95_ms": 6.634689996644738,
+      "recall_at_1": 0.875,
+      "recall_at_3": 0.875,
+      "recall_at_5": 0.875,
+      "source_mrr": 1.0,
+      "source_recall_at_1": 1.0,
+      "source_recall_at_3": 1.0,
+      "source_recall_at_5": 1.0
+    }
+  ],
+  "run_id": "dt010-run-001",
+  "selected_model": "BAAI/bge-small-en"
+}

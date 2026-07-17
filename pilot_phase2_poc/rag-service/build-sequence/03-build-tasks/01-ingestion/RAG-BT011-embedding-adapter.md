@@ -49,6 +49,24 @@ Out Of Scope:
 - choosing final production embedding model
 - heavy local model downloads in unit tests
 
+DT010 Embedding Benchmark Contract:
+
+- Use `docs/design/embedding-benchmark-plan.md` and
+  `docs/design/experiments/embedding-benchmark/dt010-run-001/` as the accepted
+  embedding benchmark evidence.
+- Implement the first-pass real adapter path for FastEmbed.
+- Default first-pass model configuration:
+  - provider: `fastembed`
+  - model name: `BAAI/bge-small-en`
+  - vector dimension: `384`
+  - distance metric: `cosine`
+- Keep the adapter configurable so `BAAI/bge-base-en-v1.5` can be tested later
+  without code changes.
+- Unit tests must keep using the deterministic fixture adapter; FastEmbed model
+  downloads must not be required for normal unit tests.
+- Runtime/config metadata should record provider, model name, dimension,
+  distance metric, and model source/version when available.
+
 ## 2. Worktree And Branch Setup
 
 Create the branch and worktree before creating tests or implementation files.

@@ -147,6 +147,23 @@ DT015 LLM Evaluation Result Contract:
 - The harness should be able to compare future runs against
   `docs/design/llm-model-selection-decision.md` and the DT015 run summary.
 
+DT010 Embedding Benchmark Result Contract:
+
+- Treat DT010 as the design-time embedding benchmark run.
+- DT010 selected `BAAI/bge-small-en` as the first-pass local FastEmbed
+  embedding model.
+- The evaluation harness should be able to load and report against:
+  - `docs/design/embedding-benchmark-plan.md`
+  - `docs/design/experiments/embedding-benchmark/dt010-run-001/benchmark-fixture.jsonl`
+  - `docs/design/experiments/embedding-benchmark/dt010-run-001/benchmark-results.jsonl`
+  - `docs/design/experiments/embedding-benchmark/dt010-run-001/benchmark-summary.md`
+- Evaluation reporting should separate embedding/retrieval baseline quality
+  from LLM answer quality. DT010 metrics include Recall@k, MRR, source recall,
+  query embedding latency, and Qdrant search latency.
+- If later runs change the embedding model, the evaluation harness should
+  compare them against the DT010 selected baseline before accepting a new
+  default.
+
 ## 2. Worktree And Branch Setup
 
 Create the branch and worktree before creating tests or implementation files.

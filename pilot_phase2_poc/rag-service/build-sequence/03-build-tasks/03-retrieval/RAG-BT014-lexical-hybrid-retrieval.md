@@ -70,6 +70,22 @@ DT006 Golden Question Contract:
 - `APAC-215` must remain an exclusion test and must not become a retrievable
   lexical or hybrid content chunk.
 
+DT010 Embedding Benchmark Contract:
+
+- Use the DT010 selected semantic embedding baseline as the dense side of
+  hybrid retrieval:
+  - provider: `fastembed`
+  - model name: `BAAI/bge-small-en`
+  - vector dimension: `384`
+  - distance metric: `cosine`
+- Hybrid retrieval should compare against the same positive DT006 expected
+  chunks used in
+  `docs/design/experiments/embedding-benchmark/dt010-run-001/benchmark-results.jsonl`.
+- Hybrid fusion should improve or preserve the DT010 semantic baseline; any
+  ranking regression below expected chunk Recall@3 must be recorded as a
+  defect or accepted tradeoff.
+- `BAAI/bge-base-en-v1.5` remains a deferred comparison model, not the default.
+
 ## 2. Worktree And Branch Setup
 
 Create the branch and worktree before creating tests or implementation files.

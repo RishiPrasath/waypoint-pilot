@@ -1,6 +1,6 @@
 # RAG-DT010: Define Embedding Benchmark Fixture
 
-Status: Planned
+Status: Complete
 
 ## Sequence Entry
 
@@ -20,7 +20,7 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Worktree Path | `C:\tmp\rag-dt010-embedding-benchmark-fixture` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Planned |
+| Status | Complete |
 | Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-DT010-embedding-benchmark-fixture.md` |
 
 ## 1. Task Definition
@@ -237,6 +237,14 @@ Impact Review Status:
 ## 6. Verification
 
 Review with Embedding Specialist, Retrieval Engineer, and RAG Evaluation Lead.
+
+Verification result:
+
+- `dt010-run-001` executed with FastEmbed and Qdrant local in-memory mode.
+- `BAAI/bge-small-en` selected as the first-pass embedding model.
+- Benchmark artifacts were written under
+  `docs/design/experiments/embedding-benchmark/dt010-run-001/`.
+- Standard service test suite passed.
 
 ## 7. Branch Workflow
 
