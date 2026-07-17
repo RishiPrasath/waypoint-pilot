@@ -1,6 +1,6 @@
 # RAG-DT014 Evidence
 
-Status: In Review - owner decision accepted
+Status: Complete
 
 ## Identity
 
@@ -10,7 +10,7 @@ Worktree: `C:\tmp\rag-dt014-test-vector-db-ci-strategy`
 Starting main commit: `fb7ef0e`
 PR: https://github.com/RishiPrasath/waypoint-pilot/pull/30
 Implementation commit: Current branch HEAD in PR #30
-Merge commit: Pending - PR #30 has not been merged yet
+Merge commit: `db48614`
 
 ## Artifacts
 
@@ -104,15 +104,15 @@ uv run python -m pytest -q -> 12 passed
 
 ## CI And Review
 
-PR CI: Pending - draft PR has no required checks reported yet
+PR CI: No required checks reported on PR #30
 Human review: Accepted owner decision on 2026-07-17
 AI review: Completed initial subagent review before adjustment; accepted findings were incorporated into this gate run.
 
 ## Issues And Recovery
 
 - The owner accepted the decision gate on 2026-07-17.
-- DT014 is not marked `Complete` until the PR is merged, main is refreshed, and
-  the worktree is cleaned up.
+- PR #30 was merged into `main` as merge commit `db48614`.
+- `main` was refreshed after merge.
 - Downstream build-task handoff files were updated after owner gate acceptance.
 - Docker Desktop was initially stopped. It was launched from the command line,
   the daemon became ready, and a disposable Qdrant container smoke test passed.
@@ -136,7 +136,5 @@ AI review: Completed initial subagent review before adjustment; accepted finding
 
 ## Follow-ups
 
-- Merge PR #30 after final review.
-- Pull `origin/main` after merge.
-- Remove/prune the DT014 worktree.
-- Mark post-merge closeout in evidence if a follow-up closeout commit is needed.
+- DT014 is complete.
+- Run RAG-DT013 final build task impact review next.
