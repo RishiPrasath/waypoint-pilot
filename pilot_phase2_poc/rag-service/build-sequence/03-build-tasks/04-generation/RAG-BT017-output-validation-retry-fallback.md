@@ -45,6 +45,20 @@ Acceptance Criteria:
 - max retry behavior is bounded
 - fallback response is safe and standard
 
+DT009 LLM Evaluation Fixture Contract:
+
+- Use the scoring categories in
+  `docs/design/llm-model-evaluation-plan.md`: schema adherence, citation
+  behavior, groundedness, refusal/safety behavior, provider/model errors, and
+  malformed output handling.
+- Validation tests should include citation-shaped responses with DT006/DT005
+  fields: `approved_source`, `document_id`, `snapshot_id`, `chunk_id`,
+  `chunk_strategy`, `heading_path`, `source_uri`, and `candidate_sha256`.
+- Retry/fallback behavior must be bounded and reportable so the evaluation
+  harness can distinguish malformed output, provider error, timeout, and safe
+  refusal.
+- Unit tests must not require API keys or live provider calls.
+
 Out Of Scope:
 
 - retrieval implementation

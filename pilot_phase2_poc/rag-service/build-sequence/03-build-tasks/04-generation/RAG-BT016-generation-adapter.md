@@ -43,6 +43,19 @@ Acceptance Criteria:
 - timeout and model settings come from config
 - no API key is required for unit tests
 
+DT009 LLM Evaluation Fixture Contract:
+
+- Use `docs/design/llm-model-evaluation-plan.md` as the provider/model
+  selection handoff.
+- Adapter configuration must be compatible with `LLM_BASE_URL`,
+  `LLM_API_KEY`, and `LLM_PROVIDER_LABEL` without committing secrets.
+- Unit tests must use mocked provider responses; live provider calls remain out
+  of scope for this build task.
+- Model ID, timeout, and response schema behavior should be configurable so
+  `RAG-BT019` can run the DT009 fixture against shortlisted models.
+- Do not hard-code the final generation model; final model lock requires
+  evaluation evidence.
+
 Out Of Scope:
 
 - live provider benchmarking
