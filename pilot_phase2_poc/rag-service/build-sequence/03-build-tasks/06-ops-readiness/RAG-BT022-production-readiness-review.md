@@ -36,6 +36,22 @@ Design Gates:
 - `all required build tasks`
 - `accepted deferrals only`
 
+DT011 Docker/Local Ops Handoff:
+
+- Production-readiness review must verify whether Docker/local runtime remains
+  in scope.
+- If Docker remains in scope, require evidence from `RAG-BT020` that:
+  - Docker image builds;
+  - Compose starts app and Qdrant;
+  - app `/health` and `/ready` pass through the container;
+  - Qdrant `/readyz` passes;
+  - logs are captured without secrets;
+  - local Docker docs exist.
+- If Trivy or container scanning is deferred, record the accepted deferral and
+  owner reason.
+- Production deployment, Kubernetes, managed Qdrant, backups, and TLS are not
+  implied by DT011 and need explicit future decisions if they become in scope.
+
 Acceptance Criteria:
 
 - all required build tasks are done or explicitly deferred

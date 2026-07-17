@@ -98,7 +98,7 @@ decision reconciliation
 | 18 | `RAG-DT015` | Run LLM model evaluation and selection | `05-runtime-technical-design/RAG-DT015-llm-model-evaluation-run.md` | Complete |
 | 19 | `RAG-DT010` | Define embedding benchmark fixture | `05-runtime-technical-design/RAG-DT010-embedding-benchmark-fixture.md` | Complete |
 | 20 | `RAG-DT014` | Define test vector DB and CI integration strategy | `05-runtime-technical-design/RAG-DT014-test-vector-db-ci-strategy.md` | Complete |
-| 21 | `RAG-DT011` | Define Docker/local ops design when ready | `05-runtime-technical-design/RAG-DT011-docker-local-ops-design.md` | Deferred |
+| 21 | `RAG-DT011` | Define Docker/local ops design when ready | `05-runtime-technical-design/RAG-DT011-docker-local-ops-design.md` | In Review |
 | 22 | `RAG-DT016` | Audit and implement CI/CD REST service readiness gate | `05-runtime-technical-design/RAG-DT016-cicd-rest-service-readiness-gate.md` | Planned |
 | 23 | `RAG-DT017` | Overall architecture and design sufficiency review | `05-runtime-technical-design/RAG-DT017-architecture-sufficiency-review.md` | Planned |
 | 24 | `RAG-DT013` | Final build task impact review | `06-build-impact-review/RAG-DT013-final-build-task-impact-review.md` | Planned |

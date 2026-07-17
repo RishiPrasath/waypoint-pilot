@@ -1,6 +1,6 @@
 # RAG-DT011: Define Docker And Local Ops Design
 
-Status: Deferred
+Status: In Review
 
 ## Sequence Entry
 
@@ -20,7 +20,7 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Worktree Path | `C:\tmp\rag-dt011-docker-local-ops-design` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Deferred |
+| Status | In Review |
 | Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-DT011-docker-local-ops-design.md` |
 
 ## 1. Task Definition
@@ -131,11 +131,13 @@ Required Updates:
 
 Deferred Impact:
 
-- Deferred until Docker/local runtime scope is activated.
+- Production deployment, Kubernetes, managed Qdrant, backup policy, and release
+  environment choices remain out of scope.
+- Full CI/CD readiness implementation remains owned by `RAG-DT016`.
 
 Impact Review Status:
 
-- Deferred until this design task is activated; then pending RAG-DT013 review.
+- Pending `RAG-DT013` review after `RAG-DT016` and `RAG-DT017`.
 
 ## 6. Verification
 

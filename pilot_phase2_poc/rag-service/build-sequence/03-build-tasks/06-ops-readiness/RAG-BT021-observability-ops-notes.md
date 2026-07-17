@@ -36,6 +36,19 @@ Design Gates:
 - `RAG-BT018`
 - `RAG-DT013`
 
+DT011 Docker/Local Ops Handoff:
+
+- Ops notes must include local Docker diagnostics:
+  `docker compose ps`, `docker compose logs --tail 100 rag-service`,
+  `docker compose logs --tail 100 qdrant`, app `/ready`, and Qdrant `/readyz`.
+- Logs must redact secrets, API keys, provider credentials, and future
+  sensitive query content.
+- Local debugging notes must distinguish host-run unit tests from Dockerized
+  integration/runtime checks.
+- Ops checklist should point to `docs/design/docker-local-ops.md` and the
+  `RAG-BT020` local run docs once implemented.
+- Do not require a production telemetry backend in this task.
+
 Acceptance Criteria:
 
 - query ID exists in request lifecycle

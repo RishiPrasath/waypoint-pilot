@@ -63,6 +63,29 @@ DT014 Vector DB Test Handoff:
 - CI gate timing: Compose/local ops validates local reproduction; GitHub
   Actions service container remains the PR integration gate.
 
+DT011 Docker/Local Ops Handoff:
+
+- Implement `Dockerfile`, `docker-compose.yml`, `.dockerignore`, and
+  `docs/ops/local-docker-run.md`.
+- Default fast checks remain host-run and Docker-free:
+  `uv run python -m pytest -q`.
+- Compose must support a Qdrant-only local integration path:
+  `docker compose --profile test up -d qdrant`.
+- Compose must support an app runtime smoke path:
+  `docker compose --profile app up --build`.
+- App container must expose port `8000` and run `app.main:app` with Uvicorn.
+- App container smoke must check `/health` and `/ready`.
+- Qdrant readiness must use `/readyz`; verify the selected healthcheck command
+  works in the chosen Qdrant image before relying on it.
+- Container logs must be available through
+  `docker compose logs --tail 100 rag-service` and
+  `docker compose logs --tail 100 qdrant`.
+- `.dockerignore` must exclude `.venv`, caches, local secrets, `.env` files,
+  and unrelated repo material.
+- Do not mount `legacy/phase1-kb-snapshot/` as runtime KB input.
+- Docker image build and container smoke may join CI only after `RAG-DT016`
+  approves or implements the relevant CI gate.
+
 Acceptance Criteria:
 
 - Docker image builds

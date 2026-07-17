@@ -60,6 +60,18 @@ Out Of Scope:
 - Trivy
 - RAG regression
 
+DT011 Docker/Local Ops Handoff:
+
+- Stage 1 CI remains Docker-free and should not start Qdrant or build a
+  Docker image.
+- Docker image build, Compose smoke tests, and Trivy image scanning are
+  intentionally deferred to `RAG-DT016`, `RAG-BT020`, and later readiness tasks.
+- The future Docker/local target is documented in
+  `docs/design/docker-local-ops.md`.
+- If Stage 1 CI is edited later, preserve the fast command:
+  `uv run python -m pytest -q`.
+- Do not add `RUN_QDRANT_INTEGRATION=1` to Stage 1 CI.
+
 ## 2. Worktree And Branch Setup
 
 ### Windows PowerShell
