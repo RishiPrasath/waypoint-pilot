@@ -39,6 +39,31 @@ Design Gates:
 - `RAG-DT014`
 - `RAG-DT013`
 
+DT014 Vector DB Test Handoff:
+
+- Qdrant test mode: retrieval logic may use fast in-memory/unit checks during
+  implementation; acceptance integration tests must run against service-backed
+  Qdrant.
+- Local command: `docker compose --profile test up -d qdrant`, then
+  `uv run python -m pytest -m integration -q`, then
+  `docker compose --profile test down`.
+- CI command: GitHub Actions Qdrant service container plus
+  `uv run python -m pytest -m integration -q`.
+- Pytest marker: `integration`.
+- Required environment variables: `QDRANT_URL`,
+  `QDRANT_COLLECTION_PREFIX`, `QDRANT_TEST_TIMEOUT_SECONDS`,
+  `RUN_QDRANT_INTEGRATION`; `QDRANT_API_KEY` optional and unset for isolated
+  local/CI containers.
+- Collection naming rule: `rag_test_rag_bt013_<run_id>`.
+- Seed fixture: BT012-ingested DT005 `hybrid_structure_recursive_v1` chunks with
+  DT010 `BAAI/bge-small-en` embeddings.
+- Payload contract: assert `document_id`, `snapshot_id`, `source_id`,
+  `chunk_id`, `heading_path`, `chunk_strategy`, `candidate_sha256`,
+  `content_hash`, `embedding_model`, `embedding_dimension`, and
+  `payload_schema_version`.
+- Cleanup rule: create a unique collection per run and delete it in teardown.
+- CI gate timing: required for this task once BT012 seed/bootstrap exists.
+
 Acceptance Criteria:
 
 - retriever interface exists
@@ -100,9 +125,9 @@ DT010 Embedding Benchmark Contract:
   expected source is present at rank 1 for all positive DT006 benchmark cases,
   and expected chunk is present within top 3 for all positive DT006 benchmark
   cases.
-- Do not require Docker/service Qdrant in this task unless DT014 has already
-  made that a gate; local or mocked vector DB tests may be used for unit-level
-  retrieval behavior.
+- DT014 has accepted service-backed Qdrant as the integration gate. Local or
+  mocked vector DB tests may still be used for unit-level retrieval behavior,
+  but acceptance integration proof must use real Qdrant.
 
 ## 2. Worktree And Branch Setup
 

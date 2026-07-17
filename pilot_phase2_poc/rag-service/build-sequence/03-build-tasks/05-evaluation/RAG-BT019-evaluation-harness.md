@@ -43,6 +43,32 @@ Design Gates:
 - `RAG-BT018`
 - `RAG-DT013`
 
+DT014 Vector DB Test Handoff:
+
+- Qdrant test mode: evaluation unit tests may use committed/mock retrieval
+  results; Qdrant-backed retrieval evaluation must run against service-backed
+  Qdrant.
+- Local command: `docker compose --profile test up -d qdrant`, then
+  `uv run python -m pytest -m integration -q`, then
+  `docker compose --profile test down`.
+- CI command: GitHub Actions Qdrant service container plus
+  `uv run python -m pytest -m integration -q`.
+- Pytest marker: `integration`.
+- Required environment variables: `QDRANT_URL`,
+  `QDRANT_COLLECTION_PREFIX`, `QDRANT_TEST_TIMEOUT_SECONDS`,
+  `RUN_QDRANT_INTEGRATION`; `QDRANT_API_KEY` optional and unset for isolated
+  local/CI containers.
+- Collection naming rule: `rag_test_rag_bt019_<run_id>`.
+- Seed fixture: retrieval fixture from BT012/BT013/BT014 using DT006 golden
+  questions and DT010 embeddings.
+- Payload contract: evaluation reports must separate mocked/unit retrieval
+  results from Qdrant-backed retrieval results and preserve source/chunk
+  lineage.
+- Cleanup rule: delete task-owned collections and report cleanup status in the
+  evaluation artifact.
+- CI gate timing: required once Qdrant-backed retrieval evaluation is promoted
+  to PR regression coverage.
+
 Acceptance Criteria:
 
 - golden question fixture exists

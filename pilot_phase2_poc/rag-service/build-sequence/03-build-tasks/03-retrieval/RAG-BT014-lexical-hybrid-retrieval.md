@@ -38,6 +38,30 @@ Design Gates:
 - `RAG-DT014`
 - `RAG-DT013`
 
+DT014 Vector DB Test Handoff:
+
+- Qdrant test mode: lexical scoring can be unit-tested without Qdrant; hybrid
+  retrieval acceptance must run against the same service-backed Qdrant fixture
+  used by semantic retrieval.
+- Local command: `docker compose --profile test up -d qdrant`, then
+  `uv run python -m pytest -m integration -q`, then
+  `docker compose --profile test down`.
+- CI command: GitHub Actions Qdrant service container plus
+  `uv run python -m pytest -m integration -q`.
+- Pytest marker: `integration`.
+- Required environment variables: `QDRANT_URL`,
+  `QDRANT_COLLECTION_PREFIX`, `QDRANT_TEST_TIMEOUT_SECONDS`,
+  `RUN_QDRANT_INTEGRATION`; `QDRANT_API_KEY` optional and unset for isolated
+  local/CI containers.
+- Collection naming rule: `rag_test_rag_bt014_<run_id>`.
+- Seed fixture: reuse BT013 semantic retrieval fixture collection or recreate
+  the same BT012/DT005/DT010 seed for apples-to-apples ranking comparison.
+- Payload contract: preserve semantic retrieval lineage fields plus lexical and
+  hybrid score fields needed for deterministic ranking reports.
+- Cleanup rule: delete any task-owned collection before/after test; do not
+  delete shared fixtures unless this task created them.
+- CI gate timing: required after BT013 semantic retrieval baseline is stable.
+
 Acceptance Criteria:
 
 - lexical retriever returns candidates

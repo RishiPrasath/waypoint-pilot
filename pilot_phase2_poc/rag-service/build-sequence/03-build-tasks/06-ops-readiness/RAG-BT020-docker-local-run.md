@@ -38,6 +38,31 @@ Design Gates:
 - `RAG-DT014`
 - `RAG-DT013`
 
+DT014 Vector DB Test Handoff:
+
+- Qdrant test mode: implement the accepted local Docker/Compose Qdrant test
+  profile for developer parity with CI.
+- Local command: `docker compose --profile test up -d qdrant`, then
+  `uv run python -m pytest -m integration -q`, then
+  `docker compose --profile test down`.
+- CI command: GitHub Actions Qdrant service container plus
+  `uv run python -m pytest -m integration -q`; Docker image build/smoke may be
+  a separate CI job.
+- Pytest marker: `integration`.
+- Required environment variables: `QDRANT_URL`,
+  `QDRANT_COLLECTION_PREFIX`, `QDRANT_TEST_TIMEOUT_SECONDS`,
+  `RUN_QDRANT_INTEGRATION`; `QDRANT_API_KEY` optional and unset for isolated
+  local/CI containers.
+- Collection naming rule: `rag_test_rag_bt020_<run_id>` for ops smoke tests.
+- Seed fixture: minimal Qdrant smoke fixture plus optional BT012/BT013 seeded
+  fixture when retrieval integration exists.
+- Payload contract: smoke fixture must include the standard DT014 lineage and
+  vector contract fields.
+- Cleanup rule: `docker compose --profile test down` must remove the Qdrant
+  test service, and tests must delete task-owned collections.
+- CI gate timing: Compose/local ops validates local reproduction; GitHub
+  Actions service container remains the PR integration gate.
+
 Acceptance Criteria:
 
 - Docker image builds
