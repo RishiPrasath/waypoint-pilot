@@ -30,24 +30,72 @@ Design: define local embedding benchmark fixture.
 Goal: compare embedding model quality, latency, memory, and local hardware fit
 before locking embedding defaults.
 
+Experiment Method:
+
+- use FastEmbed as the local embedding model source
+- use `qdrant-client` for vector indexing and search
+- use Qdrant local in-memory mode, `QdrantClient(":memory:")`, for this
+  design benchmark
+- use DT005 `hybrid_structure_recursive_v1` chunks as the indexed document
+  fixture
+- use DT006 golden questions as benchmark queries
+- keep Dockerized or service-hosted Qdrant out of this task unless a finding
+  proves local mode is insufficient
+- defer Docker/service Qdrant CI strategy to RAG-DT014
+- defer production adapter implementation to RAG-BT011
+
+Reference Basis:
+
+- Qdrant FastEmbed documentation: `https://qdrant.tech/documentation/fastembed/`
+- Qdrant client local mode documentation:
+  `https://github.com/qdrant/qdrant-client`
+- Qdrant FastEmbed semantic-search tutorial:
+  `https://qdrant.tech/documentation/fastembed/fastembed-semantic-search/`
+- FastEmbed supported models:
+  `https://qdrant.github.io/fastembed/examples/Supported_Models/`
+
 Output Artifact:
 
 ```text
 docs/design/embedding-benchmark-plan.md
 ```
 
+Experiment Output Artifacts:
+
+```text
+docs/design/experiments/embedding-benchmark/dt010-run-001/embedding-model-inventory.json
+docs/design/experiments/embedding-benchmark/dt010-run-001/benchmark-fixture.jsonl
+docs/design/experiments/embedding-benchmark/dt010-run-001/benchmark-results.jsonl
+docs/design/experiments/embedding-benchmark/dt010-run-001/benchmark-summary.md
+```
+
 Acceptance Criteria:
 
 - candidate embedding models are listed
 - local hardware constraints are documented
-- quality metric is defined
-- latency and memory measurement are defined
+- model source is documented as FastEmbed-supported local text embedding models
+- experiment environment is documented as Python 3.12, `uv`, FastEmbed,
+  `qdrant-client`, and Qdrant local `:memory:` mode
+- benchmark inputs are documented as DT005 hybrid chunks, DT006 golden
+  questions, and DT012 source lineage metadata
+- quality metrics are defined, including Recall@k, MRR, expected source match,
+  expected chunk match, and top-k failure notes
+- latency and memory measurement are defined, including chunk embedding time,
+  query embedding time, Qdrant search time, model download/size notes, vector
+  dimension, and local CPU fit
+- benchmark artifacts are written under a run-specific folder
+- benchmark summary recommends selected, deferred, and rejected candidate models
+  with reasons
 - model swap path is documented
+- RAG-DT014 boundary is documented: real Qdrant service/Docker/CI testing is
+  deferred there
 
 Out Of Scope:
 
 - final embedding adapter implementation
 - final model lock without benchmark evidence
+- production Qdrant deployment or CI service-container setup
+- cloud embedding provider evaluation unless explicitly added by a later task
 
 ## 2. Worktree And Branch Setup
 
@@ -92,11 +140,78 @@ git -C "$WORKTREE_PATH" status --short --branch
 
 ```powershell
 Select-String -Path "$WorktreePath\pilot_phase2_poc\rag-service\docs\design\embedding-benchmark-plan.md" -Pattern "latency|memory|quality|model"
+Select-String -Path "$WorktreePath\pilot_phase2_poc\rag-service\docs\design\embedding-benchmark-plan.md" -Pattern "FastEmbed|qdrant-client|QdrantClient|:memory:|Recall@k|MRR|DT005|DT006|DT012|RAG-DT014"
+Test-Path "$WorktreePath\pilot_phase2_poc\rag-service\docs\design\experiments\embedding-benchmark\dt010-run-001"
 ```
 
 ## 4. Design Work
 
 Define benchmark fixture and measurement process.
+
+Required design content:
+
+1. Explain why this task uses local FastEmbed-supported embedding models.
+2. Explain that Qdrant is the vector store/search layer, not the source of the
+   embedding model, except where a Qdrant inference feature is explicitly
+   selected by a later task.
+3. Document the experiment environment:
+   - Python 3.12
+   - `uv`
+   - `fastembed`
+   - `qdrant-client`
+   - Qdrant local in-memory mode, `QdrantClient(":memory:")`
+4. Document the benchmark inputs:
+   - `docs/design/experiments/chunking/dt005-run-001/chunks-hybrid-structure-recursive-v1.jsonl`
+   - DT006 golden questions
+   - DT012 source registry and source lineage metadata
+5. Define the benchmark runner behavior:
+   - load chunk fixtures
+   - load golden questions and expected targets
+   - create a clean in-memory Qdrant collection per candidate model
+   - generate embeddings for chunks
+   - upsert chunk vectors with payload metadata
+   - generate embeddings for each query
+   - search top-k
+   - score expected source and expected chunk retrieval
+   - record latency, vector dimension, failures, and hardware-fit notes
+6. Define required metrics:
+   - Recall@1, Recall@3, and Recall@5
+   - MRR
+   - expected source match
+   - expected chunk match
+   - chunk embedding latency
+   - query embedding latency
+   - Qdrant search latency
+   - model size/download note
+   - memory/local CPU fit note
+7. Define candidate model review:
+   - list candidate model name, dimension, license, model size, language scope,
+     and inclusion reason
+   - include at least one small baseline and one stronger candidate if local
+     hardware permits
+8. Write run artifacts under:
+
+   ```text
+   docs/design/experiments/embedding-benchmark/dt010-run-001/
+   ```
+
+9. Record the decision as selected, deferred, or rejected per model.
+10. Document the boundary with RAG-DT014:
+    - DT010 may use Qdrant local memory mode for benchmark speed and
+      repeatability
+    - DT014 decides Docker/service Qdrant, CI integration, pytest markers,
+      seed/bootstrap, cleanup, and required PR gates
+
+Suggested benchmark command:
+
+```powershell
+Set-Location "$WorktreePath\pilot_phase2_poc\rag-service"
+uv run --with fastembed --with qdrant-client python "docs/design/experiments/embedding-benchmark/run_embedding_benchmark.py"
+```
+
+The runner may be a design artifact for this task. If the benchmark cannot be
+executed because model download, network, disk, or CPU constraints block it,
+record the blocker in the evidence file and still produce the fixture design.
 
 ## 5. Build Task Impact
 
@@ -106,7 +221,10 @@ Affected Build Tasks:
 
 Required Updates:
 
-- Update embedding adapter interface, benchmark fixture, retrieval quality expectations, latency/memory acceptance, and model swap notes.
+- Update embedding adapter interface expectations, benchmark fixture,
+  retrieval quality expectations, latency/memory acceptance, model swap notes,
+  collection vector size/distance expectations, and the DT014 boundary between
+  local benchmark and service-backed integration testing.
 
 Deferred Impact:
 
