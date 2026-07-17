@@ -88,7 +88,7 @@ decision reconciliation
 | 11 | `RAG-DT003` | Create APAC source candidate registry | `02-source-scope-and-registry/RAG-DT003-apac-source-candidate-registry.md` | Complete |
 | 12 | `RAG-DT004` | Confirm KB folder layout and source registry storage location | `03-kb-materialization/RAG-DT004-kb-folder-layout.md` | Complete |
 | 13 | `RAG-DT012` | Define source snapshot and canonical markdown candidate plan | `03-kb-materialization/RAG-DT012-source-snapshot-and-canonical-markdown-candidates.md` | Complete |
-| 14 | `RAG-DT005` | Run chunking experiment during KB curation | `04-chunking-and-evaluation-design/RAG-DT005-chunking-experiment.md` | Planned |
+| 14 | `RAG-DT005` | Run chunking experiment during KB curation | `04-chunking-and-evaluation-design/RAG-DT005-chunking-experiment.md` | Complete |
 | 15 | `RAG-DT006` | Define golden questions and answer rubrics | `04-chunking-and-evaluation-design/RAG-DT006-golden-questions.md` | Planned |
 | 16 | `RAG-DT007` | Define query planner vocabulary and rules artifacts | `05-runtime-technical-design/RAG-DT007-query-planner-artifacts.md` | Planned |
 | 17 | `RAG-DT009` | Define LLM model evaluation fixture | `05-runtime-technical-design/RAG-DT009-llm-model-evaluation-fixture.md` | Planned |
