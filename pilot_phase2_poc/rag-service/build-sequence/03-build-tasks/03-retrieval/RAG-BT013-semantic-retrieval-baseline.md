@@ -72,6 +72,18 @@ DT005 Retrieval Chunk Contract:
   source lineage in addition to semantic match.
 - Fixed-window baseline chunks are not the semantic baseline seed format.
 
+DT006 Golden Question Contract:
+
+- Use positive cases from `docs/evaluation/golden-questions.md` as semantic
+  retrieval fixture expectations where their expected chunks are available.
+- Initial positive retrieval targets are `GQ-001` through `GQ-008`.
+- Retrieval assertions should compare returned `document_id`, `snapshot_id`,
+  `chunk_id`, `heading_path`, `chunk_strategy`, `source_uri`, and
+  `candidate_sha256` against the DT006 expected retrieval tables.
+- Negative, irrelevant, malicious, partner-source, and metadata-only exclusion
+  cases remain evaluation/API behavior checks; do not seed them as successful
+  semantic retrieval targets.
+
 ## 2. Worktree And Branch Setup
 
 Create the branch and worktree before creating tests or implementation files.

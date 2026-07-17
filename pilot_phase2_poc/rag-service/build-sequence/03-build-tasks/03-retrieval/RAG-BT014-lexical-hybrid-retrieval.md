@@ -59,6 +59,17 @@ DT005 Hybrid Retrieval Chunk Contract:
 - Fixed-window chunks may be used only for diagnostic comparison, not as the
   accepted fixture corpus.
 
+DT006 Golden Question Contract:
+
+- Use the same positive DT006 expected chunks as `RAG-BT013` so semantic,
+  lexical, and hybrid retrieval rankings are compared against the same
+  `hybrid_structure_recursive_v1` fixture corpus.
+- Hybrid parity checks should include at least one import case (`GQ-001` or
+  `GQ-002`), one export case (`GQ-004` or `GQ-005`), and one ASEAN Trade
+  Repository case (`GQ-006`, `GQ-007`, or `GQ-008`).
+- `APAC-215` must remain an exclusion test and must not become a retrievable
+  lexical or hybrid content chunk.
+
 ## 2. Worktree And Branch Setup
 
 Create the branch and worktree before creating tests or implementation files.

@@ -47,6 +47,19 @@ Acceptance Criteria:
 - irrelevant question returns standard safe response
 - endpoint uses shared error envelope for invalid input
 
+DT006 Golden Question Contract:
+
+- Use `docs/evaluation/golden-questions.md` to shape API-level mocked response
+  cases after retrieval and generation tasks are wired.
+- Positive API examples should preserve `approved_source`, `document_id`,
+  `snapshot_id`, `chunk_id`, and citation metadata from the selected DT006
+  cases.
+- Negative API examples must include order status, driver assignment,
+  partner-source operational procedure, irrelevant, malicious prompt-injection,
+  and license-sensitive metadata-only exclusion behavior.
+- The endpoint should return a safe response for unsupported cases rather than
+  hallucinating operational state or citing unrelated regulatory sources.
+
 Out Of Scope:
 
 - real provider calls in API tests
