@@ -45,6 +45,22 @@ Acceptance Criteria:
 - malicious or prompt-injection-like questions are blocked before retrieval
 - country/incoterm/entity extraction uses deterministic rules first
 
+DT007 Query Planner Artifact Contract:
+
+- Load deterministic vocabulary from
+  `docs/design/query-planning/planner_vocabulary.json`.
+- Load relevance, out-of-scope, safe-response, source-filter, and rule-order
+  behavior from `docs/design/query-planning/query_planner_rules.yaml`.
+- Use `docs/design/query-planning/query_planner_tests.yaml` as the first
+  implementation fixture set for query safeguards and planner behavior.
+- Emit a `QueryPlan` shape compatible with the DT007
+  `query_plan_contract.required_fields`.
+- Apply rule order before retrieval:
+  malicious prompt injection, license-sensitive reproduction, unsupported
+  operational action/status, partner-source/internal procedure, irrelevant,
+  in-scope boundary, in-scope retrieval, and ambiguous fallback.
+- Keep LLM planner behavior out of scope; deterministic rules run first.
+
 Out Of Scope:
 
 - LLM generation

@@ -60,6 +60,19 @@ DT006 Golden Question Contract:
 - The endpoint should return a safe response for unsupported cases rather than
   hallucinating operational state or citing unrelated regulatory sources.
 
+DT007 Query Planner Artifact Contract:
+
+- API-level mocked pipeline tests should include planner classifications from
+  `docs/design/query-planning/query_planner_tests.yaml`.
+- The endpoint should expose safe behavior for DT007 classifications:
+  `unsupported_operational`, `partner_source_required`, `irrelevant`,
+  `malicious`, `license_sensitive`, and `ambiguous`.
+- Positive mocked responses should preserve planner output fields such as
+  relevance classification, intent, markets, source filters, and retrieval
+  allowance before retrieval/generation output is assembled.
+- Malicious and license-sensitive requests must be blocked or safely refused
+  before retrieval.
+
 Out Of Scope:
 
 - real provider calls in API tests

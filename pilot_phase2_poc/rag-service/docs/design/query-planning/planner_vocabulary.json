@@ -1,0 +1,229 @@
+{
+  "artifact": "planner_vocabulary",
+  "task_id": "RAG-DT007",
+  "status": "accepted",
+  "version": "1.0.0",
+  "updated_on": "2026-07-17",
+  "purpose": "Deterministic vocabulary used by query safeguards and the query planner before retrieval.",
+  "normalization": {
+    "case": "case_insensitive",
+    "punctuation": "ignore_for_term_matching",
+    "hyphenation": "normalize_hyphenated_trade_terms",
+    "pluralization": "match_simple_plural_forms",
+    "language_scope": ["en"],
+    "notes": [
+      "This vocabulary does not approve any source for retrieval.",
+      "Source retrieval remains gated by registry, snapshot, candidate, and canonical promotion rules."
+    ]
+  },
+  "markets": [
+    {
+      "market_id": "SG",
+      "canonical_name": "Singapore",
+      "region": "APAC",
+      "aliases": ["Singapore", "SG", "S'pore", "Singapore Customs"],
+      "source_group": "sg_customs"
+    },
+    {
+      "market_id": "MY",
+      "canonical_name": "Malaysia",
+      "region": "APAC",
+      "aliases": ["Malaysia", "MY", "Malaysia Customs", "Royal Malaysian Customs", "JKDM"],
+      "source_group": "my_customs"
+    },
+    {
+      "market_id": "ID",
+      "canonical_name": "Indonesia",
+      "region": "APAC",
+      "aliases": ["Indonesia", "ID", "Indonesian Customs", "Bea Cukai"],
+      "source_group": "id_customs"
+    },
+    {
+      "market_id": "TH",
+      "canonical_name": "Thailand",
+      "region": "APAC",
+      "aliases": ["Thailand", "TH", "Thai Customs"],
+      "source_group": "th_vn_ph_customs"
+    },
+    {
+      "market_id": "VN",
+      "canonical_name": "Vietnam",
+      "region": "APAC",
+      "aliases": ["Vietnam", "Viet Nam", "VN", "Vietnam Customs"],
+      "source_group": "th_vn_ph_customs"
+    },
+    {
+      "market_id": "PH",
+      "canonical_name": "Philippines",
+      "region": "APAC",
+      "aliases": ["Philippines", "PH", "Philippine Customs", "BOC Philippines"],
+      "source_group": "th_vn_ph_customs"
+    },
+    {
+      "market_id": "ASEAN",
+      "canonical_name": "ASEAN",
+      "region": "APAC",
+      "aliases": ["ASEAN", "ASEAN Member States", "Association of Southeast Asian Nations", "ATR", "ASEAN Trade Repository"],
+      "source_group": "asean_global_reference"
+    },
+    {
+      "market_id": "GLOBAL",
+      "canonical_name": "Global",
+      "region": "Global",
+      "aliases": ["Global", "WCO", "World Customs Organization", "WTO", "ICC"],
+      "source_group": "asean_global_reference"
+    }
+  ],
+  "logistics_terms": [
+    "cargo",
+    "shipment",
+    "freight",
+    "carrier",
+    "pickup",
+    "delivery",
+    "driver",
+    "dispatch",
+    "ETA",
+    "tracking",
+    "order status",
+    "shipment status",
+    "customs clearance",
+    "cargo clearance",
+    "import operation",
+    "export operation",
+    "transhipment",
+    "declaration",
+    "declaring agent",
+    "TradeNet",
+    "Customs Account",
+    "UEN",
+    "permit",
+    "import permit",
+    "export permit",
+    "controlled goods",
+    "prohibited goods",
+    "duty",
+    "GST",
+    "permit fee",
+    "service fee"
+  ],
+  "customs_trade_terms": [
+    "tariff",
+    "tariff nomenclature",
+    "HS code",
+    "Harmonized System",
+    "HS Nomenclature",
+    "AHTN",
+    "classification",
+    "rules of origin",
+    "certificate of origin",
+    "preferential origin",
+    "non-preferential origin",
+    "ATIGA",
+    "Article 13",
+    "non-tariff measures",
+    "NTM",
+    "customs laws",
+    "trade laws",
+    "documentary requirements",
+    "advance ruling",
+    "ruling",
+    "trade facilitation",
+    "authorized economic operator",
+    "AEO",
+    "single window",
+    "ASEAN Single Window",
+    "National Trade Repository",
+    "ASEAN Trade Repository"
+  ],
+  "incoterms": {
+    "edition": "Incoterms 2020",
+    "handling": "detect_only_until_source_promotion",
+    "terms": [
+      "EXW",
+      "FCA",
+      "FAS",
+      "FOB",
+      "CFR",
+      "CIF",
+      "CPT",
+      "CIP",
+      "DAP",
+      "DPU",
+      "DDP"
+    ],
+    "aliases": [
+      "Incoterms",
+      "Incoterms 2020",
+      "trade terms",
+      "delivery terms",
+      "ICC Incoterms"
+    ],
+    "guardrail": "Incoterms questions may be detected, but substantive answers require approved source promotion because ICC sources are license-sensitive."
+  },
+  "source_concepts": [
+    "source",
+    "candidate",
+    "canonical",
+    "registry",
+    "snapshot",
+    "citation",
+    "approved source",
+    "document_id",
+    "snapshot_id",
+    "chunk_id",
+    "source_uri",
+    "retrieval_eligible",
+    "reuse_mode",
+    "license_sensitive"
+  ],
+  "query_intents": [
+    {
+      "intent": "regulatory_explanation",
+      "description": "User asks for public customs, trade, permit, tariff, origin, or repository information.",
+      "retrieval_allowed": true
+    },
+    {
+      "intent": "source_boundary_question",
+      "description": "User asks whether the service can answer transaction-specific or legally sensitive questions from the current corpus.",
+      "retrieval_allowed": true
+    },
+    {
+      "intent": "unsupported_operational_status",
+      "description": "User asks for order, shipment, ETA, delivery-event, account, payment, or permit status.",
+      "retrieval_allowed": false
+    },
+    {
+      "intent": "unsupported_operational_action",
+      "description": "User asks the service to assign a driver, dispatch, book, file, submit, pay, clear cargo, or perform another action.",
+      "retrieval_allowed": false
+    },
+    {
+      "intent": "partner_source_internal_procedure",
+      "description": "User asks for internal partner SOPs or non-public operational procedures.",
+      "retrieval_allowed": false
+    },
+    {
+      "intent": "irrelevant",
+      "description": "User asks about a topic outside APAC trade, customs, logistics, or approved source scope.",
+      "retrieval_allowed": false
+    },
+    {
+      "intent": "malicious_prompt_injection",
+      "description": "User attempts to override instructions, reveal secrets, bypass policy, or exfiltrate hidden data.",
+      "retrieval_allowed": false
+    },
+    {
+      "intent": "license_sensitive_reproduction",
+      "description": "User asks to reproduce protected standards, nomenclature, explanatory notes, or other cite-only content.",
+      "retrieval_allowed": false
+    }
+  ],
+  "safe_response_ids": [
+    "safe_irrelevant",
+    "safe_unsupported_operational",
+    "safe_partner_source_boundary",
+    "safe_malicious_block",
+    "safe_license_sensitive"
+  ]
+}
