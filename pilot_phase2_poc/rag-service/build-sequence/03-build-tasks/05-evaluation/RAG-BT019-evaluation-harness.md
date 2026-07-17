@@ -89,6 +89,20 @@ DT005 Evaluation Chunk Contract:
 - Evaluation may include one negative case proving `APAC-215` is skipped as
   metadata-only and license-sensitive source text.
 
+DT006 Golden Question Contract:
+
+- Load the first evaluation fixture from
+  `docs/evaluation/golden-questions.md`.
+- Preserve the research and candidate-assessment rationale from
+  `docs/evaluation/golden-question-research-findings.md` as the benchmark
+  design record.
+- Report retrieval score, answer score, citation validity, refusal behavior,
+  irrelevant-query behavior, malicious prompt-injection behavior, and
+  metadata-only exclusion behavior as separate result categories.
+- Treat `GQ-001` through `GQ-008` as positive or source-boundary positive
+  cases; treat `GQ-009` through `GQ-014` as negative, irrelevant, malicious,
+  or exclusion cases.
+
 ## 2. Worktree And Branch Setup
 
 Create the branch and worktree before creating tests or implementation files.
