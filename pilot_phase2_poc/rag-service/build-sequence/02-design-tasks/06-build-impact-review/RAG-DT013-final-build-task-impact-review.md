@@ -48,6 +48,9 @@ Acceptance Criteria:
 - any unresolved design decision is explicitly deferred with risk and owner
 - `RAG-DT016` is complete, and any CI/CD readiness gaps it identified have been
   either implemented and proven or explicitly deferred with owner signoff
+- `RAG-DT017` is complete, and any architecture/design sufficiency gaps it
+  identified have been resolved through new design tasks or explicitly deferred
+  with owner signoff
 - no final build task starts with stale KB, metadata, chunking, query, model, or
   Docker/CI assumptions
 - final build sequence remains aligned with `../00-index.md`
