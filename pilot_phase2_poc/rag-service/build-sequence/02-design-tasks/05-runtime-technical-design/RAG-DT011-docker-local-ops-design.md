@@ -1,6 +1,6 @@
 # RAG-DT011: Define Docker And Local Ops Design
 
-Status: In Review
+Status: Complete
 
 ## Sequence Entry
 
@@ -20,7 +20,7 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Worktree Path | `C:\tmp\rag-dt011-docker-local-ops-design` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | In Review |
+| Status | Complete |
 | Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-DT011-docker-local-ops-design.md` |
 
 ## 1. Task Definition
