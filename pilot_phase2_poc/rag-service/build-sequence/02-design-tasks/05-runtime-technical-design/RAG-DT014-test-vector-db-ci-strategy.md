@@ -1,6 +1,6 @@
 # RAG-DT014: Test Vector DB And CI Integration Strategy
 
-Status: Planned
+Status: In Review
 
 ## Sequence Entry
 
@@ -20,7 +20,7 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Worktree Path | `C:\tmp\rag-dt014-test-vector-db-ci-strategy` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Planned |
+| Status | In Review |
 | Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-DT014-test-vector-db-ci-strategy.md` |
 
 ## 1. Task Definition
@@ -320,7 +320,7 @@ The gate must include:
 - owner decision status: `Pending`, `Accepted`, `Rejected`, or `Deferred`
 - downstream tasks blocked until the gate is accepted
 
-The recommended default should be presented as a gate, not silently accepted:
+Owner accepted the gate on 2026-07-17:
 
 ```text
 Use GitHub Actions service container for CI integration tests.
@@ -341,7 +341,7 @@ Required Updates:
   semantic retrieval integration tests, hybrid retrieval integration tests,
   evaluation test requirements, Docker/local run acceptance checks, CI marker
   usage, seed/bootstrap commands, and cleanup rules.
-- Add a concrete DT014 handoff block to each affected build task:
+- Concrete DT014 handoff blocks were added to each affected build task:
 
   ```text
   DT014 Vector DB Test Handoff:

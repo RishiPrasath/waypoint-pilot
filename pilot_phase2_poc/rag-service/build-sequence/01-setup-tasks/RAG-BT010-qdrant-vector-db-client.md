@@ -37,6 +37,29 @@ Acceptance Criteria:
 - client boundary supports upsert/search/delete test cleanup
 - optional local Qdrant smoke test is documented
 
+DT014 Vector DB Test Handoff:
+
+- Qdrant test mode: unit/mock by default; optional live Qdrant smoke test under
+  the `integration` pytest marker.
+- Local command: start local Qdrant with the accepted Docker/Compose test
+  profile when available, then run
+  `uv run python -m pytest -m integration -q`.
+- CI command: GitHub Actions Qdrant service container plus
+  `uv run python -m pytest -m integration -q` after the service is ready.
+- Pytest marker: `integration`.
+- Required environment variables: `QDRANT_URL`,
+  `QDRANT_COLLECTION_PREFIX`, `QDRANT_TEST_TIMEOUT_SECONDS`,
+  `RUN_QDRANT_INTEGRATION`; `QDRANT_API_KEY` optional and unset for isolated
+  local/CI containers.
+- Collection naming rule: `rag_test_rag_bt010_<run_id>`.
+- Seed fixture: minimal wrapper-owned vectors using the DT010 vector contract
+  (`BAAI/bge-small-en`, 384 dimensions, cosine distance).
+- Payload contract: include `payload_schema_version`, `source_id`, `chunk_id`,
+  `content_hash`, `embedding_model`, and `embedding_dimension`.
+- Cleanup rule: delete the smoke-test collection before and after the test.
+- CI gate timing: optional/advisory until BT012 and BT013 exist; required once
+  service-backed ingestion/retrieval tests are promoted.
+
 Out Of Scope:
 
 - full ingestion

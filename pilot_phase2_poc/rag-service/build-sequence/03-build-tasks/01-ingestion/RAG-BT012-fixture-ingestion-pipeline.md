@@ -42,6 +42,33 @@ Design Gates:
 - `RAG-BT010`
 - `RAG-BT011`
 
+DT014 Vector DB Test Handoff:
+
+- Qdrant test mode: fast unit tests may mock the vector DB wrapper; fixture
+  ingestion integration tests must run against service-backed Qdrant.
+- Local command: `docker compose --profile test up -d qdrant`, then
+  `uv run python -m pytest -m integration -q`, then
+  `docker compose --profile test down`.
+- CI command: GitHub Actions Qdrant service container plus
+  `uv run python -m pytest -m integration -q`.
+- Pytest marker: `integration`.
+- Required environment variables: `QDRANT_URL`,
+  `QDRANT_COLLECTION_PREFIX`, `QDRANT_TEST_TIMEOUT_SECONDS`,
+  `RUN_QDRANT_INTEGRATION`; `QDRANT_API_KEY` optional and unset for isolated
+  local/CI containers.
+- Collection naming rule: `rag_test_rag_bt012_<run_id>`.
+- Seed fixture: DT005 `hybrid_structure_recursive_v1` chunks generated from
+  approved DT012 fixture/candidate material, embedded with DT010
+  `BAAI/bge-small-en`.
+- Payload contract: preserve `payload_schema_version`, `document_id`,
+  `snapshot_id`, `source_id`, `chunk_id`, `heading_path`, `chunk_strategy`,
+  `candidate_sha256`, `content_hash`, `embedding_model`, and
+  `embedding_dimension`.
+- Cleanup rule: delete the collection before seed, after assertions, and in
+  teardown/finally.
+- CI gate timing: integration test may be advisory until BT013 exists; becomes
+  required once semantic retrieval depends on the seeded collection.
+
 Acceptance Criteria:
 
 - fixture source is parsed
