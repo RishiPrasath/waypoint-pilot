@@ -138,6 +138,9 @@ DT009 LLM Model Evaluation Fixture Contract:
 DT015 LLM Evaluation Result Contract:
 
 - Treat DT015 as the design-time LLM evaluation run.
+- DT015 selected `llama-3.3-70b-versatile` as the first-pass Groq generation
+  model, with `openai/gpt-oss-120b`, `llama-3.1-8b-instant`, and
+  `openai/gpt-oss-20b` retained as comparison candidates.
 - `RAG-BT019` should implement a repeatable evaluation harness that can rerun
   and regress the DT015 cases, not invent a separate first model-selection
   process.

@@ -92,6 +92,8 @@ DT015 LLM Evaluation Result Contract:
 - Preserve any response fields needed by the DT015 evaluation summary,
   especially selected/deferred model metadata, latency, citation validation,
   and provider/model error classification.
+- DT015 selected `llama-3.3-70b-versatile`; query API mocks should preserve
+  model metadata without coupling endpoint behavior to one hard-coded model.
 - If DT015 deferred or blocked model selection, query API tests must keep
   generation mocked and model configuration injectable.
 

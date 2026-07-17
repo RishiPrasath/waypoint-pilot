@@ -1,0 +1,799 @@
+{
+  "artifact": "llm_model_capability_review",
+  "task_id": "RAG-DT015",
+  "run_id": "dt015-run-001",
+  "generated_at": "2026-07-17T08:01:42.824272+00:00",
+  "provider": {
+    "label": "groq",
+    "base_url_redacted": "https://api.groq.com/openai/v1",
+    "api_key_present": true
+  },
+  "source_notes": [
+    "Capability data primarily came from Groq /models inventory fields returned through the OpenAI-compatible API.",
+    "Groq supported-models documentation was used to confirm production/preview model roles, context windows, max completion tokens, and model categories.",
+    "API keys and authorization headers are not stored in this artifact."
+  ],
+  "models": [
+    {
+      "provider_label": "groq",
+      "model_id": "allam-2-7b",
+      "capability_sources": [
+        "GET /models inventory artifact",
+        "Groq supported models documentation"
+      ],
+      "availability_tier": "preview",
+      "active": true,
+      "owned_by": "SDAIA",
+      "context_window_tokens": 4096,
+      "max_output_tokens": 4096,
+      "supported_inputs": {
+        "text": true,
+        "image": false,
+        "pdf_or_file": "unknown",
+        "audio": false,
+        "voice": "unknown",
+        "raw": [
+          "text"
+        ]
+      },
+      "supported_outputs": {
+        "text": true,
+        "structured_json": true,
+        "audio_or_speech": false,
+        "transcription": false,
+        "raw": [
+          "text"
+        ]
+      },
+      "api_surface": {
+        "openai_compatible_models_api": true,
+        "chat_completions_compatible": true,
+        "responses_api": "unknown",
+        "batch": "unknown",
+        "realtime": "unknown"
+      },
+      "tool_support": false,
+      "schema_json_suitability": "json_mode",
+      "known_limitations": [
+        "preview model; do not use as production default without owner acceptance"
+      ],
+      "assessment_decision": "defer",
+      "decision_rationale": "Text model with JSON mode, but 4K context is small for RAG chunk prompts and the model appears less central to APAC English regulatory evaluation."
+    },
+    {
+      "provider_label": "groq",
+      "model_id": "canopylabs/orpheus-arabic-saudi",
+      "capability_sources": [
+        "GET /models inventory artifact",
+        "Groq supported models documentation"
+      ],
+      "availability_tier": "preview",
+      "active": true,
+      "owned_by": "Canopy Labs",
+      "context_window_tokens": 4000,
+      "max_output_tokens": 50000,
+      "supported_inputs": {
+        "text": true,
+        "image": false,
+        "pdf_or_file": "unknown",
+        "audio": false,
+        "voice": "unknown",
+        "raw": [
+          "text"
+        ]
+      },
+      "supported_outputs": {
+        "text": false,
+        "structured_json": false,
+        "audio_or_speech": true,
+        "transcription": false,
+        "raw": [
+          "speech"
+        ]
+      },
+      "api_surface": {
+        "openai_compatible_models_api": true,
+        "chat_completions_compatible": false,
+        "responses_api": "unknown",
+        "batch": "unknown",
+        "realtime": "unknown"
+      },
+      "tool_support": false,
+      "schema_json_suitability": "unknown",
+      "known_limitations": [
+        "preview model; do not use as production default without owner acceptance",
+        "non-text-generation specialization"
+      ],
+      "assessment_decision": "exclude",
+      "decision_rationale": "Text-to-speech output model; exclude from text RAG answer generation benchmark."
+    },
+    {
+      "provider_label": "groq",
+      "model_id": "canopylabs/orpheus-v1-english",
+      "capability_sources": [
+        "GET /models inventory artifact",
+        "Groq supported models documentation"
+      ],
+      "availability_tier": "preview",
+      "active": true,
+      "owned_by": "Canopy Labs",
+      "context_window_tokens": 4000,
+      "max_output_tokens": 50000,
+      "supported_inputs": {
+        "text": true,
+        "image": false,
+        "pdf_or_file": "unknown",
+        "audio": false,
+        "voice": "unknown",
+        "raw": [
+          "text"
+        ]
+      },
+      "supported_outputs": {
+        "text": false,
+        "structured_json": false,
+        "audio_or_speech": true,
+        "transcription": false,
+        "raw": [
+          "speech"
+        ]
+      },
+      "api_surface": {
+        "openai_compatible_models_api": true,
+        "chat_completions_compatible": false,
+        "responses_api": "unknown",
+        "batch": "unknown",
+        "realtime": "unknown"
+      },
+      "tool_support": false,
+      "schema_json_suitability": "unknown",
+      "known_limitations": [
+        "preview model; do not use as production default without owner acceptance",
+        "non-text-generation specialization"
+      ],
+      "assessment_decision": "exclude",
+      "decision_rationale": "Text-to-speech output model; exclude from text RAG answer generation benchmark."
+    },
+    {
+      "provider_label": "groq",
+      "model_id": "groq/compound",
+      "capability_sources": [
+        "GET /models inventory artifact",
+        "Groq supported models documentation"
+      ],
+      "availability_tier": "production",
+      "active": true,
+      "owned_by": "Groq",
+      "context_window_tokens": 131072,
+      "max_output_tokens": 8192,
+      "supported_inputs": {
+        "text": true,
+        "image": false,
+        "pdf_or_file": "unknown",
+        "audio": false,
+        "voice": "unknown",
+        "raw": [
+          "text"
+        ]
+      },
+      "supported_outputs": {
+        "text": true,
+        "structured_json": true,
+        "audio_or_speech": false,
+        "transcription": false,
+        "raw": [
+          "text"
+        ]
+      },
+      "api_surface": {
+        "openai_compatible_models_api": true,
+        "chat_completions_compatible": true,
+        "responses_api": "unknown",
+        "batch": "unknown",
+        "realtime": "unknown"
+      },
+      "tool_support": false,
+      "schema_json_suitability": "json_mode",
+      "known_limitations": [
+        "agentic built-in tools may introduce external search/code behavior"
+      ],
+      "assessment_decision": "defer",
+      "decision_rationale": "Agentic system with built-in tools; defer for first RAG model benchmark to avoid uncontrolled external tool/web/code behavior."
+    },
+    {
+      "provider_label": "groq",
+      "model_id": "groq/compound-mini",
+      "capability_sources": [
+        "GET /models inventory artifact",
+        "Groq supported models documentation"
+      ],
+      "availability_tier": "production",
+      "active": true,
+      "owned_by": "Groq",
+      "context_window_tokens": 131072,
+      "max_output_tokens": 8192,
+      "supported_inputs": {
+        "text": true,
+        "image": false,
+        "pdf_or_file": "unknown",
+        "audio": false,
+        "voice": "unknown",
+        "raw": [
+          "text"
+        ]
+      },
+      "supported_outputs": {
+        "text": true,
+        "structured_json": true,
+        "audio_or_speech": false,
+        "transcription": false,
+        "raw": [
+          "text"
+        ]
+      },
+      "api_surface": {
+        "openai_compatible_models_api": true,
+        "chat_completions_compatible": true,
+        "responses_api": "unknown",
+        "batch": "unknown",
+        "realtime": "unknown"
+      },
+      "tool_support": false,
+      "schema_json_suitability": "json_mode",
+      "known_limitations": [
+        "agentic built-in tools may introduce external search/code behavior"
+      ],
+      "assessment_decision": "defer",
+      "decision_rationale": "Agentic system with built-in tools; defer for first RAG model benchmark to keep generation evaluation isolated."
+    },
+    {
+      "provider_label": "groq",
+      "model_id": "llama-3.1-8b-instant",
+      "capability_sources": [
+        "GET /models inventory artifact",
+        "Groq supported models documentation"
+      ],
+      "availability_tier": "production",
+      "active": true,
+      "owned_by": "Meta",
+      "context_window_tokens": 131072,
+      "max_output_tokens": 131072,
+      "supported_inputs": {
+        "text": true,
+        "image": false,
+        "pdf_or_file": "unknown",
+        "audio": false,
+        "voice": "unknown",
+        "raw": [
+          "text"
+        ]
+      },
+      "supported_outputs": {
+        "text": true,
+        "structured_json": true,
+        "audio_or_speech": false,
+        "transcription": false,
+        "raw": [
+          "text"
+        ]
+      },
+      "api_surface": {
+        "openai_compatible_models_api": true,
+        "chat_completions_compatible": true,
+        "responses_api": "unknown",
+        "batch": "unknown",
+        "realtime": "unknown"
+      },
+      "tool_support": true,
+      "schema_json_suitability": "json_mode",
+      "known_limitations": [],
+      "assessment_decision": "include",
+      "decision_rationale": "Fast production text model with 131K context, large max output, tools, and JSON mode; useful speed/cost baseline."
+    },
+    {
+      "provider_label": "groq",
+      "model_id": "llama-3.3-70b-versatile",
+      "capability_sources": [
+        "GET /models inventory artifact",
+        "Groq supported models documentation"
+      ],
+      "availability_tier": "production",
+      "active": true,
+      "owned_by": "Meta",
+      "context_window_tokens": 131072,
+      "max_output_tokens": 32768,
+      "supported_inputs": {
+        "text": true,
+        "image": false,
+        "pdf_or_file": "unknown",
+        "audio": false,
+        "voice": "unknown",
+        "raw": [
+          "text"
+        ]
+      },
+      "supported_outputs": {
+        "text": true,
+        "structured_json": true,
+        "audio_or_speech": false,
+        "transcription": false,
+        "raw": [
+          "text"
+        ]
+      },
+      "api_surface": {
+        "openai_compatible_models_api": true,
+        "chat_completions_compatible": true,
+        "responses_api": "unknown",
+        "batch": "unknown",
+        "realtime": "unknown"
+      },
+      "tool_support": true,
+      "schema_json_suitability": "json_mode",
+      "known_limitations": [],
+      "assessment_decision": "include",
+      "decision_rationale": "Production text model with 131K context, 32K max output, tools, and JSON mode; useful quality baseline."
+    },
+    {
+      "provider_label": "groq",
+      "model_id": "meta-llama/llama-4-scout-17b-16e-instruct",
+      "capability_sources": [
+        "GET /models inventory artifact",
+        "Groq supported models documentation"
+      ],
+      "availability_tier": "preview",
+      "active": true,
+      "owned_by": "Meta",
+      "context_window_tokens": 131072,
+      "max_output_tokens": 8192,
+      "supported_inputs": {
+        "text": true,
+        "image": true,
+        "pdf_or_file": "unknown",
+        "audio": false,
+        "voice": "unknown",
+        "raw": [
+          "text",
+          "image"
+        ]
+      },
+      "supported_outputs": {
+        "text": true,
+        "structured_json": true,
+        "audio_or_speech": false,
+        "transcription": false,
+        "raw": [
+          "text"
+        ]
+      },
+      "api_surface": {
+        "openai_compatible_models_api": true,
+        "chat_completions_compatible": true,
+        "responses_api": "unknown",
+        "batch": "unknown",
+        "realtime": "unknown"
+      },
+      "tool_support": true,
+      "schema_json_suitability": "json_mode",
+      "known_limitations": [
+        "preview model; do not use as production default without owner acceptance"
+      ],
+      "assessment_decision": "defer",
+      "decision_rationale": "Preview multimodal model with image input and 8K max output; not needed for first text-only RAG evaluation."
+    },
+    {
+      "provider_label": "groq",
+      "model_id": "meta-llama/llama-prompt-guard-2-22m",
+      "capability_sources": [
+        "GET /models inventory artifact",
+        "Groq supported models documentation"
+      ],
+      "availability_tier": "preview",
+      "active": true,
+      "owned_by": "Meta",
+      "context_window_tokens": 512,
+      "max_output_tokens": 512,
+      "supported_inputs": {
+        "text": true,
+        "image": false,
+        "pdf_or_file": "unknown",
+        "audio": false,
+        "voice": "unknown",
+        "raw": [
+          "text"
+        ]
+      },
+      "supported_outputs": {
+        "text": true,
+        "structured_json": false,
+        "audio_or_speech": false,
+        "transcription": false,
+        "raw": [
+          "text"
+        ]
+      },
+      "api_surface": {
+        "openai_compatible_models_api": true,
+        "chat_completions_compatible": true,
+        "responses_api": "unknown",
+        "batch": "unknown",
+        "realtime": "unknown"
+      },
+      "tool_support": false,
+      "schema_json_suitability": "unknown",
+      "known_limitations": [
+        "preview model; do not use as production default without owner acceptance",
+        "non-text-generation specialization"
+      ],
+      "assessment_decision": "exclude",
+      "decision_rationale": "Prompt guard/safety classifier; not a RAG answer-generation model."
+    },
+    {
+      "provider_label": "groq",
+      "model_id": "meta-llama/llama-prompt-guard-2-86m",
+      "capability_sources": [
+        "GET /models inventory artifact",
+        "Groq supported models documentation"
+      ],
+      "availability_tier": "preview",
+      "active": true,
+      "owned_by": "Meta",
+      "context_window_tokens": 512,
+      "max_output_tokens": 512,
+      "supported_inputs": {
+        "text": true,
+        "image": false,
+        "pdf_or_file": "unknown",
+        "audio": false,
+        "voice": "unknown",
+        "raw": [
+          "text"
+        ]
+      },
+      "supported_outputs": {
+        "text": true,
+        "structured_json": true,
+        "audio_or_speech": false,
+        "transcription": false,
+        "raw": [
+          "text"
+        ]
+      },
+      "api_surface": {
+        "openai_compatible_models_api": true,
+        "chat_completions_compatible": true,
+        "responses_api": "unknown",
+        "batch": "unknown",
+        "realtime": "unknown"
+      },
+      "tool_support": false,
+      "schema_json_suitability": "json_mode",
+      "known_limitations": [
+        "preview model; do not use as production default without owner acceptance",
+        "non-text-generation specialization"
+      ],
+      "assessment_decision": "exclude",
+      "decision_rationale": "Prompt guard/safety classifier; not a RAG answer-generation model."
+    },
+    {
+      "provider_label": "groq",
+      "model_id": "openai/gpt-oss-120b",
+      "capability_sources": [
+        "GET /models inventory artifact",
+        "Groq supported models documentation"
+      ],
+      "availability_tier": "production",
+      "active": true,
+      "owned_by": "OpenAI",
+      "context_window_tokens": 131072,
+      "max_output_tokens": 65536,
+      "supported_inputs": {
+        "text": true,
+        "image": false,
+        "pdf_or_file": "unknown",
+        "audio": false,
+        "voice": "unknown",
+        "raw": [
+          "text"
+        ]
+      },
+      "supported_outputs": {
+        "text": true,
+        "structured_json": true,
+        "audio_or_speech": false,
+        "transcription": false,
+        "raw": [
+          "text"
+        ]
+      },
+      "api_surface": {
+        "openai_compatible_models_api": true,
+        "chat_completions_compatible": true,
+        "responses_api": "unknown",
+        "batch": "unknown",
+        "realtime": "unknown"
+      },
+      "tool_support": true,
+      "schema_json_suitability": "structured_outputs",
+      "known_limitations": [],
+      "assessment_decision": "include",
+      "decision_rationale": "Production text model with 131K context, 65K max output, tools, JSON mode, structured outputs, and reasoning; strong reasoning candidate."
+    },
+    {
+      "provider_label": "groq",
+      "model_id": "openai/gpt-oss-20b",
+      "capability_sources": [
+        "GET /models inventory artifact",
+        "Groq supported models documentation"
+      ],
+      "availability_tier": "production",
+      "active": true,
+      "owned_by": "OpenAI",
+      "context_window_tokens": 131072,
+      "max_output_tokens": 65536,
+      "supported_inputs": {
+        "text": true,
+        "image": false,
+        "pdf_or_file": "unknown",
+        "audio": false,
+        "voice": "unknown",
+        "raw": [
+          "text"
+        ]
+      },
+      "supported_outputs": {
+        "text": true,
+        "structured_json": true,
+        "audio_or_speech": false,
+        "transcription": false,
+        "raw": [
+          "text"
+        ]
+      },
+      "api_surface": {
+        "openai_compatible_models_api": true,
+        "chat_completions_compatible": true,
+        "responses_api": "unknown",
+        "batch": "unknown",
+        "realtime": "unknown"
+      },
+      "tool_support": true,
+      "schema_json_suitability": "structured_outputs",
+      "known_limitations": [],
+      "assessment_decision": "include",
+      "decision_rationale": "Production text model with 131K context, 65K max output, tools, JSON mode, structured outputs, and reasoning; fast/cost reasoning candidate."
+    },
+    {
+      "provider_label": "groq",
+      "model_id": "openai/gpt-oss-safeguard-20b",
+      "capability_sources": [
+        "GET /models inventory artifact",
+        "Groq supported models documentation"
+      ],
+      "availability_tier": "preview",
+      "active": true,
+      "owned_by": "OpenAI",
+      "context_window_tokens": 131072,
+      "max_output_tokens": 65536,
+      "supported_inputs": {
+        "text": true,
+        "image": false,
+        "pdf_or_file": "unknown",
+        "audio": false,
+        "voice": "unknown",
+        "raw": [
+          "text"
+        ]
+      },
+      "supported_outputs": {
+        "text": true,
+        "structured_json": true,
+        "audio_or_speech": false,
+        "transcription": false,
+        "raw": [
+          "text"
+        ]
+      },
+      "api_surface": {
+        "openai_compatible_models_api": true,
+        "chat_completions_compatible": true,
+        "responses_api": "unknown",
+        "batch": "unknown",
+        "realtime": "unknown"
+      },
+      "tool_support": true,
+      "schema_json_suitability": "structured_outputs",
+      "known_limitations": [
+        "preview model; do not use as production default without owner acceptance",
+        "non-text-generation specialization"
+      ],
+      "assessment_decision": "exclude",
+      "decision_rationale": "Safeguard model; useful for safety classification, not first-pass answer generation."
+    },
+    {
+      "provider_label": "groq",
+      "model_id": "qwen/qwen3-32b",
+      "capability_sources": [
+        "GET /models inventory artifact",
+        "Groq supported models documentation"
+      ],
+      "availability_tier": "preview",
+      "active": true,
+      "owned_by": "Alibaba Cloud",
+      "context_window_tokens": 131072,
+      "max_output_tokens": 40960,
+      "supported_inputs": {
+        "text": true,
+        "image": false,
+        "pdf_or_file": "unknown",
+        "audio": false,
+        "voice": "unknown",
+        "raw": [
+          "text"
+        ]
+      },
+      "supported_outputs": {
+        "text": true,
+        "structured_json": true,
+        "audio_or_speech": false,
+        "transcription": false,
+        "raw": [
+          "text"
+        ]
+      },
+      "api_surface": {
+        "openai_compatible_models_api": true,
+        "chat_completions_compatible": true,
+        "responses_api": "unknown",
+        "batch": "unknown",
+        "realtime": "unknown"
+      },
+      "tool_support": true,
+      "schema_json_suitability": "json_mode",
+      "known_limitations": [
+        "preview model; do not use as production default without owner acceptance"
+      ],
+      "assessment_decision": "defer",
+      "decision_rationale": "Preview reasoning text model with 131K context and JSON mode; useful later, but first pass should stay small."
+    },
+    {
+      "provider_label": "groq",
+      "model_id": "qwen/qwen3.6-27b",
+      "capability_sources": [
+        "GET /models inventory artifact",
+        "Groq supported models documentation"
+      ],
+      "availability_tier": "preview",
+      "active": true,
+      "owned_by": "Alibaba Cloud",
+      "context_window_tokens": 131072,
+      "max_output_tokens": 32768,
+      "supported_inputs": {
+        "text": true,
+        "image": true,
+        "pdf_or_file": "unknown",
+        "audio": false,
+        "voice": "unknown",
+        "raw": [
+          "text",
+          "image"
+        ]
+      },
+      "supported_outputs": {
+        "text": true,
+        "structured_json": true,
+        "audio_or_speech": false,
+        "transcription": false,
+        "raw": [
+          "text"
+        ]
+      },
+      "api_surface": {
+        "openai_compatible_models_api": true,
+        "chat_completions_compatible": true,
+        "responses_api": "unknown",
+        "batch": "unknown",
+        "realtime": "unknown"
+      },
+      "tool_support": true,
+      "schema_json_suitability": "json_mode",
+      "known_limitations": [
+        "preview model; do not use as production default without owner acceptance"
+      ],
+      "assessment_decision": "defer",
+      "decision_rationale": "Preview multimodal reasoning model with image input; not needed for first text-only RAG evaluation."
+    },
+    {
+      "provider_label": "groq",
+      "model_id": "whisper-large-v3",
+      "capability_sources": [
+        "GET /models inventory artifact",
+        "Groq supported models documentation"
+      ],
+      "availability_tier": "production",
+      "active": true,
+      "owned_by": "OpenAI",
+      "context_window_tokens": 448,
+      "max_output_tokens": 448,
+      "supported_inputs": {
+        "text": false,
+        "image": false,
+        "pdf_or_file": "unknown",
+        "audio": true,
+        "voice": "unknown",
+        "raw": [
+          "audio"
+        ]
+      },
+      "supported_outputs": {
+        "text": false,
+        "structured_json": false,
+        "audio_or_speech": false,
+        "transcription": true,
+        "raw": [
+          "transcription"
+        ]
+      },
+      "api_surface": {
+        "openai_compatible_models_api": true,
+        "chat_completions_compatible": false,
+        "responses_api": "unknown",
+        "batch": "unknown",
+        "realtime": "unknown"
+      },
+      "tool_support": false,
+      "schema_json_suitability": "unknown",
+      "known_limitations": [
+        "non-text-generation specialization"
+      ],
+      "assessment_decision": "exclude",
+      "decision_rationale": "Speech-to-text transcription model; exclude from text RAG answer generation benchmark."
+    },
+    {
+      "provider_label": "groq",
+      "model_id": "whisper-large-v3-turbo",
+      "capability_sources": [
+        "GET /models inventory artifact",
+        "Groq supported models documentation"
+      ],
+      "availability_tier": "production",
+      "active": true,
+      "owned_by": "OpenAI",
+      "context_window_tokens": 448,
+      "max_output_tokens": 448,
+      "supported_inputs": {
+        "text": false,
+        "image": false,
+        "pdf_or_file": "unknown",
+        "audio": true,
+        "voice": "unknown",
+        "raw": [
+          "audio"
+        ]
+      },
+      "supported_outputs": {
+        "text": false,
+        "structured_json": false,
+        "audio_or_speech": false,
+        "transcription": true,
+        "raw": [
+          "transcription"
+        ]
+      },
+      "api_surface": {
+        "openai_compatible_models_api": true,
+        "chat_completions_compatible": false,
+        "responses_api": "unknown",
+        "batch": "unknown",
+        "realtime": "unknown"
+      },
+      "tool_support": false,
+      "schema_json_suitability": "unknown",
+      "known_limitations": [
+        "non-text-generation specialization"
+      ],
+      "assessment_decision": "exclude",
+      "decision_rationale": "Speech-to-text transcription model; exclude from text RAG answer generation benchmark."
+    }
+  ]
+}
