@@ -1,0 +1,191 @@
+{
+  "artifact": "llm_model_shortlist",
+  "task_id": "RAG-DT015",
+  "run_id": "dt015-run-001",
+  "generated_at": "2026-07-17T08:01:42.824256+00:00",
+  "provider_label": "groq",
+  "selection_policy": {
+    "first_pass_goal": "Evaluate a small representative set of Groq text-generation models for APAC RAG answer generation.",
+    "include_policy": "Include production text models that cover speed baseline, quality baseline, and reasoning/structured-output candidates.",
+    "defer_policy": "Defer preview, multimodal, agentic-tool, or less central models unless first-pass results are insufficient.",
+    "exclude_policy": "Exclude TTS, STT, prompt-guard, safeguard, moderation, embedding, and other non-answer-generation models."
+  },
+  "models": [
+    {
+      "model_id": "allam-2-7b",
+      "decision": "defer",
+      "rationale": "Text model with JSON mode, but 4K context is small for RAG chunk prompts and the model appears less central to APAC English regulatory evaluation.",
+      "context_window_tokens": 4096,
+      "max_output_tokens": 4096,
+      "schema_json_suitability": "json_mode",
+      "availability_tier": "preview"
+    },
+    {
+      "model_id": "canopylabs/orpheus-arabic-saudi",
+      "decision": "exclude",
+      "rationale": "Text-to-speech output model; exclude from text RAG answer generation benchmark.",
+      "context_window_tokens": 4000,
+      "max_output_tokens": 50000,
+      "schema_json_suitability": "unknown",
+      "availability_tier": "preview"
+    },
+    {
+      "model_id": "canopylabs/orpheus-v1-english",
+      "decision": "exclude",
+      "rationale": "Text-to-speech output model; exclude from text RAG answer generation benchmark.",
+      "context_window_tokens": 4000,
+      "max_output_tokens": 50000,
+      "schema_json_suitability": "unknown",
+      "availability_tier": "preview"
+    },
+    {
+      "model_id": "groq/compound",
+      "decision": "defer",
+      "rationale": "Agentic system with built-in tools; defer for first RAG model benchmark to avoid uncontrolled external tool/web/code behavior.",
+      "context_window_tokens": 131072,
+      "max_output_tokens": 8192,
+      "schema_json_suitability": "json_mode",
+      "availability_tier": "production"
+    },
+    {
+      "model_id": "groq/compound-mini",
+      "decision": "defer",
+      "rationale": "Agentic system with built-in tools; defer for first RAG model benchmark to keep generation evaluation isolated.",
+      "context_window_tokens": 131072,
+      "max_output_tokens": 8192,
+      "schema_json_suitability": "json_mode",
+      "availability_tier": "production"
+    },
+    {
+      "model_id": "llama-3.1-8b-instant",
+      "decision": "include",
+      "rationale": "Fast production text model with 131K context, large max output, tools, and JSON mode; useful speed/cost baseline.",
+      "context_window_tokens": 131072,
+      "max_output_tokens": 131072,
+      "schema_json_suitability": "json_mode",
+      "availability_tier": "production"
+    },
+    {
+      "model_id": "llama-3.3-70b-versatile",
+      "decision": "include",
+      "rationale": "Production text model with 131K context, 32K max output, tools, and JSON mode; useful quality baseline.",
+      "context_window_tokens": 131072,
+      "max_output_tokens": 32768,
+      "schema_json_suitability": "json_mode",
+      "availability_tier": "production"
+    },
+    {
+      "model_id": "meta-llama/llama-4-scout-17b-16e-instruct",
+      "decision": "defer",
+      "rationale": "Preview multimodal model with image input and 8K max output; not needed for first text-only RAG evaluation.",
+      "context_window_tokens": 131072,
+      "max_output_tokens": 8192,
+      "schema_json_suitability": "json_mode",
+      "availability_tier": "preview"
+    },
+    {
+      "model_id": "meta-llama/llama-prompt-guard-2-22m",
+      "decision": "exclude",
+      "rationale": "Prompt guard/safety classifier; not a RAG answer-generation model.",
+      "context_window_tokens": 512,
+      "max_output_tokens": 512,
+      "schema_json_suitability": "unknown",
+      "availability_tier": "preview"
+    },
+    {
+      "model_id": "meta-llama/llama-prompt-guard-2-86m",
+      "decision": "exclude",
+      "rationale": "Prompt guard/safety classifier; not a RAG answer-generation model.",
+      "context_window_tokens": 512,
+      "max_output_tokens": 512,
+      "schema_json_suitability": "json_mode",
+      "availability_tier": "preview"
+    },
+    {
+      "model_id": "openai/gpt-oss-120b",
+      "decision": "include",
+      "rationale": "Production text model with 131K context, 65K max output, tools, JSON mode, structured outputs, and reasoning; strong reasoning candidate.",
+      "context_window_tokens": 131072,
+      "max_output_tokens": 65536,
+      "schema_json_suitability": "structured_outputs",
+      "availability_tier": "production"
+    },
+    {
+      "model_id": "openai/gpt-oss-20b",
+      "decision": "include",
+      "rationale": "Production text model with 131K context, 65K max output, tools, JSON mode, structured outputs, and reasoning; fast/cost reasoning candidate.",
+      "context_window_tokens": 131072,
+      "max_output_tokens": 65536,
+      "schema_json_suitability": "structured_outputs",
+      "availability_tier": "production"
+    },
+    {
+      "model_id": "openai/gpt-oss-safeguard-20b",
+      "decision": "exclude",
+      "rationale": "Safeguard model; useful for safety classification, not first-pass answer generation.",
+      "context_window_tokens": 131072,
+      "max_output_tokens": 65536,
+      "schema_json_suitability": "structured_outputs",
+      "availability_tier": "preview"
+    },
+    {
+      "model_id": "qwen/qwen3-32b",
+      "decision": "defer",
+      "rationale": "Preview reasoning text model with 131K context and JSON mode; useful later, but first pass should stay small.",
+      "context_window_tokens": 131072,
+      "max_output_tokens": 40960,
+      "schema_json_suitability": "json_mode",
+      "availability_tier": "preview"
+    },
+    {
+      "model_id": "qwen/qwen3.6-27b",
+      "decision": "defer",
+      "rationale": "Preview multimodal reasoning model with image input; not needed for first text-only RAG evaluation.",
+      "context_window_tokens": 131072,
+      "max_output_tokens": 32768,
+      "schema_json_suitability": "json_mode",
+      "availability_tier": "preview"
+    },
+    {
+      "model_id": "whisper-large-v3",
+      "decision": "exclude",
+      "rationale": "Speech-to-text transcription model; exclude from text RAG answer generation benchmark.",
+      "context_window_tokens": 448,
+      "max_output_tokens": 448,
+      "schema_json_suitability": "unknown",
+      "availability_tier": "production"
+    },
+    {
+      "model_id": "whisper-large-v3-turbo",
+      "decision": "exclude",
+      "rationale": "Speech-to-text transcription model; exclude from text RAG answer generation benchmark.",
+      "context_window_tokens": 448,
+      "max_output_tokens": 448,
+      "schema_json_suitability": "unknown",
+      "availability_tier": "production"
+    }
+  ],
+  "included_model_ids": [
+    "llama-3.1-8b-instant",
+    "llama-3.3-70b-versatile",
+    "openai/gpt-oss-120b",
+    "openai/gpt-oss-20b"
+  ],
+  "deferred_model_ids": [
+    "allam-2-7b",
+    "groq/compound",
+    "groq/compound-mini",
+    "meta-llama/llama-4-scout-17b-16e-instruct",
+    "qwen/qwen3-32b",
+    "qwen/qwen3.6-27b"
+  ],
+  "excluded_model_ids": [
+    "canopylabs/orpheus-arabic-saudi",
+    "canopylabs/orpheus-v1-english",
+    "meta-llama/llama-prompt-guard-2-22m",
+    "meta-llama/llama-prompt-guard-2-86m",
+    "openai/gpt-oss-safeguard-20b",
+    "whisper-large-v3",
+    "whisper-large-v3-turbo"
+  ]
+}

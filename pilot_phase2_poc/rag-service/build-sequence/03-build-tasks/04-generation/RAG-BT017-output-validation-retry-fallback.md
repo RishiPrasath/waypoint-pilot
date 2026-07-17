@@ -65,6 +65,9 @@ DT015 LLM Evaluation Result Contract:
 - Use DT015 evaluation failures to prioritize validation cases for malformed
   output, missing citations, schema drift, refusal behavior, and provider/model
   errors.
+- DT015 selected `llama-3.3-70b-versatile`; validation tests should remain
+  provider-agnostic but include fixtures compatible with that model's JSON and
+  citation behavior.
 - If DT015 marks model selection deferred or blocked, validation must remain
   provider-agnostic and configurable.
 

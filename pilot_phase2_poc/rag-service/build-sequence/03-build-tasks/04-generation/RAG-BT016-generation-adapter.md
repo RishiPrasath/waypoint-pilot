@@ -62,8 +62,9 @@ DT015 LLM Evaluation Result Contract:
 - Before implementation, read
   `docs/design/llm-model-selection-decision.md` and the latest
   `docs/design/experiments/llm-model-evaluation/runs/<run-id>/evaluation-summary.md`.
-- If DT015 selected a model, make that model configurable as the default
-  candidate without hard-coding secrets or provider account details.
+- DT015 selected `llama-3.3-70b-versatile` on Groq as the first-pass default
+  generation candidate. Make that model configurable as the default candidate
+  without hard-coding secrets or provider account details.
 - If DT015 deferred or blocked selection, keep the adapter model configurable
   and record the deferral in task evidence.
 

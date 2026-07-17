@@ -1,6 +1,6 @@
 # RAG-DT015: Run LLM Model Evaluation And Selection
 
-Status: Planned
+Status: Complete
 
 ## Sequence Entry
 
@@ -16,11 +16,11 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Decision / ADR | ADR-RAG-0003 |
 | Related Planning Docs | `docs/design/llm-model-evaluation-plan.md` |
 | Affected Build Tasks | RAG-BT016, RAG-BT017, RAG-BT018, RAG-BT019 |
-| Branch | `codex/rag-dt015-llm-model-evaluation-run` |
-| Worktree Path | `C:\tmp\rag-dt015-llm-model-evaluation-run` |
+| Branch | `codex/rag-dt015-llm-model-evaluation-execution` |
+| Worktree Path | `C:\tmp\rag-dt015-llm-model-evaluation-execution` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Planned |
+| Status | Complete |
 | Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-DT015-llm-model-evaluation-run.md` |
 
 ## 1. Task Definition
