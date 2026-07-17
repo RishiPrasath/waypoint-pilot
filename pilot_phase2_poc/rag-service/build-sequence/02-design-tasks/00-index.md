@@ -46,8 +46,8 @@ not assumed to exist before the relevant task runs.
 Design decisions may change final build tasks. When a design task changes the
 expected KB layout, metadata model, source registry, source materialization
 rules, chunking strategy, query rules, embedding benchmark, LLM evaluation
-fixture, LLM model evaluation result, or local ops scope, update the affected
-file under:
+fixture, LLM model evaluation result, local ops scope, or CI/CD readiness gate,
+update the affected file under:
 
 ```text
 ../03-build-tasks/
@@ -76,6 +76,7 @@ decision reconciliation
 -> KB materialization
 -> chunking and evaluation design
 -> runtime technical design
+-> CI/CD and REST service readiness gate
 -> final build impact review
 ```
 
@@ -97,7 +98,8 @@ decision reconciliation
 | 19 | `RAG-DT010` | Define embedding benchmark fixture | `05-runtime-technical-design/RAG-DT010-embedding-benchmark-fixture.md` | Complete |
 | 20 | `RAG-DT014` | Define test vector DB and CI integration strategy | `05-runtime-technical-design/RAG-DT014-test-vector-db-ci-strategy.md` | Complete |
 | 21 | `RAG-DT011` | Define Docker/local ops design when ready | `05-runtime-technical-design/RAG-DT011-docker-local-ops-design.md` | Deferred |
-| 22 | `RAG-DT013` | Final build task impact review | `06-build-impact-review/RAG-DT013-final-build-task-impact-review.md` | Planned |
+| 22 | `RAG-DT016` | Audit and implement CI/CD REST service readiness gate | `05-runtime-technical-design/RAG-DT016-cicd-rest-service-readiness-gate.md` | Planned |
+| 23 | `RAG-DT013` | Final build task impact review | `06-build-impact-review/RAG-DT013-final-build-task-impact-review.md` | Planned |
 
 ## How Design Tasks Fit The Build Sequence
 
@@ -109,7 +111,9 @@ The main execution sequence is:
 
 Design tasks happen after foundation setup and CI/CD, but before actual RAG
 implementation tasks such as ingestion, retrieval, generation, API integration,
-or evaluation.
+or evaluation. `RAG-DT016` is the exception-shaped readiness gate: it may
+implement CI/CD workflow gaps because its purpose is to prove the project
+runway before `RAG-DT013` approves final build tasks.
 
 ## Standard Design Task Sections
 
