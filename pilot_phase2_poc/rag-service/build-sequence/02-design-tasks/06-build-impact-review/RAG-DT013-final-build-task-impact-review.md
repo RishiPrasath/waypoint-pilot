@@ -29,7 +29,8 @@ Design: review completed design decisions and update affected final build task
 files before implementation begins.
 
 Goal: prevent final build tasks from using stale assumptions after KB,
-chunking, metadata, model, Docker, or query-planning decisions are completed.
+chunking, metadata, model, Docker, CI/CD readiness, or query-planning decisions
+are completed.
 
 Output Artifact:
 
@@ -45,8 +46,10 @@ Acceptance Criteria:
 - build tasks do not ingest or test against `legacy/phase1-kb-snapshot/` unless
   a design task explicitly says it is an audit fixture
 - any unresolved design decision is explicitly deferred with risk and owner
+- `RAG-DT016` is complete, and any CI/CD readiness gaps it identified have been
+  either implemented and proven or explicitly deferred with owner signoff
 - no final build task starts with stale KB, metadata, chunking, query, model, or
-  Docker assumptions
+  Docker/CI assumptions
 - final build sequence remains aligned with `../00-index.md`
 
 Out Of Scope:
