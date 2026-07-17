@@ -13,8 +13,8 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Task Name | Add Lexical And Hybrid Retrieval |
 | Build Stage | 03-retrieval - Retrieval |
 | Source Question | RAG-Q009, RAG-Q017 |
-| Decision / ADR | ADR-RAG-0007, RAG-DT013 |
-| Design Dependencies | RAG-BT013, RAG-DT014, RAG-DT013 |
+| Decision / ADR | ADR-RAG-0007, RAG-DT005, RAG-DT013 |
+| Design Dependencies | RAG-BT013, RAG-DT005, RAG-DT014, RAG-DT013 |
 | Depends On Build Tasks | see section 1 and section 3 |
 | Branch | `codex/rag-bt014-lexical-hybrid-retrieval` |
 | Worktree Path | `C:\tmp\rag-bt014-lexical-hybrid-retrieval` |
@@ -34,6 +34,7 @@ Module: `app/stages/stage_03_retrieval/`.
 Design Gates:
 
 - `RAG-BT013`
+- `RAG-DT005`
 - `RAG-DT014`
 - `RAG-DT013`
 
@@ -48,6 +49,15 @@ Out Of Scope:
 
 - LLM reranker dependency
 - large-scale benchmark
+
+DT005 Hybrid Retrieval Chunk Contract:
+
+- Lexical and hybrid retrieval must use the same `hybrid_structure_recursive_v1` chunk IDs
+  as semantic retrieval so ranking comparisons are apples-to-apples.
+- Fixture ranking assertions should include `heading_path`, `document_id`,
+  `snapshot_id`, `candidate_sha256`, and `recursive_split_applied` metadata.
+- Fixed-window chunks may be used only for diagnostic comparison, not as the
+  accepted fixture corpus.
 
 ## 2. Worktree And Branch Setup
 

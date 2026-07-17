@@ -1,6 +1,6 @@
 # RAG-DT005: Run Chunking Experiment During KB Curation
 
-Status: Planned
+Status: Complete
 
 ## Sequence Entry
 
@@ -20,7 +20,7 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Worktree Path | `C:\tmp\rag-dt005-chunking-experiment` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Planned |
+| Status | Complete |
 | Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-DT005-chunking-experiment.md` |
 
 ## 1. Task Definition
@@ -34,6 +34,11 @@ Output Artifact:
 
 ```text
 docs/design/chunking-experiment.md
+docs/design/experiments/chunking/dt005-run-001/queue-manifest.json
+docs/design/experiments/chunking/dt005-run-001/chunks-fixed-window-baseline.jsonl
+docs/design/experiments/chunking/dt005-run-001/chunks-structure-aware-v1.jsonl
+docs/design/experiments/chunking/dt005-run-001/chunks-hybrid-structure-recursive-v1.jsonl
+docs/design/experiments/chunking/dt005-run-001/comparison-report.md
 ```
 
 Acceptance Criteria:
@@ -45,6 +50,9 @@ Acceptance Criteria:
 - legacy Phase 1 KB files may be used to understand document shape, but only
   audited/promoted candidates may drive the final chunking decision
 - at least two chunking strategies are compared
+- the experiment is manifest-driven and queue-shaped
+- candidate hashes are verified before chunking
+- generated chunk records are stored as JSONL
 - metadata carried by each chunk is documented
 - chosen strategy and rejected alternatives are recorded
 - retrieval impact is described
@@ -97,11 +105,20 @@ git -C "$WORKTREE_PATH" status --short --branch
 
 ```powershell
 Select-String -Path "$WorktreePath\pilot_phase2_poc\rag-service\docs\design\chunking-experiment.md" -Pattern "chosen strategy|metadata|rejected|retrieval impact"
+Select-String -Path "$WorktreePath\pilot_phase2_poc\rag-service\docs\design\chunking-experiment.md" -Pattern "run_id|queue-manifest|jsonl|hash_verified"
 ```
 
 ## 4. Design Work
 
 Run small, representative chunking experiments and record results.
+
+The experiment must be pipeline-shaped, even though production ingestion and a
+production queue backend remain out of scope. Use this local design-run shape:
+
+```text
+snapshot manifest -> queue item -> candidate loader -> hash verification
+-> markdown parser -> chunking strategy -> JSONL chunk records -> report
+```
 
 The experiment set must include APAC trade-lane material and at least one
 structured/table-heavy source so the final chunking rule is not optimized only
@@ -116,6 +133,18 @@ pilot_phase2_poc/rag-service/legacy/phase1-kb-snapshot/
 Final chunking rules must be based on audited/promoted Phase 2 source
 candidates, not the legacy folder as a runtime input.
 
+Accepted result:
+
+- `hybrid_structure_recursive_v1` is the chosen strategy.
+- `structure_aware_v1` is retained as a structure-only comparison strategy.
+- `fixed_window_baseline_v1` is the rejected baseline.
+- `APAC-215` is recorded as skipped because it is metadata-only and
+  license-sensitive.
+- The runner records both normalized text SHA-256 and raw checkout SHA-256 so
+  Windows CRLF checkout behavior does not break canonical markdown hash checks.
+- Each candidate is assessed against the hybrid strategy and recursive fallback
+  behavior is recorded per chunk.
+
 ## 5. Build Task Impact
 
 Affected Build Tasks:
@@ -127,10 +156,15 @@ Required Updates:
 - Update chunking rules, chunk metadata expectations, ingestion output,
   retrieval tests, evaluation fixture expectations, and fixture paths so they do
   not accidentally ingest `legacy/`.
+- Point affected build tasks to
+  `docs/design/experiments/chunking/dt005-run-001/chunks-hybrid-structure-recursive-v1.jsonl`
+  as the design fixture shape for future implementation.
 
 Deferred Impact:
 
 - Embedding model lock remains in RAG-DT010.
+- Production queue backend and worker execution remain out of scope until the
+  ingestion pipeline build tasks.
 
 Impact Review Status:
 

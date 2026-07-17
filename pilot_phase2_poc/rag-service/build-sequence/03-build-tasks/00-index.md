@@ -116,12 +116,12 @@ from hyphenated folder names.
 | 25 | `RAG-BT011` | Add Embedding Adapter | `01-ingestion/RAG-BT011-embedding-adapter.md` | RAG-DT010, RAG-DT013 |
 | 26 | `RAG-BT012` | Add Fixture Ingestion Pipeline | `01-ingestion/RAG-BT012-fixture-ingestion-pipeline.md` | RAG-DT004, RAG-DT005, RAG-DT008, RAG-DT012, RAG-DT014, RAG-DT013, RAG-BT010, RAG-BT011 |
 | 27 | `RAG-BT015` | Add Query Safeguards And Deterministic Query Planning | `02-query/RAG-BT015-query-planning.md` | RAG-DT007, RAG-DT013 |
-| 28 | `RAG-BT013` | Add Semantic Retrieval Baseline | `03-retrieval/RAG-BT013-semantic-retrieval-baseline.md` | RAG-BT012, RAG-DT012, RAG-DT014, RAG-DT013 |
-| 29 | `RAG-BT014` | Add Lexical And Hybrid Retrieval | `03-retrieval/RAG-BT014-lexical-hybrid-retrieval.md` | RAG-BT013, RAG-DT014, RAG-DT013 |
+| 28 | `RAG-BT013` | Add Semantic Retrieval Baseline | `03-retrieval/RAG-BT013-semantic-retrieval-baseline.md` | RAG-BT012, RAG-DT005, RAG-DT012, RAG-DT014, RAG-DT013 |
+| 29 | `RAG-BT014` | Add Lexical And Hybrid Retrieval | `03-retrieval/RAG-BT014-lexical-hybrid-retrieval.md` | RAG-BT013, RAG-DT005, RAG-DT014, RAG-DT013 |
 | 30 | `RAG-BT016` | Add Groq/OpenAI-Compatible Generation Adapter | `04-generation/RAG-BT016-generation-adapter.md` | RAG-DT009, RAG-DT013 |
 | 31 | `RAG-BT017` | Add Output Validation And Retry/Fallback | `04-generation/RAG-BT017-output-validation-retry-fallback.md` | RAG-BT006, RAG-BT015, RAG-BT016, RAG-DT013 |
 | 32 | `RAG-BT018` | Add Query API Endpoint | `02-query/RAG-BT018-query-api-endpoint.md` | RAG-BT015, RAG-BT013, RAG-BT014, RAG-BT016, RAG-BT017, RAG-DT013 |
-| 33 | `RAG-BT019` | Add Evaluation Harness | `05-evaluation/RAG-BT019-evaluation-harness.md` | RAG-DT004, RAG-DT006, RAG-DT012, RAG-DT014, RAG-BT018, RAG-DT013 |
+| 33 | `RAG-BT019` | Add Evaluation Harness | `05-evaluation/RAG-BT019-evaluation-harness.md` | RAG-DT004, RAG-DT005, RAG-DT006, RAG-DT012, RAG-DT014, RAG-BT018, RAG-DT013 |
 | 34 | `RAG-BT020` | Add Docker Local Run | `06-ops-readiness/RAG-BT020-docker-local-run.md` | RAG-DT004, RAG-DT011, RAG-DT014, RAG-DT013 |
 | 35 | `RAG-BT021` | Add Observability And Ops Notes | `06-ops-readiness/RAG-BT021-observability-ops-notes.md` | RAG-BT018, RAG-DT013 |
 | 36 | `RAG-BT022` | Production-Readiness Review | `06-ops-readiness/RAG-BT022-production-readiness-review.md` | all required build tasks, accepted deferrals only |

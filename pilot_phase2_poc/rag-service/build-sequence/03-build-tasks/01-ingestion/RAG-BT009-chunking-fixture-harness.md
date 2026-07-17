@@ -78,6 +78,23 @@ DT012 Fixture Input Contract:
 - Verify candidate SHA-256 values from the manifest before producing fixture
   assertions or comparison reports.
 
+DT005 Chunking Strategy Contract:
+
+- Implement `hybrid_structure_recursive_v1` from
+  `docs/design/chunking-experiment.md`.
+- Use
+  `docs/design/experiments/chunking/dt005-run-001/chunks-hybrid-structure-recursive-v1.jsonl`
+  as the expected design fixture shape.
+- Preserve deterministic chunk IDs in this format:
+  `{document_id}-{snapshot_id}-hsr-{chunk_index:03d}`.
+- Keep the fixed-window strategy only as a baseline or regression comparison;
+  it is not the default implementation strategy.
+- Keep plain `structure_aware_v1` as a comparison strategy only; it is not the
+  final accepted implementation strategy because long heading sections need a
+  recursive fallback.
+- Verify normalized text SHA-256 before chunking, and record raw checkout
+  SHA-256 only as diagnostic evidence when line endings differ.
+
 ## 2. Worktree And Branch Setup
 
 Create the branch and worktree before creating tests or implementation files.

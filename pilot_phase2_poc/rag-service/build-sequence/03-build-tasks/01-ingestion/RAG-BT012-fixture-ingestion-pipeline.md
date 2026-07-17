@@ -84,6 +84,19 @@ DT012 Fixture Ingestion Contract:
   reports and chunk metadata.
 - Reject metadata-only `APAC-215` as source text.
 
+DT005 Chunk Output Contract:
+
+- Treat `hybrid_structure_recursive_v1` as the accepted chunking strategy.
+- Ingestion reports must be compatible with the JSONL shape in
+  `docs/design/experiments/chunking/dt005-run-001/chunks-hybrid-structure-recursive-v1.jsonl`.
+- The ingestion pipeline should preserve `heading_path`, `candidate_sha256`,
+  `chunk_strategy`, `chunk_index`, `section_part_index`,
+  `recursive_split_applied`, `source_lineage`, and all DT012 lineage fields on
+  every emitted chunk.
+- The pipeline may use a real queue later, but it must keep the same
+  manifest-driven job semantics proven by
+  `docs/design/experiments/chunking/dt005-run-001/queue-manifest.json`.
+
 ## 2. Worktree And Branch Setup
 
 Create the branch and worktree before creating tests or implementation files.

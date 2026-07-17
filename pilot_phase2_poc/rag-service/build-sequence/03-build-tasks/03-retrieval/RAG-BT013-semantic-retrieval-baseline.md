@@ -13,8 +13,8 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Task Name | Add Semantic Retrieval Baseline |
 | Build Stage | 03-retrieval - Retrieval |
 | Source Question | RAG-Q009, RAG-Q017 |
-| Decision / ADR | ADR-RAG-0007, RAG-DT012, RAG-DT013 |
-| Design Dependencies | RAG-BT012, RAG-DT012, RAG-DT014, RAG-DT013 |
+| Decision / ADR | ADR-RAG-0007, RAG-DT005, RAG-DT012, RAG-DT013 |
+| Design Dependencies | RAG-BT012, RAG-DT005, RAG-DT012, RAG-DT014, RAG-DT013 |
 | Depends On Build Tasks | see section 1 and section 3 |
 | Branch | `codex/rag-bt013-semantic-retrieval-baseline` |
 | Worktree Path | `C:\tmp\rag-bt013-semantic-retrieval-baseline` |
@@ -34,6 +34,7 @@ Module: `app/stages/stage_03_retrieval/`.
 Design Gates:
 
 - `RAG-BT012`
+- `RAG-DT005`
 - `RAG-DT012`
 - `RAG-DT014`
 - `RAG-DT013`
@@ -60,6 +61,16 @@ DT012 Retrieval Fixture Contract:
 - Retrieval assertions must include `document_id`, `snapshot_id`, source URI,
   and candidate SHA-256 when the fixture originates from DT012 candidates.
 - Do not seed `APAC-215` as retrievable domain content.
+
+DT005 Retrieval Chunk Contract:
+
+- Seed semantic retrieval from `hybrid_structure_recursive_v1` chunks or ingestion outputs
+  that preserve the same metadata shape as
+  `docs/design/experiments/chunking/dt005-run-001/chunks-hybrid-structure-recursive-v1.jsonl`.
+- Retrieval tests must assert `chunk_id`, `heading_path`, `chunk_strategy`,
+  `candidate_sha256`, `section_part_index`, `recursive_split_applied`, and
+  source lineage in addition to semantic match.
+- Fixed-window baseline chunks are not the semantic baseline seed format.
 
 ## 2. Worktree And Branch Setup
 
