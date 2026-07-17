@@ -97,6 +97,21 @@ DT005 Chunk Output Contract:
   manifest-driven job semantics proven by
   `docs/design/experiments/chunking/dt005-run-001/queue-manifest.json`.
 
+DT010 Embedding Benchmark Contract:
+
+- Fixture ingestion should use the embedding adapter selected by DT010 for the
+  first-pass real embedding path:
+  - provider: `fastembed`
+  - model name: `BAAI/bge-small-en`
+  - vector dimension: `384`
+  - distance metric: `cosine`
+- Ingestion reports must record embedding provider, model name, vector
+  dimension, distance metric, and benchmark run ID `dt010-run-001`.
+- Ingestion must preserve DT005/DT012 chunk lineage in vector payload metadata
+  so retrieval and evaluation can compare against the DT010 benchmark fixture.
+- Do not switch to `BAAI/bge-base-en-v1.5` or any cloud embedding model without
+  a later benchmark run or explicit design decision.
+
 ## 2. Worktree And Branch Setup
 
 Create the branch and worktree before creating tests or implementation files.

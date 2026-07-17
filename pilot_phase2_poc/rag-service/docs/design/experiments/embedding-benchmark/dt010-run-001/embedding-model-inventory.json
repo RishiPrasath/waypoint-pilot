@@ -1,0 +1,65 @@
+{
+  "available_supported_model_count": 30,
+  "candidate_models": [
+    {
+      "additional_files": [],
+      "description": "Text embeddings, Unimodal (text), English, 512 input tokens truncation, Prefixes for queries/documents: necessary, 2023 year.",
+      "dim": 384,
+      "license": "mit",
+      "model": "BAAI/bge-small-en",
+      "model_file": "model_optimized.onnx",
+      "size_in_GB": 0.13,
+      "sources": {
+        "_deprecated_tar_struct": true,
+        "hf": "Qdrant/bge-small-en",
+        "url": "https://storage.googleapis.com/qdrant-fastembed/BAAI-bge-small-en.tar.gz"
+      },
+      "tasks": {}
+    },
+    {
+      "additional_files": [],
+      "description": "Text embeddings, Unimodal (text), English, 512 input tokens truncation, Prefixes for queries/documents: not so necessary, 2023 year.",
+      "dim": 768,
+      "license": "mit",
+      "model": "BAAI/bge-base-en-v1.5",
+      "model_file": "model_optimized.onnx",
+      "size_in_GB": 0.21,
+      "sources": {
+        "_deprecated_tar_struct": true,
+        "hf": "qdrant/bge-base-en-v1.5-onnx-q",
+        "url": "https://storage.googleapis.com/qdrant-fastembed/fast-bge-base-en-v1.5.tar.gz"
+      },
+      "tasks": {}
+    },
+    {
+      "additional_files": [],
+      "description": "Text embeddings, Unimodal (text), English, 256 input tokens truncation, Prefixes for queries/documents: not necessary, 2021 year.",
+      "dim": 384,
+      "license": "apache-2.0",
+      "model": "sentence-transformers/all-MiniLM-L6-v2",
+      "model_file": "model.onnx",
+      "size_in_GB": 0.09,
+      "sources": {
+        "_deprecated_tar_struct": true,
+        "hf": "qdrant/all-MiniLM-L6-v2-onnx",
+        "url": "https://storage.googleapis.com/qdrant-fastembed/sentence-transformers-all-MiniLM-L6-v2.tar.gz"
+      },
+      "tasks": {}
+    }
+  ],
+  "environment": {
+    "machine": "AMD64",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "python_version": "3.12.9 (tags/v3.12.9:fdb8142, Feb  4 2025, 15:27:58) [MSC v.1942 64 bit (AMD64)]",
+    "qdrant_client": "QdrantClient(\":memory:\")",
+    "qdrant_mode": "local_in_memory"
+  },
+  "generated_at": "2026-07-17T13:31:56.620476+00:00",
+  "preferred_models": [
+    "BAAI/bge-small-en",
+    "BAAI/bge-base-en-v1.5",
+    "sentence-transformers/all-MiniLM-L6-v2"
+  ],
+  "run_id": "dt010-run-001"
+}

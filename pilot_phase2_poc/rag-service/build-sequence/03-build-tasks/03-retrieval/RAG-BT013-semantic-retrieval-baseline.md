@@ -84,6 +84,26 @@ DT006 Golden Question Contract:
   cases remain evaluation/API behavior checks; do not seed them as successful
   semantic retrieval targets.
 
+DT010 Embedding Benchmark Contract:
+
+- Use `BAAI/bge-small-en` as the first-pass semantic retrieval embedding model.
+- Collection/vector expectations:
+  - provider: `fastembed`
+  - model name: `BAAI/bge-small-en`
+  - vector dimension: `384`
+  - distance metric: `cosine`
+- Compare semantic retrieval behavior against
+  `docs/design/experiments/embedding-benchmark/dt010-run-001/benchmark-results.jsonl`
+  and the summary in
+  `docs/design/experiments/embedding-benchmark/dt010-run-001/benchmark-summary.md`.
+- Initial semantic retrieval acceptance should target the DT010 observed level:
+  expected source is present at rank 1 for all positive DT006 benchmark cases,
+  and expected chunk is present within top 3 for all positive DT006 benchmark
+  cases.
+- Do not require Docker/service Qdrant in this task unless DT014 has already
+  made that a gate; local or mocked vector DB tests may be used for unit-level
+  retrieval behavior.
+
 ## 2. Worktree And Branch Setup
 
 Create the branch and worktree before creating tests or implementation files.
