@@ -13,8 +13,8 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Task Name | Add Evaluation Harness |
 | Build Stage | 05-evaluation - Evaluation |
 | Source Question | RAG-Q010, RAG-Q023 |
-| Decision / ADR | ADR-RAG-0008, RAG-DT004, RAG-DT005, RAG-DT006, RAG-DT012, RAG-DT013 |
-| Design Dependencies | RAG-DT004, RAG-DT005, RAG-DT006, RAG-DT012, RAG-DT014, RAG-BT018, RAG-DT013 |
+| Decision / ADR | ADR-RAG-0008, RAG-DT004, RAG-DT005, RAG-DT006, RAG-DT009, RAG-DT012, RAG-DT015, RAG-DT013 |
+| Design Dependencies | RAG-DT004, RAG-DT005, RAG-DT006, RAG-DT009, RAG-DT012, RAG-DT014, RAG-DT015, RAG-BT018, RAG-DT013 |
 | Depends On Build Tasks | see section 1 and section 3 |
 | Branch | `codex/rag-bt019-evaluation-harness` |
 | Worktree Path | `C:\tmp\rag-bt019-evaluation-harness` |
@@ -37,7 +37,9 @@ Design Gates:
 - `RAG-DT005`
 - `RAG-DT006`
 - `RAG-DT012`
+- `RAG-DT009`
 - `RAG-DT014`
+- `RAG-DT015`
 - `RAG-BT018`
 - `RAG-DT013`
 
@@ -132,6 +134,15 @@ DT009 LLM Model Evaluation Fixture Contract:
   provider/model errors, and malformed output handling.
 - Final model lock remains out of scope unless a later task explicitly accepts
   evaluation evidence.
+
+DT015 LLM Evaluation Result Contract:
+
+- Treat DT015 as the design-time LLM evaluation run.
+- `RAG-BT019` should implement a repeatable evaluation harness that can rerun
+  and regress the DT015 cases, not invent a separate first model-selection
+  process.
+- The harness should be able to compare future runs against
+  `docs/design/llm-model-selection-decision.md` and the DT015 run summary.
 
 ## 2. Worktree And Branch Setup
 

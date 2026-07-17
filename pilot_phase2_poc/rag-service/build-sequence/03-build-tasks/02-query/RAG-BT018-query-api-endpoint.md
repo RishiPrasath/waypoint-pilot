@@ -13,8 +13,8 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Task Name | Add Query API Endpoint |
 | Build Stage | 02-query - Query |
 | Source Question | RAG-Q018, RAG-Q020 |
-| Decision / ADR | ADR-RAG-0001, ADR-RAG-0004, RAG-DT013 |
-| Design Dependencies | RAG-BT015, RAG-BT013, RAG-BT014, RAG-BT016, RAG-BT017, RAG-DT013 |
+| Decision / ADR | ADR-RAG-0001, ADR-RAG-0004, RAG-DT015, RAG-DT013 |
+| Design Dependencies | RAG-BT015, RAG-BT013, RAG-BT014, RAG-BT016, RAG-BT017, RAG-DT015, RAG-DT013 |
 | Depends On Build Tasks | see section 1 and section 3 |
 | Branch | `codex/rag-bt018-query-api-endpoint` |
 | Worktree Path | `C:\tmp\rag-bt018-query-api-endpoint` |
@@ -38,6 +38,7 @@ Design Gates:
 - `RAG-BT014`
 - `RAG-BT016`
 - `RAG-BT017`
+- `RAG-DT015`
 - `RAG-DT013`
 
 Acceptance Criteria:
@@ -85,6 +86,14 @@ DT009 LLM Evaluation Fixture Contract:
   unrelated retrieval context to generation.
 - API tests must mock generation behavior; live provider calls and final model
   selection remain out of scope.
+
+DT015 LLM Evaluation Result Contract:
+
+- Preserve any response fields needed by the DT015 evaluation summary,
+  especially selected/deferred model metadata, latency, citation validation,
+  and provider/model error classification.
+- If DT015 deferred or blocked model selection, query API tests must keep
+  generation mocked and model configuration injectable.
 
 Out Of Scope:
 

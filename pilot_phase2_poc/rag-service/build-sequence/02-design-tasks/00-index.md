@@ -46,7 +46,8 @@ not assumed to exist before the relevant task runs.
 Design decisions may change final build tasks. When a design task changes the
 expected KB layout, metadata model, source registry, source materialization
 rules, chunking strategy, query rules, embedding benchmark, LLM evaluation
-fixture, or local ops scope, update the affected file under:
+fixture, LLM model evaluation result, or local ops scope, update the affected
+file under:
 
 ```text
 ../03-build-tasks/
@@ -92,10 +93,11 @@ decision reconciliation
 | 15 | `RAG-DT006` | Define golden questions and answer rubrics | `04-chunking-and-evaluation-design/RAG-DT006-golden-questions.md` | Complete |
 | 16 | `RAG-DT007` | Define query planner vocabulary and rules artifacts | `05-runtime-technical-design/RAG-DT007-query-planner-artifacts.md` | Complete |
 | 17 | `RAG-DT009` | Define LLM model evaluation fixture | `05-runtime-technical-design/RAG-DT009-llm-model-evaluation-fixture.md` | Complete |
-| 18 | `RAG-DT010` | Define embedding benchmark fixture | `05-runtime-technical-design/RAG-DT010-embedding-benchmark-fixture.md` | Planned |
-| 19 | `RAG-DT014` | Define test vector DB and CI integration strategy | `05-runtime-technical-design/RAG-DT014-test-vector-db-ci-strategy.md` | Planned |
-| 20 | `RAG-DT011` | Define Docker/local ops design when ready | `05-runtime-technical-design/RAG-DT011-docker-local-ops-design.md` | Deferred |
-| 21 | `RAG-DT013` | Final build task impact review | `06-build-impact-review/RAG-DT013-final-build-task-impact-review.md` | Planned |
+| 18 | `RAG-DT015` | Run LLM model evaluation and selection | `05-runtime-technical-design/RAG-DT015-llm-model-evaluation-run.md` | Planned |
+| 19 | `RAG-DT010` | Define embedding benchmark fixture | `05-runtime-technical-design/RAG-DT010-embedding-benchmark-fixture.md` | Planned |
+| 20 | `RAG-DT014` | Define test vector DB and CI integration strategy | `05-runtime-technical-design/RAG-DT014-test-vector-db-ci-strategy.md` | Planned |
+| 21 | `RAG-DT011` | Define Docker/local ops design when ready | `05-runtime-technical-design/RAG-DT011-docker-local-ops-design.md` | Deferred |
+| 22 | `RAG-DT013` | Final build task impact review | `06-build-impact-review/RAG-DT013-final-build-task-impact-review.md` | Planned |
 
 ## How Design Tasks Fit The Build Sequence
 

@@ -13,8 +13,8 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Task Name | Add Groq/OpenAI-Compatible Generation Adapter |
 | Build Stage | 04-generation - Generation |
 | Source Question | RAG-Q001, RAG-Q002, RAG-Q008 |
-| Decision / ADR | ADR-RAG-0003, RAG-DT009, RAG-DT013 |
-| Design Dependencies | RAG-DT009, RAG-DT013 |
+| Decision / ADR | ADR-RAG-0003, RAG-DT009, RAG-DT015, RAG-DT013 |
+| Design Dependencies | RAG-DT009, RAG-DT015, RAG-DT013 |
 | Depends On Build Tasks | see section 1 and section 3 |
 | Branch | `codex/rag-bt016-generation-adapter` |
 | Worktree Path | `C:\tmp\rag-bt016-generation-adapter` |
@@ -34,6 +34,7 @@ Module: `app/stages/stage_04_generation/`.
 Design Gates:
 
 - `RAG-DT009`
+- `RAG-DT015`
 - `RAG-DT013`
 
 Acceptance Criteria:
@@ -55,6 +56,16 @@ DT009 LLM Evaluation Fixture Contract:
   `RAG-BT019` can run the DT009 fixture against shortlisted models.
 - Do not hard-code the final generation model; final model lock requires
   evaluation evidence.
+
+DT015 LLM Evaluation Result Contract:
+
+- Before implementation, read
+  `docs/design/llm-model-selection-decision.md` and the latest
+  `docs/design/experiments/llm-model-evaluation/runs/<run-id>/evaluation-summary.md`.
+- If DT015 selected a model, make that model configurable as the default
+  candidate without hard-coding secrets or provider account details.
+- If DT015 deferred or blocked selection, keep the adapter model configurable
+  and record the deferral in task evidence.
 
 Out Of Scope:
 
