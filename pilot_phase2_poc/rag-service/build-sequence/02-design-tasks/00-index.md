@@ -90,7 +90,7 @@ decision reconciliation
 | 13 | `RAG-DT012` | Define source snapshot and canonical markdown candidate plan | `03-kb-materialization/RAG-DT012-source-snapshot-and-canonical-markdown-candidates.md` | Complete |
 | 14 | `RAG-DT005` | Run chunking experiment during KB curation | `04-chunking-and-evaluation-design/RAG-DT005-chunking-experiment.md` | Complete |
 | 15 | `RAG-DT006` | Define golden questions and answer rubrics | `04-chunking-and-evaluation-design/RAG-DT006-golden-questions.md` | Complete |
-| 16 | `RAG-DT007` | Define query planner vocabulary and rules artifacts | `05-runtime-technical-design/RAG-DT007-query-planner-artifacts.md` | Planned |
+| 16 | `RAG-DT007` | Define query planner vocabulary and rules artifacts | `05-runtime-technical-design/RAG-DT007-query-planner-artifacts.md` | Complete |
 | 17 | `RAG-DT009` | Define LLM model evaluation fixture | `05-runtime-technical-design/RAG-DT009-llm-model-evaluation-fixture.md` | Planned |
 | 18 | `RAG-DT010` | Define embedding benchmark fixture | `05-runtime-technical-design/RAG-DT010-embedding-benchmark-fixture.md` | Planned |
 | 19 | `RAG-DT014` | Define test vector DB and CI integration strategy | `05-runtime-technical-design/RAG-DT014-test-vector-db-ci-strategy.md` | Planned |

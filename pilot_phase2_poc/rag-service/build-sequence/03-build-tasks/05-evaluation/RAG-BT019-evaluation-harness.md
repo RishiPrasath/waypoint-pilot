@@ -103,6 +103,18 @@ DT006 Golden Question Contract:
   cases; treat `GQ-009` through `GQ-014` as negative, irrelevant, malicious,
   or exclusion cases.
 
+DT007 Query Planner Artifact Contract:
+
+- Include planner-level evaluation using
+  `docs/design/query-planning/query_planner_tests.yaml`.
+- Report planner classification separately from retrieval score, answer score,
+  citation validity, and refusal behavior.
+- Validate that malicious, license-sensitive, unsupported operational,
+  partner-source, irrelevant, and ambiguous cases do not proceed to retrieval.
+- Validate that positive and source-boundary cases produce the expected market,
+  intent, retrieval allowance, and source-hint behavior before downstream
+  retrieval/generation checks run.
+
 ## 2. Worktree And Branch Setup
 
 Create the branch and worktree before creating tests or implementation files.

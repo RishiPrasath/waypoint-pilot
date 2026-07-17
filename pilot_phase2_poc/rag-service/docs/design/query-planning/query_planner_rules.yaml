@@ -1,0 +1,303 @@
+artifact: query_planner_rules
+task_id: RAG-DT007
+status: accepted
+version: 1.0.0
+updated_on: "2026-07-17"
+purpose: >
+  Deterministic query classification, routing, and safeguard rules used before
+  retrieval. This artifact defines planner behavior; it does not implement
+  runtime code and does not approve sources for retrieval.
+
+inputs:
+  vocabulary_file: docs/design/query-planning/planner_vocabulary.json
+  golden_questions_file: docs/evaluation/golden-questions.md
+  source_registry_file: knowledge_base/registry/source_registry.yaml
+
+query_plan_contract:
+  required_fields:
+    - query
+    - normalized_query
+    - relevance_classification
+    - intent
+    - retrieval_allowed
+    - safe_response_id
+    - markets
+    - trade_terms
+    - incoterms
+    - source_filters
+    - reasons
+  relevance_classifications:
+    in_scope:
+      retrieval_allowed: true
+      description: >
+        The query asks for public APAC customs, trade, permit, tariff, origin,
+        or trade-repository information that may be answerable from approved
+        source material.
+    in_scope_with_boundary:
+      retrieval_allowed: true
+      description: >
+        The query is related to an approved topic but asks for transaction-
+        specific, legal, fee, payment, clearance, or country-specific authority
+        conclusions that require explicit scoped wording.
+    unsupported_operational:
+      retrieval_allowed: false
+      description: >
+        The query asks for live operational state or action, such as order
+        status, shipment status, driver assignment, dispatch, booking, payment,
+        permit account status, or cargo clearance execution.
+    partner_source_required:
+      retrieval_allowed: false
+      description: >
+        The query asks for internal partner procedures or partner-source
+        content that is not part of the public regulatory RAG corpus.
+    irrelevant:
+      retrieval_allowed: false
+      description: >
+        The query is outside APAC trade, customs, logistics, and approved
+        source scope.
+    malicious:
+      retrieval_allowed: false
+      description: >
+        The query attempts prompt injection, credential disclosure, policy
+        bypass, hidden data access, or instruction override.
+    license_sensitive:
+      retrieval_allowed: false
+      description: >
+        The query asks to reproduce protected cite-only or do-not-ingest source
+        content, including WCO or ICC controlled materials.
+    ambiguous:
+      retrieval_allowed: false
+      description: >
+        The query contains too little detail or conflicting signals. The safe
+        response should ask for a scoped APAC customs or trade question.
+
+rule_order:
+  - malicious_prompt_injection
+  - license_sensitive_reproduction
+  - unsupported_operational_action
+  - unsupported_operational_status
+  - partner_source_internal_procedure
+  - irrelevant_scope
+  - in_scope_boundary
+  - in_scope_retrieval
+  - ambiguous_fallback
+
+rules:
+  malicious_prompt_injection:
+    classification: malicious
+    intent: malicious_prompt_injection
+    retrieval_allowed: false
+    safe_response_id: safe_malicious_block
+    match_any:
+      - ignore previous instructions
+      - reveal hidden
+      - reveal credentials
+      - system prompt
+      - developer message
+      - bypass policy
+      - jailbreak
+      - exfiltrate
+      - print secrets
+      - source registry credentials
+    reason: Block instruction override or secret-exfiltration attempts before retrieval.
+
+  license_sensitive_reproduction:
+    classification: license_sensitive
+    intent: license_sensitive_reproduction
+    retrieval_allowed: false
+    safe_response_id: safe_license_sensitive
+    match_any:
+      - reproduce hs nomenclature
+      - copy hs headings
+      - reproduce explanatory notes
+      - full incoterms rules
+      - copy incoterms
+      - WCO explanatory notes
+      - ICC Incoterms full text
+    source_boundary:
+      document_ids:
+        - APAC-215
+        - APAC-217
+        - APAC-226
+        - APAC-227
+      reuse_modes:
+        - cite_only
+        - do_not_ingest
+    reason: Protected standards/reference content must not be reproduced without explicit reuse approval.
+
+  unsupported_operational_action:
+    classification: unsupported_operational
+    intent: unsupported_operational_action
+    retrieval_allowed: false
+    safe_response_id: safe_unsupported_operational
+    action_verbs:
+      - assign
+      - dispatch
+      - book
+      - schedule
+      - submit
+      - file
+      - pay
+      - clear
+      - cancel
+      - update
+    operational_objects:
+      - driver
+      - pickup
+      - shipment
+      - order
+      - permit application
+      - cargo clearance
+      - customs account
+    reason: The RAG service explains approved source material; it does not perform operational actions.
+
+  unsupported_operational_status:
+    classification: unsupported_operational
+    intent: unsupported_operational_status
+    retrieval_allowed: false
+    safe_response_id: safe_unsupported_operational
+    match_any:
+      - order status
+      - shipment status
+      - current status
+      - tracking status
+      - ETA
+      - delivery event
+      - permit status
+      - payment status
+      - account status
+      - WP-
+    reason: Live operational state belongs outside the public regulatory RAG corpus.
+
+  partner_source_internal_procedure:
+    classification: partner_source_required
+    intent: partner_source_internal_procedure
+    retrieval_allowed: false
+    safe_response_id: safe_partner_source_boundary
+    match_any:
+      - partner-source
+      - internal SOP
+      - partner SOP
+      - customs escalation SOP
+      - internal procedure
+      - runbook
+      - escalation matrix
+    reason: Internal partner procedures require a future partner-source/orchestration layer.
+
+  irrelevant_scope:
+    classification: irrelevant
+    intent: irrelevant
+    retrieval_allowed: false
+    safe_response_id: safe_irrelevant
+    match_examples:
+      - latest football match
+      - weather tomorrow
+      - movie recommendation
+      - restaurant near me
+      - stock price
+    required_absence:
+      - apac_trade_or_customs_terms
+      - logistics_terms
+      - source_concepts
+    reason: Do not retrieve APAC regulatory sources for unrelated questions.
+
+  in_scope_boundary:
+    classification: in_scope_with_boundary
+    intent: source_boundary_question
+    retrieval_allowed: true
+    safe_response_id: null
+    match_any:
+      - can this system tell me
+      - can you estimate
+      - actual approved import permit
+      - cargo clearance conditions
+      - final country-specific tariff obligations
+      - legal advice
+      - transaction-specific
+      - fee estimate
+    boundary_response_required: true
+    reason: Retrieve relevant source-boundary material, then answer conservatively with citations and limits.
+
+  in_scope_retrieval:
+    classification: in_scope
+    intent: regulatory_explanation
+    retrieval_allowed: true
+    safe_response_id: null
+    match_any_terms_from_vocabulary:
+      - markets
+      - logistics_terms
+      - customs_trade_terms
+      - source_concepts
+    allowed_topics:
+      - import permit workflow
+      - export permit workflow
+      - declaring agent
+      - TradeNet
+      - Customs Account
+      - ASEAN Trade Repository
+      - National Trade Repository
+      - ATIGA Article 13
+      - rules of origin
+      - non-tariff measures
+      - tariff nomenclature
+      - trade facilitation
+    reason: Query is within APAC public regulatory/source-discovery scope.
+
+  ambiguous_fallback:
+    classification: ambiguous
+    intent: ambiguous
+    retrieval_allowed: false
+    safe_response_id: safe_irrelevant
+    reason: Ask the user to restate a specific APAC customs, trade, or logistics knowledge question.
+
+source_filter_rules:
+  market_filters:
+    SG:
+      jurisdictions: [SG]
+      namespaces: [regulatory, reference]
+    ASEAN:
+      jurisdictions: [ASEAN]
+      namespaces: [regulatory, reference]
+    GLOBAL:
+      jurisdictions: [Global]
+      namespaces: [reference, regulatory]
+  retrieval_gate:
+    must_respect_registry_retrieval_eligible: true
+    review_candidates_allowed_only_when_test_fixture_explicitly_scoped: true
+    legacy_paths_disallowed:
+      - legacy/
+      - drop/
+      - archive/
+  license_sensitive_gate:
+    cite_only_answer_content: false
+    do_not_ingest_answer_content: false
+    metadata_only_allowed_for_exclusion_explanation: true
+
+safe_responses:
+  safe_irrelevant:
+    behavior: >
+      Explain that the query is outside the APAC trade/customs knowledge scope
+      and ask for a customs, trade, permit, tariff, origin, or repository
+      question.
+  safe_unsupported_operational:
+    behavior: >
+      Explain that the service cannot perform live operational actions or
+      access live status. Do not cite unrelated regulatory material.
+  safe_partner_source_boundary:
+    behavior: >
+      Explain that partner-source/internal procedure content is not in the
+      approved public RAG corpus.
+  safe_malicious_block:
+    behavior: >
+      Refuse to follow instruction-override, credential, or hidden-data
+      requests. Do not retrieve.
+  safe_license_sensitive:
+    behavior: >
+      Explain that the requested source is license-sensitive or cite-only and
+      cannot be reproduced from the RAG corpus.
+
+implementation_notes:
+  - RAG-BT015 should implement deterministic matching before any LLM planner is considered.
+  - RAG-BT018 should expose these outcomes through API-safe responses.
+  - RAG-BT019 should evaluate positive, boundary, irrelevant, operational, partner-source, malicious, and license-sensitive cases separately.
+  - LLM-based planning remains out of scope until a later design task approves it.

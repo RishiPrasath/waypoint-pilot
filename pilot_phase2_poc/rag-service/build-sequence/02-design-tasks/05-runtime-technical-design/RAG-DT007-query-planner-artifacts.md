@@ -1,6 +1,6 @@
 # RAG-DT007: Define Query Planner Vocabulary And Rules
 
-Status: Planned
+Status: Complete
 
 ## Sequence Entry
 
@@ -20,7 +20,7 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Worktree Path | `C:\tmp\rag-dt007-query-planner-artifacts` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Planned |
+| Status | Complete |
 | Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-DT007-query-planner-artifacts.md` |
 
 ## 1. Task Definition
