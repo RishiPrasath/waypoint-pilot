@@ -1,6 +1,6 @@
 # RAG-DT012: Source Snapshot And Canonical Markdown Candidates
 
-Status: Planned
+Status: Complete
 
 ## Sequence Entry
 
@@ -20,7 +20,7 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Worktree Path | `C:\tmp\rag-dt012-source-snapshot-and-canonical-markdown-candidates` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Planned |
+| Status | Complete |
 | Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-DT012-source-snapshot-and-canonical-markdown-candidates.md` |
 
 ## 1. Task Definition
@@ -157,6 +157,22 @@ Deferred Impact:
 Impact Review Status:
 
 - Pending RAG-DT013 review.
+
+Accepted Materialization Contract:
+
+- First-pass manifest:
+  `knowledge_base/snapshots/first-pass-snapshot-manifest.md`.
+- First-pass candidates:
+  `knowledge_base/candidates/first-pass/APAC-001-sg-import-permit.md`,
+  `knowledge_base/candidates/first-pass/APAC-002-sg-export-permit.md`,
+  `knowledge_base/candidates/first-pass/APAC-201-asean-trade-repository.md`,
+  and
+  `knowledge_base/candidates/first-pass/APAC-215-wco-hs-nomenclature-metadata.md`.
+- `APAC-215` is metadata-only, license-sensitive, and excluded from chunking
+  or retrieval experiments as source text.
+- Candidate SHA-256 values are recorded in the manifest and must be checked by
+  downstream chunking, ingestion, retrieval, and evaluation fixtures before
+  treating a candidate as an accepted test input.
 
 ## 6. Verification
 

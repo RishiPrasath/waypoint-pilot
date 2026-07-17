@@ -71,6 +71,19 @@ DT004 KB Path Contract:
 - Fixture ingestion must write reports outside `legacy/` and must never read `drop/`, `archive/`, or unapproved `reference/` material.
 - Every ingested source must trace back to `knowledge_base/registry/source_registry.yaml`.
 
+DT012 Fixture Ingestion Contract:
+
+- Read candidate fixture inputs through
+  `knowledge_base/snapshots/first-pass-snapshot-manifest.md`, not by blindly
+  globbing every markdown file.
+- Ingest only rows where `retrieval_eligible` is explicitly accepted for the
+  test case; first-pass DT012 candidates default to review-only until a task
+  deliberately enables them.
+- Preserve `document_id`, `snapshot_id`, source URI, reuse mode, license
+  sensitivity, retrieval eligibility, and candidate SHA-256 in ingestion
+  reports and chunk metadata.
+- Reject metadata-only `APAC-215` as source text.
+
 ## 2. Worktree And Branch Setup
 
 Create the branch and worktree before creating tests or implementation files.
