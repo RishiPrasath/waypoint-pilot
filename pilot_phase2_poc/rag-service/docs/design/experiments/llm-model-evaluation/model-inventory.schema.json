@@ -1,0 +1,175 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint-pilot.local/rag-service/model-inventory.schema.json",
+  "title": "RAG-DT009 Model Inventory",
+  "description": "Non-secret normalized inventory of models returned by an OpenAI-compatible provider.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "artifact",
+    "task_id",
+    "version",
+    "generated_at",
+    "provider",
+    "request",
+    "models"
+  ],
+  "properties": {
+    "artifact": {
+      "const": "llm_model_inventory"
+    },
+    "task_id": {
+      "const": "RAG-DT009"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "provider": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "label",
+        "base_url_redacted",
+        "api_key_present"
+      ],
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "base_url_redacted": {
+          "type": "string",
+          "description": "Redacted endpoint, for example https://api.example.com/openai/v1 with no credentials or query secrets."
+        },
+        "api_key_present": {
+          "type": "boolean",
+          "description": "Whether an API key was available to the runner. Never store the key."
+        }
+      }
+    },
+    "request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "method",
+        "path",
+        "timeout_seconds",
+        "headers_redacted",
+        "status"
+      ],
+      "properties": {
+        "method": {
+          "const": "GET"
+        },
+        "path": {
+          "const": "/models"
+        },
+        "timeout_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 120
+        },
+        "headers_redacted": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "not_run",
+            "success",
+            "failed"
+          ]
+        },
+        "http_status": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 100,
+          "maximum": 599
+        },
+        "error_type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "error_message_redacted": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "models": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "model_id",
+          "object",
+          "owned_by",
+          "created",
+          "raw_capability_hints",
+          "inventory_decision"
+        ],
+        "properties": {
+          "model_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "object": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "owned_by": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "created": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "raw_capability_hints": {
+            "type": "object",
+            "description": "Non-secret provider-supplied fields that may hint at modality, endpoint, or deprecation status.",
+            "additionalProperties": true
+          },
+          "inventory_decision": {
+            "type": "string",
+            "enum": [
+              "candidate",
+              "defer",
+              "exclude"
+            ]
+          },
+          "inventory_rationale": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "redaction_notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

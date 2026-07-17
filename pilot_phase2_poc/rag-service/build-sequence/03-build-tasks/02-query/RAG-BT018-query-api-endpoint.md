@@ -73,6 +73,19 @@ DT007 Query Planner Artifact Contract:
 - Malicious and license-sensitive requests must be blocked or safely refused
   before retrieval.
 
+DT009 LLM Evaluation Fixture Contract:
+
+- Query API tests should preserve fields required by
+  `docs/design/llm-model-evaluation-plan.md` so `RAG-BT019` can evaluate
+  generation quality, schema adherence, citation behavior, refusal behavior,
+  latency, and provider/model errors.
+- Positive responses should expose enough citation metadata to validate DT005
+  chunk lineage and DT006 golden-question expectations.
+- Negative responses should expose safe refusal classification without sending
+  unrelated retrieval context to generation.
+- API tests must mock generation behavior; live provider calls and final model
+  selection remain out of scope.
+
 Out Of Scope:
 
 - real provider calls in API tests

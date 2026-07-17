@@ -115,6 +115,24 @@ DT007 Query Planner Artifact Contract:
   intent, retrieval allowance, and source-hint behavior before downstream
   retrieval/generation checks run.
 
+DT009 LLM Model Evaluation Fixture Contract:
+
+- Implement the fixture flow from `docs/design/llm-model-evaluation-plan.md`
+  and `docs/design/experiments/llm-model-evaluation/model-evaluation-runbook.md`.
+- Provider inventory must read `LLM_BASE_URL`, `LLM_API_KEY`, and optional
+  `LLM_PROVIDER_LABEL` from environment variables only and must not write API
+  keys to evidence or reports.
+- Inventory output should validate against
+  `docs/design/experiments/llm-model-evaluation/model-inventory.schema.json`.
+- Model assessment must happen only after
+  `docs/design/experiments/llm-model-evaluation/model-capability-review.md`
+  has produced include/defer/exclude decisions.
+- Evaluation reports must separate answer quality, groundedness, schema
+  adherence, citation behavior, refusal/safety behavior, latency,
+  provider/model errors, and malformed output handling.
+- Final model lock remains out of scope unless a later task explicitly accepts
+  evaluation evidence.
+
 ## 2. Worktree And Branch Setup
 
 Create the branch and worktree before creating tests or implementation files.
