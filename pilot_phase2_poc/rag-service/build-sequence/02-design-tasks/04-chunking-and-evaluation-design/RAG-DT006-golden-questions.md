@@ -25,19 +25,27 @@ Task files should follow the canonical template in build-sequence/00-governance/
 
 ## 1. Task Definition
 
-Design: define golden questions and answer rubrics.
+Design: research RAG evaluation practice, assess candidate golden questions,
+then define the first golden question set and answer rubrics.
 
 Goal: make evaluation possible before the evaluation harness is built.
 
-Output Artifact:
+Output Artifacts:
 
 ```text
+docs/evaluation/golden-question-research-findings.md
 docs/evaluation/golden-questions.md
 ```
 
 Acceptance Criteria:
 
 - questions map to supported use cases
+- research findings summarize current RAG evaluation practices relevant to this
+  service, including retrieval quality, answer quality, groundedness,
+  citation correctness, refusal behavior, and malicious/prompt-injection cases
+- candidate questions are assessed before final selection
+- candidate assessment records include use case, question type, expected source
+  coverage, inclusion decision, and rationale
 - expected source types are listed
 - expected approved source IDs or citation IDs are listed for positive cases
 - APAC trade-lane questions are included
@@ -95,12 +103,44 @@ git -C "$WORKTREE_PATH" status --short --branch
 ## 3. Acceptance Check
 
 ```powershell
+Select-String -Path "$WorktreePath\pilot_phase2_poc\rag-service\docs\evaluation\golden-question-research-findings.md" -Pattern "retrieval|answer quality|groundedness|citation|refusal|malicious|candidate assessment"
 Select-String -Path "$WorktreePath\pilot_phase2_poc\rag-service\docs\evaluation\golden-questions.md" -Pattern "rubric|citation|approved_source|order status|partner-source|malicious"
 ```
 
 ## 4. Design Work
 
-Create the first golden question set and scoring rubric.
+Research current RAG evaluation practice before selecting golden questions.
+Capture findings in:
+
+```text
+pilot_phase2_poc/rag-service/docs/evaluation/golden-question-research-findings.md
+```
+
+The findings report must:
+
+- cite the external references used
+- summarize applicable RAG evaluation dimensions
+- distinguish retrieval scoring from answer scoring
+- explain which practices are adopted for this service and which are deferred
+- assess candidate golden questions before final selection
+
+Candidate question assessment must record:
+
+- candidate question
+- supported use case or negative-case category
+- question type: positive, unsupported operational, irrelevant, malicious, or
+  prompt-injection
+- expected source type
+- expected approved source IDs or citation IDs when applicable
+- inclusion decision: include, defer, or reject
+- rationale
+
+After the research and assessment pass, create the selected golden question set
+and scoring rubric in:
+
+```text
+pilot_phase2_poc/rag-service/docs/evaluation/golden-questions.md
+```
 
 Separate retrieval scoring from answer scoring. Retrieval cases should define
 expected source or citation matches, while answer cases should define grounded
@@ -115,6 +155,10 @@ pilot_phase2_poc/rag-service/legacy/phase1-kb-snapshot/
 Golden answers must cite approved Phase 2 source candidates, not legacy files
 directly, unless a design task explicitly promotes the source.
 
+The final golden question set should not include every researched candidate.
+Only include questions that are defensible against approved Phase 2 source
+coverage, supported use cases, and required negative-case coverage.
+
 ## 5. Build Task Impact
 
 Affected Build Tasks:
@@ -124,8 +168,9 @@ Affected Build Tasks:
 Required Updates:
 
 - Update evaluation harness cases, expected source matches, retrieval acceptance
-  checks, API contract expectations, and the distinction between legacy examples
-  and approved expected sources.
+  checks, API contract expectations, research findings, candidate-question
+  assessment, and the distinction between legacy examples and approved expected
+  sources.
 
 Deferred Impact:
 
@@ -138,6 +183,17 @@ Impact Review Status:
 ## 6. Verification
 
 Review with RAG Evaluation Lead and Logistics Domain Expert.
+
+Verify that:
+
+- research findings exist before the final golden question artifact
+- every selected positive question has an expected approved source or citation
+  target
+- negative cases cover unsupported operational, irrelevant, malicious, and
+  prompt-injection examples
+- rejected/deferred candidates have a recorded reason
+- the evidence file records the research references, acceptance-check output,
+  affected build-task review, PR URL, CI result, and merge result
 
 ## 7. Branch Workflow
 
