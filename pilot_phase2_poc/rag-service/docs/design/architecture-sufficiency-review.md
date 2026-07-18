@@ -70,15 +70,18 @@ The review found the project has enough architecture foundation in these areas:
 
 ## Required Follow-Up Design Tasks
 
-The review recommends two follow-up design tasks before `RAG-DT013`, unless the
+The review requires three follow-up design tasks before `RAG-DT013`, unless the
 owner explicitly waives them:
 
-1. `RAG-DT018`: Hybrid Retrieval Scoring And Fusion Contract
-2. `RAG-DT019`: Generation Prompt, Output Schema, And Query API Consumer Contract
+1. `RAG-DT018`: Retrieval Strategy Selection, Scoring, And Fusion Contract
+2. `RAG-DT019`: Generation Prompt, Safeguards, Output Schema, And Query API
+   Contract
+3. `RAG-DT020`: Post-Build Evaluation And Tuning Loop
 
 These are required because the current build tasks describe the intended
-behavior, but do not yet pin the implementation contract tightly enough for
-hybrid scoring/fusion or the external query/generation response shape.
+behavior, but still need accepted implementation contracts for retrieval-mode
+selection, hybrid scoring/fusion, external query/generation response shape,
+safeguard behavior, and post-build evaluation/tuning decisions.
 
 The proposed tasks are defined in:
 
@@ -86,9 +89,10 @@ The proposed tasks are defined in:
 docs/design/experiments/architecture-review/dt017-run-001/recommended-follow-up-design-tasks.md
 ```
 
-No actual follow-up task files were created in this branch because the DT017
-task file says not to create them unless the owner explicitly accepts them or
-the task file makes them mandatory before closeout.
+The follow-up task files already exist in the current build sequence after PR
+#44 and PR #45. DT017 therefore treats them as created but not yet completed;
+`RAG-DT013` remains blocked until `RAG-DT018`, `RAG-DT019`, and `RAG-DT020` are
+completed or explicitly waived.
 
 ## High Risks Requiring Owner Decision Or Remediation
 
@@ -128,8 +132,8 @@ Pass With Required Follow-Up Tasks
 
 `RAG-DT013` should remain blocked until:
 
-- the owner accepts and creates/completes the two recommended follow-up design
-  tasks, or explicitly waives them;
+- the owner completes the three required follow-up design tasks, or explicitly
+  waives them;
 - the owner remediates or explicitly accepts the high-risk repository
   enforcement and dependency-provenance items;
 - the final build-task impact review records the medium handoffs above.

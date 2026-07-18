@@ -7,10 +7,15 @@ Status: In Review
 Task: RAG-DT017 - Overall Architecture And Design Sufficiency Review
 Branch: `codex/rag-dt017-architecture-sufficiency-review`
 Worktree: `C:\tmp\rag-dt017-architecture-sufficiency-review`
-Starting main commit: `a03e7d2`
-PR: Pending
+Starting main commit: `abc1dd0`
+PR: https://github.com/RishiPrasath/waypoint-pilot/pull/43
 Implementation commit: Pending
 Merge commit: Pending
+
+Rebase note: this branch was rebased onto `origin/main` after PR #44 and PR
+#45 added and closed out the `RAG-DT018`, `RAG-DT019`, and `RAG-DT020`
+follow-up task sequence. DT017 artifacts were updated to recognize those task
+files as created but not completed.
 
 ## Baseline Checks
 
@@ -24,6 +29,7 @@ Test-Path "$ServiceRoot\build-sequence\02-design-tasks\06-build-impact-review\RA
 Get-ChildItem "$ServiceRoot\build-sequence\02-design-tasks" -Recurse -Filter "RAG-DT*.md"
 Get-ChildItem "$ServiceRoot\docs\design" -Recurse -File
 Get-ChildItem "$ServiceRoot\build-evidence" -Filter "RAG-DT*.md"
+$env:RAG_GROQ_API_KEY = $null
 uv run python -m pytest -q
 git -C $WorktreePath diff --check
 ```
@@ -32,12 +38,16 @@ Result:
 
 ```text
 required task/index paths -> True
-design task files -> 17
-design artifact files -> 39
-design evidence files -> 15
-uv run python -m pytest -q -> 12 passed
+design task files -> 20
+design artifact files -> 44
+design evidence files -> 16
+$env:RAG_GROQ_API_KEY = $null; uv run python -m pytest -q -> 12 passed
 git diff --check -> passed
 ```
+
+Note: `RAG_GROQ_API_KEY` was cleared only inside the local pytest command so
+the missing-secret tests match CI behavior without printing or persistently
+changing local credentials.
 
 ## Specialist Review Coverage
 
@@ -123,8 +133,12 @@ Pass With Required Follow-Up Tasks
 
 Required follow-up design tasks:
 
-- `RAG-DT018: Hybrid Retrieval Scoring And Fusion Contract`
-- `RAG-DT019: Generation Prompt, Output Schema, And Query API Consumer Contract`
+- `RAG-DT018: Retrieval Strategy Selection, Scoring, And Fusion Contract`
+- `RAG-DT019: Generation Prompt, Safeguards, Output Schema, And Query API Contract`
+- `RAG-DT020: Post-Build Evaluation And Tuning Loop`
+
+The task files for these follow-ups now exist in the current sequence. They
+must still be completed or explicitly waived before `RAG-DT013`.
 
 Required owner decision/remediation items:
 

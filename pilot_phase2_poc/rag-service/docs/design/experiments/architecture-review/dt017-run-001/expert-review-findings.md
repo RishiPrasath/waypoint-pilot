@@ -337,14 +337,16 @@ Sufficient:
 
 Risks or missing items:
 
-- Two design contracts are still too implicit for a clean final impact review:
-  hybrid retrieval fusion and generation/API output contract.
+- Three design contracts are still required for a clean final impact review:
+  retrieval strategy/scoring/fusion, generation/API safeguards/output contract,
+  and post-build evaluation/tuning loop.
 - Two high-risk non-design items need owner decision or remediation:
   repository enforcement/security settings and dependency provenance.
 
 New design task needed:
 
-- Yes: two proposed follow-up design tasks before `RAG-DT013`, unless waived.
+- Yes: `RAG-DT018`, `RAG-DT019`, and `RAG-DT020` before `RAG-DT013`, unless
+  waived. The task files now exist in the sequence; completion remains pending.
 
 Affected tasks:
 

@@ -18,15 +18,17 @@ sufficient.
 
 However, `RAG-DT013` should not proceed until the owner either:
 
-1. accepts, creates, and completes the required follow-up design tasks; or
+1. completes the required follow-up design tasks that now exist in the
+   sequence; or
 2. explicitly waives those follow-up tasks and accepts the related High risks.
 
 ## Required Follow-Up Design Tasks
 
 | Proposed Task | Required Before DT013? | Reason | Owner Decision |
 |---|---|---|---|
-| `RAG-DT018: Hybrid Retrieval Scoring And Fusion Contract` | Yes, unless waived | Hybrid retrieval ranking behavior is too implicit for final build-task impact review. | Pending |
-| `RAG-DT019: Generation Prompt, Output Schema, And Query API Consumer Contract` | Yes, unless waived | Prompt, output, citation, refusal, and API consumer contracts are too implicit for implementation. | Pending |
+| `RAG-DT018: Retrieval Strategy Selection, Scoring, And Fusion Contract` | Yes, unless waived | Retrieval mode selection, ranking behavior, hybrid fusion, low-confidence behavior, and rerank hook contract are too implicit for final build-task impact review. | Task file created; completion pending |
+| `RAG-DT019: Generation Prompt, Safeguards, Output Schema, And Query API Contract` | Yes, unless waived | Prompt, output, citation, refusal, safeguard, and API consumer contracts are too implicit for implementation. | Task file created; completion pending |
+| `RAG-DT020: Post-Build Evaluation And Tuning Loop` | Yes, unless waived | Evaluation exists as a build task, but failure remediation, tuning experiments, and baseline promotion rules are not yet pinned. | Task file created; completion pending |
 
 ## Required Owner Decision / Remediation Items
 
@@ -50,5 +52,5 @@ However, `RAG-DT013` should not proceed until the owner either:
 ## Final Gate Statement
 
 `RAG-DT013` remains blocked until the required follow-up design tasks and owner
-decision items above are created/completed or explicitly waived.
+decision items above are completed or explicitly waived.
 
