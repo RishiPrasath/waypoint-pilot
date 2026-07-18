@@ -1,6 +1,6 @@
 # RAG-DT018: Retrieval Strategy Selection, Scoring, And Fusion Contract
 
-Status: In Review
+Status: Complete
 
 ## Sequence Entry
 

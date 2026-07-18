@@ -1,6 +1,6 @@
 # RAG-DT018 Evidence
 
-Status: In Review
+Status: Complete
 Task: `RAG-DT018`
 Branch: `codex/rag-dt018-retrieval-strategy-selection-and-fusion-contract`
 Worktree: `C:\tmp\rag-dt018-retrieval-strategy-selection-and-fusion-contract`
@@ -106,7 +106,36 @@ cleared RAG_GROQ_API_KEY and passed.
 ## PR And Merge
 
 PR:
+https://github.com/RishiPrasath/waypoint-pilot/pull/47
+
 PR CI/CD:
+Passed before merge:
+
+- RAG Service CI: success
+- RAG Service CodeQL / Analyze Python: success
+- CodeQL: success
+
 Main CI/CD:
+Passed after merge commit `7fa1e207698e76da7b5df7ca8340d0a993deb123`:
+
+- RAG Service CI: success
+- RAG Service CodeQL / Analyze Python: success
+
 Merge commit:
+`7fa1e207698e76da7b5df7ca8340d0a993deb123`
+
+Merged at:
+`2026-07-18T07:37:03Z`
+
 Cleanup:
+
+- Local `main` refreshed to merge commit `7fa1e20`.
+- DT018 implementation worktree removed:
+  `C:\tmp\rag-dt018-retrieval-strategy-selection-and-fusion-contract`
+- Local branch deleted:
+  `codex/rag-dt018-retrieval-strategy-selection-and-fusion-contract`
+- Remote branch deleted:
+  `codex/rag-dt018-retrieval-strategy-selection-and-fusion-contract`
+
+Closeout note:
+This metadata closeout is recorded on branch `codex/rag-dt018-closeout`.
