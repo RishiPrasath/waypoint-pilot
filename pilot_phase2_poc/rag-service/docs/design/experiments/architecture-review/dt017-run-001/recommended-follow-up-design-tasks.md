@@ -1,6 +1,6 @@
 # DT017 Recommended Follow-Up Design Tasks
 
-Status: In Review
+Status: Accepted for RAG-DT017
 Run: `dt017-run-001`
 Date: 2026-07-18
 
