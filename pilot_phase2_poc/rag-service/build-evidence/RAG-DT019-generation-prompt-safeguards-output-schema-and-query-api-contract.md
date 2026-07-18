@@ -1,6 +1,6 @@
 # RAG-DT019 Evidence
 
-Status: In Review
+Status: Complete
 Task: `RAG-DT019`
 Branch: `codex/rag-dt019-generation-prompt-safeguards-output-schema-and-query-api-contract`
 Worktree: `C:\tmp\rag-dt019-generation-prompt-safeguards-output-schema-and-query-api-contract`
@@ -109,7 +109,36 @@ git diff --check -> passed
 ## PR And Merge
 
 PR:
+https://github.com/RishiPrasath/waypoint-pilot/pull/49
+
 PR CI/CD:
+Passed before merge:
+
+- RAG Service CI: success
+- RAG Service CodeQL / Analyze Python: success
+- CodeQL: success
+
 Main CI/CD:
+Passed after merge commit `a6c4e8270ad2ff12d22db787c677f2cdb46c9887`:
+
+- RAG Service CI: success
+- RAG Service CodeQL / Analyze Python: success
+
 Merge commit:
+`a6c4e8270ad2ff12d22db787c677f2cdb46c9887`
+
+Merged at:
+`2026-07-18T10:41:59Z`
+
 Cleanup:
+
+- Local `main` refreshed to merge commit `a6c4e82`.
+- DT019 implementation worktree removed:
+  `C:\tmp\rag-dt019-generation-prompt-safeguards-output-schema-and-query-api-contract`
+- Local branch deleted:
+  `codex/rag-dt019-generation-prompt-safeguards-output-schema-and-query-api-contract`
+- Remote branch deleted:
+  `codex/rag-dt019-generation-prompt-safeguards-output-schema-and-query-api-contract`
+
+Closeout note:
+This metadata closeout is recorded on branch `codex/rag-dt019-closeout`.
