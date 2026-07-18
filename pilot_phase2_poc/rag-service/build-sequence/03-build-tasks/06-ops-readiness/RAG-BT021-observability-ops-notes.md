@@ -285,3 +285,9 @@ Record:
 ## Task Evidence
 
 Evidence is recorded in `pilot_phase2_poc/rag-service/build-evidence/RAG-BT021-observability-ops-notes.md`.
+
+## DT013 Final Design Handoff
+
+- Document logs and troubleshooting for planner decisions, retrieval confidence, citation/refusal behavior, provider errors, and malformed output fallback.
+- Include runtime configuration notes for `RAG_LLM_*`, `RAG_EVAL_LLM_*`, and reconciled Qdrant variables.
+- Make low-confidence, no-evidence, and safe-response paths observable enough for evaluation/readiness review.

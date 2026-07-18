@@ -366,3 +366,9 @@ Record:
 ## Task Evidence
 
 Evidence is recorded in `pilot_phase2_poc/rag-service/build-evidence/RAG-BT014-lexical-hybrid-retrieval.md`.
+
+## DT013 Final Design Handoff
+
+- Implement planner-led hybrid retrieval with semantic and lexical scoring, metadata filters/boosts, score normalization, fusion, deterministic tie-breaks, and a no-op rerank hook.
+- Expose retrieval mode, score trace, confidence, and low-confidence/no-evidence decisions for API and evaluation consumers.
+- Treat lexical-only as diagnostic and semantic-only as baseline unless a later decision changes runtime strategy.

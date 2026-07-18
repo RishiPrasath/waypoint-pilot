@@ -1,6 +1,6 @@
 # DT019 Prompt Contract
 
-Status: Proposed
+Status: Accepted
 Run: `dt019-run-001`
 
 ## Message Order

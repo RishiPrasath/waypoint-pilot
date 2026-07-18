@@ -290,3 +290,9 @@ Record:
 ## Task Evidence
 
 Evidence is recorded in `pilot_phase2_poc/rag-service/build-evidence/RAG-BT008-phase1-kb-audit-artifacts.md`.
+
+## DT013 Final Design Handoff
+
+- Produce audit artifacts only; do not promote Phase 1 KB snapshot content into runtime ingestion.
+- Compare legacy audit findings against source registry/candidate evidence without making legacy files retrievable.
+- Record license sensitivity, retrieval eligibility, source hashes, and reuse boundaries in audit outputs.

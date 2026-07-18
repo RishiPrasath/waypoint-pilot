@@ -375,3 +375,9 @@ Record:
 ## Task Evidence
 
 Evidence is recorded in `pilot_phase2_poc/rag-service/build-evidence/RAG-BT018-query-api-endpoint.md`.
+
+## DT013 Final Design Handoff
+
+- Implement `POST /api/v1/query` with planner output, retrieval mode, confidence, score trace, citations, safe responses, and generation metadata.
+- Preserve no-retrieval behavior for blocked, ambiguous, license-sensitive, no-evidence, and low-confidence cases.
+- Ensure API/evaluation diagnostics can inspect semantic, lexical, fused, final, and boosted score fields through an accepted response or trace object.

@@ -105,7 +105,7 @@ decision reconciliation
 | 24 | `RAG-DT018` | Retrieval strategy selection, scoring, and fusion contract | `05-runtime-technical-design/RAG-DT018-retrieval-strategy-selection-and-fusion-contract.md` | Complete |
 | 25 | `RAG-DT019` | Generation prompt, safeguards, output schema, and query API contract | `05-runtime-technical-design/RAG-DT019-generation-prompt-safeguards-output-schema-and-query-api-contract.md` | Complete |
 | 26 | `RAG-DT020` | Post-build evaluation and tuning loop | `05-runtime-technical-design/RAG-DT020-post-build-evaluation-and-tuning-loop.md` | Complete |
-| 27 | `RAG-DT013` | Final build task impact review | `06-build-impact-review/RAG-DT013-final-build-task-impact-review.md` | Planned |
+| 27 | `RAG-DT013` | Final build task impact review | `06-build-impact-review/RAG-DT013-final-build-task-impact-review.md` | In Review |
 
 ## How Design Tasks Fit The Build Sequence
 

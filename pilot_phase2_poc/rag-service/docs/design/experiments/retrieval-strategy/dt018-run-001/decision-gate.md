@@ -1,6 +1,6 @@
 # DT018 Decision Gate
 
-Status: Proposed
+Status: Accepted
 Run: `dt018-run-001`
 Task: `RAG-DT018`
 

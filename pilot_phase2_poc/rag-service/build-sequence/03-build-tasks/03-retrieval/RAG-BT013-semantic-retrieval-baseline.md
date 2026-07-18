@@ -377,3 +377,9 @@ Record:
 ## Task Evidence
 
 Evidence is recorded in `pilot_phase2_poc/rag-service/build-evidence/RAG-BT013-semantic-retrieval-baseline.md`.
+
+## DT013 Final Design Handoff
+
+- Implement semantic retrieval as a controlled baseline, not the final runtime retrieval strategy.
+- Record embedding model, vector dimension, distance metric, source lineage, expected chunk presence, and score outputs.
+- Keep fixture/review corpus assumptions explicit until production canonical KB promotion exists.

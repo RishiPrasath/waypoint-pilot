@@ -1,6 +1,6 @@
 # DT018 Scoring Options
 
-Status: Proposed
+Status: Accepted
 Run: `dt018-run-001`
 
 ## Options Reviewed

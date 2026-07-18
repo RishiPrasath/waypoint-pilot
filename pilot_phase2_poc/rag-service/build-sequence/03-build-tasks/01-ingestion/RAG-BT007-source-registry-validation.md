@@ -280,3 +280,9 @@ Record:
 ## Task Evidence
 
 Evidence is recorded in `pilot_phase2_poc/rag-service/build-evidence/RAG-BT007-source-registry-validation.md`.
+
+## DT013 Final Design Handoff
+
+- Validate source registry schema against retrieval eligibility, license sensitivity, cite-only/source-only boundaries, and canonical-promotion state.
+- Treat first-pass source/candidate material as fixture or review input unless explicitly promoted.
+- Preserve the rule that `legacy/phase1-kb-snapshot/` is audit-only and never a runtime ingestion source.
