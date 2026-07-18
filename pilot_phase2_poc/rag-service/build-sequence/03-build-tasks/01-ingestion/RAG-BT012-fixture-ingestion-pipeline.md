@@ -69,6 +69,16 @@ DT014 Vector DB Test Handoff:
 - CI gate timing: integration test may be advisory until BT013 exists; becomes
   required once semantic retrieval depends on the seeded collection.
 
+DT016 CI/CD Readiness Handoff:
+
+- Default PR CI runs unit/API/static/security checks through
+  `.github/workflows/rag-service-ci.yml`.
+- Fixture ingestion implementation must keep fast tests Docker-free.
+- Qdrant-backed ingestion tests must use `pytest -m integration` and remain
+  advisory until semantic retrieval consumes the seeded collection.
+- When promoted, the GitHub Actions Qdrant service-container job must be added
+  or enabled in the `rag-service` CI workflow.
+
 Acceptance Criteria:
 
 - fixture source is parsed

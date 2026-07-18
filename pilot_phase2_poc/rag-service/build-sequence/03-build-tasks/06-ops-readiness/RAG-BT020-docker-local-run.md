@@ -86,6 +86,16 @@ DT011 Docker/Local Ops Handoff:
 - Docker image build and container smoke may join CI only after `RAG-DT016`
   approves or implements the relevant CI gate.
 
+DT016 CI/CD Readiness Handoff:
+
+- When Dockerfile and Compose exist, extend `rag-service` CI with Docker image
+  build and container smoke checks.
+- Do not add Trivy image scanning until an image target exists.
+- Container smoke must call app `/health`, app `/ready`, and Qdrant `/readyz`.
+- Preserve the default non-Docker CI job even after Docker jobs are added.
+- If Docker jobs are deferred, record the reason in BT020 evidence and the
+  production-readiness review.
+
 Acceptance Criteria:
 
 - Docker image builds

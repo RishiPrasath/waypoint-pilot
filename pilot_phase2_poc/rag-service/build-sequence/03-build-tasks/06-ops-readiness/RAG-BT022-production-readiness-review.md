@@ -52,6 +52,18 @@ DT011 Docker/Local Ops Handoff:
 - Production deployment, Kubernetes, managed Qdrant, backups, and TLS are not
   implied by DT011 and need explicit future decisions if they become in scope.
 
+DT016 CI/CD Readiness Handoff:
+
+- Production-readiness review must verify the dedicated `rag-service` CI
+  workflow is passing for the final build state.
+- Verify CodeQL and Dependabot configuration files still exist and remain
+  aligned with the service path.
+- Verify the accepted DT016 deferrals are either closed or explicitly carried:
+  GitHub repository security settings, Qdrant service-container integration,
+  Docker image/container smoke, and container scanning.
+- Do not treat GitHub Actions as the only readiness proof; require local
+  evidence from the relevant build tasks plus CI evidence.
+
 Acceptance Criteria:
 
 - all required build tasks are done or explicitly deferred

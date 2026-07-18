@@ -64,6 +64,15 @@ DT014 Vector DB Test Handoff:
 - Cleanup rule: create a unique collection per run and delete it in teardown.
 - CI gate timing: required for this task once BT012 seed/bootstrap exists.
 
+DT016 CI/CD Readiness Handoff:
+
+- Semantic retrieval must preserve the default CI command set from DT016.
+- Service-backed retrieval acceptance must use `pytest -m integration`.
+- Once BT012 provides seed/bootstrap, the Qdrant service-container integration
+  job becomes required before merge.
+- CI logs must include enough collection/seed/readiness diagnostics to debug
+  failed retrieval gates without printing secrets.
+
 Acceptance Criteria:
 
 - retriever interface exists

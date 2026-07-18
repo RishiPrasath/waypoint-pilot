@@ -69,6 +69,16 @@ DT014 Vector DB Test Handoff:
 - CI gate timing: required once Qdrant-backed retrieval evaluation is promoted
   to PR regression coverage.
 
+DT016 CI/CD Readiness Handoff:
+
+- Evaluation harness unit tests must run in default CI without Docker or
+  external providers.
+- Qdrant-backed evaluation must run under `pytest -m integration`.
+- Any generated reports committed as artifacts must avoid secrets and oversized
+  raw source dumps.
+- CI should clearly separate mocked/unit evaluation results from Qdrant-backed
+  integration evaluation results.
+
 Acceptance Criteria:
 
 - golden question fixture exists

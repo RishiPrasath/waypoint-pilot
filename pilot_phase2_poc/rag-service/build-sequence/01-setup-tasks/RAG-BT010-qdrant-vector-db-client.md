@@ -60,6 +60,16 @@ DT014 Vector DB Test Handoff:
 - CI gate timing: optional/advisory until BT012 and BT013 exist; required once
   service-backed ingestion/retrieval tests are promoted.
 
+DT016 CI/CD Readiness Handoff:
+
+- Keep wrapper tests in the default Docker-free CI path unless explicitly
+  marked `integration`.
+- The `integration` pytest marker is registered in `pyproject.toml`.
+- Live Qdrant smoke tests must not become required in PR CI until the accepted
+  DT014 timing is reached.
+- If a live wrapper smoke test is added, it must use the DT014 env vars and
+  collection cleanup rules, and it must be runnable locally before push.
+
 Out Of Scope:
 
 - full ingestion

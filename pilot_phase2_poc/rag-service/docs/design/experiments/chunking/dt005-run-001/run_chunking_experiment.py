@@ -119,10 +119,16 @@ def heading_blocks(markdown: str) -> list[tuple[list[str], str]]:
     if current_lines and heading_path:
         blocks.append((heading_path.copy(), current_lines))
 
-    return [(path, "\n".join(lines).strip()) for path, lines in blocks if "\n".join(lines).strip()]
+    return [
+        (path, "\n".join(lines).strip())
+        for path, lines in blocks
+        if "\n".join(lines).strip()
+    ]
 
 
-def base_chunk_record(row: ManifestRow, frontmatter: dict[str, str], strategy: str, index: int) -> dict[str, object]:
+def base_chunk_record(
+    row: ManifestRow, frontmatter: dict[str, str], strategy: str, index: int
+) -> dict[str, object]:
     return {
         "run_id": RUN_ID,
         "queue": QUEUE_NAME,
@@ -143,10 +149,14 @@ def base_chunk_record(row: ManifestRow, frontmatter: dict[str, str], strategy: s
     }
 
 
-def fixed_window_chunks(row: ManifestRow, frontmatter: dict[str, str], body: str) -> list[dict[str, object]]:
+def fixed_window_chunks(
+    row: ManifestRow, frontmatter: dict[str, str], body: str
+) -> list[dict[str, object]]:
     chunks = []
     for index, text in enumerate(
-        chunk_text_from_words(normalize_words(body), FIXED_WINDOW_WORDS, FIXED_WINDOW_OVERLAP),
+        chunk_text_from_words(
+            normalize_words(body), FIXED_WINDOW_WORDS, FIXED_WINDOW_OVERLAP
+        ),
         start=1,
     ):
         record = base_chunk_record(row, frontmatter, "fixed_window_baseline_v1", index)
@@ -162,7 +172,9 @@ def fixed_window_chunks(row: ManifestRow, frontmatter: dict[str, str], body: str
     return chunks
 
 
-def structure_aware_chunks(row: ManifestRow, frontmatter: dict[str, str], body: str) -> list[dict[str, object]]:
+def structure_aware_chunks(
+    row: ManifestRow, frontmatter: dict[str, str], body: str
+) -> list[dict[str, object]]:
     chunks = []
     for index, (path, text) in enumerate(heading_blocks(body), start=1):
         record = base_chunk_record(row, frontmatter, "structure_aware_v1", index)
@@ -178,12 +190,18 @@ def structure_aware_chunks(row: ManifestRow, frontmatter: dict[str, str], body: 
     return chunks
 
 
-def split_large_section_recursively(text: str, max_words: int, overlap: int) -> list[str]:
+def split_large_section_recursively(
+    text: str, max_words: int, overlap: int
+) -> list[str]:
     words = normalize_words(text)
     if len(words) <= max_words:
         return [text]
 
-    paragraphs = [paragraph.strip() for paragraph in re.split(r"\n\s*\n", text) if paragraph.strip()]
+    paragraphs = [
+        paragraph.strip()
+        for paragraph in re.split(r"\n\s*\n", text)
+        if paragraph.strip()
+    ]
     chunks: list[str] = []
     current: list[str] = []
 
@@ -211,7 +229,9 @@ def split_large_section_recursively(text: str, max_words: int, overlap: int) -> 
     return chunks
 
 
-def hybrid_structure_recursive_chunks(row: ManifestRow, frontmatter: dict[str, str], body: str) -> list[dict[str, object]]:
+def hybrid_structure_recursive_chunks(
+    row: ManifestRow, frontmatter: dict[str, str], body: str
+) -> list[dict[str, object]]:
     chunks = []
     chunk_index = 1
     for path, text in heading_blocks(body):
@@ -221,7 +241,9 @@ def hybrid_structure_recursive_chunks(row: ManifestRow, frontmatter: dict[str, s
             overlap=HYBRID_OVERLAP_WORDS,
         )
         for part_index, part in enumerate(section_parts, start=1):
-            record = base_chunk_record(row, frontmatter, "hybrid_structure_recursive_v1", chunk_index)
+            record = base_chunk_record(
+                row, frontmatter, "hybrid_structure_recursive_v1", chunk_index
+            )
             record.update(
                 {
                     "chunk_id": f"{row.document_id}-{row.snapshot_id}-hsr-{chunk_index:03d}",
@@ -287,9 +309,13 @@ def comparison_report(
             "|---|---:|---:|---:|---|",
         ]
     )
-    for document_id in sorted(set(fixed_by_doc) | set(structure_by_doc) | set(hybrid_by_doc)):
+    for document_id in sorted(
+        set(fixed_by_doc) | set(structure_by_doc) | set(hybrid_by_doc)
+    ):
         hybrid_doc_chunks = hybrid_by_doc.get(document_id, [])
-        recursive_applied = any(chunk.get("recursive_split_applied") for chunk in hybrid_doc_chunks)
+        recursive_applied = any(
+            chunk.get("recursive_split_applied") for chunk in hybrid_doc_chunks
+        )
         lines.append(
             f"| `{document_id}` | {len(fixed_by_doc.get(document_id, []))} | {len(structure_by_doc.get(document_id, []))} | {len(hybrid_doc_chunks)} | `{str(recursive_applied).lower()}` |"
         )
@@ -324,7 +350,9 @@ def comparison_report(
 def main() -> None:
     root = service_root()
     run_dir = Path(__file__).resolve().parent
-    manifest_path = root / "knowledge_base" / "snapshots" / "first-pass-snapshot-manifest.md"
+    manifest_path = (
+        root / "knowledge_base" / "snapshots" / "first-pass-snapshot-manifest.md"
+    )
     rows = parse_manifest(manifest_path)
 
     queue_items: list[dict[str, object]] = []

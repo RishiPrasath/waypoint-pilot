@@ -43,8 +43,7 @@ class VectorSearchMatch(BaseModel):
 
 
 class QdrantClientBoundary(Protocol):
-    def upsert(self, *, collection_name: str, points: list[dict[str, Any]]) -> Any:
-        ...
+    def upsert(self, *, collection_name: str, points: list[dict[str, Any]]) -> Any: ...
 
     def search(
         self,
@@ -53,16 +52,14 @@ class QdrantClientBoundary(Protocol):
         query_vector: list[float],
         limit: int,
         query_filter: dict[str, Any] | None = None,
-    ) -> list[Any]:
-        ...
+    ) -> list[Any]: ...
 
     def delete(
         self,
         *,
         collection_name: str,
         points_selector: dict[str, Any],
-    ) -> Any:
-        ...
+    ) -> Any: ...
 
 
 class QdrantVectorDbClient:

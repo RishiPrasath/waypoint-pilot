@@ -72,6 +72,22 @@ DT011 Docker/Local Ops Handoff:
   `uv run python -m pytest -q`.
 - Do not add `RUN_QDRANT_INTEGRATION=1` to Stage 1 CI.
 
+DT016 CI/CD Readiness Handoff:
+
+- Dedicated `rag-service` CI workflow is `.github/workflows/rag-service-ci.yml`.
+- Dedicated `rag-service` CodeQL workflow is
+  `.github/workflows/rag-service-codeql.yml`.
+- Dependabot config is `.github/dependabot.yml`.
+- Required default CI command set:
+  - `uv sync --dev --frozen`
+  - `uv run python -m pytest -q`
+  - `uv run ruff format --check .`
+  - `uv run ruff check .`
+  - `uv run bandit -c pyproject.toml -r app -x app/api/tests,app/core/tests,app/shared/tests,app/shared/vector_db/tests`
+  - `uv run pip-audit`
+- Secret scanning and Dependabot security-update repository settings still need
+  owner/admin review because GitHub API reported them disabled during DT016.
+
 ## 2. Worktree And Branch Setup
 
 ### Windows PowerShell

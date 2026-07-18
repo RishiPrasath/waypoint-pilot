@@ -20,6 +20,9 @@ dev = [
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
+markers = [
+  "integration: tests requiring external services such as local Docker/Qdrant or GitHub Actions service containers",
+]
 
 [tool.bandit]
 exclude_dirs = [
