@@ -1,6 +1,6 @@
 # RAG-DT017: Overall Architecture And Design Sufficiency Review
 
-Status: Planned
+Status: In Review
 
 ## Sequence Entry
 
@@ -21,7 +21,7 @@ opening this task file. Task files should follow the canonical template in
 | Worktree Path | `C:\tmp\rag-dt017-architecture-sufficiency-review` |
 | Owner | solo developer |
 | AI Review Partner | Codex with specialist review agents |
-| Status | Planned |
+| Status | In Review |
 | Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-DT017-architecture-sufficiency-review.md` |
 
 ## 1. Task Definition
