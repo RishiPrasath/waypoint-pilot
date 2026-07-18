@@ -1,6 +1,6 @@
 # RAG-DT011 Evidence
 
-Status: In Review
+Status: Complete
 
 ## Identity
 
@@ -8,9 +8,9 @@ Task: RAG-DT011 - Define Docker And Local Ops Design
 Branch: `codex/rag-dt011-docker-local-ops-design`
 Worktree: `C:\tmp\rag-dt011-docker-local-ops-design`
 Starting main commit: `0484a83`
-PR: Pending
-Implementation commit: Pending
-Merge commit: Pending
+PR: https://github.com/RishiPrasath/waypoint-pilot/pull/34
+Implementation commit: `708c853`
+Merge commit: `c5525d8`
 
 ## Artifacts
 
@@ -90,9 +90,9 @@ Handoff blocks were added to:
 
 ## CI And Review
 
-PR CI: Pending
-Human review: Pending
-AI review: Pending
+PR CI: No required checks reported before merge
+Human review: Completed by merge of PR #34
+AI review: Completed during task execution
 
 ## Issues And Recovery
 
@@ -104,6 +104,5 @@ AI review: Pending
 
 ## Follow-ups
 
-- Open PR.
-- Record PR URL, commit, and CI result.
-- After merge, close out status to `Complete`.
+- DT011 is complete.
+- Next planned task is `RAG-DT016`.
