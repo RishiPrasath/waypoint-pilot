@@ -13,8 +13,8 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Task Name | Add Semantic Retrieval Baseline |
 | Build Stage | 03-retrieval - Retrieval |
 | Source Question | RAG-Q009, RAG-Q017 |
-| Decision / ADR | ADR-RAG-0007, RAG-DT005, RAG-DT012, RAG-DT013 |
-| Design Dependencies | RAG-BT012, RAG-DT005, RAG-DT012, RAG-DT014, RAG-DT013 |
+| Decision / ADR | ADR-RAG-0007, RAG-DT005, RAG-DT012, RAG-DT018, RAG-DT013 |
+| Design Dependencies | RAG-BT012, RAG-DT005, RAG-DT012, RAG-DT014, RAG-DT018, RAG-DT013 |
 | Depends On Build Tasks | see section 1 and section 3 |
 | Branch | `codex/rag-bt013-semantic-retrieval-baseline` |
 | Worktree Path | `C:\tmp\rag-bt013-semantic-retrieval-baseline` |
@@ -37,7 +37,16 @@ Design Gates:
 - `RAG-DT005`
 - `RAG-DT012`
 - `RAG-DT014`
+- `RAG-DT018`
 - `RAG-DT013`
+
+DT018 Retrieval Strategy Gate:
+
+- Before implementation, confirm `RAG-DT018` has defined the semantic baseline
+  retrieval mode, expected candidate pool behavior, metadata filter behavior,
+  low-confidence behavior, and evaluation assertions for semantic retrieval.
+- If `RAG-DT018` is waived, `RAG-DT013` must record the waiver and accepted
+  risk before this task starts.
 
 DT014 Vector DB Test Handoff:
 

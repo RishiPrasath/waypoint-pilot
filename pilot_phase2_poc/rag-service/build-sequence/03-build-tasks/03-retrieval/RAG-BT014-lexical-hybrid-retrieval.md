@@ -13,8 +13,8 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Task Name | Add Lexical And Hybrid Retrieval |
 | Build Stage | 03-retrieval - Retrieval |
 | Source Question | RAG-Q009, RAG-Q017 |
-| Decision / ADR | ADR-RAG-0007, RAG-DT005, RAG-DT013 |
-| Design Dependencies | RAG-BT013, RAG-DT005, RAG-DT014, RAG-DT013 |
+| Decision / ADR | ADR-RAG-0007, RAG-DT005, RAG-DT018, RAG-DT013 |
+| Design Dependencies | RAG-BT013, RAG-DT005, RAG-DT014, RAG-DT018, RAG-DT013 |
 | Depends On Build Tasks | see section 1 and section 3 |
 | Branch | `codex/rag-bt014-lexical-hybrid-retrieval` |
 | Worktree Path | `C:\tmp\rag-bt014-lexical-hybrid-retrieval` |
@@ -36,7 +36,17 @@ Design Gates:
 - `RAG-BT013`
 - `RAG-DT005`
 - `RAG-DT014`
+- `RAG-DT018`
 - `RAG-DT013`
+
+DT018 Retrieval Strategy And Fusion Gate:
+
+- Before implementation, confirm `RAG-DT018` has defined lexical method,
+  tokenization, normalization, candidate pool sizes, score normalization,
+  fusion rule, metadata filters/boosts, tie-breaking, low-confidence behavior,
+  and rerank hook input/output.
+- If `RAG-DT018` is waived, `RAG-DT013` must record the waiver and accepted
+  risk before this task starts.
 
 DT014 Vector DB Test Handoff:
 

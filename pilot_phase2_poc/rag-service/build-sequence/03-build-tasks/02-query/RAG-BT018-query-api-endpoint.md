@@ -13,8 +13,8 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Task Name | Add Query API Endpoint |
 | Build Stage | 02-query - Query |
 | Source Question | RAG-Q018, RAG-Q020 |
-| Decision / ADR | ADR-RAG-0001, ADR-RAG-0004, RAG-DT015, RAG-DT013 |
-| Design Dependencies | RAG-BT015, RAG-BT013, RAG-BT014, RAG-BT016, RAG-BT017, RAG-DT015, RAG-DT013 |
+| Decision / ADR | ADR-RAG-0001, ADR-RAG-0004, RAG-DT015, RAG-DT018, RAG-DT019, RAG-DT013 |
+| Design Dependencies | RAG-BT015, RAG-BT013, RAG-BT014, RAG-BT016, RAG-BT017, RAG-DT015, RAG-DT018, RAG-DT019, RAG-DT013 |
 | Depends On Build Tasks | see section 1 and section 3 |
 | Branch | `codex/rag-bt018-query-api-endpoint` |
 | Worktree Path | `C:\tmp\rag-bt018-query-api-endpoint` |
@@ -39,7 +39,20 @@ Design Gates:
 - `RAG-BT016`
 - `RAG-BT017`
 - `RAG-DT015`
+- `RAG-DT018`
+- `RAG-DT019`
 - `RAG-DT013`
+
+DT018/DT019 Query API Contract Gates:
+
+- Before implementation, confirm `RAG-DT018` has defined retrieval mode,
+  scoring, source filtering, and low-confidence fields that must be visible or
+  traceable through the API response.
+- Before implementation, confirm `RAG-DT019` has defined request/response
+  schema, citation schema, safe-response schema, error-envelope behavior, and
+  frontend/BFF consumer fields.
+- If either task is waived, `RAG-DT013` must record the waiver and accepted
+  risk before this task starts.
 
 DT016 CI/CD Readiness Handoff:
 

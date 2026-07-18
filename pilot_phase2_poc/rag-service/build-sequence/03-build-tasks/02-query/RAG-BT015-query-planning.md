@@ -13,8 +13,8 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Task Name | Add Query Safeguards And Deterministic Query Planning |
 | Build Stage | 02-query - Query |
 | Source Question | RAG-Q014, RAG-Q010, RAG-Q017 |
-| Decision / ADR | ADR-RAG-0004, RAG-DT007, RAG-DT013 |
-| Design Dependencies | RAG-DT007, RAG-DT013 |
+| Decision / ADR | ADR-RAG-0004, RAG-DT007, RAG-DT019, RAG-DT013 |
+| Design Dependencies | RAG-DT007, RAG-DT019, RAG-DT013 |
 | Depends On Build Tasks | see section 1 and section 3 |
 | Branch | `codex/rag-bt015-query-safeguards-planning` |
 | Worktree Path | `C:\tmp\rag-bt015-query-safeguards-planning` |
@@ -34,7 +34,16 @@ Module: `app/stages/stage_02_query/`.
 Design Gates:
 
 - `RAG-DT007`
+- `RAG-DT019`
 - `RAG-DT013`
+
+DT019 Safeguard/API Contract Gate:
+
+- Before implementation, confirm `RAG-DT019` has defined the planner fields,
+  safe-response fields, refusal behavior, and API-visible classification data
+  this task must emit.
+- If `RAG-DT019` is waived, `RAG-DT013` must record the waiver and accepted
+  risk before this task starts.
 
 Acceptance Criteria:
 

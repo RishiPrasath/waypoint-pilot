@@ -78,6 +78,7 @@ decision reconciliation
 -> runtime technical design
 -> CI/CD and REST service readiness gate
 -> overall architecture sufficiency review
+-> required follow-up design contracts
 -> final build impact review
 ```
 
@@ -101,7 +102,10 @@ decision reconciliation
 | 21 | `RAG-DT011` | Define Docker/local ops design when ready | `05-runtime-technical-design/RAG-DT011-docker-local-ops-design.md` | Complete |
 | 22 | `RAG-DT016` | Audit and implement CI/CD REST service readiness gate | `05-runtime-technical-design/RAG-DT016-cicd-rest-service-readiness-gate.md` | Complete |
 | 23 | `RAG-DT017` | Overall architecture and design sufficiency review | `05-runtime-technical-design/RAG-DT017-architecture-sufficiency-review.md` | Planned |
-| 24 | `RAG-DT013` | Final build task impact review | `06-build-impact-review/RAG-DT013-final-build-task-impact-review.md` | Planned |
+| 24 | `RAG-DT018` | Retrieval strategy selection, scoring, and fusion contract | `05-runtime-technical-design/RAG-DT018-retrieval-strategy-selection-and-fusion-contract.md` | Planned |
+| 25 | `RAG-DT019` | Generation prompt, safeguards, output schema, and query API contract | `05-runtime-technical-design/RAG-DT019-generation-prompt-safeguards-output-schema-and-query-api-contract.md` | Planned |
+| 26 | `RAG-DT020` | Post-build evaluation and tuning loop | `05-runtime-technical-design/RAG-DT020-post-build-evaluation-and-tuning-loop.md` | Planned |
+| 27 | `RAG-DT013` | Final build task impact review | `06-build-impact-review/RAG-DT013-final-build-task-impact-review.md` | Planned |
 
 ## How Design Tasks Fit The Build Sequence
 
@@ -116,8 +120,10 @@ implementation tasks such as ingestion, retrieval, generation, API integration,
 or evaluation. `RAG-DT016` is the exception-shaped readiness gate: it may
 implement CI/CD workflow gaps because its purpose is to prove the project
 runway before architecture and final build-task review. `RAG-DT017` then
-performs a multi-perspective architecture sufficiency review and may recommend
-additional design tasks before `RAG-DT013` approves final build tasks.
+performs a multi-perspective architecture sufficiency review. `RAG-DT018`,
+`RAG-DT019`, and `RAG-DT020` close the required follow-up contracts for
+retrieval strategy, generation/API safeguards, and post-build evaluation tuning
+before `RAG-DT013` approves final build tasks.
 
 ## Standard Design Task Sections
 

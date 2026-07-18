@@ -14,7 +14,7 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Build Stage | 06-ops-readiness - Ops Readiness |
 | Source Question | definition of done |
 | Decision / ADR | ADR-RAG-0011, ADR-RAG-0014 |
-| Design Dependencies | all required build tasks, accepted deferrals only |
+| Design Dependencies | all required build tasks, RAG-DT020, accepted deferrals only |
 | Depends On Build Tasks | see section 1 and section 3 |
 | Branch | `codex/rag-bt022-production-readiness-review` |
 | Worktree Path | `C:\tmp\rag-bt022-production-readiness-review` |
@@ -34,7 +34,16 @@ Module: `docs/reviews/`.
 Design Gates:
 
 - `all required build tasks`
+- `RAG-DT020`
 - `accepted deferrals only`
+
+DT020 Evaluation/Tuning Gate:
+
+- Before production-readiness review, confirm `RAG-DT020` has defined how
+  evaluation findings, tuning decisions, baseline changes, and unresolved
+  failures are accepted, remediated, or deferred.
+- If `RAG-DT020` is waived, this task must record the waiver and accepted risk
+  before the service can be called production-ready.
 
 DT011 Docker/Local Ops Handoff:
 
