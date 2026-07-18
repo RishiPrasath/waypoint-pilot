@@ -48,6 +48,21 @@ DT018 Retrieval Strategy Gate:
 - If `RAG-DT018` is waived, `RAG-DT013` must record the waiver and accepted
   risk before this task starts.
 
+DT018 Proposed Handoff:
+
+- Implement `semantic_only_baseline` as the controlled baseline, not the final
+  runtime hybrid path.
+- Use `BAAI/bge-small-en`, 384 dimensions, cosine distance from `RAG-DT010`.
+- Use `hybrid_structure_recursive_v1` chunks from `RAG-DT005` / `RAG-BT012`.
+- Semantic query top-k may remain `5` for DT010 parity; runtime hybrid will use
+  semantic top `12` after `RAG-BT014`.
+- Apply hard metadata filters for retrieval-eligible sources, market/source
+  hints, reuse mode, and license-sensitive exclusions.
+- Low-confidence semantic-only results should be reported, not sent to
+  generation, until the API/generation contract is implemented.
+- Acceptance must report expected source rank and expected chunk Recall@3/5
+  against the positive DT006 cases.
+
 DT014 Vector DB Test Handoff:
 
 - Qdrant test mode: retrieval logic may use fast in-memory/unit checks during

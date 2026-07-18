@@ -51,6 +51,24 @@ DT018/DT019 Query API Contract Gates:
 - Before implementation, confirm `RAG-DT019` has defined request/response
   schema, citation schema, safe-response schema, error-envelope behavior, and
   frontend/BFF consumer fields.
+
+DT018 Proposed Handoff:
+
+- The query API should expose or trace:
+  - planner classification and intent;
+  - retrieval mode;
+  - retrieval allowed flag;
+  - market/source filters;
+  - semantic, lexical, fused, boost, and final score fields when available;
+  - candidate count before and after filtering;
+  - low-confidence decision;
+  - no-evidence/safe-response reason;
+  - citation/source lineage metadata.
+- `unsupported_operational`, `partner_source_required`, `irrelevant`,
+  `malicious`, and `ambiguous` classifications must not call retrieval.
+- `license_sensitive` may perform metadata-only exclusion lookup, but must not
+  retrieve answer text.
+- Default API tests should mock retrieval/generation and remain Docker-free.
 - If either task is waived, `RAG-DT013` must record the waiver and accepted
   risk before this task starts.
 

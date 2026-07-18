@@ -102,7 +102,7 @@ decision reconciliation
 | 21 | `RAG-DT011` | Define Docker/local ops design when ready | `05-runtime-technical-design/RAG-DT011-docker-local-ops-design.md` | Complete |
 | 22 | `RAG-DT016` | Audit and implement CI/CD REST service readiness gate | `05-runtime-technical-design/RAG-DT016-cicd-rest-service-readiness-gate.md` | Complete |
 | 23 | `RAG-DT017` | Overall architecture and design sufficiency review | `05-runtime-technical-design/RAG-DT017-architecture-sufficiency-review.md` | Complete |
-| 24 | `RAG-DT018` | Retrieval strategy selection, scoring, and fusion contract | `05-runtime-technical-design/RAG-DT018-retrieval-strategy-selection-and-fusion-contract.md` | Planned |
+| 24 | `RAG-DT018` | Retrieval strategy selection, scoring, and fusion contract | `05-runtime-technical-design/RAG-DT018-retrieval-strategy-selection-and-fusion-contract.md` | In Review |
 | 25 | `RAG-DT019` | Generation prompt, safeguards, output schema, and query API contract | `05-runtime-technical-design/RAG-DT019-generation-prompt-safeguards-output-schema-and-query-api-contract.md` | Planned |
 | 26 | `RAG-DT020` | Post-build evaluation and tuning loop | `05-runtime-technical-design/RAG-DT020-post-build-evaluation-and-tuning-loop.md` | Planned |
 | 27 | `RAG-DT013` | Final build task impact review | `06-build-impact-review/RAG-DT013-final-build-task-impact-review.md` | Planned |

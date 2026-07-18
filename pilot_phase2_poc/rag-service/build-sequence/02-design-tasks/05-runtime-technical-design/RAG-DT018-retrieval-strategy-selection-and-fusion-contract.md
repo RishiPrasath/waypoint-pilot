@@ -1,6 +1,6 @@
 # RAG-DT018: Retrieval Strategy Selection, Scoring, And Fusion Contract
 
-Status: Planned
+Status: In Review
 
 ## Sequence Entry
 
@@ -196,6 +196,27 @@ rules, golden questions, and build tasks.
 | Decision gate exists | `Test-Path docs/design/experiments/retrieval-strategy/dt018-run-001/decision-gate.md` | `True` |
 | Build impact recorded | Search contract for `RAG-BT013`, `RAG-BT014`, `RAG-BT018`, `RAG-BT019` | All present |
 | Evidence exists | `Test-Path build-evidence/RAG-DT018-retrieval-strategy-selection-and-fusion-contract.md` | `True` |
+
+## 8.1 Proposed Decision Summary
+
+This task proposes `metadata_filtered_hybrid` as the first-pass runtime default
+for answerable public regulatory questions, with `semantic_only_baseline`
+retained for `RAG-BT013`, `lexical_only_diagnostic` retained for debugging, and
+`exact_match_boosted_hybrid` used for exact source, title, procedure, article,
+HS/tariff, and permit questions.
+
+No-retrieval planner classifications must block retrieval before source search.
+License-sensitive and cite-only sources may be used only for metadata exclusion
+explanations unless a later task records explicit reuse approval.
+
+The proposed fusion rule is:
+
+```text
+base_fused_score = (0.65 * semantic_norm) + (0.35 * lexical_norm)
+final_score = min(1.0, base_fused_score + exact_match_boost + metadata_boost)
+```
+
+with exact-match boost capped at `0.15` and metadata boost capped at `0.05`.
 
 ## 9. PR Handoff
 
