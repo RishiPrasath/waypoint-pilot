@@ -1,6 +1,6 @@
 # RAG-DT016 CI/CD And REST Service Readiness Gate
 
-Status: In Review
+Status: Accepted for `RAG-DT016`
 Run: `dt016-run-001`
 Date: 2026-07-18
 

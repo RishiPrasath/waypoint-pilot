@@ -1,0 +1,138 @@
+# RAG-DT017 Evidence
+
+Status: In Review
+
+## Identity
+
+Task: RAG-DT017 - Overall Architecture And Design Sufficiency Review
+Branch: `codex/rag-dt017-architecture-sufficiency-review`
+Worktree: `C:\tmp\rag-dt017-architecture-sufficiency-review`
+Starting main commit: `a03e7d2`
+PR: Pending
+Implementation commit: Pending
+Merge commit: Pending
+
+## Baseline Checks
+
+```powershell
+$ServiceRoot = Join-Path $WorktreePath "pilot_phase2_poc\rag-service"
+Set-Location $ServiceRoot
+
+Test-Path "$ServiceRoot\build-sequence\02-design-tasks\00-index.md"
+Test-Path "$ServiceRoot\build-sequence\02-design-tasks\05-runtime-technical-design\RAG-DT016-cicd-rest-service-readiness-gate.md"
+Test-Path "$ServiceRoot\build-sequence\02-design-tasks\06-build-impact-review\RAG-DT013-final-build-task-impact-review.md"
+Get-ChildItem "$ServiceRoot\build-sequence\02-design-tasks" -Recurse -Filter "RAG-DT*.md"
+Get-ChildItem "$ServiceRoot\docs\design" -Recurse -File
+Get-ChildItem "$ServiceRoot\build-evidence" -Filter "RAG-DT*.md"
+uv run python -m pytest -q
+git -C $WorktreePath diff --check
+```
+
+Result:
+
+```text
+required task/index paths -> True
+design task files -> 17
+design artifact files -> 39
+design evidence files -> 15
+uv run python -m pytest -q -> 12 passed
+git diff --check -> passed
+```
+
+## Specialist Review Coverage
+
+Specialist review perspectives were recorded for:
+
+1. FastAPI/API architecture
+2. Python packaging and unit testing
+3. Qdrant/vector database
+4. Ingestion, source registry, and KB materialization
+5. Chunking, retrieval, and evaluation
+6. LLM/generation and prompt safety
+7. CI/CD and local ops
+8. Security and data governance
+9. Frontend/API-consumer impact
+10. Overall systems architect synthesis
+
+## Additional Live Checks
+
+GitHub repository settings check:
+
+```powershell
+gh api repos/RishiPrasath/waypoint-pilot --jq '{visibility,default_branch,secret_scanning:.security_and_analysis.secret_scanning.status,dependabot_security_updates:.security_and_analysis.dependabot_security_updates.status,advanced_security:.security_and_analysis.advanced_security.status}'
+gh api repos/RishiPrasath/waypoint-pilot/branches/main/protection
+gh api repos/RishiPrasath/waypoint-pilot/rulesets --jq '[.[] | {name,target,enforcement}]'
+```
+
+Result:
+
+```json
+{"advanced_security":null,"default_branch":"main","dependabot_security_updates":"disabled","secret_scanning":"disabled","visibility":"public"}
+```
+
+```text
+branch protection -> not enabled or inaccessible
+rulesets -> []
+```
+
+Dependency provenance check:
+
+```powershell
+uv run python -m pip show httpx2 httpcore2
+```
+
+Result:
+
+```text
+httpx2 2.7.0, home page https://github.com/pydantic/httpx2
+httpcore2 2.7.0, home page https://github.com/pydantic/httpx2
+```
+
+Local `pip-audit` was already passing under DT016 and the DT017 baseline kept
+the local test surface passing.
+
+## Artifacts Created
+
+```text
+docs/design/architecture-sufficiency-review.md
+docs/design/experiments/architecture-review/dt017-run-001/expert-review-findings.md
+docs/design/experiments/architecture-review/dt017-run-001/gap-register.md
+docs/design/experiments/architecture-review/dt017-run-001/recommended-follow-up-design-tasks.md
+docs/design/experiments/architecture-review/dt017-run-001/decision-gate.md
+build-evidence/RAG-DT017-architecture-sufficiency-review.md
+```
+
+## Existing Artifact Hygiene
+
+This branch also updates:
+
+```text
+docs/design/cicd-rest-service-readiness-gate.md
+```
+
+from `Status: In Review` to `Status: Accepted for RAG-DT016`, because PR #42
+already closed out DT016 in the task file and evidence.
+
+## Decision
+
+Gate result:
+
+```text
+Pass With Required Follow-Up Tasks
+```
+
+Required follow-up design tasks:
+
+- `RAG-DT018: Hybrid Retrieval Scoring And Fusion Contract`
+- `RAG-DT019: Generation Prompt, Output Schema, And Query API Consumer Contract`
+
+Required owner decision/remediation items:
+
+- repository enforcement/security settings;
+- `httpx2`/`httpcore2` dependency provenance and accepted rationale.
+
+## Follow-Ups
+
+- Open PR and record URL.
+- Wait for GitHub Actions checks.
+- After merge, close out status and evidence with PR/commit/merge metadata.
