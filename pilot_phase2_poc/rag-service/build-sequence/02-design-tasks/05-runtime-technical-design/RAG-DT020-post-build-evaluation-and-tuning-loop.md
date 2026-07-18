@@ -1,6 +1,6 @@
 ﻿# RAG-DT020: Post-Build Evaluation And Tuning Loop
 
-Status: In Review
+Status: Complete
 
 ## Sequence Entry
 

@@ -1,6 +1,6 @@
 ﻿# RAG-DT020 Evidence
 
-Status: In Review
+Status: Complete
 Task: `RAG-DT020`
 Branch: `codex/rag-dt020-post-build-evaluation-and-tuning-loop`
 Worktree: `C:\Users\prasa\Documents\Github\waypoint-pilot`
@@ -44,14 +44,35 @@ build-evidence/RAG-DT020-post-build-evaluation-and-tuning-loop.md
 
 ## PR And Merge
 
-- PR: to be created when you sign off on the design.
-- PR CI/CD: to be run on PR.
-- Main CI/CD: to be confirmed after merge.
+PR:
+https://github.com/RishiPrasath/waypoint-pilot/pull/51
+
+PR CI/CD:
+Passed before merge:
+
+- RAG Service CI / Unit, lint, and security checks: success
+- RAG Service CodeQL / Analyze Python: success
+- CodeQL: success
+
+Main CI/CD:
+Passed after merge commit `7d53552d31a97031e44cda73d6fe3d79235d6350`:
+
+- RAG Service CI / Unit, lint, and security checks: success
+- RAG Service CodeQL / Analyze Python: success
 
 ## Merge Commit
 
-Pending.
+`7d53552d31a97031e44cda73d6fe3d79235d6350`
+
+Merged at:
+`2026-07-18T12:12:44Z`
 
 ## Cleanup
 
-Pending branch worktree actions until merge completion.
+- Local `main` refreshed to merge commit `7d53552`.
+- Local implementation branch deleted:
+  `codex/rag-dt020-post-build-evaluation-and-tuning-loop`
+- Remote implementation branch deleted by PR merge:
+  `codex/rag-dt020-post-build-evaluation-and-tuning-loop`
+- Closeout branch created:
+  `codex/rag-dt020-closeout`
