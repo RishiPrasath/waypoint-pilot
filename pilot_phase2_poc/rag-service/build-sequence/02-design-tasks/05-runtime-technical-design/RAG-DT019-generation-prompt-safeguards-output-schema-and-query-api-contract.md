@@ -222,6 +222,13 @@ fabricated citations, license-sensitive answer text, and unsafe operational or
 policy-violating output. Recoverable malformed JSON or schema failure may retry
 at most once before returning a standard `error_fallback`.
 
+Code-level validators are not treated as sufficient for answer quality. The
+evaluation harness must also include an evaluation-only LLM judge for relevance,
+completeness, groundedness, and scope-control checks. The judge may initially
+use the selected Groq `llama-3.3-70b-versatile` model, but judge config must be
+separate and swappable through `RAG_EVAL_LLM_*`. Runtime judge gating is
+deferred until cost, latency, model-bias, and reliability are assessed.
+
 ## 9. PR Handoff
 
 The PR description must include:

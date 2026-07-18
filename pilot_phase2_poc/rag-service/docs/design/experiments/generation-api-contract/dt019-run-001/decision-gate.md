@@ -35,6 +35,11 @@ handoff.
     schema failure.
 11. Return a standard `error_fallback` response for exhausted retries or
     unavailable providers.
+12. Add an evaluation-only LLM judge for answer relevance, completeness,
+    groundedness, and scope control.
+13. Keep judge provider/model configuration separate with `RAG_EVAL_LLM_*`.
+14. Defer production runtime judge gating until cost, latency, model-bias, and
+    reliability are assessed.
 
 ## Evidence Reviewed
 
@@ -58,6 +63,8 @@ handoff.
 | Safe-response cases accidentally call retrieval/generation. | Planner block cases return standard safe response before retrieval. |
 | API hides debugging fields needed for evaluation. | Response includes planner, retrieval, generation, safety, citation, and error sections. |
 | Secret leakage in logs/evidence. | Config values are injectable; API keys and auth headers must never be echoed or committed. |
+| Structurally valid answer does not answer the question. | `RAG-BT019` must run an evaluation-only LLM judge relevance/completeness check. |
+| Judge model is biased because it matches the generation model. | First-pass judge may reuse the selected model, but judge config is separate and swappable. |
 
 ## Build Impact
 
@@ -66,7 +73,8 @@ handoff.
 - `RAG-BT017`: implement schema/citation validation, bounded retry, and fallback.
 - `RAG-BT018`: implement `POST /api/v1/query` response shape and error envelope.
 - `RAG-BT019`: evaluate schema, citation, groundedness, refusal, provider error,
-  malformed output, latency, and API response behavior.
+  malformed output, latency, API response behavior, and LLM judge relevance /
+  completeness scoring.
 
 ## Gate Result
 

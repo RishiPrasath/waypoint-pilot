@@ -69,6 +69,13 @@ False
 - Retry is bounded to at most one retry for malformed JSON or recoverable schema
   failure.
 - Fallback output uses standard `error_fallback`.
+- Code-level validators are necessary but not sufficient for answer quality.
+- `RAG-BT019` must add an evaluation-only LLM judge for answer relevance,
+  completeness, groundedness, and scope-control checks.
+- Judge model configuration must be separate from generation configuration via
+  `RAG_EVAL_LLM_*`.
+- Production runtime judge gating is deferred until cost, latency, model-bias,
+  and reliability are assessed.
 
 ## Verification Commands
 

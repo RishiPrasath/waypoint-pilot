@@ -53,6 +53,20 @@ Runtime implementation must keep these injectable:
 - retry count;
 - JSON/schema mode setting when supported by the provider.
 
+Evaluation-only judge configuration must be separate from generation
+configuration:
+
+```text
+RAG_EVAL_LLM_PROVIDER_LABEL=groq
+RAG_EVAL_LLM_BASE_URL=https://api.groq.com/openai/v1
+RAG_EVAL_LLM_MODEL=llama-3.3-70b-versatile
+RAG_EVAL_LLM_API_KEY=<secret, local only; may alias RAG_GROQ_API_KEY>
+```
+
+The first-pass judge may use the same selected model as generation, but the
+configuration must remain separate because judge/model independence may become
+important after the evaluation harness is implemented.
+
 Compatibility aliases:
 
 - design-time inventory/evaluation scripts may still read `LLM_BASE_URL`,
@@ -264,6 +278,11 @@ Validation fails when:
 - safety/refusal fields conflict with planner classification;
 - license-sensitive answer text is produced.
 
+These code-level validators are necessary but not sufficient to prove answer
+quality. They can prove shape, citation lineage, and some policy consistency,
+but they cannot reliably prove that the answer actually addresses the user's
+question.
+
 Retry policy:
 
 - retry at most once for malformed JSON or recoverable schema failure;
@@ -280,6 +299,48 @@ Fallback:
 - include a standard error envelope;
 - do not include partial unsafe model text;
 - preserve planner/retrieval metadata when safe to expose.
+
+## Answer Relevance And LLM Judge Evaluation
+
+`RAG-BT019` must add an evaluation-only LLM-as-judge check for answer relevance
+and answer quality. This is not a production runtime blocker in the first
+implementation.
+
+The judge should assess:
+
+- whether the answer addresses the original user question;
+- whether the answer is complete enough for the question asked;
+- whether the answer is grounded in the supplied retrieved context;
+- whether the answer is overbroad, evasive, or answers a different question;
+- whether the answer refuses when it should answer;
+- whether the answer answers when it should refuse;
+- whether source-boundary answers preserve the intended limits.
+
+Judge result schema:
+
+```text
+judge_model_id
+judge_provider_label
+relevance_score: 0 | 1 | 2
+groundedness_score: 0 | 1 | 2
+completeness_score: 0 | 1 | 2
+scope_control_score: 0 | 1 | 2
+decision: pass | warn | fail
+failure_reasons: string[]
+```
+
+Initial scoring meaning:
+
+| Score | Meaning |
+|---:|---|
+| 2 | Fully addresses the question, stays grounded, and preserves scope. |
+| 1 | Partially answers or has minor omissions/overbroad phrasing. |
+| 0 | Does not answer the question, answers a different question, hallucinates, or violates refusal/scope expectations. |
+
+The judge check is required for evaluation/regression reports, but runtime
+request handling should rely first on deterministic validators and safe
+fallbacks. Production runtime judge gating is deferred until cost, latency,
+model-bias, and reliability are assessed.
 
 ## Query API Request
 
@@ -411,6 +472,9 @@ LLM, Qdrant, Docker, or API-key requirements.
 - evaluate schema adherence, citation behavior, groundedness,
   refusal/safety behavior, provider/model errors, malformed output handling,
   latency, and API response shape;
+- include an evaluation-only LLM judge for relevance, completeness,
+  groundedness, and scope-control scoring;
+- keep judge provider/model config separately injectable with `RAG_EVAL_LLM_*`;
 - use DT006 golden questions, DT007 planner tests, DT018 retrieval modes, and
   DT015 selected model evidence.
 
