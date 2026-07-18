@@ -1,6 +1,6 @@
 # RAG-DT017 Evidence
 
-Status: In Review
+Status: Complete
 
 ## Identity
 
@@ -9,8 +9,9 @@ Branch: `codex/rag-dt017-architecture-sufficiency-review`
 Worktree: `C:\tmp\rag-dt017-architecture-sufficiency-review`
 Starting main commit: `abc1dd0`
 PR: https://github.com/RishiPrasath/waypoint-pilot/pull/43
-Implementation commit: Pending
-Merge commit: Pending
+Implementation commit: `77339ff2a8fe203fb6cefa8022895684acdc3859`
+Merge commit: `6f69eebb3a133ff07fce7fd11eea24f0b4276bd9`
+Merged At: `2026-07-18T05:57:47Z`
 
 Rebase note: this branch was rebased onto `origin/main` after PR #44 and PR
 #45 added and closed out the `RAG-DT018`, `RAG-DT019`, and `RAG-DT020`
@@ -147,6 +148,17 @@ Required owner decision/remediation items:
 
 ## Follow-Ups
 
-- Open PR and record URL.
-- Wait for GitHub Actions checks.
-- After merge, close out status and evidence with PR/commit/merge metadata.
+- PR #43 merged.
+- PR CI/CD passed:
+  - Unit, lint, and security checks: passed.
+  - Analyze Python: passed.
+  - CodeQL: passed.
+- Main CI/CD passed for merge commit
+  `6f69eebb3a133ff07fce7fd11eea24f0b4276bd9`:
+  - RAG Service CI: https://github.com/RishiPrasath/waypoint-pilot/actions/runs/29633162175
+  - RAG Service CodeQL: https://github.com/RishiPrasath/waypoint-pilot/actions/runs/29633162180
+- Cleanup completed after merge:
+  - Local `main` refreshed to merge commit `6f69eeb`.
+  - Worktree `C:\tmp\rag-dt017-architecture-sufficiency-review` removed.
+  - Local branch `codex/rag-dt017-architecture-sufficiency-review` deleted.
+  - Remote branch `codex/rag-dt017-architecture-sufficiency-review` deleted.
