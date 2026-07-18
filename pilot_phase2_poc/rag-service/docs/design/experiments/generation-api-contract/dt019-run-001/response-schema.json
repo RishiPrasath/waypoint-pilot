@@ -1,0 +1,235 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypoint.local/rag/query-response.schema.json",
+  "title": "Waypoint RAG Query Response",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "request_id",
+    "answer_type",
+    "answer",
+    "citations",
+    "safety",
+    "planner",
+    "retrieval",
+    "generation",
+    "errors"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "rag.query_response.v1"
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "answer_type": {
+      "type": "string",
+      "enum": [
+        "answer",
+        "boundary",
+        "refusal",
+        "no_evidence",
+        "clarification",
+        "error_fallback"
+      ]
+    },
+    "answer": {
+      "type": "string"
+    },
+    "citations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/citation"
+      }
+    },
+    "safety": {
+      "$ref": "#/$defs/safety"
+    },
+    "planner": {
+      "$ref": "#/$defs/planner"
+    },
+    "retrieval": {
+      "$ref": "#/$defs/retrieval"
+    },
+    "generation": {
+      "$ref": "#/$defs/generation"
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/error"
+      }
+    }
+  },
+  "$defs": {
+    "citation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "approved_source",
+        "document_id",
+        "snapshot_id",
+        "chunk_id",
+        "chunk_strategy",
+        "heading_path",
+        "source_uri",
+        "candidate_sha256",
+        "reuse_mode",
+        "license_sensitive",
+        "retrieval_eligible",
+        "quote_policy"
+      ],
+      "properties": {
+        "approved_source": { "type": "string" },
+        "document_id": { "type": "string" },
+        "snapshot_id": { "type": "string" },
+        "chunk_id": { "type": ["string", "null"] },
+        "chunk_strategy": { "type": ["string", "null"] },
+        "heading_path": { "type": ["string", "null"] },
+        "source_uri": { "type": "string" },
+        "candidate_sha256": { "type": ["string", "null"] },
+        "reuse_mode": {
+          "type": "string",
+          "enum": ["cite_and_summarize", "cite_only", "do_not_ingest", "unknown"]
+        },
+        "license_sensitive": { "type": "boolean" },
+        "retrieval_eligible": { "type": "boolean" },
+        "quote_policy": {
+          "type": "string",
+          "enum": ["cite_and_summarize", "metadata_only", "cite_only", "no_quote"]
+        }
+      }
+    },
+    "safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "refusal",
+        "safe_response",
+        "reason_code",
+        "safety_notes",
+        "blocked_stage"
+      ],
+      "properties": {
+        "refusal": { "type": "boolean" },
+        "safe_response": { "type": "boolean" },
+        "reason_code": {
+          "type": ["string", "null"],
+          "enum": [
+            null,
+            "irrelevant",
+            "unsupported_operational",
+            "partner_source_required",
+            "malicious_prompt_injection",
+            "license_sensitive",
+            "ambiguous",
+            "low_confidence",
+            "no_evidence",
+            "provider_error",
+            "malformed_output",
+            "validation_failed",
+            "timeout",
+            "dependency_unavailable"
+          ]
+        },
+        "safety_notes": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "blocked_stage": {
+          "type": ["string", "null"],
+          "enum": [null, "planner", "retrieval", "generation", "validation"]
+        }
+      }
+    },
+    "planner": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "relevance_classification",
+        "intent",
+        "retrieval_allowed",
+        "safe_response_id",
+        "markets",
+        "source_filters",
+        "reasons"
+      ],
+      "properties": {
+        "relevance_classification": { "type": "string" },
+        "intent": { "type": "string" },
+        "retrieval_allowed": { "type": "boolean" },
+        "safe_response_id": { "type": ["string", "null"] },
+        "markets": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "source_filters": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "reasons": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "retrieval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "retrieval_mode",
+        "retrieval_performed",
+        "low_confidence",
+        "candidate_count_before_filter",
+        "candidate_count_after_filter",
+        "context_chunk_count",
+        "scores_visible"
+      ],
+      "properties": {
+        "retrieval_mode": { "type": ["string", "null"] },
+        "retrieval_performed": { "type": "boolean" },
+        "low_confidence": { "type": "boolean" },
+        "candidate_count_before_filter": { "type": "integer", "minimum": 0 },
+        "candidate_count_after_filter": { "type": "integer", "minimum": 0 },
+        "context_chunk_count": { "type": "integer", "minimum": 0 },
+        "scores_visible": { "type": "boolean" }
+      }
+    },
+    "generation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider_label",
+        "model_id",
+        "latency_ms",
+        "retry_count",
+        "schema_valid",
+        "fallback_used"
+      ],
+      "properties": {
+        "provider_label": { "type": ["string", "null"] },
+        "model_id": { "type": ["string", "null"] },
+        "latency_ms": { "type": ["number", "null"], "minimum": 0 },
+        "retry_count": { "type": "integer", "minimum": 0 },
+        "schema_valid": { "type": "boolean" },
+        "fallback_used": { "type": "boolean" }
+      }
+    },
+    "error": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "message", "stage"],
+      "properties": {
+        "code": { "type": "string" },
+        "message": { "type": "string" },
+        "stage": {
+          "type": "string",
+          "enum": ["request", "planner", "retrieval", "generation", "validation", "api"]
+        }
+      }
+    }
+  }
+}

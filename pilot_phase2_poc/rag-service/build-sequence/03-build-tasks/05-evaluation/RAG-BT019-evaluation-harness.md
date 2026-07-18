@@ -59,6 +59,19 @@ DT018/DT019/DT020 Evaluation Contract Gates:
 - If any task is waived, `RAG-DT013` must record the waiver and accepted risk
   before this task starts.
 
+DT019 Proposed Handoff:
+
+- Evaluate generated/API responses against
+  `docs/design/experiments/generation-api-contract/dt019-run-001/response-schema.json`.
+- Report schema adherence, citation behavior, groundedness, refusal/safety
+  behavior, provider/model errors, malformed output handling, retry count,
+  fallback use, latency, and API response shape separately.
+- Verify positive answers cite supplied chunks with DT005/DT006/DT012 lineage.
+- Verify no-retrieval cases do not include unrelated citations.
+- Verify license-sensitive/cite-only cases do not produce answer text from
+  restricted sources.
+- Compare provider/model metadata to `docs/design/llm-model-selection-decision.md`.
+
 DT018 Proposed Handoff:
 
 - Evaluation reports must include retrieval mode as its own field.

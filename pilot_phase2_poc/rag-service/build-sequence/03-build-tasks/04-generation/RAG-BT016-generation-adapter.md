@@ -46,6 +46,23 @@ DT019 Generation Contract Gate:
 - If `RAG-DT019` is waived, `RAG-DT013` must record the waiver and accepted
   risk before this task starts.
 
+DT019 Proposed Handoff:
+
+- Implement OpenAI-compatible chat-style message construction using system,
+  developer, user, and retrieved-context package messages.
+- Mark retrieved chunks as untrusted data and keep them separate from the user
+  message.
+- Request JSON output matching
+  `docs/design/experiments/generation-api-contract/dt019-run-001/response-schema.json`.
+- Use runtime config names:
+  `RAG_LLM_PROVIDER_LABEL`, `RAG_LLM_BASE_URL`, `RAG_LLM_MODEL`, and
+  `RAG_GROQ_API_KEY`.
+- Default provider/model candidate:
+  `groq` / `llama-3.3-70b-versatile`.
+- Keep provider label, base URL, API key, model ID, timeout, max output tokens,
+  retry count, and JSON/schema mode injectable.
+- Return provider/model/latency metadata without exposing secrets.
+
 Acceptance Criteria:
 
 - provider adapter interface exists
