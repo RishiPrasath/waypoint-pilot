@@ -13,8 +13,8 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Task Name | Add Groq/OpenAI-Compatible Generation Adapter |
 | Build Stage | 04-generation - Generation |
 | Source Question | RAG-Q001, RAG-Q002, RAG-Q008 |
-| Decision / ADR | ADR-RAG-0003, RAG-DT009, RAG-DT015, RAG-DT013 |
-| Design Dependencies | RAG-DT009, RAG-DT015, RAG-DT013 |
+| Decision / ADR | ADR-RAG-0003, RAG-DT009, RAG-DT015, RAG-DT019, RAG-DT013 |
+| Design Dependencies | RAG-DT009, RAG-DT015, RAG-DT019, RAG-DT013 |
 | Depends On Build Tasks | see section 1 and section 3 |
 | Branch | `codex/rag-bt016-generation-adapter` |
 | Worktree Path | `C:\tmp\rag-bt016-generation-adapter` |
@@ -35,7 +35,16 @@ Design Gates:
 
 - `RAG-DT009`
 - `RAG-DT015`
+- `RAG-DT019`
 - `RAG-DT013`
+
+DT019 Generation Contract Gate:
+
+- Before implementation, confirm `RAG-DT019` has defined prompt/message roles,
+  retrieved-context formatting, output schema, provider/model metadata policy,
+  and runtime LLM/provider config variable names.
+- If `RAG-DT019` is waived, `RAG-DT013` must record the waiver and accepted
+  risk before this task starts.
 
 Acceptance Criteria:
 

@@ -13,8 +13,8 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Task Name | Add Output Validation And Retry/Fallback |
 | Build Stage | 04-generation - Generation |
 | Source Question | RAG-Q015, RAG-Q016 |
-| Decision / ADR | ADR-RAG-0004, RAG-DT015, RAG-DT013 |
-| Design Dependencies | RAG-BT006, RAG-BT015, RAG-BT016, RAG-DT015, RAG-DT013 |
+| Decision / ADR | ADR-RAG-0004, RAG-DT015, RAG-DT019, RAG-DT013 |
+| Design Dependencies | RAG-BT006, RAG-BT015, RAG-BT016, RAG-DT015, RAG-DT019, RAG-DT013 |
 | Depends On Build Tasks | see section 1 and section 3 |
 | Branch | `codex/rag-bt017-output-validation-retry-fallback` |
 | Worktree Path | `C:\tmp\rag-bt017-output-validation-retry-fallback` |
@@ -37,7 +37,16 @@ Design Gates:
 - `RAG-BT006`
 - `RAG-BT015`
 - `RAG-DT015`
+- `RAG-DT019`
 - `RAG-DT013`
+
+DT019 Output Schema And Safeguard Gate:
+
+- Before implementation, confirm `RAG-DT019` has defined answer schema,
+  citation schema, refusal schema, low-confidence/no-evidence behavior, retry
+  semantics, fallback response shape, and API error-envelope mapping.
+- If `RAG-DT019` is waived, `RAG-DT013` must record the waiver and accepted
+  risk before this task starts.
 
 Acceptance Criteria:
 

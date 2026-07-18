@@ -13,8 +13,8 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Task Name | Add Observability And Ops Notes |
 | Build Stage | 06-ops-readiness - Ops Readiness |
 | Source Question | RAG-Q018, engineering defaults |
-| Decision / ADR | ADR-RAG-0011, RAG-DT013 |
-| Design Dependencies | RAG-BT018, RAG-DT013 |
+| Decision / ADR | ADR-RAG-0011, RAG-DT019, RAG-DT013 |
+| Design Dependencies | RAG-BT018, RAG-DT019, RAG-DT013 |
 | Depends On Build Tasks | see section 1 and section 3 |
 | Branch | `codex/rag-bt021-observability-ops-notes` |
 | Worktree Path | `C:\tmp\rag-bt021-observability-ops-notes` |
@@ -34,7 +34,16 @@ Module: `app/core/ and docs/ops/`.
 Design Gates:
 
 - `RAG-BT018`
+- `RAG-DT019`
 - `RAG-DT013`
+
+DT019 API/Error Contract Gate:
+
+- Before implementation, confirm `RAG-DT019` has defined API response fields,
+  error-envelope behavior, safe-response fields, and metadata redaction rules
+  that logs and ops notes must respect.
+- If `RAG-DT019` is waived, `RAG-DT013` must record the waiver and accepted
+  risk before this task starts.
 
 DT011 Docker/Local Ops Handoff:
 

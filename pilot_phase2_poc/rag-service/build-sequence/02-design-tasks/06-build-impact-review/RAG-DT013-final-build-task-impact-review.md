@@ -29,7 +29,8 @@ Design: review completed design decisions and update affected final build task
 files before implementation begins.
 
 Goal: prevent final build tasks from using stale assumptions after KB,
-chunking, metadata, model, Docker, CI/CD readiness, or query-planning decisions
+chunking, metadata, model, Docker, CI/CD readiness, query-planning, retrieval
+strategy, generation/API contract, safeguard, or evaluation-tuning decisions
 are completed.
 
 Output Artifact:
@@ -51,8 +52,17 @@ Acceptance Criteria:
 - `RAG-DT017` is complete, and any architecture/design sufficiency gaps it
   identified have been resolved through new design tasks or explicitly deferred
   with owner signoff
+- `RAG-DT018` is complete, and retrieval strategy selection, scoring, fusion,
+  rerank hook, and low-confidence retrieval behavior have been mapped to
+  affected build tasks, or explicitly deferred with owner signoff
+- `RAG-DT019` is complete, and generation prompt, safeguard behavior, output
+  schema, query API contract, and runtime LLM/provider config names have been
+  mapped to affected build tasks, or explicitly deferred with owner signoff
+- `RAG-DT020` is complete, and post-build evaluation, tuning, baseline
+  promotion, and failure-remediation workflow have been mapped to affected
+  build tasks, or explicitly deferred with owner signoff
 - no final build task starts with stale KB, metadata, chunking, query, model, or
-  Docker/CI assumptions
+  Docker/CI, retrieval, generation/API, safeguard, or evaluation assumptions
 - final build sequence remains aligned with `../00-index.md`
 
 Out Of Scope:
@@ -127,10 +137,21 @@ At minimum, review these impact areas:
 - chunking strategy and chunk metadata
 - golden questions and expected retrieval matches
 - query planner vocabulary and safeguard rules
+- retrieval strategy selection by scenario
+- semantic, lexical, hybrid, metadata-only, exact-match boosted, and
+  no-retrieval mode assumptions
+- retrieval scoring, score normalization, fusion, metadata filter/boost,
+  low-confidence behavior, and rerank hook contract
 - LLM model evaluation fixture
+- generation prompt/message contract
+- retrieved-context formatting and untrusted-chunk safeguards
+- output schema, citation schema, refusal schema, and API consumer contract
+- runtime LLM/provider environment variable naming
 - embedding benchmark fixture
 - test vector DB and CI integration strategy
 - Docker/local ops and CI integration strategy
+- post-build evaluation, tuning, baseline promotion, and failure-remediation
+  workflow
 
 ## 5. Build Task Impact
 

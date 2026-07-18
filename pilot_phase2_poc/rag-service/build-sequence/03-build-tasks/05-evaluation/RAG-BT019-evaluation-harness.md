@@ -13,8 +13,8 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Task Name | Add Evaluation Harness |
 | Build Stage | 05-evaluation - Evaluation |
 | Source Question | RAG-Q010, RAG-Q023 |
-| Decision / ADR | ADR-RAG-0008, RAG-DT004, RAG-DT005, RAG-DT006, RAG-DT009, RAG-DT012, RAG-DT015, RAG-DT013 |
-| Design Dependencies | RAG-DT004, RAG-DT005, RAG-DT006, RAG-DT009, RAG-DT012, RAG-DT014, RAG-DT015, RAG-BT018, RAG-DT013 |
+| Decision / ADR | ADR-RAG-0008, RAG-DT004, RAG-DT005, RAG-DT006, RAG-DT009, RAG-DT012, RAG-DT015, RAG-DT018, RAG-DT019, RAG-DT020, RAG-DT013 |
+| Design Dependencies | RAG-DT004, RAG-DT005, RAG-DT006, RAG-DT009, RAG-DT012, RAG-DT014, RAG-DT015, RAG-DT018, RAG-DT019, RAG-DT020, RAG-BT018, RAG-DT013 |
 | Depends On Build Tasks | see section 1 and section 3 |
 | Branch | `codex/rag-bt019-evaluation-harness` |
 | Worktree Path | `C:\tmp\rag-bt019-evaluation-harness` |
@@ -40,8 +40,24 @@ Design Gates:
 - `RAG-DT009`
 - `RAG-DT014`
 - `RAG-DT015`
+- `RAG-DT018`
+- `RAG-DT019`
+- `RAG-DT020`
 - `RAG-BT018`
 - `RAG-DT013`
+
+DT018/DT019/DT020 Evaluation Contract Gates:
+
+- Before implementation, confirm `RAG-DT018` has defined retrieval modes,
+  fusion/scoring fields, low-confidence behavior, and ranking metrics that the
+  harness must evaluate.
+- Before implementation, confirm `RAG-DT019` has defined answer schema,
+  citation schema, refusal/safety behavior, and API fields that the harness
+  must validate.
+- Before implementation, confirm `RAG-DT020` has defined evaluation run types,
+  failure taxonomy, tuning workflow, and baseline promotion/rejection rules.
+- If any task is waived, `RAG-DT013` must record the waiver and accepted risk
+  before this task starts.
 
 DT014 Vector DB Test Handoff:
 
