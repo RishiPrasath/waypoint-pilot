@@ -57,7 +57,7 @@ Additional sequence checks confirmed:
 
 ## PR / CI
 
-PR: pending branch push.
-PR CI/CD: pending.
+PR: https://github.com/RishiPrasath/waypoint-pilot/pull/44
+PR CI/CD: pending after PR creation.
 Main CI/CD: pending merge.
 Cleanup: pending merge.
