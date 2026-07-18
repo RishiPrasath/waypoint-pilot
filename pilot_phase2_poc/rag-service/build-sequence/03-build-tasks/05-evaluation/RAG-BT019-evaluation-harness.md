@@ -59,6 +59,25 @@ DT018/DT019/DT020 Evaluation Contract Gates:
 - If any task is waived, `RAG-DT013` must record the waiver and accepted risk
   before this task starts.
 
+DT018 Proposed Handoff:
+
+- Evaluation reports must include retrieval mode as its own field.
+- Report planner classification separately from retrieval ranking.
+- Report semantic-only baseline and hybrid retrieval separately.
+- For positive cases, record expected source rank, expected chunk Recall@3,
+  Recall@5, MRR, and source lineage validity.
+- For no-retrieval cases, assert retrieval was not called.
+- For license-sensitive cases, assert no answer-text chunks were retrieved and
+  any metadata lookup is labeled as exclusion-only.
+- Report score fields separately:
+  - semantic normalized score
+  - lexical normalized score
+  - exact-match boost
+  - metadata boost
+  - final fused score
+- Report low-confidence/no-evidence cases separately from answer-quality
+  failures.
+
 DT014 Vector DB Test Handoff:
 
 - Qdrant test mode: evaluation unit tests may use committed/mock retrieval

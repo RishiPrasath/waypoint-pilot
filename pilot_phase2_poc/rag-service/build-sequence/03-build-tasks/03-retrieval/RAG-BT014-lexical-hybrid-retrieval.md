@@ -48,6 +48,28 @@ DT018 Retrieval Strategy And Fusion Gate:
 - If `RAG-DT018` is waived, `RAG-DT013` must record the waiver and accepted
   risk before this task starts.
 
+DT018 Proposed Handoff:
+
+- Implement a deterministic BM25-style lexical scorer over chunk text,
+  `heading_path`, `document_id`, source title/owner, source URI terms, market,
+  and planner vocabulary aliases.
+- Use semantic top `12`, lexical top `12`, merged unique pool up to `24`, fused
+  top `8`, and generation-context top `4`.
+- Normalize semantic and lexical scores per query, then fuse with
+  `0.65 semantic + 0.35 lexical`.
+- Add capped boosts only after hard filters:
+  - exact-match boost `<= 0.15`
+  - metadata boost `<= 0.05`
+- Use `exact_match_boosted_hybrid` for source IDs, source titles, article
+  numbers, HS/tariff terms, permit names, and named procedures.
+- Use `metadata_filtered_hybrid` as the default answerable public regulatory
+  path.
+- Keep `lexical_only_diagnostic` as a debug/test mode, not answer default.
+- Implement the no-op-compatible rerank hook and preserve deterministic fused
+  ordering when the hook is disabled.
+- Treat hybrid ranking regression below DT010 semantic Recall@3 as a defect or
+  explicit owner tradeoff.
+
 DT014 Vector DB Test Handoff:
 
 - Qdrant test mode: lexical scoring can be unit-tested without Qdrant; hybrid
