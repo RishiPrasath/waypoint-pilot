@@ -1,6 +1,6 @@
 # RAG-DT016: CI/CD And REST Service Readiness Gate
 
-Status: In Review
+Status: Complete
 
 ## Sequence Entry
 
@@ -21,7 +21,7 @@ opening this task file. Task files should follow the canonical template in
 | Worktree Path | `C:\tmp\rag-dt016-cicd-rest-readiness-gate` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | In Review |
+| Status | Complete |
 | Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-DT016-cicd-rest-service-readiness-gate.md` |
 
 ## 1. Task Definition
@@ -335,12 +335,16 @@ permitted.
 
 Record:
 
-- PR URL;
-- CI result before merge;
-- merge commit;
-- `main` CI/CD result after merge;
-- unresolved risks;
-- follow-up debt entries, if any.
+- PR URL: https://github.com/RishiPrasath/waypoint-pilot/pull/36
+- CI result before merge: `RAG Service CI`, `Analyze Python`, and `CodeQL`
+  passed.
+- merge commit: `97aa3e0a63f8cfb22ad918ac9142c5943038c448`
+- `main` CI/CD result after merge: `RAG Service CI` and `RAG Service CodeQL`
+  passed for merge commit `97aa3e0a63f8cfb22ad918ac9142c5943038c448`.
+- unresolved risks: accepted DT016 deferrals remain recorded in evidence.
+- follow-up debt entries: repository security settings review, Qdrant
+  service-container integration after BT012/BT013, Docker image/container smoke
+  and container scanning after BT020.
 
 ## Task Evidence
 

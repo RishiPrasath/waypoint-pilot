@@ -1,6 +1,6 @@
 # RAG-DT016 Evidence
 
-Status: In Review
+Status: Complete
 
 ## Identity
 
@@ -8,9 +8,9 @@ Task: RAG-DT016 - CI/CD And REST Service Readiness Gate
 Branch: `codex/rag-dt016-cicd-rest-readiness-gate`
 Worktree: `C:\tmp\rag-dt016-cicd-rest-readiness-gate`
 Starting main commit: `b8628fa`
-PR: Pending
-Implementation commit: Pending
-Merge commit: Pending
+PR: https://github.com/RishiPrasath/waypoint-pilot/pull/36
+Implementation commit: `f529c99`
+Merge commit: `97aa3e0a63f8cfb22ad918ac9142c5943038c448`
 
 ## Artifacts
 
@@ -121,9 +121,21 @@ Deferred:
 
 ## CI And Review
 
-PR CI: Pending
-Human review: Pending
-AI review: Pending
+PR CI: Passed
+
+- `RAG Service CI / Unit, lint, and security checks`: success
+- `RAG Service CodeQL / Analyze Python`: success
+- `CodeQL`: success
+
+Main CI/CD after merge: Passed
+
+- `RAG Service CI`: success for merge commit
+  `97aa3e0a63f8cfb22ad918ac9142c5943038c448`
+- `RAG Service CodeQL`: success for merge commit
+  `97aa3e0a63f8cfb22ad918ac9142c5943038c448`
+
+Human review: merged by owner on PR #36
+AI review: Codex local verification and PR check inspection completed
 
 ## Issues And Recovery
 
@@ -137,7 +149,8 @@ AI review: Pending
 
 ## Follow-ups
 
-- Open PR and record URL.
-- Wait for GitHub Actions checks.
-- Fix workflow failures in this branch if they belong to DT016.
-- After merge, close out status and evidence.
+- Repository security settings still require owner/admin review:
+  secret scanning and Dependabot security updates were reported disabled.
+- Qdrant service-container integration remains deferred until BT012 + BT013.
+- Docker image build/container smoke/Trivy remains deferred until BT020.
+- `RAG-DT017` remains the next design task before final build impact review.
