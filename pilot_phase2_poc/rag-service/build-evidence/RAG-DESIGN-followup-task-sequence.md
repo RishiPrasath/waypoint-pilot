@@ -1,10 +1,13 @@
 # RAG Design Follow-Up Task Sequence Evidence
 
-Status: In Review
+Status: Complete
 Date: 2026-07-18
 
 Branch: `codex/rag-design-followup-task-sequence`
 Worktree: `C:\tmp\rag-design-followup-task-sequence`
+PR: https://github.com/RishiPrasath/waypoint-pilot/pull/44
+Merge Commit: `2661243da6454065c899ea752e465264e6d1e1d9`
+Merged At: `2026-07-18T04:36:25Z`
 
 ## Scope
 
@@ -58,6 +61,21 @@ Additional sequence checks confirmed:
 ## PR / CI
 
 PR: https://github.com/RishiPrasath/waypoint-pilot/pull/44
-PR CI/CD: pending after PR creation.
-Main CI/CD: pending merge.
-Cleanup: pending merge.
+PR CI/CD: passed.
+
+- Unit, lint, and security checks: passed.
+- Analyze Python: passed.
+- CodeQL: passed.
+
+Main CI/CD: passed for merge commit
+`2661243da6454065c899ea752e465264e6d1e1d9`.
+
+- RAG Service CI: https://github.com/RishiPrasath/waypoint-pilot/actions/runs/29630832328
+- RAG Service CodeQL: https://github.com/RishiPrasath/waypoint-pilot/actions/runs/29630832341
+
+Cleanup: complete.
+
+- Local `main` refreshed to merge commit `2661243`.
+- Worktree `C:\tmp\rag-design-followup-task-sequence` removed.
+- Local branch `codex/rag-design-followup-task-sequence` deleted.
+- Remote branch `codex/rag-design-followup-task-sequence` deleted.
