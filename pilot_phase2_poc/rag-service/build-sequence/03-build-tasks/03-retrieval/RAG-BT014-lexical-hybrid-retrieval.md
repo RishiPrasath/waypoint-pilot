@@ -62,6 +62,15 @@ DT014 Vector DB Test Handoff:
   delete shared fixtures unless this task created them.
 - CI gate timing: required after BT013 semantic retrieval baseline is stable.
 
+DT016 CI/CD Readiness Handoff:
+
+- Hybrid retrieval must keep unit scoring tests in default CI.
+- Service-backed hybrid comparison must run under `pytest -m integration`.
+- The integration job should be required only after BT013 baseline is stable and
+  Qdrant service-container CI is already proven.
+- CI artifacts or logs should preserve ranking diagnostics without storing
+  secrets or oversized raw corpora.
+
 Acceptance Criteria:
 
 - lexical retriever returns candidates

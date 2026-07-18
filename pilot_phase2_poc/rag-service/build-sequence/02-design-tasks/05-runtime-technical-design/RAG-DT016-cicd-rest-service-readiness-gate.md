@@ -1,6 +1,6 @@
 # RAG-DT016: CI/CD And REST Service Readiness Gate
 
-Status: Planned
+Status: In Review
 
 ## Sequence Entry
 
@@ -21,7 +21,7 @@ opening this task file. Task files should follow the canonical template in
 | Worktree Path | `C:\tmp\rag-dt016-cicd-rest-readiness-gate` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Planned |
+| Status | In Review |
 | Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-DT016-cicd-rest-service-readiness-gate.md` |
 
 ## 1. Task Definition

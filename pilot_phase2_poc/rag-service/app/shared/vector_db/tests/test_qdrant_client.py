@@ -17,7 +17,9 @@ class MockQdrantClient:
         return {"status": "ok"}
 
     def search(self, *, collection_name, query_vector, limit, query_filter=None):
-        self.calls.append(("search", collection_name, query_vector, limit, query_filter))
+        self.calls.append(
+            ("search", collection_name, query_vector, limit, query_filter)
+        )
         return [
             SimpleNamespace(
                 id="chunk-1",

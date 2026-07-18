@@ -1,0 +1,56 @@
+name: RAG Service CI
+
+on:
+  pull_request:
+    paths:
+      - "pilot_phase2_poc/rag-service/**"
+      - ".github/workflows/rag-service-ci.yml"
+  push:
+    branches: [main]
+    paths:
+      - "pilot_phase2_poc/rag-service/**"
+      - ".github/workflows/rag-service-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: Unit, lint, and security checks
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: pilot_phase2_poc/rag-service
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install uv
+        run: python -m pip install --upgrade uv
+
+      - name: Sync dependencies
+        run: uv sync --dev --frozen
+
+      - name: Run tests
+        run: uv run python -m pytest -q
+
+      - name: Check formatting
+        run: uv run ruff format --check .
+
+      - name: Run lint
+        run: uv run ruff check .
+
+      - name: Run Bandit
+        run: >
+          uv run bandit -c pyproject.toml -r app
+          -x app/api/tests,app/core/tests,app/shared/tests,app/shared/vector_db/tests
+
+      - name: Run pip-audit
+        run: uv run pip-audit

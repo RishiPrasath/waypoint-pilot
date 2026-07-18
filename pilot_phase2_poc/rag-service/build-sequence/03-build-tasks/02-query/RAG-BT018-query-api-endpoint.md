@@ -41,6 +41,17 @@ Design Gates:
 - `RAG-DT015`
 - `RAG-DT013`
 
+DT016 CI/CD Readiness Handoff:
+
+- API endpoint tests must run in default `rag-service` CI and remain Docker-free
+  when using mocked pipeline dependencies.
+- Add or preserve tests for app import, request validation, safe response
+  behavior, and shared error envelope behavior.
+- Do not require external LLM, Qdrant, or Docker services in default query API
+  CI tests.
+- If endpoint tests need service-backed retrieval later, split them under
+  `pytest -m integration`.
+
 Acceptance Criteria:
 
 - endpoint accepts query request schema
