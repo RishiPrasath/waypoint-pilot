@@ -1,6 +1,6 @@
 # RAG-DT019: Generation Prompt, Safeguards, Output Schema, And Query API Contract
 
-Status: In Review
+Status: Complete
 
 ## Sequence Entry
 
