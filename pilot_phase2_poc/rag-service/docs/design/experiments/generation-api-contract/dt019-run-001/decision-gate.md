@@ -1,6 +1,6 @@
 # DT019 Decision Gate
 
-Status: Proposed
+Status: Accepted
 Run: `dt019-run-001`
 Task: `RAG-DT019`
 

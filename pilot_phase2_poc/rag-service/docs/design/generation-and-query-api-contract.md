@@ -1,6 +1,6 @@
 # Generation And Query API Contract
 
-Status: Proposed for `RAG-DT019`
+Status: Accepted for `RAG-DT019`
 Run: `dt019-run-001`
 Date: 2026-07-18
 

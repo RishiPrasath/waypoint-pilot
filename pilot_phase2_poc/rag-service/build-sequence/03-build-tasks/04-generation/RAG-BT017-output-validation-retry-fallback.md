@@ -315,3 +315,9 @@ Record:
 ## Task Evidence
 
 Evidence is recorded in `pilot_phase2_poc/rag-service/build-evidence/RAG-BT017-output-validation-retry-fallback.md`.
+
+## DT013 Final Design Handoff
+
+- Validate all generation outputs against the DT019 response schema.
+- Reject malformed JSON, missing/fabricated citations, unsafe license-sensitive text, and invalid refusal/error envelopes.
+- Keep retry bounded and map fallback behavior to the standard API error/fallback response shape.

@@ -1,6 +1,6 @@
 # RAG-DT013: Final Build Task Impact Review
 
-Status: Planned
+Status: In Review
 
 ## Sequence Entry
 
@@ -20,7 +20,7 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Worktree Path | `C:\tmp\rag-dt013-final-build-task-impact-review` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
-| Status | Planned |
+| Status | In Review |
 | Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-DT013-final-build-task-impact-review.md` |
 
 ## 1. Task Definition

@@ -333,3 +333,9 @@ Record:
 ## Task Evidence
 
 Evidence is recorded in `pilot_phase2_poc/rag-service/build-evidence/RAG-BT020-docker-local-run.md`.
+
+## DT013 Final Design Handoff
+
+- Prove app and Qdrant Docker profiles, `/health`, `/ready`, Qdrant readiness, `.dockerignore`, and runtime env handling.
+- Ensure Docker/local ops do not mount or ingest `legacy/phase1-kb-snapshot/` as runtime corpus.
+- Carry Docker image smoke and container scan proof or explicit deferral into production readiness.

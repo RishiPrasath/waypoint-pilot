@@ -474,3 +474,9 @@ Record:
 ## Task Evidence
 
 Evidence is recorded in `pilot_phase2_poc/rag-service/build-evidence/RAG-BT019-evaluation-harness.md`.
+
+## DT013 Final Design Handoff
+
+- Report unit/mocked, service-backed Qdrant, API-level, and optional LLM-judge evaluation results separately.
+- Use golden questions to report retrieval, citation, refusal, safety, relevance, groundedness, latency, provider errors, and malformed output handling.
+- Apply DT020 baseline promotion/rejection and failure-taxonomy mapping in evaluation reports.

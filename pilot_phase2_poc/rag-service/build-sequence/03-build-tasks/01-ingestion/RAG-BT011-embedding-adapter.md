@@ -282,3 +282,9 @@ Record:
 ## Task Evidence
 
 Evidence is recorded in `pilot_phase2_poc/rag-service/build-evidence/RAG-BT011-embedding-adapter.md`.
+
+## DT013 Final Design Handoff
+
+- Default the real embedding path to FastEmbed `BAAI/bge-small-en`, 384 dimensions, cosine distance.
+- Record provider, model, dimension, distance metric, and benchmark run metadata with embedding outputs.
+- Do not silently substitute older or larger benchmark candidates without a new design/evaluation decision.

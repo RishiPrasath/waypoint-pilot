@@ -311,3 +311,9 @@ Record:
 ## Task Evidence
 
 Evidence is recorded in `pilot_phase2_poc/rag-service/build-evidence/RAG-BT009-chunking-fixture-harness.md`.
+
+## DT013 Final Design Handoff
+
+- Implement `hybrid_structure_recursive_v1` as the accepted chunking strategy.
+- Assert deterministic chunk IDs, heading lineage, source hashes, and required chunk metadata from DT005.
+- Exclude license-sensitive/cite-only material such as `APAC-215` from retrievable chunk fixtures.

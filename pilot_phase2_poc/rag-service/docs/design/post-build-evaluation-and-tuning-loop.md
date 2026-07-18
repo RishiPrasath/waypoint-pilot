@@ -1,4 +1,6 @@
-﻿# Post-Build Evaluation And Tuning Loop
+# Post-Build Evaluation And Tuning Loop
+
+Status: Accepted for `RAG-DT020`
 
 ## Purpose
 

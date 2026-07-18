@@ -301,3 +301,9 @@ Record:
 ## Task Evidence
 
 Evidence is recorded in `pilot_phase2_poc/rag-service/build-evidence/RAG-BT022-production-readiness-review.md`.
+
+## DT013 Final Design Handoff
+
+- Treat `RAG-DT013` as a required design gate before production-readiness signoff.
+- Consume DT016, DT017, DT020, and evaluation evidence, including accepted deferrals and unresolved repo/security/container risks.
+- Do not pass readiness unless mandatory evaluation, Docker/local ops, CI, citation/refusal, and safeguard evidence is present or explicitly owner-accepted.

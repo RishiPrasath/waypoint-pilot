@@ -364,3 +364,9 @@ Record:
 ## Task Evidence
 
 Evidence is recorded in `pilot_phase2_poc/rag-service/build-evidence/RAG-BT012-fixture-ingestion-pipeline.md`.
+
+## DT013 Final Design Handoff
+
+- Ingest only approved fixture/canonical material and preserve source/chunk lineage through vector payload metadata.
+- Keep fast tests Docker-free, but separate service-backed Qdrant integration proof under `pytest -m integration`.
+- Reconcile Qdrant config naming before task completion, including collection prefix and integration-test timeout behavior.

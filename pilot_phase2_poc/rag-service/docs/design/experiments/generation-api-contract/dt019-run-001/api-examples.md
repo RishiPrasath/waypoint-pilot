@@ -1,6 +1,6 @@
 # DT019 API Examples
 
-Status: Proposed
+Status: Accepted
 Run: `dt019-run-001`
 
 ## Positive Request

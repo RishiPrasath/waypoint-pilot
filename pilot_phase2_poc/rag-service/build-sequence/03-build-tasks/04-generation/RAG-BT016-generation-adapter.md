@@ -314,3 +314,9 @@ Record:
 ## Task Evidence
 
 Evidence is recorded in `pilot_phase2_poc/rag-service/build-evidence/RAG-BT016-generation-adapter.md`.
+
+## DT013 Final Design Handoff
+
+- Build provider messages from the DT019 role contract: system, developer, user, and retrieved context package.
+- Treat retrieved chunks as untrusted data and keep them outside the user message.
+- Use injectable `RAG_LLM_*`/`RAG_GROQ_API_KEY` config and mock provider calls in default tests.

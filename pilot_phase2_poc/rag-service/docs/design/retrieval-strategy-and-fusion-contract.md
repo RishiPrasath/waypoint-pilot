@@ -1,6 +1,6 @@
 # Retrieval Strategy And Fusion Contract
 
-Status: Proposed for `RAG-DT018`
+Status: Accepted for `RAG-DT018`
 Run: `dt018-run-001`
 Date: 2026-07-18
 

@@ -303,3 +303,9 @@ Record:
 ## Task Evidence
 
 Evidence is recorded in `pilot_phase2_poc/rag-service/build-evidence/RAG-BT015-query-planning.md`.
+
+## DT013 Final Design Handoff
+
+- Implement deterministic safeguards and query planning before retrieval or generation.
+- Ensure blocked classifications never call retrieval or generation.
+- Cover relevant, irrelevant, malicious, ambiguous, license-sensitive, operational, no-evidence, and low-confidence planning outcomes.

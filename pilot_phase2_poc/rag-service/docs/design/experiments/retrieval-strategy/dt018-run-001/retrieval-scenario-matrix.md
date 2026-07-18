@@ -1,6 +1,6 @@
 # DT018 Retrieval Scenario Matrix
 
-Status: Proposed
+Status: Accepted
 Run: `dt018-run-001`
 
 ## Purpose
