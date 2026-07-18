@@ -52,6 +52,22 @@ DT018/DT019 Query API Contract Gates:
   schema, citation schema, safe-response schema, error-envelope behavior, and
   frontend/BFF consumer fields.
 
+DT019 Proposed Handoff:
+
+- Implement `POST /api/v1/query`.
+- Request schema requires `query`; optional fields include `market`,
+  `source_filters`, `debug`, and `max_context_chunks`.
+- Response schema should match
+  `docs/design/experiments/generation-api-contract/dt019-run-001/response-schema.json`.
+- API response must include planner, retrieval, generation, citation, safety,
+  and error sections.
+- Invalid request bodies use the shared validation error envelope.
+- Unsupported, irrelevant, malicious, ambiguous, partner-source, and
+  license-sensitive cases return standard safe responses instead of unrelated
+  citations.
+- Default API tests must mock query planning, retrieval, generation, and output
+  validation; no live LLM, Qdrant, Docker, or API key required.
+
 DT018 Proposed Handoff:
 
 - The query API should expose or trace:

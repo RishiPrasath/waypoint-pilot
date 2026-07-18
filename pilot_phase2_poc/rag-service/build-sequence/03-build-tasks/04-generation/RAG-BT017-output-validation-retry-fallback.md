@@ -48,6 +48,21 @@ DT019 Output Schema And Safeguard Gate:
 - If `RAG-DT019` is waived, `RAG-DT013` must record the waiver and accepted
   risk before this task starts.
 
+DT019 Proposed Handoff:
+
+- Validate every generation output against
+  `docs/design/experiments/generation-api-contract/dt019-run-001/response-schema.json`.
+- Reject positive answers with missing citations.
+- Reject citations that do not match retrieved context lineage.
+- Reject answer text generated from `license_sensitive`, `cite_only`, or
+  `do_not_ingest` sources.
+- Retry at most once for malformed JSON or recoverable schema failure.
+- Do not retry policy-blocked, malicious, irrelevant, unsupported operational,
+  or authentication-failure cases.
+- Return `answer_type: error_fallback` for exhausted retry, provider failure,
+  timeout, dependency unavailable, or unrecoverable malformed output.
+- Preserve error `stage` and `reason_code` for evaluation.
+
 Acceptance Criteria:
 
 - invalid schema fails validation

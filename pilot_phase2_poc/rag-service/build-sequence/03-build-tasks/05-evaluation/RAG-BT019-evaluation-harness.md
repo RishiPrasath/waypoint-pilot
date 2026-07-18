@@ -59,6 +59,30 @@ DT018/DT019/DT020 Evaluation Contract Gates:
 - If any task is waived, `RAG-DT013` must record the waiver and accepted risk
   before this task starts.
 
+DT019 Proposed Handoff:
+
+- Evaluate generated/API responses against
+  `docs/design/experiments/generation-api-contract/dt019-run-001/response-schema.json`.
+- Report schema adherence, citation behavior, groundedness, refusal/safety
+  behavior, provider/model errors, malformed output handling, retry count,
+  fallback use, latency, and API response shape separately.
+- Add an evaluation-only LLM judge check for whether the answer actually
+  addresses the original question.
+- Judge scoring must include relevance, completeness, groundedness, and
+  scope-control scores on a `0`, `1`, `2` scale.
+- Judge output must include `decision: pass | warn | fail` and
+  `failure_reasons`.
+- Judge provider/model settings must be separately injectable through
+  `RAG_EVAL_LLM_PROVIDER_LABEL`, `RAG_EVAL_LLM_BASE_URL`,
+  `RAG_EVAL_LLM_MODEL`, and `RAG_EVAL_LLM_API_KEY`.
+- The first judge model may default to Groq `llama-3.3-70b-versatile`, but
+  runtime production judge gating remains deferred.
+- Verify positive answers cite supplied chunks with DT005/DT006/DT012 lineage.
+- Verify no-retrieval cases do not include unrelated citations.
+- Verify license-sensitive/cite-only cases do not produce answer text from
+  restricted sources.
+- Compare provider/model metadata to `docs/design/llm-model-selection-decision.md`.
+
 DT018 Proposed Handoff:
 
 - Evaluation reports must include retrieval mode as its own field.

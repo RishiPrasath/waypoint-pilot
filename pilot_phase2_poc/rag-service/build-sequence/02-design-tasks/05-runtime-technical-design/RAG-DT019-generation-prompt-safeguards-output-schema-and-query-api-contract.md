@@ -1,6 +1,6 @@
 # RAG-DT019: Generation Prompt, Safeguards, Output Schema, And Query API Contract
 
-Status: Planned
+Status: In Review
 
 ## Sequence Entry
 
@@ -193,6 +193,41 @@ and its accepted fixtures.
 | Examples exist | `Test-Path docs/design/experiments/generation-api-contract/dt019-run-001/api-examples.md` | `True` |
 | Build impact recorded | Search contract for `RAG-BT015`, `RAG-BT016`, `RAG-BT017`, `RAG-BT018`, `RAG-BT019` | All present |
 | Evidence exists | `Test-Path build-evidence/RAG-DT019-generation-prompt-safeguards-output-schema-and-query-api-contract.md` | `True` |
+
+## 8.1 Proposed Decision Summary
+
+This task proposes `POST /api/v1/query` as the first query endpoint path and
+accepts a structured response contract with these sections:
+
+```text
+planner
+retrieval
+generation
+citations
+safety
+errors
+```
+
+The generation prompt contract uses system, developer, user, and retrieved
+context messages. Retrieved chunks are explicitly untrusted data and must never
+be treated as instructions.
+
+The first-pass generation candidate remains Groq `llama-3.3-70b-versatile`
+from `RAG-DT015`, but provider/model settings must stay injectable through
+runtime config. The runtime config names prefer `RAG_LLM_*` and
+`RAG_GROQ_API_KEY`.
+
+Validation must reject malformed JSON, missing required fields, missing or
+fabricated citations, license-sensitive answer text, and unsafe operational or
+policy-violating output. Recoverable malformed JSON or schema failure may retry
+at most once before returning a standard `error_fallback`.
+
+Code-level validators are not treated as sufficient for answer quality. The
+evaluation harness must also include an evaluation-only LLM judge for relevance,
+completeness, groundedness, and scope-control checks. The judge may initially
+use the selected Groq `llama-3.3-70b-versatile` model, but judge config must be
+separate and swappable through `RAG_EVAL_LLM_*`. Runtime judge gating is
+deferred until cost, latency, model-bias, and reliability are assessed.
 
 ## 9. PR Handoff
 

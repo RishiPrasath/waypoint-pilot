@@ -45,6 +45,18 @@ DT019 Safeguard/API Contract Gate:
 - If `RAG-DT019` is waived, `RAG-DT013` must record the waiver and accepted
   risk before this task starts.
 
+DT019 Proposed Handoff:
+
+- Emit planner fields required by the query API response:
+  `relevance_classification`, `intent`, `retrieval_allowed`,
+  `safe_response_id`, `markets`, `source_filters`, and `reasons`.
+- Map blocked planner classifications to DT019 reason codes:
+  `irrelevant`, `unsupported_operational`, `partner_source_required`,
+  `malicious_prompt_injection`, `license_sensitive`, and `ambiguous`.
+- Ensure blocked classifications do not call retrieval or generation.
+- Provide enough metadata for the API response `planner` object in
+  `docs/design/experiments/generation-api-contract/dt019-run-001/response-schema.json`.
+
 Acceptance Criteria:
 
 - planner emits QueryPlan
