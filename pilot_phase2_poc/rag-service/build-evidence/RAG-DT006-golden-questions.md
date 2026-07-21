@@ -1,5 +1,6 @@
 # RAG-DT006 Evidence
 
+Status: Complete
 Task: Define Golden Questions And Answer Rubrics
 
 Branch: `codex/rag-dt006-golden-questions`

@@ -1,5 +1,6 @@
 # RAG-DT015 Evidence
 
+Status: Complete
 Task: Run LLM Model Evaluation And Selection
 
 Branch: `codex/rag-dt015-llm-model-evaluation-execution`

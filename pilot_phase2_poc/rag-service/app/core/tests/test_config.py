@@ -8,8 +8,9 @@ def test_settings_have_safe_local_defaults():
     assert settings.service_name == "rag-service"
 
 
-def test_secret_backed_features_fail_only_when_used():
-    settings = Settings()
+def test_secret_backed_features_fail_only_when_used(monkeypatch):
+    monkeypatch.delenv("RAG_GROQ_API_KEY", raising=False)
+    settings = Settings(_env_file=None)
 
     try:
         settings.require_groq_api_key()

@@ -1,5 +1,6 @@
 # RAG-DT007 Evidence
 
+Status: Complete
 Task: Define Query Planner Vocabulary And Rules
 
 Branch: `codex/rag-dt007-query-planner-artifacts`

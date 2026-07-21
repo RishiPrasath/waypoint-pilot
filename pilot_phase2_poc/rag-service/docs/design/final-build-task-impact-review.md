@@ -40,6 +40,9 @@ conditions:
   checks.
 - Qdrant environment variable names must be reconciled before Qdrant-backed
   implementation starts.
+- Qdrant service settings may use ecosystem-standard `QDRANT_*` names, but
+  runtime application settings must document the exact external variables and
+  any supported `RAG_*` aliases before the owning Qdrant-backed task closes.
 - Retrieval score traces must be available to API/evaluation diagnostics.
 - Ambiguous-query behavior must be explicitly represented in query/API tests.
 - DT017 and DT016 deferred governance/security items must be consumed by
