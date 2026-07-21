@@ -15,12 +15,15 @@ RAG service is built through short-lived task branches.
 2. Use a short-lived `codex/` branch or worktree for the task.
 3. Keep one implementation concern per branch unless a governance fix must be
    bundled to make the branch safe.
-4. Create or update build evidence before opening the PR.
-5. Do not mark a task `Complete` until the evidence file is also `Complete`.
-6. Merge only after local checks and GitHub Actions pass.
-7. If post-merge metadata is needed, create a small closeout branch on the same
-   day and merge it before moving to the next task.
-8. Prune task worktrees after merge and closeout.
+4. Create or update build evidence in the same branch before opening the PR.
+5. Do not mark a task `Complete` unless the same PR includes the required
+   evidence with `Status: Complete` or `Status: Ready for Merge`.
+6. If the PR URL/check summary must be recorded in evidence, update that same
+   branch before merge.
+7. Merge only after local checks and GitHub Actions pass.
+8. After merge, pull fresh main and prune task worktrees.
+9. Do not create a second closeout PR only for merge commit, main CI, or cleanup
+   metadata; GitHub and local git are the source of truth for those facts.
 
 ## CI-enforced rules
 
@@ -28,7 +31,8 @@ RAG service is built through short-lived task branches.
 `.github/workflows/rag-service-ci.yml` and enforces:
 
 - completed task files must point to an existing evidence file;
-- completed task evidence must also say `Status: Complete`;
+- completed task evidence must say `Status: Complete` or
+  `Status: Ready for Merge`;
 - final build task files must retain the DT013 final design handoff;
 - service-local `.github` workflow/config files are forbidden because GitHub
   only executes workflows from the repository-root `.github/workflows` folder;
@@ -62,3 +66,9 @@ source set and records the promotion evidence.
 
 Editor-only files such as `.code-workspace` files must not be staged unless a
 task explicitly says they are part of the deliverable.
+
+## One-shot evidence rule
+
+Every task PR must carry its own evidence. Post-merge closeout PRs are reserved
+for correcting material mistakes, not for bookkeeping that GitHub already
+records.
