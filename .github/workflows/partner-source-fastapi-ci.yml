@@ -30,7 +30,7 @@ jobs:
         working-directory: pilot_phase2_poc/partner-source/partner-source-fastapi
     steps:
       # Download the repository into the runner.
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
       # Set up Python 3.12 for this workflow.
       - uses: actions/setup-python@v6
         with:
