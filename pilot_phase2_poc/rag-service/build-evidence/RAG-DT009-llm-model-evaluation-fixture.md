@@ -1,5 +1,6 @@
 # RAG-DT009 Evidence
 
+Status: Complete
 Task: Define LLM Model Evaluation Fixture
 
 Branch: `codex/rag-dt009-llm-model-evaluation-fixture`

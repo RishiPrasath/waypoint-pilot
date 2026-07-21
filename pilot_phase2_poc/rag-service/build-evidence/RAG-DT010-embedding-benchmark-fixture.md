@@ -1,5 +1,6 @@
 # RAG-DT010 Evidence
 
+Status: Complete
 Task: Define Embedding Benchmark Fixture
 
 Branch: `codex/rag-dt010-embedding-benchmark-fixture`
