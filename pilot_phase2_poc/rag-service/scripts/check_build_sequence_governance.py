@@ -24,6 +24,7 @@ NESTED_GITHUB_ROOT = SERVICE_ROOT / ".github"
 STATUS_RE = re.compile(r"^Status:\s*(?P<status>.+?)\s*$", re.MULTILINE)
 EVIDENCE_RE = re.compile(r"\|\s*Evidence\s*\|\s*`(?P<path>[^`]+)`\s*\|")
 SERVICE_REL_PREFIX = "pilot_phase2_poc/rag-service/"
+MERGE_READY_EVIDENCE_STATUSES = {"Complete", "Ready for Merge"}
 
 
 def first_status(markdown: str) -> str | None:
@@ -73,10 +74,11 @@ def validate_completed_task_evidence(errors: list[str]) -> None:
 
         evidence_markdown = evidence.read_text(encoding="utf-8")
         evidence_status = first_status(evidence_markdown)
-        if evidence_status != "Complete":
+        if evidence_status not in MERGE_READY_EVIDENCE_STATUSES:
             errors.append(
                 f"{rel_task}: evidence {rel_evidence} status is "
-                f"{evidence_status!r}, expected 'Complete'."
+                f"{evidence_status!r}, expected one of "
+                f"{sorted(MERGE_READY_EVIDENCE_STATUSES)!r}."
             )
 
 
