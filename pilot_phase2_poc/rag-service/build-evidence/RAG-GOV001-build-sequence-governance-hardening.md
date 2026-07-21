@@ -1,6 +1,6 @@
 # RAG-GOV001 Build Sequence Governance Hardening Evidence
 
-Status: In Review
+Status: Complete
 Branch: `codex/rag-build-sequence-governance-hardening`
 Date: 2026-07-21
 
@@ -35,8 +35,10 @@ and unclear trunk/CI closeout expectations.
 
 ## PR / CI / Merge
 
-PR:
-PR CI/CD:
-Merge commit:
+PR: https://github.com/RishiPrasath/waypoint-pilot/pull/55
+PR CI/CD: Passed
+Merge commit: `e964f7bb5f659aa163c78765a6e8e177bb4bd912`
 Main CI/CD:
-Cleanup:
+- RAG Service CI: Passed, https://github.com/RishiPrasath/waypoint-pilot/actions/runs/29820388803
+- RAG Service CodeQL: Passed, https://github.com/RishiPrasath/waypoint-pilot/actions/runs/29820388575
+Cleanup: Closeout branch/worktree pending until closeout PR is merged.
