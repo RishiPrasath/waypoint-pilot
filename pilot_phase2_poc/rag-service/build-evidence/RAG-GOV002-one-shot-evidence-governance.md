@@ -33,7 +33,7 @@ instead of requiring a second metadata-only closeout PR after merge.
 
 ## PR Handoff
 
-PR: Pending until opened; update this same branch before merge if required.
+PR: https://github.com/RishiPrasath/waypoint-pilot/pull/57
 PR CI/CD: GitHub PR checks are source of truth.
 Merge commit: Recorded by GitHub after merge; no closeout PR required.
 Main CI/CD: Recorded by GitHub after merge; no closeout PR required.
