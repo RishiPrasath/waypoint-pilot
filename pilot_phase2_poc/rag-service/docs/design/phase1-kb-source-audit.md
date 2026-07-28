@@ -1,6 +1,7 @@
 # Phase 1 Knowledge Base Source Audit
 
-Status: Pending review by Knowledge Base Curator and Logistics Domain Expert
+Status: Historical candidate audit complete; specialist promotion review still
+required by `RAG-DT024`
 Date: 2026-07-16
 Task: `RAG-DT002`
 Audit root: `legacy/phase1-kb-snapshot/`

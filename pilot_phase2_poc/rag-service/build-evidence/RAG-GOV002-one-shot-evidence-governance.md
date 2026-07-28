@@ -1,6 +1,6 @@
 # RAG-GOV002 One-Shot Evidence Governance
 
-Status: Ready for Merge
+Status: Complete
 Branch: `codex/rag-one-shot-evidence-governance`
 Date: 2026-07-21
 

@@ -14,8 +14,8 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Build Stage | 06-ops-readiness - Ops Readiness |
 | Source Question | RAG-Q019 |
 | Decision / ADR | ADR-RAG-0010, ADR-RAG-0011, RAG-DT004, RAG-DT011, RAG-DT013 |
-| Design Dependencies | RAG-DT004, RAG-DT011, RAG-DT014, RAG-DT013 |
-| Depends On Build Tasks | see section 1 and section 3 |
+| Design Dependencies | RAG-DT004, RAG-DT011, RAG-DT014, RAG-DT021, RAG-DT023, RAG-DT025, RAG-DT013 |
+| Depends On Build Tasks | RAG-BT018, RAG-BT023 |
 | Branch | `codex/rag-bt020-docker-local-run` |
 | Worktree Path | `C:\tmp\rag-bt020-docker-local-run` |
 | Owner | solo developer |
@@ -27,7 +27,8 @@ Task files should follow the canonical template in build-sequence/00-governance/
 
 Build: Docker/Compose local runnable setup.
 
-Goal: run the FastAPI service and local Qdrant in a production-shaped local environment.
+Goal: run the FastAPI service and local Qdrant in a hardened local PoC
+environment without implying production deployment readiness.
 
 Module: `Dockerfile, docker-compose.yml, and docs/ops/`.
 
@@ -40,8 +41,9 @@ Design Gates:
 
 DT014 Vector DB Test Handoff:
 
-- Qdrant test mode: implement the accepted local Docker/Compose Qdrant test
-  profile for developer parity with CI.
+- Qdrant SDK/test-service ownership has moved to `RAG-BT023`. Consume its
+  accepted test profile and CI evidence; do not create a competing collection
+  lifecycle or integration environment here.
 - Local command: `docker compose --profile test up -d qdrant`, then
   `uv run python -m pytest -m integration -q`, then
   `docker compose --profile test down`.
@@ -74,9 +76,17 @@ DT011 Docker/Local Ops Handoff:
 - Compose must support an app runtime smoke path:
   `docker compose --profile app up --build`.
 - App container must expose port `8000` and run `app.main:app` with Uvicorn.
-- App container smoke must check `/health` and `/ready`.
+- App container smoke must check `/health` and dependency-aware `/ready`.
+- Do not use the current static-success `/ready` implementation as integration
+  evidence. DT023/DT025 must assign the dependency-aware readiness change to an
+  executable build task before BT020 begins.
 - Qdrant readiness must use `/readyz`; verify the selected healthcheck command
   works in the chosen Qdrant image before relying on it.
+- Bind Qdrant's published HTTP port to `127.0.0.1`; do not publish `6334`
+  unless a task proves it is required. Unauthenticated Qdrant is allowed only
+  for an isolated local/CI profile.
+- Pin base and Qdrant images by immutable digest, run the app as a non-root
+  user, and use a production-only/multi-stage app image.
 - Container logs must be available through
   `docker compose logs --tail 100 rag-service` and
   `docker compose logs --tail 100 qdrant`.
@@ -90,7 +100,8 @@ DT016 CI/CD Readiness Handoff:
 
 - When Dockerfile and Compose exist, extend `rag-service` CI with Docker image
   build and container smoke checks.
-- Do not add Trivy image scanning until an image target exists.
+- Add container vulnerability scanning and an SBOM when the image target
+  exists; do not permit BT022 to pass while they are silently deferred.
 - Container smoke must call app `/health`, app `/ready`, and Qdrant `/readyz`.
 - Preserve the default non-Docker CI job even after Docker jobs are added.
 - If Docker jobs are deferred, record the reason in BT020 evidence and the
@@ -105,6 +116,8 @@ Acceptance Criteria:
 - CI can run a container smoke test or record why it is deferred
 - integration test command can run against Dockerized Qdrant
 - config uses environment variables
+- Qdrant ports are loopback-bound and image references are immutable
+- app image runs non-root and container scan/SBOM evidence exists
 
 Out Of Scope:
 

@@ -1,6 +1,6 @@
 # Post-Build Evaluation And Tuning Loop
 
-Status: Accepted for `RAG-DT020`
+Status: Superseded historical contract; `RAG-DT020` revision blocked
 
 ## Purpose
 

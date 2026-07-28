@@ -1,11 +1,30 @@
 # LLM Model Selection Decision
 
-Status: Accepted for `RAG-DT015`
+Status: Superseded; `RAG-DT015` reopened
 Date: 2026-07-17
+Reopened: 2026-07-28
 
-## Decision
+## Current Decision
 
-Selected first-pass generation model:
+No default generation model is currently accepted.
+
+Groq announced that `llama-3.3-70b-versatile` will shut down for
+free/developer-tier usage on 2026-08-16. The provider recommends
+`openai/gpt-oss-120b` or `qwen/qwen3.6-27b`.
+
+Official notice:
+
+```text
+https://console.groq.com/docs/deprecations
+```
+
+`RAG-DT015` is blocked until the previously exposed credential is confirmed
+rotated/revoked and currently supported default/fallback candidates are
+re-evaluated under `RAG-DT022`.
+
+## Historical Decision
+
+The 2026-07-17 design-time run selected:
 
 ```text
 llama-3.3-70b-versatile
@@ -83,10 +102,11 @@ higher p50 and p95 latency than `llama-3.3-70b-versatile`.
 `openai/gpt-oss-20b` performed well but had lower groundedness and citation
 scores because at least one expected citation was not fully met.
 
-## Implementation Guidance
+## Superseded Implementation Guidance
 
-`RAG-BT016` should use `llama-3.3-70b-versatile` as the default generation
-model candidate for mocked and configurable adapter work.
+`RAG-BT016` must not use `llama-3.3-70b-versatile` as its default. Keep the
+adapter model-agnostic and blocked from live calls until the replacement and
+fallback decision is accepted.
 
 Do not hard-code the model in a way that prevents future swaps. The runtime
 configuration should allow overriding the provider base URL, API key, provider
@@ -101,7 +121,11 @@ RAG_LLM_MODEL=llama-3.3-70b-versatile
 RAG_GROQ_API_KEY=<secret, local only>
 ```
 
-## Deferred Models
+## Historical Deferred Models
+
+This list records the 2026-07-17 run only. It is not a current supported-model
+inventory and must not seed runtime defaults without the reopened DT015
+provider/deprecation check.
 
 The following models remain available for later comparison if the selected
 model fails implementation or regression checks:

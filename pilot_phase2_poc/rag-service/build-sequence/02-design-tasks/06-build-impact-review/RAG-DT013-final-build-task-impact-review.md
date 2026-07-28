@@ -1,6 +1,6 @@
 # RAG-DT013: Final Build Task Impact Review
 
-Status: Complete
+Status: Blocked
 
 ## Sequence Entry
 
@@ -18,12 +18,23 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Affected Build Tasks | All 03-build-tasks files |
 | Branch | `codex/rag-dt013-final-build-task-impact-review` |
 | Worktree Path | `C:\tmp\rag-dt013-final-build-task-impact-review` |
-| Owner | solo developer |
+| Owner | Architecture/service owner |
+| Accountable Approver | Service owner |
+| Required Reviewers | RAG/data, platform, security, evaluation, QA, and documentation owners |
 | AI Review Partner | Codex |
-| Status | Complete |
+| Status | Blocked |
 | Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-DT013-final-build-task-impact-review.md` |
 
 ## 1. Task Definition
+
+> Revision 2 reopened on 2026-07-28 after independent RAG/data, platform/
+> security/operations, and delivery-control review. The previous completion and
+> evidence remain historical. They do not authorize final build work.
+>
+> Re-run this gate only after `RAG-DT021` through `RAG-DT025` and reopened
+> `RAG-DT015`, `RAG-DT018`, `RAG-DT019`, and `RAG-DT020` are complete. The
+> Revision 2 outcome must be `GO` or `NO-GO`; unresolved conditions must be
+> assigned to blocking tasks rather than carried as unowned prose.
 
 Design: review completed design decisions and update affected final build task
 files before implementation begins.
@@ -37,6 +48,7 @@ Output Artifact:
 
 ```text
 docs/design/final-build-task-impact-review.md
+docs/planning/dt013-revision2-closure-manifest.md
 ```
 
 Acceptance Criteria:
@@ -47,6 +59,9 @@ Acceptance Criteria:
 - build tasks do not ingest or test against `legacy/phase1-kb-snapshot/` unless
   a design task explicitly says it is an audit fixture
 - any unresolved design decision is explicitly deferred with risk and owner
+- a deferral is not authorization: it creates a `NO-GO`/blocked closure-manifest
+  entry for every dependent non-fixture, external-provider, shared-service, or
+  production task. Only individually named fixture-only tasks may proceed.
 - `RAG-DT016` is complete, and any CI/CD readiness gaps it identified have been
   either implemented and proven or explicitly deferred with owner signoff
 - `RAG-DT017` is complete, and any architecture/design sufficiency gaps it
@@ -61,6 +76,22 @@ Acceptance Criteria:
 - `RAG-DT020` is complete, and post-build evaluation, tuning, baseline
   promotion, and failure-remediation workflow have been mapped to affected
   build tasks, or explicitly deferred with owner signoff
+- G0 through G6 are evaluated with evidence: credential/model containment;
+  source trust and corpus lifecycle; valid evaluation; runtime reliability;
+  API/error contract; build-task executability; and explicit final
+  authorization.
+- the closure manifest names every authorized task, its authorization class
+  (fixture-only, non-fixture, external-provider, shared-service, or
+  production), required evidence, accountable owner, and expiry/review date.
+- an authorization is valid only if the manifest records the accountable
+  approver identity, required-reviewer approvals, approval timestamp, evidence
+  paths or hashes, expiry, and authorization class. A missing field means the
+  task is blocked.
+- any fixture-only task permitted before non-fixture authorization is listed by
+  task ID and has a test namespace; absence from the manifest means it remains
+  blocked. Fixture authorization never overrides registry lifecycle state.
+- no non-fixture corpus ingestion, live provider call, shared-service launch,
+  or production claim is authorized without the corresponding gate evidence.
 - no final build task starts with stale KB, metadata, chunking, query, model, or
   Docker/CI, retrieval, generation/API, safeguard, or evaluation assumptions
 - final build sequence remains aligned with `../00-index.md`
@@ -127,6 +158,14 @@ Create a build-impact matrix with these columns:
 - `status`
 - `owner`
 - `risk_if_not_updated`
+- `authorization_class`
+- `evidence_gate`
+- `authorized_or_blocked`
+- `accountable_approver`
+- `required_reviewer_approvals`
+- `approval_timestamp`
+- `evidence_path_or_hash`
+- `expiry_or_review_date`
 
 At minimum, review these impact areas:
 
@@ -152,6 +191,9 @@ At minimum, review these impact areas:
 - Docker/local ops and CI integration strategy
 - post-build evaluation, tuning, baseline promotion, and failure-remediation
   workflow
+- G0 containment record, G1 source trust, G2 corpus lifecycle, G3 evaluation
+  validity, G4 runtime reliability, G5 API/error contract, and G6 task
+  executability evidence
 
 ## 5. Build Task Impact
 
@@ -165,16 +207,20 @@ Required Updates:
 
 Deferred Impact:
 
-- Only explicitly deferred decisions may remain.
+- A deferred decision remains only as a named blocked manifest entry with risk,
+  accountable owner, evidence gap, and expiry/review date; it cannot authorize
+  dependent work except a separately named fixture-only task.
 
 Impact Review Status:
 
-- This task is the final impact review gate.
+- This task is the final impact review and authorization gate. Its Revision 2
+  closure manifest, not historical task status, is the only authority for
+  starting a build task.
 
 ## 6. Verification
 
-Review with RAG Architect, Test Engineer, CI/CD Engineer, RAG Evaluation Lead,
-and Documentation Steward.
+Review with the accountable service owner, RAG Architect, Test Engineer, CI/CD
+Engineer, RAG Evaluation Lead, security owner, and Documentation Steward.
 
 ## 7. Branch Workflow
 

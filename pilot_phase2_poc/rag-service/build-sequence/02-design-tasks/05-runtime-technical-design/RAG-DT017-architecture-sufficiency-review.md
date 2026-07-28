@@ -2,6 +2,12 @@
 
 Status: Complete
 
+> Revision 2 clarification recorded 2026-07-28: any historical waiver in this
+> completed review is a risk record, not authorization. It cannot permit
+> dependent non-fixture, external-provider, shared-service, or production work;
+> `RAG-DT013` Revision 2 must record such work as blocked unless it is explicitly
+> authorized with current gate evidence.
+
 ## Sequence Entry
 
 Start from `build-sequence/00-index.md`, then open the design lane index before

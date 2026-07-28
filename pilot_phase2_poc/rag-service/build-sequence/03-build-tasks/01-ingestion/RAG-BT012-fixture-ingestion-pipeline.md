@@ -14,8 +14,8 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Build Stage | 01-ingestion - Ingestion |
 | Source Question | RAG-Q011, RAG-Q013 |
 | Decision / ADR | RAG-DT004, RAG-DT005, RAG-DT008, RAG-DT012, RAG-DT013 |
-| Design Dependencies | RAG-DT004, RAG-DT005, RAG-DT008, RAG-DT012, RAG-DT014, RAG-DT013, RAG-BT010, RAG-BT011 |
-| Depends On Build Tasks | see section 1 and section 3 |
+| Design Dependencies | RAG-DT004, RAG-DT005, RAG-DT008, RAG-DT012, RAG-DT014, RAG-DT021, RAG-DT025, RAG-DT013 |
+| Depends On Build Tasks | RAG-BT007, RAG-BT009, RAG-BT010, RAG-BT011, RAG-BT023 |
 | Branch | `codex/rag-bt012-fixture-ingestion-pipeline` |
 | Worktree Path | `C:\tmp\rag-bt012-fixture-ingestion-pipeline` |
 | Owner | solo developer |
@@ -38,12 +38,19 @@ Design Gates:
 - `RAG-DT008`
 - `RAG-DT012`
 - `RAG-DT014`
+- `RAG-DT021`
+- `RAG-DT025`
 - `RAG-DT013`
+- `RAG-BT007`
+- `RAG-BT009`
 - `RAG-BT010`
 - `RAG-BT011`
+- `RAG-BT023`
 
 DT014 Vector DB Test Handoff:
 
+- Consume the SDK adapter, collection lifecycle, Compose test profile, and
+  required CI service job from `RAG-BT023`.
 - Qdrant test mode: fast unit tests may mock the vector DB wrapper; fixture
   ingestion integration tests must run against service-backed Qdrant.
 - Local command: `docker compose --profile test up -d qdrant`, then

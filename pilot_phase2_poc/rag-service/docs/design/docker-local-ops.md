@@ -1,6 +1,7 @@
 # RAG-DT011 Docker And Local Ops Design
 
-Status: Accepted for review
+Status: Accepted local-design input; runtime/reliability revision required by
+`RAG-DT023`
 Date: 2026-07-18
 
 ## Purpose

@@ -1,6 +1,6 @@
 # RAG-DT015: Run LLM Model Evaluation And Selection
 
-Status: Complete
+Status: Blocked
 
 ## Sequence Entry
 
@@ -18,9 +18,11 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Affected Build Tasks | RAG-BT016, RAG-BT017, RAG-BT018, RAG-BT019 |
 | Branch | `codex/rag-dt015-llm-model-evaluation-execution` |
 | Worktree Path | `C:\tmp\rag-dt015-llm-model-evaluation-execution` |
-| Owner | solo developer |
+| Owner | AI platform/model owner |
+| Accountable Approver | Service owner |
+| Required Reviewers | RAG evaluation owner, security owner |
 | AI Review Partner | Codex |
-| Status | Complete |
+| Status | Blocked |
 | Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-DT015-llm-model-evaluation-run.md` |
 
 ## 1. Task Definition
@@ -35,12 +37,14 @@ adapter implementation begins.
 Output Artifacts:
 
 ```text
-docs/design/experiments/llm-model-evaluation/runs/<run-id>/model-inventory.json
-docs/design/experiments/llm-model-evaluation/runs/<run-id>/model-capabilities.json
-docs/design/experiments/llm-model-evaluation/runs/<run-id>/model-shortlist.json
-docs/design/experiments/llm-model-evaluation/runs/<run-id>/fixture-cases.jsonl
-docs/design/experiments/llm-model-evaluation/runs/<run-id>/model-results.jsonl
-docs/design/experiments/llm-model-evaluation/runs/<run-id>/evaluation-summary.md
+docs/design/experiments/llm-model-evaluation/runs/dt015-run-002/model-inventory.json
+docs/design/experiments/llm-model-evaluation/runs/dt015-run-002/model-capabilities.json
+docs/design/experiments/llm-model-evaluation/runs/dt015-run-002/model-shortlist.json
+docs/design/experiments/llm-model-evaluation/runs/dt015-run-002/evaluation-manifest.yaml
+docs/design/experiments/llm-model-evaluation/runs/dt015-run-002/model-results.jsonl
+docs/design/experiments/llm-model-evaluation/runs/dt015-run-002/evaluation-summary.md
+docs/design/experiments/llm-model-evaluation/runs/dt015-run-002/credential-rotation-attestation.md
+docs/design/experiments/llm-model-evaluation/runs/dt015-run-002/live-provider-authorization.md
 docs/design/llm-model-selection-decision.md
 ```
 
@@ -52,14 +56,29 @@ Acceptance Criteria:
   reason
 - model capability/specification review is completed before evaluation
 - include/defer/exclude shortlist is recorded with rationale
-- evaluation fixture uses DT006 golden questions, DT005 hybrid chunks, DT007
-  planner expectations, and DT012 source lineage
+- historical DT006/DT005/DT007/DT012 material is labeled as development-only
+  fixture evidence; any live evaluation uses the DT022 dataset contract
 - candidate models are evaluated for quality, groundedness, schema adherence,
   citation behavior, refusal/safety behavior, latency, provider/model errors,
   and malformed output handling
 - model selection decision is recorded as selected, deferred, or blocked
 - affected build tasks are updated with the selected model or explicit
   deferral rule
+- every selected/default/fallback model is checked against the provider's
+  current deprecation schedule and service-tier availability
+- repeated runs use the independent evaluation contract from `RAG-DT022`
+- revocation/rotation of the previously exposed Groq credential is verified
+  before any new live provider call
+- the fresh run uses a DT022 calibration/held-out split; candidate selection is
+  frozen before the held-out measurement, and only held-out results may justify
+  a default or fallback
+- the non-secret rotation attestation records date, responsible owner,
+  old-key invalidation status, secret-manager reference/version, and secret-scan
+  result; it never contains a credential or provider response body
+- before each live-provider evaluation, a non-secret authorization signed by
+  the AI/security and service owners identifies provider/base URL, allowed
+  models, deployment tier, request/cost ceiling, expiry, credential-version
+  reference, and stop condition. Without it, the task is fixture-only.
 
 Out Of Scope:
 
@@ -119,27 +138,46 @@ Select-String -Path "$WorktreePath\pilot_phase2_poc\rag-service\build-evidence\R
 
 ## 4. Design Experiment Work
 
+### Reopened On 2026-07-28
+
+The historical run selected `llama-3.3-70b-versatile`. Groq now lists that
+model for free/developer-tier shutdown on 2026-08-16 and recommends
+`openai/gpt-oss-120b` or `qwen/qwen3.6-27b`:
+
+```text
+https://console.groq.com/docs/deprecations
+```
+
+The old run remains valid historical evidence but its selection is superseded.
+Do not start `RAG-BT016` or make another live Groq call until:
+
+1. credential revocation/rotation is confirmed;
+2. `RAG-DT022` supplies independent evaluation and acceptance gates;
+3. currently supported candidates and at least one fallback are re-evaluated;
+4. the replacement decision includes a lifecycle/deprecation check.
+
 Run the process defined by `RAG-DT009`:
 
-1. Ask the owner for:
+1. Verify the G0 non-secret credential-rotation attestation and the signed
+   live-provider authorization; if either is absent or expired, stop after
+   fixture-only design work.
+2. Ask the owner for:
    - OpenAI-compatible base URL in `LLM_BASE_URL`
    - API key in `LLM_API_KEY`
    - optional provider label in `LLM_PROVIDER_LABEL`
-2. Confirm no API key will be written to repo files, evidence, logs, or PR text.
-3. Run provider inventory with `GET {LLM_BASE_URL}/models`.
-4. Enrich capability/specification metadata using:
+3. Confirm no API key will be written to repo files, evidence, logs, or PR text.
+4. Run provider inventory with `GET {LLM_BASE_URL}/models`.
+5. Enrich capability/specification metadata using:
    - `/models`
    - `/models/{model}` when supported
    - provider model docs or model cards
    - owner-approved safe probes
-5. Record include/defer/exclude model shortlist.
-6. Build fixture cases from:
-   - `docs/evaluation/golden-questions.md`
-   - `docs/design/experiments/chunking/dt005-run-001/chunks-hybrid-structure-recursive-v1.jsonl`
-   - `docs/design/query-planning/query_planner_tests.yaml`
-   - `docs/design/source-snapshot-and-markdown-candidates.md`
-7. Evaluate shortlisted models.
-8. Write a summary with:
+6. Record include/defer/exclude model shortlist.
+7. Evaluate shortlisted models using the DT022 dataset manifest, scorer,
+   calibration split, and untouched held-out split; retain the run manifest and
+   raw/scored results.
+8. Exercise at least one supported fallback under the same contract.
+9. Write a summary with:
    - model scores
    - failure modes
    - latency observations

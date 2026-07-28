@@ -14,8 +14,8 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Build Stage | 05-evaluation - Evaluation |
 | Source Question | RAG-Q010, RAG-Q023 |
 | Decision / ADR | ADR-RAG-0008, RAG-DT004, RAG-DT005, RAG-DT006, RAG-DT009, RAG-DT012, RAG-DT015, RAG-DT018, RAG-DT019, RAG-DT020, RAG-DT013 |
-| Design Dependencies | RAG-DT004, RAG-DT005, RAG-DT006, RAG-DT009, RAG-DT012, RAG-DT014, RAG-DT015, RAG-DT018, RAG-DT019, RAG-DT020, RAG-BT018, RAG-DT013 |
-| Depends On Build Tasks | see section 1 and section 3 |
+| Design Dependencies | RAG-DT004, RAG-DT005, RAG-DT006, RAG-DT009, RAG-DT012, RAG-DT014, RAG-DT015, RAG-DT018, RAG-DT019, RAG-DT020, RAG-DT021, RAG-DT022, RAG-DT023, RAG-DT024, RAG-DT025, RAG-DT013 |
+| Depends On Build Tasks | RAG-BT018, RAG-BT023; RAG-BT024 for canonical-corpus evaluation |
 | Branch | `codex/rag-bt019-evaluation-harness` |
 | Worktree Path | `C:\tmp\rag-bt019-evaluation-harness` |
 | Owner | solo developer |

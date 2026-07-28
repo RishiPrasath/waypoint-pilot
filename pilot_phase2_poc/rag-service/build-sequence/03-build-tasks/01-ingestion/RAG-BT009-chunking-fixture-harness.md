@@ -14,8 +14,8 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Build Stage | 01-ingestion - Ingestion |
 | Source Question | RAG-Q011 |
 | Decision / ADR | RAG-DT002, RAG-DT004, RAG-DT005, RAG-DT012, RAG-DT013 |
-| Design Dependencies | RAG-DT002, RAG-DT004, RAG-DT005, RAG-DT012, RAG-DT013 |
-| Depends On Build Tasks | see section 1 and section 3 |
+| Design Dependencies | RAG-DT002, RAG-DT004, RAG-DT005, RAG-DT012, RAG-DT021, RAG-DT025, RAG-DT013 |
+| Depends On Build Tasks | RAG-BT007 |
 | Branch | `codex/rag-bt009-chunking-fixture-harness` |
 | Worktree Path | `C:\tmp\rag-bt009-chunking-fixture-harness` |
 | Owner | solo developer |

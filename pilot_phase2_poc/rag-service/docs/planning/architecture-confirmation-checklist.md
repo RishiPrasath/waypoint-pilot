@@ -1,83 +1,104 @@
 # RAG Service Architecture Confirmation Checklist
 
-Status: Reconciled against the current `main` implementation and build sequence
-Date: 2026-07-16
+Status: Reconciled after independent external-perspective review; final build blocked
+Date: 2026-07-28
 Owner: Waypoint RAG service team
-Related design task: `RAG-DT001`
+Related design tasks: `RAG-DT001`, `RAG-DT021` through `RAG-DT025`
 
 ## Purpose
 
-This checklist is the Phase 2 architecture source of truth while the original
-ADR/checklist paths referenced by `RAG-DT001` are unavailable in this checkout.
-Each row is backed by current repository evidence, an explicit design task, or
-an explicit deferral. No legacy Phase 1 material is treated as active Phase 2
-knowledge-base content.
+This checklist is the current architecture source of truth for the Phase 2
+service. It distinguishes implemented scaffolding, historical design evidence,
+open blocking decisions, fixture-only capability, canonical-corpus capability,
+and production capability.
 
-## Decision status
+Historical task evidence remains part of the audit trail. It does not override
+a current `Blocked / reopened` decision.
+
+## Decision Status
 
 | Area | Decision / current position | Status | Evidence or owner |
 |---|---|---|---|
-| Service framework | FastAPI application under `app/` | Implemented | `app/main.py`; BT001 evidence |
-| Runtime version | Python 3.12 managed with `uv` | Accepted / implemented | `.python-version`; `pyproject.toml`; BT001 evidence |
-| Service stages | Separate Python-safe packages for ingestion, query, retrieval, generation, and evaluation | Accepted / scaffolded | `app/stages/`; BT001 evidence |
-| API foundation | `/health` and `/ready` endpoints | Implemented | `app/api/`; BT002 and BT003 evidence |
-| Configuration | Pydantic settings with environment-driven runtime configuration | Implemented | `app/core/config.py`; BT005 evidence |
-| Shared contracts | Shared base schemas and error envelope | Implemented | `app/shared/`; BT006 evidence |
-| Vector database boundary | Qdrant-style wrapper with deterministic mocked operations for Stage 1 | Implemented with deferred integration | `app/shared/vector_db/`; BT010 evidence |
-| CI quality gates | pytest, Ruff, Bandit, pip-audit, CodeQL, and Dependabot | Implemented | `.github/workflows/`; BT004 evidence |
-| Branch workflow | Task branches/worktrees, PR review, CI, merge, and cleanup | Accepted / proven | BT000 evidence; current DT001 worktree |
-| Active KB location | Phase 2 `knowledge_base/` root; exact promoted layout and registry location pending | Pending | `RAG-DT004` |
-| Legacy KB usage | Phase 1 snapshot is audit input only and must not be ingested directly | Accepted | `legacy/PHASE1-KB-SNAPSHOT-AUDIT-NOTICE.md`; `RAG-DT002`, `RAG-DT003` |
-| Source scope | APAC source candidates and promotion criteria pending explicit registry decision | Pending | `RAG-DT002`, `RAG-DT003`, `RAG-DT008` |
-| Source registry | Schema, required metadata, validation, and storage pending | Pending | `RAG-DT008` |
-| Canonical source materialization | Snapshot and canonical Markdown candidate rules pending | Pending | `RAG-DT012` |
-| Chunking | Chunk boundaries, overlap, metadata, and fixture results pending experiment | Pending | `RAG-DT005` |
-| Evaluation set | Golden questions, rubrics, and pass criteria pending | Pending | `RAG-DT006` |
-| Query planning | Vocabulary, safeguards, out-of-scope handling, and deterministic planning pending | Pending | `RAG-DT007` |
-| Embeddings | Model and benchmark acceptance pending | Pending | `RAG-DT010` |
-| Generation model | Provider/model fixture and selection criteria pending | Pending | `RAG-DT009` |
-| Vector DB integration tests | Test Qdrant lifecycle, seed data, cleanup, and CI strategy pending | Pending | `RAG-DT014` |
-| Docker/local operations | Deferred until the integration-test strategy and local runtime scope are decided | Explicitly deferred | `RAG-DT011` |
-| Build impact review | Final design-to-build dependency review not yet performed | Pending / gate | `RAG-DT013` |
+| Service framework | FastAPI application under `app/` | Implemented scaffold | `app/main.py`; BT001 evidence |
+| Runtime version | Python 3.12 managed with `uv` | Implemented | `.python-version`; `pyproject.toml` |
+| Service stages | Ingestion, query, retrieval, generation, and evaluation packages exist | Scaffolded; most files empty | `app/stages/` |
+| API foundation | `/health` is liveness; `/ready` currently always returns success | Implemented but insufficient for integration | `app/api/`; BT002/BT003 |
+| Configuration | Pydantic settings with environment-driven configuration | Implemented foundation | `app/core/config.py` |
+| Shared contracts | Base schemas and error envelope exist but do not match the later DT019 schema in all fields | Reconciliation required | `app/shared/`; DT019 |
+| Vector database boundary | Mock-injected Qdrant-shaped wrapper exists; no SDK client or collection lifecycle exists | Scaffold only | `app/shared/vector_db/`; BT010; BT023 |
+| CI quality gates | pytest, Ruff lint, Bandit, pip-audit, CodeQL, and Dependabot exist | Implemented foundation | `.github/workflows/` |
+| Legacy KB usage | Phase 1 snapshot is audit input only and must not be ingested directly | Accepted | `legacy/PHASE1-KB-SNAPSHOT-AUDIT-NOTICE.md` |
+| Active KB | Registry/layout exist; no source is retrieval eligible and no canonical promoted corpus exists | Blocked for canonical use | DT024; BT024 |
+| Source registry | Schema and candidate inventory exist; build-time validation remains open | Accepted design / unimplemented | DT008; BT007 |
+| Corpus lifecycle | Promotion, freshness, annotation isolation, revocation, deletion, and rollback are not closed | Planned blocking gate | DT024 |
+| Chunking | Design-time fixture experiment exists; curator annotations must be separated before canonical ingestion | Conditional PoC evidence | DT005; DT021; DT024 |
+| Evaluation | Small smoke fixture exists; independent held-out, adversarial, and statistical gates do not | Planned blocking gate | DT006; DT022 |
+| Query planning | Deterministic vocabulary/rules exist; phrase matching is not a security boundary | Accepted with revision impact | DT007; DT021 |
+| Embeddings | `BAAI/bge-small-en` is a design-time candidate selected on the smoke fixture | Conditional PoC evidence | DT010; DT022 |
+| Generation model | Historical `llama-3.3-70b-versatile` selection is superseded; Groq schedules free/developer shutdown on 2026-08-16 | Blocked / reopened | DT015; model-selection decision |
+| Retrieval fusion/confidence | Fixed weights and thresholds exist without independent calibration | Blocked / reopened | DT018; DT022 |
+| Generation/API/citations | Historical contract lacks closed trust/resource controls, claim-to-span support, and runtime schema reconciliation | Blocked / reopened | DT019; DT021-DT023 |
+| Model/evaluation loop | Baseline-relative design lacks absolute gates and uncertainty requirements | Blocked / reopened | DT020; DT022; DT023 |
+| Security/trust | Deployment tiers, poisoning, indirect injection, API abuse, privacy/logging, and resource controls are open | Planned blocking gate | DT021 |
+| Reliability/deployment | SLOs, capacity/load, timeouts/concurrency, recovery, deployment, and operations ownership are open | Planned blocking gate | DT023 |
+| Docker/local operations | Local design exists; loopback binding, pinned images, real Qdrant, and dependency readiness remain open | Blocked for runtime proof | DT011; BT020; BT023 |
+| Build-task executability | Planned tasks use generic placeholders and at least one invalid Markdown/pytest workflow was found | Planned blocking gate | DT025 |
+| Build impact review | Historical completion is superseded; Revision 2 waits for all new/reopened gates | Blocked / reopened | DT013 |
 
-## Build readiness
+## Build Readiness
 
 | Build area | Readiness | Reason |
 |---|---|---|
-| Setup foundation | Unblocked and complete | BT000–BT006 and BT010 evidence exists; BT004 and BT010 task-file status metadata is stale and should be corrected separately |
-| Source registry validation (BT007) | Blocked | Requires DT004, DT008, and DT013 |
-| Phase 1 KB audit artifacts (BT008) | Blocked | Requires DT002, DT003, and DT013 |
-| Chunking and fixture harness (BT009) | Blocked | Requires DT002, DT005, DT012, and DT013 |
-| Embedding adapter (BT011) | Blocked | Requires DT010 and DT013 |
-| Fixture ingestion (BT012) | Blocked | Requires promoted KB, chunking, embedding, Qdrant test strategy, DT012, DT014, and DT013 |
-| Query planning (BT015) | Blocked | Requires DT007 and DT013 |
-| Retrieval (BT013/BT014) | Blocked | Requires ingestion fixtures, DT014, and DT013 |
-| Generation (BT016/BT017) | Blocked | Requires DT009 and DT013, plus query safeguards for validation flow |
-| Query API (BT018) | Blocked | Requires query, retrieval, generation, validation, and DT013 |
-| Evaluation harness (BT019) | Blocked | Requires DT006, test DB strategy, query API, DT014, and DT013 |
-| Docker/ops/readiness (BT020–BT022) | Blocked or deferred | Requires DT011/DT014/DT013 and completed runtime flow |
+| Setup foundation | Complete as scaffold | BT000-BT006 and BT010 do not implement RAG behavior |
+| All final build tasks | Blocked | DT013 Revision 2 is blocked by DT021-DT025 and reopened decisions |
+| Registry/audit/chunking/embedding mechanics | Conditional after Revision 2 | May be fixture-only and cannot imply a canonical corpus |
+| Real Qdrant integration (BT023) | Blocked | Requires design gates, SDK adapter, collection lifecycle, and service CI |
+| Fixture ingestion (BT012) | Blocked | Must explicitly depend on BT007, BT009, BT011, and BT023 |
+| Canonical corpus release (BT024) | Blocked | Requires source-owner approval and DT024 lifecycle contract |
+| Retrieval (BT013/BT014) | Blocked | Requires real Qdrant and independent fusion/confidence evaluation |
+| Generation (BT016/BT017) | Blocked | Requires credential rotation proof and supported default/fallback selection |
+| Query API (BT018) | Blocked | Requires reconciled schemas, trust/resource controls, and dependency readiness |
+| Evaluation harness (BT019) | Blocked | Requires held-out/adversarial evaluation and reproducible scoring |
+| Docker/ops/readiness (BT020-BT022) | Blocked | BT022 is PoC integration readiness only; production is a separate future program |
 
-## Traceability notes
+## Critical Current Facts
 
-- The historical paths `02-rag-db/planning/architecture-confirmation-checklist.md`
-  and `02-rag-db/adrs/` referenced by the task file are not present in the
-  current repository. This checklist records that absence rather than treating
-  undocumented decisions as accepted.
-- The existing stage modules are scaffolds and contracts only; their presence
-  does not indicate that ingestion, retrieval, generation, or evaluation
-  behavior is complete.
-- The Qdrant wrapper is intentionally a Stage 1 boundary. Real SDK-backed
-  integration remains follow-up work governed by `RAG-DT014` and later build
-  tasks.
+- The 12 passing tests cover scaffolding/contracts, not end-to-end RAG.
+- The current registry has no retrieval-eligible source.
+- The previously selected Groq model has a near-term free/developer-tier
+  shutdown date.
+- The current `/ready` endpoint is a static success and cannot be used as
+  dependency-readiness evidence.
+- The current Qdrant boundary is mock-compatible but not SDK/service backed.
+- The existing golden fixture remains useful as a smoke fixture, not as the
+  sole model, fusion, confidence, or production-quality selection set.
+- A previously supplied Groq credential was reported as exposed in chat.
+  Revocation/rotation evidence is required before any further live call.
 
-## Unblocking sequence
-
-The design lane should continue in this order:
+## Required Unblocking Sequence
 
 ```text
-DT002 -> DT008 -> DT003 -> DT004 -> DT012 -> DT005 -> DT006
--> DT007 -> DT009 -> DT010 -> DT014 -> DT011 -> DT013
+DT021 security/trust
+-> DT024 corpus lifecycle
+-> DT022 evaluation validity
+-> DT023 reliability/deployment
+-> DT015 model-selection revision
+-> DT018 retrieval-calibration revision
+-> DT019 generation/API revision
+-> DT020 evaluation/tuning revision
+-> DT025 task/DAG/source-of-truth reconciliation
+-> DT013 Revision 2 GO or NO-GO
 ```
 
-`DT001` establishes traceability. It does not approve the pending decisions or
-authorize final RAG implementation by itself.
+After a `GO`, the executable build DAG must put real Qdrant integration
+(`RAG-BT023`) before fixture ingestion (`RAG-BT012`). Canonical corpus release
+(`RAG-BT024`) is required before canonical retrieval or any production track.
+
+## Scope Of A Future Production Track
+
+`RAG-BT022` is now a PoC integration-readiness gate. A future production gate
+must be separately planned after DT023 selects a deployment target and must
+include deployment/IAM/TLS, canonical corpus approval, backup/restore and
+recovery objectives, capacity/load/cost evidence, SLOs/alerts/on-call,
+incident/rollback rehearsal, provider privacy/retention, and operational
+ownership.

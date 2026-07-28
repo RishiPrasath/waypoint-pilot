@@ -1,6 +1,6 @@
 # Retrieval Strategy And Fusion Contract
 
-Status: Accepted for `RAG-DT018`
+Status: Superseded historical contract; `RAG-DT018` calibration revision blocked
 Run: `dt018-run-001`
 Date: 2026-07-18
 

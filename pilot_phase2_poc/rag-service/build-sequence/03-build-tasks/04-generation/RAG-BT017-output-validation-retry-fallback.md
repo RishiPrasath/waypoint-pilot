@@ -14,8 +14,8 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Build Stage | 04-generation - Generation |
 | Source Question | RAG-Q015, RAG-Q016 |
 | Decision / ADR | ADR-RAG-0004, RAG-DT015, RAG-DT019, RAG-DT013 |
-| Design Dependencies | RAG-BT006, RAG-BT015, RAG-BT016, RAG-DT015, RAG-DT019, RAG-DT013 |
-| Depends On Build Tasks | see section 1 and section 3 |
+| Design Dependencies | RAG-DT015, RAG-DT019, RAG-DT021, RAG-DT022, RAG-DT023, RAG-DT025, RAG-DT013 |
+| Depends On Build Tasks | RAG-BT006, RAG-BT015, RAG-BT016 |
 | Branch | `codex/rag-bt017-output-validation-retry-fallback` |
 | Worktree Path | `C:\tmp\rag-bt017-output-validation-retry-fallback` |
 | Owner | solo developer |

@@ -2,6 +2,12 @@
 
 Status: Complete
 
+> Configuration correction recorded 2026-07-28: bare `QDRANT_*` names and
+> `RAG_ENV` in the historical strategy are not current service configuration.
+> The current settings model uses the `RAG_` prefix. This completed task remains
+> historical test-strategy evidence; `RAG-DT023` defines the canonical
+> configuration matrix and `RAG-DT025` reconciles downstream task commands.
+
 ## Sequence Entry
 
 Start from build-sequence/00-index.md, then open the lane index for this task before opening the task file.
@@ -57,9 +63,12 @@ Acceptance Criteria:
 - CI command is documented
 - exact Qdrant test modes are documented: unit/mock, local integration, and CI
   integration
-- exact Qdrant environment variables are documented, including `QDRANT_URL`,
-  `QDRANT_API_KEY`, `QDRANT_COLLECTION_PREFIX`,
-  `QDRANT_TEST_TIMEOUT_SECONDS`, and `RUN_QDRANT_INTEGRATION`
+- exact service Qdrant environment variables are documented, including
+  `RAG_QDRANT_URL`, `RAG_QDRANT_API_KEY`,
+  `RAG_QDRANT_COLLECTION_NAME`, `RAG_QDRANT_VECTOR_SIZE`,
+  `RAG_QDRANT_DISTANCE`, and `RAG_QDRANT_PAYLOAD_SCHEMA_VERSION`; any
+  test-runner-only flags are separately named and do not silently override
+  service settings
 - test collection naming and cleanup strategy are documented
 - collection contract is documented, including collection name pattern, vector
   size, distance metric, embedding model/version compatibility,
@@ -148,7 +157,7 @@ Test-Path "$ServiceRoot\docs\design\experiments\vector-db-ci-strategy\dt014-run-
 Test-Path "$ServiceRoot\docs\design\experiments\vector-db-ci-strategy\dt014-run-001\decision-gate.md"
 Test-Path "$ServiceRoot\build-evidence\RAG-DT014-test-vector-db-ci-strategy.md"
 
-Select-String -Path "$ServiceRoot\docs\design\test-vector-db-ci-strategy.md" -Pattern "Qdrant|GitHub Actions service container|Docker Compose|pytest -m integration|QDRANT_URL|QDRANT_COLLECTION_PREFIX|BAAI/bge-small-en|384|cosine|Cosine|readyz|timeout|cleanup|seed|payload_schema_version"
+Select-String -Path "$ServiceRoot\docs\design\test-vector-db-ci-strategy.md" -Pattern "Qdrant|GitHub Actions service container|Docker Compose|pytest -m integration|RAG_QDRANT_URL|RAG_QDRANT_COLLECTION_NAME|BAAI/bge-small-en|384|cosine|Cosine|readyz|timeout|cleanup|seed|payload_schema_version"
 Select-String -Path "$ServiceRoot\docs\design\experiments\vector-db-ci-strategy\dt014-run-001\vector-db-ci-options-assessment.md" -Pattern "GitHub Actions service container|Docker Compose|local/in-memory|pros|cons|risk|recommendation"
 Select-String -Path "$ServiceRoot\docs\design\experiments\vector-db-ci-strategy\dt014-run-001\decision-gate.md" -Pattern "Decision Gate|Option A|Option B|Option C|Recommendation|Owner Decision"
 Select-String -Path "$ServiceRoot\build-sequence\02-design-tasks\00-index.md" -Pattern "RAG-DT010.*Complete|RAG-DT014.*In Review|RAG-DT014.*Complete"
@@ -200,14 +209,17 @@ Required design sections:
 4. Qdrant runtime environment:
    - HTTP port `6333`
    - optional gRPC port `6334`
-   - local default `QDRANT_URL=http://localhost:6333`
-   - local/CI test default `QDRANT_API_KEY` unset
+   - local default `RAG_QDRANT_URL=http://localhost:6333`
+   - local/CI test default `RAG_QDRANT_API_KEY` unset
 5. Environment variable contract:
-   - `QDRANT_URL`
-   - `QDRANT_API_KEY`
-   - `QDRANT_COLLECTION_PREFIX`
-   - `QDRANT_TEST_TIMEOUT_SECONDS`
-   - `RUN_QDRANT_INTEGRATION`
+   - `RAG_QDRANT_URL`
+   - `RAG_QDRANT_API_KEY`
+   - `RAG_QDRANT_COLLECTION_NAME`
+   - `RAG_QDRANT_VECTOR_SIZE`
+   - `RAG_QDRANT_DISTANCE`
+   - `RAG_QDRANT_PAYLOAD_SCHEMA_VERSION`
+   - test-runner flags, if added, are not service configuration and must be
+     documented in the runner implementation
 6. Collection naming and cleanup contract:
    - collections must be unique per test run
    - recommended pattern: `rag_test_<task_id>_<run_id>`
@@ -281,7 +293,7 @@ Required design sections:
 14. Security and secrets:
     - local/CI test Qdrant is unauthenticated only when isolated to the test
       runner/local host
-    - never print `QDRANT_API_KEY` or any secret value
+    - never print `RAG_QDRANT_API_KEY` or any secret value
     - production Qdrant authentication/deployment remains out of scope
 15. Downstream build-task handoffs.
 

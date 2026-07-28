@@ -14,8 +14,8 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Build Stage | 04-generation - Generation |
 | Source Question | RAG-Q001, RAG-Q002, RAG-Q008 |
 | Decision / ADR | ADR-RAG-0003, RAG-DT009, RAG-DT015, RAG-DT019, RAG-DT013 |
-| Design Dependencies | RAG-DT009, RAG-DT015, RAG-DT019, RAG-DT013 |
-| Depends On Build Tasks | see section 1 and section 3 |
+| Design Dependencies | RAG-DT009, RAG-DT015, RAG-DT019, RAG-DT021, RAG-DT022, RAG-DT023, RAG-DT025, RAG-DT013 |
+| Depends On Build Tasks | none; credential rotation is an external preflight gate |
 | Branch | `codex/rag-bt016-generation-adapter` |
 | Worktree Path | `C:\tmp\rag-bt016-generation-adapter` |
 | Owner | solo developer |
@@ -57,8 +57,8 @@ DT019 Proposed Handoff:
 - Use runtime config names:
   `RAG_LLM_PROVIDER_LABEL`, `RAG_LLM_BASE_URL`, `RAG_LLM_MODEL`, and
   `RAG_GROQ_API_KEY`.
-- Default provider/model candidate:
-  `groq` / `llama-3.3-70b-versatile`.
+- Default provider/model candidate: no model is currently accepted. Consume
+  the reopened `RAG-DT015` replacement/fallback decision.
 - Keep provider label, base URL, API key, model ID, timeout, max output tokens,
   retry count, and JSON/schema mode injectable.
 - Return provider/model/latency metadata without exposing secrets.
@@ -88,11 +88,12 @@ DT015 LLM Evaluation Result Contract:
 - Before implementation, read
   `docs/design/llm-model-selection-decision.md` and the latest
   `docs/design/experiments/llm-model-evaluation/runs/<run-id>/evaluation-summary.md`.
-- DT015 selected `llama-3.3-70b-versatile` on Groq as the first-pass default
-  generation candidate. Make that model configurable as the default candidate
-  without hard-coding secrets or provider account details.
-- If DT015 deferred or blocked selection, keep the adapter model configurable
-  and record the deferral in task evidence.
+- The historical DT015 selection of `llama-3.3-70b-versatile` is superseded by
+  Groq's 2026-08-16 free/developer-tier shutdown notice.
+- Do not make a live provider call until revocation/rotation of the previously
+  exposed credential is verified.
+- Keep the adapter model configurable and blocked from a live default until
+  DT015 records supported default and fallback models under DT022.
 
 Out Of Scope:
 

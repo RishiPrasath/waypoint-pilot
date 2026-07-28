@@ -1,7 +1,7 @@
 # RAG Service Design Task Lane
 
-Status: Governed executable task files under accepted sequence
-Date: 2026-07-09
+Status: External review gates open; final build lane blocked
+Date: 2026-07-28
 
 This folder contains the remaining design-decision tasks that must be completed
 before blocked RAG build work begins.
@@ -96,16 +96,21 @@ decision reconciliation
 | 15 | `RAG-DT006` | Define golden questions and answer rubrics | `04-chunking-and-evaluation-design/RAG-DT006-golden-questions.md` | Complete |
 | 16 | `RAG-DT007` | Define query planner vocabulary and rules artifacts | `05-runtime-technical-design/RAG-DT007-query-planner-artifacts.md` | Complete |
 | 17 | `RAG-DT009` | Define LLM model evaluation fixture | `05-runtime-technical-design/RAG-DT009-llm-model-evaluation-fixture.md` | Complete |
-| 18 | `RAG-DT015` | Run LLM model evaluation and selection | `05-runtime-technical-design/RAG-DT015-llm-model-evaluation-run.md` | Complete |
+| 18 | `RAG-DT015` | Run LLM model evaluation and selection | `05-runtime-technical-design/RAG-DT015-llm-model-evaluation-run.md` | Blocked / reopened |
 | 19 | `RAG-DT010` | Define embedding benchmark fixture | `05-runtime-technical-design/RAG-DT010-embedding-benchmark-fixture.md` | Complete |
 | 20 | `RAG-DT014` | Define test vector DB and CI integration strategy | `05-runtime-technical-design/RAG-DT014-test-vector-db-ci-strategy.md` | Complete |
 | 21 | `RAG-DT011` | Define Docker/local ops design when ready | `05-runtime-technical-design/RAG-DT011-docker-local-ops-design.md` | Complete |
 | 22 | `RAG-DT016` | Audit and implement CI/CD REST service readiness gate | `05-runtime-technical-design/RAG-DT016-cicd-rest-service-readiness-gate.md` | Complete |
 | 23 | `RAG-DT017` | Overall architecture and design sufficiency review | `05-runtime-technical-design/RAG-DT017-architecture-sufficiency-review.md` | Complete |
-| 24 | `RAG-DT018` | Retrieval strategy selection, scoring, and fusion contract | `05-runtime-technical-design/RAG-DT018-retrieval-strategy-selection-and-fusion-contract.md` | Complete |
-| 25 | `RAG-DT019` | Generation prompt, safeguards, output schema, and query API contract | `05-runtime-technical-design/RAG-DT019-generation-prompt-safeguards-output-schema-and-query-api-contract.md` | Complete |
-| 26 | `RAG-DT020` | Post-build evaluation and tuning loop | `05-runtime-technical-design/RAG-DT020-post-build-evaluation-and-tuning-loop.md` | Complete |
-| 27 | `RAG-DT013` | Final build task impact review | `06-build-impact-review/RAG-DT013-final-build-task-impact-review.md` | Complete |
+| 24 | `RAG-DT018` | Retrieval strategy selection, scoring, and fusion contract | `05-runtime-technical-design/RAG-DT018-retrieval-strategy-selection-and-fusion-contract.md` | Blocked / reopened |
+| 25 | `RAG-DT019` | Generation prompt, safeguards, output schema, and query API contract | `05-runtime-technical-design/RAG-DT019-generation-prompt-safeguards-output-schema-and-query-api-contract.md` | Blocked / reopened |
+| 26 | `RAG-DT020` | Post-build evaluation and tuning loop | `05-runtime-technical-design/RAG-DT020-post-build-evaluation-and-tuning-loop.md` | Blocked / reopened |
+| 27 | `RAG-DT021` | Security, trust, and abuse-resistance contract | `05-runtime-technical-design/RAG-DT021-security-trust-and-abuse-resistance-contract.md` | Planned |
+| 28 | `RAG-DT024` | Corpus promotion, freshness, revocation, and rollback contract | `02-source-scope-and-registry/RAG-DT024-corpus-promotion-freshness-revocation-and-rollback-contract.md` | Planned |
+| 29 | `RAG-DT022` | Evaluation validity and adversarial test contract | `05-runtime-technical-design/RAG-DT022-evaluation-validity-and-adversarial-test-contract.md` | Planned |
+| 30 | `RAG-DT023` | Runtime reliability, SLO, capacity, and deployment contract | `05-runtime-technical-design/RAG-DT023-runtime-reliability-slo-capacity-and-deployment-contract.md` | Planned |
+| 31 | `RAG-DT025` | Build task executability and source-of-truth reconciliation | `06-build-impact-review/RAG-DT025-build-task-executability-and-source-of-truth-reconciliation.md` | Planned |
+| 32 | `RAG-DT013` | Final build task impact review, Revision 2 | `06-build-impact-review/RAG-DT013-final-build-task-impact-review.md` | Blocked / reopened |
 
 ## How Design Tasks Fit The Build Sequence
 
@@ -124,6 +129,27 @@ performs a multi-perspective architecture sufficiency review. `RAG-DT018`,
 `RAG-DT019`, and `RAG-DT020` close the required follow-up contracts for
 retrieval strategy, generation/API safeguards, and post-build evaluation tuning
 before `RAG-DT013` approves final build tasks.
+
+Independent review on 2026-07-28 reopened the design-to-build transition. The
+new required flow is:
+
+```text
+G0 containment record
+-> DT021 security/trust
+-> DT024 corpus lifecycle
+-> DT022 evaluation validity
+-> { DT015 model selection revision; DT018 retrieval calibration revision }
+
+DT021 -> DT023 reliability/deployment (may run in parallel with DT024/DT022)
+{ DT015; DT018; DT023; DT024 }
+-> DT019 generation/API revision
+-> DT020 evaluation/tuning revision
+-> DT025 task/DAG/source-of-truth reconciliation
+-> DT013 Revision 2 GO or NO-GO
+```
+
+Historical completion evidence must remain available, but it does not override
+the current `Blocked / reopened` status.
 
 ## Standard Design Task Sections
 

@@ -14,8 +14,8 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Build Stage | 03-retrieval - Retrieval |
 | Source Question | RAG-Q009, RAG-Q017 |
 | Decision / ADR | ADR-RAG-0007, RAG-DT005, RAG-DT012, RAG-DT018, RAG-DT013 |
-| Design Dependencies | RAG-BT012, RAG-DT005, RAG-DT012, RAG-DT014, RAG-DT018, RAG-DT013 |
-| Depends On Build Tasks | see section 1 and section 3 |
+| Design Dependencies | RAG-DT005, RAG-DT012, RAG-DT014, RAG-DT018, RAG-DT022, RAG-DT025, RAG-DT013 |
+| Depends On Build Tasks | RAG-BT012, RAG-BT023 |
 | Branch | `codex/rag-bt013-semantic-retrieval-baseline` |
 | Worktree Path | `C:\tmp\rag-bt013-semantic-retrieval-baseline` |
 | Owner | solo developer |

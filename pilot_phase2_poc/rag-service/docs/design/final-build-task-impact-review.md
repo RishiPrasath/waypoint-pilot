@@ -1,8 +1,9 @@
 # Final Build Task Impact Review
 
-Status: Accepted for `RAG-DT013`
+Status: Superseded historical review; `RAG-DT013` Revision 2 blocked
 Task: `RAG-DT013`
 Date: 2026-07-18
+Superseded: 2026-07-28
 
 ## Purpose
 
@@ -25,9 +26,29 @@ The review used five specialist perspectives:
 The result is a build-impact matrix plus task-level handoff notes added to the
 final build task files.
 
-## Build-Start Decision
+## Current Build-Start Decision
 
-Decision: `GO_WITH_CONDITIONS`
+Decision: `NO_GO`
+
+Independent review on 2026-07-28 found blocking model-lifecycle,
+corpus-authority, evaluation-validity, retrieval-calibration, Qdrant
+integration, security, reliability, dependency-DAG, and task-executability
+gaps. The historical `GO_WITH_CONDITIONS` below is preserved for audit history
+only.
+
+Complete `RAG-DT021` through `RAG-DT025`, revise reopened `RAG-DT015`,
+`RAG-DT018`, `RAG-DT019`, and `RAG-DT020`, and then rerun `RAG-DT013`
+Revision 2. No final build task is currently authorized.
+
+Current review:
+
+```text
+docs/reviews/architecture-and-delivery-readiness-review-2026-07-28.md
+```
+
+## Historical Build-Start Decision
+
+Historical decision: `GO_WITH_CONDITIONS` (superseded)
 
 Final build work may begin after this review is merged, but only under these
 conditions:
@@ -48,9 +69,8 @@ conditions:
 - DT017 and DT016 deferred governance/security items must be consumed by
   production-readiness review.
 
-No unresolved design issue blocks starting the first ingestion build tasks, but
-the conditional items above must be addressed by the affected build task before
-that task can be considered complete.
+This statement is superseded. The current blockers are tracked by the new and
+reopened design tasks and by `RAG-DT013` Revision 2.
 
 ## Impact Matrix
 

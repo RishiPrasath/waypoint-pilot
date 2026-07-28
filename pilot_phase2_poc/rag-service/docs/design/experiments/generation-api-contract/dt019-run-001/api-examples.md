@@ -1,6 +1,12 @@
 # DT019 API Examples
 
-Status: Accepted
+Status: Historical synthetic schema examples; not current corpus/model authority
+
+> These examples preserve DT019 design history. Values such as
+> `retrieval_eligible: true` for `APAC-001` and
+> `model_id: llama-3.3-70b-versatile` do not override the current source
+> registry or reopened model-selection decision. `RAG-DT024` and reopened
+> `RAG-DT015` must supply current executable values.
 Run: `dt019-run-001`
 
 ## Positive Request

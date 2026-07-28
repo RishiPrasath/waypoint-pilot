@@ -14,8 +14,8 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Build Stage | 02-query - Query |
 | Source Question | RAG-Q018, RAG-Q020 |
 | Decision / ADR | ADR-RAG-0001, ADR-RAG-0004, RAG-DT015, RAG-DT018, RAG-DT019, RAG-DT013 |
-| Design Dependencies | RAG-BT015, RAG-BT013, RAG-BT014, RAG-BT016, RAG-BT017, RAG-DT015, RAG-DT018, RAG-DT019, RAG-DT013 |
-| Depends On Build Tasks | see section 1 and section 3 |
+| Design Dependencies | RAG-DT015, RAG-DT018, RAG-DT019, RAG-DT021, RAG-DT022, RAG-DT023, RAG-DT025, RAG-DT013 |
+| Depends On Build Tasks | RAG-BT013, RAG-BT014, RAG-BT015, RAG-BT016, RAG-BT017 |
 | Branch | `codex/rag-bt018-query-api-endpoint` |
 | Worktree Path | `C:\tmp\rag-bt018-query-api-endpoint` |
 | Owner | solo developer |

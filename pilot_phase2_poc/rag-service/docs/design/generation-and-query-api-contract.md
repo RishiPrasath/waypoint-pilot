@@ -1,6 +1,6 @@
 # Generation And Query API Contract
 
-Status: Accepted for `RAG-DT019`
+Status: Superseded historical contract; `RAG-DT019` revision blocked
 Run: `dt019-run-001`
 Date: 2026-07-18
 
@@ -38,7 +38,7 @@ The first-pass default generation model comes from `RAG-DT015`:
 ```text
 RAG_LLM_PROVIDER_LABEL=groq
 RAG_LLM_BASE_URL=https://api.groq.com/openai/v1
-RAG_LLM_MODEL=llama-3.3-70b-versatile
+RAG_LLM_MODEL=<selected-by-reopened-RAG-DT015>
 RAG_GROQ_API_KEY=<secret, local only>
 ```
 
@@ -59,13 +59,13 @@ configuration:
 ```text
 RAG_EVAL_LLM_PROVIDER_LABEL=groq
 RAG_EVAL_LLM_BASE_URL=https://api.groq.com/openai/v1
-RAG_EVAL_LLM_MODEL=llama-3.3-70b-versatile
+RAG_EVAL_LLM_MODEL=<independently-selected-evaluation-model>
 RAG_EVAL_LLM_API_KEY=<secret, local only; may alias RAG_GROQ_API_KEY>
 ```
 
-The first-pass judge may use the same selected model as generation, but the
-configuration must remain separate because judge/model independence may become
-important after the evaluation harness is implemented.
+Judge configuration must remain separate and must follow `RAG-DT022`
+independence and human-calibration rules. A model must not be the sole judge of
+its own family.
 
 Compatibility aliases:
 
@@ -448,7 +448,7 @@ LLM, Qdrant, Docker, or API-key requirements.
 - implement a provider adapter that accepts prompt messages and returns raw
   model output plus provider/model/latency metadata;
 - use `RAG_LLM_*` runtime config names and `RAG_GROQ_API_KEY`;
-- default to Groq `llama-3.3-70b-versatile` but allow overrides;
+- consume the supported default/fallback decision from reopened `RAG-DT015`;
 - unit tests must mock provider calls.
 
 `RAG-BT017`:

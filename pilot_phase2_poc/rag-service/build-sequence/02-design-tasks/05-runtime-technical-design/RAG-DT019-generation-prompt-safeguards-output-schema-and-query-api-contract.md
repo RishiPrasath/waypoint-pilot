@@ -1,6 +1,6 @@
 # RAG-DT019: Generation Prompt, Safeguards, Output Schema, And Query API Contract
 
-Status: Complete
+Status: Blocked
 
 ## Sequence Entry
 
@@ -14,13 +14,21 @@ opening this task file. Task files should follow the canonical template in
 | Lane | design |
 | Design Lane | 05-runtime-technical-design |
 | Task Name | Generation Prompt, Safeguards, Output Schema, And Query API Contract |
-| Dependencies | `RAG-DT006`, `RAG-DT007`, `RAG-DT009`, `RAG-DT015`, `RAG-DT017`, `RAG-DT018` |
+| Dependencies | `RAG-DT006`, `RAG-DT007`, `RAG-DT009`, `RAG-DT015`, `RAG-DT017`, `RAG-DT018`, `RAG-DT021`, `RAG-DT022`, `RAG-DT023`, `RAG-DT024` |
 | Blocks | `RAG-DT013`, `RAG-BT015`, `RAG-BT016`, `RAG-BT017`, `RAG-BT018`, `RAG-BT019`, frontend/BFF query consumers |
+| Responsible | API/service owner |
+| Accountable Approver | Service owner |
+| Required Reviewers | Security owner, BFF/API consumer owner |
 | Branch | `codex/rag-dt019-generation-prompt-safeguards-output-schema-and-query-api-contract` |
 | Worktree | `C:\tmp\rag-dt019-generation-prompt-safeguards-output-schema-and-query-api-contract` |
 | Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-DT019-generation-prompt-safeguards-output-schema-and-query-api-contract.md` |
 
 ## 1. Objective And Scope
+
+> Reopened 2026-07-28. Revise this contract after `RAG-DT021` through
+> `RAG-DT024` to add deployment-tier API controls, indirect-injection behavior,
+> claim-to-span citation support, provider lifecycle/fallback behavior, request
+> and resource limits, and the reconciled versioned API/error schema.
 
 Define the generation prompt contract, safeguard behavior, output schema, and
 query API consumer contract before generation, validation, query endpoint, or
@@ -69,8 +77,10 @@ Required design inputs:
 - `docs/design/retrieval-strategy-and-fusion-contract.md`
 - relevant `RAG-BT015` through `RAG-BT019` task files
 
-This task blocks `RAG-DT013`. If it is waived, `RAG-DT013` must record the
-waiver, owner decision, and risk before final build tasks can begin.
+This task blocks `RAG-DT013`. A waiver or deferral is not gate evidence and
+cannot authorize dependent non-fixture, external-provider, shared-service, or
+production work. It must produce a `NO-GO`/blocked manifest entry for every
+affected task; only explicitly listed fixture-only tasks may proceed.
 
 ## 3. Expected Artifacts
 
@@ -78,10 +88,11 @@ Create these durable artifacts:
 
 ```text
 docs/design/generation-and-query-api-contract.md
-docs/design/experiments/generation-api-contract/dt019-run-001/prompt-contract.md
-docs/design/experiments/generation-api-contract/dt019-run-001/response-schema.json
-docs/design/experiments/generation-api-contract/dt019-run-001/api-examples.md
-docs/design/experiments/generation-api-contract/dt019-run-001/decision-gate.md
+docs/design/experiments/generation-api-contract/dt019-run-002/prompt-contract.md
+docs/design/experiments/generation-api-contract/dt019-run-002/response-schema.json
+docs/design/experiments/generation-api-contract/dt019-run-002/api-examples.md
+docs/design/experiments/generation-api-contract/dt019-run-002/error-contract.md
+docs/design/experiments/generation-api-contract/dt019-run-002/decision-gate.md
 build-evidence/RAG-DT019-generation-prompt-safeguards-output-schema-and-query-api-contract.md
 ```
 
@@ -94,6 +105,9 @@ folder may contain schema drafts, examples, and decision evidence.
 - Retrieved-context formatting is defined and includes required chunk metadata.
 - Retrieved chunks are explicitly treated as untrusted data.
 - Citation instructions are defined.
+- Factual claims cite approved source spans. Curator boundaries, eligibility
+  warnings, and safe-refusal rationale are labeled as service policy notices,
+  never represented as source citations.
 - Citation object schema includes at least:
   - `document_id`;
   - `snapshot_id`;
@@ -120,6 +134,11 @@ folder may contain schema drafts, examples, and decision evidence.
 - Error-envelope behavior is mapped for validation failures, provider failures,
   retries exhausted, malformed model output, timeout, and unavailable
   dependencies.
+- Exactly two response classes are defined: HTTP `200` typed RAG responses for
+  answers, refusals, no-evidence, and clarification; and one versioned problem
+  response for transport/error outcomes (`422`, `429`, `502`, `503`, `504`).
+  The problem response includes a stable code, public-safe message, request ID,
+  retryability, and no raw backend exception or provider body.
 - Runtime LLM/provider environment variable names are selected or alias rules
   are documented.
 - Build Task Impact maps required updates to `RAG-BT015`, `RAG-BT016`,
@@ -149,12 +168,12 @@ git -C $WorktreePath status --short --branch
 
 ## 6. Red Check
 
-Before writing the design, confirm the accepted contract does not already
-exist:
+Before writing the reopened design, confirm the historical contract is input
+only and no fresh decision-gate artifact already exists:
 
 ```powershell
 $ServiceRoot = Join-Path $WorktreePath "pilot_phase2_poc/rag-service"
-Test-Path "$ServiceRoot\docs\design\generation-and-query-api-contract.md"
+Test-Path "$ServiceRoot\docs\design\experiments\generation-api-contract\dt019-run-002\decision-gate.md"
 ```
 
 Expected result before the task is implemented:
@@ -167,13 +186,16 @@ False
 
 Perform the design work in this order:
 
-1. Review current golden questions and planner safe-response classes.
-2. Review the LLM evaluation fixture and selected model behavior.
-3. Review retrieval output metadata expected from `RAG-DT018`.
+1. Review DT022 acceptance gates, DT023 configuration/readiness contract, and
+   planner safe-response classes.
+2. Review the currently supported model/fallback result from `RAG-DT015` and
+   retrieval output metadata from `RAG-DT018`.
 4. Define prompt/message roles and context boundaries.
 5. Define retrieved context formatting and untrusted-data rules.
-6. Define answer, citation, safety note, refusal, and error schemas.
-7. Define validation, retry, fallback, and malformed-output behavior.
+6. Define answer, source-citation, policy-notice, safe-refusal, and error
+   schemas with the two response classes.
+7. Define validation, retry, fallback, malformed-output behavior, and public
+   error mapping for `422`, `429`, `502`, `503`, and `504`.
 8. Define API request/response examples for positive and safe-response cases.
 9. Define environment variable naming for LLM/provider runtime settings.
 10. Map contract fields to affected build tasks.
@@ -188,46 +210,23 @@ and its accepted fixtures.
 | Check | Command / Evidence | Required Result |
 |---|---|---|
 | Contract exists | `Test-Path docs/design/generation-and-query-api-contract.md` | `True` |
-| Prompt contract exists | `Test-Path docs/design/experiments/generation-api-contract/dt019-run-001/prompt-contract.md` | `True` |
-| Schema exists | `Test-Path docs/design/experiments/generation-api-contract/dt019-run-001/response-schema.json` | `True` |
-| Examples exist | `Test-Path docs/design/experiments/generation-api-contract/dt019-run-001/api-examples.md` | `True` |
+| Prompt contract exists | `Test-Path docs/design/experiments/generation-api-contract/dt019-run-002/prompt-contract.md` | `True` |
+| Schema exists | `Test-Path docs/design/experiments/generation-api-contract/dt019-run-002/response-schema.json` | `True` |
+| Error contract exists | `Test-Path docs/design/experiments/generation-api-contract/dt019-run-002/error-contract.md` | `True` |
+| Examples exist | `Test-Path docs/design/experiments/generation-api-contract/dt019-run-002/api-examples.md` | `True` |
 | Build impact recorded | Search contract for `RAG-BT015`, `RAG-BT016`, `RAG-BT017`, `RAG-BT018`, `RAG-BT019` | All present |
 | Evidence exists | `Test-Path build-evidence/RAG-DT019-generation-prompt-safeguards-output-schema-and-query-api-contract.md` | `True` |
 
 ## 8.1 Proposed Decision Summary
 
-This task proposes `POST /api/v1/query` as the first query endpoint path and
-accepts a structured response contract with these sections:
-
-```text
-planner
-retrieval
-generation
-citations
-safety
-errors
-```
-
-The generation prompt contract uses system, developer, user, and retrieved
-context messages. Retrieved chunks are explicitly untrusted data and must never
-be treated as instructions.
-
-The first-pass generation candidate remains Groq `llama-3.3-70b-versatile`
-from `RAG-DT015`, but provider/model settings must stay injectable through
-runtime config. The runtime config names prefer `RAG_LLM_*` and
-`RAG_GROQ_API_KEY`.
-
-Validation must reject malformed JSON, missing required fields, missing or
-fabricated citations, license-sensitive answer text, and unsafe operational or
-policy-violating output. Recoverable malformed JSON or schema failure may retry
-at most once before returning a standard `error_fallback`.
-
-Code-level validators are not treated as sufficient for answer quality. The
-evaluation harness must also include an evaluation-only LLM judge for relevance,
-completeness, groundedness, and scope-control checks. The judge may initially
-use the selected Groq `llama-3.3-70b-versatile` model, but judge config must be
-separate and swappable through `RAG_EVAL_LLM_*`. Runtime judge gating is
-deferred until cost, latency, model-bias, and reliability are assessed.
+`POST /api/v1/query` remains a candidate endpoint path; this reopened task
+does not accept an API or model default until its dependencies are accepted.
+The historical `llama-3.3-70b-versatile` selection and `dt019-run-001` schema
+are superseded inputs, not current defaults. The fresh contract must use the
+DT015 selected-or-deferred model result, DT018 frozen retrieval result, DT022
+evaluation gate, and DT023 configuration/readiness rules. It must prove the
+two response classes are non-contradictory and that source citations cannot be
+confused with policy notices.
 
 ## 9. PR Handoff
 
@@ -250,7 +249,8 @@ After merge:
 - prune/remove the task worktree;
 - delete the local branch;
 - delete the remote branch when permitted;
-- confirm `RAG-DT013` still waits for this task or records an explicit waiver.
+- confirm `RAG-DT013` still waits for this task or records a blocked manifest
+  entry for each affected authorization class.
 
 ## 11. Out Of Scope And Deferred Work
 

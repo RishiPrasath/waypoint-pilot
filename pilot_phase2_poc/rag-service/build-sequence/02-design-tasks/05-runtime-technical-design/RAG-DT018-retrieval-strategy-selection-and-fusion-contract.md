@@ -1,6 +1,6 @@
 # RAG-DT018: Retrieval Strategy Selection, Scoring, And Fusion Contract
 
-Status: Complete
+Status: Blocked
 
 ## Sequence Entry
 
@@ -14,13 +14,23 @@ opening this task file. Task files should follow the canonical template in
 | Lane | design |
 | Design Lane | 05-runtime-technical-design |
 | Task Name | Retrieval Strategy Selection, Scoring, And Fusion Contract |
-| Dependencies | `RAG-DT005`, `RAG-DT006`, `RAG-DT007`, `RAG-DT010`, `RAG-DT012`, `RAG-DT014`, `RAG-DT017` |
+| Dependencies | `RAG-DT005`, `RAG-DT006`, `RAG-DT007`, `RAG-DT010`, `RAG-DT012`, `RAG-DT014`, `RAG-DT017`, `RAG-DT022`, `RAG-DT024` |
 | Blocks | `RAG-DT013`, `RAG-BT013`, `RAG-BT014`, `RAG-BT018`, `RAG-BT019` |
+| Responsible | Retrieval engineer |
+| Accountable Approver | RAG evaluation owner |
+| Required Reviewers | Domain SME, service owner |
 | Branch | `codex/rag-dt018-retrieval-strategy-selection-and-fusion-contract` |
 | Worktree | `C:\tmp\rag-dt018-retrieval-strategy-selection-and-fusion-contract` |
 | Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-DT018-retrieval-strategy-selection-and-fusion-contract.md` |
 
 ## 1. Objective And Scope
+
+> Reopened 2026-07-28. The fixed semantic/lexical weights and low-confidence
+> thresholds were selected without an independent hybrid benchmark. Complete
+> `RAG-DT022` and compare semantic-only, lexical-only, RRF/DBSF, and weighted
+> fusion on calibration data, then validate the frozen choice on held-out data.
+> Per-query normalized rank scores alone must not be treated as calibrated
+> evidence confidence.
 
 Define how the RAG service chooses the right retrieval behavior for each query
 scenario before semantic, lexical, hybrid, API, or evaluation build tasks start.
@@ -73,8 +83,10 @@ Required design inputs:
 - `docs/design/source-snapshot-and-markdown-candidates.md`
 - `RAG-DT017` architecture sufficiency findings, if completed
 
-This task blocks `RAG-DT013`. If it is waived, `RAG-DT013` must record the
-waiver, owner decision, and risk before final build tasks can begin.
+This task blocks `RAG-DT013`. A waiver or deferral is not gate evidence and
+cannot authorize dependent non-fixture, external-provider, shared-service, or
+production work. It must produce a `NO-GO`/blocked manifest entry for every
+affected task; only explicitly listed fixture-only tasks may proceed.
 
 ## 3. Expected Artifacts
 
@@ -82,9 +94,11 @@ Create these durable artifacts:
 
 ```text
 docs/design/retrieval-strategy-and-fusion-contract.md
-docs/design/experiments/retrieval-strategy/dt018-run-001/retrieval-scenario-matrix.md
-docs/design/experiments/retrieval-strategy/dt018-run-001/scoring-options.md
-docs/design/experiments/retrieval-strategy/dt018-run-001/decision-gate.md
+docs/design/experiments/retrieval-strategy/dt018-run-002/retrieval-scenario-matrix.md
+docs/design/experiments/retrieval-strategy/dt018-run-002/scoring-options.md
+docs/design/experiments/retrieval-strategy/dt018-run-002/calibration-report.md
+docs/design/experiments/retrieval-strategy/dt018-run-002/heldout-report.md
+docs/design/experiments/retrieval-strategy/dt018-run-002/decision-gate.md
 build-evidence/RAG-DT018-retrieval-strategy-selection-and-fusion-contract.md
 ```
 
@@ -121,6 +135,14 @@ folder may contain longer research notes, comparisons, and gate evidence.
 - The design defines hard metadata filters versus optional metadata boosts.
 - The design defines deterministic tie-breaking.
 - The design defines low-confidence retrieval handling before generation.
+- Semantic-only, lexical-only, weighted hybrid, and rank-fusion alternatives
+  remain candidates until selected by the DT022 calibration procedure; weights,
+  boosts, candidate pools, and abstention thresholds are frozen before the
+  held-out run.
+- Held-out reporting includes retrieval quality, claim/span attribution,
+  false-answer and false-abstention rates, confidence calibration, and
+  uncertainty. Per-query normalized ranks are ordering signals, not calibrated
+  confidence.
 - The design maps DT006 golden questions and DT007 planner test classes to the
   expected retrieval modes.
 - The design states how hybrid retrieval should preserve or improve the DT010
@@ -152,12 +174,12 @@ git -C $WorktreePath status --short --branch
 
 ## 6. Red Check
 
-Before writing the design, confirm the accepted contract does not already
-exist:
+Before writing the reopened design, confirm the historical contract is marked
+as superseded input and no new decision-gate artifact already exists:
 
 ```powershell
 $ServiceRoot = Join-Path $WorktreePath "pilot_phase2_poc/rag-service"
-Test-Path "$ServiceRoot\docs\design\retrieval-strategy-and-fusion-contract.md"
+Test-Path "$ServiceRoot\docs\design\experiments\retrieval-strategy\dt018-run-002\decision-gate.md"
 ```
 
 Expected result before the task is implemented:
@@ -170,18 +192,20 @@ False
 
 Perform the design work in this order:
 
-1. Review current planner classifications and golden question types.
-2. Review current chunking and embedding benchmark assumptions.
+1. Review current planner classifications and DT022 calibration/held-out cases.
+2. Review current chunking and embedding benchmark assumptions as historical
+   fixture evidence only.
 3. Identify retrieval scenarios that need different behavior.
 4. Define the retrieval-mode decision matrix.
 5. Define the lexical method and normalization assumptions.
-6. Define candidate pools, score normalization, and fusion rules.
-7. Define metadata filter, metadata boost, and source-eligibility behavior.
-8. Define low-confidence and no-evidence behavior.
-9. Define rerank hook input/output, even if reranking is deferred.
-10. Define retrieval evaluation metrics and expected reports.
-11. Update affected build-task impact notes.
-12. Record the decision gate and evidence.
+6. Compare semantic-only, lexical-only, weighted hybrid, and rank-fusion
+   candidates on calibration data only.
+7. Freeze the candidate configuration, then measure it once on held-out data.
+8. Define metadata filter, metadata boost, and source-eligibility behavior.
+9. Define low-confidence and no-evidence behavior.
+10. Define rerank hook input/output, even if reranking is deferred.
+11. Record calibration, held-out, and uncertainty evidence; then update
+    affected build-task impact notes and the decision gate.
 
 Research is allowed when method details need external grounding, but the final
 contract must be grounded in the actual Waypoint RAG service corpus, planner
@@ -192,31 +216,21 @@ rules, golden questions, and build tasks.
 | Check | Command / Evidence | Required Result |
 |---|---|---|
 | Contract exists | `Test-Path docs/design/retrieval-strategy-and-fusion-contract.md` | `True` |
-| Scenario matrix exists | `Test-Path docs/design/experiments/retrieval-strategy/dt018-run-001/retrieval-scenario-matrix.md` | `True` |
-| Decision gate exists | `Test-Path docs/design/experiments/retrieval-strategy/dt018-run-001/decision-gate.md` | `True` |
+| Scenario matrix exists | `Test-Path docs/design/experiments/retrieval-strategy/dt018-run-002/retrieval-scenario-matrix.md` | `True` |
+| Calibration and holdout | `Test-Path docs/design/experiments/retrieval-strategy/dt018-run-002/calibration-report.md`; `Test-Path docs/design/experiments/retrieval-strategy/dt018-run-002/heldout-report.md` | Both `True` |
+| Decision gate exists | `Test-Path docs/design/experiments/retrieval-strategy/dt018-run-002/decision-gate.md` | `True` |
 | Build impact recorded | Search contract for `RAG-BT013`, `RAG-BT014`, `RAG-BT018`, `RAG-BT019` | All present |
 | Evidence exists | `Test-Path build-evidence/RAG-DT018-retrieval-strategy-selection-and-fusion-contract.md` | `True` |
 
 ## 8.1 Proposed Decision Summary
 
-This task proposes `metadata_filtered_hybrid` as the first-pass runtime default
-for answerable public regulatory questions, with `semantic_only_baseline`
-retained for `RAG-BT013`, `lexical_only_diagnostic` retained for debugging, and
-`exact_match_boosted_hybrid` used for exact source, title, procedure, article,
-HS/tariff, and permit questions.
-
-No-retrieval planner classifications must block retrieval before source search.
-License-sensitive and cite-only sources may be used only for metadata exclusion
-explanations unless a later task records explicit reuse approval.
-
-The proposed fusion rule is:
-
-```text
-base_fused_score = (0.65 * semantic_norm) + (0.35 * lexical_norm)
-final_score = min(1.0, base_fused_score + exact_match_boost + metadata_boost)
-```
-
-with exact-match boost capped at `0.15` and metadata boost capped at `0.05`.
+The prior weighted-fusion formula, thresholds, and boost caps are historical
+inputs only. This reopened task does not select a runtime default. It must
+compare candidates under DT022, freeze the choice before held-out measurement,
+and state the result with uncertainty. No-retrieval planner classifications
+remain a hard precondition before source search; license-sensitive and cite-only
+sources remain excluded from answerable retrieval until a later task records
+explicit reuse approval.
 
 ## 9. PR Handoff
 
@@ -238,7 +252,8 @@ After merge:
 - prune/remove the task worktree;
 - delete the local branch;
 - delete the remote branch when permitted;
-- confirm `RAG-DT013` still waits for this task or records an explicit waiver.
+- confirm `RAG-DT013` still waits for this task or records a blocked manifest
+  entry for each affected authorization class.
 
 ## 11. Out Of Scope And Deferred Work
 

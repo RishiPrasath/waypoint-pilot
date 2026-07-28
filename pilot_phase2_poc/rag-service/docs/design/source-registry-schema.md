@@ -1,7 +1,7 @@
 # Source Registry Schema
 
-Status: Draft for `RAG-DT008`; updated by `RAG-DT003` for source-owner
-capture and standards-body authority classification.
+Status: Accepted design input from `RAG-DT008`; lifecycle expansion required
+by `RAG-DT024`
 Schema artifact: `knowledge_base/registry/source_registry.schema.json`
 
 ## Purpose

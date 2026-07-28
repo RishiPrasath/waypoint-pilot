@@ -1,4 +1,4 @@
-# RAG-BT022: Production-Readiness Review
+# RAG-BT022: PoC Integration Readiness Review
 
 Status: Planned
 
@@ -10,14 +10,14 @@ Task files should follow the canonical template in build-sequence/00-governance/
 | Field | Value |
 |---|---|
 | Task ID | `RAG-BT022` |
-| Task Name | Production-Readiness Review |
+| Task Name | PoC Integration Readiness Review |
 | Build Stage | 06-ops-readiness - Ops Readiness |
 | Source Question | definition of done |
 | Decision / ADR | ADR-RAG-0011, ADR-RAG-0014 |
-| Design Dependencies | all required build tasks, RAG-DT020, accepted deferrals only |
-| Depends On Build Tasks | see section 1 and section 3 |
-| Branch | `codex/rag-bt022-production-readiness-review` |
-| Worktree Path | `C:\tmp\rag-bt022-production-readiness-review` |
+| Design Dependencies | `RAG-DT020`, `RAG-DT021`, `RAG-DT022`, `RAG-DT023`, `RAG-DT025`, `RAG-DT013` |
+| Depends On Build Tasks | `RAG-BT012` through `RAG-BT021`, plus `RAG-BT023`; `RAG-BT024` only for canonical-corpus claims |
+| Branch | `codex/rag-bt022-poc-integration-readiness-review` |
+| Worktree Path | `C:\tmp\rag-bt022-poc-integration-readiness-review` |
 | Owner | solo developer |
 | AI Review Partner | Codex |
 | Status | Planned |
@@ -25,9 +25,10 @@ Task files should follow the canonical template in build-sequence/00-governance/
 
 ## 1. Task Definition
 
-Build: production-readiness review artifact.
+Build: PoC integration-readiness review artifact.
 
-Goal: verify task, slice, and service-level done criteria before calling the RAG service ready.
+Goal: verify local PoC task, slice, and service-level done criteria without
+claiming shared-service or production readiness.
 
 Module: `docs/reviews/`.
 
@@ -42,8 +43,7 @@ DT020 Evaluation/Tuning Gate:
 - Before production-readiness review, confirm `RAG-DT020` has defined how
   evaluation findings, tuning decisions, baseline changes, and unresolved
   failures are accepted, remediated, or deferred.
-- If `RAG-DT020` is waived, this task must record the waiver and accepted risk
-  before the service can be called production-ready.
+- `RAG-DT020` may not be waived for an end-to-end PoC quality claim.
 
 DT011 Docker/Local Ops Handoff:
 
@@ -58,8 +58,9 @@ DT011 Docker/Local Ops Handoff:
   - local Docker docs exist.
 - If Trivy or container scanning is deferred, record the accepted deferral and
   owner reason.
-- Production deployment, Kubernetes, managed Qdrant, backups, and TLS are not
-  implied by DT011 and need explicit future decisions if they become in scope.
+- Production deployment, Kubernetes, managed Qdrant, backups, TLS, shared
+  authentication, and on-call support are outside this PoC gate. Their absence
+  prohibits a production-ready verdict.
 
 DT016 CI/CD Readiness Handoff:
 
@@ -79,13 +80,21 @@ Acceptance Criteria:
 - CI/CD is passing
 - security checks are passing or accepted debt is recorded
 - Docker/local run evidence exists if Docker is in scope
-- evaluation report exists
+- real-Qdrant integration evidence from `RAG-BT023` exists
+- dependency-aware readiness evidence exists before `/ready` is used as proof
+- evaluation report uses `RAG-DT022` absolute gates and labels fixture versus
+  canonical results
+- local services are loopback-bound unless a stronger deployment profile is
+  explicitly approved
+- the verdict is exactly `POC_GO` or `POC_NO_GO`
+- the report states that it is not a production-readiness decision
 - known risks and follow-ups are recorded
 
 Out Of Scope:
 
 - new feature work
 - production deployment target decision
+- production-ready, staging-ready, or shared-service-ready claims
 
 ## 2. Worktree And Branch Setup
 
@@ -98,7 +107,7 @@ Do not write task code directly on `main`.
 $RepoRoot = "C:\Users\prasa\Documents\Github\waypoint-pilot"
 $WorktreeRoot = "C:\tmp"
 $TaskId = "rag-bt022"
-$Slug = "production-readiness-review"
+$Slug = "poc-integration-readiness-review"
 $Branch = "codex/$TaskId-$Slug"
 $WorktreePath = Join-Path $WorktreeRoot "$TaskId-$Slug"
 
@@ -116,7 +125,7 @@ git -C $WorktreePath status --short --branch
 REPO_ROOT="$HOME/code/waypoint-pilot"
 WORKTREE_ROOT="$HOME/code/waypoint-pilot-worktrees"
 TASK_ID="rag-bt022"
-SLUG="production-readiness-review"
+SLUG="poc-integration-readiness-review"
 BRANCH="codex/$TASK_ID-$SLUG"
 WORKTREE_PATH="$WORKTREE_ROOT/$TASK_ID-$SLUG"
 
@@ -128,48 +137,28 @@ git -C "$REPO_ROOT" worktree add -b "$BRANCH" "$WORKTREE_PATH" origin/main
 git -C "$WORKTREE_PATH" status --short --branch
 ```
 
-## 3. Test Code
+## 3. Acceptance Check
 
-Write the failing test or acceptance check first. If a design dependency changes
-this task, update this section before implementation starts.
+The red check is an artifact-contract check, not Python code stored in
+Markdown.
 
-Primary test or acceptance path:
+Primary acceptance path:
 
 ```text
-pilot_phase2_poc/rag-service/docs/reviews/production-readiness.md
+pilot_phase2_poc/rag-service/docs/reviews/poc-integration-readiness.md
 ```
 
-### Windows PowerShell Test File Creation
+### Windows PowerShell
 
 ```powershell
-$TestPath = Join-Path $WorktreePath "pilot_phase2_poc/rag-service/docs/reviews/production-readiness.md"
-New-Item -ItemType Directory -Force -Path (Split-Path $TestPath) | Out-Null
-@(
-  '# RAG-BT022 failing test placeholder',
-  '# Replace this placeholder with the task-specific failing test after design gates are complete.',
-  'def test_production_readiness_review():',
-  '    assert False, "Implement RAG-BT022 after design dependencies are confirmed"'
-) | Set-Content -Path $TestPath -Encoding UTF8
+$ServiceRoot = Join-Path $WorktreePath "pilot_phase2_poc/rag-service"
+$ReviewPath = Join-Path $ServiceRoot "docs/reviews/poc-integration-readiness.md"
+if (Test-Path -LiteralPath $ReviewPath) {
+    throw "Red check failed: PoC integration-readiness artifact already exists."
+}
 ```
 
-### Linux / macOS Bash Test File Creation
-
-```bash
-TEST_PATH="$WORKTREE_PATH/pilot_phase2_poc/rag-service/docs/reviews/production-readiness.md"
-mkdir -p "$(dirname "$TEST_PATH")"
-cat > "$TEST_PATH" <<'EOF'
-# RAG-BT022 failing test placeholder
-# Replace this placeholder with the task-specific failing test after design gates are complete.
-def test_production_readiness_review():
-    assert False, "Implement RAG-BT022 after design dependencies are confirmed"
-EOF
-```
-
-Expected initial failure:
-
-```text
-The test or acceptance check fails because production-readiness review artifact is not implemented yet.
-```
+Expected initial result: the command succeeds because the artifact is absent.
 
 ## 4. Implementation
 
@@ -177,24 +166,24 @@ Implement only after the failing test or acceptance check exists.
 
 Target implementation artifacts:
 
-- `pilot_phase2_poc/rag-service/docs/reviews/production-readiness.md`
+- `pilot_phase2_poc/rag-service/docs/reviews/poc-integration-readiness.md`
 
 ### Windows PowerShell Implementation File Preparation
 
 ```powershell
-$PrimaryImplPath = Join-Path $WorktreePath "pilot_phase2_poc/rag-service/docs/reviews/production-readiness.md"
+$PrimaryImplPath = Join-Path $WorktreePath "pilot_phase2_poc/rag-service/docs/reviews/poc-integration-readiness.md"
 New-Item -ItemType Directory -Force -Path (Split-Path $PrimaryImplPath) | Out-Null
 # Create or update the implementation artifacts for RAG-BT022:
-# pilot_phase2_poc/rag-service/docs/reviews/production-readiness.md
+# pilot_phase2_poc/rag-service/docs/reviews/poc-integration-readiness.md
 ```
 
 ### Linux / macOS Bash Implementation File Preparation
 
 ```bash
-PRIMARY_IMPL_PATH="$WORKTREE_PATH/pilot_phase2_poc/rag-service/docs/reviews/production-readiness.md"
+PRIMARY_IMPL_PATH="$WORKTREE_PATH/pilot_phase2_poc/rag-service/docs/reviews/poc-integration-readiness.md"
 mkdir -p "$(dirname "$PRIMARY_IMPL_PATH")"
 # Create or update the implementation artifacts for RAG-BT022:
-# pilot_phase2_poc/rag-service/docs/reviews/production-readiness.md
+# pilot_phase2_poc/rag-service/docs/reviews/poc-integration-readiness.md
 ```
 
 Implementation Notes:
@@ -206,23 +195,38 @@ Implementation Notes:
 
 ## 5. Test Execution
 
-Run the module-local test first, then the service-level checks available at that
-point in the build sequence.
+Run service-level checks, governance, and explicit artifact-contract checks.
 
 ### Windows PowerShell
 
 ```powershell
 Set-Location "$WorktreePath\pilot_phase2_poc\rag-service"
-uv run pytest "docs/reviews/production-readiness.md" -q
 uv run pytest -q
+uv run python scripts/check_build_sequence_governance.py
+$ReviewPath = "docs/reviews/poc-integration-readiness.md"
+if (-not (Test-Path -LiteralPath $ReviewPath)) { throw "Readiness report is missing." }
+$RequiredPatterns = @(
+  "POC_GO|POC_NO_GO",
+  "not a production-readiness decision",
+  "RAG-BT023",
+  "dependency-aware readiness",
+  "fixture|canonical"
+)
+foreach ($Pattern in $RequiredPatterns) {
+  if (-not (Select-String -LiteralPath $ReviewPath -Pattern $Pattern)) {
+    throw "Readiness report is missing required pattern: $Pattern"
+  }
+}
 ```
 
 ### Linux / macOS Bash
 
 ```bash
 cd "$WORKTREE_PATH/pilot_phase2_poc/rag-service"
-uv run pytest "docs/reviews/production-readiness.md" -q
 uv run pytest -q
+uv run python scripts/check_build_sequence_governance.py
+grep -E "POC_GO|POC_NO_GO|not a production-readiness decision|RAG-BT023|dependency-aware readiness|fixture|canonical" \
+  docs/reviews/poc-integration-readiness.md
 ```
 
 Record:
@@ -242,7 +246,7 @@ Use the task branch created at the start. Keep the PR small and task-sized.
 ```powershell
 git -C $WorktreePath status --short
 git -C $WorktreePath add pilot_phase2_poc/rag-service
-git -C $WorktreePath commit -m "build(rag): implement rag-bt022 production-readiness-review"
+git -C $WorktreePath commit -m "build(rag): implement rag-bt022 poc-integration-readiness-review"
 git -C $WorktreePath push -u origin $Branch
 ```
 
@@ -251,7 +255,7 @@ git -C $WorktreePath push -u origin $Branch
 ```bash
 git -C "$WORKTREE_PATH" status --short
 git -C "$WORKTREE_PATH" add pilot_phase2_poc/rag-service
-git -C "$WORKTREE_PATH" commit -m "build(rag): implement rag-bt022 production-readiness-review"
+git -C "$WORKTREE_PATH" commit -m "build(rag): implement rag-bt022 poc-integration-readiness-review"
 git -C "$WORKTREE_PATH" push -u origin "$BRANCH"
 ```
 
@@ -304,6 +308,11 @@ Evidence is recorded in `pilot_phase2_poc/rag-service/build-evidence/RAG-BT022-p
 
 ## DT013 Final Design Handoff
 
-- Treat `RAG-DT013` as a required design gate before production-readiness signoff.
-- Consume DT016, DT017, DT020, and evaluation evidence, including accepted deferrals and unresolved repo/security/container risks.
-- Do not pass readiness unless mandatory evaluation, Docker/local ops, CI, citation/refusal, and safeguard evidence is present or explicitly owner-accepted.
+- Treat `RAG-DT013` Revision 2 as a required design gate before PoC
+  integration-readiness signoff.
+- Consume `RAG-DT016` through `RAG-DT025` and evaluation evidence, including
+  accepted deferrals and unresolved repository/security/container risks.
+- Do not pass readiness unless mandatory evaluation, real-Qdrant,
+  dependency-aware readiness, Docker/local ops, CI, citation/refusal, and
+  safeguard evidence is present.
+- Never use this task to claim production readiness.

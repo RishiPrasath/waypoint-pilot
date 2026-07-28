@@ -1,6 +1,6 @@
 ﻿# RAG-DT020: Post-Build Evaluation And Tuning Loop
 
-Status: Complete
+Status: Blocked
 
 ## Sequence Entry
 
@@ -14,13 +14,22 @@ opening this task file. Task files should follow the canonical template in
 | Lane | design |
 | Design Lane | 05-runtime-technical-design |
 | Task Name | Post-Build Evaluation And Tuning Loop |
-| Dependencies | `RAG-DT005`, `RAG-DT006`, `RAG-DT007`, `RAG-DT010`, `RAG-DT014`, `RAG-DT015`, `RAG-DT017`, `RAG-DT018`, `RAG-DT019` |
+| Dependencies | `RAG-DT005`, `RAG-DT006`, `RAG-DT007`, `RAG-DT010`, `RAG-DT014`, `RAG-DT015`, `RAG-DT017`, `RAG-DT018`, `RAG-DT019`, `RAG-DT022`, `RAG-DT023` |
 | Blocks | `RAG-DT013`, `RAG-BT019`, `RAG-BT022`, post-build adjustment work |
+| Responsible | Evaluation owner |
+| Accountable Approver | Product/domain-risk owner |
+| Required Reviewers | Service owner, independent domain adjudicator |
 | Branch | `codex/rag-dt020-post-build-evaluation-and-tuning-loop` |
 | Worktree | `C:\tmp\rag-dt020-post-build-evaluation-and-tuning-loop` |
 | Evidence | `pilot_phase2_poc/rag-service/build-evidence/RAG-DT020-post-build-evaluation-and-tuning-loop.md` |
 
 ## 1. Objective And Scope
+
+> Reopened 2026-07-28. Replace baseline-relative-only acceptance with
+> independently justified absolute gates, sample sizes, uncertainty reporting,
+> attribution quality, unsafe-answer/false-refusal limits, indirect-injection
+> success limits, and runtime latency/error/cost budgets from `RAG-DT022` and
+> `RAG-DT023`.
 
 Define what happens after the RAG service is built and evaluated. The build
 should not stop at "the harness ran." It needs a governed loop for deciding
@@ -31,7 +40,7 @@ In scope:
 
 - evaluation run types and when each one runs;
 - regression baseline policy;
-- metrics and thresholds to be decided before implementation;
+- pre-registered metrics and absolute thresholds;
 - failure taxonomy;
 - mapping failures to likely adjustment areas;
 - tuning experiment workflow;
@@ -60,10 +69,13 @@ Required design inputs:
 - `docs/design/retrieval-strategy-and-fusion-contract.md`
 - `docs/design/generation-and-query-api-contract.md`
 - `RAG-BT019` evaluation harness task file
-- `RAG-BT022` production-readiness review task file
+- `RAG-BT022` readiness review task file, which cannot establish a production
+  claim while DT023 production-tier controls remain deferred
 
-This task blocks `RAG-DT013`. If it is waived, `RAG-DT013` must record the
-waiver, owner decision, and risk before final build tasks can begin.
+This task blocks `RAG-DT013`. A waiver or deferral is not gate evidence and
+cannot authorize dependent non-fixture, external-provider, shared-service, or
+production work. It must produce a `NO-GO`/blocked manifest entry for every
+affected task; only explicitly listed fixture-only tasks may proceed.
 
 ## 3. Expected Artifacts
 
@@ -71,9 +83,11 @@ Create these durable artifacts:
 
 ```text
 docs/design/post-build-evaluation-and-tuning-loop.md
-docs/design/experiments/post-build-evaluation/dt020-run-001/evaluation-taxonomy.md
-docs/design/experiments/post-build-evaluation/dt020-run-001/tuning-playbook.md
-docs/design/experiments/post-build-evaluation/dt020-run-001/decision-gate.md
+docs/design/experiments/post-build-evaluation/dt020-run-002/evaluation-taxonomy.md
+docs/design/experiments/post-build-evaluation/dt020-run-002/tuning-playbook.md
+docs/design/experiments/post-build-evaluation/dt020-run-002/release-promotion-manifest.yaml
+docs/design/experiments/post-build-evaluation/dt020-run-002/decision-log.md
+docs/design/experiments/post-build-evaluation/dt020-run-002/decision-gate.md
 build-evidence/RAG-DT020-post-build-evaluation-and-tuning-loop.md
 ```
 
@@ -90,7 +104,7 @@ folder may contain the detailed taxonomy, playbook, and gate evidence.
   - post-change comparison checks.
 - The design defines which checks run locally, in PR CI, on `main`, and during
   owner-reviewed post-build assessment.
-- Evaluation metrics are defined or explicitly left as task-owned thresholds,
+- Evaluation metrics and absolute pass/fail thresholds are pre-registered,
   including at least:
   - retrieval Recall@K / expected chunk presence;
   - ranking quality or MRR;
@@ -117,6 +131,10 @@ folder may contain the detailed taxonomy, playbook, and gate evidence.
   - CI/CD or local Docker environment.
 - The design defines how tuning experiments are recorded.
 - The design defines when a new baseline can be accepted.
+- A promotion decision freezes and records the corpus release, evaluation
+  dataset manifest, embedding model, retrieval configuration, model/prompt
+  configuration, and runtime tier. Any tuning change requires a fresh held-out
+  evaluation before promotion.
 - The design defines when a failed evaluation creates a new build task,
   design task, bugfix task, or owner-accepted deferral.
 - The design defines how `RAG-BT019` reports unit/mocked, Qdrant-backed, and
@@ -148,12 +166,12 @@ git -C $WorktreePath status --short --branch
 
 ## 6. Red Check
 
-Before writing the design, confirm the accepted contract does not already
-exist:
+Before writing the reopened design, confirm no fresh decision-gate artifact
+already exists:
 
 ```powershell
 $ServiceRoot = Join-Path $WorktreePath "pilot_phase2_poc/rag-service"
-Test-Path "$ServiceRoot\docs\design\post-build-evaluation-and-tuning-loop.md"
+Test-Path "$ServiceRoot\docs\design\experiments\post-build-evaluation\dt020-run-002\decision-gate.md"
 ```
 
 Expected result before the task is implemented:
@@ -166,15 +184,16 @@ False
 
 Perform the design work in this order:
 
-1. Review current golden-question, retrieval, embedding, LLM, and CI/CD
-   evidence.
+1. Review DT022 valid evaluation evidence and the DT015, DT018, DT019, and
+   DT023 accepted decision inputs.
 2. Review `RAG-BT019` and identify what its reports must contain.
 3. Define evaluation run types and environments.
-4. Define metrics and threshold ownership.
+4. Pre-register metrics, absolute thresholds, and threshold ownership.
 5. Define failure taxonomy.
 6. Map failure categories to likely adjustment areas.
 7. Define tuning experiment evidence structure.
-8. Define baseline acceptance, rejection, and rollback rules.
+8. Define frozen-release acceptance, rejection, rollback, and fresh-held-out
+   re-evaluation rules.
 9. Define owner decision gates after evaluation.
 10. Map required build-task updates.
 11. Record the decision gate and evidence.
@@ -184,9 +203,10 @@ Perform the design work in this order:
 | Check | Command / Evidence | Required Result |
 |---|---|---|
 | Contract exists | `Test-Path docs/design/post-build-evaluation-and-tuning-loop.md` | `True` |
-| Taxonomy exists | `Test-Path docs/design/experiments/post-build-evaluation/dt020-run-001/evaluation-taxonomy.md` | `True` |
-| Tuning playbook exists | `Test-Path docs/design/experiments/post-build-evaluation/dt020-run-001/tuning-playbook.md` | `True` |
-| Decision gate exists | `Test-Path docs/design/experiments/post-build-evaluation/dt020-run-001/decision-gate.md` | `True` |
+| Taxonomy exists | `Test-Path docs/design/experiments/post-build-evaluation/dt020-run-002/evaluation-taxonomy.md` | `True` |
+| Tuning playbook exists | `Test-Path docs/design/experiments/post-build-evaluation/dt020-run-002/tuning-playbook.md` | `True` |
+| Frozen release | `Test-Path docs/design/experiments/post-build-evaluation/dt020-run-002/release-promotion-manifest.yaml` | `True` |
+| Decision gate exists | `Test-Path docs/design/experiments/post-build-evaluation/dt020-run-002/decision-gate.md` | `True` |
 | Build impact recorded | Search contract for `RAG-BT019` and `RAG-BT022` | Both present |
 | Evidence exists | `Test-Path build-evidence/RAG-DT020-post-build-evaluation-and-tuning-loop.md` | `True` |
 
@@ -210,7 +230,8 @@ After merge:
 - prune/remove the task worktree;
 - delete the local branch;
 - delete the remote branch when permitted;
-- confirm `RAG-DT013` still waits for this task or records an explicit waiver.
+- confirm `RAG-DT013` still waits for this task or records a blocked manifest
+  entry for each affected authorization class.
 
 ## 11. Out Of Scope And Deferred Work
 
